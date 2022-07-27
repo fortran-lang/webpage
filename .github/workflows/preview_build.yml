@@ -7,13 +7,17 @@ name: Sphinx Preview Build
 
 on:
   workflow_dispatch:
+  issue_comment:
+    types: [created]
+
+permissions: read-all
 
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event.issue.pull_request && contains(github.event.comment.body,'#build_preview')
     
     steps:
-        
     - name: Checkout pr/${{github.event.issue.number}}
       uses: actions/checkout@v2
       
