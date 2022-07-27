@@ -1,0 +1,37 @@
+# Github action to build sphinx site and commit to gh-pages branch
+#
+#  Built site is pushed to 'gh-pages' branch
+#
+
+name: Sphinx Preview Build
+
+on:
+  workflow_dispatch:
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    
+    steps:
+        
+    - name: Checkout pr/${{github.event.issue.number}}
+      uses: actions/checkout@v2
+      
+    - name: Setup Python
+      uses: actions/setup-python@v1
+
+    - name: Install sphinx
+      run: pip3 install --user -r requirements.txt
+      
+    - name: Build page
+      run: make html
+      
+    - run: touch build/html/.nojekyll
+
+    - name: Deploy documentation sphinx
+      uses: JamesIves/github-pages-deploy-action@v4.4.0
+      with:
+        token: ${{ secrets.GITHUB_TOKEN }}
+        branch: gh-pages/pr/${{github.event.issue.number}}
+        folder: build/html
+        clean: false
