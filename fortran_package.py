@@ -8,15 +8,14 @@ from requests.structures import CaseInsensitiveDict
 from datetime import datetime
 import pytz
 from collections import OrderedDict
-import numpy as np
 
 months = ["Unknown", "January","Febuary","March", "April","May","June","July","August","September","October","November","December"]
 #print("learn section")
-info = requests.get('https://raw.githubusercontent.com/fortran-lang/fortran-lang.org/master/_data/package_index.yml').text
-fortran_index = yaml.safe_load(info)
-#print(conf['books'])
-info = requests.get('https://raw.githubusercontent.com/fortran-lang/fortran-lang.org/master/_data/learning.yml').text
-conf = yaml.safe_load(info)
+f = open('_data/package_index.yml')
+fortran_index = yaml.safe_load(f)
+f = open('_data/learning.yml')
+conf = yaml.safe_load(f)
+#print(conf)
 headers = CaseInsensitiveDict()
 headers["Authorization"] = str(sys.argv[1]) +" " +str(sys.argv[2])
 
