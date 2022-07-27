@@ -28,14 +28,15 @@ jobs:
       run: pip3 install --user -r requirements.txt
       
     - name: Build page
-      run: make html
+      run: make html LANGUAGES=en
       
     - run: touch build/html/.nojekyll
 
     - name: Deploy documentation sphinx
       uses: JamesIves/github-pages-deploy-action@v4.4.0
       with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        branch: gh-pages/pr/${{github.event.issue.number}}
+        token: ${{ secrets.API_GITHUB_TOKEN }}
+        branch: gh-pages
+        target-folder: pr/${{github.event.issue.number}}
         folder: build/html
         clean: false
