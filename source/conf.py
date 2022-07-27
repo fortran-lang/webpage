@@ -21,13 +21,12 @@ import requests
 import sys
 import datetime
 
-
-info = requests.get('https://raw.githubusercontent.com/henilp105/fortran-lang.org/master/fortran_learn.json').text
-conf = json.loads(info)
-info = requests.get('https://raw.githubusercontent.com/henilp105/fortran-lang.org/master/fortran_package.json').text
-fortran_tags = json.loads(info)
-info = requests.get('https://raw.githubusercontent.com/henilp105/fortran-lang.org/master/contributor.json').text
-contributors = json.loads(info)
+f = open('../_data/fortran_learn.json')
+conf = json.load(f)
+f = open('../_data/fortran_package.json')
+fortran_tags = json.load(f)
+f = open('../_data/contributor.json')
+contributors = json.load(f)
 
 # -- Project information -----------------------------------------------------
 
