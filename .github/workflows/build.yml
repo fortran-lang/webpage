@@ -8,7 +8,7 @@ name: Sphinx Build
 on:
   workflow_dispatch:
   push:
-    branches: [ master ]
+    branches: [ main ]
   schedule:
     - cron: "0 3 * * *" 
 
@@ -34,7 +34,7 @@ jobs:
 
     - name: Deploy documentation sphinx
       uses: JamesIves/github-pages-deploy-action@v4.4.0
-      if: github.event_name == 'push' && github.ref == 'refs/heads/master'
+      if: github.event_name == 'push' && github.ref == 'refs/heads/main'
       with:
         token: ${{ secrets.GITHUB_TOKEN }}
         branch: gh-pages
