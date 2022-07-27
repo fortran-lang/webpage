@@ -1,0 +1,480 @@
+
+<!DOCTYPE html>
+
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+
+    <title>Fortran Style Guide &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <link rel="index" title="Index" href="../../genindex.html" />
+    <link rel="search" title="Zoeken" href="../../search.html" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="nl"> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../index.html">
+  
+  
+  
+  
+    <img src="../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+   <div class="container-xl">
+      <div id="navbar-start">
+         <a class="navbar-brand" href="../../index.html">
+            <img src="../../_static/images/fortran-logo-256x256.png" class="logo"
+               alt="logo">
+         </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible"
+         aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbar-collapsible" class=" collapse navbar-collapse">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+           <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+           <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+           <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+       </span>
+
+       <div class="dropdown" id="version_switcher">
+        <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+         language
+            <span class="caret"></span>
+        </button>
+        <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+        <a class="list-group-item list-group-item-action py-1" href="../../../de/learn/best_practices/style_guide.html"><span>de</span></a>
+        <a class="list-group-item list-group-item-action py-1" href="../../../en/learn/best_practices/style_guide.html"><span>en</span></a>
+        <a class="list-group-item list-group-item-action py-1" href="../../../es/learn/best_practices/style_guide.html"><span>es</span></a>
+        <a class="list-group-item list-group-item-action py-1" href="../../../fr/learn/best_practices/style_guide.html"><span>fr</span></a>
+        <a class="list-group-item list-group-item-action py-1" href="../../../ja/learn/best_practices/style_guide.html"><span>ja</span></a>
+        <a class="list-group-item list-group-item-action py-1" href="../../../nl/learn/best_practices/style_guide.html"><span>nl</span></a>
+        <a class="list-group-item list-group-item-action py-1" href="../../../zh_CN/learn/best_practices/style_guide.html"><span>zh_CN</span></a>
+        </div>
+
+    </div>
+
+         <div id="navbar-center" class="ml-auto">
+            <div class="navbar-center-item">
+               <ul id="navbar-main-elements" class="navbar-nav">
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link"
+                        href="../../learn.html">
+                        Learn
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link"
+                        href="../../compilers.html">
+                        Compilers
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link"
+                        href="../../community.html">
+                        Community
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link"
+                        href="../../packages.html">
+                        Packages
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link"
+                        href="../../news.html">
+                        News
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div id="navbar-end">
+            <div class="navbar-end-item">
+       
+               <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+                  <li class="nav-item">
+                     <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank"
+                        title="Discourse"><span><i class="fab fa-discourse" style="color:#734f96"></i></span>
+                        <label class="sr-only">Discourse</label></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank"
+                        title="Twitter"><span><i class="fab fa-twitter" style="color:#734f96"></i></span>
+                        <label class="sr-only">Twitter</label></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank"
+                        title="GitHub"><span><i class="fab fa-github" style="color:#734f96"></i></span>
+                        <label class="sr-only">GitHub</label></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="../../news/atom.xml" rel="noopener" target="_blank"
+                        title="RSS"><span><i class="fas fa-rss" style="color:#734f96"></i></span>
+                        <label class="sr-only">RSS</label></a>
+                  </li>
+               </ul>
+            </div>
+         </div><form class="bd-search d-flex align-items-center" action="../../search.html" method="get"> <i
+            class="icon fas fa-search"></i> <input type="search" class="form-control" name="q" id="search-input"
+            placeholder="Search" aria-label="Search" autocomplete="off"> </form>
+
+      </div>
+   </div>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/news.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="allocatable_arrays.html">
+   allocatable arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="file_io.html">
+   file io
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="modules_programs.html">
+   modules programs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="arrays.html">
+   arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="floating_point.html">
+   floating point
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="multidim_arrays.html">
+   multidim arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="callbacks.html">
+   callbacks
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   style guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="element_operations.html">
+   element operations
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="integer_division.html">
+   integer division
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="type_casting.html">
+   type casting
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+
+
+
+<br>
+
+<div class="tocsection onthispage">
+    <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc">
+  <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#naming-convention">
+   Naming Convention
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#indentation">
+   Indentation
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#comparison-to-other-languages">
+   Comparison to Other Languages
+  </a>
+ </li>
+</ul>
+
+</nav>
+
+
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                 <section id="fortran-style-guide">
+<h1 class="sd-d-none">Fortran Style Guide<a class="headerlink" href="#fortran-style-guide" title="Permalink naar deze titel">#</a></h1>
+<section id="naming-convention">
+<h2>Naming Convention<a class="headerlink" href="#naming-convention" title="Permalink naar deze titel">#</a></h2>
+<p>Ultimately this is a matter of preference. Here is a style guide that we
+like and that seems to be prevalent in most scientific codes (as well as
+the Fortran standard library), and you are welcome to follow it.</p>
+<ol class="arabic simple">
+<li><p>Use lowercase for all Fortran constructs (<code class="docutils literal notranslate"><span class="pre">do</span></code>, <code class="docutils literal notranslate"><span class="pre">subroutine</span></code>,
+<code class="docutils literal notranslate"><span class="pre">module</span></code>, …).</p></li>
+<li><p>Follow short mathematical notation for mathematical
+variables/functions (<code class="docutils literal notranslate"><span class="pre">Ylm</span></code>, <code class="docutils literal notranslate"><span class="pre">Gamma</span></code>, <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, <code class="docutils literal notranslate"><span class="pre">Enl</span></code>, <code class="docutils literal notranslate"><span class="pre">Rnl</span></code>, …).</p></li>
+<li><p>For other names use all lowercase: try to keep names to one or two
+syllables; if more are required, use underscores to clarify
+(<code class="docutils literal notranslate"><span class="pre">sortpair</span></code>, <code class="docutils literal notranslate"><span class="pre">whitechar</span></code>, <code class="docutils literal notranslate"><span class="pre">meshexp</span></code>, <code class="docutils literal notranslate"><span class="pre">numstrings</span></code>, <code class="docutils literal notranslate"><span class="pre">linspace</span></code>,
+<code class="docutils literal notranslate"><span class="pre">meshgrid</span></code>, <code class="docutils literal notranslate"><span class="pre">argsort</span></code>, <code class="docutils literal notranslate"><span class="pre">spline</span></code>, <code class="docutils literal notranslate"><span class="pre">spline_interp</span></code>,
+<code class="docutils literal notranslate"><span class="pre">spline_interpolate</span></code>, <code class="docutils literal notranslate"><span class="pre">stoperr</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_error</span></code>, <code class="docutils literal notranslate"><span class="pre">meshexp_der</span></code>).</p></li>
+</ol>
+<p>For example “spline interpolation” can be shortened to
+<code class="docutils literal notranslate"><span class="pre">spline_interpolation</span></code>, <code class="docutils literal notranslate"><span class="pre">spline_interpolate</span></code>, <code class="docutils literal notranslate"><span class="pre">spline_interp</span></code>, <code class="docutils literal notranslate"><span class="pre">spline</span></code>,
+but not to <code class="docutils literal notranslate"><span class="pre">splineint</span></code> (“int” could mean integration, integer, etc. —
+too much ambiguity, even in the clear context of a computational code).
+This is in contrast to <code class="docutils literal notranslate"><span class="pre">get_argument()</span></code> where <code class="docutils literal notranslate"><span class="pre">getarg()</span></code> is perfectly
+clean and clear.</p>
+<p>The above are general guidelines. In general, choosing the right name
+certainly depends on the word being truncated as to whether the first
+syllable is sufficient. Usually it is but clearly not always. Thus some
+thought should go into step “try to keep names to 2 syllables or less”
+since it can really affect the indicativeness and simplicity. Simple
+consistent naming rules are a real help in this regard – for both
+collaboration and for one’s own sanity when going back to some old code
+you haven’t seen in while.</p>
+</section>
+<section id="indentation">
+<h2>Indentation<a class="headerlink" href="#indentation" title="Permalink naar deze titel">#</a></h2>
+<p>Use a consistent indentation to make your code readable.
+The amount of indentation is a matter of preference, the most common choices
+are two, three or four spaces.</p>
+</section>
+<section id="comparison-to-other-languages">
+<h2>Comparison to Other Languages<a class="headerlink" href="#comparison-to-other-languages" title="Permalink naar deze titel">#</a></h2>
+<p>On the other hand, in most of the rest of the programming world, where
+the main focus is, in one form or another, on defining and using large
+sets of complex objects, with tons of properties and behaviors, known
+only in the code in which they are defined (as opposed to defined by the
+same notation throughout the literature), it makes more sense to use
+longer, more descriptive names. The naming conventions one sees used in
+more general-purpose languages such as C++ and Python, therefore, are
+perfectly consistent with their more general-purpose missions. But
+Fortran has a different mission (numerical scientific computing).</p>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </article>
+              
+
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              </footer>
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>
