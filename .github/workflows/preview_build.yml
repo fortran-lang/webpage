@@ -1,5 +1,4 @@
-# Github action to build sphinx site and commit to gh-pages branch
-#
+# Github action to build preview sphinx site and commit to gh-pages branch
 #  Built site is pushed to 'gh-pages' branch
 #
 
@@ -45,3 +44,9 @@ jobs:
         target-folder: pr/${{github.event.issue.number}}
         folder: build/html
         clean: false
+        
+    - name: Comment on pull request
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        issue-number: ${{github.event.issue.number}}
+        body: The preview build for this PR has now been deleted.
