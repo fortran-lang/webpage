@@ -45,3 +45,9 @@ jobs:
         target-folder: pr/${{github.event.issue.number}}
         folder: build/html
         clean: false
+
+    - name: Comment on pull request
+      uses: peter-evans/create-or-update-comment@v1
+      with:
+        issue-number: ${{github.event.issue.number}}
+        body: "This PR has been built with Sphinx and can be previewed at: </pr/${{github.event.issue.number}}/>"
