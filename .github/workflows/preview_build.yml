@@ -5,9 +5,10 @@
 name: Sphinx Preview Build
 
 on:
-  workflow_dispatch:
   issue_comment:
     types: [created]
+
+permissions: read-all
 
 jobs:
   build:
@@ -42,9 +43,3 @@ jobs:
         target-folder: pr/${{github.event.issue.number}}
         folder: build/html
         clean: false
-        
-    - name: Comment on pull request
-      uses: peter-evans/create-or-update-comment@v1
-      with:
-        issue-number: ${{github.event.issue.number}}
-        body: The preview build for this PR has now been deleted.
