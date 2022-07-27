@@ -21,6 +21,11 @@ jobs:
     - name: Checkout pr/${{github.event.issue.number}}
       uses: actions/checkout@v2
       
+    - name: Fetch pr/${{github.event.issue.number}}
+      run: |
+        git fetch origin pull/${{github.event.issue.number}}/head:pr-${{github.event.issue.number}}
+        git checkout pr-${{github.event.issue.number}}
+      
     - name: Setup Python
       uses: actions/setup-python@v1
 
