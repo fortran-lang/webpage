@@ -1,0 +1,23 @@
+name: Comment on the pull request on successfull build
+
+on:
+  issue_comment:
+    types: [created]
+  workflow_run:
+    workflows: ["Sphinx Preview Build"]
+    types:
+      - completed
+
+jobs:
+  upload:
+    runs-on: ubuntu-latest
+    if: >
+      ${{ github.event.workflow_run.event == 'issue_comment' &&
+      github.event.workflow_run.conclusion == 'success' }} && github.event.issue.pull_request && contains(github.event.comment.body,'#build_preview')
+    steps:               
+      # Comment on pull request 
+      - name: Comment on pull request
+        uses: peter-evans/create-or-update-comment@v1
+        with:
+          issue-number: ${{github.event.issue.number}}
+          body: "This PR has been built with Jekyll and can be previewed at: /pr/${{github.event.issue.number}}"
