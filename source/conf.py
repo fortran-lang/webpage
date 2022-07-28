@@ -13,13 +13,8 @@
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
-import yaml
-from pathlib import Path
-from collections import Counter
 import json
-import requests
 import sys
-import datetime
 
 f = open('../_data/fortran_learn.json')
 conf = json.load(f)
