@@ -1,11 +1,6 @@
 name: Comment on the pull request on successfull build
 
 on:
-  workflow_run:
-    workflows:
-      - Sphinx Preview Build
-    types:
-      - completed
   issue_comment:
       types: [created]
 
@@ -19,4 +14,4 @@ jobs:
         uses: peter-evans/create-or-update-comment@v1
         with:
           issue-number: ${{github.event.issue.number}}
-          body: "This PR has been built with Sphinx and can be previewed at: /pr/${{github.event.issue.number}}"
+          body: "This PR is being built with Sphinx and can be previewed at: /pr/${{github.event.issue.number}}"
