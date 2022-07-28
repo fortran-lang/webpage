@@ -4,7 +4,7 @@
 <html lang="nl">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Type Casting in Callbacks &#8212; Fortran Programming Language</title>
 <script>
@@ -36,6 +36,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -415,14 +416,14 @@
               
               <article class="bd-article" role="main">
                  <section id="type-casting-in-callbacks">
-<h1 class="sd-d-none">Type Casting in Callbacks<a class="headerlink" href="#type-casting-in-callbacks" title="Permalink naar deze titel">#</a></h1>
+<h1 class="sd-d-none">Type Casting in Callbacks<a class="headerlink" href="#type-casting-in-callbacks" title="Permalink to this heading">#</a></h1>
 <p>There are essentially five different ways to do type casting, each with its own
 advantages and disadvantages.</p>
 <p>The methods I, II and V can be used both in C and Fortran. The methods
 III and IV are only available in Fortran. The method VI is obsolete and
 should not be used.</p>
 <section id="work-arrays">
-<h2>Work Arrays<a class="headerlink" href="#work-arrays" title="Permalink naar deze titel">#</a></h2>
+<h2>Work Arrays<a class="headerlink" href="#work-arrays" title="Permalink to this heading">#</a></h2>
 <p>Pass a “work array” which is packed with everything needed by
 the caller and unpacked by the called routine. This is the old way –
 e.g., how LAPACK does it.</p>
@@ -486,7 +487,7 @@ e.g., how LAPACK does it.</p>
 </div>
 </section>
 <section id="general-structure">
-<h2>General Structure<a class="headerlink" href="#general-structure" title="Permalink naar deze titel">#</a></h2>
+<h2>General Structure<a class="headerlink" href="#general-structure" title="Permalink to this heading">#</a></h2>
 <p>Define a general structure which encompass the variations you
 actually need (or are even remotely likely to need going forward). This
 single structure type can then change if needed as future
@@ -567,7 +568,7 @@ the needed pieces with all the right labels.</p>
 There are natural and viable options between “all” and “none”.</p>
 </section>
 <section id="private-module-variables">
-<h2>Private Module Variables<a class="headerlink" href="#private-module-variables" title="Permalink naar deze titel">#</a></h2>
+<h2>Private Module Variables<a class="headerlink" href="#private-module-variables" title="Permalink to this heading">#</a></h2>
 <p>Hide the variable arguments completely by passing in module variables.</p>
 <p>Integrator:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
@@ -628,7 +629,7 @@ cleanest way. However, with a bit of thought, usually there is a better,
 safer, more explicit way along the lines of II or IV.</p>
 </section>
 <section id="nested-functions">
-<h2>Nested functions<a class="headerlink" href="#nested-functions" title="Permalink naar deze titel">#</a></h2>
+<h2>Nested functions<a class="headerlink" href="#nested-functions" title="Permalink to this heading">#</a></h2>
 <p>Integrator:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
@@ -673,7 +674,7 @@ safer, more explicit way along the lines of II or IV.</p>
 </div>
 </section>
 <section id="using-type-c-ptr-pointer">
-<h2>Using type(c_ptr) Pointer<a class="headerlink" href="#using-type-c-ptr-pointer" title="Permalink naar deze titel">#</a></h2>
+<h2>Using type(c_ptr) Pointer<a class="headerlink" href="#using-type-c-ptr-pointer" title="Permalink to this heading">#</a></h2>
 <p>In C, one would use the <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*</span></code> pointer. In Fortran, one can use
 <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> for exactly the same purpose.</p>
 <p>Integrator:</p>
@@ -752,7 +753,7 @@ other interface elements), simplest, least bug-prone, and fastest is to
 use one of the previous approaches.</p>
 </section>
 <section id="transfer-intrinsic-function">
-<h2>transfer() Intrinsic Function<a class="headerlink" href="#transfer-intrinsic-function" title="Permalink naar deze titel">#</a></h2>
+<h2>transfer() Intrinsic Function<a class="headerlink" href="#transfer-intrinsic-function" title="Permalink to this heading">#</a></h2>
 <p>Before Fortran 2003, the only way to do type casting was using the
 <code class="docutils literal notranslate"><span class="pre">transfer</span></code> intrinsic function. It is functionally equivalent to the
 method V, but more verbose and more error prone. It is now obsolete and
@@ -763,7 +764,7 @@ one should use the method V instead.</p>
 <p><a class="reference external" href="http://www.macresearch.org/advanced_fortran_90_callbacks_with_the_transfer_function">http://www.macresearch.org/advanced_fortran_90_callbacks_with_the_transfer_function</a></p>
 </section>
 <section id="object-oriented-approach">
-<h2>Object Oriented Approach<a class="headerlink" href="#object-oriented-approach" title="Permalink naar deze titel">#</a></h2>
+<h2>Object Oriented Approach<a class="headerlink" href="#object-oriented-approach" title="Permalink to this heading">#</a></h2>
 <p>The module:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 
@@ -843,10 +844,10 @@ context data as components of the extended type.</p>
 </div>
 </section>
 <section id="complete-example-of-void-vs-type-c-ptr-and-transfer">
-<h2>Complete Example of void * vs type(c_ptr) and transfer()<a class="headerlink" href="#complete-example-of-void-vs-type-c-ptr-and-transfer" title="Permalink naar deze titel">#</a></h2>
+<h2>Complete Example of void * vs type(c_ptr) and transfer()<a class="headerlink" href="#complete-example-of-void-vs-type-c-ptr-and-transfer" title="Permalink to this heading">#</a></h2>
 <p>Here are three equivalent codes: one in C using <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*</span></code> and two codes
 in Fortran using <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> and <code class="docutils literal notranslate"><span class="pre">transfer()</span></code>:</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
 <tr class="row-odd"><th class="head"><p>Language  </p></th>
 <th class="head"><p>Method</p></th>
