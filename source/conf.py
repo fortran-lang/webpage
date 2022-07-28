@@ -45,9 +45,6 @@ extensions = [
     "sphinx_copybutton",
     "sphinx.ext.intersphinx",
     "sphinx_jinja",
-    'sphinx.ext.mathjax',
-    'sphinx.ext.autodoc',
-    'numpydoc',
 ]
 
 myst_enable_extensions = [
