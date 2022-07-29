@@ -28,6 +28,9 @@ jobs:
     - name: Install sphinx
       run: pip3 install --user -r requirements.txt
       
+    - name: Safe workflow for build preview
+      run: [ -d "build" ] && rm -r build
+      
     - name: Build page
       run: make html LANGUAGES=en
       
