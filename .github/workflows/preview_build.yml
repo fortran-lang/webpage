@@ -29,7 +29,7 @@ jobs:
       run: pip3 install --user -r requirements.txt
       
     - name: Safe workflow for build preview
-      run: [ -d "build" ] && rm -r build
+      run: if [ -d "build" ]; then rm -Rf build; fi
       
     - name: Build page
       run: make html LANGUAGES=en
