@@ -1,6 +1,6 @@
 ---
 layout: post
-title: "C"
+title: "Fortran newsletter: May 2020"
 category: newsletter
 date: 2020-06-01
 author: Jeremie Vandenplas, Brad Richardson, Milan Curcic and Ondřej Čertík
