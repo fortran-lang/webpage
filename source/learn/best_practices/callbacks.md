@@ -2,7 +2,6 @@
 layout: book
 title: Callbacks
 permalink: /learn/best_practices/callbacks
-sd_hide_title: true
 ---
 
 # Callbacks

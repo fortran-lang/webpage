@@ -2,7 +2,6 @@
 layout: book
 title: Arrays
 permalink: /learn/best_practices/arrays
-sd_hide_title: true
 ---
 
 # Arrays

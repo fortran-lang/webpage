@@ -125,7 +125,7 @@ If you're writing a program or a library to perform fast arithmetic computation 
         .. div:: sd-fs-5 sd-font-weight-bold 
 
             Develop tools
-        You can also help make Fortran better by contributing to its suite of tools, such as `Standard Library <https://github.com/fortran-lang/stdlib>`_ , `Package Manager <https://github.com/fortran-lang/fpm>`_ , or `this website <https://github.com/fortran-lang/fortran-lang.org>`_ .
+        You can also help make Fortran better by contributing to its suite of tools, such as `Standard Library <https://github.com/fortran-lang/stdlib>`_, `Package Manager <https://github.com/fortran-lang/fpm>`_, or `this website. <https://github.com/fortran-lang/fortran-lang.org>`_
 
 .. grid:: 2
 
