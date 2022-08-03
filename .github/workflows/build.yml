@@ -29,6 +29,8 @@ jobs:
       
     - name: download _data
       run: cd _data && gh run download -n _data
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
       
     - name: Build page
       run: make html
