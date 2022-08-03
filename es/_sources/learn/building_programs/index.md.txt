@@ -53,12 +53,12 @@ taken care of by the build process: the compiler and the linker.
 
 ````{toctree}
 :hidden:
-build tools <build_tools>
-include files <include_files>
-managing libraries <managing_libraries>
-compiling source <compiling_source>
-project make <project_make>
-distributing <distributing>
-linking pieces <linking_pieces>
-runtime libraries <runtime_libraries>
+Build tools <build_tools>
+Compiling the source code <compiling_source>
+Distributing your programs <distributing>
+Include files and modules <include_files>
+Linking the objects <linking_pieces>
+Managing libraries (static and dynamic libraries) <managing_libraries>
+An introduction to make <project_make>
+Run-time libraries <runtime_libraries>
 ````

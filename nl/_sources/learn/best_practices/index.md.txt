@@ -16,15 +16,15 @@ and programming in general.
 ````{toctree}
 :maxdepth: 2
 :hidden:
-allocatable arrays <allocatable_arrays>
-file io <file_io>
-modules programs <modules_programs>
-arrays <arrays>
-floating point <floating_point>
-multidim arrays <multidim_arrays>
-callbacks <callbacks>
-style guide <style_guide>
-element operations <element_operations>
-integer division <integer_division>
-type casting <type_casting>
+Allocatable Arrays <allocatable_arrays>
+Arrays <arrays>
+Callbacks <callbacks>
+Element-wise Operations on Array <element_operations>
+File Input/Output <file_io>
+Floating Point Numbers <floating_point>
+Integer Division <integer_division>
+Modules and Programs <modules_programs>
+Multidimensional Arrays <multidim_arrays>
+Fortran Style Guide <style_guide>
+Type Casting in Callbacks <type_casting>
 ````

@@ -28,9 +28,9 @@ If you have already set up your environment, you may skip this tutorial and move
 
 ````{toctree}
 :hidden:
-choose compiler <choose_compiler>
-text editors <text_editors>
-ides <ides>
-install gfortran <install_gfortran>
-tips <tips>
+Choosing a compiler <choose_compiler>
+IDEs <ides>
+Installing GFortran <install_gfortran>
+Text Editors <text_editors>
+Smart Tips <tips>
 ````
