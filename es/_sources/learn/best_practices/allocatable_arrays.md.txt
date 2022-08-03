@@ -2,7 +2,6 @@
 layout: book
 title: Allocatable Arrays
 permalink: /learn/best_practices/allocatable_arrays
-sd_hide_title: true
 ---
 
 # Allocatable Arrays

@@ -2,7 +2,6 @@
 layout: book
 title: File Input/Output
 permalink: /learn/best_practices/file_io
-sd_hide_title: true
 ---
 
 # File Input/Output

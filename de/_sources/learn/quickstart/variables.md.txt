@@ -4,6 +4,8 @@ title: Variables
 permalink: /learn/quickstart/variables
 ---
 
+# Variables
+
 Variables store information that can be manipulated by the program.
 Fortran is a _strongly typed_ language, which means that each variable
 must have a type.

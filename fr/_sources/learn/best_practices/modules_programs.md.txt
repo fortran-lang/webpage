@@ -2,7 +2,6 @@
 layout: book
 title: Modules and Programs
 permalink: /learn/best_practices/modules_programs
-sd_hide_title: true
 ---
 
 # Modules and Programs

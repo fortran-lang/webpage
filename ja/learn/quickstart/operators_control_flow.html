@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Logical operators &#8212; Fortran Programming Language</title>
+    <title>Operators and flow control &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -277,22 +277,22 @@
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="arrays_strings.html">
-   arrays strings
+   Arrays and strings
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="hello_world.html">
-   hello world
+   Hello world
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   operators control_flow
+   Operators and flow control
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="variables.html">
-   variables
+   Variables
   </a>
  </li>
  <li class="toctree-l1">
@@ -302,7 +302,7 @@
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="organising_code.html">
-   Organising Code
+   Organising code structure
   </a>
  </li>
 </ul>
@@ -333,78 +333,90 @@
 </div>
 
 <nav id="bd-toc-nav" class="page-toc">
-  <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conditional-construct-if">
-   Conditional construct (
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     if
-    </span>
-   </code>
-   )
+  <ul class="visible nav section-nav flex-column">
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#">
+   Operators and flow control
   </a>
  </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#loop-constructs-do">
-   Loop constructs (
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     do
-    </span>
-   </code>
-   )
+ <li class="toc-h1 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#logical-operators">
+   Logical operators
   </a>
   <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#conditional-loop-do-while">
-     Conditional loop (
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#conditional-construct-if">
+     Conditional construct (
+     <code class="docutils literal notranslate">
+      <span class="pre">
+       if
+      </span>
+     </code>
+     )
+    </a>
+   </li>
+   <li class="toc-h2 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#loop-constructs-do">
+     Loop constructs (
      <code class="docutils literal notranslate">
       <span class="pre">
        do
       </span>
-      <span class="pre">
-       while
-      </span>
      </code>
      )
     </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#loop-control-statements-exit-and-cycle">
-     Loop control statements (
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       exit
-      </span>
-     </code>
-     and
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       cycle
-      </span>
-     </code>
-     )
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#nested-loop-control-tags">
-     Nested loop control: tags
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#parallelizable-loop-do-concurrent">
-     Parallelizable loop (
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       do
-      </span>
-      <span class="pre">
-       concurrent
-      </span>
-     </code>
-     )
-    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#conditional-loop-do-while">
+       Conditional loop (
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         do
+        </span>
+        <span class="pre">
+         while
+        </span>
+       </code>
+       )
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#loop-control-statements-exit-and-cycle">
+       Loop control statements (
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         exit
+        </span>
+       </code>
+       and
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         cycle
+        </span>
+       </code>
+       )
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#nested-loop-control-tags">
+       Nested loop control: tags
+      </a>
+     </li>
+     <li class="toc-h3 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#parallelizable-loop-do-concurrent">
+       Parallelizable loop (
+       <code class="docutils literal notranslate">
+        <span class="pre">
+         do
+        </span>
+        <span class="pre">
+         concurrent
+        </span>
+       </code>
+       )
+      </a>
+     </li>
+    </ul>
    </li>
   </ul>
  </li>
@@ -424,7 +436,9 @@
           <div class="bd-content col-12 col-md-9 col-xl-7">
               
               <article class="bd-article" role="main">
-                 <p>One of the powerful advantages of computer algorithms, compared to simple mathematical formulae,
+                 <section id="operators-and-flow-control">
+<h1>Operators and flow control<a class="headerlink" href="#operators-and-flow-control" title="この見出しへのパーマリンク">#</a></h1>
+<p>One of the powerful advantages of computer algorithms, compared to simple mathematical formulae,
 comes in the form of program <em>branching</em> whereby the program can decide which instructions to
 execute next based on a logical condition.</p>
 <p>There are two main forms of controlling program flow:</p>
@@ -432,6 +446,7 @@ execute next based on a logical condition.</p>
 <li><p><em>Conditional</em> (if): choose program path based on a boolean (true or false) value</p></li>
 <li><p><em>Loop</em>: repeat a portion of code multiple times</p></li>
 </ul>
+</section>
 <section id="logical-operators">
 <h1>Logical operators<a class="headerlink" href="#logical-operators" title="この見出しへのパーマリンク">#</a></h1>
 <p>Before we use a conditional branching operator, we need to be able to form

@@ -3,7 +3,8 @@ layout: book
 title: Organising code structure
 permalink: /learn/quickstart/organising_code
 ---
-# Organising Code
+
+# Organising code structure
 
 Most programming languages allow you to collect commonly-used code into
 _procedures_ that can be reused by _calling_ them from other sections of code.

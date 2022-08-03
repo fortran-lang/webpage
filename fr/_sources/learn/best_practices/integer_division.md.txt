@@ -2,7 +2,6 @@
 layout: book
 title: Integer Division
 permalink: /learn/best_practices/integer_division
-sd_hide_title: true
 ---
 
 # Integer Division

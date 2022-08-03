@@ -2,7 +2,6 @@
 layout: book
 title: Floating Point Numbers
 permalink: /learn/best_practices/floating_point
-sd_hide_title: true
 ---
 
 # Floating Point Numbers

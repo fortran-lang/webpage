@@ -2,7 +2,6 @@
 layout: book
 title: Type Casting in Callbacks
 permalink: /learn/best_practices/type_casting
-sd_hide_title: true
 ---
 
 # Type Casting in Callbacks

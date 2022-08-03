@@ -2,7 +2,6 @@
 layout: book
 title: Multidimensional Arrays
 permalink: /learn/best_practices/multidim_arrays
-sd_hide_title: true
 ---
 
 # Multidimensional Arrays

@@ -2,7 +2,6 @@
 layout: book
 title: Element-wise Operations on Arrays
 permalink: /learn/best_practices/element_operations
-sd_hide_title: true
 ---
 
 # Element-wise Operations on Arrays
