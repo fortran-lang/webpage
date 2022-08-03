@@ -2,7 +2,6 @@
 layout: book
 title: Linking the objects
 permalink: /learn/building_programs/linking_pieces
-sd_hide_title: true
 ---
 
 # Linking the objects

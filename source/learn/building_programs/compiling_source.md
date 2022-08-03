@@ -2,7 +2,6 @@
 layout: book
 title: Compiling the source code
 permalink: /learn/building_programs/compiling_source
-sd_hide_title: true
 ---
 
 # Compiling the source code
