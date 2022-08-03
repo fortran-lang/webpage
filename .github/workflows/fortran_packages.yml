@@ -26,6 +26,12 @@ jobs:
     - name: fortran_package 
       run: python fortran_package.py  ${{ secrets.API_TOKEN }}
       
+    - name: Upload data files
+      uses: actions/upload-artifact@v3
+      with:
+          name: _data
+          path: _data/
+      
     - name: Commit files and transfer the files back into the repository
       run: |
         git config --local user.name "henilp105" 
