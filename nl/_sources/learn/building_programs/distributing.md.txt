@@ -2,7 +2,6 @@
 layout: book
 title: Distributing your programs
 permalink: /learn/building_programs/distributing
-sd_hide_title: true
 ---
 
 # Distributing your programs

@@ -2,7 +2,6 @@
 layout: book
 title: Choosing a compiler
 permalink: /learn/os_setup/choose_compiler
-sd_hide_title: true
 ---
 
 # Choosing a compiler

@@ -2,7 +2,6 @@
 layout: book
 title: Run-time libraries
 permalink: /learn/building_programs/runtime_libraries
-sd_hide_title: true
 ---
 
 ## Run-time libraries

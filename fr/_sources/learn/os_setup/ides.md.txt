@@ -2,7 +2,6 @@
 layout: book
 title: IDEs
 permalink: /learn/os_setup/ides
-sd_hide_title: true
 ---
 
 # IDEs

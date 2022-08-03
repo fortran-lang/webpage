@@ -2,7 +2,6 @@
 layout: book
 title: Include files and modules
 permalink: /learn/building_programs/include_files
-sd_hide_title: true
 ---
 
 # Include files and modules

@@ -2,7 +2,6 @@
 layout: book
 title: Smart Tips
 permalink: /learn/os_setup/tips
-sd_hide_title: true
 ---
 
 # Smart Tips

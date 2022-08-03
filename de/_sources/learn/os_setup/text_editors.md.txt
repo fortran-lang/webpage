@@ -2,7 +2,6 @@
 layout: book
 title: Text Editors
 permalink: /learn/os_setup/text_editors
-sd_hide_title: true
 ---
 
 # Text Editors

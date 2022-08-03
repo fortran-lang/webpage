@@ -2,7 +2,6 @@
 layout: book
 title: Installing GFortran
 permalink: /learn/os_setup/install_gfortran
-sd_hide_title: true
 ---
 
 # Installing GFortran

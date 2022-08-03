@@ -2,7 +2,6 @@
 layout: book
 title: Setting up your OS
 permalink: /learn/os_setup
-sd_hide_title: true
 ---
 <br/><br/>
 <div style="text-align:center"><span style="font-size:1.5em">A beginner's tutorial on the software that needs to be installed to start with Fortran development</span></div>

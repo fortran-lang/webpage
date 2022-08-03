@@ -2,7 +2,6 @@
 layout: book
 title: Build tools
 permalink: /learn/building_programs/build_tools
-sd_hide_title: true
 ---
 
 # Build tools
