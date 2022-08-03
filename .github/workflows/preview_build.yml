@@ -15,7 +15,7 @@ jobs:
     
     steps:
     - name: Checkout pr/${{github.event.issue.number}}
-      uses: actions/checkout@v2
+      uses: actions/checkout@v3
       
     - name: Fetch pr/${{github.event.issue.number}}
       run: |
@@ -23,7 +23,7 @@ jobs:
         git checkout pr-${{github.event.issue.number}}
       
     - name: Setup Python
-      uses: actions/setup-python@v1
+      uses: actions/setup-python@v4
 
     - name: Install sphinx
       run: pip3 install --user -r requirements.txt
@@ -46,7 +46,7 @@ jobs:
         clean: false
         
     - name: Comment on pull request
-      uses: peter-evans/create-or-update-comment@v1
+      uses: peter-evans/create-or-update-comment@v2
       with:
        issue-number: ${{github.event.issue.number}}
        body: "This PR is being built with Sphinx and can be previewed at: /pr/${{github.event.issue.number}}"
