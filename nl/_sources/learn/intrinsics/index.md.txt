@@ -1,9 +1,3 @@
----
-layout: book
-title: Fortran Intrinsics
-permalink: /learn/intrinsics
----
-
 # Fortran Intrinsics 
 
 This is a collection of extended descriptions of the Fortran intrinsics

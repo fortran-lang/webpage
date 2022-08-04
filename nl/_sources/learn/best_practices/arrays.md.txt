@@ -1,9 +1,3 @@
----
-layout: book
-title: Arrays
-permalink: /learn/best_practices/arrays
----
-
 # Arrays
 
 Arrays are a central object in Fortran. The creation of dynamic sized arrays

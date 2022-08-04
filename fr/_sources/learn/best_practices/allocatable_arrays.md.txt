@@ -1,9 +1,3 @@
----
-layout: book
-title: Allocatable Arrays
-permalink: /learn/best_practices/allocatable_arrays
----
-
 # Allocatable Arrays
 
 The ``allocatable`` attribute provides a safe way for memory handling.
