@@ -1,9 +1,3 @@
----
-layout: book
-title: Managing libraries (static and dynamic libraries)
-permalink: /learn/building_programs/managing_libraries
----
-
 # Managing libraries (static and dynamic libraries)
 
 If you need to manage a program built of dozens of source files (and

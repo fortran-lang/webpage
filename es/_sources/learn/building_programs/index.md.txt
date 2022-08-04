@@ -1,10 +1,3 @@
----
-layout: book
-title: Building programs
-permalink: /learn/building_programs
-author: Arjen Markus, Ondřej Čertík, Milan Curcic, Laurence Kedward, Brad Richardson, Jeremie Vandenplas, Sebastian Ehlert
----
-
 # Building programs
 
 Languages like Fortran, C, C++ and Java, to name but a few, share

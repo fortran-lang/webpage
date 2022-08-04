@@ -5,32 +5,6 @@ based on the reference document
 "[Current F2018 Working Document as of April 2018](http://isotc.iso.org/livelink/livelink?func=ll&objId=19442438&objAction=Open)".
 Vendor-specific extensions are not included.
 
-### &#9755;[Array Operations](ARRAY_index) 
-#### Properties and attributes of arrays
-### &#9755;[Mathematics](MATH_index) 
-#### General mathematical functions
-### &#9755;[Type and Kind](TYPE_index) 
-### &#9755;[Numeric](NUMERIC_index) 
-#### Manipulation and properties of numeric values
-### &#9755;[Transformational](TRANSFORM_index) 
-#### Matrix multiplication, Dot product, array shifts,
-### &#9755;[General State](STATE_index) 
-#### General and miscellaneous intrinsics on state of variables and I/O
-### &#9755;[Character](CHARACTER_index) 
-#### basic procedures specifically for manipulating _character_ variables
-### &#9755;[System Environment](SYSTEM_index) 
-#### accessing external system information such as environmental variables, command line arguments, date and timing data ...
-### &#9755;[C Interface](C_index) 
-#### procedures useful for binding to C interfaces
-### &#9755;[Bit-level](BIT_index) 
-#### bit-level manipulation and inquiry of values0
-### &#9755;[Parallel Programming](PARALLEL_index) 
-#### Parallel programming using co-arrays and co-indexing
-### &#9755;[Numeric Model](MODEL_index) 
-#### numeric compiler-specific numeric model information
-### &#9755;[Compiler Information](COMPILER_index) 
-#### information about compiler version and compiler options used for building
-
 ## Overview
 The standard documents and most vendor-supplied descriptions of
 the intrinsics are often very brief and concise to the point of the
@@ -128,10 +102,8 @@ to
 
 ###### Written in [Markdown](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet) [kramdown](https://kramdown.gettalong.org/syntax.html)
 
-
-
 ````{toctree}
-:hidden:
+:hidden: 
 ARRAY_index
 BIT_index
 CHARACTER_index

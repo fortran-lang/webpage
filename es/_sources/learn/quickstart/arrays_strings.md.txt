@@ -1,9 +1,3 @@
----
-layout: book
-title: Arrays and strings
-permalink: /learn/quickstart/arrays_strings
----
-
 # Arrays and strings
 
 More often than not, we need to store and operate on long lists of numbers as opposed to just the single scalar variables

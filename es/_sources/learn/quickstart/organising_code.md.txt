@@ -1,9 +1,3 @@
----
-layout: book
-title: Organising code structure
-permalink: /learn/quickstart/organising_code
----
-
 # Organising code structure
 
 Most programming languages allow you to collect commonly-used code into

@@ -1,9 +1,3 @@
----
-layout: book
-title: Fortran Style Guide
-permalink: /learn/best_practices/style_guide
----
-
 # Fortran Style Guide
 
 Naming Convention

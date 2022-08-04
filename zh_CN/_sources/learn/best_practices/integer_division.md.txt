@@ -1,9 +1,3 @@
----
-layout: book
-title: Integer Division
-permalink: /learn/best_practices/integer_division
----
-
 # Integer Division
 
 Fortran distinguishes between floating point and integer arithmetic.  It is

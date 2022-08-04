@@ -1,9 +1,3 @@
----
-layout: book
-title: Type Casting in Callbacks
-permalink: /learn/best_practices/type_casting
----
-
 # Type Casting in Callbacks
 
 There are essentially five different ways to do type casting, each with its own

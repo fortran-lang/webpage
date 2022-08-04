@@ -1,9 +1,3 @@
----
-layout: book
-title: Hello world
-permalink: /learn/quickstart/hello_world
----
-
 # Hello world
 
 In this part of the tutorial, we will write our first Fortran program:

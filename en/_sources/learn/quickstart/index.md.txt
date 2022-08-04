@@ -1,9 +1,3 @@
----
-layout: book
-title: Quickstart tutorial
-permalink: /learn/quickstart/index
----
-
 # Quickstart tutorial
 
 This quickstart tutorial gives an overview of the Fortran programming language

@@ -1,9 +1,3 @@
----
-layout: book
-title: Build tools
-permalink: /learn/building_programs/build_tools
----
-
 # Build tools
 
 Compiling your Fortran projects by hand can become quite complicated depending

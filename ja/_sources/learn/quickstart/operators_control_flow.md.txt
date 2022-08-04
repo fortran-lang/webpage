@@ -1,9 +1,3 @@
----
-layout: book
-title: Operators and flow control
-permalink: /learn/quickstart/operators_control_flow
----
-
 # Operators and flow control
 
 One of the powerful advantages of computer algorithms, compared to simple mathematical formulae,

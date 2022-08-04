@@ -1,9 +1,3 @@
----
-layout: book
-title: Variables
-permalink: /learn/quickstart/variables
----
-
 # Variables
 
 Variables store information that can be manipulated by the program.

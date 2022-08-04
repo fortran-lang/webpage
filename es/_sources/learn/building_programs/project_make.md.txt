@@ -1,9 +1,3 @@
----
-layout: book
-title: An introduction to make
-permalink: /learn/building_programs/project_make
----
-
 # An introduction to make
 
 We briefly discussed the basics of ``make``. This chapter gives ideas

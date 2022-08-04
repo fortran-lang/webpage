@@ -1,9 +1,3 @@
----
-layout: book
-title: Linking the objects
-permalink: /learn/building_programs/linking_pieces
----
-
 # Linking the objects
 
 Almost all programs, except for the simplest, are built up from

@@ -1,9 +1,3 @@
----
-layout: book
-title: Include files and modules
-permalink: /learn/building_programs/include_files
----
-
 # Include files and modules
 
 Your program can be contained in various source files, all stored in the
