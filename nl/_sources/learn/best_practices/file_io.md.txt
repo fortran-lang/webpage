@@ -1,9 +1,3 @@
----
-layout: book
-title: File Input/Output
-permalink: /learn/best_practices/file_io
----
-
 # File Input/Output
 
 In Fortran files are managed by unit identifiers. Interaction with the filesystem
