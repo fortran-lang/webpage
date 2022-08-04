@@ -1,9 +1,3 @@
----
-layout: book
-title: Floating Point Numbers
-permalink: /learn/best_practices/floating_point
----
-
 # Floating Point Numbers
 
 The default representation of floating point numbers is using single precision
