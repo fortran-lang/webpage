@@ -51,38 +51,38 @@ implicit none
 ```
 For more information refer to the __implicit__ statement.
 
-```{include} _pages/AIMAG.md
+```{include} ../_pages/AIMAG.md
 ```
 
-```{include} _pages/CMPLX.md
+```{include} ../_pages/CMPLX.md
 ```
 
-```{include} _pages/INT.md
+```{include} ../_pages/INT.md
 ```
 
-```{include} _pages/NINT.md
+```{include} ../_pages/NINT.md
 ```
 
-```{include} _pages/REAL.md
+```{include} ../_pages/REAL.md
 ```
 
-```{include} _pages/DBLE.md
+```{include} ../_pages/DBLE.md
 ```
 
-```{include} _pages/TRANSFER.md
+```{include} ../_pages/TRANSFER.md
 ```
 
-```{include} _pages/LOGICAL.md
+```{include} ../_pages/LOGICAL.md
 ```
 
-```{include} _pages/KIND.md
+```{include} ../_pages/KIND.md
 ```
 
-```{include} _pages/SELECTED_CHAR_KIND.md
+```{include} ../_pages/SELECTED_CHAR_KIND.md
 ```
 
-```{include} _pages/SELECTED_INT_KIND.md
+```{include} ../_pages/SELECTED_INT_KIND.md
 ```
 
-```{include} _pages/SELECTED_REAL_KIND.md
+```{include} ../_pages/SELECTED_REAL_KIND.md
 ```
