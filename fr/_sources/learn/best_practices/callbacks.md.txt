@@ -1,9 +1,3 @@
----
-layout: book
-title: Callbacks
-permalink: /learn/best_practices/callbacks
----
-
 # Callbacks
 
 A callback is a function that is passed as an argument to another function.
