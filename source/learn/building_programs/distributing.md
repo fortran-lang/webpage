@@ -1,9 +1,3 @@
----
-layout: book
-title: Distributing your programs
-permalink: /learn/building_programs/distributing
----
-
 # Distributing your programs
 
 When you distribute your programs, there are a number of options you can

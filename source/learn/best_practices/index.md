@@ -1,13 +1,6 @@
----
-layout: book
-title: Fortran Best Practices
-permalink: /learn/best_practices
-author: Ondřej Čertík, John Pask, Jed Brown, Matthew Emmett, Juan Luis Cano Rodríguez, Neil Carlson, Andrea Vigliotti, Pierre Haessig, Vincent Magnin, Sebastian Ehlert, Jeremie Vandenplas
----
-
-# Fortran Best Practices
 :::{sectionauthor} Ondřej Čertík, John Pask, Jed Brown, Matthew Emmett, Juan Luis Cano Rodríguez, Neil Carlson, Andrea Vigliotti, Pierre Haessig, Vincent Magnin, Sebastian Ehlert, Jeremie Vandenplas
 :::
+# Fortran Best Practices
 
 This mini-book collects a modern canonical way of doing things in Fortran.
 It serves as a style guide and best practice recommendation for popular topics

@@ -1,9 +1,3 @@
----
-layout: book
-title: Multidimensional Arrays
-permalink: /learn/best_practices/multidim_arrays
----
-
 # Multidimensional Arrays
 
 Multidimensional arrays are stored in column-major order. This means the
