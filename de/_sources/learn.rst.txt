@@ -32,7 +32,7 @@ Learn
 
                 Try the quickstart Fortran tutorial, to get an overview of the language syntax and capabilities. |br|
 
-                 .. button-link:: learn/quickstart/index.html
+                 .. button-link:: quickstart/
                      :color: primary
                      :expand:
 
@@ -52,7 +52,7 @@ Learn
 
                 Ask a question in the Fortran-lang discourse - a forum for friendly discussion of all things Fortran.
                 |br|
-                 .. button-link:: https://fortran-lang.discourse.group/s
+                 .. button-link:: https://fortran-lang.discourse.group/
                      :color: primary
                      :expand:
 
@@ -81,7 +81,7 @@ Learn
              
             .. div:: sd-fs-5 sd-font-weight-bold sd-text-primary
 
-                :octicon:`book;1em;sd-text-info` `{{b.title}} <{{b.link[1:]+"/"}}>`_
+                :octicon:`book;1em;sd-text-info` `{{b.title}} <{{"../"+b.link[1:]+"/"}}>`_
             {{b.description}}
     {% endif %}
     {% endfor %}

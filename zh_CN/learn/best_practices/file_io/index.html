@@ -1,0 +1,490 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>File Input/Output &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../../../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <link rel="index" title="索引" href="../../../genindex/" />
+    <link rel="search" title="搜索" href="../../../search/" /> 
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<meta name="docsearch:language" content="zh-CN"> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+   <div class="container-xl">
+      <div id="navbar-start">
+         <a class="navbar-brand" href="../../../index.html">
+            <img src="../../../_static/images/fortran-logo-256x256.png" class="logo"
+               alt="logo">
+         </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible"
+         aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbar-collapsible" class=" collapse navbar-collapse">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+           <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+           <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+           <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+       </span>
+
+       <div class="dropdown" id="version_switcher">
+        <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
+         language
+            <span class="caret"></span>
+        </button>
+        <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
+        <a class="list-group-item list-group-item-action py-1" href="../../../../de/learn/best_practices/fi"><span>de</span></a>
+        <a class="list-group-item list-group-item-action py-1" href="../../../../en/learn/best_practices/fi"><span>en</span></a>
+        <a class="list-group-item list-group-item-action py-1" href="../../../../es/learn/best_practices/fi"><span>es</span></a>
+        <a class="list-group-item list-group-item-action py-1" href="../../../../fr/learn/best_practices/fi"><span>fr</span></a>
+        <a class="list-group-item list-group-item-action py-1" href="../../../../ja/learn/best_practices/fi"><span>ja</span></a>
+        <a class="list-group-item list-group-item-action py-1" href="../../../../nl/learn/best_practices/fi"><span>nl</span></a>
+        <a class="list-group-item list-group-item-action py-1" href="../../../../zh_CN/learn/best_practices/fi"><span>zh_CN</span></a>
+        </div>
+
+    </div>
+
+         <div id="navbar-center" class="ml-auto">
+            <div class="navbar-center-item">
+               <ul id="navbar-main-elements" class="navbar-nav">
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link"
+                        href="../../../learn">
+                        Learn
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link"
+                        href="../../../compilers">
+                        Compilers
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link"
+                        href="../../../community">
+                        Community
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link"
+                        href="../../../packages">
+                        Packages
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link"
+                        href="../../../news">
+                        News
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div id="navbar-end">
+            <div class="navbar-end-item">
+       
+               <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+                  <li class="nav-item">
+                     <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank"
+                        title="Discourse"><span><i class="fab fa-discourse" style="color:#734f96"></i></span>
+                        <label class="sr-only">Discourse</label></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank"
+                        title="Twitter"><span><i class="fab fa-twitter" style="color:#734f96"></i></span>
+                        <label class="sr-only">Twitter</label></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank"
+                        title="GitHub"><span><i class="fab fa-github" style="color:#734f96"></i></span>
+                        <label class="sr-only">GitHub</label></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="../../../news/atom.xml" rel="noopener" target="_blank"
+                        title="RSS"><span><i class="fas fa-rss" style="color:#734f96"></i></span>
+                        <label class="sr-only">RSS</label></a>
+                  </li>
+               </ul>
+            </div>
+         </div><form class="bd-search d-flex align-items-center" action="../../../search/index.html" method="get"> <i
+            class="icon fas fa-search"></i> <input type="search" class="form-control" name="q" id="search-input"
+            placeholder="Search" aria-label="Search" autocomplete="off"> </form>
+
+      </div>
+   </div>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/news.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../allocatable_arrays/">
+   Allocatable Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../arrays/">
+   Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../callbacks/">
+   Callbacks
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../element_operations/">
+   Element-wise Operations on Array
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   File Input/Output
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../floating_point/">
+   Floating Point Numbers
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../integer_division/">
+   Integer Division
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../modules_programs/">
+   Modules and Programs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../multidim_arrays/">
+   Multidimensional Arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../style_guide/">
+   Fortran Style Guide
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../type_casting/">
+   Type Casting in Callbacks
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+
+
+
+<br>
+
+
+<nav id="bd-toc-nav" class="page-toc">
+  
+</nav>
+
+
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                 <section id="file-input-output">
+<h1>File Input/Output<a class="headerlink" href="#file-input-output" title="此标题的永久链接">#</a></h1>
+<p>In Fortran files are managed by unit identifiers. Interaction with the filesystem
+mainly happens through the <code class="docutils literal notranslate"><span class="pre">open</span></code> and <code class="docutils literal notranslate"><span class="pre">inquire</span></code> built-in procedures.
+Generally, the workflow is to open a file to a unit identifier, read and/or write
+to it and close it again.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="w"></span>
+<span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="c">! ...</span>
+<span class="k">close</span><span class="p">(</span><span class="n">io</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>By default the file will be created if it is not existing already and opened for
+both reading and writing. Writing to an existing file will start in the first
+record (line) and therefore overwrite the file by default.</p>
+<p>To create a read-only access to a file the <code class="docutils literal notranslate"><span class="pre">status</span></code> and <code class="docutils literal notranslate"><span class="pre">action</span></code> have to be
+specified with</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="w"></span>
+<span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;old&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;read&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="k">read</span><span class="p">(</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="k">close</span><span class="p">(</span><span class="n">io</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>In case the file is not present a runtime error will occur. To check for the existence
+of a file prior to opening it the <code class="docutils literal notranslate"><span class="pre">inquire</span></code> function can be used</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">exists</span><span class="w"></span>
+<span class="k">inquire</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">exist</span><span class="o">=</span><span class="n">exists</span><span class="p">)</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">exists</span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w"></span>
+<span class="w">  </span><span class="c">! ...</span>
+<span class="k">end if</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Alternatively, the <code class="docutils literal notranslate"><span class="pre">open</span></code> procedure can return an optional <em>iostat</em> and <em>iomsg</em>:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">msg</span><span class="w"></span>
+<span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;old&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;read&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">  </span><span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">iomsg</span><span class="o">=</span><span class="n">msg</span><span class="p">)</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">  print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">msg</span><span class="p">)</span><span class="w"></span>
+<span class="k">end if</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Note that <em>iomsg</em> requires a fixed-length character variable with sufficient storage
+size to hold the error message.</p>
+<p>Similarly, writing to a file happens by using the <em>status</em> and <em>action</em> keyword.
+To create a new file use</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="w"></span>
+<span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;new&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;write&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="k">write</span><span class="p">(</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="k">close</span><span class="p">(</span><span class="n">io</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Alternatively, <code class="docutils literal notranslate"><span class="pre">status=&quot;replace&quot;</span></code> can be used to overwrite an existing file.
+It is highly recommended to first check for the existence of a file before deciding
+on the <em>status</em> to use.
+To append to an output file the <em>position</em> keyword can be specified explicitly with</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="w"></span>
+<span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">  </span><span class="p">&amp;</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;old&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;write&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="k">write</span><span class="p">(</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">v</span><span class="p">)</span><span class="w"></span>
+<span class="k">write</span><span class="p">(</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">v</span><span class="p">(:)</span><span class="w"></span>
+<span class="k">close</span><span class="p">(</span><span class="n">io</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>To reset the position in a file the built-in procedures <code class="docutils literal notranslate"><span class="pre">rewind</span></code> and <code class="docutils literal notranslate"><span class="pre">backspace</span></code>
+can be used. <code class="docutils literal notranslate"><span class="pre">rewind</span></code> will reset to the first record (line), while <code class="docutils literal notranslate"><span class="pre">backspace</span></code> will
+return to the previous record (line).</p>
+<p>Finally, to delete a file the file has to be opened and can be deleted after closing
+with</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">exists</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span>
+<span class="k">inquire</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">exist</span><span class="o">=</span><span class="n">exists</span><span class="p">)</span><span class="w"></span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">exists</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">  open</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">newunit</span><span class="o">=</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">close</span><span class="p">(</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;delete&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="k">end if</span><span class="w"></span>
+</pre></div>
+</div>
+<p>A useful IO feature is scratch files, which can be opened with <code class="docutils literal notranslate"><span class="pre">status=&quot;scratch&quot;</span></code>.
+They are automatically deleted after closing the unit identifier.</p>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </article>
+              
+
+              
+              <footer class="bd-footer-article">
+                  <!-- Previous / next buttons -->
+<div class='prev-next-area'>
+</div>
+              </footer>
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

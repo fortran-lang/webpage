@@ -23,7 +23,7 @@ Packages - The Fortran Programming Language
 
 .. raw:: html
     
-    <form class="bd-search d-flex align-items-center" align="center" action="search.html" method="get">  <input type="search" class="form-control" name="q" id="search-input"
+    <form class="bd-search d-flex align-items-center" align="center" action="search/index.html" method="get">  <input type="search" class="form-control" name="q" id="search-input"
                placeholder="Search for a package" aria-label="Search" autocomplete="off" style='margin: auto;text-align: center;width:40em;'> </form>
 
 
@@ -56,7 +56,7 @@ Packages - The Fortran Programming Language
           .. jinja:: fortran_index
 
               {% for j in tags %}
-              `{{j}}, <{{"search.html?q="+j}}>`_ {% endfor %}
+              `{{j}}, <{{"search/index.html?q="+j}}>`_ {% endfor %}
           
 
 .. div:: sd-fs-3 sd-font-weight-bold sd-text-primary
@@ -65,52 +65,52 @@ Packages - The Fortran Programming Language
 
 
 
-`Data types and containers <packages/data-types.html>`_
+`Data types and containers <data-types>`_
 -------------------------------------------------------
 
 Libraries for advanced data types and container classes
 
-`Interface libraries <packages/interfaces.html>`_
+`Interface libraries <interfaces>`_
 -------------------------------------------------
 
 Libraries that interface with other systems, languages, or devices
 
-`Libraries <packages/libraries.html>`_
+`Libraries <libraries>`_
 --------------------------------------
 
 Fortran libraries for general programming tasks
 
-`Input, output and parsing  <packages/io.html>`_
+`Input, output and parsing  <io>`_
 ------------------------------------------------
 
 Libraries for reading, writing and parsing files and inputs
 
-`Graphics, plotting and user interfaces <packages/graphics.html>`_
+`Graphics, plotting and user interfaces <graphics>`_
 ------------------------------------------------------------------
 
 Libraries for plotting data, handling images and generating user interfaces
 
-`Examples and templates <packages/examples.html>`_
+`Examples and templates <examples>`_
 --------------------------------------------------
 
 Demonstration codes and templates for Fortran
 
-`Numerical projects <packages/numerical.html>`_
+`Numerical projects <numerical>`_
 -----------------------------------------------
 
 Fortran libraries for linear algebra, optimization, root-finding etc.
 
-`Programming utilities <packages/programming.html>`_
+`Programming utilities <programming>`_
 ----------------------------------------------------
 
 Error handling, logging, documentation and testing
 
-`Characters and strings <packages/strings.html>`_
+`Characters and strings <strings>`_
 -------------------------------------------------
 
 Libraries for manipulating characters and strings
 
-`Scientific Codes <packages/scientific.html>`_
+`Scientific Codes <scientific>`_
 ----------------------------------------------
 
 Applications and libraries for applied mathematical and scientific problems
