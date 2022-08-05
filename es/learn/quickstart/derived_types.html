@@ -4,7 +4,7 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Derived Types &#8212; Fortran Programming Language</title>
 <script>
@@ -36,6 +36,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -276,32 +277,32 @@
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="arrays_strings.html">
-   arrays strings
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hello_world.html">
-   hello world
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="operators_control_flow.html">
-   operators control_flow
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="variables.html">
-   variables
+   Arrays and strings
   </a>
  </li>
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   derived types
+   Derived Types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hello_world.html">
+   Hello world
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="operators_control_flow.html">
+   Operators and flow control
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="organising_code.html">
-   Organising Code
+   Organising code structure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="variables.html">
+   Variables
   </a>
  </li>
 </ul>
@@ -325,42 +326,6 @@
 
 
 
-<br>
-
-<div class="tocsection onthispage">
-    <i class="fas fa-list"></i> On this page
-</div>
-
-<nav id="bd-toc-nav" class="page-toc">
-  <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#a-quick-take-on-derived-types">
-   A quick take on derived types
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#derived-types-in-detail">
-   Derived types in detail
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#options-to-declare-a-derived-type">
-   Options to declare a derived type
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#options-to-declare-members-of-a-derived-type">
-   Options to declare members of a derived type
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#type-bound-procedures">
-   Type-bound procedures
-  </a>
- </li>
-</ul>
-
-</nav>
 
 
     </div>
@@ -375,10 +340,10 @@
               
               <article class="bd-article" role="main">
                  <section id="derived-types">
-<h1>Derived Types<a class="headerlink" href="#derived-types" title="Enlazar permanentemente con este título">#</a></h1>
+<h1>Derived Types<a class="headerlink" href="#derived-types" title="Enlace permanente a este encabezado">#</a></h1>
 <p>As discussed previously in <a class="reference internal" href="variables.html"><span class="doc std std-doc">Variables</span></a>, there are five built-in data types in Fortran. A <em>derived type</em> is a special form of data type that can encapsulate other built-in types as well as other derived types. It could be considered equivalent to <em>struct</em> in the C and C++ programming languages.</p>
 <section id="a-quick-take-on-derived-types">
-<h2>A quick take on derived types<a class="headerlink" href="#a-quick-take-on-derived-types" title="Enlazar permanentemente con este título">#</a></h2>
+<h2>A quick take on derived types<a class="headerlink" href="#a-quick-take-on-derived-types" title="Enlace permanente a este encabezado">#</a></h2>
 <p>Here’s an example of a basic derived type:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_pair</span><span class="w"></span>
 <span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
@@ -419,7 +384,7 @@ You can also initialize derived type members by invoking the derived type constr
 </div>
 </section>
 <section id="derived-types-in-detail">
-<h2>Derived types in detail<a class="headerlink" href="#derived-types-in-detail" title="Enlazar permanentemente con este título">#</a></h2>
+<h2>Derived types in detail<a class="headerlink" href="#derived-types-in-detail" title="Enlace permanente a este encabezado">#</a></h2>
 <p>The full syntax of a derived type with all optional properties is presented below:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="p">[,</span><span class="n">attribute</span><span class="o">-</span><span class="nb">list</span><span class="p">]</span> <span class="p">::</span> <span class="n">name</span> <span class="p">[(</span><span class="n">parameterized</span><span class="o">-</span><span class="n">declaration</span><span class="o">-</span><span class="nb">list</span><span class="p">)]</span>
   <span class="p">[</span><span class="n">parameterized</span><span class="o">-</span><span class="n">definition</span><span class="o">-</span><span class="n">statements</span><span class="p">]</span>
@@ -432,7 +397,7 @@ You can also initialize derived type members by invoking the derived type constr
 </div>
 </section>
 <section id="options-to-declare-a-derived-type">
-<h2>Options to declare a derived type<a class="headerlink" href="#options-to-declare-a-derived-type" title="Enlazar permanentemente con este título">#</a></h2>
+<h2>Options to declare a derived type<a class="headerlink" href="#options-to-declare-a-derived-type" title="Enlace permanente a este encabezado">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">attribute-list</span></code> may refer to the following:</p>
 <ul class="simple">
 <li><p><em>access-type</em> that is either <code class="docutils literal notranslate"><span class="pre">public</span></code> or <code class="docutils literal notranslate"><span class="pre">private</span></code></p></li>
@@ -572,7 +537,7 @@ You can also initialize derived type members by invoking the derived type constr
 </div>
 </section>
 <section id="options-to-declare-members-of-a-derived-type">
-<h2>Options to declare members of a derived type<a class="headerlink" href="#options-to-declare-members-of-a-derived-type" title="Enlazar permanentemente con este título">#</a></h2>
+<h2>Options to declare members of a derived type<a class="headerlink" href="#options-to-declare-members-of-a-derived-type" title="Enlace permanente a este encabezado">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">[member-variables]</span></code> refers to the declaration of all the member data types. These data types can be of any built-in data type, and/or of other derived types, as already showcased in the above examples. However, member-variables can have their own extensive syntax, in form of:
 <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">[,member-attributes]</span> <span class="pre">::</span> <span class="pre">name[attr-dependent-spec][init]</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">type</span></code>: any built-in type or other derived type</p>
@@ -608,7 +573,7 @@ You can also initialize derived type members by invoking the derived type constr
 </div></blockquote>
 </section>
 <section id="type-bound-procedures">
-<h2>Type-bound procedures<a class="headerlink" href="#type-bound-procedures" title="Enlazar permanentemente con este título">#</a></h2>
+<h2>Type-bound procedures<a class="headerlink" href="#type-bound-procedures" title="Enlace permanente a este encabezado">#</a></h2>
 <p>A derived type can contain functions or subroutines that are <em>bound</em> to it. We’ll refer to them as <em>type-bound procedures</em>. Type-bound procedures follow the <code class="docutils literal notranslate"><span class="pre">contains</span></code> statement that, in turn, follows all member variable declarations.</p>
 <blockquote>
 <div><p>It is impossible to describe type-bound procedures in full without delving into OOP features of modern Fortran. For now we’ll focus on a simple example to show their basic use.</p>

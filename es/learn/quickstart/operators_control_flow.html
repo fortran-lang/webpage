@@ -4,9 +4,9 @@
 <html lang="es">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Logical operators &#8212; Fortran Programming Language</title>
+    <title>Operators and flow control &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -36,6 +36,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -276,32 +277,32 @@
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="arrays_strings.html">
-   arrays strings
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hello_world.html">
-   hello world
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   operators control_flow
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="variables.html">
-   variables
+   Arrays and strings
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="derived_types.html">
-   derived types
+   Derived Types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hello_world.html">
+   Hello world
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Operators and flow control
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="organising_code.html">
-   Organising Code
+   Organising code structure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="variables.html">
+   Variables
   </a>
  </li>
 </ul>
@@ -325,91 +326,6 @@
 
 
 
-<br>
-
-<div class="tocsection onthispage">
-    <i class="fas fa-list"></i> On this page
-</div>
-
-<nav id="bd-toc-nav" class="page-toc">
-  <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#conditional-construct-if">
-   Conditional construct (
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     if
-    </span>
-   </code>
-   )
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#loop-constructs-do">
-   Loop constructs (
-   <code class="docutils literal notranslate">
-    <span class="pre">
-     do
-    </span>
-   </code>
-   )
-  </a>
-  <ul class="nav section-nav flex-column">
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#conditional-loop-do-while">
-     Conditional loop (
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       do
-      </span>
-      <span class="pre">
-       while
-      </span>
-     </code>
-     )
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#loop-control-statements-exit-and-cycle">
-     Loop control statements (
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       exit
-      </span>
-     </code>
-     and
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       cycle
-      </span>
-     </code>
-     )
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#nested-loop-control-tags">
-     Nested loop control: tags
-    </a>
-   </li>
-   <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#parallelizable-loop-do-concurrent">
-     Parallelizable loop (
-     <code class="docutils literal notranslate">
-      <span class="pre">
-       do
-      </span>
-      <span class="pre">
-       concurrent
-      </span>
-     </code>
-     )
-    </a>
-   </li>
-  </ul>
- </li>
-</ul>
-
-</nav>
 
 
     </div>
@@ -423,7 +339,9 @@
           <div class="bd-content col-12 col-md-9 col-xl-7">
               
               <article class="bd-article" role="main">
-                 <p>One of the powerful advantages of computer algorithms, compared to simple mathematical formulae,
+                 <section id="operators-and-flow-control">
+<h1>Operators and flow control<a class="headerlink" href="#operators-and-flow-control" title="Enlace permanente a este encabezado">#</a></h1>
+<p>One of the powerful advantages of computer algorithms, compared to simple mathematical formulae,
 comes in the form of program <em>branching</em> whereby the program can decide which instructions to
 execute next based on a logical condition.</p>
 <p>There are two main forms of controlling program flow:</p>
@@ -431,15 +349,16 @@ execute next based on a logical condition.</p>
 <li><p><em>Conditional</em> (if): choose program path based on a boolean (true or false) value</p></li>
 <li><p><em>Loop</em>: repeat a portion of code multiple times</p></li>
 </ul>
+</section>
 <section id="logical-operators">
-<h1>Logical operators<a class="headerlink" href="#logical-operators" title="Enlazar permanentemente con este título">#</a></h1>
+<h1>Logical operators<a class="headerlink" href="#logical-operators" title="Enlace permanente a este encabezado">#</a></h1>
 <p>Before we use a conditional branching operator, we need to be able to form
 a logical expression.</p>
 <p>To form a logical expression, the following set of relational operators are available:</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
-<tr class="row-odd"><th class="text-center head"><p>Operator  </p></th>
-<th class="text-center head"><p>Alternative  </p></th>
+<tr class="row-odd"><th class="head text-center"><p>Operator  </p></th>
+<th class="head text-center"><p>Alternative  </p></th>
 <th class="head"><p>Description</p></th>
 </tr>
 </thead>
@@ -472,9 +391,9 @@ a logical expression.</p>
 </table>
 <br>
 <p>as well as the following logical operators:</p>
-<table class="colwidths-auto table">
+<table class="table">
 <thead>
-<tr class="row-odd"><th class="text-center head"><p>Operator  </p></th>
+<tr class="row-odd"><th class="head text-center"><p>Operator  </p></th>
 <th class="head"><p>Description</p></th>
 </tr>
 </thead>
@@ -498,7 +417,7 @@ a logical expression.</p>
 </table>
 <br>
 <section id="conditional-construct-if">
-<h2>Conditional construct (<code class="docutils literal notranslate"><span class="pre">if</span></code>)<a class="headerlink" href="#conditional-construct-if" title="Enlazar permanentemente con este título">#</a></h2>
+<h2>Conditional construct (<code class="docutils literal notranslate"><span class="pre">if</span></code>)<a class="headerlink" href="#conditional-construct-if" title="Enlace permanente a este encabezado">#</a></h2>
 <p>In the following examples, a conditional <code class="docutils literal notranslate"><span class="pre">if</span></code> construct is used to print out a
 message to describe the nature of the <code class="docutils literal notranslate"><span class="pre">angle</span></code> variable:</p>
 <p><strong>Example:</strong> single branch <code class="docutils literal notranslate"><span class="pre">if</span></code></p>
@@ -542,7 +461,7 @@ on the logical expression following the <code class="docutils literal notranslat
 expressions have evaluated to true.</p>
 </section>
 <section id="loop-constructs-do">
-<h2>Loop constructs (<code class="docutils literal notranslate"><span class="pre">do</span></code>)<a class="headerlink" href="#loop-constructs-do" title="Enlazar permanentemente con este título">#</a></h2>
+<h2>Loop constructs (<code class="docutils literal notranslate"><span class="pre">do</span></code>)<a class="headerlink" href="#loop-constructs-do" title="Enlace permanente a este encabezado">#</a></h2>
 <p>In the following example, a <code class="docutils literal notranslate"><span class="pre">do</span></code> loop construct is used to print out the numbers in
 a sequence.
 The <code class="docutils literal notranslate"><span class="pre">do</span></code> loop has an integer <em>counter</em> variable which is used to track which iteration of the loop
@@ -566,7 +485,7 @@ to specify the start value and final value of our counting variable.</p>
 </pre></div>
 </div>
 <section id="conditional-loop-do-while">
-<h3>Conditional loop (<code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">while</span></code>)<a class="headerlink" href="#conditional-loop-do-while" title="Enlazar permanentemente con este título">#</a></h3>
+<h3>Conditional loop (<code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">while</span></code>)<a class="headerlink" href="#conditional-loop-do-while" title="Enlace permanente a este encabezado">#</a></h3>
 <p>A condition may be added to a <code class="docutils literal notranslate"><span class="pre">do</span></code> loop with the <code class="docutils literal notranslate"><span class="pre">while</span></code> keyword. The loop will be executed while the condition given
 in <code class="docutils literal notranslate"><span class="pre">while()</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">.true.</span></code>.</p>
 <p><strong>Example:</strong> <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">while()</span></code> loop</p>
@@ -582,7 +501,7 @@ in <code class="docutils literal notranslate"><span class="pre">while()</span></
 </div>
 </section>
 <section id="loop-control-statements-exit-and-cycle">
-<h3>Loop control statements (<code class="docutils literal notranslate"><span class="pre">exit</span></code> and <code class="docutils literal notranslate"><span class="pre">cycle</span></code>)<a class="headerlink" href="#loop-control-statements-exit-and-cycle" title="Enlazar permanentemente con este título">#</a></h3>
+<h3>Loop control statements (<code class="docutils literal notranslate"><span class="pre">exit</span></code> and <code class="docutils literal notranslate"><span class="pre">cycle</span></code>)<a class="headerlink" href="#loop-control-statements-exit-and-cycle" title="Enlace permanente a este encabezado">#</a></h3>
 <p>Most often than not, loops need to be stopped if a condition is met. Fortran provides two executable statements to deal
 with such cases.</p>
 <p><code class="docutils literal notranslate"><span class="pre">exit</span></code> is used to quit the loop prematurely. It is usually enclosed inside an <code class="docutils literal notranslate"><span class="pre">if</span></code>.</p>
@@ -616,7 +535,7 @@ with such cases.</p>
 </div>
 </section>
 <section id="nested-loop-control-tags">
-<h3>Nested loop control: tags<a class="headerlink" href="#nested-loop-control-tags" title="Enlazar permanentemente con este título">#</a></h3>
+<h3>Nested loop control: tags<a class="headerlink" href="#nested-loop-control-tags" title="Enlace permanente a este encabezado">#</a></h3>
 <p>A recurring case in any programming language is the use of nested loops. Nested loops refer to loops that exist within another loop. Fortran allows the programmer to <em>tag</em> or <em>name</em> each loop. If loops are tagged, there are two potential benefits:</p>
 <ol class="arabic simple">
 <li><p>The readability of the code may be improved (when the naming is meaningful).</p></li>
@@ -637,7 +556,7 @@ with such cases.</p>
 </div>
 </section>
 <section id="parallelizable-loop-do-concurrent">
-<h3>Parallelizable loop (<code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">concurrent</span></code>)<a class="headerlink" href="#parallelizable-loop-do-concurrent" title="Enlazar permanentemente con este título">#</a></h3>
+<h3>Parallelizable loop (<code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">concurrent</span></code>)<a class="headerlink" href="#parallelizable-loop-do-concurrent" title="Enlace permanente a este encabezado">#</a></h3>
 <p>The <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">concurrent</span></code> loop is used to explicitly specify that the <em>inside of the loop has no interdependencies</em>; this informs the compiler that it may use parallelization/<em>SIMD</em> to speed up execution of the loop and conveys programmer intention more clearly. More specifically, this means
 that any given loop iteration does not depend on the prior execution of other loop iterations. It is also necessary that any state changes that may occur must only happen within each <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">concurrent</span></code> loop.
 These requirements place restrictions on what can be placed within the loop body.</p>

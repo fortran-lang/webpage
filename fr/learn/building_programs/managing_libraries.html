@@ -4,7 +4,7 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>Managing libraries (static and dynamic libraries) &#8212; Fortran Programming Language</title>
 <script>
@@ -36,6 +36,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -276,42 +277,42 @@
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="build_tools.html">
-   build tools
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="include_files.html">
-   include files
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   managing libraries
+   Build tools
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="compiling_source.html">
-   compiling source
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="project_make.html">
-   project make
+   Compiling the source code
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="distributing.html">
-   distributing
+   Distributing your programs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="include_files.html">
+   Include files and modules
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="linking_pieces.html">
-   linking pieces
+   Linking the objects
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Managing libraries (static and dynamic libraries)
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="project_make.html">
+   An introduction to make
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="runtime_libraries.html">
-   runtime libraries
+   Run-time libraries
   </a>
  </li>
 </ul>
@@ -335,32 +336,6 @@
 
 
 
-<br>
-
-<div class="tocsection onthispage">
-    <i class="fas fa-list"></i> On this page
-</div>
-
-<nav id="bd-toc-nav" class="page-toc">
-  <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#static-versus-dynamic-libraries">
-   Static versus dynamic libraries
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#gnu-linux-and-gfortran">
-   GNU/Linux and gfortran
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#windows-and-intel-fortran">
-   Windows and Intel Fortran
-  </a>
- </li>
-</ul>
-
-</nav>
 
 
     </div>
@@ -375,7 +350,7 @@
               
               <article class="bd-article" role="main">
                  <section id="managing-libraries-static-and-dynamic-libraries">
-<h1 class="sd-d-none">Managing libraries (static and dynamic libraries)<a class="headerlink" href="#managing-libraries-static-and-dynamic-libraries" title="Lien permanent vers ce titre">#</a></h1>
+<h1>Managing libraries (static and dynamic libraries)<a class="headerlink" href="#managing-libraries-static-and-dynamic-libraries" title="Lien permanent vers cette rubrique">#</a></h1>
 <p>If you need to manage a program built of dozens of source files (and
 that is not uncommon!), the command-line needed to specify all the
 object files will be very long indeed. This soon becomes tedious or
@@ -422,7 +397,7 @@ every library.</p></li>
 <p>Using libraries you can build very large programs without
 having to resort to extremely long command lines.</p>
 <section id="static-versus-dynamic-libraries">
-<h2>Static versus dynamic libraries<a class="headerlink" href="#static-versus-dynamic-libraries" title="Lien permanent vers ce titre">#</a></h2>
+<h2>Static versus dynamic libraries<a class="headerlink" href="#static-versus-dynamic-libraries" title="Lien permanent vers cette rubrique">#</a></h2>
 <p>The above discussion is tacitly assuming that you are using the so-called
 static libraries. Static libraries (or at least parts of their
 contents) become an integral part of the executable program. The only
@@ -478,7 +453,7 @@ gfortran on Cygwin and Intel Fortran on Windows. In both cases
 we look at the <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> program in the file « tabulate.f90 ».</p>
 </section>
 <section id="gnu-linux-and-gfortran">
-<h2>GNU/Linux and gfortran<a class="headerlink" href="#gnu-linux-and-gfortran" title="Lien permanent vers ce titre">#</a></h2>
+<h2>GNU/Linux and gfortran<a class="headerlink" href="#gnu-linux-and-gfortran" title="Lien permanent vers cette rubrique">#</a></h2>
 <p>The <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> program requires a user-defined routine <code class="docutils literal notranslate"><span class="pre">f</span></code>. If we
 let it reside in a dynamic library, say « functions.dll », we can simply
 replace the implementation of the function by putting another dynamic
@@ -519,7 +494,7 @@ interface for this function. The compiler/linker are not invoked anymore, so the
 can do no checking.</p>
 </section>
 <section id="windows-and-intel-fortran">
-<h2>Windows and Intel Fortran<a class="headerlink" href="#windows-and-intel-fortran" title="Lien permanent vers ce titre">#</a></h2>
+<h2>Windows and Intel Fortran<a class="headerlink" href="#windows-and-intel-fortran" title="Lien permanent vers cette rubrique">#</a></h2>
 <p>The setup is the same as with Linux, but on Windows it is necessary
 to explicitly export the routines. And an import library is generated —
 this is the library that should be used in the link step.</p>

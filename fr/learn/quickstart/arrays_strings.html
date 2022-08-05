@@ -4,9 +4,9 @@
 <html lang="fr">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Array declaration &#8212; Fortran Programming Language</title>
+    <title>Arrays and strings &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -36,6 +36,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -276,32 +277,32 @@
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1 current active">
   <a class="current reference internal" href="#">
-   arrays strings
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="hello_world.html">
-   hello world
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="operators_control_flow.html">
-   operators control_flow
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="variables.html">
-   variables
+   Arrays and strings
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="derived_types.html">
-   derived types
+   Derived Types
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="hello_world.html">
+   Hello world
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="operators_control_flow.html">
+   Operators and flow control
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="organising_code.html">
-   Organising Code
+   Organising code structure
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="variables.html">
+   Variables
   </a>
  </li>
 </ul>
@@ -325,37 +326,6 @@
 
 
 
-<br>
-
-<div class="tocsection onthispage">
-    <i class="fas fa-list"></i> On this page
-</div>
-
-<nav id="bd-toc-nav" class="page-toc">
-  <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#array-slicing">
-   Array slicing
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#allocatable-dynamic-arrays">
-   Allocatable (dynamic) arrays
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#character-strings">
-   Character strings
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#array-of-strings">
-   Array of strings
-  </a>
- </li>
-</ul>
-
-</nav>
 
 
     </div>
@@ -369,7 +339,9 @@
           <div class="bd-content col-12 col-md-9 col-xl-7">
               
               <article class="bd-article" role="main">
-                 <p>More often than not, we need to store and operate on long lists of numbers as opposed to just the single scalar variables
+                 <section id="arrays-and-strings">
+<h1>Arrays and strings<a class="headerlink" href="#arrays-and-strings" title="Lien permanent vers cette rubrique">#</a></h1>
+<p>More often than not, we need to store and operate on long lists of numbers as opposed to just the single scalar variables
 that we have been using so far; in computer programming such lists are called  <em>arrays</em>.</p>
 <p>Arrays are <em>multidimensional</em> variables that contain more than one value
 where each value is accessed using one or more indices.</p>
@@ -377,8 +349,9 @@ where each value is accessed using one or more indices.</p>
 <div><p>Arrays in Fortran are <em>one-based</em> by default; this means
 that the first element along any dimension is at index 1.</p>
 </div></blockquote>
+</section>
 <section id="array-declaration">
-<h1>Array declaration<a class="headerlink" href="#array-declaration" title="Lien permanent vers ce titre">#</a></h1>
+<h1>Array declaration<a class="headerlink" href="#array-declaration" title="Lien permanent vers cette rubrique">#</a></h1>
 <p>We can declare arrays of any type. There are two common notations for declaring array variables:
 using the <code class="docutils literal notranslate"><span class="pre">dimension</span></code> attribute or by appending the array dimensions in parentheses to the variable name.</p>
 <p><strong>Example:</strong> static array declaration</p>
@@ -402,7 +375,7 @@ using the <code class="docutils literal notranslate"><span class="pre">dimension
 </pre></div>
 </div>
 <section id="array-slicing">
-<h2>Array slicing<a class="headerlink" href="#array-slicing" title="Lien permanent vers ce titre">#</a></h2>
+<h2>Array slicing<a class="headerlink" href="#array-slicing" title="Lien permanent vers cette rubrique">#</a></h2>
 <p>A powerful feature of the Fortran language is its built-in support for array operations;
 we can perform operations on all or part of an array using array <em>slicing</em> notation:</p>
 <p><strong>Example:</strong> array slicing</p>
@@ -432,7 +405,7 @@ index varies fastest.</p>
 </div></blockquote>
 </section>
 <section id="allocatable-dynamic-arrays">
-<h2>Allocatable (dynamic) arrays<a class="headerlink" href="#allocatable-dynamic-arrays" title="Lien permanent vers ce titre">#</a></h2>
+<h2>Allocatable (dynamic) arrays<a class="headerlink" href="#allocatable-dynamic-arrays" title="Lien permanent vers cette rubrique">#</a></h2>
 <p>So far we have specified the size of our array in our program code—this
 type of array is known as a <em>static</em> array since its size is fixed when
 we compile our program.</p>
@@ -461,7 +434,7 @@ These are <em>allocated</em> while the program is running once we know how big t
 when they go out of scope.</p>
 </section>
 <section id="character-strings">
-<h2>Character strings<a class="headerlink" href="#character-strings" title="Lien permanent vers ce titre">#</a></h2>
+<h2>Character strings<a class="headerlink" href="#character-strings" title="Lien permanent vers cette rubrique">#</a></h2>
 <p><strong>Example:</strong> static character string</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -502,7 +475,7 @@ when they go out of scope.</p>
 </div>
 </section>
 <section id="array-of-strings">
-<h2>Array of strings<a class="headerlink" href="#array-of-strings" title="Lien permanent vers ce titre">#</a></h2>
+<h2>Array of strings<a class="headerlink" href="#array-of-strings" title="Lien permanent vers cette rubrique">#</a></h2>
 <p>An array of strings can be expressed in Fortran as an array of <code class="docutils literal notranslate"><span class="pre">character</span></code> variables.
 All elements in a <code class="docutils literal notranslate"><span class="pre">character</span></code> array have equal length.
 However, strings of varying lengths can be provided as input to the array constructor, as shown in the example below.

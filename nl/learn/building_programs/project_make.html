@@ -4,7 +4,7 @@
 <html lang="nl">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.17.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
     <title>An introduction to make &#8212; Fortran Programming Language</title>
 <script>
@@ -36,6 +36,7 @@
     <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
     <script src="../../_static/jquery.js"></script>
     <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
     <script src="../../_static/doctools.js"></script>
     <script src="../../_static/clipboard.min.js"></script>
     <script src="../../_static/copybutton.js"></script>
@@ -276,42 +277,42 @@
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1">
   <a class="reference internal" href="build_tools.html">
-   build tools
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="include_files.html">
-   include files
-  </a>
- </li>
- <li class="toctree-l1">
-  <a class="reference internal" href="managing_libraries.html">
-   managing libraries
+   Build tools
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="compiling_source.html">
-   compiling source
-  </a>
- </li>
- <li class="toctree-l1 current active">
-  <a class="current reference internal" href="#">
-   project make
+   Compiling the source code
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="distributing.html">
-   distributing
+   Distributing your programs
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="include_files.html">
+   Include files and modules
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="linking_pieces.html">
-   linking pieces
+   Linking the objects
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="managing_libraries.html">
+   Managing libraries (static and dynamic libraries)
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   An introduction to make
   </a>
  </li>
  <li class="toctree-l1">
   <a class="reference internal" href="runtime_libraries.html">
-   runtime libraries
+   Run-time libraries
   </a>
  </li>
 </ul>
@@ -335,27 +336,6 @@
 
 
 
-<br>
-
-<div class="tocsection onthispage">
-    <i class="fas fa-list"></i> On this page
-</div>
-
-<nav id="bd-toc-nav" class="page-toc">
-  <ul class="nav section-nav flex-column">
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#getting-started">
-   Getting started
-  </a>
- </li>
- <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#automatically-generated-dependencies">
-   Automatically generated dependencies
-  </a>
- </li>
-</ul>
-
-</nav>
 
 
     </div>
@@ -370,7 +350,7 @@
               
               <article class="bd-article" role="main">
                  <section id="an-introduction-to-make">
-<h1 class="sd-d-none">An introduction to make<a class="headerlink" href="#an-introduction-to-make" title="Permalink naar deze titel">#</a></h1>
+<h1>An introduction to make<a class="headerlink" href="#an-introduction-to-make" title="Permalink to this heading">#</a></h1>
 <p>We briefly discussed the basics of <code class="docutils literal notranslate"><span class="pre">make</span></code>. This chapter gives ideas
 and strategies to scale <code class="docutils literal notranslate"><span class="pre">make</span></code> for larger projects.</p>
 <p>Before going into detail with <code class="docutils literal notranslate"><span class="pre">make</span></code>, consider a few points:</p>
@@ -400,7 +380,7 @@ than <code class="docutils literal notranslate"><span class="pre">make</span></c
 <p>Even if you find <code class="docutils literal notranslate"><span class="pre">make</span></code> unsuitable to build your project, it is <em>the</em> tool to automate workflows defined by files. Maybe you can leverage its power in a different context.</p>
 </div>
 <section id="getting-started">
-<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink naar deze titel">#</a></h2>
+<h2>Getting started<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h2>
 <p>For this part we will work with
 <a href="https://github.com/jacobwilliams/fortran-csv-module/tree/1.2.0" target="_blank" rel="noopener"> the Fortran CSV module (v1.2.0)</a>.
 Our goal is to write a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to compile this project to a static library.
@@ -524,7 +504,7 @@ Also, right now the the source files and dependencies are specified explicitly,
 which results in several additional lines even for such a simple project.</p>
 </section>
 <section id="automatically-generated-dependencies">
-<h2>Automatically generated dependencies<a class="headerlink" href="#automatically-generated-dependencies" title="Permalink naar deze titel">#</a></h2>
+<h2>Automatically generated dependencies<a class="headerlink" href="#automatically-generated-dependencies" title="Permalink to this heading">#</a></h2>
 <p>The main drawback of <code class="docutils literal notranslate"><span class="pre">make</span></code> for Fortran is the missing capability to
 determine module dependencies. This is usually solved by either adding those
 by hand or automatically scanning the source code with an external tool.
