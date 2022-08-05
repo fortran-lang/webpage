@@ -23,7 +23,7 @@ Packages - The Fortran Programming Language
 
 .. raw:: html
     
-    <form class="bd-search d-flex align-items-center" align="center" action="search/index.html" method="get">  <input type="search" class="form-control" name="q" id="search-input"
+    <form class="bd-search d-flex align-items-center" align="center" action="../search/index.html" method="get">  <input type="search" class="form-control" name="q" id="search-input"
                placeholder="Search for a package" aria-label="Search" autocomplete="off" style='margin: auto;text-align: center;width:40em;'> </form>
 
 
@@ -56,7 +56,7 @@ Packages - The Fortran Programming Language
           .. jinja:: fortran_index
 
               {% for j in tags %}
-              `{{j}}, <{{"search/index.html?q="+j}}>`_ {% endfor %}
+              `{{j}}, <{{"../search/index.html?q="+j}}>`_ {% endfor %}
           
 
 .. div:: sd-fs-3 sd-font-weight-bold sd-text-primary
