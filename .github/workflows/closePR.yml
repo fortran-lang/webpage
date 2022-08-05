@@ -1,0 +1,42 @@
+# Github action to cleanup a PR preview
+#  Runs when a pull request comment contains '#delete_preview'
+#
+
+name: PR Preview Cleanup
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.issue.pull_request && contains(github.event.comment.body,'#delete_preview')
+    
+    steps:
+
+    # Checkout existing gh-pages branch into PUBLISH_DIR
+    - name: Checkout gh-pages
+      uses: actions/checkout@v3
+      with:
+        ref: gh-pages
+
+    # Cleanup preview files
+    - name: PR Cleanup
+      run: |
+        rm -rf pr/${{github.event.issue.number}}
+        
+    
+    - name: Commit and push to gh-pages
+      uses: EndBug/add-and-commit@v9.0.1
+      with:
+        message: "Sphinx build cleanup pr/${{github.event.issue.number}}"
+      env:  
+        GITHUB_TOKEN: ${{ secrets.API_GITHUB_TOKEN }}
+    
+    # Comment on pull request 
+    - name: Comment on pull request
+      uses: peter-evans/create-or-update-comment@v2
+      with:
+        issue-number: ${{github.event.issue.number}}
+        body: The preview build for this PR has now been deleted.

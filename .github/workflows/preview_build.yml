@@ -1,0 +1,61 @@
+# Github action to build preview sphinx site and commit to gh-pages branch
+#  Built site is pushed to 'gh-pages' branch
+#
+
+name: Sphinx Preview Build
+
+on:
+  issue_comment:
+    types: [created]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    if: github.event.issue.pull_request && contains(github.event.comment.body,'#build_preview')
+    
+    steps:
+    - name: Checkout pr/${{github.event.issue.number}}
+      uses: actions/checkout@v3
+      
+    - name: Fetch pr/${{github.event.issue.number}}
+      run: |
+        git fetch origin pull/${{github.event.issue.number}}/head:pr-${{github.event.issue.number}}
+        git checkout pr-${{github.event.issue.number}}
+      
+    - name: Setup Python
+      uses: actions/setup-python@v3
+
+    - name: Install sphinx
+      run: pip3 install --user -r requirements.txt
+      
+    - name: Safe workflow for build preview
+      run: if [ -d "build" ]; then rm -Rf build; fi
+      
+    - name: delete _data folder
+      run: rm -Rf _data
+      
+    - name: download _data
+      run: mkdir _data && cd _data && gh run download -n _data
+      env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+      
+    - name: Build page
+      run: make dirhtml LANGUAGES=en
+      
+    - run: touch build/html/.nojekyll
+
+    - name: Deploy documentation sphinx
+      uses: JamesIves/github-pages-deploy-action@v4.4.0
+      with:
+        token: ${{ secrets.API_GITHUB_TOKEN }}
+        branch: gh-pages
+        target-folder: pr/${{github.event.issue.number}}
+        folder: build/html
+        clean: false
+        
+    - name: Comment on pull request
+      uses: peter-evans/create-or-update-comment@v2
+      with:
+       issue-number: ${{github.event.issue.number}}
+       body: "This PR is being built with Sphinx and can be previewed at: /pr/${{github.event.issue.number}}"
+       
