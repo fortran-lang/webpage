@@ -24,7 +24,7 @@ pip3 install --user -r requirements.txt
 Build the site by invoking
 
 ```
-make html
+make dirhtml
 ```
 
 The website will be built in `build/html` and can be previewed by opening the page with a browser (*e.g.* firefox, chromium or similar):
