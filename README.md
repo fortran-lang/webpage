@@ -27,10 +27,10 @@ Build the site by invoking
 make dirhtml
 ```
 
-The website will be built in `build/html` and can be previewed by opening the page with a browser (*e.g.* firefox, chromium or similar):
+The website will be built in `build/html` and can be previewed by starting a webserver and opening the page with a browser (*e.g.* firefox, chromium or similar):
 
 ```
-firefox file://$PWD/build/html/en/index.html
+python -m http.server -d build/html
 ```
 
 By default all languages will be built.
@@ -75,7 +75,7 @@ The third line is meant for the translation.
 To continue a long string in another line,
 simply close the string in the current line with `"`
 and open another one in the line underneath. E.g.
-```
+```po
 msgstr "This is "
 "one string"
 ```
