@@ -1,4 +1,4 @@
-import sys
+import sys, os, base64
 import yaml
 from pathlib import Path
 from collections import Counter
@@ -31,7 +31,17 @@ f = open("_data/learning.yml")
 conf = yaml.safe_load(f)
 # print(conf)
 headers = CaseInsensitiveDict()
-headers["Authorization"] = str(sys.argv[1]) + " " + str(sys.argv[2])
+
+token = None
+if "API_TOKEN" in os.environ:
+    token = (
+        "Basic " + base64.b64encode(os.environ["API_TOKEN"].encode("utf-8")).decode("utf-8")
+    )
+if len(sys.argv) > 1:
+    headers["Authorization"] = " ".join(sys.argv[1])
+
+if token is not None:
+    headers["Authorization"] = token
 
 fortran_index_tags = []
 fortran_index_tags_50 = []
@@ -52,7 +62,7 @@ for i in fortran_index:
         for j in str(i["tags"]).split():
             fortran_index_tags.append(j)
     except KeyError:
-        print("")
+        pass
     if "libraries" in i["categories"].split():
         fortran_index_libraries.append(i)
     if "data-types" in i["categories"].split():
@@ -111,7 +121,6 @@ def github_info(list):
                     d["license"]["name"] = "null"
                 i["license"] = d["license"]["name"]
             except TypeError:
-                print("")
                 d["license"] = "null"
             # print(d['forks_count'],d['open_issues_count'],d['stargazers_count'])
             i["forks"] = d["forks_count"]
@@ -137,9 +146,9 @@ def github_info(list):
             try:
                 i["release"] = d["tag_name"]
             except KeyError:
-                print("")
+                pass
         except KeyError:
-            print("")
+            pass
 
 
 github_info(fortran_index_data_types)
@@ -188,9 +197,11 @@ contributor_repo = {
 
 def contributors(repo):
     info = requests.get(
-        "https://api.github.com/repos/" + repo + "/contributors", headers=headers
+        f"https://api.github.com/repos/{repo}/contributors", headers=headers
     ).text
     d = json.loads(info)
+    if "message" in d:
+        raise Exception(d["message"])
     for i in d:
         contributor.append(i["login"])
 
