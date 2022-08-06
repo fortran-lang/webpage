@@ -24,18 +24,24 @@ months = [
     "November",
     "December",
 ]
-# print("learn section")
-f = open("_data/package_index.yml")
-fortran_index = yaml.safe_load(f)
-f = open("_data/learning.yml")
-conf = yaml.safe_load(f)
+
+root = Path(__file__).parent
+
+with open(root / "_data" / "package_index.yml", "r") as f:
+    fortran_index = yaml.safe_load(f)
+with open(root / "_data" / "learning.yml", "r") as f:
+    conf = yaml.safe_load(f)
+
 # print(conf)
 headers = CaseInsensitiveDict()
 
 token = None
 if "API_TOKEN" in os.environ:
+    api_token = os.environ["API_TOKEN"]
     token = (
-        "Basic " + base64.b64encode(os.environ["API_TOKEN"].encode("utf-8")).decode("utf-8")
+        "Basic " + base64.b64encode(api_token.encode("utf-8")).decode("utf-8")
+        if api_token.startswith("ghp_")
+        else api_token
     )
 if len(sys.argv) > 1:
     headers["Authorization"] = " ".join(sys.argv[1])
@@ -177,9 +183,9 @@ conf["reference_books"] = conf["reference-books"]
 conf["reference_courses"] = conf["reference-courses"]
 conf["reference_links"] = conf["reference-links"]
 
-with open("_data/fortran_package.json", "w") as f:
+with open(root / "_data" / "fortran_package.json", "w") as f:
     json.dump(fortran_tags, f)
-with open("_data/fortran_learn.json", "w") as f:
+with open(root / "_data" / "fortran_learn.json", "w") as f:
     json.dump(conf, f)
 
 fortran_monthly = []
@@ -219,5 +225,5 @@ contributor = list(set(contributor))
 contributor.sort()
 contributor_repo["contributor"] = contributor
 
-with open("_data/contributor.json", "w") as f:
+with open(root / "_data" / "contributor.json", "w") as f:
     json.dump(contributor_repo, f)

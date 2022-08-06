@@ -15,13 +15,26 @@
 # sys.path.insert(0, os.path.abspath('.'))
 import json
 import sys
+import pathlib
 
-f = open("../_data/fortran_learn.json")
-conf = json.load(f)
-f = open("../_data/fortran_package.json")
-fortran_tags = json.load(f)
-f = open("../_data/contributor.json")
-contributors = json.load(f)
+root = pathlib.Path(__file__).parent.parent
+
+data_files = {
+    "fortran-learn": pathlib.Path(root, "_data", "fortran_learn.json"),
+    "fortran-packages": pathlib.Path(root, "_data", "fortran_package.json"),
+    "contributors": pathlib.Path(root, "_data", "contributor.json"),
+}
+
+if not all(data.exists() for data in data_files.values()):
+    sys.path.insert(0, str(root.absolute()))
+    import fortran_package
+
+with open(data_files["fortran-learn"], "r") as f:
+    conf = json.load(f)
+with open(data_files["fortran-packages"], "r") as f:
+    fortran_tags = json.load(f)
+with open(data_files["contributors"], "r") as f:
+    contributors = json.load(f)
 
 # -- Project information -----------------------------------------------------
 
