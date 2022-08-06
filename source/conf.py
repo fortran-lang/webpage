@@ -66,6 +66,7 @@ myst_enable_extensions = [
     "substitution",
     "html_image",
 ]
+myst_heading_anchors = 3
 
 
 # Add any paths that contain templates here, relative to this directory.
@@ -115,7 +116,7 @@ html_theme_options = {
             "href": "images/favicon.ico",
         },
     ],
-    "show_prev_next": True,
+    "show_prev_next": False,  # TODO: only display on learn pages
     "show_nav_level": 4,
     "show_toc_level": 0,
     "footer_items": ["copyright"],
@@ -174,7 +175,7 @@ master_doc = "index"
 fontawesome_link_cdn = True
 
 blog_path = "news"
-blog_post_pattern = "news/*"
+blog_post_pattern = "news/**"
 blog_baseurl = "https://fortran-lang.org/en/"
 post_redirect_refresh = 1
 post_auto_image = 1
