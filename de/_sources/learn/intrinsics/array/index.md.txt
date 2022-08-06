@@ -12,59 +12,59 @@
 ```{include} ../_pages/UNPACK.md
 ```
 
-```{include} ../_pages/ALLOCATED
+```{include} ../_pages/ALLOCATED.md
 ```
 
-```{include} ../_pages/IS_CONTIGUOUS
+```{include} ../_pages/IS_CONTIGUOUS.md
 ```
 
-```{include} ../_pages/LBOUND
+```{include} ../_pages/LBOUND.md
 ```
 
-```{include} ../_pages/RANK
+```{include} ../_pages/RANK.md
 ```
 
-```{include} ../_pages/SHAPE
+```{include} ../_pages/SHAPE.md
 ```
 
-```{include} ../_pages/SIZE
+```{include} ../_pages/SIZE.md
 ```
 
-```{include} ../_pages/UBOUND
+```{include} ../_pages/UBOUND.md
 ```
 
-```{include} ../_pages/MAXLOC
+```{include} ../_pages/MAXLOC.md
 ```
 
-```{include} ../_pages/MINLOC
+```{include} ../_pages/MINLOC.md
 ```
 
-```{include} ../_pages/FINDLOC
+```{include} ../_pages/FINDLOC.md
 ```
 
-```{include} ../_pages/TRANSPOSE
+```{include} ../_pages/TRANSPOSE.md
 ```
 
-```{include} ../_pages/ALL
+```{include} ../_pages/ALL.md
 ```
 
-```{include} ../_pages/ANY
+```{include} ../_pages/ANY.md
 ```
 
-```{include} ../_pages/COUNT
+```{include} ../_pages/COUNT.md
 ```
 
-```{include} ../_pages/MAXVAL
+```{include} ../_pages/MAXVAL.md
 ```
 
-```{include} ../_pages/MINVAL
+```{include} ../_pages/MINVAL.md
 ```
 
-```{include} ../_pages/PRODUCT
+```{include} ../_pages/PRODUCT.md
 ```
 
-```{include} ../_pages/SUM
+```{include} ../_pages/SUM.md
 ```
 
-```{include} ../_pages/RESHAPE
+```{include} ../_pages/RESHAPE.md
 ```
