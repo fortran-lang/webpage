@@ -57,7 +57,7 @@ Community - The Fortran Programming Language
 
         This website is open source and contributions are welcome!.
 
-        `GitHub <https://github.com/fortran-lang/webpage>`_  `Contributing <ttps://github.com/fortran-lang/webpage/blob/HEAD/CONTRIBUTING.md>`_
+        `GitHub <https://github.com/fortran-lang/webpage>`_  `Contributing <../CONTRIBUTING>`_
 
 
     .. grid-item-card::
@@ -116,7 +116,7 @@ Community - The Fortran Programming Language
 
                 `Contributor guide for stdlib <https://github.com/fortran-lang/stdlib/blob/HEAD/WORKFLOW.md>`_ |br|
                 `Contributor guide for fpm <https://github.com/fortran-lang/fpm/blob/HEAD/CONTRIBUTING.md>`_ |br|
-                `Contributor guide for fortran-lang.org <https://github.com/fortran-lang/webpage/blob/HEAD/CONTRIBUTING.md>`_ 
+                `Contributor guide for fortran-lang.org <../CONTRIBUTING>`_ 
 
 
     .. grid-item::

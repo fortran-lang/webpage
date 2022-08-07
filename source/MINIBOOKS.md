@@ -3,7 +3,7 @@
 This guide will cover how to write mini-book tutorials for the [Learn](https://fortran-lang.org/learn)
 section of <https://fortran-lang.org>.
 
-See [CONTRIBUTING](./CONTRIBUTING.md) for general guidance on contributing to <https://fortran-lang.org>.
+See [CONTRIBUTING](./CONTRIBUTING) for general guidance on contributing to <https://fortran-lang.org>.
 
 ## 0. Mini-book formats
 

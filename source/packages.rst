@@ -43,7 +43,7 @@ Packages - The Fortran Programming Language
             This includes large-scale scientific applications,
             function libraries, Fortran interfaces, and developer tools.
             |br|
-            See  `here <https://github.com/fortran-lang/webpage/blob/HEAD/PACKAGES.md>`_ for how to get your project listed.  |br|
+            See  `here <../PACKAGES>`_ for how to get your project listed.  |br|
             Use the box above to search the package index by keyword, package name, or author username.
 
     .. grid-item-card::
@@ -118,7 +118,7 @@ Applications and libraries for applied mathematical and scientific problems
 
 .. raw:: html
     
-    See<a href="https://github.com/fortran-lang/webpage/blob/HEAD/PACKAGES.md" target="_blank"><i class="devicon-github-plain colored"></i> here</a> for how to get your project listed.
+    See<a href="../PACKAGES" target="_blank"><i class="devicon-github-plain colored"></i> here</a> for how to get your project listed.
 
 
 .. toctree::
