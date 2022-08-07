@@ -37,12 +37,12 @@ headers = CaseInsensitiveDict()
 
 token = None
 if "API_TOKEN" in os.environ:
-    token = "token " + os.environ["API_TOKEN"]
-if len(sys.argv) > 1:
-    token = " ".join(sys.argv)
+    token = os.environ["API_TOKEN"]
+if len(sys.argv) > 0:
+    token = sys.argv[1]
 
 if token is not None:
-    headers["Authorization"] = token
+    headers["Authorization"] = f"token {token}"
 
 fortran_index_tags = []
 fortran_index_tags_50 = []
