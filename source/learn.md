@@ -142,7 +142,7 @@ In print
   {{book.year}}
   [{{book.title}}]({{book.url}})
   {{book.edition}}
-  {{book.location}}.
+  {{book.location}}. 
   {{book.publisher}}
 
 {% endfor %}
