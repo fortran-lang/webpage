@@ -1,10 +1,12 @@
+(contributing)=
+
 # Contributing to fortran-lang.org
 
 Fortran-lang.org is open-source and contributions are welcome!
 
-* See [PACKAGES](./PACKAGES.md) for how to add an entry to the [Package index](https://fortran-lang.org/en/packages)
+* See {ref}``packages`` for how to add an entry to the [Package index](https://fortran-lang.org/en/packages)
 
-* See [MINIBOOKS](./MINIBOOKS.md) for how to write and structure a mini-book tutorial for the [Learn](https://fortran-lang.org/learn) section
+* See {ref}``minibooks`` for how to write and structure a mini-book tutorial for the [Learn](https://fortran-lang.org/learn) section
 
 
 ## Introduction

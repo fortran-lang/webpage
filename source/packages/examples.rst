@@ -42,6 +42,4 @@ Demonstration codes and templates for Fortran
 
 ------------
 
-.. raw:: html
-    
-    See<a href="https://github.com/fortran-lang/webpage/blob/HEAD/PACKAGES.md" target="_blank"><i class="devicon-github-plain colored"></i> here</a> for how to get your project listed.
+See :ref:`package index guidelines <packages>` for how to get your project listed.
