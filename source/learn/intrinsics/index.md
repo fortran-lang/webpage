@@ -21,8 +21,7 @@ By describing the procedures here
 these documents strive to be a valuable asset for Fortran programmers.
 
 This is a community-driven resource and everyone is encouraged to contribute 
-to the documents. For contribution guidelines see
-[MINIBOOKS](https://github.com/fortran-lang/fortran-lang.org/blob/master/MINIBOOKS.md)
+to the documents. For contribution guidelines see {ref}``minibooks``
 and the following Copyright guidelines.
 
 ## See Also
