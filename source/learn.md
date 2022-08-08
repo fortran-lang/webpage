@@ -84,7 +84,7 @@ Mini-book Tutorials
 
 :::{div} sd-fs-5 sd-font-weight-bold sd-text-primary
 
-{octicon}``book;1em;sd-text-info`` [{{book.title}}]({{"../"+book.link[1:]+"/"}})
+{octicon}``book;1em;sd-text-info`` <a href='{{"../"+book.link[1:]+"/"}}'>{{book.title}}</a>
 :::
 {{book.description}}
 ::::
