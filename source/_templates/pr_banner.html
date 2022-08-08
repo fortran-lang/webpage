@@ -1,18 +1,22 @@
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-   function redirect_pr() {
-  window.location = "https://github.com/fortran-lang/webpage/pull/"+window.location.href.split('/')[5];
-}
- $(document).ready(function () {
+    var pr_number = -1;
+    $(document).ready(function () {
+
         if (window.location.href.indexOf("/pr/") > -1) {
+            pr_number = window.location.href.split('/').indexOf("pr") + 1;
+            document.getElementById("pr").innerHTML = "pull request " + window.location.href.split('/')[pr_number];
             var x = document.getElementById("banner");
-  if (x.style.display === "none") {
-    x.style.display = "block";
-  } else {
-    x.style.display = "none";
-  }
+            if (x.style.display === "none") {
+                x.style.display = "block";
+            } else {
+                x.style.display = "none";
+            }
         }
     });
+    function redirect_pr() {
+        window.location = "https://github.com/fortran-lang/webpage/pull/" + window.location.href.split('/')[pr_number];
+    }
 </script>
 <div id="banner" style='display:none' class="container">
     <p style="text-align: center">
@@ -27,12 +31,10 @@
         </svg>
         <b>Site preview: </b>you are previewing unpublished changes for
 
-        <a href="javascript:redirect_pr();">
+        <a href="javascript:redirect_pr();" id="pr">
             <i class="devicon-github-plain colored"></i>
-            pull request
-            <script>
-                document.write(window.location.href.split('/')[5]);
-            </script>
+
         </a>
-    </h3></p>
+    </h3>
+    </p>
 </div>
