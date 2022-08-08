@@ -616,7 +616,7 @@ it is just expanded to the object files as well.</p>
     <span class="c1"># count included files per file to avoid having duplicates in our list</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">incc</span><span class="p">[</span><span class="nb">FILENAME</span><span class="p">,</span><span class="o">$</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1"># Add the included file to our list, this might be case-sensitive</span>
-        <span class="nx">inc</span><span class="p">[</span><span class="o">++</span><span class="nx">ii</span><span class="p">]</span> <span class="o">=</span> <span class="kr">sprintf</span><span class="p">(</span><span class="s2">&quot;$(%s) += $(%s)&quot;</span><span class="p">,</span> <span class="nb">FILENAME</span><span class="p">,</span> <span class="o">$</span><span class="mi">2</span><span class="p">)</span>
+        <span class="nx">inc</span><span class="p">[</span><span class="o">++</span><span class="nx">ii</span><span class="p">]</span> <span class="o">=</span> <span class="kr">sprintf</span><span class="p">(</span><span class="s2">&quot;$(%s) += %s&quot;</span><span class="p">,</span> <span class="nb">FILENAME</span><span class="p">,</span> <span class="o">$</span><span class="mi">2</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -721,6 +721,10 @@ dependency generation:</p>
 <span class="nv">TEST_SRCS</span> <span class="o">:=</span> src/tests/csv_read_test.f90 <span class="se">\</span>
              src/tests/csv_test.f90 <span class="se">\</span>
              src/tests/csv_write_test.f90
+
+<span class="c"># Add source and tests directories to search paths</span>
+<span class="cp">vpath % .: src</span>
+<span class="cp">vpath % .: src/tests</span>
 
 <span class="c"># Define a map from each file name to its object file</span>
 <span class="nv">obj</span> <span class="o">=</span> <span class="k">$(</span>src<span class="k">)</span>.o

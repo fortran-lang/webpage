@@ -261,7 +261,7 @@ $2 ~ /^["'].+["']$/ {
     # count included files per file to avoid having duplicates in our list
     if (incc[FILENAME,$2]++ == 0) {
         # Add the included file to our list, this might be case-sensitive
-        inc[++ii] = sprintf("$(%s) += $(%s)", FILENAME, $2)
+        inc[++ii] = sprintf("$(%s) += %s", FILENAME, $2)
     }
 }
 
@@ -379,6 +379,10 @@ SRCS := src/csv_kinds.f90 \
 TEST_SRCS := src/tests/csv_read_test.f90 \
              src/tests/csv_test.f90 \
              src/tests/csv_write_test.f90
+
+# Add source and tests directories to search paths
+vpath % .: src
+vpath % .: src/tests
 
 # Define a map from each file name to its object file
 obj = $(src).o
