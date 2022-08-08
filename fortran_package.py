@@ -1,29 +1,9 @@
-import sys, os, base64
 import yaml
 from pathlib import Path
 from collections import Counter
 import json
 import requests
-from requests.structures import CaseInsensitiveDict
-from datetime import datetime
-import pytz
-from collections import OrderedDict
 
-months = [
-    "Unknown",
-    "January",
-    "Febuary",
-    "March",
-    "April",
-    "May",
-    "June",
-    "July",
-    "August",
-    "September",
-    "October",
-    "November",
-    "December",
-]
 
 root = Path(__file__).parent
 
@@ -31,18 +11,6 @@ with open(root / "_data" / "package_index.yml", "r") as f:
     fortran_index = yaml.safe_load(f)
 with open(root / "_data" / "learning.yml", "r") as f:
     conf = yaml.safe_load(f)
-
-# print(conf)
-headers = CaseInsensitiveDict()
-
-token = None
-if "API_TOKEN" in os.environ:
-    token = os.environ["API_TOKEN"]
-if len(sys.argv) > 0:
-    token = sys.argv[1]
-
-if token is not None:
-    headers["Authorization"] = f"token {token}"
 
 fortran_index_tags = []
 fortran_index_tags_50 = []
@@ -92,7 +60,6 @@ for i in a:
     if i[0] == "None":
         a.remove(i)
 
-# print(fortran_index_libraries)
 for k in range(50):
     fortran_index_tags_50.append(a[k][0])
 
@@ -102,67 +69,6 @@ for i in fortran_index:
 
 fortran_index_categories = list(set(fortran_index_categories))
 
-
-def github_info(list):
-    for i in list:
-        try:
-            info = requests.get(
-                "https://api.github.com/repos/" + i["github"], headers=headers
-            ).text
-            d = json.loads(info)
-            if type(d["forks_count"]) is type(None):
-                d["forks_count"] = 0
-            if type(d["open_issues_count"]) is type(None):
-                d["open_issues_count"] = 0
-            if type(d["stargazers_count"]) is type(None):
-                d["stargazers_count"] = 0
-            try:
-                if str(d["license"]["name"]) == "null":
-                    print("hello")
-                    d["license"]["name"] = "null"
-                i["license"] = d["license"]["name"]
-            except TypeError:
-                d["license"] = "null"
-            # print(d['forks_count'],d['open_issues_count'],d['stargazers_count'])
-            i["forks"] = d["forks_count"]
-            i["issues"] = d["open_issues_count"]
-            i["stars"] = d["stargazers_count"]
-            info = requests.get(
-                "https://api.github.com/repos/"
-                + i["github"]
-                + "/commits/"
-                + d["default_branch"],
-                headers=headers,
-            ).text
-            d = json.loads(info)
-            monthinteger = int(d["commit"]["author"]["date"][5:7])
-            month = months[monthinteger]
-            i["last_commit"] = month + " " + d["commit"]["author"]["date"][:4]
-            info = requests.get(
-                "https://api.github.com/repos/" + i["github"] + "/releases/latest",
-                headers=headers,
-            ).text
-            d = json.loads(info)
-            # print(d)
-            try:
-                i["release"] = d["tag_name"]
-            except KeyError:
-                pass
-        except KeyError:
-            pass
-
-
-github_info(fortran_index_data_types)
-github_info(fortran_index_numerical)
-github_info(fortran_index_io)
-github_info(fortran_index_scientific)
-github_info(fortran_index_examples)
-github_info(fortran_index_interfaces)
-github_info(fortran_index_graphics)
-github_info(fortran_index_programming)
-github_info(fortran_index_strings)
-github_info(fortran_index_libraries)
-print(fortran_index_data_types)
 fortran_tags["numerical"] = fortran_index_numerical
 fortran_tags["io"] = fortran_index_io
 fortran_tags["scientific"] = fortran_index_scientific
@@ -198,8 +104,7 @@ contributor_repo = {
 
 def contributors(repo):
     info = requests.get(
-        f"https://api.github.com/repos/{repo}/contributors", headers=headers
-    ).text
+        f"https://api.github.com/repos/{repo}/contributors").text
     d = json.loads(info)
     if "message" in d:
         raise Exception(d["message"])
@@ -209,6 +114,7 @@ def contributors(repo):
 
 graphs = [
     "fortran-lang/fortran-lang.org",
+    "fortran-lang/webpage",
     "fortran-lang/fpm",
     "fortran-lang/stdlib",
     "j3-fortran/fortran_proposals",

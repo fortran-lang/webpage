@@ -40,7 +40,7 @@ By default all languages will be built.
 To limit the build to a single language subtree, *i.e.* English, use
 
 ```
-make html LANGUAGES=en
+make dirhtml LANGUAGES=en
 ```
 
 ### Update or add translations
