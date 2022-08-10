@@ -2,13 +2,13 @@
 
 ## Contributing
 
-* [contributing](https://fortran-lang.github.io/webpage/community/contributing):
+* [contributing](https://fortran-lang.github.io/webpage/en/community/contributing):
   getting started and general guidance on contributing to <https://fortran-lang.org>
 
-* [minibooks](https://fortran-lang.github.io/webpage/community/minibooks):
+* [minibooks](https://fortran-lang.github.io/webpage/en/community/minibooks):
   how to write and structure a mini-book tutorial for the [Learn](https://fortran-lang.org/learn) section
 
-* [packages](https://fortran-lang.github.io/webpage/community/packages):
+* [packages](https://fortran-lang.github.io/webpage/en/community/packages):
   adding an entry to the [Package index](https://fortran-lang.org/packages)
 
 ## Setup
