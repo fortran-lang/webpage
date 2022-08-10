@@ -122,7 +122,6 @@ html_theme_options = {
     "footer_items": ["copyright"],
     "navbar_align": "right",
     "navbar_start": ["navbar-logo"],
-    "announcement": "https://raw.githubusercontent.com/fortran-lang/webpage/main/source/_templates/pr_banner.html",
     "page_sidebar_items": ["inpage_toc.html"],
     "navbar_end": ["theme-switcher.html", "navbar-icon-links"],
     "icon_links": [
