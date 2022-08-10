@@ -43,6 +43,13 @@ To limit the build to a single language subtree, *i.e.* English, use
 make dirhtml LANGUAGES=en
 ```
 
+### Translating via weblate
+
+Translations can be contributed via [weblate](https://hosted.weblate.org/projects/fortran-lang/fpm/).
+
+[![Translation status](https://hosted.weblate.org/widgets/fortran-lang/-/fpm/horizontal-auto.svg)](https://hosted.weblate.org/engage/fortran-lang/)
+
+
 ### Update or add translations
 
 The documentation uses the
