@@ -8,11 +8,9 @@ sd_hide_title: true
 High-performance parallel programming language
 :::
 
-```{button-link} learn/
-:color: primary
-:align: center
-Get started
-```
+:::{div} sd-text-center sd-fs-4
+{bdg-link-primary}`Get started <learn/>`
+:::
 
 :::{div} sd-fs-3 sd-font-weight-bold sd-text-primary
 Features
