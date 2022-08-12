@@ -42,12 +42,39 @@ To limit the build to a single language subtree, *i.e.* English, use
 ```
 make dirhtml LANGUAGES=en
 ```
+### Activating the pre-commit hooks for Black and Pylint:
 
+This assumes that you already have a cloned the main branch of this repository.
+Steps to activate the pre-commit hooks are:
+1. Make sure that you have installed all the dependencies of the repository.
+```
+pip3 install --user -r requirements.txt
+```
+2. Activate the pre-commit hooks:
+```
+pre-commit install
+```
+Now, the precommit hooks have been successfully been installed into your clone.
+
+#### Steps to debug/resolve issues which prevent the commit due to pre-commit hooks:
+
+1. if pylint causes the issues in commiting to the repo, and it seems mandatory to `skip`
+the pre-commit hooks use: 
+
+```
+SKIP=pylint git commit -m"my commit"` 
+```
+2. if black causes the issues in commiting to the repo, and it seems mandatory to `skip`
+the pre-commit hooks use: 
+
+```
+SKIP=black git commit -m"my commit"
+```
 ### Translating via weblate
 
-Translations can be contributed via [weblate](https://hosted.weblate.org/projects/fortran-lang/fpm/).
+Translations can be contributed via [weblate](https://hosted.weblate.org/projects/fortran-lang/webpage/).
 
-[![Translation status](https://hosted.weblate.org/widgets/fortran-lang/-/fpm/horizontal-auto.svg)](https://hosted.weblate.org/engage/fortran-lang/)
+[![Translation status](https://hosted.weblate.org/widgets/fortran-lang/-/webpage/horizontal-auto.svg)](https://hosted.weblate.org/engage/fortran-lang/)
 
 
 ### Update or add translations
