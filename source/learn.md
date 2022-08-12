@@ -16,50 +16,43 @@ Learning resources for beginners and experts alike
 Getting Started
 :::
 
-::::::{grid} 1 1 2 2
+:::::::{grid} 1 1 2 2
 :gutter: 1
 
-:::::{grid-item}
+::::::{grid-item}
 
-::::{grid} 1 1 1 1
+:::::{grid} 1 1 1 1
 :gutter: 1
 
-:::{grid-item-card} {octicon}``info;1em;sd-text-info`` New to Fortran
+::::{grid-item-card} {octicon}``info;1em;sd-text-info`` New to Fortran
 :shadow: none
 
 Try the quickstart Fortran tutorial, to get an overview of the language syntax and capabilities.
 
-```{button-link} quickstart/
-:color: primary
-:expand:
-
-{octicon}``book;1em;sd-text-info`` Quickstart tutorial
-```
-:::
-::::
-:::::
-
-:::::{grid-item}
-
-::::{grid} 1 1 1 1
-:gutter: 1
-
-:::{grid-item-card} {octicon}``bug;1em;sd-text-info`` Looking for help
-:shadow: none
-
-Ask a question in the Fortran-lang discourse - a forum for friendly discussion of all things Fortran.
-
-```{button-link} https://fortran-lang.discourse.group/
-:color: primary
-:expand:
-
-{octicon}``check-circle;1em;sd-text-info`` Fortran-lang Discourse
-```
+:::{div} sd-text-center sd-fs-4
+{bdg-link-primary}`Quickstart tutorial <quickstart/>`
 :::
 ::::
 :::::
 ::::::
 
+::::::{grid-item}
+
+:::::{grid} 1 1 1 1
+:gutter: 1
+
+::::{grid-item-card} {octicon}``bug;1em;sd-text-info`` Looking for help
+:shadow: none
+
+Ask a question in the Fortran-lang discourse - a forum for friendly discussion of all things Fortran.
+
+:::{div} sd-text-center sd-fs-4
+{bdg-link-primary}`Fortran-lang Discourse <https://fortran-lang.discourse.group/>`
+:::
+::::
+:::::
+::::::
+:::::::
 
 :::{div} sd-fs-3 sd-font-weight-bold sd-text-primary
 
