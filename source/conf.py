@@ -3,6 +3,11 @@
 # This file only contains a selection of the most common options. For a full
 # list see the documentation:
 # https://www.sphinx-doc.org/en/master/usage/configuration.html
+"""
+Fortran-lang webpage configuration file.
+"""
+
+# pylint: disable=invalid-name, redefined-builtin
 
 # -- Path setup --------------------------------------------------------------
 
@@ -27,13 +32,14 @@ data_files = {
 
 if not all(data.exists() for data in data_files.values()):
     sys.path.insert(0, str(root.absolute()))
+    # pylint: disable=import-error, unused-import
     import fortran_package
 
-with open(data_files["fortran-learn"], "r") as f:
+with open(data_files["fortran-learn"], "r", encoding="utf-8") as f:
     conf = json.load(f)
-with open(data_files["fortran-packages"], "r") as f:
+with open(data_files["fortran-packages"], "r", encoding="utf-8") as f:
     fortran_tags = json.load(f)
-with open(data_files["contributors"], "r") as f:
+with open(data_files["contributors"], "r", encoding="utf-8") as f:
     contributors = json.load(f)
 
 # -- Project information -----------------------------------------------------
@@ -116,7 +122,7 @@ html_theme_options = {
             "href": "images/favicon.ico",
         },
     ],
-    "show_prev_next": False,  # TODO: only display on learn pages
+    "show_prev_next": False,
     "show_nav_level": 4,
     "show_toc_level": 0,
     "footer_items": ["copyright"],
@@ -180,3 +186,5 @@ blog_baseurl = "https://fortran-lang.org/en/"
 post_redirect_refresh = 1
 post_auto_image = 1
 post_auto_excerpt = 2
+
+gettext_compact = "index"
