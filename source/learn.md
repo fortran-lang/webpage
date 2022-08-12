@@ -29,9 +29,12 @@ Getting Started
 
 Try the quickstart Fortran tutorial, to get an overview of the language syntax and capabilities.
 
-:::{div} sd-text-center sd-fs-4
-{bdg-link-primary}`Quickstart tutorial <quickstart/>`
-:::
+```{button-link} quickstart/
+:color: primary
+:expand:
+
+{octicon}``book;1em;sd-text-info`` Quickstart tutorial
+```
 ::::
 :::::
 ::::::
@@ -46,8 +49,13 @@ Try the quickstart Fortran tutorial, to get an overview of the language syntax a
 
 Ask a question in the Fortran-lang discourse - a forum for friendly discussion of all things Fortran.
 
-:::{div} sd-text-center sd-fs-4
-{bdg-link-primary}`Fortran-lang Discourse <https://fortran-lang.discourse.group/>`
+:::{div} sd-btn sd-btn-primary sd-d-grid sd-text-light
+```{button-link} https://fortran-lang.discourse.group/
+:color: primary
+:expand:
+
+{octicon}``check-circle;1em;sd-text-info`` Fortran-lang Discourse
+```
 :::
 ::::
 :::::
