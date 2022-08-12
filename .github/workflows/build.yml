@@ -43,6 +43,12 @@ jobs:
       
     - run: touch build/html/.nojekyll
 
+    - name: Upload build files as artifacts
+      uses: actions/upload-artifact@v3
+      with:
+          name: _build
+          path: build/html/
+
     - name: Deploy documentation sphinx
       uses: JamesIves/github-pages-deploy-action@v4.4.0
       if: github.event_name == 'push' && github.ref == 'refs/heads/main'
