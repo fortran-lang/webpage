@@ -44,8 +44,33 @@
     <script src="_static/design-tabs.js"></script>
     <link rel="index" title="Índice" href="genindex/" />
     <link rel="search" title="Pesquisar" href="search/" /> 
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="docsearch:language" content="pt"> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var pr_number = -1;
+    $(document).ready(function () {
+
+        if (window.location.href.indexOf("/pr/") > -1) {
+            pr_number = window.location.href.split('/').indexOf("pr") + 1;
+            document.getElementById("pr").innerHTML = "pull request " + window.location.href.split('/')[pr_number];
+            document.getElementById("pr").href = "https://github.com/fortran-lang/webpage/pull/" + window.location.href.split('/')[pr_number];
+            var banner = document.getElementById("banner");
+            banner.style.display = "block";
+        }
+    });
+</script>
+<div id="banner" style='display:none' class="container">
+    <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-git-pull-request">
+            <circle cx="18" cy="18" r="3"></circle>
+            <circle cx="6" cy="6" r="3"></circle>
+            <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+            <line x1="6" y1="9" x2="6" y2="21"></line>
+        </svg>
+        <b>Site preview: </b>you are previewing unpublished changes for <a id="pr"></a>
+    </h3>
+</div> 
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -124,8 +149,7 @@
    <div class="container-xl">
       <div id="navbar-start">
          <a class="navbar-brand" href="index.html">
-            <img src="_static/images/fortran-logo-256x256.png" class="logo"
-               alt="logo">
+            <img src="_static/images/fortran-logo-256x256.png" class="logo" alt="logo">
          </a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible"
@@ -133,60 +157,58 @@
          <span class="navbar-toggler-icon"></span>
       </button>
       <div id="navbar-collapsible" class=" collapse navbar-collapse">
-        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
-           <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
-           <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
-           <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
-       </span>
+         <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+            <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+            <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+            <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+         </span>
 
-       <div class="dropdown" id="version_switcher">
-        <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
-         language
-            <span class="caret"></span>
-        </button>
-<div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
-    <a class="list-group-item list-group-item-action py-1" href="../de/index"><span>de</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../en/index"><span>en</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../es/index"><span>es</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../fr/index"><span>fr</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../ja/index"><span>ja</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../nl/index"><span>nl</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../zh_CN/index"><span>zh_CN</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../pt/index"><span>pt</span></a>
-    </div>
-
-    </div>
+         <div class="dropdown" id="version_switcher">
+            <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button"
+               data-toggle="dropdown">
+               language
+               <span class="caret"></span>
+            </button>
+            <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0"
+               aria-labelledby="version_switcher_button">
+               <a class="list-group-item list-group-item-action py-1" href="../de/index"><span>de</span></a>
+               <a class="list-group-item list-group-item-action py-1" href="../en/index"><span>en</span></a>
+               <a class="list-group-item list-group-item-action py-1" href="../es/index"><span>es</span></a>
+               <a class="list-group-item list-group-item-action py-1" href="../fr/index"><span>fr</span></a>
+               <a class="list-group-item list-group-item-action py-1" href="../ja/index"><span>ja</span></a>
+               <a class="list-group-item list-group-item-action py-1" href="../nl/index"><span>nl</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../zh_CN/index"><span>zh_CN</span></a>
+               <a class="list-group-item list-group-item-action py-1" href="../pt/index"><span>pt</span></a>
+            </div>
+            
+         </div>
 
          <div id="navbar-center" class="ml-auto">
             <div class="navbar-center-item">
                <ul id="navbar-main-elements" class="navbar-nav">
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="learn">
+                     <a class="reference internal nav-link" href="learn">
                         Learn
                      </a>
                   </li>
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="compilers">
+                     <a class="reference internal nav-link" href="compilers">
                         Compilers
                      </a>
                   </li>
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="community">
+                     <a class="reference internal nav-link" href="community">
                         Community
                      </a>
                   </li>
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="packages">
+                     <a class="reference internal nav-link" href="packages">
                         Packages
                      </a>
                   </li>
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="news">
+                     <a class="reference internal nav-link" href="news">
                         News
                      </a>
                   </li>
@@ -195,7 +217,7 @@
          </div>
          <div id="navbar-end">
             <div class="navbar-end-item">
-       
+
                <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
                   <li class="nav-item">
                      <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank"
@@ -219,9 +241,10 @@
                   </li>
                </ul>
             </div>
-         </div><form class="bd-search d-flex align-items-center" action="search/index.html" method="get"> <i
-            class="icon fas fa-search"></i> <input type="search" class="form-control" name="q" id="search-input"
-            placeholder="Search" aria-label="Search" autocomplete="off"> </form>
+         </div>
+         <form class="bd-search d-flex align-items-center" action="search/index.html"
+            method="get"> <i class="icon fas fa-search"></i> <input type="search" class="form-control" name="q"
+               id="search-input" placeholder="Search" aria-label="Search" autocomplete="off"> </form>
 
       </div>
    </div>
@@ -275,32 +298,32 @@
 <div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
   <div class="sidebar-start-items">
 <div class="index_joinus">
-<h3 id="chat"><p style="color:#734f96;">Join us!</p> </h3>
-<h4> <i class="fas fa-envelope-open-text"></i> Mailing list</h4>
-<p>Subscribe to our <a href="https://groups.io/g/fortran-lang" target="_blank">mailing list</a>
-   to discuss anything Fortran related, announce Fortran projects, discuss development
-   of core fortran-lang.org projects (stdlib, fpm), and get
-   the latest news.
-</p>
-<h4><i class="fab fa-discourse"></i> Discourse</h4>
-<p>
-   Join the discussion about all things Fortran on the
-   <a href="https://fortran-lang.discourse.group" target="_blank">fortran-lang discourse.</a>
-</p>
-<h4><i class="fab fa-twitter"></i> Twitter</h4>
-<a href="https://twitter.com/fortranlang" class="twitter-follow-button" data-show-count="true"
-   data-size="large">@fortranlang</a>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
-<h4><i class="fas fa-rss"></i> RSS feed</h4>
-<p>RSS clients can follow the <a href="news/atom.xml" target="_blank">RSS feed</a>.</p>
-<h4><i class="fab fa-github"></i> Open source</h4>
-<p>
-   Contribute code, report bugs and request features at
-   <a href="https://github.com/fortran-lang" target="_blank">GitHub</a>.
-</p></div>
-
-
-
+   <h3 id="chat">
+      <p style="color:#734f96;">Join us!</p>
+   </h3>
+   <h4> <i class="fas fa-envelope-open-text"></i> Mailing list</h4>
+   <p>Subscribe to our <a href="https://groups.io/g/fortran-lang" target="_blank">mailing list</a>
+      to discuss anything Fortran related, announce Fortran projects, discuss development
+      of core fortran-lang.org projects (stdlib, fpm), and get
+      the latest news.
+   </p>
+   <h4><i class="fab fa-discourse"></i> Discourse</h4>
+   <p>
+      Join the discussion about all things Fortran on the
+      <a href="https://fortran-lang.discourse.group" target="_blank">fortran-lang discourse.</a>
+   </p>
+   <h4><i class="fab fa-twitter"></i> Twitter</h4>
+   <a href="https://twitter.com/fortranlang" class="twitter-follow-button" data-show-count="true"
+      data-size="large">@fortranlang</a>
+   <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
+   <h4><i class="fas fa-rss"></i> RSS feed</h4>
+   <p>RSS clients can follow the <a href="news/atom.xml" target="_blank">RSS feed</a>.</p>
+   <h4><i class="fab fa-github"></i> Open source</h4>
+   <p>
+      Contribute code, report bugs and request features at
+      <a href="https://github.com/fortran-lang" target="_blank">GitHub</a>.
+   </p>
+</div>
 
   </div>
   <div class="sidebar-end-items">
@@ -319,23 +342,24 @@
 
 
 <br><br>
-<h2> <p style="color:#734f96;">News</p> </h2>
-  <ul>
-    
-    
-      <li><a href="news/2022/05-05-Fortran-Newsletter-May-2022.md/">Fortran newsletter: May 2022</a></li>
-    
-      <li><a href="news/2022/04-07-Fortran-Newsletter-April-2022.md/">Fortran newsletter: April 2022</a></li>
-    
-      <li><a href="news/2022/03-09-Fortran-Newsletter-March-2022.md/">Fortran newsletter: March 2022</a></li>
-    
-      <li><a href="news/2022/02-01-Fortran-Newsletter-February-2022.md/">Fortran newsletter: February 2022</a></li>
-    
-      <li><a href="news/2022/01-01-Fortran-Newsletter-January-2022.md/">Fortran newsletter: January 2022</a></li>
-    
-  </ul>
-  <a class="twitter-timeline" data-height="500"
-  href="https://twitter.com/fortranlang?ref_src=twsrc%5Etfw"></a>
+<h2>
+  <p style="color:#734f96;">News</p>
+</h2>
+<ul>
+  
+  
+  <li><a href="news/2022/06-09-Fortran-Newsletter-June-2022.md/">Fortran newsletter: June 2022</a></li>
+  
+  <li><a href="news/2022/05-05-Fortran-Newsletter-May-2022.md/">Fortran newsletter: May 2022</a></li>
+  
+  <li><a href="news/2022/04-07-Fortran-Newsletter-April-2022.md/">Fortran newsletter: April 2022</a></li>
+  
+  <li><a href="news/2022/03-09-Fortran-Newsletter-March-2022.md/">Fortran newsletter: March 2022</a></li>
+  
+  <li><a href="news/2022/02-01-Fortran-Newsletter-February-2022.md/">Fortran newsletter: February 2022</a></li>
+  
+</ul>
+<a class="twitter-timeline" data-height="500" href="https://twitter.com/fortranlang?ref_src=twsrc%5Etfw"></a>
 <script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 </br>
 
@@ -360,7 +384,9 @@
 <div class="sd-text-center sd-fs-3 sd-font-weight-bold sd-text-primary docutils">
 <p>High-performance parallel programming language</p>
 </div>
-<p class="sd-text-center"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference external" href="learn/"><span>Get started</span></a></p>
+<div class="sd-text-center sd-fs-4 docutils">
+<p><a class="sd-sphinx-override sd-badge sd-bg-primary sd-bg-text-primary reference external" href="learn/"><span>Get started</span></a></p>
+</div>
 <div class="sd-fs-3 sd-font-weight-bold sd-text-primary docutils">
 <p>Features</p>
 </div>

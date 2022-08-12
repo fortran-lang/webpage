@@ -1,6 +1,7 @@
 ---
 title: "Fortran newsletter: June 2022"
 category: newsletter
+date: 2022-06-09
 author: Milan Curcic, Alexis Perry-Holby, Ondřej Čertík, Henil Panchal
 ...
 

@@ -43,8 +43,33 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Index" href="../../../genindex/" />
     <link rel="search" title="Recherche" href="../../../search/" /> 
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="docsearch:language" content="fr"> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var pr_number = -1;
+    $(document).ready(function () {
+
+        if (window.location.href.indexOf("/pr/") > -1) {
+            pr_number = window.location.href.split('/').indexOf("pr") + 1;
+            document.getElementById("pr").innerHTML = "pull request " + window.location.href.split('/')[pr_number];
+            document.getElementById("pr").href = "https://github.com/fortran-lang/webpage/pull/" + window.location.href.split('/')[pr_number];
+            var banner = document.getElementById("banner");
+            banner.style.display = "block";
+        }
+    });
+</script>
+<div id="banner" style='display:none' class="container">
+    <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-git-pull-request">
+            <circle cx="18" cy="18" r="3"></circle>
+            <circle cx="6" cy="6" r="3"></circle>
+            <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+            <line x1="6" y1="9" x2="6" y2="21"></line>
+        </svg>
+        <b>Site preview: </b>you are previewing unpublished changes for <a id="pr"></a>
+    </h3>
+</div> 
 <link
   rel="alternate"
   type="application/atom+xml"
@@ -123,8 +148,7 @@
    <div class="container-xl">
       <div id="navbar-start">
          <a class="navbar-brand" href="../../../index.html">
-            <img src="../../../_static/images/fortran-logo-256x256.png" class="logo"
-               alt="logo">
+            <img src="../../../_static/images/fortran-logo-256x256.png" class="logo" alt="logo">
          </a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible"
@@ -132,60 +156,65 @@
          <span class="navbar-toggler-icon"></span>
       </button>
       <div id="navbar-collapsible" class=" collapse navbar-collapse">
-        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
-           <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
-           <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
-           <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
-       </span>
+         <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+            <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+            <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+            <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+         </span>
 
-       <div class="dropdown" id="version_switcher">
-        <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
-         language
-            <span class="caret"></span>
-        </button>
-        <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
-        <a class="list-group-item list-group-item-action py-1" href="../../../../de/news/author/brad-richa"><span>de</span></a>
-        <a class="list-group-item list-group-item-action py-1" href="../../../../en/news/author/brad-richa"><span>en</span></a>
-        <a class="list-group-item list-group-item-action py-1" href="../../../../es/news/author/brad-richa"><span>es</span></a>
-        <a class="list-group-item list-group-item-action py-1" href="../../../../fr/news/author/brad-richa"><span>fr</span></a>
-        <a class="list-group-item list-group-item-action py-1" href="../../../../ja/news/author/brad-richa"><span>ja</span></a>
-        <a class="list-group-item list-group-item-action py-1" href="../../../../nl/news/author/brad-richa"><span>nl</span></a>
-        <a class="list-group-item list-group-item-action py-1" href="../../../../zh_CN/news/author/brad-richa"><span>zh_CN</span></a>
-        <a class="list-group-item list-group-item-action py-1" href="../../../../pt/news/author/brad-richa"><span>pt</span></a>
-        </div>
-
-    </div>
+         <div class="dropdown" id="version_switcher">
+            <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button"
+               data-toggle="dropdown">
+               language
+               <span class="caret"></span>
+            </button>
+            <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0"
+               aria-labelledby="version_switcher_button">
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../de/news/author/brad-richa"><span>de</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../en/news/author/brad-richa"><span>en</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../es/news/author/brad-richa"><span>es</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../fr/news/author/brad-richa"><span>fr</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../ja/news/author/brad-richa"><span>ja</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../nl/news/author/brad-richa"><span>nl</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../zh_CN/news/author/brad-richa"><span>zh_CN</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../pt/news/author/brad-richa"><span>pt</span></a>
+            </div>
+            
+         </div>
 
          <div id="navbar-center" class="ml-auto">
             <div class="navbar-center-item">
                <ul id="navbar-main-elements" class="navbar-nav">
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="../../../learn">
+                     <a class="reference internal nav-link" href="../../../learn">
                         Learn
                      </a>
                   </li>
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="../../../compilers">
+                     <a class="reference internal nav-link" href="../../../compilers">
                         Compilers
                      </a>
                   </li>
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="../../../community">
+                     <a class="reference internal nav-link" href="../../../community">
                         Community
                      </a>
                   </li>
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="../../../packages">
+                     <a class="reference internal nav-link" href="../../../packages">
                         Packages
                      </a>
                   </li>
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="../../../news">
+                     <a class="reference internal nav-link" href="../../../news">
                         News
                      </a>
                   </li>
@@ -194,7 +223,7 @@
          </div>
          <div id="navbar-end">
             <div class="navbar-end-item">
-       
+
                <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
                   <li class="nav-item">
                      <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank"
@@ -218,9 +247,10 @@
                   </li>
                </ul>
             </div>
-         </div><form class="bd-search d-flex align-items-center" action="../../../search/index.html" method="get"> <i
-            class="icon fas fa-search"></i> <input type="search" class="form-control" name="q" id="search-input"
-            placeholder="Search" aria-label="Search" autocomplete="off"> </form>
+         </div>
+         <form class="bd-search d-flex align-items-center" action="../../../search/index.html"
+            method="get"> <i class="icon fas fa-search"></i> <input type="search" class="form-control" name="q"
+               id="search-input" placeholder="Search" aria-label="Search" autocomplete="off"> </form>
 
       </div>
    </div>
@@ -279,6 +309,12 @@
 <ul>
    
   <li>
+    <a href="../../2022/06-09-Fortran-Newsletter-June-2022.md/"
+      >09 June - Fortran newsletter: June 2022</a
+    >
+  </li>
+  
+  <li>
     <a href="../../2022/05-05-Fortran-Newsletter-May-2022.md/"
       >05 May - Fortran newsletter: May 2022</a
     >
@@ -302,12 +338,6 @@
     >
   </li>
   
-  <li>
-    <a href="../../2022/01-01-Fortran-Newsletter-January-2022.md/"
-      >01 January - Fortran newsletter: January 2022</a
-    >
-  </li>
-  
 </ul>
 
 <h3>
@@ -316,7 +346,7 @@
 <ul>
    
   <li>
-    <a href="../../2022/">2022 (5)</a>
+    <a href="../../2022/">2022 (6)</a>
   </li>
     
   <li>
@@ -372,12 +402,12 @@
     ><i class="fa-fw fa fa-user"></i></span
   >
    
-  <a href="../arjen-markus/">Arjen Markus</a>,   
-  <a href="../ondrej-certik/">Ondřej Čertík</a>,   
+  <a href="../laurence-kedward/">Laurence Kedward</a>,   
   <a href="../milan-curcic/">Milan Curcic</a>,   
   <a href="../sebastian-ehlert/">Sebastian Ehlert</a>,   
-  <a href="../laurence-kedward/">Laurence Kedward</a>,   
-  <a href="#">Brad Richardson</a>  
+  <a href="#">Brad Richardson</a>,   
+  <a href="../ondrej-certik/">Ondřej Čertík</a>,   
+  <a href="../arjen-markus/">Arjen Markus</a>  
 </li>
    
 <li id="category">
@@ -420,10 +450,10 @@ mentors will be <a class="reference external" href="https://github.com/awvwgk">S
     ><i class="fa-fw fa fa-user"></i></span
   >
    
+  <a href="#">Brad Richardson</a>,   
   <a href="../laurence-kedward/">Laurence Kedward</a>,   
   <a href="../ondrej-certik/">Ondřej Čertík</a>,   
-  <a href="../milan-curcic/">Milan Curcic</a>,   
-  <a href="#">Brad Richardson</a>  
+  <a href="../milan-curcic/">Milan Curcic</a>  
 </li>
    
 <li id="category">
@@ -470,14 +500,14 @@ stewards of the language and we welcome you to join us.</p>
     ><i class="fa-fw fa fa-user"></i></span
   >
    
-  <a href="../arjen-markus/">Arjen Markus</a>,   
-  <a href="../ondrej-certik/">Ondřej Čertík</a>,   
-  <a href="../marshall-ward/">Marshall Ward</a>,   
-  <a href="../milan-curcic/">Milan Curcic</a>,   
-  <a href="../sebastian-ehlert/">Sebastian Ehlert</a>,   
   <a href="../laurence-kedward/">Laurence Kedward</a>,   
+  <a href="../milan-curcic/">Milan Curcic</a>,   
+  <a href="../marshall-ward/">Marshall Ward</a>,   
+  <a href="../sebastian-ehlert/">Sebastian Ehlert</a>,   
+  <a href="#">Brad Richardson</a>,   
+  <a href="../ondrej-certik/">Ondřej Čertík</a>,   
   <a href="../damian-rouson/">Damian Rouson</a>,   
-  <a href="#">Brad Richardson</a>  
+  <a href="../arjen-markus/">Arjen Markus</a>  
 </li>
    
 <li id="category">
@@ -518,14 +548,14 @@ and if you have any ideas that are not mentioned, please let us know.</p>
     ><i class="fa-fw fa fa-user"></i></span
   >
    
-  <a href="../ondrej-certik/">Ondřej Čertík</a>,   
-  <a href="../milan-curcic/">Milan Curcic</a>,   
-  <a href="../sebastian-ehlert/">Sebastian Ehlert</a>,   
   <a href="../gary-klimowicz/">Gary Klimowicz</a>,   
   <a href="../laurence-kedward/">Laurence Kedward</a>,   
-  <a href="../ivan-pribec/">Ivan Pribec</a>,   
   <a href="../jeremie-vandenplas/">Jeremie Vandenplas</a>,   
-  <a href="#">Brad Richardson</a>  
+  <a href="../milan-curcic/">Milan Curcic</a>,   
+  <a href="../sebastian-ehlert/">Sebastian Ehlert</a>,   
+  <a href="#">Brad Richardson</a>,   
+  <a href="../ondrej-certik/">Ondřej Čertík</a>,   
+  <a href="../ivan-pribec/">Ivan Pribec</a>  
 </li>
    
 <li id="category">
@@ -566,12 +596,12 @@ Fortran news from the previous month.</p>
     ><i class="fa-fw fa fa-user"></i></span
   >
    
-  <a href="../jeremie-vandenplas/">Jérémie Vandenplas</a>,   
-  <a href="../ondrej-certik/">Ondřej Čertík</a>,   
+  <a href="../gary-klimowicz/">Gary Klimowicz</a>,   
   <a href="../and-laurence-kedward/">and Laurence Kedward</a>,   
   <a href="../milan-curcic/">Milan Curcic</a>,   
-  <a href="../gary-klimowicz/">Gary Klimowicz</a>,   
-  <a href="#">Brad Richardson</a>  
+  <a href="#">Brad Richardson</a>,   
+  <a href="../ondrej-certik/">Ondřej Čertík</a>,   
+  <a href="../jeremie-vandenplas/">Jérémie Vandenplas</a>  
 </li>
    
 <li id="category">
@@ -612,13 +642,13 @@ and details Fortran news from the previous month.</p>
     ><i class="fa-fw fa fa-user"></i></span
   >
    
-  <a href="../jeremie-vandenplas/">Jérémie Vandenplas</a>,   
-  <a href="../ondrej-certik/">Ondřej Čertík</a>,   
+  <a href="../gary-klimowicz/">Gary Klimowicz</a>,   
   <a href="../and-laurence-kedward/">and Laurence Kedward</a>,   
   <a href="../milan-curcic/">Milan Curcic</a>,   
-  <a href="../gary-klimowicz/">Gary Klimowicz</a>,   
+  <a href="#">Brad Richardson</a>,   
+  <a href="../ondrej-certik/">Ondřej Čertík</a>,   
   <a href="../thomas-konig/">Thomas König</a>,   
-  <a href="#">Brad Richardson</a>  
+  <a href="../jeremie-vandenplas/">Jérémie Vandenplas</a>  
 </li>
    
 <li id="category">
@@ -659,9 +689,9 @@ and details Fortran news from the previous month.</p>
     ><i class="fa-fw fa fa-user"></i></span
   >
    
-  <a href="../milan-curcic-and-ondrej-certik/">Milan Curcic and Ondřej Čertík</a>,   
+  <a href="#">Brad Richardson</a>,   
   <a href="../jeremie-vandenplas/">Jeremie Vandenplas</a>,   
-  <a href="#">Brad Richardson</a>  
+  <a href="../milan-curcic-and-ondrej-certik/">Milan Curcic and Ondřej Čertík</a>  
 </li>
    
 <li id="category">

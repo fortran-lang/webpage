@@ -48,8 +48,33 @@
     <link rel="search" title="Pesquisar" href="#" />
   <script src="../searchindex.js" defer></script>
   
-<meta name="viewport" content="width=device-width, initial-scale=1" />
-<meta name="docsearch:language" content="pt">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var pr_number = -1;
+    $(document).ready(function () {
+
+        if (window.location.href.indexOf("/pr/") > -1) {
+            pr_number = window.location.href.split('/').indexOf("pr") + 1;
+            document.getElementById("pr").innerHTML = "pull request " + window.location.href.split('/')[pr_number];
+            document.getElementById("pr").href = "https://github.com/fortran-lang/webpage/pull/" + window.location.href.split('/')[pr_number];
+            var banner = document.getElementById("banner");
+            banner.style.display = "block";
+        }
+    });
+</script>
+<div id="banner" style='display:none' class="container">
+    <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-git-pull-request">
+            <circle cx="18" cy="18" r="3"></circle>
+            <circle cx="6" cy="6" r="3"></circle>
+            <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+            <line x1="6" y1="9" x2="6" y2="21"></line>
+        </svg>
+        <b>Site preview: </b>you are previewing unpublished changes for <a id="pr"></a>
+    </h3>
+</div>
 
   </head>
   
@@ -95,8 +120,7 @@
    <div class="container-xl">
       <div id="navbar-start">
          <a class="navbar-brand" href="../index.html">
-            <img src="../_static/images/fortran-logo-256x256.png" class="logo"
-               alt="logo">
+            <img src="../_static/images/fortran-logo-256x256.png" class="logo" alt="logo">
          </a>
       </div>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible"
@@ -104,61 +128,59 @@
          <span class="navbar-toggler-icon"></span>
       </button>
       <div id="navbar-collapsible" class=" collapse navbar-collapse">
-        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
-           <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
-           <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
-           <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
-       </span>
+         <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+            <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+            <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+            <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+         </span>
 
-       <div class="dropdown" id="version_switcher">
-        <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button" data-toggle="dropdown">
-         language
-            <span class="caret"></span>
-        </button>
- 
-    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0" aria-labelledby="version_switcher_button">
-    <a class="list-group-item list-group-item-action py-1" href="../../de/search/"><span>de</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../../en/search/"><span>en</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../../es/search/"><span>es</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../../fr/search/"><span>fr</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../../ja/search/"><span>ja</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../../nl/search/"><span>nl</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../../zh_CN/search/"><span>zh_CN</span></a>
-    <a class="list-group-item list-group-item-action py-1" href="../../pt/search/"><span>pt</span></a>
-    </div>
+         <div class="dropdown" id="version_switcher">
+            <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button"
+               data-toggle="dropdown">
+               language
+               <span class="caret"></span>
+            </button>
 
-    </div>
+            <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0"
+               aria-labelledby="version_switcher_button">
+               <a class="list-group-item list-group-item-action py-1" href="../../de/search/"><span>de</span></a>
+               <a class="list-group-item list-group-item-action py-1" href="../../en/search/"><span>en</span></a>
+               <a class="list-group-item list-group-item-action py-1" href="../../es/search/"><span>es</span></a>
+               <a class="list-group-item list-group-item-action py-1" href="../../fr/search/"><span>fr</span></a>
+               <a class="list-group-item list-group-item-action py-1" href="../../ja/search/"><span>ja</span></a>
+               <a class="list-group-item list-group-item-action py-1" href="../../nl/search/"><span>nl</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../zh_CN/search/"><span>zh_CN</span></a>
+               <a class="list-group-item list-group-item-action py-1" href="../../pt/search/"><span>pt</span></a>
+            </div>
+            
+         </div>
 
          <div id="navbar-center" class="ml-auto">
             <div class="navbar-center-item">
                <ul id="navbar-main-elements" class="navbar-nav">
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="../learn">
+                     <a class="reference internal nav-link" href="../learn">
                         Learn
                      </a>
                   </li>
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="../compilers">
+                     <a class="reference internal nav-link" href="../compilers">
                         Compilers
                      </a>
                   </li>
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="../community">
+                     <a class="reference internal nav-link" href="../community">
                         Community
                      </a>
                   </li>
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="../packages">
+                     <a class="reference internal nav-link" href="../packages">
                         Packages
                      </a>
                   </li>
                   <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link"
-                        href="../news">
+                     <a class="reference internal nav-link" href="../news">
                         News
                      </a>
                   </li>
@@ -167,7 +189,7 @@
          </div>
          <div id="navbar-end">
             <div class="navbar-end-item">
-       
+
                <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
                   <li class="nav-item">
                      <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank"
@@ -191,9 +213,10 @@
                   </li>
                </ul>
             </div>
-         </div><form class="bd-search d-flex align-items-center" action="../search/index.html" method="get"> <i
-            class="icon fas fa-search"></i> <input type="search" class="form-control" name="q" id="search-input"
-            placeholder="Search" aria-label="Search" autocomplete="off"> </form>
+         </div>
+         <form class="bd-search d-flex align-items-center" action="../search/index.html"
+            method="get"> <i class="icon fas fa-search"></i> <input type="search" class="form-control" name="q"
+               id="search-input" placeholder="Search" aria-label="Search" autocomplete="off"> </form>
 
       </div>
    </div>
