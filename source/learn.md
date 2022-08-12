@@ -16,15 +16,15 @@ Learning resources for beginners and experts alike
 Getting Started
 :::
 
-:::::::{grid} 1 1 2 2
+::::::{grid} 1 1 2 2
 :gutter: 1
 
-::::::{grid-item}
+:::::{grid-item}
 
-:::::{grid} 1 1 1 1
+::::{grid} 1 1 1 1
 :gutter: 1
 
-::::{grid-item-card} {octicon}``info;1em;sd-text-info`` New to Fortran
+:::{grid-item-card} {octicon}``info;1em;sd-text-info`` New to Fortran
 :shadow: none
 
 Try the quickstart Fortran tutorial, to get an overview of the language syntax and capabilities.
@@ -35,21 +35,20 @@ Try the quickstart Fortran tutorial, to get an overview of the language syntax a
 
 {octicon}``book;1em;sd-text-info`` Quickstart tutorial
 ```
+:::
 ::::
 :::::
-::::::
 
-::::::{grid-item}
+:::::{grid-item}
 
-:::::{grid} 1 1 1 1
+::::{grid} 1 1 1 1
 :gutter: 1
 
-::::{grid-item-card} {octicon}``bug;1em;sd-text-info`` Looking for help
+:::{grid-item-card} {octicon}``bug;1em;sd-text-info`` Looking for help
 :shadow: none
 
 Ask a question in the Fortran-lang discourse - a forum for friendly discussion of all things Fortran.
 
-:::{div} sd-btn sd-btn-primary sd-d-grid sd-text-light
 ```{button-link} https://fortran-lang.discourse.group/
 :color: primary
 :expand:
@@ -60,7 +59,7 @@ Ask a question in the Fortran-lang discourse - a forum for friendly discussion o
 ::::
 :::::
 ::::::
-:::::::
+
 
 :::{div} sd-fs-3 sd-font-weight-bold sd-text-primary
 
