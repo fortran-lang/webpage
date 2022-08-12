@@ -1,0 +1,1240 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Procedures for binding to C interfaces &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../../../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Recherche" href="../../../search/" /> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var pr_number = -1;
+    $(document).ready(function () {
+
+        if (window.location.href.indexOf("/pr/") > -1) {
+            pr_number = window.location.href.split('/').indexOf("pr") + 1;
+            document.getElementById("pr").innerHTML = "pull request " + window.location.href.split('/')[pr_number];
+            document.getElementById("pr").href = "https://github.com/fortran-lang/webpage/pull/" + window.location.href.split('/')[pr_number];
+            var banner = document.getElementById("banner");
+            banner.style.display = "block";
+        }
+    });
+</script>
+<div id="banner" style='display:none' class="container">
+    <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-git-pull-request">
+            <circle cx="18" cy="18" r="3"></circle>
+            <circle cx="6" cy="6" r="3"></circle>
+            <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+            <line x1="6" y1="9" x2="6" y2="21"></line>
+        </svg>
+        <b>Site preview: </b>you are previewing unpublished changes for <a id="pr"></a>
+    </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+   <div class="container-xl">
+      <div id="navbar-start">
+         <a class="navbar-brand" href="../../../index.html">
+            <img src="../../../_static/images/fortran-logo-256x256.png" class="logo" alt="logo">
+         </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible"
+         aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbar-collapsible" class=" collapse navbar-collapse">
+         <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+            <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+            <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+            <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+         </span>
+
+         <div class="dropdown" id="version_switcher">
+            <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button"
+               data-toggle="dropdown">
+               language
+               <span class="caret"></span>
+            </button>
+            <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0"
+               aria-labelledby="version_switcher_button">
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../de/learn/intrinsics/cfi/"><span>de</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../en/learn/intrinsics/cfi/"><span>en</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../es/learn/intrinsics/cfi/"><span>es</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../fr/learn/intrinsics/cfi/"><span>fr</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../ja/learn/intrinsics/cfi/"><span>ja</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../nl/learn/intrinsics/cfi/"><span>nl</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../zh_CN/learn/intrinsics/cfi/"><span>zh_CN</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../../pt/learn/intrinsics/cfi/"><span>pt</span></a>
+            </div>
+            
+         </div>
+
+         <div id="navbar-center" class="ml-auto">
+            <div class="navbar-center-item">
+               <ul id="navbar-main-elements" class="navbar-nav">
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link" href="../../../learn">
+                        Learn
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link" href="../../../compilers">
+                        Compilers
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link" href="../../../community">
+                        Community
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link" href="../../../packages">
+                        Packages
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link" href="../../../news">
+                        News
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div id="navbar-end">
+            <div class="navbar-end-item">
+
+               <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+                  <li class="nav-item">
+                     <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank"
+                        title="Discourse"><span><i class="fab fa-discourse" style="color:#734f96"></i></span>
+                        <label class="sr-only">Discourse</label></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank"
+                        title="Twitter"><span><i class="fab fa-twitter" style="color:#734f96"></i></span>
+                        <label class="sr-only">Twitter</label></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank"
+                        title="GitHub"><span><i class="fab fa-github" style="color:#734f96"></i></span>
+                        <label class="sr-only">GitHub</label></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="../../../news/atom.xml" rel="noopener" target="_blank"
+                        title="RSS"><span><i class="fas fa-rss" style="color:#734f96"></i></span>
+                        <label class="sr-only">RSS</label></a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <form class="bd-search d-flex align-items-center" action="../../../search/index.html"
+            method="get"> <i class="icon fas fa-search"></i> <input type="search" class="form-control" name="q"
+               id="search-input" placeholder="Search" aria-label="Search" autocomplete="off"> </form>
+
+      </div>
+   </div>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/news.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1">
+  <a class="reference internal" href="../array/">
+   Properties and attributes of arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../bit/">
+   Bit-level inquiry and manipulation
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../character/">
+   Basic procedures for manipulating
+   <em>
+    character
+   </em>
+   variables
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../compiler/">
+   Information about compiler and compiler options used for building
+  </a>
+ </li>
+ <li class="toctree-l1 current active">
+  <a class="current reference internal" href="#">
+   Procedures for binding to C interfaces
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../math/">
+   General mathematical functions
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../model/">
+   Controlling and querying the current numeric model
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../numeric/">
+   Manipulation and properties of numeric values
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../parallel/">
+   Parallel programming using co_arrays and co_indexed arrays
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../state/">
+   General and miscellaneous intrinsics
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../system/">
+   Accessing external system information
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../transform/">
+   Matrix multiplication, dot product, and array shifts
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../type/">
+   Types and kinds
+  </a>
+ </li>
+ <li class="toctree-l1">
+  <a class="reference internal" href="../GNU_Free_Documentation_License/">
+   GNU Free Documentation License
+  </a>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+
+
+
+<br>
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc">
+  <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-associated">
+   c_associated
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#name">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#syntax">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#description">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arguments">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#returns">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#see-also">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-f-pointer">
+   c_f_pointer
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-f-procpointer">
+   c_f_procpointer
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-funloc">
+   c_funloc
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id22">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-loc">
+   c_loc
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id24">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id25">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id26">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id27">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id28">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id29">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id30">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-sizeof">
+   c_sizeof
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id31">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id32">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id33">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id34">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id35">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id36">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id37">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id38">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                 <section id="procedures-for-binding-to-c-interfaces">
+<h1>Procedures for binding to C interfaces<a class="headerlink" href="#procedures-for-binding-to-c-interfaces" title="Lien permanent vers cette rubrique">#</a></h1>
+<section id="c-associated">
+<h2>c_associated<a class="headerlink" href="#c-associated" title="Lien permanent vers cette rubrique">#</a></h2>
+<section id="name">
+<h3><strong>Name</strong><a class="headerlink" href="#name" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><strong>c_associated</strong>(3) - [ISO_C_BINDING] Status of a C pointer</p>
+</section>
+<section id="syntax">
+<h3><strong>Syntax</strong><a class="headerlink" href="#syntax" title="Lien permanent vers cette rubrique">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">(</span><span class="n">c_prt_1</span><span class="p">,</span><span class="w"> </span><span class="n">c_ptr_2</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="description">
+<h3><strong>Description</strong><a class="headerlink" href="#description" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><strong>c_associated(c_prt_1[, c_ptr_2])</strong> determines the status of the
+C pointer c_ptr_1 or if c_ptr_1 is associated with the target
+c_ptr_2.</p>
+</section>
+<section id="arguments">
+<h3><strong>Arguments</strong><a class="headerlink" href="#arguments" title="Lien permanent vers cette rubrique">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>c_ptr_1</strong></dt><dd><p>Scalar of the type c_ptr or c_funptr.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>c_ptr_2</strong></dt><dd><p>(Optional) Scalar of the same type as c_ptr_1.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="returns">
+<h3><strong>Returns</strong><a class="headerlink" href="#returns" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>The return value is of type <em>logical</em>; it is .false. if either c_ptr_1
+is a C NULL pointer or if c_ptr1 and c_ptr_2 point to different
+addresses.</p>
+</section>
+<section id="examples">
+<h3><strong>Examples</strong><a class="headerlink" href="#examples" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_associated</span><span class="w"></span>
+
+<span class="k">contains</span>
+
+<span class="k">subroutine </span><span class="n">association_test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">,</span><span class="w"> </span><span class="kt">c_ptr</span>
+<span class="k">implicit none</span>
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="k">stop</span><span class="w"> </span><span class="s1">&#39;b and a do not point to same target&#39;</span><span class="w"></span>
+<span class="k">end subroutine </span><span class="n">association_test</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">demo_c_associated</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="standard">
+<h3><strong>Standard</strong><a class="headerlink" href="#standard" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>Fortran 2003 and later</p>
+</section>
+<section id="see-also">
+<h3><strong>See Also</strong><a class="headerlink" href="#see-also" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><span class="xref myst"><strong>c_loc</strong>(3)</span>,
+<span class="xref myst"><strong>c_funloc</strong>(3)</span>,
+<strong>iso_c_binding</strong>(3)</p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="c-f-pointer">
+<h2>c_f_pointer<a class="headerlink" href="#c-f-pointer" title="Lien permanent vers cette rubrique">#</a></h2>
+<section id="id1">
+<h3><strong>Name</strong><a class="headerlink" href="#id1" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><strong>c_f_pointer</strong>(3) - [ISO_C_BINDING] Convert C into Fortran pointer</p>
+</section>
+<section id="id2">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id2" title="Lien permanent vers cette rubrique">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="p">,</span><span class="w"> </span><span class="nb">shape</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3><strong>Description</strong><a class="headerlink" href="#id3" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><strong>c_f_pointer(cptr, fptr[, shape])</strong> Assign the target, the C
+pointer, <strong>cptr</strong> to the Fortran pointer <strong>fptr</strong> and specify its shape.</p>
+</section>
+<section id="id4">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id4" title="Lien permanent vers cette rubrique">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>cptr</strong></dt><dd><p>scalar of the type c_ptr. It is <strong>intent(in)</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>fptr</strong></dt><dd><p>pointer interoperable with <strong>cptr</strong>. it is <strong>intent(out)</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>shape</strong></dt><dd><p>(Optional) Rank-one array of type <em>integer</em> with <strong>intent(in)</strong> .
+It shall be present if and only if <strong>fptr</strong> is an array. The size
+must be equal to the rank of <strong>fptr</strong>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id5">
+<h3><strong>Examples</strong><a class="headerlink" href="#id5" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_f_pointer</span><span class="w"></span>
+<span class="k">use </span><span class="nb">iso_c_binding</span>
+<span class="k">implicit none</span>
+<span class="k">interface</span>
+<span class="k">   subroutine </span><span class="n">my_routine</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myC_func&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="kt">c_ptr</span>
+<span class="kt">      </span><span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="w">   </span><span class="k">end subroutine</span>
+<span class="k">end interface</span>
+<span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cptr</span><span class="w"></span>
+<span class="kt">real</span><span class="p">,</span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">my_routine</span><span class="p">(</span><span class="n">cptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">12</span><span class="p">])</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_c_f_pointer</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3><strong>Standard</strong><a class="headerlink" href="#id6" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>Fortran 2003 and later</p>
+</section>
+<section id="id7">
+<h3><strong>See Also</strong><a class="headerlink" href="#id7" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><span class="xref myst"><strong>c_loc</strong>(3)</span>,
+<span class="xref myst"><strong>c_f_procpointer</strong>(3)</span>,
+<strong>iso_c_binding</strong>(3)</p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="c-f-procpointer">
+<h2>c_f_procpointer<a class="headerlink" href="#c-f-procpointer" title="Lien permanent vers cette rubrique">#</a></h2>
+<section id="id8">
+<h3><strong>Name</strong><a class="headerlink" href="#id8" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><strong>c_f_procpointer</strong>(3) - [ISO_C_BINDING] Convert C into Fortran procedure pointer</p>
+</section>
+<section id="id9">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id9" title="Lien permanent vers cette rubrique">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">c_f_procpointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id10">
+<h3><strong>Description</strong><a class="headerlink" href="#id10" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><strong>c_f_procpointer(cptr, fptr)</strong> assigns the target of the C function
+pointer <strong>cptr</strong> to the Fortran procedure pointer <strong>fptr</strong>.</p>
+</section>
+<section id="id11">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id11" title="Lien permanent vers cette rubrique">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>cptr</strong></dt><dd><p>scalar of the type c_funptr. It is <strong>intent(in)</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>fptr</strong></dt><dd><p>procedure pointer interoperable with <strong>cptr</strong>. It is <strong>intent(out)</strong>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id12">
+<h3><strong>Examples</strong><a class="headerlink" href="#id12" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_f_procpointer</span><span class="w"></span>
+<span class="k">use </span><span class="nb">iso_c_binding</span>
+<span class="k">implicit none</span>
+<span class="k">abstract interface</span>
+<span class="k">   function </span><span class="n">func</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">import</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="kt">c_float</span>
+<span class="kt">   real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">func</span><span class="w"></span>
+<span class="w">   </span><span class="k">end function</span>
+<span class="k">end interface</span>
+<span class="k">interface</span>
+<span class="k">   function </span><span class="n">getIterFunc</span><span class="p">()</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;getIterFunc&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">import</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="kt">c_funptr</span>
+<span class="kt">   </span><span class="k">type</span><span class="p">(</span><span class="kt">c_funptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">getIterFunc</span><span class="w"></span>
+<span class="w">   </span><span class="k">end function</span>
+<span class="k">end interface</span>
+<span class="k">type</span><span class="p">(</span><span class="kt">c_funptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cfunptr</span><span class="w"></span>
+<span class="k">procedure</span><span class="p">(</span><span class="n">func</span><span class="p">),</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">myFunc</span><span class="w"></span>
+<span class="w">   </span><span class="n">cfunptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getIterFunc</span><span class="p">()</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">c_f_procpointer</span><span class="p">(</span><span class="n">cfunptr</span><span class="p">,</span><span class="w"> </span><span class="n">myFunc</span><span class="p">)</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_c_f_procpointer</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id13">
+<h3><strong>Standard</strong><a class="headerlink" href="#id13" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>Fortran 2003 and later</p>
+</section>
+<section id="id14">
+<h3><strong>See Also</strong><a class="headerlink" href="#id14" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><span class="xref myst"><strong>c_loc</strong>(3)</span>,
+<span class="xref myst"><strong>c_f_pointer</strong>(3)</span>,
+<strong>iso_c_binding</strong>(3)</p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="c-funloc">
+<h2>c_funloc<a class="headerlink" href="#c-funloc" title="Lien permanent vers cette rubrique">#</a></h2>
+<section id="id15">
+<h3><strong>Name</strong><a class="headerlink" href="#id15" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><strong>c_funloc</strong>(3) - [ISO_C_BINDING] Obtain the C address of a procedure</p>
+</section>
+<section id="id16">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id16" title="Lien permanent vers cette rubrique">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_funloc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id17">
+<h3><strong>Description</strong><a class="headerlink" href="#id17" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><strong>c_funloc(x)</strong> determines the C address of the argument.</p>
+</section>
+<section id="id18">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id18" title="Lien permanent vers cette rubrique">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>x</strong></dt><dd><p>Interoperable function or pointer to such function.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id19">
+<h3><strong>Returns</strong><a class="headerlink" href="#id19" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>The return value is of type c_funptr and contains the C address of the
+argument.</p>
+</section>
+<section id="id20">
+<h3><strong>Examples</strong><a class="headerlink" href="#id20" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! program demo_c_funloc and module</span>
+<span class="k">module </span><span class="n">x</span><span class="w"></span>
+<span class="k">use </span><span class="nb">iso_c_binding</span>
+<span class="k">implicit none</span>
+<span class="k">contains</span>
+<span class="k">subroutine </span><span class="n">sub</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
+<span class="kt">real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">   </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="mf">5.0</span><span class="w"></span>
+<span class="k">end subroutine </span><span class="n">sub</span><span class="w"></span>
+<span class="k">end module </span><span class="n">x</span><span class="w"></span>
+<span class="c">!</span>
+<span class="k">program </span><span class="n">demo_c_funloc</span><span class="w"></span>
+<span class="k">use </span><span class="nb">iso_c_binding</span>
+<span class="k">use </span><span class="n">x</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="k">interface</span>
+<span class="k">   subroutine </span><span class="n">my_routine</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myC_func&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="k">import</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="kt">c_funptr</span>
+<span class="kt">     </span><span class="k">type</span><span class="p">(</span><span class="kt">c_funptr</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="w">   </span><span class="k">end subroutine</span>
+<span class="k">end interface</span>
+<span class="k">   call </span><span class="n">my_routine</span><span class="p">(</span><span class="nb">c_funloc</span><span class="p">(</span><span class="n">sub</span><span class="p">))</span><span class="w"></span>
+<span class="c">!</span>
+<span class="k">end program </span><span class="n">demo_c_funloc</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id21">
+<h3><strong>Standard</strong><a class="headerlink" href="#id21" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>Fortran 2003 and later</p>
+</section>
+<section id="id22">
+<h3><strong>See Also</strong><a class="headerlink" href="#id22" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><span class="xref myst"><strong>c_associated</strong>(3)</span>,
+<span class="xref myst"><strong>c_loc</strong>(3)</span>,
+<span class="xref myst"><strong>c_f_pointer</strong>(3)</span>,</p>
+<p><span class="xref myst"><strong>c_f_procpointer</strong>(3)</span>,
+<strong>iso_c_binding</strong>(3)</p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="c-loc">
+<h2>c_loc<a class="headerlink" href="#c-loc" title="Lien permanent vers cette rubrique">#</a></h2>
+<section id="id23">
+<h3><strong>Name</strong><a class="headerlink" href="#id23" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><strong>c_loc</strong>(3) - [ISO_C_BINDING] Obtain the C address of an object</p>
+</section>
+<section id="id24">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id24" title="Lien permanent vers cette rubrique">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id25">
+<h3><strong>Description</strong><a class="headerlink" href="#id25" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><strong>c_loc(x)</strong> determines the C address of the argument.</p>
+</section>
+<section id="id26">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id26" title="Lien permanent vers cette rubrique">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>x</strong></dt><dd><p>Shall have either the <em>pointer</em> or <em>target</em> attribute. It shall not be a
+coindexed object. It shall either be a variable with interoperable
+type and kind type parameters, or be a scalar, nonpolymorphic
+variable with no length type parameters.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id27">
+<h3><strong>Returns</strong><a class="headerlink" href="#id27" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>The return value is of type c_ptr and contains the C address of the
+argument.</p>
+</section>
+<section id="id28">
+<h3><strong>Examples</strong><a class="headerlink" href="#id28" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">subroutine </span><span class="n">association_test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">,</span><span class="w"> </span><span class="kt">c_ptr</span>
+<span class="kt">   </span><span class="k">implicit none</span>
+<span class="k">   </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="w">     </span><span class="k">if</span><span class="p">(</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">        </span><span class="k">stop</span><span class="w"> </span><span class="s1">&#39;b and a do not point to same target&#39;</span><span class="w"></span>
+<span class="w">   </span><span class="k">end subroutine </span><span class="n">association_test</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id29">
+<h3><strong>Standard</strong><a class="headerlink" href="#id29" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>Fortran 2003 and later</p>
+</section>
+<section id="id30">
+<h3><strong>See Also</strong><a class="headerlink" href="#id30" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><span class="xref myst"><strong>c_associated</strong>(3)</span>,
+<span class="xref myst"><strong>c_funloc</strong>(3)</span>,
+<span class="xref myst"><strong>c_f_pointer</strong>(3)</span>,</p>
+<p><span class="xref myst"><strong>c_f_procpointer</strong>(3)</span>,
+<strong>iso_c_binding</strong>(3)</p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="c-sizeof">
+<h2>c_sizeof<a class="headerlink" href="#c-sizeof" title="Lien permanent vers cette rubrique">#</a></h2>
+<section id="id31">
+<h3><strong>Name</strong><a class="headerlink" href="#id31" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><strong>c_sizeof</strong>(3) - [ISO_C_BINDING] Size in bytes of an expression</p>
+</section>
+<section id="id32">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id32" title="Lien permanent vers cette rubrique">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_sizeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id33">
+<h3><strong>Description</strong><a class="headerlink" href="#id33" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><strong>c_sizeof(x)</strong> calculates the number of bytes of storage the
+expression <strong>x</strong> occupies.</p>
+</section>
+<section id="id34">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id34" title="Lien permanent vers cette rubrique">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>x</strong></dt><dd><p>The argument shall be an interoperable data entity.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id35">
+<h3><strong>Returns</strong><a class="headerlink" href="#id35" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>The return value is of type integer and of the system-dependent kind
+c_size_t (from the <em>iso_c_binding</em> module). Its value is the
+number of bytes occupied by the argument. If the argument has the
+<em>pointer</em> attribute, the number of bytes of the storage area pointed to is
+returned. If the argument is of a derived type with <em>pointer</em> or
+<em>allocatable</em> components, the return value does not account for the sizes
+of the data pointed to by these components.</p>
+</section>
+<section id="id36">
+<h3><strong>Examples</strong><a class="headerlink" href="#id36" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_sizeof</span><span class="w"></span>
+<span class="k">use </span><span class="nb">iso_c_binding</span>
+<span class="k">implicit none</span>
+<span class="kt">real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nb">c_sizeof</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="nb">c_sizeof</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_c_sizeof</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    T
+</pre></div>
+</div>
+<p>The example will print .true. unless you are using a platform where
+default <em>real</em> variables are unusually padded.</p>
+</section>
+<section id="id37">
+<h3><strong>Standard</strong><a class="headerlink" href="#id37" title="Lien permanent vers cette rubrique">#</a></h3>
+<p>Fortran 2008</p>
+</section>
+<section id="id38">
+<h3><strong>See Also</strong><a class="headerlink" href="#id38" title="Lien permanent vers cette rubrique">#</a></h3>
+<p><span class="xref myst"><strong>storage_size</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>
