@@ -42,6 +42,9 @@ To limit the build to a single language subtree, *i.e.* English, use
 ```
 make dirhtml LANGUAGES=en
 ```
+
+#### After adding a new entry to package index , Run the github action fortran_packages before building the sphinx build.
+
 ### Activating the pre-commit hooks for Black and Pylint:
 
 This assumes that you already have a cloned the main branch of this repository.
