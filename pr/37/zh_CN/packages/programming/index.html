@@ -1,0 +1,608 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Error handling, logging, documentation and testing &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <link rel="index" title="索引" href="../../genindex/" />
+    <link rel="search" title="搜索" href="../../search/" /> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var pr_number = -1;
+    $(document).ready(function () {
+
+        if (window.location.href.indexOf("/pr/") > -1) {
+            pr_number = window.location.href.split('/').indexOf("pr") + 1;
+            document.getElementById("pr").innerHTML = "pull request " + window.location.href.split('/')[pr_number];
+            document.getElementById("pr").href = "https://github.com/fortran-lang/webpage/pull/" + window.location.href.split('/')[pr_number];
+            var banner = document.getElementById("banner");
+            banner.style.display = "block";
+        }
+    });
+</script>
+<div id="banner" style='display:none' class="container">
+    <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-git-pull-request">
+            <circle cx="18" cy="18" r="3"></circle>
+            <circle cx="6" cy="6" r="3"></circle>
+            <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+            <line x1="6" y1="9" x2="6" y2="21"></line>
+        </svg>
+        <b>Site preview: </b>you are previewing unpublished changes for <a id="pr"></a>
+    </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../">
+  
+  
+  
+  
+    <img src="../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
+   <div class="container-xl">
+      <div id="navbar-start">
+         <a class="navbar-brand" href="../../index.html">
+            <img src="../../_static/images/fortran-logo-256x256.png" class="logo" alt="logo">
+         </a>
+      </div>
+      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible"
+         aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+         <span class="navbar-toggler-icon"></span>
+      </button>
+      <div id="navbar-collapsible" class=" collapse navbar-collapse">
+         <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+            <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+            <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+            <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+         </span>
+
+         <div class="dropdown" id="version_switcher">
+            <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button"
+               data-toggle="dropdown">
+               language
+               <span class="caret"></span>
+            </button>
+
+            <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0"
+               aria-labelledby="version_switcher_button">
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../de/packages/programming"><span>de</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../en/packages/programming"><span>en</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../es/packages/programming"><span>es</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../fr/packages/programming"><span>fr</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../ja/packages/programming"><span>ja</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../nl/packages/programming"><span>nl</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../zh_CN/packages/programming"><span>zh_CN</span></a>
+               <a class="list-group-item list-group-item-action py-1"
+                  href="../../../pt/packages/programming"><span>pt</span></a>
+            </div>
+            
+         </div>
+
+         <div id="navbar-center" class="ml-auto">
+            <div class="navbar-center-item">
+               <ul id="navbar-main-elements" class="navbar-nav">
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link" href="../../learn">
+                        Learn
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link" href="../../compilers">
+                        Compilers
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link" href="../../community">
+                        Community
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link" href="../../packages">
+                        Packages
+                     </a>
+                  </li>
+                  <li class="toctree-l1 nav-item">
+                     <a class="reference internal nav-link" href="../../news">
+                        News
+                     </a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <div id="navbar-end">
+            <div class="navbar-end-item">
+
+               <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+                  <li class="nav-item">
+                     <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank"
+                        title="Discourse"><span><i class="fab fa-discourse" style="color:#734f96"></i></span>
+                        <label class="sr-only">Discourse</label></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank"
+                        title="Twitter"><span><i class="fab fa-twitter" style="color:#734f96"></i></span>
+                        <label class="sr-only">Twitter</label></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank"
+                        title="GitHub"><span><i class="fab fa-github" style="color:#734f96"></i></span>
+                        <label class="sr-only">GitHub</label></a>
+                  </li>
+                  <li class="nav-item">
+                     <a class="nav-link" href="../../news/atom.xml" rel="noopener" target="_blank"
+                        title="RSS"><span><i class="fas fa-rss" style="color:#734f96"></i></span>
+                        <label class="sr-only">RSS</label></a>
+                  </li>
+               </ul>
+            </div>
+         </div>
+         <form class="bd-search d-flex align-items-center" action="../../search/index.html"
+            method="get"> <i class="icon fas fa-search"></i> <input type="search" class="form-control" name="q"
+               id="search-input" placeholder="Search" aria-label="Search" autocomplete="off"> </form>
+
+      </div>
+   </div>
+</nav>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+      </div>
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/news.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<div class="sidebar-primary col-12 col-md-1 col-xl-2 bd-sidebar no-sidebar"></div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-md-block col-md-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+
+
+
+
+
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-8">
+              
+              <article class="bd-article" role="main">
+                 <div class="sd-text-center sd-fs-2 sd-font-weight-bold sd-text-primary docutils">
+<p>Featured Open Source Projects</p>
+</div>
+<div class="sd-text-center sd-fs-3 docutils">
+<p>A rich ecosystem of high-performance code</p>
+</div>
+<section id="error-handling-logging-documentation-and-testing">
+<h1>Error handling, logging, documentation and testing<a class="headerlink" href="#error-handling-logging-documentation-and-testing" title="此标题的永久链接">#</a></h1>
+<p>See <a class="reference internal" href="../../community/packages/"><span class="doc std std-doc">package index guidelines</span></a> for how to get your project listed.</p>
+</section>
+<section id="camfort">
+<h1><a class="reference external" href="https://github.com/camfort/camfort">camfort</a><a class="headerlink" href="#camfort" title="此标题的永久链接">#</a></h1>
+<p>Light-weight verification and transformation tools for Fortran</p>
+<p>Tags: refactoring</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/camfort/camfort?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/camfort/camfort" />
+<img alt="stars" src="https://img.shields.io/github/stars/camfort/camfort" />
+<img alt="forks" src="https://img.shields.io/github/forks/camfort/camfort" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/camfort/camfort?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/camfort/camfort?color=yellow" /></p>
+</section>
+<section id="convert-fortran-case">
+<h1><a class="reference external" href="https://github.com/dav05/convert_FORTRAN_case">convert_FORTRAN_case</a><a class="headerlink" href="#convert-fortran-case" title="此标题的永久链接">#</a></h1>
+<p>Case conversion of files written in fixed form Fortran</p>
+<p>Tags: formatter converter</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/dav05/convert_FORTRAN_case?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/dav05/convert_FORTRAN_case" />
+<img alt="stars" src="https://img.shields.io/github/stars/dav05/convert_FORTRAN_case" />
+<img alt="forks" src="https://img.shields.io/github/forks/dav05/convert_FORTRAN_case" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/dav05/convert_FORTRAN_case?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/dav05/convert_FORTRAN_case?color=yellow" /></p>
+</section>
+<section id="coretran">
+<h1><a class="reference external" href="https://github.com/leonfoks/coretran">coretran</a><a class="headerlink" href="#coretran" title="此标题的永久链接">#</a></h1>
+<p>Core fortran routines and object-oriented classes for sorting, kD-Trees, and other algorithms to handle scientific data and concepts</p>
+<p>Tags: dynamic array formatting debugging errors kdtree sorting random binary search strings unit testing timing</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/leonfoks/coretran?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/leonfoks/coretran" />
+<img alt="stars" src="https://img.shields.io/github/stars/leonfoks/coretran" />
+<img alt="forks" src="https://img.shields.io/github/forks/leonfoks/coretran" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/leonfoks/coretran?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/leonfoks/coretran?color=yellow" /></p>
+</section>
+<section id="erloff">
+<h1><a class="reference external" href="https://gitlab.com/everythingfunctional/erloff">erloff</a><a class="headerlink" href="#erloff" title="此标题的永久链接">#</a></h1>
+<p>Errors and logging for fortran</p>
+<p>Tags: errors logging</p>
+<p><img alt="Release" src="https://img.shields.io/gitlab/v/release/everythingfunctional/erloff?date_order_by=created_at&amp;sort=date&amp;color=green" />
+<img alt="license" src="https://img.shields.io/gitlab/license/everythingfunctional/erloff" />
+<img alt="forks" src="https://img.shields.io/gitlab/forks/everythingfunctional/erloff" />
+<img alt="issues" src="https://img.shields.io/gitlab/issues/all/everythingfunctional/erloff?color=yellow" /></p>
+</section>
+<section id="f90wrap">
+<h1><a class="reference external" href="https://github.com/jameskermode/f90wrap">f90wrap</a><a class="headerlink" href="#f90wrap" title="此标题的永久链接">#</a></h1>
+<p>F90 to Python interface generator with derived type support</p>
+<p>Tags: interface-generator python</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/jameskermode/f90wrap?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/jameskermode/f90wrap" />
+<img alt="stars" src="https://img.shields.io/github/stars/jameskermode/f90wrap" />
+<img alt="forks" src="https://img.shields.io/github/forks/jameskermode/f90wrap" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/jameskermode/f90wrap?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/jameskermode/f90wrap?color=yellow" /></p>
+</section>
+<section id="findent">
+<h1><a class="reference external" href="https://sourceforge.net/projects/findent/">findent</a><a class="headerlink" href="#findent" title="此标题的永久链接">#</a></h1>
+<p>Indents/beautifies/converts Fortran sources</p>
+<p>Tags: formatter converter</p>
+</section>
+<section id="ford">
+<h1><a class="reference external" href="https://github.com/Fortran-FOSS-Programmers/ford">FORD</a><a class="headerlink" href="#ford" title="此标题的永久链接">#</a></h1>
+<p>Automatic documentation generator for modern Fortran programs</p>
+<p>Tags: documentation</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/Fortran-FOSS-Programmers/ford?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/Fortran-FOSS-Programmers/ford" />
+<img alt="stars" src="https://img.shields.io/github/stars/Fortran-FOSS-Programmers/ford" />
+<img alt="forks" src="https://img.shields.io/github/forks/Fortran-FOSS-Programmers/ford" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/Fortran-FOSS-Programmers/ford?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/Fortran-FOSS-Programmers/ford?color=yellow" /></p>
+</section>
+<section id="fortran-error-handler">
+<h1><a class="reference external" href="https://github.com/samharrison7/fortran-error-handler">fortran-error-handler</a><a class="headerlink" href="#fortran-error-handler" title="此标题的永久链接">#</a></h1>
+<p>Comprehensive error handling framework for Modern Fortran</p>
+<p>Tags: errors logging fpm</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/samharrison7/fortran-error-handler?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/samharrison7/fortran-error-handler" />
+<img alt="stars" src="https://img.shields.io/github/stars/samharrison7/fortran-error-handler" />
+<img alt="forks" src="https://img.shields.io/github/forks/samharrison7/fortran-error-handler" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/samharrison7/fortran-error-handler?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/samharrison7/fortran-error-handler?color=yellow" /></p>
+</section>
+<section id="fortrancallgraph">
+<h1><a class="reference external" href="https://github.com/fortesg/fortrancallgraph">FortranCallGraph</a><a class="headerlink" href="#fortrancallgraph" title="此标题的永久链接">#</a></h1>
+<p>Static source code analysis tool for Fortran</p>
+<p>Tags: None</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/fortesg/fortrancallgraph?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/fortesg/fortrancallgraph" />
+<img alt="stars" src="https://img.shields.io/github/stars/fortesg/fortrancallgraph" />
+<img alt="forks" src="https://img.shields.io/github/forks/fortesg/fortrancallgraph" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/fortesg/fortrancallgraph?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/fortesg/fortrancallgraph?color=yellow" /></p>
+</section>
+<section id="fortyxima">
+<h1><a class="reference external" href="https://bitbucket.org/aradi/fortyxima/src/develop/">fortyxima</a><a class="headerlink" href="#fortyxima" title="此标题的永久链接">#</a></h1>
+<p>File system manipulation and unit testing framework</p>
+<p>Tags: posix libc</p>
+</section>
+<section id="fparser">
+<h1><a class="reference external" href="https://github.com/stfc/fparser">fparser</a><a class="headerlink" href="#fparser" title="此标题的永久链接">#</a></h1>
+<p>Fortran parser written purely in Python which supports Fortran 2003 and some Fortran 2008</p>
+<p>Tags: parser</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/stfc/fparser?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/stfc/fparser" />
+<img alt="stars" src="https://img.shields.io/github/stars/stfc/fparser" />
+<img alt="forks" src="https://img.shields.io/github/forks/stfc/fparser" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/stfc/fparser?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/stfc/fparser?color=yellow" /></p>
+</section>
+<section id="fpm">
+<h1><a class="reference external" href="https://github.com/fortran-lang/fpm">fpm</a><a class="headerlink" href="#fpm" title="此标题的永久链接">#</a></h1>
+<p>Fortran 包管理器</p>
+<p>Tags: build-system package-manager</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/fortran-lang/fpm?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/fortran-lang/fpm" />
+<img alt="stars" src="https://img.shields.io/github/stars/fortran-lang/fpm" />
+<img alt="forks" src="https://img.shields.io/github/forks/fortran-lang/fpm" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/fortran-lang/fpm?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/fortran-lang/fpm?color=yellow" /></p>
+</section>
+<section id="fprettify">
+<h1><a class="reference external" href="https://github.com/pseewald/fprettify">fprettify</a><a class="headerlink" href="#fprettify" title="此标题的永久链接">#</a></h1>
+<p>auto-formatter for modern fortran source code</p>
+<p>Tags: formatter</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/pseewald/fprettify?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/pseewald/fprettify" />
+<img alt="stars" src="https://img.shields.io/github/stars/pseewald/fprettify" />
+<img alt="forks" src="https://img.shields.io/github/forks/pseewald/fprettify" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/pseewald/fprettify?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/pseewald/fprettify?color=yellow" /></p>
+</section>
+<section id="futility">
+<h1><a class="reference external" href="https://github.com/CASL/Futility">Futility</a><a class="headerlink" href="#futility" title="此标题的永久链接">#</a></h1>
+<p>Fortran utilities including unit test harness, arbitrary length strings, parameter list objects, timers, geometry definitions, file wrappers, linear algebra tools, and parallel computing support</p>
+<p>Tags:</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/CASL/Futility?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/CASL/Futility" />
+<img alt="stars" src="https://img.shields.io/github/stars/CASL/Futility" />
+<img alt="forks" src="https://img.shields.io/github/forks/CASL/Futility" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/CASL/Futility?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/CASL/Futility?color=yellow" /></p>
+</section>
+<section id="fypp">
+<h1><a class="reference external" href="https://github.com/aradi/fypp">fypp</a><a class="headerlink" href="#fypp" title="此标题的永久链接">#</a></h1>
+<p>Python powered Fortran preprocessor</p>
+<p>Tags: metaprogramming</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/aradi/fypp?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/aradi/fypp" />
+<img alt="stars" src="https://img.shields.io/github/stars/aradi/fypp" />
+<img alt="forks" src="https://img.shields.io/github/forks/aradi/fypp" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/aradi/fypp?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/aradi/fypp?color=yellow" /></p>
+</section>
+<section id="fytest">
+<h1><a class="reference external" href="https://bitbucket.org/aradi/fytest/src/develop/">fytest</a><a class="headerlink" href="#fytest" title="此标题的永久链接">#</a></h1>
+<p>a lightweight unit testing framework for Fortran</p>
+<p>Tags: unit testing</p>
+</section>
+<section id="gftl">
+<h1><a class="reference external" href="https://github.com/Goddard-Fortran-Ecosystem/gFTL">gFTL</a><a class="headerlink" href="#gftl" title="此标题的永久链接">#</a></h1>
+<p>Templates for STL-like Fortran implementations of containers for arbitrary types (Vector, Set, Map, Deque, Stack, Queue, …)</p>
+<p>Tags: container template</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/Goddard-Fortran-Ecosystem/gFTL?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/Goddard-Fortran-Ecosystem/gFTL" />
+<img alt="stars" src="https://img.shields.io/github/stars/Goddard-Fortran-Ecosystem/gFTL" />
+<img alt="forks" src="https://img.shields.io/github/forks/Goddard-Fortran-Ecosystem/gFTL" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/Goddard-Fortran-Ecosystem/gFTL?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/Goddard-Fortran-Ecosystem/gFTL?color=yellow" /></p>
+</section>
+<section id="gftl-shared">
+<h1><a class="reference external" href="https://github.com/Goddard-Fortran-Ecosystem/gFTL-shared">gFTL-shared</a><a class="headerlink" href="#gftl-shared" title="此标题的永久链接">#</a></h1>
+<p>Instantiations of gFTL templates of common containers for intrinsic types</p>
+<p>Tags: container template</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/Goddard-Fortran-Ecosystem/gFTL-shared?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/Goddard-Fortran-Ecosystem/gFTL-shared" />
+<img alt="stars" src="https://img.shields.io/github/stars/Goddard-Fortran-Ecosystem/gFTL-shared" />
+<img alt="forks" src="https://img.shields.io/github/forks/Goddard-Fortran-Ecosystem/gFTL-shared" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/Goddard-Fortran-Ecosystem/gFTL-shared?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/Goddard-Fortran-Ecosystem/gFTL-shared?color=yellow" /></p>
+</section>
+<section id="hipfort">
+<h1><a class="reference external" href="https://github.com/ROCmSoftwarePlatform/hipfort">hipfort</a><a class="headerlink" href="#hipfort" title="此标题的永久链接">#</a></h1>
+<p>Fortran interfaces for ROCm libraries</p>
+<p>Tags: hip rocm</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/ROCmSoftwarePlatform/hipfort?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/ROCmSoftwarePlatform/hipfort" />
+<img alt="stars" src="https://img.shields.io/github/stars/ROCmSoftwarePlatform/hipfort" />
+<img alt="forks" src="https://img.shields.io/github/forks/ROCmSoftwarePlatform/hipfort" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/ROCmSoftwarePlatform/hipfort?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/ROCmSoftwarePlatform/hipfort?color=yellow" /></p>
+</section>
+<section id="pfunit">
+<h1><a class="reference external" href="https://github.com/Goddard-Fortran-Ecosystem/pFUnit">pFUnit</a><a class="headerlink" href="#pfunit" title="此标题的永久链接">#</a></h1>
+<p>Parallel Fortran Unit Testing Framework</p>
+<p>Tags: unit testing</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/Goddard-Fortran-Ecosystem/pFUnit?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/Goddard-Fortran-Ecosystem/pFUnit" />
+<img alt="stars" src="https://img.shields.io/github/stars/Goddard-Fortran-Ecosystem/pFUnit" />
+<img alt="forks" src="https://img.shields.io/github/forks/Goddard-Fortran-Ecosystem/pFUnit" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/Goddard-Fortran-Ecosystem/pFUnit?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/Goddard-Fortran-Ecosystem/pFUnit?color=yellow" /></p>
+</section>
+<section id="shroud">
+<h1><a class="reference external" href="https://github.com/LLNL/shroud">shroud</a><a class="headerlink" href="#shroud" title="此标题的永久链接">#</a></h1>
+<p>generate Fortran and Python wrappers for C and C++ libraries</p>
+<p>Tags: interface-generator c++</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/LLNL/shroud?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/LLNL/shroud" />
+<img alt="stars" src="https://img.shields.io/github/stars/LLNL/shroud" />
+<img alt="forks" src="https://img.shields.io/github/forks/LLNL/shroud" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/LLNL/shroud?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/LLNL/shroud?color=yellow" /></p>
+</section>
+<section id="swig-fortran">
+<h1><a class="reference external" href="https://github.com/swig-fortran/swig">SWIG-Fortran</a><a class="headerlink" href="#swig-fortran" title="此标题的永久链接">#</a></h1>
+<p>SWIG for C++ to Fortran interface generation</p>
+<p>Tags: interface-generator c++</p>
+<p><img alt="Release" src="https://img.shields.io/github/v/release/swig-fortran/swig?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/swig-fortran/swig" />
+<img alt="stars" src="https://img.shields.io/github/stars/swig-fortran/swig" />
+<img alt="forks" src="https://img.shields.io/github/forks/swig-fortran/swig" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/swig-fortran/swig?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/swig-fortran/swig?color=yellow" /></p>
+</section>
+<section id="tapenade">
+<h1><a class="reference external" href="https://gitlab.inria.fr/tapenade/tapenade">Tapenade</a><a class="headerlink" href="#tapenade" title="此标题的永久链接">#</a></h1>
+<p>A tool for automatic differentiation (forward/reverse) of Fortran and c programs</p>
+<p>Tags: algorithmic derivative ad</p>
+</section>
+<section id="vegetables">
+<h1><a class="reference external" href="https://gitlab.com/everythingfunctional/vegetables">vegetables</a><a class="headerlink" href="#vegetables" title="此标题的永久链接">#</a></h1>
+<p>A Fortran testing framework written using functional programming principles.</p>
+<p>Tags: testing assert</p>
+<p><img alt="Release" src="https://img.shields.io/gitlab/v/release/everythingfunctional/vegetables?date_order_by=created_at&amp;sort=date&amp;color=green" />
+<img alt="license" src="https://img.shields.io/gitlab/license/everythingfunctional/vegetables" />
+<img alt="forks" src="https://img.shields.io/gitlab/forks/everythingfunctional/vegetables" />
+<img alt="issues" src="https://img.shields.io/gitlab/issues/all/everythingfunctional/vegetables?color=yellow" /></p>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>
