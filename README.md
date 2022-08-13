@@ -44,6 +44,7 @@ make dirhtml LANGUAGES=en
 ```
 
 After adding a new entry to package index, run the github action *fortran\_packages* before building the sphinx build.
+For local builds, after adding a new entry to package index, run the `python3 fortran_package.py` before building the sphinx build.
 
 ### Activating the pre-commit hooks for Black and Pylint:
 
