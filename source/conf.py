@@ -84,8 +84,8 @@ locale_dirs = ["../locale/"]
 # This is also used if you do content translation via gettext catalogs.
 # Usually you set "language" from the command line for these cases.
 
-language = str(sys.argv[2][-2:])
-html_search_language = str(sys.argv[2][-2:])
+language = str(sys.argv[-1][11:])
+html_search_language = str(sys.argv[-1][11:])
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
@@ -127,9 +127,13 @@ html_theme_options = {
     "show_toc_level": 0,
     "footer_items": ["copyright"],
     "navbar_align": "right",
-    "navbar_start": ["navbar-logo"],
+    "navbar_start": ["navbar-logo","theme-switcher.html","version-switcher"],
+    "switcher": {
+        "version_match": language,
+    },
     "page_sidebar_items": ["inpage_toc.html"],
-    "navbar_end": ["theme-switcher.html", "navbar-icon-links"],
+    "navbar_end": ["navbar-icon-links",  "search-field.html"],
+    "search_bar_text": "Search",
     "icon_links": [
         {
             "name": "Discourse",
@@ -148,7 +152,7 @@ html_theme_options = {
         },
         {
             "name": "RSS",
-            "url": "https://fortran-lang.org/news.xml",
+            "url": "https://fortran-lang.org/news/atom.xml",
             "icon": "fas fa-rss",
         },
     ],

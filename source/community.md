@@ -7,7 +7,7 @@ sd_hide_title: true
 <script type="text/javascript" src="https://unpkg.com/mustache@4.2.0/mustache.min.js"></script>
 <script type="text/javascript" src="https://unpkg.com/github-activity-feed@latest/dist/github-activity.min.js"></script>
 
-# Community - The Fortran Programming Language
+# Community
 
 :::{div} sd-text-center sd-fs-2 sd-font-weight-bold sd-text-primary
 Fortran-lang Community
