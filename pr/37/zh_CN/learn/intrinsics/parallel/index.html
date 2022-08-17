@@ -1,0 +1,3622 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Parallel programming using co_arrays and co_indexed arrays &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../../../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <link rel="index" title="索引" href="../../../genindex/" />
+    <link rel="search" title="搜索" href="../../../search/" />
+    <link rel="next" title="General and miscellaneous intrinsics" href="../state/" />
+    <link rel="prev" title="Manipulation and properties of numeric values" href="../numeric/" /> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+    var pr_number = -1;
+    $(document).ready(function () {
+
+        if (window.location.href.indexOf("/pr/") > -1) {
+            pr_number = window.location.href.split('/').indexOf("pr") + 1;
+            document.getElementById("pr").innerHTML = "pull request " + window.location.href.split('/')[pr_number];
+            document.getElementById("pr").href = "https://github.com/fortran-lang/webpage/pull/" + window.location.href.split('/')[pr_number];
+            var banner = document.getElementById("banner");
+            banner.style.display = "block";
+        }
+    });
+</script>
+<div id="banner" style='display:none' class="container">
+    <h3>
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
+            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
+            class="feather feather-git-pull-request">
+            <circle cx="18" cy="18" r="3"></circle>
+            <circle cx="6" cy="6" r="3"></circle>
+            <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+            <line x1="6" y1="9" x2="6" y2="21"></line>
+        </svg>
+        <b>Site preview: </b>you are previewing unpublished changes for <a id="pr"></a>
+    </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+    
+    <div class="dropdown" id="version_switcher">
+    <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button"
+        data-toggle="dropdown">
+        zh_CN
+        <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0"
+        aria-labelledby="version_switcher_button">
+        <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables learn/intrinsics/parallel/index and {'version_match': 'zh_CN'}.
+-->
+
+<script type="text/javascript">
+    // Check if corresponding page path exists in other version of docs
+    // and, if so, go there instead of the homepage of the other docs version
+    function checkPageExistsAndRedirect(event) {
+        const currentFilePath = "learn/intrinsics/parallel/index",
+            tryUrl = event.target.getAttribute("href");
+        location.href = tryUrl;
+        // this prevents the browser from following the href of the clicked node
+        // (which is fine because this function takes care of redirecting)
+        return false;
+    }
+
+    // Populate the version switcher from the JSON config file
+    (function () {
+
+        const currentFilePath = "learn/intrinsics/parallel/index";
+        const indexFilePath = "../../../";
+        let btn = document.getElementById("version_switcher_button");
+        // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+        btn.dataset["activeVersionName"] = "";
+        btn.dataset["activeVersion"] = "";
+        // create links to the corresponding page in the other docs versions
+        data = [
+            {
+                "name": "en",
+                "version": "en",
+                "url": "../en/"
+            },
+            {
+                "name": "de",
+                "version": "de",
+                "url": "../de/"
+            },
+            {
+                "name": "fr",
+                "version": "fr",
+                "url": "../fr/"
+            },
+            {
+                "name": "es",
+                "version": "es",
+                "url": "../es/"
+            },
+            {
+                "name": "ja",
+                "version": "ja",
+                "url": "../ja/"
+            },
+            {
+                "name": "nl",
+                "version": "nl",
+                "url": "../nl/"
+            },
+            {
+                "name": "pt",
+                "version": "pt",
+                "url": "../pt/"
+            },
+            {
+                "name": "zh_CN",
+                "version": "zh_CN",
+                "url": "../zh_CN/"
+            }
+        ]; console.log(data);
+        $.each(data, function (index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // create the node
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.textContent = `${entry.name}`;
+            node.setAttribute("href", `${indexFilePath}${entry.url}${currentFilePath}`);
+            // on click, AJAX calls will check if the linked page exists before
+            // trying to redirect, and if not, will redirect to the homepage
+            // for that version of the docs.
+            node.onclick = checkPageExistsAndRedirect;
+            // Add dataset values for the version and name in case people want
+            // to apply CSS styling based on this information.
+            node.dataset["versionName"] = entry.name;
+            node.dataset["version"] = entry.version;
+
+            $("#version_switcher_menu").append(node);
+            // replace dropdown button text with the preferred display name of
+            // this version, rather than using sphinx's  variable.
+            // also highlight the dropdown entry for the currently-viewed
+            // version's entry
+            if (entry.version == "zh_CN") {
+                node.classList.add("active");
+                btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+                btn.dataset["activeVersion"] = entry.version;
+            }
+        });
+
+    })();
+</script>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../">
+  Learn
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../compilers/">
+  Compilers
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../community/">
+  Community
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../packages/">
+  Packages
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../news/">
+  News
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/news/atom.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="搜索" aria-label="Search" autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../quickstart/">
+   Quickstart tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/arrays_strings/">
+     Arrays and strings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/derived_types/">
+     Derived Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/hello_world/">
+     Hello world
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/operators_control_flow/">
+     Operators and flow control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/organising_code/">
+     Organising code structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/variables/">
+     Variables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../best_practices/">
+   Fortran Best Practices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/allocatable_arrays/">
+     Allocatable Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/arrays/">
+     Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/callbacks/">
+     Callbacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/element_operations/">
+     Element-wise Operations on Array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/file_io/">
+     File Input/Output
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/floating_point/">
+     Floating Point Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/integer_division/">
+     Integer Division
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/modules_programs/">
+     Modules and Programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/multidim_arrays/">
+     Multidimensional Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/style_guide/">
+     Fortran Style Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/type_casting/">
+     Type Casting in Callbacks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../os_setup/">
+   Setting up your OS
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/choose_compiler/">
+     Choosing a compiler
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/ides/">
+     IDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/install_gfortran/">
+     Installing GFortran
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/text_editors/">
+     Text Editors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/tips/">
+     Smart Tips
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../building_programs/">
+   Building programs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/build_tools/">
+     Build tools
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/compiling_source/">
+     Compiling the source code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/distributing/">
+     Distributing your programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/include_files/">
+     Include files and modules
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/linking_pieces/">
+     Linking the objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/managing_libraries/">
+     Managing libraries (static and dynamic libraries)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/project_make/">
+     An introduction to make
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/runtime_libraries/">
+     Run-time libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../">
+   Fortran Intrinsics
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../array/">
+     Properties and attributes of arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bit/">
+     Bit-level inquiry and manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../character/">
+     Basic procedures for manipulating
+     <em>
+      character
+     </em>
+     variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../compiler/">
+     Information about compiler and compiler options used for building
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cfi/">
+     Procedures for binding to C interfaces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../math/">
+     General mathematical functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../model/">
+     Controlling and querying the current numeric model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numeric/">
+     Manipulation and properties of numeric values
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Parallel programming using co_arrays and co_indexed arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../state/">
+     General and miscellaneous intrinsics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system/">
+     Accessing external system information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transform/">
+     Matrix multiplication, dot product, and array shifts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../type/">
+     Types and kinds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../GNU_Free_Documentation_License/">
+     GNU Free Documentation License
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+      
+
+
+
+<br>
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc">
+  <ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#co-broadcast">
+   co_broadcast
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#name">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#syntax">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#description">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arguments">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#see-also">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#co-lbound">
+   co_lbound
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#returns">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#co-max">
+   co_max
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#co-min">
+   co_min
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#co-reduce">
+   co_reduce
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id22">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id24">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#note">
+     <strong>
+      Note
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id25">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id26">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#co-sum">
+   co_sum
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id27">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id28">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id29">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id30">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id31">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id32">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id33">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#co-ubound">
+   co_ubound
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id34">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id35">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id36">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id37">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id38">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id39">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id40">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#event-query">
+   event_query
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id41">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id42">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id43">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id44">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id45">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id46">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#image-index">
+   image_index
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id47">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id48">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id49">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id50">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id51">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id52">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id53">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id54">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#num-images">
+   num_images
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id55">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id56">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id57">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id58">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id59">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id60">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id61">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id62">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#this-image">
+   this_image
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id63">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id64">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id65">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id66">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id67">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id68">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atomic-and">
+   atomic_and
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id69">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id70">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id71">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id72">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id73">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id74">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id75">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atomic-fetch-and">
+   atomic_fetch_and
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id76">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id77">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id78">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id79">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id80">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id81">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id82">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atomic-fetch-or">
+   atomic_fetch_or
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id83">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id84">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id85">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id86">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id87">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id88">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id89">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atomic-fetch-xor">
+   atomic_fetch_xor
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id90">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id91">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id92">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id93">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id94">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id95">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id96">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atomic-or">
+   atomic_or
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id97">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id98">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id99">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id100">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id101">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id102">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id103">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atomic-xor">
+   atomic_xor
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id104">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id105">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id106">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id107">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id108">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id109">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id110">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atomic-add">
+   atomic_add
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id111">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id112">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id113">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id114">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id115">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id116">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id117">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atomic-cas">
+   atomic_cas
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id118">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id119">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id120">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id121">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id122">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id123">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id124">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atomic-define">
+   atomic_define
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id125">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id126">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id127">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id128">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id129">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id130">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id131">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atomic-fetch-add">
+   atomic_fetch_add
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id132">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id133">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id134">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id135">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id136">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id137">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id138">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#atomic-ref">
+   atomic_ref
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id139">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id140">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id141">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id142">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id143">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id144">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id145">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+</nav>
+
+
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                 <section id="parallel-programming-using-co-arrays-and-co-indexed-arrays">
+<h1>Parallel programming using co_arrays and co_indexed arrays<a class="headerlink" href="#parallel-programming-using-co-arrays-and-co-indexed-arrays" title="此标题的永久链接">#</a></h1>
+<section id="co-broadcast">
+<h2>co_broadcast<a class="headerlink" href="#co-broadcast" title="此标题的永久链接">#</a></h2>
+<section id="name">
+<h3><strong>Name</strong><a class="headerlink" href="#name" title="此标题的永久链接">#</a></h3>
+<p><strong>co_broadcast</strong>(3) - [COLLECTIVE] Copy a value to all images the current set of images</p>
+</section>
+<section id="syntax">
+<h3><strong>Syntax</strong><a class="headerlink" href="#syntax" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_broadcast</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">source_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="description">
+<h3><strong>Description</strong><a class="headerlink" href="#description" title="此标题的永久链接">#</a></h3>
+<p><strong>co_broadcast(3)</strong> copies the value of argument <strong>a</strong> on the image with image
+index source_image to all images in the current team. <strong>a</strong> becomes defined
+as if by intrinsic assignment. If the execution was successful and <strong>stat</strong>
+is present, it is assigned the value zero. If the execution failed, <strong>stat</strong>
+gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned a
+value describing the occurred error.</p>
+</section>
+<section id="arguments">
+<h3><strong>Arguments</strong><a class="headerlink" href="#arguments" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>a</strong></dt><dd><p><strong>intent(inout)</strong> argument; shall have the same dynamic type and
+type parameters on all images of the current team. If it is an
+array, it shall have the same shape on all images.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>source_image</strong></dt><dd><p>a scalar integer expression. It shall have the same the same value
+on all images and refer to an image of the current team.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) a scalar integer variable</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>errmsg</strong></dt><dd><p>(optional) a scalar character variable</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="examples">
+<h3><strong>Examples</strong><a class="headerlink" href="#examples" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_broadcast</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"></span>
+<span class="w">   </span><span class="k">endif</span>
+<span class="k">   call </span><span class="n">co_broadcast</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">source_image</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">this_image</span><span class="p">(),</span><span class="w"> </span><span class="s2">&quot;:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_co_broadcast</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="see-also">
+<h3><strong>See Also</strong><a class="headerlink" href="#see-also" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>co_max</strong>(3)</span>,
+<span class="xref myst"><strong>co_min</strong>(3)</span>,
+<span class="xref myst"><strong>co_sum</strong>(3)</span>,
+<span class="xref myst"><strong>co_reduce</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="co-lbound">
+<h2>co_lbound<a class="headerlink" href="#co-lbound" title="此标题的永久链接">#</a></h2>
+<section id="id1">
+<h3><strong>Name</strong><a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h3>
+<p><strong>co_lbound</strong>(3) - [COLLECTIVE] Lower codimension bounds of an array</p>
+</section>
+<section id="id2">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">co_lbound</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3><strong>Description</strong><a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
+<p>Returns the lower bounds of a coarray, or a single lower cobound along
+the <strong>dim</strong> codimension.</p>
+</section>
+<section id="id4">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>array</strong></dt><dd><p>Shall be an coarray, of any type.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>dim</strong></dt><dd><p>(Optional) Shall be a scalar <em>integer</em>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>kind</strong></dt><dd><p>(Optional) An <em>integer</em> initialization expression indicating the kind
+parameter of the result.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="returns">
+<h3><strong>Returns</strong><a class="headerlink" href="#returns" title="此标题的永久链接">#</a></h3>
+<p>The return value is of type <em>integer</em> and of kind <strong>kind</strong>. If <strong>kind</strong> is absent,
+the return value is of default integer kind. If <strong>dim</strong> is absent, the
+result is an array of the lower cobounds of <strong>coarray</strong>. If <strong>dim</strong> is present,
+the result is a scalar corresponding to the lower cobound of the array
+along that codimension.</p>
+</section>
+<section id="standard">
+<h3><strong>Standard</strong><a class="headerlink" href="#standard" title="此标题的永久链接">#</a></h3>
+<p>Fortran 2008 and later</p>
+</section>
+<section id="id5">
+<h3><strong>See Also</strong><a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>co_ubound</strong>(3)</span>,
+<span class="xref myst"><strong>lbound</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="co-max">
+<h2>co_max<a class="headerlink" href="#co-max" title="此标题的永久链接">#</a></h2>
+<section id="id6">
+<h3><strong>Name</strong><a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
+<p><strong>co_max</strong>(3) - [COLLECTIVE] Maximal value on the current set of images</p>
+</section>
+<section id="id7">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h3><strong>Description</strong><a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
+<p>co_max determines element-wise the maximal value of <strong>a</strong> on all images of
+the current team. If result_image is present, the maximum values are
+returned in <strong>a</strong> on the specified image only and the value of <strong>a</strong> on the
+other images become undefined. If result_image is not present, the
+value is returned on all images. If the execution was successful and
+<strong>stat</strong> is present, it is assigned the value zero. If the execution failed,
+<strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned
+a value describing the occurred error.</p>
+</section>
+<section id="id9">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>a</strong></dt><dd><p>shall be an integer, real or character variable, which has the same
+type and type parameters on all images of the team.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>result_image</strong></dt><dd><p>(optional) a scalar integer expression; if present, it shall have
+the same the same value on all images and refer to an image of the
+current team.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) a scalar integer variable</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>errmsg</strong></dt><dd><p>(optional) a scalar character variable</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id10">
+<h3><strong>Examples</strong><a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_max</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
+<span class="w">   </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">co_max</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">     write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Maximal value&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="w">  </span><span class="c">! prints num_images()</span>
+<span class="w">   </span><span class="k">endif</span>
+<span class="k">end program </span><span class="n">demo_co_max</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    Maximal value           2
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h3><strong>Standard</strong><a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+</section>
+<section id="id12">
+<h3><strong>See Also</strong><a class="headerlink" href="#id12" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>co_min</strong>(3)</span>,
+<span class="xref myst"><strong>co_sum</strong>(3)</span>,
+<span class="xref myst"><strong>co_reduce</strong>(3)</span>,
+<span class="xref myst"><strong>co_broadcast</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="co-min">
+<h2>co_min<a class="headerlink" href="#co-min" title="此标题的永久链接">#</a></h2>
+<section id="id13">
+<h3><strong>Name</strong><a class="headerlink" href="#id13" title="此标题的永久链接">#</a></h3>
+<p><strong>co_min</strong>(3) - [COLLECTIVE] Minimal value on the current set of images</p>
+</section>
+<section id="id14">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id14" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id15">
+<h3><strong>Description</strong><a class="headerlink" href="#id15" title="此标题的永久链接">#</a></h3>
+<p>co_min determines element-wise the minimal value of <strong>a</strong> on all images of
+the current team. If result_image is present, the minimal values are
+returned in <strong>a</strong> on the specified image only and the value of <strong>a</strong> on the
+other images become undefined. If result_image is not present, the
+value is returned on all images. If the execution was successful and
+<strong>stat</strong> is present, it is assigned the value zero. If the execution failed,
+<strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned
+a value describing the occurred error.</p>
+</section>
+<section id="id16">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id16" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>a</strong></dt><dd><p>shall be an integer, real or character variable, which has the same
+type and type parameters on all images of the team.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>result_image</strong></dt><dd><p>(optional) a scalar integer expression; if present, it shall have
+the same the same value on all images and refer to an image of the
+current team.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) a scalar integer variable</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>errmsg</strong></dt><dd><p>(optional) a scalar character variable</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id17">
+<h3><strong>Examples</strong><a class="headerlink" href="#id17" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_min</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
+<span class="w">   </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">co_min</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">     write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Minimal value&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="w">  </span><span class="c">! prints 1</span>
+<span class="w">   </span><span class="k">endif</span>
+<span class="k">end program </span><span class="n">demo_co_min</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h3><strong>Standard</strong><a class="headerlink" href="#id18" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+</section>
+<section id="id19">
+<h3><strong>See Also</strong><a class="headerlink" href="#id19" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>co_max</strong>(3)</span>,
+<span class="xref myst"><strong>co_sum</strong>(3)</span>,
+<span class="xref myst"><strong>co_reduce</strong>(3)</span>,
+<span class="xref myst"><strong>co_broadcast</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="co-reduce">
+<h2>co_reduce<a class="headerlink" href="#co-reduce" title="此标题的永久链接">#</a></h2>
+<section id="id20">
+<h3><strong>Name</strong><a class="headerlink" href="#id20" title="此标题的永久链接">#</a></h3>
+<p><strong>co_reduce</strong>(3) - [COLLECTIVE] Reduction of values on the current set of images</p>
+</section>
+<section id="id21">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id21" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_reduce</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id22">
+<h3><strong>Description</strong><a class="headerlink" href="#id22" title="此标题的永久链接">#</a></h3>
+<p>co_reduce determines element-wise the reduction of the value of <strong>a</strong> on
+all images of the current team. The pure function passed as <strong>operation</strong> is
+used to pairwise reduce the values of <strong>a</strong> by passing either the value of <strong>a</strong>
+of different images or the result values of such a reduction as
+argument. If <strong>a</strong> is an array, the reduction is done element wise. If
+result_image is present, the result values are returned in <strong>a</strong> on the
+specified image only and the value of <strong>a</strong> on the other images become
+undefined. If result_image is not present, the value is returned on all
+images. If the execution was successful and <strong>stat</strong> is present, it is
+assigned the value zero. If the execution failed, <strong>stat</strong> gets assigned a
+nonzero value and, if present, <strong>errmsg</strong> gets assigned a value describing
+the occurred error.</p>
+</section>
+<section id="id23">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id23" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>a</strong></dt><dd><p>is an <strong>intent(inout)</strong> argument and shall be nonpolymorphic. If it
+is allocatable, it shall be allocated; if it is a pointer, it shall
+be associated. <strong>a</strong> shall have the same type and type parameters on all
+images of the team; if it is an array, it shall have the same shape
+on all images.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>operation</strong></dt><dd><p>pure function with two scalar nonallocatable arguments, which shall
+be nonpolymorphic and have the same type and type parameters as <strong>a</strong>.
+The function shall return a nonallocatable scalar of the same type
+and type parameters as <strong>a</strong>. The function shall be the same on all
+images and with regards to the arguments mathematically commutative
+and associative. Note that OPERATION may not be an elemental</p>
+<ul>
+<li><p><strong>function, unless it is an intrinsic function.</strong>
+result_image</p></li>
+<li><p>(optional) a scalar integer expression; if present, it shall
+have the same the same value on all images and refer to an image
+of the current team.</p></li>
+</ul>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) a scalar integer variable</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>errmsg</strong></dt><dd><p>(optional) a scalar character variable</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id24">
+<h3><strong>Examples</strong><a class="headerlink" href="#id24" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_reduce</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
+
+<span class="w">   </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">co_reduce</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">myprod</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Product value&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="w">  </span><span class="c">! prints num_images() factorial</span>
+<span class="w">   </span><span class="k">endif</span>
+
+<span class="k">contains</span>
+
+<span class="k">pure function </span><span class="n">myprod</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">myprod</span><span class="w"></span>
+<span class="w">   </span><span class="n">myprod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="k">end function </span><span class="n">myprod</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">demo_co_reduce</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="note">
+<h3><strong>Note</strong><a class="headerlink" href="#note" title="此标题的永久链接">#</a></h3>
+<p>While the rules permit in principle an intrinsic function, none of the
+intrinsics in the standard fulfill the criteria of having a specific
+function, which takes two arguments of the same type and returning that
+type as a result.</p>
+</section>
+<section id="id25">
+<h3><strong>Standard</strong><a class="headerlink" href="#id25" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+</section>
+<section id="id26">
+<h3><strong>See Also</strong><a class="headerlink" href="#id26" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>co_min</strong>(3)</span>,
+<span class="xref myst"><strong>co_max</strong>(3)</span>,
+<span class="xref myst"><strong>co_sum</strong>(3)</span>,
+<span class="xref myst"><strong>co_broadcast</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="co-sum">
+<h2>co_sum<a class="headerlink" href="#co-sum" title="此标题的永久链接">#</a></h2>
+<section id="id27">
+<h3><strong>Name</strong><a class="headerlink" href="#id27" title="此标题的永久链接">#</a></h3>
+<p><strong>co_sum</strong>(3) - [COLLECTIVE] Sum of values on the current set of images</p>
+</section>
+<section id="id28">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id28" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id29">
+<h3><strong>Description</strong><a class="headerlink" href="#id29" title="此标题的永久链接">#</a></h3>
+<p>co_sum sums up the values of each element of <strong>a</strong> on all images of the
+current team. If result_image is present, the summed-up values are
+returned in <strong>a</strong> on the specified image only and the value of <strong>a</strong> on the
+other images become undefined. If result_image is not present, the
+value is returned on all images. If the execution was successful and
+<strong>stat</strong> is present, it is assigned the value zero. If the execution failed,
+<strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned
+a value describing the occurred error.</p>
+</section>
+<section id="id30">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id30" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>a</strong></dt><dd><p>shall be an integer, real or complex variable, which has the same
+type and type parameters on all images of the team.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>result_image</strong></dt><dd><p>(optional) a scalar integer expression; if present, it shall have
+the same the same value on all images and refer to an image of the
+current team.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) a scalar integer variable</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>errmsg</strong></dt><dd><p>(optional) a scalar character variable</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id31">
+<h3><strong>Examples</strong><a class="headerlink" href="#id31" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_sum</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
+<span class="w">   </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">co_sum</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w"></span>
+<span class="w">      </span><span class="c">! prints (n**2 + n)/2, with n = num_images()</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;The sum is &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
+<span class="w">   </span><span class="k">endif</span>
+<span class="k">end program </span><span class="n">demo_co_sum</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    The sum is            1
+</pre></div>
+</div>
+</section>
+<section id="id32">
+<h3><strong>Standard</strong><a class="headerlink" href="#id32" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+</section>
+<section id="id33">
+<h3><strong>See Also</strong><a class="headerlink" href="#id33" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>co_max</strong>(3)</span>,
+<span class="xref myst"><strong>co_min</strong>(3)</span>,
+<span class="xref myst"><strong>co_reduce</strong>(3)</span>,
+<span class="xref myst"><strong>co_broadcast</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="co-ubound">
+<h2>co_ubound<a class="headerlink" href="#co-ubound" title="此标题的永久链接">#</a></h2>
+<section id="id34">
+<h3><strong>Name</strong><a class="headerlink" href="#id34" title="此标题的永久链接">#</a></h3>
+<p><strong>co_ubound</strong>(3) - [COLLECTIVE] Upper codimension bounds of an array</p>
+</section>
+<section id="id35">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id35" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">co_ubound</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id36">
+<h3><strong>Description</strong><a class="headerlink" href="#id36" title="此标题的永久链接">#</a></h3>
+<p>Returns the upper cobounds of a coarray, or a single upper cobound along
+the <strong>dim</strong> codimension.</p>
+</section>
+<section id="id37">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id37" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>array</strong></dt><dd><p>Shall be an coarray, of any type.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>dim</strong></dt><dd><p>(Optional) Shall be a scalar <em>integer</em>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>kind</strong></dt><dd><p>(Optional) An <em>integer</em> initialization expression indicating the kind
+parameter of the result.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id38">
+<h3><strong>Returns</strong><a class="headerlink" href="#id38" title="此标题的永久链接">#</a></h3>
+<p>The return value is of type <em>integer</em> and of kind <strong>kind</strong>. If <strong>kind</strong> is absent,
+the return value is of default integer kind. If <strong>dim</strong> is absent, the
+result is an array of the lower cobounds of <strong>coarray</strong>. If <strong>dim</strong> is present,
+the result is a scalar corresponding to the lower cobound of the array
+along that codimension.</p>
+</section>
+<section id="id39">
+<h3><strong>Standard</strong><a class="headerlink" href="#id39" title="此标题的永久链接">#</a></h3>
+<p>Fortran 2008 and later</p>
+</section>
+<section id="id40">
+<h3><strong>See Also</strong><a class="headerlink" href="#id40" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>co_lbound</strong>(3)</span>,
+<span class="xref myst"><strong>lbound</strong>(3)</span>,
+<span class="xref myst"><strong>ubound</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="event-query">
+<h2>event_query<a class="headerlink" href="#event-query" title="此标题的永久链接">#</a></h2>
+<section id="id41">
+<h3><strong>Name</strong><a class="headerlink" href="#id41" title="此标题的永久链接">#</a></h3>
+<p><strong>event_query</strong>(3) - [COLLECTIVE] Query whether a coarray event has occurred</p>
+</section>
+<section id="id42">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id42" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">event_query</span><span class="p">(</span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id43">
+<h3><strong>Description</strong><a class="headerlink" href="#id43" title="此标题的永久链接">#</a></h3>
+<p><strong>event_query</strong> assigns the number of events to <strong>count</strong> which have been
+posted to the <strong>event</strong> variable and not yet been removed by calling
+<strong>event_wait</strong>. When <strong>stat</strong> is present and the invocation was successful, it
+is assigned the value <strong>0</strong>. If it is present and the invocation has failed,
+it is assigned a positive value and <strong>count</strong> is assigned the value <strong>-1</strong>.</p>
+</section>
+<section id="id44">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id44" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>event</strong></dt><dd><p>(intent(in)) Scalar of type event_type, defined in
+iso_fortran_env; shall not be coindexed.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>count</strong></dt><dd><p>(intent(out))Scalar integer with at least the precision of default
+<em>integer</em>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(OPTIONAL) Scalar default-kind <em>integer</em> variable.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id45">
+<h3><strong>Examples</strong><a class="headerlink" href="#id45" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_event_query</span><span class="w"></span>
+<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="k">type</span><span class="p">(</span><span class="n">event_type</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">event_value_has_been_set</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cnt</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      call </span><span class="n">event_query</span><span class="p">(</span><span class="n">event_value_has_been_set</span><span class="p">,</span><span class="w"> </span><span class="n">cnt</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cnt</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Value has been set&quot;</span><span class="w"></span>
+<span class="w">   </span><span class="n">elseif</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      </span><span class="n">event</span><span class="w"> </span><span class="n">post</span><span class="p">(</span><span class="n">event_value_has_been_set</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"></span>
+<span class="w">   </span><span class="k">endif</span>
+<span class="k">end program </span><span class="n">demo_event_query</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id46">
+<h3><strong>Standard</strong><a class="headerlink" href="#id46" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="image-index">
+<h2>image_index<a class="headerlink" href="#image-index" title="此标题的永久链接">#</a></h2>
+<section id="id47">
+<h3><strong>Name</strong><a class="headerlink" href="#id47" title="此标题的永久链接">#</a></h3>
+<p><strong>image_index</strong>(3) - [COLLECTIVE] Cosubscript to image index conversion</p>
+</section>
+<section id="id48">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id48" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">image_index</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="n">sub</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id49">
+<h3><strong>Description</strong><a class="headerlink" href="#id49" title="此标题的永久链接">#</a></h3>
+<p>Returns the image index belonging to a cosubscript.</p>
+</section>
+<section id="id50">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id50" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>coarray</strong></dt><dd><p>Coarray of any type.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>sub</strong></dt><dd><p>default integer rank-1 array of a size equal to the corank of
+<strong>coarray</strong>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id51">
+<h3><strong>Returns</strong><a class="headerlink" href="#id51" title="此标题的永久链接">#</a></h3>
+<p>Scalar default integer with the value of the image index which
+corresponds to the cosubscripts. For invalid cosubscripts the result is
+zero.</p>
+</section>
+<section id="id52">
+<h3><strong>Examples</strong><a class="headerlink" href="#id52" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo</span><span class="w"> </span><span class="nb">image_index</span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">array</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
+<span class="w">   </span><span class="c">! Writes  28 (or 0 if there are fewer than 28 images)</span>
+<span class="w">   </span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="nb">image_index</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="w"></span>
+<span class="k">end </span><span class="n">demo</span><span class="w"> </span><span class="nb">image_index</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id53">
+<h3><strong>Standard</strong><a class="headerlink" href="#id53" title="此标题的永久链接">#</a></h3>
+<p>Fortran 2008 and later</p>
+</section>
+<section id="id54">
+<h3><strong>See Also</strong><a class="headerlink" href="#id54" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>this_image</strong>(3)</span>,
+<span class="xref myst"><strong>num_images</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="num-images">
+<h2>num_images<a class="headerlink" href="#num-images" title="此标题的永久链接">#</a></h2>
+<section id="id55">
+<h3><strong>Name</strong><a class="headerlink" href="#id55" title="此标题的永久链接">#</a></h3>
+<p><strong>num_images</strong>(3) - [COLLECTIVE] Number of images</p>
+</section>
+<section id="id56">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id56" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">num_images</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span><span class="w"> </span><span class="n">failed</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id57">
+<h3><strong>Description</strong><a class="headerlink" href="#id57" title="此标题的永久链接">#</a></h3>
+<p>Returns the number of images.</p>
+</section>
+<section id="id58">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id58" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>distance</strong></dt><dd><p>(optional, <strong>intent(in)</strong>) Nonnegative scalar integer</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>failed</strong></dt><dd><p>(optional, <strong>intent(in)</strong>) Scalar logical expression</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id59">
+<h3><strong>Returns</strong><a class="headerlink" href="#id59" title="此标题的永久链接">#</a></h3>
+<p>Scalar default-kind <em>integer</em>. If <strong>distance</strong> is not present or has value 0,
+the number of images in the current team is returned. For values smaller
+or equal distance to the initial team, it returns the number of images
+index on the ancestor team which has a distance of <strong>distance</strong> from the
+invoking team. If <strong>distance</strong> is larger than the distance to the initial
+team, the number of images of the initial team is returned. If <strong>failed</strong> is
+not present the total number of images is returned; if it has the value
+.true., the number of failed images is returned, otherwise, the number
+of images which do have not the failed status.</p>
+</section>
+<section id="id60">
+<h3><strong>Examples</strong><a class="headerlink" href="#id60" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_num_images</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"></span>
+<span class="w">   </span><span class="k">sync all</span>
+<span class="k">   if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">     do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">num_images</span><span class="p">()</span><span class="w"></span>
+<span class="w">       </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(2(a,i0))&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;value[&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;] is &#39;</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"></span>
+<span class="w">     </span><span class="k">end do</span>
+<span class="k">   endif</span>
+
+<span class="k">end program </span><span class="n">demo_num_images</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id61">
+<h3><strong>Standard</strong><a class="headerlink" href="#id61" title="此标题的永久链接">#</a></h3>
+<p>Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later</p>
+</section>
+<section id="id62">
+<h3><strong>See Also</strong><a class="headerlink" href="#id62" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>this_image</strong>(3)</span>,
+<span class="xref myst"><strong>image_index</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="this-image">
+<h2>this_image<a class="headerlink" href="#this-image" title="此标题的永久链接">#</a></h2>
+<section id="id63">
+<h3><strong>Name</strong><a class="headerlink" href="#id63" title="此标题的永久链接">#</a></h3>
+<p><strong>this_image</strong>(3) - [COLLECTIVE] Cosubscript index of this image</p>
+</section>
+<section id="id64">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id64" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">         </span><span class="p">&amp;</span><span class="w"> </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id65">
+<h3><strong>Description</strong><a class="headerlink" href="#id65" title="此标题的永久链接">#</a></h3>
+<p>Returns the cosubscript for this image.</p>
+</section>
+<section id="id66">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id66" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>distance</strong></dt><dd><p>(optional, <strong>intent(in)</strong>) Nonnegative scalar integer (not permitted
+together with <strong>coarray</strong>).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>coarray</strong></dt><dd><p>Coarray of any type (optional; if <strong>dim</strong> present, required).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>dim</strong></dt><dd><p>default integer scalar (optional). If present, <strong>dim</strong> shall be between
+one and the corank of <strong>coarray</strong>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id67">
+<h3><strong>Returns</strong><a class="headerlink" href="#id67" title="此标题的永久链接">#</a></h3>
+<p>Default integer. If <strong>coarray</strong> is not present, it is scalar; if <strong>distance</strong> is
+not present or has value <strong>0</strong>, its value is the image index on the invoking
+image for the current team, for values smaller or equal distance to the
+initial team, it returns the image index on the ancestor team which has
+a distance of <strong>distance</strong> from the invoking team. If <strong>distance</strong> is larger
+than the distance to the initial team, the image index of the initial
+team is returned. Otherwise when the <strong>coarray</strong> is present, if <strong>dim</strong> is not
+present, a rank-1 array with corank elements is returned, containing the
+cosubscripts for <strong>coarray</strong> specifying the invoking image. If <strong>dim</strong> is
+present, a scalar is returned, with the value of the <strong>dim</strong> element of
+<strong>this_image(coarray)</strong>.</p>
+</section>
+<section id="id68">
+<h3><strong>Examples</strong><a class="headerlink" href="#id68" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_this_image</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">   </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"></span>
+<span class="w">   </span><span class="k">sync all</span>
+<span class="k">   if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">num_images</span><span class="p">()</span><span class="w"></span>
+<span class="w">         </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(2(a,i0))&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;value[&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;] is &#39;</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="k">end do</span>
+<span class="k">   endif</span>
+<span class="k">end program </span><span class="n">demo_this_image</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>   value[1] is 1
+</pre></div>
+</div>
+<p>!
+! Check whether the current image is the initial image
+if (this_image(huge(1)) /= this_image())
+error stop “something is rotten here”</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
+<span class="c1">### __Standard__</span>
+
+<span class="n">Fortran</span> <span class="mi">2008</span> <span class="ow">and</span> <span class="n">later</span><span class="o">.</span> <span class="n">With</span> <span class="n">DISTANCE</span> <span class="n">argument</span><span class="p">,</span> <span class="n">TS</span> <span class="mi">18508</span>
+<span class="ow">or</span> <span class="n">later</span>
+
+<span class="c1">### __See Also__</span>
+
+<span class="p">[</span><span class="n">__num</span>\<span class="n">_images__</span><span class="p">(</span><span class="mi">3</span><span class="p">)](</span><span class="n">NUM_IMAGES</span><span class="p">),</span>
+<span class="p">[</span><span class="n">__image</span>\<span class="n">_index__</span><span class="p">(</span><span class="mi">3</span><span class="p">)](</span><span class="n">IMAGE_INDEX</span><span class="p">)</span>
+
+<span class="c1">####### fortran-lang intrinsic descriptions</span>
+</pre></div>
+</div>
+</section>
+</section>
+<section id="atomic-and">
+<h2>atomic_and<a class="headerlink" href="#atomic-and" title="此标题的永久链接">#</a></h2>
+<section id="id69">
+<h3><strong>Name</strong><a class="headerlink" href="#id69" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_and</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise AND operation</p>
+</section>
+<section id="id70">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id70" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_and</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id71">
+<h3><strong>Description</strong><a class="headerlink" href="#id71" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_and(atom, value)</strong> atomically defines <strong>atom</strong> with the bitwise
+<strong>and</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the
+invocation was successful, it is assigned the value 0. If it is present
+and the invocation has failed, it is assigned a positive value; in
+particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is
+assigned the value of iso_fortran_env’s stat_stopped_image and if
+the remote image has failed, the value stat_failed_image.</p>
+</section>
+<section id="id72">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id72" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
+atomic_int_kind kind.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
+is converted to the kind of <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id73">
+<h3><strong>Examples</strong><a class="headerlink" href="#id73" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_and</span><span class="w"></span>
+<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_and</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">))</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_atomic_and</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id74">
+<h3><strong>Standard</strong><a class="headerlink" href="#id74" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+</section>
+<section id="id75">
+<h3><strong>See Also</strong><a class="headerlink" href="#id75" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>atomic_fetch_and</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_define</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_ref</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_cas</strong>(3)</span>,
+<strong>iso_fortran_env</strong>(3),
+<span class="xref myst"><strong>atomic_add</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_or</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_xor</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="atomic-fetch-and">
+<h2>atomic_fetch_and<a class="headerlink" href="#atomic-fetch-and" title="此标题的永久链接">#</a></h2>
+<section id="id76">
+<h3><strong>Name</strong><a class="headerlink" href="#id76" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_fetch_and</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise AND operation with prior fetch</p>
+</section>
+<section id="id77">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id77" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_fetch_and</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id78">
+<h3><strong>Description</strong><a class="headerlink" href="#id78" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_fetch_and(atom, value, old)</strong> atomically stores the value of
+<strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise AND between the values of
+<strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful,
+it is assigned the value <strong>0</strong>. If it is present and the invocation has
+failed, it is assigned a positive value; in particular, for a coindexed
+<strong>atom</strong>, if the remote image has stopped, it is assigned the value of
+iso_fortran_env’s stat_stopped_image and if the remote image has
+failed, the value stat_failed_image.</p>
+</section>
+<section id="id79">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id79" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
+atomic_int_kind kind.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
+is converted to the kind of <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>old</strong></dt><dd><p>Scalar of the same type and kind as <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id80">
+<h3><strong>Examples</strong><a class="headerlink" href="#id80" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_fetch_and</span><span class="w"></span>
+<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">old</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_fetch_and</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">old</span><span class="p">)</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_atomic_fetch_and</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id81">
+<h3><strong>Standard</strong><a class="headerlink" href="#id81" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+</section>
+<section id="id82">
+<h3><strong>See Also</strong><a class="headerlink" href="#id82" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>atomic_define</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_and</strong>(3)</span>,
+<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>,</p>
+<p><span class="xref myst"><strong>atomic_fetch_add</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_fetch_or</strong>(3)</span>,</p>
+<p><span class="xref myst"><strong>atomic_fetch_xor</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="atomic-fetch-or">
+<h2>atomic_fetch_or<a class="headerlink" href="#atomic-fetch-or" title="此标题的永久链接">#</a></h2>
+<section id="id83">
+<h3><strong>Name</strong><a class="headerlink" href="#id83" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_fetch_or</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise OR operation with prior fetch</p>
+</section>
+<section id="id84">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id84" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_fetch_or</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id85">
+<h3><strong>Description</strong><a class="headerlink" href="#id85" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_fetch_or(atom, value, old)</strong> atomically stores the value of
+<strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise OR between the values of
+<strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful,
+it is assigned the value <strong>0</strong>. If it is present and the invocation has
+failed, it is assigned a positive value; in particular, for a coindexed
+<strong>atom</strong>, if the remote image has stopped, it is assigned the value of
+iso_fortran_env’s stat_stopped_image and if the remote image has
+failed, the value stat_failed_image.</p>
+</section>
+<section id="id86">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id86" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
+atomic_int_kind kind.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
+is converted to the kind of <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>old</strong></dt><dd><p>Scalar of the same type and kind as <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id87">
+<h3><strong>Examples</strong><a class="headerlink" href="#id87" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_fetch_or</span><span class="w"></span>
+<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">old</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_fetch_or</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">old</span><span class="p">)</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_atomic_fetch_or</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id88">
+<h3><strong>Standard</strong><a class="headerlink" href="#id88" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+</section>
+<section id="id89">
+<h3><strong>See Also</strong><a class="headerlink" href="#id89" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>atomic_define</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_or</strong>(3)</span>,
+<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>,</p>
+<p><span class="xref myst"><strong>atomic_fetch_add</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_fetch_and</strong>(3)</span>,</p>
+<p><span class="xref myst"><strong>atomic_fetch_xor</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="atomic-fetch-xor">
+<h2>atomic_fetch_xor<a class="headerlink" href="#atomic-fetch-xor" title="此标题的永久链接">#</a></h2>
+<section id="id90">
+<h3><strong>Name</strong><a class="headerlink" href="#id90" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_fetch_xor</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise XOR operation with prior fetch</p>
+</section>
+<section id="id91">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id91" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_fetch_xor</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id92">
+<h3><strong>Description</strong><a class="headerlink" href="#id92" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_fetch_xor(atom, value, old)</strong> atomically stores the value of
+<strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise <strong>xor</strong> between the values of
+<strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful,
+it is assigned the value <strong>0</strong>. If it is present and the invocation has
+failed, it is assigned a positive value; in particular, for a coindexed
+<strong>atom</strong>, if the remote image has stopped, it is assigned the value of
+iso_fortran_env’s stat_stopped_image and if the remote image has
+failed, the value stat_failed_image.</p>
+</section>
+<section id="id93">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id93" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
+atomic_int_kind kind.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
+is converted to the kind of <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>old</strong></dt><dd><p>Scalar of the same type and kind as <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id94">
+<h3><strong>Examples</strong><a class="headerlink" href="#id94" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_fetch_xor</span><span class="w"></span>
+<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">old</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_fetch_xor</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">old</span><span class="p">)</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_atomic_fetch_xor</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id95">
+<h3><strong>Standard</strong><a class="headerlink" href="#id95" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+</section>
+<section id="id96">
+<h3><strong>See Also</strong><a class="headerlink" href="#id96" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>atomic_define</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_xor</strong>(3)</span>,
+<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>,</p>
+<p><span class="xref myst"><strong>atomic_fetch_add</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_fetch_and</strong>(3)</span>,</p>
+<p><span class="xref myst"><strong>atomic_fetch_or</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="atomic-or">
+<h2>atomic_or<a class="headerlink" href="#atomic-or" title="此标题的永久链接">#</a></h2>
+<section id="id97">
+<h3><strong>Name</strong><a class="headerlink" href="#id97" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_or</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise OR operation</p>
+</section>
+<section id="id98">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id98" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_or__</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id99">
+<h3><strong>Description</strong><a class="headerlink" href="#id99" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_or(atom, value)</strong> atomically defines <strong>atom</strong> with the bitwise <strong>or</strong>
+between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the
+invocation was successful, it is assigned the value <strong>0</strong>. If it is present
+and the invocation has failed, it is assigned a positive value; in
+particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is
+assigned the value of iso_fortran_env’s stat_stopped_image and if
+the remote image has failed, the value stat_failed_image.</p>
+</section>
+<section id="id100">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id100" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
+atomic_int_kind kind.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
+is converted to the kind of <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id101">
+<h3><strong>Examples</strong><a class="headerlink" href="#id101" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_or</span><span class="w"></span>
+<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_or</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">))</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_atomic_or</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id102">
+<h3><strong>Standard</strong><a class="headerlink" href="#id102" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+</section>
+<section id="id103">
+<h3><strong>See Also</strong><a class="headerlink" href="#id103" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>atomic_define</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_fetch_or</strong>(3)</span>,</p>
+<p><span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_add</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_or</strong>(3)</span>,</p>
+<p><span class="xref myst"><strong>atomic_xor</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="atomic-xor">
+<h2>atomic_xor<a class="headerlink" href="#atomic-xor" title="此标题的永久链接">#</a></h2>
+<section id="id104">
+<h3><strong>Name</strong><a class="headerlink" href="#id104" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_xor</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise OR operation</p>
+</section>
+<section id="id105">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id105" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_xor</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id106">
+<h3><strong>Description</strong><a class="headerlink" href="#id106" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_xor(atom, value)</strong> atomically defines <strong>atom</strong> with the bitwise
+<strong>xor</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the
+invocation was successful, it is assigned the value <strong>0</strong>. If it is present
+and the invocation has failed, it is assigned a positive value; in
+particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is
+assigned the value of iso_fortran_env’s stat_stopped_image and if
+the remote image has failed, the value stat_failed_image.</p>
+</section>
+<section id="id107">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id107" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
+atomic_int_kind kind.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
+is converted to the kind of <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id108">
+<h3><strong>Examples</strong><a class="headerlink" href="#id108" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_xor</span><span class="w"></span>
+<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_xor</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">))</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_atomic_xor</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id109">
+<h3><strong>Standard</strong><a class="headerlink" href="#id109" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+</section>
+<section id="id110">
+<h3><strong>See Also</strong><a class="headerlink" href="#id110" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>atomic_define</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_fetch_xor</strong>(3)</span>,
+<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_add</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_or</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_xor</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="atomic-add">
+<h2>atomic_add<a class="headerlink" href="#atomic-add" title="此标题的永久链接">#</a></h2>
+<section id="id111">
+<h3><strong>Name</strong><a class="headerlink" href="#id111" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_add</strong>(3) - [ATOMIC] Atomic ADD operation</p>
+</section>
+<section id="id112">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id112" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_add</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id113">
+<h3><strong>Description</strong><a class="headerlink" href="#id113" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_ad(atom, value)</strong> atomically adds the value of VAR to the
+variable <strong>atom</strong>. When <strong>stat</strong> is present and the invocation was successful,
+it is assigned the value 0. If it is present and the invocation has
+failed, it is assigned a positive value; in particular, for a coindexed
+ATOM, if the remote image has stopped, it is assigned the value of
+iso_fortran_env’s stat_stopped_image and if the remote image has
+failed, the value stat_failed_image.</p>
+</section>
+<section id="id114">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id114" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
+atomic_int_kind kind.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
+is converted to the kind of <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id115">
+<h3><strong>Examples</strong><a class="headerlink" href="#id115" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_add</span><span class="w"></span>
+<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_add</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">this_image</span><span class="p">())</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_atomic_add</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id116">
+<h3><strong>Standard</strong><a class="headerlink" href="#id116" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+</section>
+<section id="id117">
+<h3><strong>See Also</strong><a class="headerlink" href="#id117" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>atomic_define</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_fetch_add</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_and</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_or</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_xor</strong>(3)</span>
+<strong>iso_fortran_env</strong>(3),</p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="atomic-cas">
+<h2>atomic_cas<a class="headerlink" href="#atomic-cas" title="此标题的永久链接">#</a></h2>
+<section id="id118">
+<h3><strong>Name</strong><a class="headerlink" href="#id118" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_cas</strong>(3) - [ATOMIC] Atomic compare and swap</p>
+</section>
+<section id="id119">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id119" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_cas</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="n">compare</span><span class="p">,</span><span class="w"> </span><span class="n">new</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id120">
+<h3><strong>Description</strong><a class="headerlink" href="#id120" title="此标题的永久链接">#</a></h3>
+<p>atomic_cas compares the variable <strong>atom</strong> with the value of <strong>compare</strong>; if the
+value is the same, <strong>atom</strong> is set to the value of <strong>new</strong>. Additionally, <strong>old</strong> is
+set to the value of <strong>atom</strong> that was used for the comparison. When <strong>stat</strong> is
+present and the invocation was successful, it is assigned the value 0.
+If it is present and the invocation has failed, it is assigned a
+positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image
+has stopped, it is assigned the value of iso_fortran_env’s
+stat_stopped_image and if the remote image has failed, the value
+stat_failed_image.</p>
+</section>
+<section id="id121">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id121" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of either integer type with
+atomic_int_kind kind or logical type with atomic_logical_kind
+kind.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>old</strong></dt><dd><p>Scalar of the same type and kind as <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>compare</strong></dt><dd><p>Scalar variable of the same type and kind as <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>new</strong></dt><dd><p>Scalar variable of the same type as <strong>atom</strong>. If kind is different, the
+value is converted to the kind of <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id122">
+<h3><strong>Examples</strong><a class="headerlink" href="#id122" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_cas</span><span class="w"></span>
+<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">logical</span><span class="p">(</span><span class="n">atomic_logical_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">prev</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_cas</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">prev</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.,</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.)</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_atomic_cas</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id123">
+<h3><strong>Standard</strong><a class="headerlink" href="#id123" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+</section>
+<section id="id124">
+<h3><strong>See Also</strong><a class="headerlink" href="#id124" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>atomic_define</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_ref</strong>(3)</span>,
+<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="atomic-define">
+<h2>atomic_define<a class="headerlink" href="#atomic-define" title="此标题的永久链接">#</a></h2>
+<section id="id125">
+<h3><strong>Name</strong><a class="headerlink" href="#id125" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_define</strong>(3) - [ATOMIC] Setting a variable atomically</p>
+</section>
+<section id="id126">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id126" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">atomic_define</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">subroutine </span><span class="nb">atomic_define</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="w"></span>
+<span class="w">   </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span>
+<span class="k">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">stat</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id127">
+<h3><strong>Description</strong><a class="headerlink" href="#id127" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_define(atom, value)</strong> defines the variable <strong>atom</strong> with the value
+<strong>value</strong> atomically. When <strong>stat</strong> is present and the invocation was
+successful, it is assigned the value <strong>0</strong>. If it is present and the
+invocation has failed, it is assigned a positive value; in particular,
+for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned
+the value of iso_fortran_env’s stat_stopped_image and if the remote
+image has failed, the value stat_failed_image.</p>
+</section>
+<section id="id128">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id128" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of either integer type with
+atomic_int_kind kind or logical type with atomic_logical_kind
+kind.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
+is converted to the kind of <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id129">
+<h3><strong>Examples</strong><a class="headerlink" href="#id129" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_define</span><span class="w"></span>
+<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">call </span><span class="nb">atomic_define</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">this_image</span><span class="p">())</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_atomic_define</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id130">
+<h3><strong>Standard</strong><a class="headerlink" href="#id130" title="此标题的永久链接">#</a></h3>
+<p>Fortran 2008 and later; with <strong>stat</strong>, TS 18508 or later</p>
+</section>
+<section id="id131">
+<h3><strong>See Also</strong><a class="headerlink" href="#id131" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>atomic_ref</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_cas</strong>(3)</span>,
+<strong>iso_fortran_env</strong>(3),
+<span class="xref myst"><strong>atomic_add</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_and</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_or</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_xor</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="atomic-fetch-add">
+<h2>atomic_fetch_add<a class="headerlink" href="#atomic-fetch-add" title="此标题的永久链接">#</a></h2>
+<section id="id132">
+<h3><strong>Name</strong><a class="headerlink" href="#id132" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_fetch_add</strong>(3) - [ATOMIC] Atomic ADD operation with prior fetch</p>
+</section>
+<section id="id133">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id133" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_fetch_add</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id134">
+<h3><strong>Description</strong><a class="headerlink" href="#id134" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_fetch_add(atom, value, old)</strong> atomically stores the value of
+<strong>atom</strong> in <strong>old</strong> and adds the value of <strong>var</strong> to the variable <strong>atom</strong>. When <strong>stat</strong> is
+present and the invocation was successful, it is assigned the value <strong>0</strong>.
+If it is present and the invocation has failed, it is assigned a
+positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image
+has stopped, it is assigned the value of iso_fortran_env’s
+stat_stopped_image and if the remote image has failed, the value
+stat_failed_image.</p>
+</section>
+<section id="id135">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id135" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
+atomic_int_kind kind. atomic_logical_kind kind.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
+is converted to the kind of <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>old</strong></dt><dd><p>Scalar of the same type and kind as <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id136">
+<h3><strong>Examples</strong><a class="headerlink" href="#id136" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_fetch_add</span><span class="w"></span>
+<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">old</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_add</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">this_image</span><span class="p">(),</span><span class="w"> </span><span class="n">old</span><span class="p">)</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_atomic_fetch_add</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id137">
+<h3><strong>Standard</strong><a class="headerlink" href="#id137" title="此标题的永久链接">#</a></h3>
+<p>TS 18508 or later</p>
+</section>
+<section id="id138">
+<h3><strong>See Also</strong><a class="headerlink" href="#id138" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>atomic_define</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_add</strong>(3)</span>,
+<strong>iso_fortran_env</strong>(3),</p>
+<p><span class="xref myst"><strong>atomic_fetch_and</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_fetch_or</strong>(3)</span>,</p>
+<p><span class="xref myst"><strong>atomic_fetch_xor</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+<section id="atomic-ref">
+<h2>atomic_ref<a class="headerlink" href="#atomic-ref" title="此标题的永久链接">#</a></h2>
+<section id="id139">
+<h3><strong>Name</strong><a class="headerlink" href="#id139" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_ref</strong>(3) - [ATOMIC] Obtaining the value of a variable atomically</p>
+</section>
+<section id="id140">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id140" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">atomic_ref</span><span class="p">(</span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id141">
+<h3><strong>Description</strong><a class="headerlink" href="#id141" title="此标题的永久链接">#</a></h3>
+<p><strong>atomic_ref(value, atom)</strong> atomically assigns the value of the
+variable <strong>atom</strong> to <strong>value</strong>. When <strong>stat</strong> is present and the invocation was
+successful, it is assigned the value <strong>0</strong>. If it is present and the
+invocation has failed, it is assigned a positive value; in particular,
+for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned
+the value of iso_fortran_env’s <strong>stat_stopped_image</strong> and if the remote
+image has failed, the value <strong>stat_failed_image</strong>.</p>
+</section>
+<section id="id142">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id142" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
+is converted to the kind of <strong>atom</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of either integer type with
+atomic_int_kind kind or logical type with atomic_logical_kind
+kind.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id143">
+<h3><strong>Examples</strong><a class="headerlink" href="#id143" title="此标题的永久链接">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_ref</span><span class="w"></span>
+<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">logical</span><span class="p">(</span><span class="n">atomic_logical_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
+<span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">atomic_ref</span><span class="p">(</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="c">! ```</span>
+<span class="w">   </span><span class="k">call </span><span class="nb">atomic_ref</span><span class="p">(</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Obtained&quot;</span><span class="w"></span>
+<span class="w">   </span><span class="k">endif</span>
+<span class="k">end program </span><span class="n">demo_atomic_ref</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id144">
+<h3><strong>Standard</strong><a class="headerlink" href="#id144" title="此标题的永久链接">#</a></h3>
+<p>Fortran 2008 and later; with STAT, TS 18508 or later</p>
+</section>
+<section id="id145">
+<h3><strong>See Also</strong><a class="headerlink" href="#id145" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>atomic_define</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_cas</strong>(3)</span>,
+<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>,</p>
+<p><span class="xref myst"><strong>atomic_fetch_add</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_fetch_and</strong>(3)</span>,</p>
+<p><span class="xref myst"><strong>atomic_fetch_or</strong>(3)</span>,
+<span class="xref myst"><strong>atomic_fetch_xor</strong>(3)</span></p>
+<p>####### fortran-lang intrinsic descriptions</p>
+</section>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>
