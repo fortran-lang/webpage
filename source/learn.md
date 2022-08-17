@@ -32,7 +32,7 @@ Try the quickstart Fortran tutorial, to get an overview of the language syntax a
 ```{card}
 :link-type: url
 :link: quickstart/
-:class-card: sd-btn sd-btn-light
+:class-card: sd-btn 
 :class-body: sd-p-1 sd-text-center sd-font-weight-bold sd-text-info sd-btn-primary sd-text-light sd-btn
 :shadow: none
 
@@ -55,7 +55,7 @@ Ask a question in the Fortran-lang discourse - a forum for friendly discussion o
 ```{card}
 :link-type: url
 :link: https://fortran-lang.discourse.group/
-:class-card: sd-btn sd-btn-light
+:class-card: sd-btn 
 :class-body: sd-p-1 sd-text-center sd-font-weight-bold sd-text-info sd-btn-primary sd-text-light sd-btn
 :shadow: none
 
