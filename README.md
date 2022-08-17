@@ -33,7 +33,7 @@ make dirhtml
 The website will be built in `build/html` and can be previewed by starting a webserver and opening the page with a browser (*e.g.* firefox, chromium or similar):
 
 ```
-python -m http.server -d build/html
+python3 -m http.server -d build/html
 ```
 
 By default all languages will be built.
@@ -42,6 +42,9 @@ To limit the build to a single language subtree, *i.e.* English, use
 ```
 make dirhtml LANGUAGES=en
 ```
+
+After adding a new entry to package index, run the github action *fortran\_packages* before building the sphinx build.
+
 ### Activating the pre-commit hooks for Black and Pylint:
 
 This assumes that you already have a cloned the main branch of this repository.

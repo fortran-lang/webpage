@@ -29,9 +29,12 @@ Getting Started
 
 Try the quickstart Fortran tutorial, to get an overview of the language syntax and capabilities.
 
-```{button-link} quickstart/
-:color: primary
-:expand:
+```{card}
+:link-type: url
+:link: quickstart/
+:class-card: sd-btn 
+:class-body: sd-p-1 sd-text-center sd-font-weight-bold sd-text-info sd-btn-primary sd-text-light sd-btn
+:shadow: none
 
 {octicon}``book;1em;sd-text-info`` Quickstart tutorial
 ```
@@ -49,9 +52,12 @@ Try the quickstart Fortran tutorial, to get an overview of the language syntax a
 
 Ask a question in the Fortran-lang discourse - a forum for friendly discussion of all things Fortran.
 
-```{button-link} https://fortran-lang.discourse.group/
-:color: primary
-:expand:
+```{card}
+:link-type: url
+:link: https://fortran-lang.discourse.group/
+:class-card: sd-btn 
+:class-body: sd-p-1 sd-text-center sd-font-weight-bold sd-text-info sd-btn-primary sd-text-light sd-btn
+:shadow: none
 
 {octicon}``check-circle;1em;sd-text-info`` Fortran-lang Discourse
 ```
