@@ -155,7 +155,7 @@ Visit the respective websites to browse available icons.
 
 ### Page contents
 
-It is sometimes useful to display a hyperlinked page contents for lengthy pages. the inpage toc tree has been automated and would generate the toc of the current page. whereas thd method to generate toc of the entire directory on `fortran-lang.org` is:
+It is sometimes helpful to display hyperlinked page contents for lengthy pages. The page TOC tree has been automated and will generate the TOC of the current page. Whereas the method to generate TOC of the entire directory on `Fortran-lang.org` is:
 
 __For pages in RST:__
 add a toc tree directive at the end of the index page of the directory with the names of the all files in that directory.
