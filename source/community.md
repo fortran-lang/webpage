@@ -117,7 +117,6 @@ Contributor Guide
 Want to contribute code and content?
 Check out the contributor guides in each repository for information
 on the project workflow and recommended practices.
-Contributor guide for stdlib   
 
 [Contributor guide for stdlib](https://github.com/fortran-lang/stdlib/blob/HEAD/WORKFLOW.md) <br>
 [Contributor guide for fpm](https://github.com/fortran-lang/fpm/blob/HEAD/CONTRIBUTING.md)<br>
