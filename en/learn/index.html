@@ -42,7 +42,9 @@
     <script src="../_static/copybutton.js"></script>
     <script src="../_static/design-tabs.js"></script>
     <link rel="index" title="Index" href="../genindex/" />
-    <link rel="search" title="Search" href="../search/" /> 
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="Quickstart tutorial" href="quickstart/" />
+    <link rel="prev" title="The Fortran Programming Language" href="../" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
     var pr_number = -1;
@@ -133,6 +135,128 @@
   
 </a>
     
+    <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+    
+    <div class="dropdown" id="version_switcher">
+    <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button"
+        data-toggle="dropdown">
+        en
+        <!-- this text may get changed later by javascript -->
+        <span class="caret"></span>
+    </button>
+    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0"
+        aria-labelledby="version_switcher_button">
+        <!-- dropdown will be populated by javascript on page load -->
+    </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables learn and {'version_match': 'en'}.
+-->
+
+<script type="text/javascript">
+    // Check if corresponding page path exists in other version of docs
+    // and, if so, go there instead of the homepage of the other docs version
+    function checkPageExistsAndRedirect(event) {
+        const currentFilePath = "learn",
+            tryUrl = event.target.getAttribute("href");
+        location.href = tryUrl;
+        // this prevents the browser from following the href of the clicked node
+        // (which is fine because this function takes care of redirecting)
+        return false;
+    }
+
+    // Populate the version switcher from the JSON config file
+    (function () {
+
+        const currentFilePath = "learn";
+        const indexFilePath = "../";
+        let btn = document.getElementById("version_switcher_button");
+        // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+        btn.dataset["activeVersionName"] = "";
+        btn.dataset["activeVersion"] = "";
+        // create links to the corresponding page in the other docs versions
+        data = [
+            {
+                "name": "en",
+                "version": "en",
+                "url": "../en/"
+            },
+            {
+                "name": "de",
+                "version": "de",
+                "url": "../de/"
+            },
+            {
+                "name": "fr",
+                "version": "fr",
+                "url": "../fr/"
+            },
+            {
+                "name": "es",
+                "version": "es",
+                "url": "../es/"
+            },
+            {
+                "name": "ja",
+                "version": "ja",
+                "url": "../ja/"
+            },
+            {
+                "name": "nl",
+                "version": "nl",
+                "url": "../nl/"
+            },
+            {
+                "name": "pt",
+                "version": "pt",
+                "url": "../pt/"
+            },
+            {
+                "name": "zh_CN",
+                "version": "zh_CN",
+                "url": "../zh_CN/"
+            }
+        ]; console.log(data);
+        $.each(data, function (index, entry) {
+            // if no custom name specified (e.g., "latest"), use version string
+            if (!("name" in entry)) {
+                entry.name = entry.version;
+            }
+            // create the node
+            const node = document.createElement("a");
+            node.setAttribute("class", "list-group-item list-group-item-action py-1");
+            node.textContent = `${entry.name}`;
+            node.setAttribute("href", `${indexFilePath}${entry.url}${currentFilePath}`);
+            // on click, AJAX calls will check if the linked page exists before
+            // trying to redirect, and if not, will redirect to the homepage
+            // for that version of the docs.
+            node.onclick = checkPageExistsAndRedirect;
+            // Add dataset values for the version and name in case people want
+            // to apply CSS styling based on this information.
+            node.dataset["versionName"] = entry.name;
+            node.dataset["version"] = entry.version;
+
+            $("#version_switcher_menu").append(node);
+            // replace dropdown button text with the preferred display name of
+            // this version, rather than using sphinx's  variable.
+            // also highlight the dropdown entry for the currently-viewed
+            // version's entry
+            if (entry.version == "en") {
+                node.classList.add("active");
+                btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+                btn.dataset["activeVersion"] = entry.version;
+            }
+        });
+
+    })();
+</script>
+    
   </div>
 
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
@@ -144,124 +268,44 @@
     <div id="navbar-center" class="ml-auto">
       
       <div class="navbar-center-item">
-        <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main">
-   <div class="container-xl">
-      <div id="navbar-start">
-         <a class="navbar-brand" href="../index.html">
-            <img src="../_static/images/fortran-logo-256x256.png" class="logo" alt="logo">
-         </a>
-      </div>
-      <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible"
-         aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
-         <span class="navbar-toggler-icon"></span>
-      </button>
-      <div id="navbar-collapsible" class=" collapse navbar-collapse">
-         <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
-            <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
-            <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
-            <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
-         </span>
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  Learn
+ </a>
+</li>
 
-         <div class="dropdown" id="version_switcher">
-            <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button"
-               data-toggle="dropdown">
-               language
-               <span class="caret"></span>
-            </button>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../compilers/">
+  Compilers
+ </a>
+</li>
 
-            <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0"
-               aria-labelledby="version_switcher_button">
-               <a class="list-group-item list-group-item-action py-1" href="../../de/learn/"><span>de</span></a>
-               <a class="list-group-item list-group-item-action py-1" href="../../en/learn/"><span>en</span></a>
-               <a class="list-group-item list-group-item-action py-1" href="../../es/learn/"><span>es</span></a>
-               <a class="list-group-item list-group-item-action py-1" href="../../fr/learn/"><span>fr</span></a>
-               <a class="list-group-item list-group-item-action py-1" href="../../ja/learn/"><span>ja</span></a>
-               <a class="list-group-item list-group-item-action py-1" href="../../nl/learn/"><span>nl</span></a>
-               <a class="list-group-item list-group-item-action py-1"
-                  href="../../zh_CN/learn/"><span>zh_CN</span></a>
-               <a class="list-group-item list-group-item-action py-1" href="../../pt/learn/"><span>pt</span></a>
-            </div>
-            
-         </div>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../community/">
+  Community
+ </a>
+</li>
 
-         <div id="navbar-center" class="ml-auto">
-            <div class="navbar-center-item">
-               <ul id="navbar-main-elements" class="navbar-nav">
-                  <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link" href="../learn">
-                        Learn
-                     </a>
-                  </li>
-                  <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link" href="../compilers">
-                        Compilers
-                     </a>
-                  </li>
-                  <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link" href="../community">
-                        Community
-                     </a>
-                  </li>
-                  <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link" href="../packages">
-                        Packages
-                     </a>
-                  </li>
-                  <li class="toctree-l1 nav-item">
-                     <a class="reference internal nav-link" href="../news">
-                        News
-                     </a>
-                  </li>
-               </ul>
-            </div>
-         </div>
-         <div id="navbar-end">
-            <div class="navbar-end-item">
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../packages/">
+  Packages
+ </a>
+</li>
 
-               <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
-                  <li class="nav-item">
-                     <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank"
-                        title="Discourse"><span><i class="fab fa-discourse" style="color:#734f96"></i></span>
-                        <label class="sr-only">Discourse</label></a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank"
-                        title="Twitter"><span><i class="fab fa-twitter" style="color:#734f96"></i></span>
-                        <label class="sr-only">Twitter</label></a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank"
-                        title="GitHub"><span><i class="fab fa-github" style="color:#734f96"></i></span>
-                        <label class="sr-only">GitHub</label></a>
-                  </li>
-                  <li class="nav-item">
-                     <a class="nav-link" href="../news/atom.xml" rel="noopener" target="_blank"
-                        title="RSS"><span><i class="fas fa-rss" style="color:#734f96"></i></span>
-                        <label class="sr-only">RSS</label></a>
-                  </li>
-               </ul>
-            </div>
-         </div>
-         <form class="bd-search d-flex align-items-center" action="../search/index.html"
-            method="get"> <i class="icon fas fa-search"></i> <input type="search" class="form-control" name="q"
-               id="search-input" placeholder="Search" aria-label="Search" autocomplete="off"> </form>
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../news/">
+  News
+ </a>
+</li>
 
-      </div>
-   </div>
-</nav>
+    
+</ul>
       </div>
       
     </div>
 
     <div id="navbar-end">
-      
-      <div class="navbar-end-item">
-        <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
-    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
-    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
-    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
-</span>
-      </div>
       
       <div class="navbar-end-item">
         <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
@@ -278,10 +322,17 @@
             <label class="sr-only">GitHub</label></a>
         </li>
         <li class="nav-item">
-          <a class="nav-link" href="https://fortran-lang.org/news.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+          <a class="nav-link" href="https://fortran-lang.org/news/atom.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
             <label class="sr-only">RSS</label></a>
         </li>
       </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search" aria-label="Search" autocomplete="off" >
+</form>
       </div>
       
     </div>
@@ -343,7 +394,11 @@
 <div class="sd-card-title sd-font-weight-bold docutils">
 <svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-info sd-text-info" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M8 1.5a6.5 6.5 0 100 13 6.5 6.5 0 000-13zM0 8a8 8 0 1116 0A8 8 0 010 8zm6.5-.25A.75.75 0 017.25 7h1a.75.75 0 01.75.75v2.75h.25a.75.75 0 010 1.5h-2a.75.75 0 010-1.5h.25v-2h-.25a.75.75 0 01-.75-.75zM8 6a1 1 0 100-2 1 1 0 000 2z"></path></svg> New to Fortran</div>
 <p class="sd-card-text">Try the quickstart Fortran tutorial, to get an overview of the language syntax and capabilities.</p>
-<p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference external" href="quickstart/"><span><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-book sd-text-info" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M0 1.75A.75.75 0 01.75 1h4.253c1.227 0 2.317.59 3 1.501A3.744 3.744 0 0111.006 1h4.245a.75.75 0 01.75.75v10.5a.75.75 0 01-.75.75h-4.507a2.25 2.25 0 00-1.591.659l-.622.621a.75.75 0 01-1.06 0l-.622-.621A2.25 2.25 0 005.258 13H.75a.75.75 0 01-.75-.75V1.75zm8.755 3a2.25 2.25 0 012.25-2.25H14.5v9h-3.757c-.71 0-1.4.201-1.992.572l.004-7.322zm-1.504 7.324l.004-5.073-.002-2.253A2.25 2.25 0 005.003 2.5H1.5v9h3.757a3.75 3.75 0 011.994.574z"></path></svg> Quickstart tutorial</span></a></span></p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-none sd-card-hover sd-btn docutils">
+<div class="sd-card-body sd-p-1 sd-text-center sd-font-weight-bold sd-text-info sd-btn-primary sd-text-light sd-btn docutils">
+<p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-book sd-text-info" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M0 1.75A.75.75 0 01.75 1h4.253c1.227 0 2.317.59 3 1.501A3.744 3.744 0 0111.006 1h4.245a.75.75 0 01.75.75v10.5a.75.75 0 01-.75.75h-4.507a2.25 2.25 0 00-1.591.659l-.622.621a.75.75 0 01-1.06 0l-.622-.621A2.25 2.25 0 005.258 13H.75a.75.75 0 01-.75-.75V1.75zm8.755 3a2.25 2.25 0 012.25-2.25H14.5v9h-3.757c-.71 0-1.4.201-1.992.572l.004-7.322zm-1.504 7.324l.004-5.073-.002-2.253A2.25 2.25 0 005.003 2.5H1.5v9h3.757a3.75 3.75 0 011.994.574z"></path></svg> Quickstart tutorial</p>
+</div>
+<a class="sd-stretched-link reference external" href="quickstart/"></a></div>
 </div>
 </div>
 </div>
@@ -359,7 +414,11 @@
 <div class="sd-card-title sd-font-weight-bold docutils">
 <svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-bug sd-text-info" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M4.72.22a.75.75 0 011.06 0l1 .999a3.492 3.492 0 012.441 0l.999-1a.75.75 0 111.06 1.061l-.775.776c.616.63.995 1.493.995 2.444v.327c0 .1-.009.197-.025.292.408.14.764.392 1.029.722l1.968-.787a.75.75 0 01.556 1.392L13 7.258V9h2.25a.75.75 0 010 1.5H13v.5c0 .409-.049.806-.141 1.186l2.17.868a.75.75 0 01-.557 1.392l-2.184-.873A4.997 4.997 0 018 16a4.997 4.997 0 01-4.288-2.427l-2.183.873a.75.75 0 01-.558-1.392l2.17-.868A5.013 5.013 0 013 11v-.5H.75a.75.75 0 010-1.5H3V7.258L.971 6.446a.75.75 0 01.558-1.392l1.967.787c.265-.33.62-.583 1.03-.722a1.684 1.684 0 01-.026-.292V4.5c0-.951.38-1.814.995-2.444L4.72 1.28a.75.75 0 010-1.06zM6.173 5h3.654A.173.173 0 0010 4.827V4.5a2 2 0 10-4 0v.327c0 .096.077.173.173.173zM5.25 6.5a.75.75 0 00-.75.75V11a3.5 3.5 0 107 0V7.25a.75.75 0 00-.75-.75h-5.5z"></path></svg> Looking for help</div>
 <p class="sd-card-text">Ask a question in the Fortran-lang discourse - a forum for friendly discussion of all things Fortran.</p>
-<p class="sd-card-text"><span class="sd-d-grid"><a class="sd-sphinx-override sd-btn sd-text-wrap sd-btn-primary reference external" href="https://fortran-lang.discourse.group/"><span><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-check-circle sd-text-info" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM0 8a8 8 0 1116 0A8 8 0 010 8zm11.78-1.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg> Fortran-lang Discourse</span></a></span></p>
+<div class="sd-card sd-sphinx-override sd-mb-3 sd-shadow-none sd-card-hover sd-btn docutils">
+<div class="sd-card-body sd-p-1 sd-text-center sd-font-weight-bold sd-text-info sd-btn-primary sd-text-light sd-btn docutils">
+<p class="sd-card-text"><svg version="1.1" width="1.0em" height="1.0em" class="sd-octicon sd-octicon-check-circle sd-text-info" viewBox="0 0 16 16" aria-hidden="true"><path fill-rule="evenodd" d="M1.5 8a6.5 6.5 0 1113 0 6.5 6.5 0 01-13 0zM0 8a8 8 0 1116 0A8 8 0 010 8zm11.78-1.72a.75.75 0 00-1.06-1.06L6.75 9.19 5.28 7.72a.75.75 0 00-1.06 1.06l2 2a.75.75 0 001.06 0l4.5-4.5z"></path></svg> Fortran-lang Discourse</p>
+</div>
+<a class="sd-stretched-link reference external" href="https://fortran-lang.discourse.group/"></a></div>
 </div>
 </div>
 </div>

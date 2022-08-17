@@ -70,6 +70,8 @@ To add a package simply create a new entry within this file.
 The data file is ordered by high-level categories merely to aid in navigation;
 find the appropriate category for your package and create a new entry.
 
+#### After adding a new entry to package index , Run the github action fortran_packages before building the sphinx build.
+
 ### Github hosted packages
 
 ```
