@@ -63,9 +63,6 @@ It is good practice to indent code within constructs such as `if` and `do`
 to make code more readable.
 ::::
 
-{% include tip.html content="It is good practice to indent code within constructs such as `if` and `do`
-to make code more readable." %}
-
 We can add an alternative branch to the construct using the `else` keyword:
 
 __Example:__ two-branch `if`-`else`
