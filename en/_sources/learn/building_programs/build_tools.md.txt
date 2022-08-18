@@ -302,8 +302,6 @@ You should find the expected (or maybe unexpected) printout after running ``make
     echo -I./include -I/opt/some_dep/include -O
     -I./include -I/opt/some_dep/include -O
 
-{% include note.html content="" %}
-
 ::::{tip}
 appending with ``+=`` to an undefined variable will produce a recursively expanded variable with this state being inherited for all further appending.
 ::::
