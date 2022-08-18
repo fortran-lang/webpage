@@ -2,7 +2,7 @@
 # You can set these variables from the command line, and also
 # from the environment .
 
-LANGUAGES     ?= en de zh_CN es fr nl ja pt
+LANGUAGES     ?= en cs de zh_CN es fr nl ja pt
 SPHINXINTL    ?= sphinx-intl
 SPHINXOPTS    ?=
 SPHINXBUILD   ?= sphinx-build
