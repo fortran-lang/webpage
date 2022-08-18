@@ -10,44 +10,42 @@ There are two main forms of controlling program flow:
 
 - _Loop_: repeat a portion of code multiple times
 
-
-
 # Logical operators
+
 Before we use a conditional branching operator, we need to be able to form
 a logical expression.
 
 To form a logical expression, the following set of relational operators are available:
 
-| Operator &nbsp;  | Alternative &nbsp;    | Description                                                     |
-|:----------------:|:---------------------:|-----------------------------------------------------------------|
-| `==`             | `.eq.`                | Tests for equality of two operands                              |
-| `/=`             | `.ne.`                | Test for inequality of two operands                             |
-| `> `             | `.gt.`                | Tests if left operand is strictly greater than right operand    |
-| `< `             | `.lt.`                | Tests if left operand is strictly less than right operand       |
-| `>=`             | `.ge.`                | Tests if left operand is greater than or equal to right operand |
-| `<=`             | `.le.`                | Tests if left operand is less than or equal to right operand    |
+| Operator &nbsp; | Alternative &nbsp; | Description                                                     |
+| :-------------: | :----------------: | --------------------------------------------------------------- |
+|      `==`       |       `.eq.`       | Tests for equality of two operands                              |
+|      `/=`       |       `.ne.`       | Test for inequality of two operands                             |
+|      `> `       |       `.gt.`       | Tests if left operand is strictly greater than right operand    |
+|      `< `       |       `.lt.`       | Tests if left operand is strictly less than right operand       |
+|      `>=`       |       `.ge.`       | Tests if left operand is greater than or equal to right operand |
+|      `<=`       |       `.le.`       | Tests if left operand is less than or equal to right operand    |
 
 <br>
 
 as well as the following logical operators:
 
-| Operator &nbsp;       | Description                                                          |
-|:---------------------:|----------------------------------------------------------------------|
-| `.and.`               | TRUE if both left and right operands are TRUE                        |
-| `.or.`                | TRUE if either left or right or both operands are TRUE               |
-| `.not.`               | TRUE if right operand is FALSE                                       |
-| `.eqv.`               | TRUE if left operand has same logical value as right operand         |
-| `.neqv.`              | TRUE if left operand has the opposite logical value as right operand |
+| Operator &nbsp; | Description                                                          |
+| :-------------: | -------------------------------------------------------------------- |
+|     `.and.`     | TRUE if both left and right operands are TRUE                        |
+|     `.or.`      | TRUE if either left or right or both operands are TRUE               |
+|     `.not.`     | TRUE if right operand is FALSE                                       |
+|     `.eqv.`     | TRUE if left operand has same logical value as right operand         |
+|    `.neqv.`     | TRUE if left operand has the opposite logical value as right operand |
 
 <br>
-
 
 ## Conditional construct (`if`)
 
 In the following examples, a conditional `if` construct is used to print out a
 message to describe the nature of the `angle` variable:
 
-__Example:__ single branch `if`
+**Example:** single branch `if`
 
 ```fortran
 if (angle < 90.0) then
@@ -63,12 +61,9 @@ It is good practice to indent code within constructs such as `if` and `do`
 to make code more readable.
 ::::
 
-{% include tip.html content="It is good practice to indent code within constructs such as `if` and `do`
-to make code more readable." %}
-
 We can add an alternative branch to the construct using the `else` keyword:
 
-__Example:__ two-branch `if`-`else`
+**Example:** two-branch `if`-`else`
 
 ```fortran
 if (angle < 90.0) then
@@ -83,7 +78,8 @@ on the logical expression following the `if` keyword.
 
 We can actually add any number of branches using `else if` to specify more conditions:
 
-__Example:__ multi-branch  `if`-`else if`-`else`
+**Example:** multi-branch `if`-`else if`-`else`
+
 ```fortran
 if (angle < 90.0) then
   print *, 'Angle is acute'
@@ -107,7 +103,7 @@ is currently executing. In this example we use a common name for this counter va
 When we define the start of the `do` loop, we use our counter variable name followed by an equals (`=`) sign
 to specify the start value and final value of our counting variable.
 
-__Example:__ `do` loop
+**Example:** `do` loop
 
 ```fortran
 integer :: i
@@ -117,7 +113,7 @@ do i = 1, 10
 end do
 ```
 
-__Example:__ `do` loop with skip
+**Example:** `do` loop with skip
 
 ```fortran
 integer :: i
@@ -132,7 +128,7 @@ end do
 A condition may be added to a `do` loop with the `while` keyword. The loop will be executed while the condition given
 in `while()` evaluates to `.true.`.
 
-__Example:__ `do while()` loop
+**Example:** `do while()` loop
 
 ```fortran
 integer :: i
@@ -152,7 +148,7 @@ with such cases.
 
 `exit` is used to quit the loop prematurely. It is usually enclosed inside an `if`.
 
-__Example:__ loop with `exit`
+**Example:** loop with `exit`
 
 ```fortran
 integer :: i
@@ -168,7 +164,7 @@ end do
 
 On the other hand, `cycle` skips whatever is left of the loop and goes into the next cycle.
 
-__Example:__ loop with `cycle`
+**Example:** loop with `cycle`
 
 ```fortran
 integer :: i
@@ -188,10 +184,11 @@ When used within nested loops, the `cycle` and `exit` statements operate on the 
 ### Nested loop control: tags
 
 A recurring case in any programming language is the use of nested loops. Nested loops refer to loops that exist within another loop. Fortran allows the programmer to _tag_ or _name_ each loop. If loops are tagged, there are two potential benefits:
+
 1. The readability of the code may be improved (when the naming is meaningful).
 2. `exit` and `cycle` may be used with tags, which allows for very fine-grained control of the loops.
 
-__Example:__ tagged nested loops
+**Example:** tagged nested loops
 
 ```fortran
 integer :: i, j
@@ -212,15 +209,13 @@ The `do concurrent` loop is used to explicitly specify that the _inside of the l
 that any given loop iteration does not depend on the prior execution of other loop iterations. It is also necessary that any state changes that may occur must only happen within each `do concurrent` loop.
 These requirements place restrictions on what can be placed within the loop body.
 
+> Simply replacing a `do` loop with a `do concurrent` does not guarantee parallel execution.
+> The explanation given above does not detail all the requirements that need to be met in order to write a correct `do concurrent` loop.
+> Compilers are also free to do as they see fit, meaning they may not optimize the loop (e.g., a small number of iterations doing a simple calculation, like the
+> below example).
+> In general, compiler flags are required to activate possible parallelization for `do concurrent` loops.
 
-
->Simply replacing a `do` loop with a `do concurrent` does not guarantee parallel execution.
->The explanation given above does not detail all the requirements that need to be met in order to write a correct `do concurrent` loop.
->Compilers are also free to do as they see fit, meaning they may not optimize the loop (e.g., a small number of iterations doing a simple calculation, like the >below example).
->In general, compiler flags are required to activate possible parallelization for `do concurrent` loops.
-
-
-__Example:__ `do concurrent()` loop
+**Example:** `do concurrent()` loop
 
 ```fortran
 real, parameter :: pi = 3.14159265
