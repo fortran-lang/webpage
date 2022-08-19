@@ -26,18 +26,15 @@ added to LLVM.
 It is implemented in modern C++ and uses a Fortran-oriented MLIR dialect for lowering to LLVM IR.
 This project is under active development.
 
-
 <h4> <b> Current Flang</b></h4>
 
 [Flang](https://github.com/flang-compiler/flang) is an open source compiler
 based on the NVIDIA/PGI commercial compiler.
 
-
 <h4> <b> LFortran </b></h4>
 
 [LFortran](https://lfortran.org) is a modern, interactive, LLVM-based Fortran
 compiler.
-
 
 <p style="font-size:24px;color:#734f96;"><b>Commercial compilers</b></p>
 
@@ -48,15 +45,14 @@ is Intel's suite of compilers, tools, and libraries for Fortran, C, C++, and
 Python. Intel oneAPI HPC Toolkit provides
 [two Fortran compilers](https://software.intel.com/content/www/us/en/develop/articles/intel-oneapi-fortran-compiler-release-notes.html):
 
-* Intel Fortran Compiler Classic (`ifort`), a mature compiler
+- Intel Fortran Compiler Classic (`ifort`), a mature compiler
   with full Fortran 2018 support; and
-* Intel Fortran Compiler Beta (`ifx`), a new, LLVM-based compiler
+- Intel Fortran Compiler Beta (`ifx`), a new, LLVM-based compiler
   that supports Fortran 95 and partially newer versions of the standard.
 
 Intel oneAPI is available for free.
-Currently the compiler supports Linux, MacOS and Windows platforms and x86\_64 architectures.
+Currently the compiler supports Linux, MacOS and Windows platforms and x86_64 architectures.
 Community support is available for the free version at the [Intel Developer forum](https://community.intel.com/t5/Intel-Fortran-Compiler/bd-p/fortran-compiler).
-
 
 <h4> <b> NAG </b></h4>
 
@@ -75,9 +71,8 @@ generator, interface builder and a precision unifier.
 The [NVIDIA HPC SDK](https://developer.nvidia.com/hpc-sdk) C, C++, and Fortran compilers, former [PGI compilers](https://www.pgroup.com/products/index.htm), support GPU acceleration of HPC modeling and simulation applications with standard C++ and Fortran, OpenACC® directives, and CUDA®. GPU-accelerated math libraries maximize performance on common HPC algorithms, and optimized communications libraries enable standards-based multi-GPU and scalable systems programming.
 
 NVHPC compilers are available free of charge.
-Currently the compiler supports Linux platforms and x86\_64, ppc64le and aarch64 architectures.
+Currently the compiler supports Linux platforms and x86_64, ppc64le and aarch64 architectures.
 Community support is available at the [HPC compiler forum](https://forums.developer.nvidia.com/c/accelerated-computing/hpc-compilers/nvc-nvc-and-nvfortran/313).
-
 
 <h4> <b> HPE / Cray</b></h4>
 
@@ -102,7 +97,6 @@ scientific and high-performance computing.
 A community edition of the IBM XL compilers are available free of charge.
 The compilers support Linux and AIX platforms and ppc64le architectures.
 
-
 <h4> <b> AMD </b></h4>
 
 The [AMD Optimizing C/C++ Compiler (AOCC)](https://developer.amd.com/amd-aocc/)
@@ -117,8 +111,7 @@ the optimal performance from each x86 processor core when utilized. The AOCC
 Compiler Suite simplifies and accelerates development and tuning for x86
 applications.
 
-The AOCC compilers are available free of charge and support Linux platforms with x86\_64 architectures.
-
+The AOCC compilers are available free of charge and support Linux platforms with x86_64 architectures.
 
 <h4> <b> ARM </b></h4>
 
@@ -142,10 +135,9 @@ graphical rendering and data output.
 [Oracle C, C++, Fortran Compiler](https://www.oracle.com/application-development/technologies/developerstudio-features.html)
 is highly optimized for Oracle systems, on-premise and in the cloud
 
-* Advanced code generation technology for the latest Oracle SPARC and x86 based systems
-* Support for the latest industry standards, including C++14, C++11, C11 and OpenMP 4.0 and extensive GCC compatibility features
-* Automatic code analysis during compilation and automatic stack overflow protection at application runtime
-
+- Advanced code generation technology for the latest Oracle SPARC and x86 based systems
+- Support for the latest industry standards, including C++14, C++11, C11 and OpenMP 4.0 and extensive GCC compatibility features
+- Automatic code analysis during compilation and automatic stack overflow protection at application runtime
 
 <h4> <b> Lahey / Fujitsu </b></h4>
 
@@ -167,7 +159,6 @@ of Fortran 77, Fortran 90 and Fortran 95.
 Some features of Fortran 2003 and 2008 have been [added](https://www.silverfrost.com/19/ftn95/support/ftn95_revision_history.aspx).
 Silverfrost Fortran runs on Windows / x86_64. There is a free personal edition.
 
-
 <h4> <b> NEC </b></h4>
 
 [The Fortran compiler](https://www.nec.com/en/global/solutions/hpc/sx/tools.html)
@@ -187,17 +178,16 @@ for x86_64 architecture is available.
 The following is a list of Fortran compilers that seem discontinued, so we do
 not list them above:
 
-* Apogee
-* Edinburgh Portable Compilers
-* Hewlett Packard
-* Watcom
-* PathScale
-* G95
-* Open64
-* Unisys
+- Apogee
+- Edinburgh Portable Compilers
+- Hewlett Packard
+- Watcom
+- PathScale
+- G95
+- Open64
+- Unisys
 
 <h3> Note </h3>
 
 Please let us know if there is any compiler that is not listed, or if we listed
 a compiler in the Discontinued section and it is in fact actively maintained.
-

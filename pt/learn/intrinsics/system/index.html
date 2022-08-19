@@ -48,30 +48,42 @@
     <link rel="prev" title="General and miscellaneous intrinsics" href="../state/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-    var pr_number = -1;
-    $(document).ready(function () {
-
-        if (window.location.href.indexOf("/pr/") > -1) {
-            pr_number = window.location.href.split('/').indexOf("pr") + 1;
-            document.getElementById("pr").innerHTML = "pull request " + window.location.href.split('/')[pr_number];
-            document.getElementById("pr").href = "https://github.com/fortran-lang/webpage/pull/" + window.location.href.split('/')[pr_number];
-            var banner = document.getElementById("banner");
-            banner.style.display = "block";
-        }
-    });
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
 </script>
-<div id="banner" style='display:none' class="container">
-    <h3>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-git-pull-request">
-            <circle cx="18" cy="18" r="3"></circle>
-            <circle cx="6" cy="6" r="3"></circle>
-            <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
-            <line x1="6" y1="9" x2="6" y2="21"></line>
-        </svg>
-        <b>Site preview: </b>you are previewing unpublished changes for <a id="pr"></a>
-    </h3>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
 </div> 
 <link
   rel="alternate"
@@ -143,16 +155,23 @@
 </span>
     
     <div class="dropdown" id="version_switcher">
-    <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button"
-        data-toggle="dropdown">
-        pt
-        <!-- this text may get changed later by javascript -->
-        <span class="caret"></span>
-    </button>
-    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0"
-        aria-labelledby="version_switcher_button">
-        <!-- dropdown will be populated by javascript on page load -->
-    </div>
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    pt
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
 </div>
 
 <!-- NOTE: this JS must live here (not in our global JS file) because it relies
@@ -161,106 +180,108 @@
 -->
 
 <script type="text/javascript">
-    // Check if corresponding page path exists in other version of docs
-    // and, if so, go there instead of the homepage of the other docs version
-    function checkPageExistsAndRedirect(event) {
-        const currentFilePath = "learn/intrinsics/system/index",
-            tryUrl = event.target.getAttribute("href");
-        location.href = tryUrl;
-        // this prevents the browser from following the href of the clicked node
-        // (which is fine because this function takes care of redirecting)
-        return false;
-    }
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "learn/intrinsics/system/index",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
 
-    // Populate the version switcher from the JSON config file
-    (function () {
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "learn/intrinsics/system/index";
+    const indexFilePath = "../../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
 
-        const currentFilePath = "learn/intrinsics/system/index";
-        const indexFilePath = "../../../";
-        let btn = document.getElementById("version_switcher_button");
-        // Set empty strings by default so that these attributes exist and can be used in CSS selectors
-        btn.dataset["activeVersionName"] = "";
-        btn.dataset["activeVersion"] = "";
-        // create links to the corresponding page in the other docs versions
-        data = [
-            {
-                "name": "en",
-                "version": "en",
-                "url": "../en/"
-            },
-            {
-                "name": "cs",
-                "version": "cs",
-                "url": "../cs/"
-            },
-            {
-                "name": "de",
-                "version": "de",
-                "url": "../de/"
-            },
-            {
-                "name": "es",
-                "version": "es",
-                "url": "../es/"
-            },
-            {
-                "name": "fr",
-                "version": "fr",
-                "url": "../fr/"
-            },
-            {
-                "name": "ja",
-                "version": "ja",
-                "url": "../ja/"
-            },
-            {
-                "name": "nl",
-                "version": "nl",
-                "url": "../nl/"
-            },
-            {
-                "name": "pt",
-                "version": "pt",
-                "url": "../pt/"
-            },
-            {
-                "name": "zh_CN",
-                "version": "zh_CN",
-                "url": "../zh_CN/"
-            }
-        ]; console.log(data);
-        $.each(data, function (index, entry) {
-            // if no custom name specified (e.g., "latest"), use version string
-            if (!("name" in entry)) {
-                entry.name = entry.version;
-            }
-            // create the node
-            const node = document.createElement("a");
-            node.setAttribute("class", "list-group-item list-group-item-action py-1");
-            node.textContent = `${entry.name}`;
-            node.setAttribute("href", `${indexFilePath}${entry.url}${currentFilePath}`);
-            // on click, AJAX calls will check if the linked page exists before
-            // trying to redirect, and if not, will redirect to the homepage
-            // for that version of the docs.
-            node.onclick = checkPageExistsAndRedirect;
-            // Add dataset values for the version and name in case people want
-            // to apply CSS styling based on this information.
-            node.dataset["versionName"] = entry.name;
-            node.dataset["version"] = entry.version;
-
-            $("#version_switcher_menu").append(node);
-            // replace dropdown button text with the preferred display name of
-            // this version, rather than using sphinx's  variable.
-            // also highlight the dropdown entry for the currently-viewed
-            // version's entry
-            if (entry.version == "pt") {
-                node.classList.add("active");
-                btn.innerText = btn.dataset["activeVersionName"] = entry.name;
-                btn.dataset["activeVersion"] = entry.version;
-            }
-        });
-
-    })();
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "pt") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
 </script>
     
   </div>
@@ -634,7 +655,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../GNU_Free_Documentation_License/">
+    <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
      GNU Free Documentation License
     </a>
    </li>
@@ -677,49 +698,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#name">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#syntax">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#description">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#arguments">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#returns">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#examples">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#standard">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -740,42 +761,42 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id3">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id4">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id5">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id6">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -796,49 +817,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id8">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id9">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id10">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#options">
      <strong>
-      Opções
+      Options
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id11">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id12">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id13">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -859,42 +880,42 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id15">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id16">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id17">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id18">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id19">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id20">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -915,42 +936,42 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id22">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id23">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id24">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id25">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id26">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id27">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -964,7 +985,7 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#resources">
      <strong>
-      Recursos
+      Resources
      </strong>
     </a>
    </li>
@@ -978,42 +999,42 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id29">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id30">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id31">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id32">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id33">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id34">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -1034,49 +1055,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id36">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id37">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id38">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id39">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id40">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#note">
      <strong>
-      Nota
+      Note
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id41">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -1090,49 +1111,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id42">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id43">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id44">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id45">
      <strong>
-      Opções
+      Options
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id46">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id47">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id48">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -1159,11 +1180,11 @@
 <section id="command-argument-count">
 <h2>command_argument_count<a class="headerlink" href="#command-argument-count" title="Permalink to this heading">#</a></h2>
 <section id="name">
-<h3><strong>Nome</strong><a class="headerlink" href="#name" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#name" title="Permalink to this heading">#</a></h3>
 <p><strong>command_argument_count</strong>(3) - [SYSTEM:COMMAND LINE] Get number of command line arguments</p>
 </section>
 <section id="syntax">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#syntax" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#syntax" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">command_argument_count</span><span class="p">()</span><span class="w"></span>
 
 <span class="w">     </span><span class="kt">integer </span><span class="k">function </span><span class="nb">command_argument_count</span><span class="p">()</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="nb">count</span><span class="p">)</span><span class="w"></span>
@@ -1172,16 +1193,16 @@
 </div>
 </section>
 <section id="description">
-<h3><strong>Descrição</strong><a class="headerlink" href="#description" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#description" title="Permalink to this heading">#</a></h3>
 <p><strong>command_argument_count()</strong> returns the number of arguments passed
 on the command line when the containing program was invoked.</p>
 </section>
 <section id="arguments">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#arguments" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#arguments" title="Permalink to this heading">#</a></h3>
 <p>None</p>
 </section>
 <section id="returns">
-<h3><strong>Retorno</strong><a class="headerlink" href="#returns" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#returns" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>count</strong></dt><dd><p>The return value is of type default <em>integer</em>. It is the number of
@@ -1192,7 +1213,7 @@ arguments passed on the command line when the program was invoked.</p>
 </ul>
 </section>
 <section id="examples">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_command_argument_count</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -1215,7 +1236,7 @@ arguments passed on the command line when the program was invoked.</p>
 </div>
 </section>
 <section id="standard">
-<h3><strong>Padrão</strong><a class="headerlink" href="#standard" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#standard" title="Permalink to this heading">#</a></h3>
 <p>Fortran 2003 and later</p>
 </section>
 <section id="see-also">
@@ -1228,11 +1249,11 @@ arguments passed on the command line when the program was invoked.</p>
 <section id="get-command">
 <h2>get_command<a class="headerlink" href="#get-command" title="Permalink to this heading">#</a></h2>
 <section id="id1">
-<h3><strong>Nome</strong><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p><strong>get_command</strong>(3) - [SYSTEM:COMMAND LINE] Get the entire command line</p>
 </section>
 <section id="id2">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">call </span><span class="nb">get_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">subroutine </span><span class="nb">get_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="n">length</span><span class="p">,</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
@@ -1243,7 +1264,7 @@ arguments passed on the command line when the program was invoked.</p>
 </div>
 </section>
 <section id="id3">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>Retrieve the entire command line that was used to invoke the program.</p>
 <p>Note that what is typed on the command line is often processed by
 a shell. The shell typically processes special characters and white
@@ -1253,7 +1274,7 @@ and/or changing the default field separators, but this should rarely
 be necessary.</p>
 </section>
 <section id="id4">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>command</strong></dt><dd><p>Shall be of type <em>character</em> and of default kind. If
@@ -1279,7 +1300,7 @@ in case of an error.</p>
 </ul>
 </section>
 <section id="id5">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_get_command</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -1312,7 +1333,7 @@ in case of an error.</p>
 </div>
 </section>
 <section id="id6">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <p>Fortran 2003 and later</p>
 </section>
 <section id="id7">
@@ -1325,11 +1346,11 @@ in case of an error.</p>
 <section id="get-command-argument">
 <h2>get_command_argument<a class="headerlink" href="#get-command-argument" title="Permalink to this heading">#</a></h2>
 <section id="id8">
-<h3><strong>Nome</strong><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <p><strong>get_command_argument</strong>(3) - [SYSTEM:COMMAND LINE] Get command line arguments</p>
 </section>
 <section id="id9">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">     </span><span class="k">subroutine </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="k">value</span><span class="p">,</span><span class="n">length</span><span class="p">.</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
@@ -1341,7 +1362,7 @@ in case of an error.</p>
 </div>
 </section>
 <section id="id10">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
 <p>Retrieve the <strong>number</strong>-th argument that was passed on the command line
 when the containing program was invoked.</p>
 <p>There is not anything specifically stated about what an argument is but
@@ -1350,7 +1371,7 @@ are quoted and IFS values (Internal Field Separators) used by common
 shells are ignored.</p>
 </section>
 <section id="options">
-<h3><strong>Opções</strong><a class="headerlink" href="#options" title="Permalink to this heading">#</a></h3>
+<h3><strong>Options</strong><a class="headerlink" href="#options" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>number</strong></dt><dd><p>Shall be a scalar of type <strong>integer</strong>, <strong>number &gt;= 0</strong>. If <strong>number =
@@ -1362,7 +1383,7 @@ this feature).</p>
 </ul>
 </section>
 <section id="id11">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>value</strong>
 :Shall be a scalar of type <em>character</em> and of default kind. After
@@ -1382,7 +1403,7 @@ truncated command line argument, <strong>status</strong> is <strong>-1</strong>;
 </ul>
 </section>
 <section id="id12">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_get_command_argument</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -1413,7 +1434,7 @@ truncated command line argument, <strong>status</strong> is <strong>-1</strong>;
 <span class="w">     </span><span class="n">longest</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">longest</span><span class="p">,</span><span class="n">argument_length</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="k">enddo</span><span class="w"></span>
 <span class="w">  </span><span class="c">!</span>
-<span class="w">  </span><span class="c">! allocate string array big enough to hold command line </span>
+<span class="w">  </span><span class="c">! allocate string array big enough to hold command line</span>
 <span class="w">  </span><span class="c">! argument strings and related information</span>
 <span class="w">  </span><span class="c">!</span>
 <span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">longest</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">args</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">count</span><span class="p">))</span><span class="w"></span>
@@ -1447,7 +1468,7 @@ truncated command line argument, <strong>status</strong> is <strong>-1</strong>;
 </div>
 </section>
 <section id="id13">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
 <p>Fortran 2003 and later</p>
 </section>
 <section id="id14">
@@ -1460,18 +1481,18 @@ truncated command line argument, <strong>status</strong> is <strong>-1</strong>;
 <section id="cpu-time">
 <h2>cpu_time<a class="headerlink" href="#cpu-time" title="Permalink to this heading">#</a></h2>
 <section id="id15">
-<h3><strong>Nome</strong><a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h3>
 <p><strong>cpu_time</strong>(3) - [SYSTEM:TIME] return CPU processor time in seconds</p>
 </section>
 <section id="id16">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="nb">time</span><span class="p">)</span><span class="w"></span>
 <span class="w">     </span><span class="kt">real</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">time</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id17">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
 <p>Returns a <em>real</em> value representing the elapsed CPU time in seconds. This
 is useful for testing segments of code to determine execution time.</p>
 <p>The exact definition of time is left imprecise because of the
@@ -1486,26 +1507,26 @@ parallel processor) might choose to provide an additional version for
 which time is an array.</p>
 </section>
 <section id="id18">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h3>
-<ul class="simple">
+<h3><strong>Returns</strong><a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h3>
+<ul>
 <li><dl class="simple myst">
 <dt><strong>TIME</strong></dt><dd><p>The type shall be <em>real</em> with <strong>intent(out)</strong>. It is assigned a
 processor-dependent approximation to the processor time in seconds.
 If the processor cannot return a meaningful time, a
 processor-dependent negative value</p>
-<ul>
+</dd>
+</dl>
+<ul class="simple">
 <li><p><strong>is returned.</strong>
 The start time is left imprecise because the purpose is to time
 sections of code, as in the example. This might or might not
 include system overhead time.</p></li>
 </ul>
-</dd>
-</dl>
 </li>
 </ul>
 </section>
 <section id="id19">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_cpu_time</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -1526,7 +1547,7 @@ include system overhead time.</p></li>
 </div>
 </section>
 <section id="id20">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
 <p>Fortran 95 and later</p>
 </section>
 <section id="id21">
@@ -1539,11 +1560,11 @@ include system overhead time.</p></li>
 <section id="date-and-time">
 <h2>date_and_time<a class="headerlink" href="#date-and-time" title="Permalink to this heading">#</a></h2>
 <section id="id22">
-<h3><strong>Nome</strong><a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h3>
 <p><strong>date_and_time</strong>(3) - [SYSTEM:TIME] gets current time</p>
 </section>
 <section id="id23">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">subroutine </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">zone</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">     </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">date</span><span class="w"></span>
@@ -1554,14 +1575,14 @@ include system overhead time.</p></li>
 </div>
 </section>
 <section id="id24">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
 <p><strong>date_and_time(date, time, zone, values)</strong> gets the corresponding
 date and time information from the real-time system clock.</p>
 <p>Unavailable time and date <em>character</em> parameters return blanks.</p>
 </section>
 <section id="id25">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
-<ul>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>date</strong></dt><dd><p>A character string of default kind of the form CCYYMMDD, of length 8 or larger.</p>
 </dd>
@@ -1580,45 +1601,29 @@ representing the difference with respect to Coordinated Universal Time (UTC).</p
 </li>
 <li><dl class="simple myst">
 <dt><strong>values</strong></dt><dd><p>An <em>integer</em> array of eight elements that contains:</p>
-<ul class="simple">
-<li><p><strong>values</strong>(1)</p></li>
-</ul>
-<p>: The year</p>
-<ul class="simple">
-<li><p><strong>values</strong>(2)</p></li>
-</ul>
-<p>: The month</p>
-<ul class="simple">
-<li><p><strong>values</strong>(3)</p></li>
-</ul>
-<p>: The day of the month</p>
-<ul class="simple">
-<li><p><strong>values</strong>(4)</p></li>
-</ul>
-<p>: Time difference with UTC in minutes</p>
-<ul class="simple">
-<li><p><strong>values</strong>(5)</p></li>
-</ul>
-<p>: The hour of the day</p>
-<ul class="simple">
-<li><p><strong>values</strong>(6)</p></li>
-</ul>
-<p>: The minutes of the hour</p>
-<ul class="simple">
-<li><p><strong>values</strong>(7)</p></li>
-</ul>
-<p>: The seconds of the minute</p>
-<ul class="simple">
-<li><p><strong>values</strong>(8)</p></li>
-</ul>
-<p>: The milliseconds of the second</p>
+</dd>
+<dt>- <strong>values</strong>(1)</dt><dd><p>The year</p>
+</dd>
+<dt>- <strong>values</strong>(2)</dt><dd><p>The month</p>
+</dd>
+<dt>- <strong>values</strong>(3)</dt><dd><p>The day of the month</p>
+</dd>
+<dt>- <strong>values</strong>(4)</dt><dd><p>Time difference with UTC in minutes</p>
+</dd>
+<dt>- <strong>values</strong>(5)</dt><dd><p>The hour of the day</p>
+</dd>
+<dt>- <strong>values</strong>(6)</dt><dd><p>The minutes of the hour</p>
+</dd>
+<dt>- <strong>values</strong>(7)</dt><dd><p>The seconds of the minute</p>
+</dd>
+<dt>- <strong>values</strong>(8)</dt><dd><p>The milliseconds of the second</p>
 </dd>
 </dl>
 </li>
 </ul>
 </section>
 <section id="id26">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_date_and_time</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -1660,7 +1665,7 @@ representing the difference with respect to Coordinated Universal Time (UTC).</p
 </div>
 </section>
 <section id="id27">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h3>
 <p>Fortran 95 and later</p>
 </section>
 <section id="id28">
@@ -1669,7 +1674,7 @@ representing the difference with respect to Coordinated Universal Time (UTC).</p
 <span class="xref myst"><strong>system_clock</strong>(3)</span></p>
 </section>
 <section id="resources">
-<h3><strong>Recursos</strong><a class="headerlink" href="#resources" title="Permalink to this heading">#</a></h3>
+<h3><strong>Resources</strong><a class="headerlink" href="#resources" title="Permalink to this heading">#</a></h3>
 <p>date and time conversion, formatting and computation</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://github.com/urbanjost/M_time">M_time</a></p></li>
@@ -1682,11 +1687,11 @@ representing the difference with respect to Coordinated Universal Time (UTC).</p
 <section id="system-clock">
 <h2>system_clock<a class="headerlink" href="#system-clock" title="Permalink to this heading">#</a></h2>
 <section id="id29">
-<h3><strong>Nome</strong><a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h3>
 <p><strong>system_clock</strong>(3) - [SYSTEM:TIME] Return numeric data from a real-time clock.</p>
 </section>
 <section id="id30">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="nb">system_clock</span><span class="p">(</span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span>
@@ -1698,7 +1703,7 @@ representing the difference with respect to Coordinated Universal Time (UTC).</p
 </div>
 </section>
 <section id="id31">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h3>
 <p><strong>system_clock</strong> lets you measure durations of time with the precision of
 the smallest time increment generally available on a system by returning
 processor-dependent values based on the current value of the processor
@@ -1717,7 +1722,7 @@ boot, for example). It is most often used for measuring or tracking the
 time spent in code blocks in lieu of using profiling tools.</p>
 </section>
 <section id="id32">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>count</strong></dt><dd><p>(optional) shall be an <em>integer</em> scalar. It is assigned a
@@ -1746,7 +1751,7 @@ value that <strong>COUNT</strong> can have, or zero if there is no clock.</p>
 </ul>
 </section>
 <section id="id33">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_system_clock</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -1780,7 +1785,7 @@ approximately 18.20648193 ticks per second, at 11:30 A.M. the reference</p>
 </div>
 </section>
 <section id="id34">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h3>
 <p>Fortran 95 and later</p>
 </section>
 <section id="id35">
@@ -1793,11 +1798,11 @@ approximately 18.20648193 ticks per second, at 11:30 A.M. the reference</p>
 <section id="execute-command-line">
 <h2>execute_command_line<a class="headerlink" href="#execute-command-line" title="Permalink to this heading">#</a></h2>
 <section id="id36">
-<h3><strong>Nome</strong><a class="headerlink" href="#id36" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id36" title="Permalink to this heading">#</a></h3>
 <p><strong>execute_command_line</strong>(3) - [SYSTEM:PROCESSES] Execute a shell command</p>
 </section>
 <section id="id37">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id37" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id37" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">subroutine </span><span class="nb">execute_command_line</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="w"> </span><span class="n">wait</span><span class="p">,</span><span class="w"> </span><span class="n">exitstat</span><span class="p">,</span><span class="w"> </span><span class="n">cmdstat</span><span class="p">,</span><span class="w"> </span><span class="n">cmdmsg</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">command</span><span class="w"></span>
@@ -1809,7 +1814,7 @@ approximately 18.20648193 ticks per second, at 11:30 A.M. the reference</p>
 </div>
 </section>
 <section id="id38">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id38" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id38" title="Permalink to this heading">#</a></h3>
 <p>The <strong>command</strong> argument is passed to the shell and executed. (The shell is
 generally <strong>sh</strong>(1) on Unix systems, and cmd.exe on Windows.) If <strong>wait</strong> is
 present and has the value <strong>.false.</strong>, the execution of the command is
@@ -1828,7 +1833,7 @@ returns after the command line has completed execution. Otherwise,
 <strong>execute_command_line</strong> returns without waiting.</p>
 </section>
 <section id="id39">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id39" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id39" title="Permalink to this heading">#</a></h3>
 <ul>
 <li><dl class="simple myst">
 <dt><strong>command</strong></dt><dd><p>a default <em>character</em> scalar containing the command line to be
@@ -1875,7 +1880,7 @@ processor-dependent explanatory message.Otherwise, it is unchanged.</p>
 </ul>
 </section>
 <section id="id40">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id40" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id40" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_exec</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -1891,7 +1896,7 @@ processor-dependent explanatory message.Otherwise, it is unchanged.</p>
 </div>
 </section>
 <section id="note">
-<h3><strong>Nota</strong><a class="headerlink" href="#note" title="Permalink to this heading">#</a></h3>
+<h3><strong>Note</strong><a class="headerlink" href="#note" title="Permalink to this heading">#</a></h3>
 <p>Because this intrinsic is making a system call, it is very system
 dependent. Its behavior with respect to signaling is processor
 dependent. In particular, on POSIX-compliant systems, the SIGINT and
@@ -1900,7 +1905,7 @@ such, if the parent process is terminated, the child process might not
 be terminated alongside.</p>
 </section>
 <section id="id41">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id41" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id41" title="Permalink to this heading">#</a></h3>
 <p>Fortran 2008 and later</p>
 <p>####### fortran-lang intrinsic descriptions</p>
 </section>
@@ -1908,11 +1913,11 @@ be terminated alongside.</p>
 <section id="get-environment">
 <h2>get_environment<a class="headerlink" href="#get-environment" title="Permalink to this heading">#</a></h2>
 <section id="id42">
-<h3><strong>Nome</strong><a class="headerlink" href="#id42" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id42" title="Permalink to this heading">#</a></h3>
 <p><strong>get_environment_variable</strong>(3) - [SYSTEM:ENVIRONMENT] Get an environmental variable</p>
 </section>
 <section id="id43">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id43" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id43" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">call </span><span class="nb">get_environment_variable</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">trim_name</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
@@ -1924,14 +1929,14 @@ be terminated alongside.</p>
 </div>
 </section>
 <section id="id44">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id44" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id44" title="Permalink to this heading">#</a></h3>
 <p>Get the <strong>value</strong> of the environmental variable <strong>name</strong>.</p>
 <p>Note that <strong>get_environment_variable</strong>(3) need not be thread-safe. It
 is the responsibility of the user to ensure that the environment is not
 being updated concurrently.</p>
 </section>
 <section id="id45">
-<h3><strong>Opções</strong><a class="headerlink" href="#id45" title="Permalink to this heading">#</a></h3>
+<h3><strong>Options</strong><a class="headerlink" href="#id45" title="Permalink to this heading">#</a></h3>
 <ul>
 <li><dl class="simple myst">
 <dt><strong>name</strong></dt><dd><p>The name of the environment variable to query.</p>
@@ -1942,7 +1947,7 @@ being updated concurrently.</p>
 </ul>
 </section>
 <section id="id46">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id46" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id46" title="Permalink to this heading">#</a></h3>
 <ul>
 <li><dl class="simple myst">
 <dt><strong>value</strong></dt><dd><p>The value of the environment variable being queried.</p>
@@ -1980,7 +1985,7 @@ variable name.</p>
 </ul>
 </section>
 <section id="id47">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id47" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id47" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_getenv</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -2037,7 +2042,7 @@ variable name.</p>
 </div>
 </section>
 <section id="id48">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id48" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id48" title="Permalink to this heading">#</a></h3>
 <p>Fortran 2003 and later</p>
 <p>####### fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost</p>
 </section>

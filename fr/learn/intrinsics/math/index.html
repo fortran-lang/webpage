@@ -48,30 +48,42 @@
     <link rel="prev" title="Procedures for binding to C interfaces" href="../cfi/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-    var pr_number = -1;
-    $(document).ready(function () {
-
-        if (window.location.href.indexOf("/pr/") > -1) {
-            pr_number = window.location.href.split('/').indexOf("pr") + 1;
-            document.getElementById("pr").innerHTML = "pull request " + window.location.href.split('/')[pr_number];
-            document.getElementById("pr").href = "https://github.com/fortran-lang/webpage/pull/" + window.location.href.split('/')[pr_number];
-            var banner = document.getElementById("banner");
-            banner.style.display = "block";
-        }
-    });
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
 </script>
-<div id="banner" style='display:none' class="container">
-    <h3>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-git-pull-request">
-            <circle cx="18" cy="18" r="3"></circle>
-            <circle cx="6" cy="6" r="3"></circle>
-            <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
-            <line x1="6" y1="9" x2="6" y2="21"></line>
-        </svg>
-        <b>Site preview: </b>you are previewing unpublished changes for <a id="pr"></a>
-    </h3>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
 </div> 
 <link
   rel="alternate"
@@ -143,16 +155,23 @@
 </span>
     
     <div class="dropdown" id="version_switcher">
-    <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button"
-        data-toggle="dropdown">
-        fr
-        <!-- this text may get changed later by javascript -->
-        <span class="caret"></span>
-    </button>
-    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0"
-        aria-labelledby="version_switcher_button">
-        <!-- dropdown will be populated by javascript on page load -->
-    </div>
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    fr
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
 </div>
 
 <!-- NOTE: this JS must live here (not in our global JS file) because it relies
@@ -161,106 +180,108 @@
 -->
 
 <script type="text/javascript">
-    // Check if corresponding page path exists in other version of docs
-    // and, if so, go there instead of the homepage of the other docs version
-    function checkPageExistsAndRedirect(event) {
-        const currentFilePath = "learn/intrinsics/math/index",
-            tryUrl = event.target.getAttribute("href");
-        location.href = tryUrl;
-        // this prevents the browser from following the href of the clicked node
-        // (which is fine because this function takes care of redirecting)
-        return false;
-    }
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "learn/intrinsics/math/index",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
 
-    // Populate the version switcher from the JSON config file
-    (function () {
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "learn/intrinsics/math/index";
+    const indexFilePath = "../../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
 
-        const currentFilePath = "learn/intrinsics/math/index";
-        const indexFilePath = "../../../";
-        let btn = document.getElementById("version_switcher_button");
-        // Set empty strings by default so that these attributes exist and can be used in CSS selectors
-        btn.dataset["activeVersionName"] = "";
-        btn.dataset["activeVersion"] = "";
-        // create links to the corresponding page in the other docs versions
-        data = [
-            {
-                "name": "en",
-                "version": "en",
-                "url": "../en/"
-            },
-            {
-                "name": "cs",
-                "version": "cs",
-                "url": "../cs/"
-            },
-            {
-                "name": "de",
-                "version": "de",
-                "url": "../de/"
-            },
-            {
-                "name": "es",
-                "version": "es",
-                "url": "../es/"
-            },
-            {
-                "name": "fr",
-                "version": "fr",
-                "url": "../fr/"
-            },
-            {
-                "name": "ja",
-                "version": "ja",
-                "url": "../ja/"
-            },
-            {
-                "name": "nl",
-                "version": "nl",
-                "url": "../nl/"
-            },
-            {
-                "name": "pt",
-                "version": "pt",
-                "url": "../pt/"
-            },
-            {
-                "name": "zh_CN",
-                "version": "zh_CN",
-                "url": "../zh_CN/"
-            }
-        ]; console.log(data);
-        $.each(data, function (index, entry) {
-            // if no custom name specified (e.g., "latest"), use version string
-            if (!("name" in entry)) {
-                entry.name = entry.version;
-            }
-            // create the node
-            const node = document.createElement("a");
-            node.setAttribute("class", "list-group-item list-group-item-action py-1");
-            node.textContent = `${entry.name}`;
-            node.setAttribute("href", `${indexFilePath}${entry.url}${currentFilePath}`);
-            // on click, AJAX calls will check if the linked page exists before
-            // trying to redirect, and if not, will redirect to the homepage
-            // for that version of the docs.
-            node.onclick = checkPageExistsAndRedirect;
-            // Add dataset values for the version and name in case people want
-            // to apply CSS styling based on this information.
-            node.dataset["versionName"] = entry.name;
-            node.dataset["version"] = entry.version;
-
-            $("#version_switcher_menu").append(node);
-            // replace dropdown button text with the preferred display name of
-            // this version, rather than using sphinx's  variable.
-            // also highlight the dropdown entry for the currently-viewed
-            // version's entry
-            if (entry.version == "fr") {
-                node.classList.add("active");
-                btn.innerText = btn.dataset["activeVersionName"] = entry.name;
-                btn.dataset["activeVersion"] = entry.version;
-            }
-        });
-
-    })();
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "fr") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
 </script>
     
   </div>
@@ -634,7 +655,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../GNU_Free_Documentation_License/">
+    <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
      GNU Free Documentation License
     </a>
    </li>
@@ -3021,7 +3042,7 @@ imaginary part of the result is in radians and lies between
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  -0.88137358701954305  0.0000000000000000  0.88137358701954305     
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  -0.88137358701954305  0.0000000000000000  0.88137358701954305
 </pre></div>
 </div>
 </section>
@@ -3095,7 +3116,7 @@ and lies in the range
 <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">all</span><span class="o">=</span><span class="s1">&#39;(*(g0,1x))&#39;</span><span class="w"></span>
 <span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">),</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
 <span class="w"> </span><span class="n">Deg_Per_Rad</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">5</span><span class="mf">7.2957795130823208767981548_real64</span><span class="w"></span>
-<span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"> </span>
+<span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real64</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
 <span class="w">    </span><span class="n">x</span><span class="o">=</span><span class="mf">2.866_real64</span><span class="w"></span>
 <span class="w">    </span><span class="k">print all</span><span class="p">,</span><span class="w"> </span><span class="nb">atan</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 
@@ -3192,7 +3213,7 @@ magnitude of the result is <strong>PI/2</strong>.</p>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      1.00000000      0.500000000      0.463647604    
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      1.00000000      0.500000000      0.463647604
 </pre></div>
 </div>
 </section>
@@ -3621,9 +3642,9 @@ in radians.</p>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  -1.1752011936438014     
-  -1.1752011936438014     
-  -1.1752011936438014       -3.6268604078470190      -0.33954055725615012     
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  -1.1752011936438014
+  -1.1752011936438014
+  -1.1752011936438014       -3.6268604078470190      -0.33954055725615012
                        NaN
                   Infinity
                   Infinity
@@ -3686,7 +3707,7 @@ in radians.</p>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     0.16500000000000001       0.16651386310913616     
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     0.16500000000000001       0.16651386310913616
 </pre></div>
 </div>
 </section>
@@ -3750,7 +3771,7 @@ value lies in the range</p>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      2.1000000000000001       0.97045193661345386     
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      2.1000000000000001       0.97045193661345386
 </pre></div>
 </div>
 </section>
@@ -3813,9 +3834,9 @@ from the uniform distribution over the range 0 &lt;= x &lt; 1.</p>
 <span class="w">   </span><span class="n">first</span><span class="o">=</span><span class="mi">1</span><span class="w"></span>
 <span class="w">   </span><span class="n">last</span><span class="o">=</span><span class="mi">10</span><span class="w"></span>
 <span class="w">   </span><span class="k">allocate</span><span class="p">(</span><span class="nb">count</span><span class="p">(</span><span class="n">last</span><span class="o">-</span><span class="n">first</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="w"></span>
-<span class="w">   </span><span class="c">! To have a discrete uniform distribution on the integers </span>
+<span class="w">   </span><span class="c">! To have a discrete uniform distribution on the integers</span>
 <span class="w">   </span><span class="c">! [first, first+1, ..., last-1, last] carve the continuous</span>
-<span class="w">   </span><span class="c">! distribution up into last+1-first equal sized chunks, </span>
+<span class="w">   </span><span class="c">! distribution up into last+1-first equal sized chunks,</span>
 <span class="w">   </span><span class="c">! mapping each chunk to an integer.</span>
 <span class="w">   </span><span class="c">!</span>
 <span class="w">   </span><span class="c">! One way is:</span>
@@ -4003,10 +4024,10 @@ of the <em>real</em> component of <strong>x</strong> is <strong>log(huge(x))</st
 <span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;is the same as&#39;</span><span class="p">,</span><span class="nb">exp</span><span class="p">(</span><span class="n">re</span><span class="p">)</span><span class="o">*</span><span class="nb">cmplx</span><span class="p">(</span><span class="nb">cos</span><span class="p">(</span><span class="n">im</span><span class="p">),</span><span class="nb">sin</span><span class="p">(</span><span class="n">im</span><span class="p">),</span><span class="nb">kind</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="n">cx</span><span class="p">))</span><span class="w"></span>
 
 <span class="w">   </span><span class="c">! exp(3) is the inverse function of log(3) so</span>
-<span class="w">   </span><span class="c">! the real component of the input must be less than or equal to </span>
-<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;maximum real component&#39;</span><span class="p">,</span><span class="nb">log</span><span class="p">(</span><span class="nb">huge</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span><span class="w"> </span>
+<span class="w">   </span><span class="c">! the real component of the input must be less than or equal to</span>
+<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;maximum real component&#39;</span><span class="p">,</span><span class="nb">log</span><span class="p">(</span><span class="nb">huge</span><span class="p">(</span><span class="mf">0.0</span><span class="p">))</span><span class="w"></span>
 <span class="w">   </span><span class="c">! or for double precision</span>
-<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;maximum doubleprecision component&#39;</span><span class="p">,</span><span class="nb">log</span><span class="p">(</span><span class="nb">huge</span><span class="p">(</span><span class="mf">0.0d0</span><span class="p">))</span><span class="w"> </span>
+<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;maximum doubleprecision component&#39;</span><span class="p">,</span><span class="nb">log</span><span class="p">(</span><span class="nb">huge</span><span class="p">(</span><span class="mf">0.0d0</span><span class="p">))</span><span class="w"></span>
 
 <span class="w">   </span><span class="c">! but since the imaginary component is passed to the cos(3) and sin(3)</span>
 <span class="w">   </span><span class="c">! functions the imaginary component can be any real value</span>
@@ -4015,12 +4036,12 @@ of the <em>real</em> component of <strong>x</strong> is <strong>log(huge(x))</st
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Euler&#39;s constant is approximately   2.718282    
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> Euler&#39;s constant is approximately   2.718282
  given the complex value  (3.000000,4.000000)
  exp(x) is (-13.12878,-15.20078)
  is the same as (-13.12878,-15.20078)
- maximum real component   88.72284    
- maximum doubleprecision component   709.782712893384     
+ maximum real component   88.72284
+ maximum doubleprecision component   709.782712893384
 </pre></div>
 </div>
 </section>
@@ -4084,7 +4105,7 @@ the same as <strong>x</strong>. If <strong>x</strong> is <em>complex</em>, the i
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      2.7182818284590451        1.0000000000000000     
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      2.7182818284590451        1.0000000000000000
    (1.00000000,2.00000000) (0.804718971,1.10714877)
 </pre></div>
 </div>
@@ -4104,7 +4125,7 @@ the same as <strong>x</strong>. If <strong>x</strong> is <em>complex</em>, the i
 <section id="id126">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id126" title="Lien permanent vers cette rubrique">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">log10</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
-<span class="w"> </span>
+
 <span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="k">elemental function </span><span class="n">log10</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 <span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
 </pre></div>
@@ -4151,8 +4172,8 @@ the same as <strong>x</strong>.</p>
 </div>
 <p>Results:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>   log10(1.0000000000000000) is 0.0000000000000000
-      0.00000000       1.00000000       2.00000000       3.00000000  
-      4.00000000       5.00000000       6.00000000       7.00000000    
+      0.00000000       1.00000000       2.00000000       3.00000000
+      4.00000000       5.00000000       6.00000000       7.00000000
 </pre></div>
 </div>
 </section>
@@ -4187,7 +4208,7 @@ kind valid for the declared type.</p>
 that <strong>y*y = x</strong>.</p>
 <p>The number whose square root is being considered is known as the
 <em>radicand</em>.</p>
-<p>Every nonnegative  number <em>x</em> has two square roots of the same unique
+<p>Every nonnegative number <em>x</em> has two square roots of the same unique
 magnitude, one positive and one negative. The nonnegative square root
 is called the principal square root.</p>
 <p>The principal square root of 9 is 3, for example, even though (-3)*(-3)
@@ -4232,7 +4253,7 @@ the same as <strong>x</strong>.</p>
 <span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="n">x2</span><span class="p">,</span><span class="n">z2</span><span class="w"></span>
 
 <span class="w">   </span><span class="n">x2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="o">**</span><span class="mf">0.5</span><span class="w"></span>
-<span class="w">   </span><span class="n">z2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="o">**</span><span class="mf">0.5</span><span class="w"> </span>
+<span class="w">   </span><span class="n">z2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">z</span><span class="o">**</span><span class="mf">0.5</span><span class="w"></span>
 <span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="n">x2</span><span class="p">,</span><span class="n">z2</span><span class="w"></span>
 
 <span class="k">end program </span><span class="n">demo_sqrt</span><span class="w"></span>
@@ -4270,7 +4291,7 @@ the same as <strong>x</strong>.</p>
 <section id="id141">
 <h3><strong>Description</strong><a class="headerlink" href="#id141" title="Lien permanent vers cette rubrique">#</a></h3>
 <p><strong>hypot(x,y)</strong> is referred to as the Euclidean distance function. It is equal to
-<strong>sqrt(x<strong>2 + y</strong>2)</strong>, without undue underflow or overflow.</p>
+<strong>sqrt(x</strong>2 + y<strong>2)</strong>, without undue underflow or overflow.</p>
 <p>In mathematics, the <em>Euclidean distance</em> between two points in Euclidean
 space is the length of a line segment between two points.</p>
 <p><strong>hypot(x,y)</strong> returns the distance between the point <strong>&lt;x,y&gt;</strong> and the origin.</p>
@@ -4303,7 +4324,7 @@ origin <strong>&lt;0.0,0.0&gt;</strong> .</p>
 <span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
 <span class="w"> </span><span class="p">&amp;</span><span class="w"> </span><span class="n">real_kinds</span><span class="p">,</span><span class="w"> </span><span class="n">real32</span><span class="p">,</span><span class="w"> </span><span class="n">real64</span><span class="p">,</span><span class="w"> </span><span class="n">real128</span><span class="w"></span>
 <span class="k">implicit none</span>
-<span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"> </span>
+<span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="w"></span>
 <span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real32</span><span class="p">),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">xs</span><span class="p">(:),</span><span class="w"> </span><span class="n">ys</span><span class="p">(:)</span><span class="w"></span>
 <span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
 <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">f</span><span class="o">=</span><span class="s1">&#39;(a,/,SP,*(3x,g0,1x,g0:,/))&#39;</span><span class="w"></span>
@@ -4330,14 +4351,14 @@ origin <strong>&lt;0.0,0.0&gt;</strong> .</p>
 <p>Results:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>   point &lt;1.00000000,0.500000000&gt; is 1.11803401
    units away from the origin
-   
+
    the points
       +1.00000000 +0.500000000
       +1.00000000 +0.250000000
       +10.0000000 -10.0000000
       +15.0000000 +0.250000000
       -1.00000000 -0.250000000
-   have distances from the origin of 
+   have distances from the origin of
       +1.11803401 +1.03077638
       +14.1421356 +15.0020828
       +1.03077638
@@ -4398,7 +4419,7 @@ of order <strong>0</strong> of <strong>x</strong>.</p>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      1.0000000000000000     
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      1.0000000000000000
 </pre></div>
 </div>
 </section>
@@ -4462,7 +4483,7 @@ of order <strong>1</strong> of <strong>x</strong>.</p>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     0.44005058574493350     
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     0.44005058574493350
 </pre></div>
 </div>
 </section>
@@ -4750,7 +4771,7 @@ function|Bessel functions of the first kind of the orders <strong>n1</strong> to
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      1.0000000000000000       -260.40586662581222     
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      1.0000000000000000       -260.40586662581222
 </pre></div>
 </div>
 </section>
@@ -4782,8 +4803,8 @@ function|Bessel functions of the first kind of the orders <strong>n1</strong> to
 </section>
 <section id="id196">
 <h3><strong>Description</strong><a class="headerlink" href="#id196" title="Lien permanent vers cette rubrique">#</a></h3>
-<p><strong>erf</strong>(x) computes the error function of <strong>x</strong>, defined as
-$$
+<p><strong>erf</strong>(x) computes the error function of <strong>x</strong>, defined as</p>
+<p>$$
 \text{erf}(x) = \frac{2}{\sqrt{\pi}} \int_0^x e^{<strong>-t</strong>^2} dt.
 $$</p>
 </section>
@@ -4815,7 +4836,7 @@ range <strong>-1</strong> &lt;= <strong>erf</strong>(x) &lt;= 1 .</p>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     0.17000000000000001       0.18999246120180879     
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     0.17000000000000001       0.18999246120180879
 </pre></div>
 </div>
 </section>
@@ -4850,7 +4871,7 @@ range <strong>-1</strong> &lt;= <strong>erf</strong>(x) &lt;= 1 .</p>
 </section>
 <section id="id204">
 <h3><strong>Description</strong><a class="headerlink" href="#id204" title="Lien permanent vers cette rubrique">#</a></h3>
-<p><strong>erfc</strong>(x) computes the complementary error function of <strong>x</strong>.  Simpy put
+<p><strong>erfc</strong>(x) computes the complementary error function of <strong>x</strong>. Simpy put
 this is equivalent to <strong>1 - erf(x)</strong>, but <strong>erfc</strong> is provided because
 of the extreme loss of relative accuracy if <strong>erf(x)</strong> is called for
 large <strong>x</strong> and the result is subtracted from <strong>1</strong>.</p>
@@ -4895,7 +4916,7 @@ the range</p>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     0.17000000000000001       0.81000753879819121     
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     0.17000000000000001       0.81000753879819121
 </pre></div>
 </div>
 </section>
@@ -4954,12 +4975,12 @@ $$</p>
 <span class="k">implicit none</span>
 <span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="p">(</span><span class="mf">0.0d0</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.17d0</span><span class="w"></span>
 <span class="w">   </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">erfc_scaled</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"> </span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
 <span class="k">end program </span><span class="n">demo_erfc_scaled</span><span class="w"></span>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     0.83375830214998126     
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     0.83375830214998126
 </pre></div>
 </div>
 </section>
@@ -4984,13 +5005,15 @@ $$</p>
 <section id="id219">
 <h3><strong>Description</strong><a class="headerlink" href="#id219" title="Lien permanent vers cette rubrique">#</a></h3>
 <p><strong>gamma(x)</strong> computes Gamma of <strong>x</strong>. For positive whole number values of <strong>n</strong> the
-Gamma function can be used to calculate factorials, as  <strong>(n-1)!  == gamma(real(n))</strong>.
+Gamma function can be used to calculate factorials, as <strong>(n-1)! == gamma(real(n))</strong>.
 That is</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>n! == gamma(real(n+1))
 </pre></div>
 </div>
-<p>$$ \<strong>Gamma</strong>(x) = \int_0**\infty
-t**{x-1}{\mathrm{e}}**{<strong>-t</strong>}\,{\mathrm{d}}t $$</p>
+<p>$$
+\<strong>Gamma</strong>(x) = \int_0**\infty
+t**{x-1}{\mathrm{e}}**{<strong>-t</strong>}\,{\mathrm{d}}t
+$$</p>
 </section>
 <section id="id220">
 <h3><strong>Arguments</strong><a class="headerlink" href="#id220" title="Lien permanent vers cette rubrique">#</a></h3>
@@ -5015,7 +5038,7 @@ t**{x-1}{\mathrm{e}}**{<strong>-t</strong>}\,{\mathrm{d}}t $$</p>
 <span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">xa</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"></span>
 <span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
 
-<span class="w">   </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">gamma</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span><span class="w"> </span>
+<span class="w">   </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">gamma</span><span class="p">(</span><span class="mf">1.0</span><span class="p">)</span><span class="w"></span>
 <span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;gamma(1.0)=&#39;</span><span class="p">,</span><span class="n">x</span><span class="w"></span>
 
 <span class="w">   </span><span class="c">! elemental</span>
@@ -5060,9 +5083,9 @@ t**{x-1}{\mathrm{e}}**{<strong>-t</strong>}\,{\mathrm{d}}t $$</p>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    gamma(1.0)=   1.000000    
-      1.000000       1.000000       2.000000       6.000000    
-    
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    gamma(1.0)=   1.000000
+      1.000000       1.000000       2.000000       6.000000
+
               1   1.000000               1
               2   2.000000               2
               3   6.000000               6
@@ -5143,7 +5166,7 @@ t**{x-1}{\mathrm{e}}**{<strong>-t</strong>}\,{\mathrm{d}}t $$</p>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      1.00000000       0.00000000    
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      1.00000000       0.00000000
 </pre></div>
 </div>
 </section>
@@ -5198,7 +5221,7 @@ t**{x-1}{\mathrm{e}}**{<strong>-t</strong>}\,{\mathrm{d}}t $$</p>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      1.00000000       0.00000000    
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      1.00000000       0.00000000
 </pre></div>
 </div>
 </section>
@@ -5244,7 +5267,7 @@ dimension <strong>dim</strong>.</p>
 </li>
 <li><dl class="simple myst">
 <dt><strong>dim</strong></dt><dd><p>shall be a scalar of type <em>integer</em> with a value in the
-range from <strong>1</strong> to  <strong>rank(array)</strong>.</p>
+range from <strong>1</strong> to <strong>rank(array)</strong>.</p>
 </dd>
 </dl>
 </li>
@@ -5289,12 +5312,12 @@ with dimension DIM dropped is returned.</p>
       1.  2.  3.
       4.  5.  6.
       7.  8.  9.
- norm2(x)=   16.88194    
+ norm2(x)=   16.88194
  x**2=
       1.  4.  9.
      16. 25. 36.
      49. 64. 81.
- sqrt(sum(x**2))=   16.88194    
+ sqrt(sum(x**2))=   16.88194
 </pre></div>
 </div>
 </section>

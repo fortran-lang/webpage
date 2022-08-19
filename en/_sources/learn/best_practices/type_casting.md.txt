@@ -7,8 +7,7 @@ The methods I, II and V can be used both in C and Fortran. The methods
 III and IV are only available in Fortran. The method VI is obsolete and
 should not be used.
 
-Work Arrays
------------
+## Work Arrays
 
 Pass a "work array" which is packed with everything needed by
 the caller and unpacked by the called routine. This is the old way --
@@ -16,7 +15,7 @@ e.g., how LAPACK does it.
 
 Integrator:
 
-``` fortran
+```fortran
 module integrals
   use types, only: dp
   implicit none
@@ -45,7 +44,7 @@ end module
 
 Usage:
 
-``` fortran
+```fortran
 module test
   use types, only: dp
   use integrals, only: simpson
@@ -76,8 +75,7 @@ end subroutine
 end module
 ```
 
-General Structure
------------------
+## General Structure
 
 Define a general structure which encompass the variations you
 actually need (or are even remotely likely to need going forward). This
@@ -87,7 +85,7 @@ real numbers to, say, and instantiation of a text editor.
 
 Integrator:
 
-``` fortran
+```fortran
 module integrals
   use types, only: dp
   implicit none
@@ -125,7 +123,7 @@ end module
 
 Usage:
 
-``` fortran
+```fortran
 module test
   use types, only: dp
   use integrals, only: simpson, context
@@ -164,14 +162,13 @@ the needed pieces with all the right labels.
 Point is: it needn't be "one abstract type to encompass all" or bust.
 There are natural and viable options between "all" and "none".
 
-Private Module Variables
-------------------------
+## Private Module Variables
 
 Hide the variable arguments completely by passing in module variables.
 
 Integrator:
 
-``` fortran
+```fortran
 module integrals
   use types, only: dp
   implicit none
@@ -198,7 +195,7 @@ end module
 
 Usage:
 
-``` fortran
+```fortran
 module test
   use types, only: dp
   use integrals, only: simpson
@@ -231,12 +228,11 @@ just semi-global -- if possible. But sometimes it may be the simplest
 cleanest way. However, with a bit of thought, usually there is a better,
 safer, more explicit way along the lines of II or IV.
 
-Nested functions
-----------------
+## Nested functions
 
 Integrator:
 
-``` fortran
+```fortran
 module integrals
   use types, only: dp
   implicit none
@@ -263,7 +259,7 @@ end module
 
 Usage:
 
-``` fortran
+```fortran
 subroutine foo(a, k)
 use integrals, only: simpson
 real(dp) :: a, k
@@ -280,15 +276,14 @@ end function f
 end subroutine foo
 ```
 
-Using type(c\_ptr) Pointer
---------------------------
+## Using type(c_ptr) Pointer
 
 In C, one would use the `void *` pointer. In Fortran, one can use
 `type(c_ptr)` for exactly the same purpose.
 
 Integrator:
 
-``` fortran
+```fortran
 module integrals
   use types, only: dp
   use iso_c_binding, only: c_ptr
@@ -318,7 +313,7 @@ end module
 
 Usage:
 
-``` fortran
+```fortran
 module test
   use types, only: dp
   use integrals, only: simpson
@@ -366,8 +361,7 @@ to create a GUI with some untold number of buttons, drop-downs, and
 other interface elements), simplest, least bug-prone, and fastest is to
 use one of the previous approaches.
 
-transfer() Intrinsic Function
------------------------------
+## transfer() Intrinsic Function
 
 Before Fortran 2003, the only way to do type casting was using the
 `transfer` intrinsic function. It is functionally equivalent to the
@@ -382,12 +376,11 @@ Examples:
 
 <http://www.macresearch.org/advanced_fortran_90_callbacks_with_the_transfer_function>
 
-Object Oriented Approach
-------------------------
+## Object Oriented Approach
 
 The module:
 
-``` fortran
+```fortran
 module integrals
 
   use types, only: dp
@@ -430,7 +423,7 @@ context data as components of the extended type.
 
 Usage:
 
-``` fortran
+```fortran
 module example_usage
 
   use types, only: dp
@@ -467,14 +460,13 @@ end subroutine
 end module
 ```
 
-Complete Example of void \* vs type(c\_ptr) and transfer()
-----------------------------------------------------------
+## Complete Example of void \* vs type(c_ptr) and transfer()
 
 Here are three equivalent codes: one in C using `void *` and two codes
 in Fortran using `type(c_ptr)` and `transfer()`:
 
 | Language &nbsp; | Method               | Link                              |
-|-----------------|----------------------|-----------------------------------|
+| --------------- | -------------------- | --------------------------------- |
 | C               | `void *`             | <https://gist.github.com/1665641> |
 | Fortran         | `type(c_ptr)` &nbsp; | <https://gist.github.com/1665626> |
 | Fortran         | `transfer()`         | <https://gist.github.com/1665630> |

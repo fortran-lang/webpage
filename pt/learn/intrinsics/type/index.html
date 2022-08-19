@@ -44,34 +44,46 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Índice" href="../../../genindex/" />
     <link rel="search" title="Pesquisar" href="../../../search/" />
-    <link rel="next" title="GNU Free Documentation License" href="../GNU_Free_Documentation_License/" />
+    <link rel="next" title="Compiladores" href="../../../compilers/" />
     <link rel="prev" title="Matrix multiplication, dot product, and array shifts" href="../transform/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-    var pr_number = -1;
-    $(document).ready(function () {
-
-        if (window.location.href.indexOf("/pr/") > -1) {
-            pr_number = window.location.href.split('/').indexOf("pr") + 1;
-            document.getElementById("pr").innerHTML = "pull request " + window.location.href.split('/')[pr_number];
-            document.getElementById("pr").href = "https://github.com/fortran-lang/webpage/pull/" + window.location.href.split('/')[pr_number];
-            var banner = document.getElementById("banner");
-            banner.style.display = "block";
-        }
-    });
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
 </script>
-<div id="banner" style='display:none' class="container">
-    <h3>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-git-pull-request">
-            <circle cx="18" cy="18" r="3"></circle>
-            <circle cx="6" cy="6" r="3"></circle>
-            <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
-            <line x1="6" y1="9" x2="6" y2="21"></line>
-        </svg>
-        <b>Site preview: </b>you are previewing unpublished changes for <a id="pr"></a>
-    </h3>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
 </div> 
 <link
   rel="alternate"
@@ -143,16 +155,23 @@
 </span>
     
     <div class="dropdown" id="version_switcher">
-    <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button"
-        data-toggle="dropdown">
-        pt
-        <!-- this text may get changed later by javascript -->
-        <span class="caret"></span>
-    </button>
-    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0"
-        aria-labelledby="version_switcher_button">
-        <!-- dropdown will be populated by javascript on page load -->
-    </div>
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    pt
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
 </div>
 
 <!-- NOTE: this JS must live here (not in our global JS file) because it relies
@@ -161,106 +180,108 @@
 -->
 
 <script type="text/javascript">
-    // Check if corresponding page path exists in other version of docs
-    // and, if so, go there instead of the homepage of the other docs version
-    function checkPageExistsAndRedirect(event) {
-        const currentFilePath = "learn/intrinsics/type/index",
-            tryUrl = event.target.getAttribute("href");
-        location.href = tryUrl;
-        // this prevents the browser from following the href of the clicked node
-        // (which is fine because this function takes care of redirecting)
-        return false;
-    }
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "learn/intrinsics/type/index",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
 
-    // Populate the version switcher from the JSON config file
-    (function () {
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "learn/intrinsics/type/index";
+    const indexFilePath = "../../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
 
-        const currentFilePath = "learn/intrinsics/type/index";
-        const indexFilePath = "../../../";
-        let btn = document.getElementById("version_switcher_button");
-        // Set empty strings by default so that these attributes exist and can be used in CSS selectors
-        btn.dataset["activeVersionName"] = "";
-        btn.dataset["activeVersion"] = "";
-        // create links to the corresponding page in the other docs versions
-        data = [
-            {
-                "name": "en",
-                "version": "en",
-                "url": "../en/"
-            },
-            {
-                "name": "cs",
-                "version": "cs",
-                "url": "../cs/"
-            },
-            {
-                "name": "de",
-                "version": "de",
-                "url": "../de/"
-            },
-            {
-                "name": "es",
-                "version": "es",
-                "url": "../es/"
-            },
-            {
-                "name": "fr",
-                "version": "fr",
-                "url": "../fr/"
-            },
-            {
-                "name": "ja",
-                "version": "ja",
-                "url": "../ja/"
-            },
-            {
-                "name": "nl",
-                "version": "nl",
-                "url": "../nl/"
-            },
-            {
-                "name": "pt",
-                "version": "pt",
-                "url": "../pt/"
-            },
-            {
-                "name": "zh_CN",
-                "version": "zh_CN",
-                "url": "../zh_CN/"
-            }
-        ]; console.log(data);
-        $.each(data, function (index, entry) {
-            // if no custom name specified (e.g., "latest"), use version string
-            if (!("name" in entry)) {
-                entry.name = entry.version;
-            }
-            // create the node
-            const node = document.createElement("a");
-            node.setAttribute("class", "list-group-item list-group-item-action py-1");
-            node.textContent = `${entry.name}`;
-            node.setAttribute("href", `${indexFilePath}${entry.url}${currentFilePath}`);
-            // on click, AJAX calls will check if the linked page exists before
-            // trying to redirect, and if not, will redirect to the homepage
-            // for that version of the docs.
-            node.onclick = checkPageExistsAndRedirect;
-            // Add dataset values for the version and name in case people want
-            // to apply CSS styling based on this information.
-            node.dataset["versionName"] = entry.name;
-            node.dataset["version"] = entry.version;
-
-            $("#version_switcher_menu").append(node);
-            // replace dropdown button text with the preferred display name of
-            // this version, rather than using sphinx's  variable.
-            // also highlight the dropdown entry for the currently-viewed
-            // version's entry
-            if (entry.version == "pt") {
-                node.classList.add("active");
-                btn.innerText = btn.dataset["activeVersionName"] = entry.name;
-                btn.dataset["activeVersion"] = entry.version;
-            }
-        });
-
-    })();
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "pt") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
 </script>
     
   </div>
@@ -634,7 +655,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../GNU_Free_Documentation_License/">
+    <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
      GNU Free Documentation License
     </a>
    </li>
@@ -687,49 +708,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#name">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#syntax">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#description">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#arguments">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#returns">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#examples">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#standard">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -743,21 +764,21 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id3">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
@@ -771,21 +792,21 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id4">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id5">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id6">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
@@ -799,7 +820,7 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id7">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -813,49 +834,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id8">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id9">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id10">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id11">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id12">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id13">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id14">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -876,49 +897,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id16">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id17">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id18">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id19">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id20">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id21">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id22">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -939,49 +960,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id24">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id25">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id26">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id27">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id28">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id29">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id30">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -1002,49 +1023,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id32">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id33">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id34">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id35">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id36">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id37">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id38">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -1065,42 +1086,42 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id40">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id41">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id42">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id43">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id44">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id45">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
@@ -1114,7 +1135,7 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id46">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -1128,49 +1149,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id47">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id48">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id49">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id50">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id51">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id52">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id53">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -1191,49 +1212,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id55">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id56">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id57">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id58">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id59">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id60">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id61">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -1247,42 +1268,42 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id62">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id63">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id64">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id65">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id66">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id67">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -1296,42 +1317,42 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id68">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id69">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id70">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id71">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id72">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id73">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -1352,49 +1373,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id75">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id76">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id77">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id78">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id79">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id80">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id81">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -1490,11 +1511,11 @@ the statement</p>
 <section id="aimag">
 <h2>aimag<a class="headerlink" href="#aimag" title="Permalink to this heading">#</a></h2>
 <section id="name">
-<h3><strong>Nome</strong><a class="headerlink" href="#name" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#name" title="Permalink to this heading">#</a></h3>
 <p><strong>aimag</strong>(3) - [TYPE:NUMERIC] Imaginary part of complex number</p>
 </section>
 <section id="syntax">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#syntax" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#syntax" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">aimag</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">     </span><span class="kt">complex</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">),</span><span class="k">elemental</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">aimag</span>
@@ -1504,11 +1525,11 @@ the statement</p>
 </div>
 </section>
 <section id="description">
-<h3><strong>Descrição</strong><a class="headerlink" href="#description" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#description" title="Permalink to this heading">#</a></h3>
 <p><strong>aimag(z)</strong> yields the imaginary part of complex argument <strong>z</strong>.</p>
 </section>
 <section id="arguments">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#arguments" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#arguments" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>z</strong></dt><dd><p>The type of the argument shall be <em>complex</em>.</p>
@@ -1518,12 +1539,12 @@ the statement</p>
 </ul>
 </section>
 <section id="returns">
-<h3><strong>Retorno</strong><a class="headerlink" href="#returns" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#returns" title="Permalink to this heading">#</a></h3>
 <p>The return value is of type <em>real</em> with the kind type parameter of the
 argument.</p>
 </section>
 <section id="examples">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_aimag</span><span class="w"></span>
 <span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">real_kinds</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
@@ -1553,7 +1574,7 @@ argument.</p>
 </div>
 </section>
 <section id="standard">
-<h3><strong>Padrão</strong><a class="headerlink" href="#standard" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#standard" title="Permalink to this heading">#</a></h3>
 <p>FORTRAN 77 and later</p>
 <p>####### fortran-lang intrinsic descriptions</p>
 </section>
@@ -1561,11 +1582,11 @@ argument.</p>
 <section id="cmplx">
 <h2>cmplx<a class="headerlink" href="#cmplx" title="Permalink to this heading">#</a></h2>
 <section id="id1">
-<h3><strong>Nome</strong><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p><strong>cmplx</strong>(3) - [TYPE:NUMERIC] Complex conversion function</p>
 </section>
 <section id="id2">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">cmplx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">   </span><span class="kt">complex </span><span class="k">elemental function</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">cmplx</span>
@@ -1576,7 +1597,7 @@ argument.</p>
 </div>
 </section>
 <section id="id3">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p>To convert numeric variables to complex, use the <strong>cmplx</strong>(3) function.
 Constants can be used to define a complex variable using the syntax</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">z8</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.2345678901234567</span><span class="n">d0</span><span class="p">,</span> <span class="mf">1.2345678901234567</span><span class="n">d0</span><span class="p">)</span>
@@ -1649,7 +1670,7 @@ The following are examples of complex part designators:
 </div>
 </section>
 <section id="id4">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><p><strong>x</strong>
 The type may be <em>integer</em>, <em>real</em>, or <em>complex</em>.</p></li>
@@ -1662,13 +1683,13 @@ parameter of the result.</p></li>
 </ul>
 </section>
 <section id="id5">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <p>The return value is of <em>complex</em> type, with a kind equal to <strong>kind</strong> if it is
 specified. If <strong>kind</strong> is not specified, the result is of the default
 <em>complex</em> kind, regardless of the kinds of <strong>x</strong> and <strong>y</strong>.</p>
 </section>
 <section id="id6">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_aimag</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -1698,14 +1719,14 @@ specified. If <strong>kind</strong> is not specified, the result is of the defau
 <section id="see-also">
 <h3><strong>See Also</strong><a class="headerlink" href="#see-also" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p><span class="xref myst"><strong>aimag</strong>(3)</span> - Parte imaginária de um número complexo</p></li>
+<li><p><span class="xref myst"><strong>aimag</strong>(3)</span> - Imaginary part of complex number</p></li>
 <li><p><span class="xref myst"><strong>cmplx</strong>(3)</span> - Complex conversion function</p></li>
 <li><p><span class="xref myst"><strong>conjg</strong>(3)</span> - Complex conjugate function</p></li>
 <li><p><span class="xref myst"><strong>real</strong>(3)</span> - Convert to real type</p></li>
 </ul>
 </section>
 <section id="id7">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
 <p>FORTRAN 77 and later</p>
 <p>####### fortran-lang intrinsic descriptions</p>
 </section>
@@ -1713,11 +1734,11 @@ specified. If <strong>kind</strong> is not specified, the result is of the defau
 <section id="int">
 <h2>int<a class="headerlink" href="#int" title="Permalink to this heading">#</a></h2>
 <section id="id8">
-<h3><strong>Nome</strong><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <p><strong>int</strong>(3) - [TYPE:NUMERIC] Convert to integer type by truncating towards zero</p>
 </section>
 <section id="id9">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="p">)</span><span class="w"></span>
 
 <span class="w"> </span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="k">elemental function </span><span class="nb">int</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="nb">kind</span><span class="p">)</span><span class="w"></span>
@@ -1727,11 +1748,11 @@ specified. If <strong>kind</strong> is not specified, the result is of the defau
 </div>
 </section>
 <section id="id10">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
 <p>Convert to integer type by truncating towards zero.</p>
 </section>
 <section id="id11">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
 <ul>
 <li><dl class="simple myst">
 <dt><strong>a</strong></dt><dd><p>Shall be of type <em>integer</em>, <em>real</em>, or <em>complex</em> or a BOZ-literal-constant.</p>
@@ -1748,7 +1769,7 @@ parameter of the result.</p>
 </ul>
 </section>
 <section id="id12">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
 <p>returns an <em>integer</em> variable or array applying the following rules:</p>
 <p><strong>Case</strong>:</p>
 <ol class="arabic">
@@ -1766,12 +1787,12 @@ with the <em>kind</em> specified.</p>
 <p>The result is undefined if it cannot be represented in the specified integer type.</p>
 </section>
 <section id="id13">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_int</span><span class="w"></span>
 <span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">int8</span><span class="p">,</span><span class="w"> </span><span class="n">int16</span><span class="p">,</span><span class="w"> </span><span class="n">int32</span><span class="p">,</span><span class="w"> </span><span class="n">int64</span><span class="w"></span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="w"> </span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">42</span><span class="w"></span>
 <span class="kt">complex</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">-</span><span class="mf">3.7</span><span class="p">,</span><span class="w"> </span><span class="mf">1.0</span><span class="p">)</span><span class="w"></span>
 <span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="o">=-</span><span class="mi">1</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="mi">1</span><span class="mf">0.5</span><span class="w"></span>
 
@@ -1787,7 +1808,7 @@ with the <em>kind</em> specified.</p>
 <span class="w">   </span><span class="c">! CAUTION:</span>
 <span class="w">   </span><span class="c">! a number bigger than a default integer can represent</span>
 <span class="w">   </span><span class="c">! produces an incorrect result and is not required to</span>
-<span class="w">   </span><span class="c">! be detected by the program. </span>
+<span class="w">   </span><span class="c">! be detected by the program.</span>
 <span class="w">   </span><span class="n">x</span><span class="o">=</span><span class="kt">real</span><span class="p">(</span><span class="nb">huge</span><span class="p">(</span><span class="mi">0</span><span class="p">))</span><span class="o">+</span><span class="mi">100</span><span class="mf">0.0</span><span class="w"></span>
 <span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">x</span><span class="w"></span>
 <span class="w">   </span><span class="c">! using a larger kind</span>
@@ -1819,7 +1840,7 @@ with the <em>kind</em> specified.</p>
      9223372036854775807
      9223372036854775807
      9223372036854775807
-   
+
     -2          -2          -2          -2          -1
     -1           0           0           0           1
      1           2           2           2           2
@@ -1827,7 +1848,7 @@ with the <em>kind</em> specified.</p>
 </div>
 </section>
 <section id="id14">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
 <p>FORTRAN 77 and later</p>
 </section>
 <section id="id15">
@@ -1844,11 +1865,11 @@ with the <em>kind</em> specified.</p>
 <section id="nint">
 <h2>nint<a class="headerlink" href="#nint" title="Permalink to this heading">#</a></h2>
 <section id="id16">
-<h3><strong>Nome</strong><a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h3>
 <p><strong>nint</strong>(3) - [TYPE:NUMERIC] Nearest whole number</p>
 </section>
 <section id="id17">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>    elemental function nint(x [, kind=NN]) result(ANSWER)
      real(kind=??),intent(in) :: x
      integer(kind=NN) :: ANSWER
@@ -1856,7 +1877,7 @@ with the <em>kind</em> specified.</p>
 </div>
 </section>
 <section id="id18">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h3>
 <p><strong>nint(x)</strong> rounds its argument to the nearest whole number with its
 sign preserved.</p>
 <p>The user must ensure the value is a valid value for the range of the
@@ -1867,7 +1888,7 @@ specified, the result is undefined.</p>
 <strong>int(a-0.5)</strong>.</p>
 </section>
 <section id="id19">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>x</strong></dt><dd><p>The type of the argument shall be <em>real</em>.</p>
@@ -1884,7 +1905,7 @@ of default <em>integer</em> type.</p>
 </ul>
 </section>
 <section id="id20">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
 <ul>
 <li><dl class="simple myst">
 <dt><strong>answer</strong></dt><dd><p>The result is the integer nearest <strong>x</strong>, or if there are two integers
@@ -1898,7 +1919,7 @@ integer type.</p>
 </ul>
 </section>
 <section id="id21">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_nint</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -1960,7 +1981,7 @@ integer type.</p>
 </div>
 </section>
 <section id="id22">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h3>
 <p>FORTRAN 77 and later, with KIND argument - Fortran 90 and later</p>
 </section>
 <section id="id23">
@@ -1977,21 +1998,21 @@ integer type.</p>
 <section id="real">
 <h2>real<a class="headerlink" href="#real" title="Permalink to this heading">#</a></h2>
 <section id="id24">
-<h3><strong>Nome</strong><a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
-<p><strong>real</strong>(3) - [TYPE:NUMERIC] Converte para o tipo real</p>
+<h3><strong>Name</strong><a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
+<p><strong>real</strong>(3) - [TYPE:NUMERIC] Convert to real type</p>
 </section>
 <section id="id25">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id26">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h3>
 <p><strong>real(x, kind)</strong> converts its argument <strong>x</strong> to a real type.</p>
 </section>
 <section id="id27">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>x</strong></dt><dd><p>Shall be <em>integer</em>, <em>real</em>, or <em>complex</em>.</p>
@@ -2007,7 +2028,7 @@ parameter of the result.</p>
 </ul>
 </section>
 <section id="id28">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h3>
 <p>These functions return a <em>real</em> variable or array under the following
 rules:</p>
 <ol class="arabic simple">
@@ -2020,7 +2041,7 @@ parameter <strong>kind</strong> if <strong>x</strong> is a <em>complex</em>, <em
 </ol>
 </section>
 <section id="id29">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_real</span><span class="w"></span>
 <span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span><span class="w"></span>
@@ -2044,7 +2065,7 @@ parameter <strong>kind</strong> if <strong>x</strong> is a <em>complex</em>, <em
 </div>
 </section>
 <section id="id30">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h3>
 <p>FORTRAN 77 and later</p>
 </section>
 <section id="id31">
@@ -2057,11 +2078,11 @@ parameter <strong>kind</strong> if <strong>x</strong> is a <em>complex</em>, <em
 <section id="dble">
 <h2>dble<a class="headerlink" href="#dble" title="Permalink to this heading">#</a></h2>
 <section id="id32">
-<h3><strong>Nome</strong><a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h3>
 <p><strong>dble</strong>(3) - [TYPE:NUMERIC] Double conversion function</p>
 </section>
 <section id="id33">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dble</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">    </span><span class="k">elemental function </span><span class="nb">dble</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"></span>
@@ -2073,11 +2094,11 @@ parameter <strong>kind</strong> if <strong>x</strong> is a <em>complex</em>, <em
 supported by the TYPE.</p>
 </section>
 <section id="id34">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h3>
 <p><strong>dble(a)</strong> Converts <strong>a</strong> to double precision <em>real</em> type.</p>
 </section>
 <section id="id35">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id35" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id35" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>a</strong></dt><dd><p>The type shall be <em>integer</em>, <em>real</em>, or <em>complex</em>.</p>
@@ -2087,13 +2108,13 @@ supported by the TYPE.</p>
 </ul>
 </section>
 <section id="id36">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id36" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id36" title="Permalink to this heading">#</a></h3>
 <p>The return value is of type <em>doubleprecision</em>. For <em>complex</em> input,
 the returned value has the magnitude and sign of the real component
 of the input value.</p>
 </section>
 <section id="id37">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id37" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id37" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_dble</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -2105,12 +2126,12 @@ of the input value.</p>
 </pre></div>
 </div>
 <p>Resultados:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  2.1800000667572021  5.0000000000000000   2.2999999523162842     
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  2.1800000667572021  5.0000000000000000   2.2999999523162842
 </pre></div>
 </div>
 </section>
 <section id="id38">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id38" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id38" title="Permalink to this heading">#</a></h3>
 <p>FORTRAN 77 and later</p>
 </section>
 <section id="id39">
@@ -2123,17 +2144,17 @@ of the input value.</p>
 <section id="transfer">
 <h2>transfer<a class="headerlink" href="#transfer" title="Permalink to this heading">#</a></h2>
 <section id="id40">
-<h3><strong>Nome</strong><a class="headerlink" href="#id40" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id40" title="Permalink to this heading">#</a></h3>
 <p><strong>transfer</strong>(3) - [TYPE:MOLD] Transfer bit patterns</p>
 </section>
 <section id="id41">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id41" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id41" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">transfer</span><span class="p">(</span><span class="n">source</span><span class="p">,</span><span class="w"> </span><span class="n">mold</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id42">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id42" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id42" title="Permalink to this heading">#</a></h3>
 <p>Interprets the bitwise representation of <strong>source</strong> in memory as if it
 is the representation of a variable or array of the same type and type
 parameters as <strong>mold</strong>.</p>
@@ -2141,7 +2162,7 @@ parameters as <strong>mold</strong>.</p>
 type to another.</p>
 </section>
 <section id="id43">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id43" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id43" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>source</strong></dt><dd><p>Shall be a scalar or an array of any type.</p>
@@ -2161,7 +2182,7 @@ type to another.</p>
 </ul>
 </section>
 <section id="id44">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id44" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id44" title="Permalink to this heading">#</a></h3>
 <p>The result has the same type as <strong>mold</strong>, with the bit level representation
 of <strong>source</strong>. If <strong>size</strong> is present, the result is a one-dimensional array of
 length <strong>size</strong>. If <strong>size</strong> is absent but <strong>mold</strong> is an array (of any size or
@@ -2178,7 +2199,7 @@ to produce sensible behavior. For example, it is possible to create
 <em>logical</em> variables for which <strong>var</strong> and .not. var both appear to be true.</p>
 </section>
 <section id="id45">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id45" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id45" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_transfer</span><span class="w"></span>
 <span class="k">use</span><span class="p">,</span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">int32</span><span class="p">,</span><span class="w"> </span><span class="n">real32</span><span class="w"></span>
@@ -2225,7 +2246,7 @@ would be far more effective, but Fortran Standards committees seem
 oblivious to the benefits of EQUIVALENCEs when used sparingly.</p>
 </section>
 <section id="id46">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id46" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id46" title="Permalink to this heading">#</a></h3>
 <p>Fortran 90 and later</p>
 <p>####### fortran-lang intrinsic descriptions</p>
 </section>
@@ -2233,11 +2254,11 @@ oblivious to the benefits of EQUIVALENCEs when used sparingly.</p>
 <section id="logical">
 <h2>logical<a class="headerlink" href="#logical" title="Permalink to this heading">#</a></h2>
 <section id="id47">
-<h3><strong>Nome</strong><a class="headerlink" href="#id47" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id47" title="Permalink to this heading">#</a></h3>
 <p><strong>logical</strong>(3) - [TYPE:LOGICAL] Converts one kind of <em>logical</em> variable to another</p>
 </section>
 <section id="id48">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id48" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id48" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">logical</span><span class="p">(</span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="p">)</span><span class="w"></span>
 
 <span class="w"> </span><span class="kt">logical</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="k">function </span><span class="kt">logical</span><span class="p">(</span><span class="n">L</span><span class="p">,</span><span class="nb">KIND</span><span class="p">)</span><span class="w"></span>
@@ -2247,11 +2268,11 @@ oblivious to the benefits of EQUIVALENCEs when used sparingly.</p>
 </div>
 </section>
 <section id="id49">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id49" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id49" title="Permalink to this heading">#</a></h3>
 <p>Converts one kind of <em>logical</em> variable to another.</p>
 </section>
 <section id="id50">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id50" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id50" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>l</strong></dt><dd><p>The type shall be <em>logical</em>.</p>
@@ -2267,13 +2288,13 @@ parameter of the result.</p>
 </ul>
 </section>
 <section id="id51">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id51" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id51" title="Permalink to this heading">#</a></h3>
 <p>The return value is a <em>logical</em> value equal to <strong>l</strong>, with a kind
 corresponding to <strong>kind</strong>, or of the default logical kind if <strong>kind</strong> is not
 given.</p>
 </section>
 <section id="id52">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id52" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id52" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_logical</span><span class="w"></span>
 <span class="c">! Access array containing the kind type parameter values supported by this</span>
 <span class="c">! compiler for entities of logical type</span>
@@ -2281,7 +2302,7 @@ given.</p>
 
 <span class="w">   </span><span class="c">! list kind values supported on this platform, which generally vary</span>
 <span class="w">   </span><span class="c">! in storage size</span>
-<span class="w">   </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">logical_kinds</span><span class="p">)</span><span class="w"> </span>
+<span class="w">   </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">logical_kinds</span><span class="p">)</span><span class="w"></span>
 <span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="n">logical_kinds</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
 <span class="w">   </span><span class="k">enddo</span>
 
@@ -2298,7 +2319,7 @@ given.</p>
 </div>
 </section>
 <section id="id53">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id53" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id53" title="Permalink to this heading">#</a></h3>
 <p>Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009</p>
 </section>
 <section id="id54">
@@ -2312,21 +2333,21 @@ given.</p>
 <section id="kind">
 <h2>kind<a class="headerlink" href="#kind" title="Permalink to this heading">#</a></h2>
 <section id="id55">
-<h3><strong>Nome</strong><a class="headerlink" href="#id55" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id55" title="Permalink to this heading">#</a></h3>
 <p><strong>kind</strong>(3) - [KIND INQUIRY] Kind of an entity</p>
 </section>
 <section id="id56">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id56" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id56" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id57">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id57" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id57" title="Permalink to this heading">#</a></h3>
 <p><strong>kind(x)</strong> returns the kind value of the entity <strong>x</strong>.</p>
 </section>
 <section id="id58">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id58" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id58" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>x</strong></dt><dd><p>Shall be of type <em>logical</em>, <em>integer</em>, <em>real</em>, <em>complex</em> or <em>character</em>.</p>
@@ -2336,12 +2357,12 @@ given.</p>
 </ul>
 </section>
 <section id="id59">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id59" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id59" title="Permalink to this heading">#</a></h3>
 <p>The return value is a scalar of type <em>integer</em> and of the default integer
 kind.</p>
 </section>
 <section id="id60">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id60" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id60" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_kind</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -2361,7 +2382,7 @@ kind.</p>
 </div>
 </section>
 <section id="id61">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id61" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id61" title="Permalink to this heading">#</a></h3>
 <p>Fortran 95 and later</p>
 <p>####### fortran-lang intrinsic descriptions</p>
 </section>
@@ -2369,17 +2390,17 @@ kind.</p>
 <section id="selected-char-kind">
 <h2>selected_char_kind<a class="headerlink" href="#selected-char-kind" title="Permalink to this heading">#</a></h2>
 <section id="id62">
-<h3><strong>Nome</strong><a class="headerlink" href="#id62" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id62" title="Permalink to this heading">#</a></h3>
 <p><strong>selected_char_kind</strong>(3) - [KIND] Choose character kind such as «Unicode»</p>
 </section>
 <section id="id63">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id63" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id63" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_char_kind</span><span class="p">(</span><span class="n">name</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id64">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id64" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id64" title="Permalink to this heading">#</a></h3>
 <p><strong>selected_char_kind(name)</strong> returns the kind value for the character
 set named NAME, if a character set with such a name is supported, or
 <strong>-1</strong> otherwise. Currently, supported character sets include «ASCII»
@@ -2387,7 +2408,7 @@ and «DEFAULT» (iwhich are equivalent), and «ISO_10646» (Universal
 Character Set, UCS-4) which is commonly known as «Unicode».</p>
 </section>
 <section id="id65">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id65" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id65" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>name</strong></dt><dd><p>Shall be a scalar and of the default character type.</p>
@@ -2397,7 +2418,7 @@ Character Set, UCS-4) which is commonly known as «Unicode».</p>
 </ul>
 </section>
 <section id="id66">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id66" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id66" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_selected_char_kind</span><span class="w"></span>
 <span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
@@ -2427,7 +2448,7 @@ Character Set, UCS-4) which is commonly known as «Unicode».</p>
 </div>
 </section>
 <section id="id67">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id67" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id67" title="Permalink to this heading">#</a></h3>
 <p>Fortran 2003 and later</p>
 <p>####### fortran-lang intrinsic descriptions</p>
 </section>
@@ -2435,24 +2456,24 @@ Character Set, UCS-4) which is commonly known as «Unicode».</p>
 <section id="selected-int-kind">
 <h2>selected_int_kind<a class="headerlink" href="#selected-int-kind" title="Permalink to this heading">#</a></h2>
 <section id="id68">
-<h3><strong>Nome</strong><a class="headerlink" href="#id68" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id68" title="Permalink to this heading">#</a></h3>
 <p><strong>selected_int_kind</strong>(3) - [KIND] Choose integer kind</p>
 </section>
 <section id="id69">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id69" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id69" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_int_kind</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id70">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id70" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id70" title="Permalink to this heading">#</a></h3>
 <p><strong>selected_int_kind(r)</strong> return the kind value of the smallest integer
 type that can represent all values ranging from <strong>-10**r</strong> (exclusive)
 to <strong>10**r</strong> (exclusive). If there is no integer kind that accommodates
 this range, selected_int_kind returns <strong>-1</strong>.</p>
 </section>
 <section id="id71">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id71" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id71" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>r</strong></dt><dd><p>Shall be a scalar and of type <em>integer</em>.</p>
@@ -2462,7 +2483,7 @@ this range, selected_int_kind returns <strong>-1</strong>.</p>
 </ul>
 </section>
 <section id="id72">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id72" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id72" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_selected_int_kind</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -2487,7 +2508,7 @@ this range, selected_int_kind returns <strong>-1</strong>.</p>
 </div>
 </section>
 <section id="id73">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id73" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id73" title="Permalink to this heading">#</a></h3>
 <p>Fortran 95 and later</p>
 </section>
 <section id="id74">
@@ -2504,23 +2525,23 @@ this range, selected_int_kind returns <strong>-1</strong>.</p>
 <section id="selected-real-kind">
 <h2>selected_real_kind<a class="headerlink" href="#selected-real-kind" title="Permalink to this heading">#</a></h2>
 <section id="id75">
-<h3><strong>Nome</strong><a class="headerlink" href="#id75" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id75" title="Permalink to this heading">#</a></h3>
 <p><strong>selected_real_kind</strong>(3) - [KIND] Choose real kind</p>
 </section>
 <section id="id76">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id76" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id76" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_real_kind</span><span class="p">(</span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="nb">radix</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id77">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id77" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id77" title="Permalink to this heading">#</a></h3>
 <p><strong>selected_real_kind(p, r, radix)</strong> return the kind value of a real
 data type with decimal precision of at least <strong>p</strong> digits, exponent range of
 at least <strong>r</strong>, and with a radix of <strong>radix</strong>.</p>
 </section>
 <section id="id78">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id78" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id78" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>p</strong></dt><dd><p>(Optional) shall be a scalar and of type <em>integer</em>.</p>
@@ -2543,7 +2564,7 @@ be present; since <strong>Fortran 2008</strong>, they are assumed to be zero if
 absent.</p>
 </section>
 <section id="id79">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id79" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id79" title="Permalink to this heading">#</a></h3>
 <p>selected_real_kind returns the value of the kind type parameter of a
 real data type with decimal precision of at least <strong>p</strong> digits, a decimal
 exponent range of at least R, and with the requested <strong>radix</strong>. If the <strong>radix</strong>
@@ -2567,7 +2588,7 @@ fulfillable</p></li>
 </ul>
 </section>
 <section id="id80">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id80" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id80" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_selected_real_kind</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -2592,7 +2613,7 @@ fulfillable</p></li>
 </div>
 </section>
 <section id="id81">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id81" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id81" title="Permalink to this heading">#</a></h3>
 <p>Fortran 95 and later; with RADIX - Fortran 2008 and later</p>
 </section>
 <section id="id82">

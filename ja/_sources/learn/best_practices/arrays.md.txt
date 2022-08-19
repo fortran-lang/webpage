@@ -5,12 +5,12 @@ is discussed in the [allocatable arrays section](./allocatable_arrays.html).
 
 To pass arrays to procedures four ways are available
 
-1. *assumed-shape* arrays
-4. *assumed-rank* arrays
-2. *explicit-shape* arrays
-3. *assumed-size* arrays
+1. _assumed-shape_ arrays
+2. _assumed-rank_ arrays
+3. _explicit-shape_ arrays
+4. _assumed-size_ arrays
 
-The preferred way to pass arrays to procedures is as *assumed-shape* arrays
+The preferred way to pass arrays to procedures is as _assumed-shape_ arrays
 
 ```fortran
 subroutine f(r)
@@ -43,7 +43,7 @@ In this case no array copy is done, which has the advantage that the shape and s
 information is automatically passed along and checked at compile and optionally at
 runtime.
 Similarly, array strides can be passed without requiring a copy of the array but as
-*assumed-shape* descriptor:
+_assumed-shape_ descriptor:
 
 ```fortran
 real(dp) :: r(10)
@@ -59,7 +59,7 @@ real(dp) :: r(10)
 call f(r(:))
 ```
 
-In case more general arrays should be passed to a procedure the *assumed-rank*
+In case more general arrays should be passed to a procedure the _assumed-rank_
 functionality introduced in the Fortran 2018 standard can be used
 
 ```fortran
@@ -74,19 +74,19 @@ subroutine h(r)
 end subroutine h
 ```
 
-The actual rank can be queried at runtime using the ``select rank`` construct.
+The actual rank can be queried at runtime using the `select rank` construct.
 This easily allows to create more generic functions that have to deal with
 different array ranks.
 
-*Explicit-shape* arrays can be useful for returning data from functions.
-Most of their functionality can be provided by *assumed-shape* and *assumed-rank*
+_Explicit-shape_ arrays can be useful for returning data from functions.
+Most of their functionality can be provided by _assumed-shape_ and _assumed-rank_
 arrays but they find frequent use for interfacing with C or in legacy Fortran
 procedures, therefore they will be discussed briefly here.
 
-To use *explicit-shape* arrays, the dimension has to be passed explicitly as dummy
+To use _explicit-shape_ arrays, the dimension has to be passed explicitly as dummy
 argument like in the example below
 
-``` fortran
+```fortran
 subroutine f(n, r)
   integer, intent(in) :: n
   real(dp), intent(out) :: r(n)
@@ -99,7 +99,7 @@ end subroutine
 
 For high-dimensional arrays additional indices have to be passed.
 
-``` fortran
+```fortran
 subroutine g(m, n, A)
   integer, intent(in) :: m, n
   real(dp), intent(in) :: A(m, n)
@@ -109,7 +109,7 @@ end subroutine
 
 The routines can be invoked by
 
-``` fortran
+```fortran
 real(dp) :: r(5), s(3, 4)
 call f(size(r), r)
 call g(size(s, 1), size(s, 2), s)
@@ -125,12 +125,12 @@ call g(size(s, 2), size(s, 1), s)  ! s(4, 3) in g
 ```
 
 In this case the memory layout is preserved but the shape is changed.
-Also, *explicit-shape* arrays require contiguous memory and will create temporary
+Also, _explicit-shape_ arrays require contiguous memory and will create temporary
 arrays in case non-contiguous array strides are passed.
 
-To return an array from a function with *explicit-shape* use
+To return an array from a function with _explicit-shape_ use
 
-``` fortran
+```fortran
 function f(n) result(r)
   integer, intent(in) :: n
   real(dp) :: r(n)
@@ -141,22 +141,22 @@ function f(n) result(r)
 end function
 ```
 
-Finally, there are *assumed-size* arrays, which provide the least compile-time and run-time
+Finally, there are _assumed-size_ arrays, which provide the least compile-time and run-time
 checking and can be found frequently in legacy code. They should be avoided
-in favour of *assumed-shape* or *assumed-rank* arrays.
-An *assumed-size* array dummy argument is identified by an asterisk as the last dimension,
-this disables the usage of this array with many intrinsic functions, like ``size`` or
-``shape``.
+in favour of _assumed-shape_ or _assumed-rank_ arrays.
+An _assumed-size_ array dummy argument is identified by an asterisk as the last dimension,
+this disables the usage of this array with many intrinsic functions, like `size` or
+`shape`.
 
-To check for the correct size and shape of an *assumed-shape* array the ``size`` and
-``shape`` intrinsic functions can be used to query for those properties
+To check for the correct size and shape of an _assumed-shape_ array the `size` and
+`shape` intrinsic functions can be used to query for those properties
 
 ```fortran
 if (size(r) /= 4) error stop "Incorrect size of 'r'"
 if (any(shape(r) /= [2, 2])) error stop "Incorrect shape of 'r'"
 ```
 
-Note that ``size`` returns the total size of all dimensions. To obtain the shape of
+Note that `size` returns the total size of all dimensions. To obtain the shape of
 a specific dimension add it as second argument to the function.
 
 Arrays can be initialized by using an array constructor

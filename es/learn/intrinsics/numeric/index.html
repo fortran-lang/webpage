@@ -48,30 +48,42 @@
     <link rel="prev" title="Controlling and querying the current numeric model" href="../model/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-    var pr_number = -1;
-    $(document).ready(function () {
-
-        if (window.location.href.indexOf("/pr/") > -1) {
-            pr_number = window.location.href.split('/').indexOf("pr") + 1;
-            document.getElementById("pr").innerHTML = "pull request " + window.location.href.split('/')[pr_number];
-            document.getElementById("pr").href = "https://github.com/fortran-lang/webpage/pull/" + window.location.href.split('/')[pr_number];
-            var banner = document.getElementById("banner");
-            banner.style.display = "block";
-        }
-    });
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
 </script>
-<div id="banner" style='display:none' class="container">
-    <h3>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-git-pull-request">
-            <circle cx="18" cy="18" r="3"></circle>
-            <circle cx="6" cy="6" r="3"></circle>
-            <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
-            <line x1="6" y1="9" x2="6" y2="21"></line>
-        </svg>
-        <b>Site preview: </b>you are previewing unpublished changes for <a id="pr"></a>
-    </h3>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
 </div> 
 <link
   rel="alternate"
@@ -143,16 +155,23 @@
 </span>
     
     <div class="dropdown" id="version_switcher">
-    <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button"
-        data-toggle="dropdown">
-        es
-        <!-- this text may get changed later by javascript -->
-        <span class="caret"></span>
-    </button>
-    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0"
-        aria-labelledby="version_switcher_button">
-        <!-- dropdown will be populated by javascript on page load -->
-    </div>
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    es
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
 </div>
 
 <!-- NOTE: this JS must live here (not in our global JS file) because it relies
@@ -161,106 +180,108 @@
 -->
 
 <script type="text/javascript">
-    // Check if corresponding page path exists in other version of docs
-    // and, if so, go there instead of the homepage of the other docs version
-    function checkPageExistsAndRedirect(event) {
-        const currentFilePath = "learn/intrinsics/numeric/index",
-            tryUrl = event.target.getAttribute("href");
-        location.href = tryUrl;
-        // this prevents the browser from following the href of the clicked node
-        // (which is fine because this function takes care of redirecting)
-        return false;
-    }
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "learn/intrinsics/numeric/index",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
 
-    // Populate the version switcher from the JSON config file
-    (function () {
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "learn/intrinsics/numeric/index";
+    const indexFilePath = "../../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
 
-        const currentFilePath = "learn/intrinsics/numeric/index";
-        const indexFilePath = "../../../";
-        let btn = document.getElementById("version_switcher_button");
-        // Set empty strings by default so that these attributes exist and can be used in CSS selectors
-        btn.dataset["activeVersionName"] = "";
-        btn.dataset["activeVersion"] = "";
-        // create links to the corresponding page in the other docs versions
-        data = [
-            {
-                "name": "en",
-                "version": "en",
-                "url": "../en/"
-            },
-            {
-                "name": "cs",
-                "version": "cs",
-                "url": "../cs/"
-            },
-            {
-                "name": "de",
-                "version": "de",
-                "url": "../de/"
-            },
-            {
-                "name": "es",
-                "version": "es",
-                "url": "../es/"
-            },
-            {
-                "name": "fr",
-                "version": "fr",
-                "url": "../fr/"
-            },
-            {
-                "name": "ja",
-                "version": "ja",
-                "url": "../ja/"
-            },
-            {
-                "name": "nl",
-                "version": "nl",
-                "url": "../nl/"
-            },
-            {
-                "name": "pt",
-                "version": "pt",
-                "url": "../pt/"
-            },
-            {
-                "name": "zh_CN",
-                "version": "zh_CN",
-                "url": "../zh_CN/"
-            }
-        ]; console.log(data);
-        $.each(data, function (index, entry) {
-            // if no custom name specified (e.g., "latest"), use version string
-            if (!("name" in entry)) {
-                entry.name = entry.version;
-            }
-            // create the node
-            const node = document.createElement("a");
-            node.setAttribute("class", "list-group-item list-group-item-action py-1");
-            node.textContent = `${entry.name}`;
-            node.setAttribute("href", `${indexFilePath}${entry.url}${currentFilePath}`);
-            // on click, AJAX calls will check if the linked page exists before
-            // trying to redirect, and if not, will redirect to the homepage
-            // for that version of the docs.
-            node.onclick = checkPageExistsAndRedirect;
-            // Add dataset values for the version and name in case people want
-            // to apply CSS styling based on this information.
-            node.dataset["versionName"] = entry.name;
-            node.dataset["version"] = entry.version;
-
-            $("#version_switcher_menu").append(node);
-            // replace dropdown button text with the preferred display name of
-            // this version, rather than using sphinx's  variable.
-            // also highlight the dropdown entry for the currently-viewed
-            // version's entry
-            if (entry.version == "es") {
-                node.classList.add("active");
-                btn.innerText = btn.dataset["activeVersionName"] = entry.name;
-                btn.dataset["activeVersion"] = entry.version;
-            }
-        });
-
-    })();
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "es") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
 </script>
     
   </div>
@@ -634,7 +655,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../GNU_Free_Documentation_License/">
+    <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
      GNU Free Documentation License
     </a>
    </li>
@@ -1845,7 +1866,7 @@ computed without undue overflow or underflow.</p>
 <span class="k">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="k">elemental function </span><span class="n">distance</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="w"></span>
 <span class="w">       </span><span class="c">! dusty corners:</span>
-<span class="w">       </span><span class="c">! note that KIND=DP is NOT optional </span>
+<span class="w">       </span><span class="c">! note that KIND=DP is NOT optional</span>
 <span class="w">       </span><span class="c">! if the desired result is KIND=dp.</span>
 <span class="w">       </span><span class="c">! See cmplx(3).</span>
 <span class="w">       </span><span class="n">distance</span><span class="o">=</span><span class="nb">abs</span><span class="p">(</span><span class="w"> </span><span class="nb">cmplx</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
@@ -1858,17 +1879,17 @@ computed without undue overflow or underflow.</p>
     real             In: -1.00000000               Out: 1.00000000
     doubleprecision  In: -45.780000000000001       Out: 45.780000000000001
     complex          In: (-3.00000000,-4.00000000) Out: 5.00000000
-   
+
     abs is elemental:     20     0     1     3   100
-   
+
     abs range test :   2147483647  2147483647
     abs range test :    3.40282347E+38   3.40282347E+38
     abs range test :    1.17549435E-38   1.17549435E-38
     returned real kind: (30.000000000000000,40.000000000000000) 8
     returned real kind: (30.0000000,40.0000000) 4
     returned real kind: (30.0000000,40.0000000) 4
-   
-    distance of &lt;XX,YY&gt; from zero is   50.000000000000000     
+
+    distance of &lt;XX,YY&gt; from zero is   50.000000000000000
 </pre></div>
 </div>
 </section>
@@ -1955,8 +1976,8 @@ does not exceed its magnitude. The sign is the same as the sign of <strong>x</st
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     4.00000000       4.0000000000000000     
-   
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     4.00000000       4.0000000000000000
+
     -2.00000000      -2.00000000      -2.00000000      -2.00000000
     -1.00000000      -1.00000000      -0.00000000       0.00000000
      0.00000000       1.00000000       1.00000000       2.00000000
@@ -2045,9 +2066,9 @@ returns <strong>aint(a - 0.5)</strong>.</p>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    1.00000000       4.0000000000000000     
-    1.0000000000000000     
-  
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    1.00000000       4.0000000000000000
+    1.0000000000000000
+
    -3.00000000      -3.00000000      -2.00000000      -2.00000000
    -2.00000000      -1.00000000      -1.00000000       0.00000000
     1.00000000       1.00000000       2.00000000       2.00000000
@@ -2080,7 +2101,7 @@ returns <strong>aint(a - 0.5)</strong>.</p>
 <h3><strong>Syntax</strong><a class="headerlink" href="#id17" title="Enlace permanente a este encabezado">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">ceiling</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="p">)</span><span class="w"></span>
 
-<span class="w">   </span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="k">elemental function </span><span class="nb">ceiling</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="nb">kind</span><span class="p">)</span><span class="w"> </span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="k">elemental function </span><span class="nb">ceiling</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="nb">kind</span><span class="p">)</span><span class="w"></span>
 <span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">ANY</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">   </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
 <span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">kind</span><span class="w"></span>
 </pre></div>
@@ -2120,8 +2141,8 @@ integer type.</p>
 <span class="k">implicit none</span>
 <span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="mf">3.29</span><span class="w"></span>
 <span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">6</span><span class="mf">3.59</span><span class="w"></span>
-<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">ceiling</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span>
-<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">ceiling</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">ceiling</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">ceiling</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
 <span class="w">   </span><span class="c">! elemental</span>
 <span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="nb">ceiling</span><span class="p">([</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
 <span class="w">   </span><span class="p">&amp;</span><span class="w">  </span><span class="o">-</span><span class="mf">2.7</span><span class="p">,</span><span class="w">  </span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.2</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
@@ -2165,7 +2186,7 @@ integer type.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">z</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">conjg</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="w"></span>
 
 <span class="w">   </span><span class="kt">complex</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">K</span><span class="p">)</span><span class="w"> </span><span class="k">elemental function </span><span class="nb">conjg</span><span class="p">(</span><span class="n">z</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="kt">complex</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">K</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">z</span><span class="w"> </span>
+<span class="w">   </span><span class="kt">complex</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">K</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">z</span><span class="w"></span>
 </pre></div>
 </div>
 <p>where <strong>K</strong> is the kind of the parameter <strong>z</strong></p>
@@ -2236,10 +2257,10 @@ of <strong>array</strong> .</p>
 <p>Results:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w"> </span><span class="p">(</span><span class="mf">2.000000</span><span class="p">,</span><span class="mf">3.000000</span><span class="p">)</span><span class="w"></span>
 <span class="w"> </span><span class="p">(</span><span class="mf">2.000000</span><span class="p">,</span><span class="o">-</span><span class="mf">3.000000</span><span class="p">)</span><span class="w"></span>
-<span class="w"> </span>
+
 <span class="w"> </span><span class="p">(</span><span class="mf">1.23456789012346</span><span class="p">,</span><span class="o">-</span><span class="mf">1.23456789012346</span><span class="p">)</span><span class="w"></span>
 <span class="w"> </span><span class="p">(</span><span class="mf">1.23456789012346</span><span class="p">,</span><span class="mf">1.23456789012346</span><span class="p">)</span><span class="w"></span>
-<span class="w"> </span>
+
 <span class="w"> </span><span class="n">original</span><span class="w"></span>
 <span class="p">(</span><span class="o">-</span><span class="mf">1.0</span><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="mf">2.0</span><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mf">3.0</span><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="mf">4.0</span><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mf">5.0</span><span class="w">    </span><span class="p">,</span><span class="o">-</span><span class="mf">6.0</span><span class="w">    </span><span class="p">)</span><span class="w"></span>
 <span class="p">(</span><span class="w"> </span><span class="mf">7.0</span><span class="w">    </span><span class="p">,</span><span class="o">-</span><span class="mf">8.0</span><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mf">8.0</span><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="mf">9.0</span><span class="w">    </span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="mf">9.0</span><span class="w">    </span><span class="p">,</span><span class="w"> </span><span class="mf">9.0</span><span class="w">    </span><span class="p">)</span><span class="w"></span>
@@ -2320,7 +2341,7 @@ otherwise it returns zero.</p>
 </div>
 <p>Results:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>              0
-      3.21000000000000     
+      3.21000000000000
               0           0           1
               0           0           2
               0           0          10
@@ -2421,8 +2442,8 @@ function.</p>
 <p>Results:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>   11.959999313354501 11.9599991 4 8 8
         1196
-   11.9600000    
-   11.960000000000001     
+   11.9600000
+   11.960000000000001
 </pre></div>
 </div>
 </section>
@@ -2488,8 +2509,8 @@ integer type.</p>
 <span class="k">implicit none</span>
 <span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">6</span><span class="mf">3.29</span><span class="w"></span>
 <span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">-</span><span class="mi">6</span><span class="mf">3.59</span><span class="w"></span>
-<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"> </span>
-<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"> </span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="nb">floor</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
 <span class="w">   </span><span class="c">! elemental</span>
 <span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="nb">floor</span><span class="p">([</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
 <span class="w">   </span><span class="p">&amp;</span><span class="w">  </span><span class="o">-</span><span class="mf">2.7</span><span class="p">,</span><span class="w">  </span><span class="o">-</span><span class="mf">2.5</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.2</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.5</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
@@ -2510,7 +2531,7 @@ integer type.</p>
              -3          -3          -3          -2          -2          -1
              -1           0           0           1           1           2
               2           2           2
-      2.000000       2.000000       2.000000    
+      2.000000       2.000000       2.000000
               2           1           1
 </pre></div>
 </div>
@@ -2781,17 +2802,17 @@ value has the same sign as <strong>a</strong> and a magnitude less than the magn
 </div>
 <p>Results:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>              2
-      1.00000000    
-      1.0000000000000000     
-      1.0000000000000000     
+      1.00000000
+      1.0000000000000000
+      1.0000000000000000
              -2
-     -1.00000000    
-     -1.0000000000000000     
-     -1.0000000000000000     
+     -1.00000000
+     -1.0000000000000000
+     -1.0000000000000000
               2
-      1.00000000    
-      1.0000000000000000     
-      1.0000000000000000     
+      1.00000000
+      1.0000000000000000
+      1.0000000000000000
 </pre></div>
 </div>
 </section>
@@ -2867,11 +2888,11 @@ magnitude of <strong>p</strong>.</p>
 </div>
 <p>Results:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>              2
-      1.00000000    
+      1.00000000
               1
-      4.50000000    
+      4.50000000
              -1
-     -4.50000000    
+     -4.50000000
 </pre></div>
 </div>
 </section>
@@ -2906,12 +2927,12 @@ magnitude of <strong>p</strong>.</p>
 __sign__(a,b) returns the value of __a__ with the sign of __b__.
 
 
-For processors that distinguish between positive and negative zeros  __sign()__ may be used to 
-distinguish between __real__ values 0.0 and −0.0. SIGN (1.0, -0.0) will 
+For processors that distinguish between positive and negative zeros  __sign()__ may be used to
+distinguish between __real__ values 0.0 and −0.0. SIGN (1.0, -0.0) will
 return −1.0 when a negative zero is distinguishable.
 
     29  1 Description. Magnitude of A with the sign of B.
-      
+
 
 
 ### __Arguments__
@@ -2924,7 +2945,7 @@ return −1.0 when a negative zero is distinguishable.
 
 ### __Returns__
 
-The kind of the return value is the magnitude of __a__ with the sign of  __b__. That is, 
+The kind of the return value is the magnitude of __a__ with the sign of  __b__. That is,
 
      -  If __b \&gt;= 0__ then the result is __abs(a)__
      -  else if __b &lt; 0__ it is -__abs(a)__.
@@ -2952,7 +2973,7 @@ end program demo_sign
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>             12
              12
             -12
-      12.00000       12.00000      -12.00000    
+      12.00000       12.00000      -12.00000
     can I distinguise 0 from -0?  F
 </pre></div>
 </div>
@@ -3032,7 +3053,7 @@ section are shifted back in the other end.</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     1  4  7
      2  5  8
      3  6  9
-    
+
      4  7  1
      8  2  5
      9  3  6
@@ -3060,9 +3081,9 @@ section are shifted back in the other end.</p>
 <section id="id97">
 <h3><strong>Description</strong><a class="headerlink" href="#id97" title="Enlace permanente a este encabezado">#</a></h3>
 <p><strong>dot_product(vector_a, vector_b)</strong> computes the dot product
-multiplication of two vectors vector_a and vector_b. The two vectors
+multiplication of two vectors vector<em>a and vector_b. The two vectors
 may be either numeric or logical and must be arrays of rank one and of
-equal size. If the vectors are <em>integer</em> or <em>real</em>, the result is
+equal size. If the vectors are _integer</em> or <em>real</em>, the result is
 <strong>sum(vector_a*vector_b)</strong>. If the vectors are <em>complex</em>, the result is
 <strong>sum(conjg(vector_a)*vector_b)</strong>. If the vectors are <em>logical</em>, the
 result is <strong>any(vector_a .and. vector_b)</strong>.</p>
@@ -3076,8 +3097,8 @@ result is <strong>any(vector_a .and. vector_b)</strong>.</p>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>vector_b</strong></dt><dd><p>The type shall be numeric if vector_a is of numeric type or <em>logical</em>
-if vector_a is of type <em>logical</em>. vector_b shall be a rank-one
+<dt><strong>vector_b</strong></dt><dd><p>The type shall be numeric if vector<em>a is of numeric type or _logical</em>
+if vector<em>a is of type _logical</em>. vector_b shall be a rank-one
 array.</p>
 </dd>
 </dl>
@@ -3108,9 +3129,9 @@ return value is .true. or .false..</p>
 </div>
 <p>Results:</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     1  2  3
-   
+
      4  5  6
-   
+
              32
 </pre></div>
 </div>
@@ -3203,7 +3224,7 @@ present then the following are copied in depending on the type of <strong>array<
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     1  4  7
      2  5  8
      3  6  9
-   
+
      4  7 -5
      8 -5 -5
      6  9 -5
@@ -3313,7 +3334,7 @@ Sample program:
 program demo_parity
 implicit none
 logical :: x(2) = [ .true., .false. ]
-   print *, parity(x) 
+   print *, parity(x)
 end program demo_parity
 </pre></div>
 </div>
@@ -3371,7 +3392,7 @@ type.</p>
 <span class="k">private</span>
 <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">g</span><span class="o">=</span><span class="s1">&#39;(*(g0,1x))&#39;</span><span class="w"></span>
 <span class="k">public </span><span class="n">gen</span><span class="w"></span>
-<span class="c">! a generic interface that only differs in the </span>
+<span class="c">! a generic interface that only differs in the</span>
 <span class="c">! type of the pointer the second argument is</span>
 <span class="k">interface </span><span class="n">gen</span><span class="w"></span>
 <span class="w"> </span><span class="k">module procedure </span><span class="n">s1</span><span class="w"></span>
@@ -3420,7 +3441,7 @@ type.</p>
 <span class="c">! so the following can distinguish whether s1(1)</span>
 <span class="c">! or s2() is called, even though the pointers are</span>
 <span class="c">! not associated or defined</span>
-<span class="w"> </span>
+
 <span class="k">call </span><span class="n">gen</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">null</span><span class="w"> </span><span class="p">(</span><span class="n">real_ptr</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">    </span><span class="c">! invokes s2</span>
 <span class="k">call </span><span class="n">gen</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nb">null</span><span class="w"> </span><span class="p">(</span><span class="n">integer_ptr</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c">! invokes s1</span>
 <span class="n">real_ptr</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"></span>

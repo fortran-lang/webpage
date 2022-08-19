@@ -14,6 +14,7 @@ end type
 ```
 
 The syntax to create a variable of type `t_pair` and access its members is:
+
 ```fortran
 ! Declare
 type(t_pair) :: pair
@@ -22,13 +23,13 @@ pair%i = 1
 pair%x = 0.5
 ```
 
->The percentage symbol `%` is used to access the members of a derived type.
+> The percentage symbol `%` is used to access the members of a derived type.
 
 In the above snippet, we declared an instance of a derived type and initialized its members explicitly.
 You can also initialize derived type members by invoking the derived type constructor.
 
-
 Example using the derived type constructor:
+
 ```fortran
 pair = t_pair(1, 0.5)      ! Initialize with positional arguments
 pair = t_pair(i=1, x=0.5)  ! Initialize with keyword arguments
@@ -36,6 +37,7 @@ pair = t_pair(x=0.5, i=1)  ! Keyword arguments can go in any order
 ```
 
 Example with default initialization:
+
 ```fortran
 type :: t_pair
   integer :: i = 1
@@ -67,15 +69,16 @@ end type
 `attribute-list` may refer to the following:
 
 - _access-type_ that is either `public` or `private`
-- `bind(c)` offers interoperability with C programming language 
+- `bind(c)` offers interoperability with C programming language
 - `extends(`_parent_`)`, where _parent_ is the name of a previously declared derived type from which the current derived type will inherit all its members and functionality
 - `abstract` -- an object oriented feature that is covered in the advanced programming tutorial
 
->If the attribute `bind(c)` or the statement `sequence` is used, then a derived type cannot have the attribute `extends` and vice versa.
+> If the attribute `bind(c)` or the statement `sequence` is used, then a derived type cannot have the attribute `extends` and vice versa.
 
-The `sequence` attribute may be used only to declare that the following  members should be accessed in the same order as they are defined within the derived type. 
+The `sequence` attribute may be used only to declare that the following members should be accessed in the same order as they are defined within the derived type.
 
 Example with `sequence`:
+
 ```fortran
 type :: t_pair
   sequence
@@ -86,13 +89,15 @@ end type
 type(t_pair) :: pair
 pair = t_pair(1, 0.5)
 ```
->The use of the statement `sequence` presupposes that the data types defined below are neither of `allocatable` nor of `pointer` type. Furthermore, it does not imply that these data types will be stored in memory in any particular form, i.e., there is no relation to the `contiguous` attribute.
 
-The _access-type_ attributes `public` and `private`, if used, declare that all member-variables declared below will be automatically assigned the attribute accordingly. 
+> The use of the statement `sequence` presupposes that the data types defined below are neither of `allocatable` nor of `pointer` type. Furthermore, it does not imply that these data types will be stored in memory in any particular form, i.e., there is no relation to the `contiguous` attribute.
+
+The _access-type_ attributes `public` and `private`, if used, declare that all member-variables declared below will be automatically assigned the attribute accordingly.
 
 The attribute `bind(c)` is used to achieve compatibility between Fortran's derived type and C's struct.
 
 Example with `bind(c)`:
+
 ```fortran
 module f_to_c
   use iso_c_bindings, only: c_int
@@ -104,45 +109,51 @@ module f_to_c
 
 end module f_to_c
 ```
+
 matches the following C struct type:
+
 ```c
 struct c_struct {
   int i;
 };
 ```
->A fortran derived type with the attribute `bind(c)` cannot have the `sequence` and `extends` attributes. Furthermore it cannot contain any Fortran `pointer` or `allocatable` types.
 
-`parameterized-declaration-list` is an optional feature. If used, then the parameters must be listed in place of `[parameterized-definition-statements]` and must be either `len` or `kind` parameters or both. 
+> A fortran derived type with the attribute `bind(c)` cannot have the `sequence` and `extends` attributes. Furthermore it cannot contain any Fortran `pointer` or `allocatable` types.
+
+`parameterized-declaration-list` is an optional feature. If used, then the parameters must be listed in place of `[parameterized-definition-statements]` and must be either `len` or `kind` parameters or both.
 
 Example of a derived type with `parameterized-declaration-list` and with the attribute `public`:
- ```fortran
-module m_matrix
-  implicit none
-  private
 
-  type, public :: t_matrix(rows, cols, k)
-    integer, len :: rows, cols
-    integer, kind :: k = kind(0.0)
-    real(kind=k), dimension(rows, cols) :: values
-  end type
+```fortran
+module m_matrix
+ implicit none
+ private
+
+ type, public :: t_matrix(rows, cols, k)
+   integer, len :: rows, cols
+   integer, kind :: k = kind(0.0)
+   real(kind=k), dimension(rows, cols) :: values
+ end type
 
 end module m_matrix
 
 program test_matrix
-  use m_matrix
-  implicit none
+ use m_matrix
+ implicit none
 
-  type(t_matrix(rows=5, cols=5)) :: m
+ type(t_matrix(rows=5, cols=5)) :: m
 
 end program test_matrix
- ```
->In this example the parameter `k` has already been assigned a default value of `kind(0.0)` (single-precision floating-point). Therefore, it can be omitted, as is the case here in the declaration inside the main program.
+```
 
->By default, derived types and their members are public. However, in this example, the attribute `private` is used at the beginning of the module. Therefore, everything within the module will be by default `private` unless explicitly declared as `public`. If the type `t_matrix` was not given the attribute `public` in the above example, then the compiler would throw an error inside `program test`.
+> In this example the parameter `k` has already been assigned a default value of `kind(0.0)` (single-precision floating-point). Therefore, it can be omitted, as is the case here in the declaration inside the main program.
+
+> By default, derived types and their members are public. However, in this example, the attribute `private` is used at the beginning of the module. Therefore, everything within the module will be by default `private` unless explicitly declared as `public`. If the type `t_matrix` was not given the attribute `public` in the above example, then the compiler would throw an error inside `program test`.
 
 The attribute `extends` was added in the F2003 standard and introduces an important feature of the object oriented paradigm (OOP), namely inheritance. It allows code reusability by letting child types derive from extensible parent types: `type, extends(parent) :: child`. Here, `child` inherits all the members and functionality from `type :: parent`.
 
 Example with the attribute `extends`:
+
 ```fortran
 module m_employee
   implicit none
@@ -181,14 +192,14 @@ program test_employee
 
   ! t_employee has access to type(t_date) members not because of extends
   ! but because a type(t_date) was declared within t_employee.
-  employee%hired_date%year  = 2020  
+  employee%hired_date%year  = 2020
   employee%hired_date%month = 1
   employee%hired_date%day   = 20
 
   ! t_employee has access to t_person, and inherits its members due to extends.
-  employee%first_name = 'John'  
+  employee%first_name = 'John'
   employee%last_name  = 'Doe'
-  
+
   ! t_employee has access to t_address, because it inherits from t_person,
   ! which in return inherits from t_address.
   employee%city         = 'London'
@@ -200,7 +211,7 @@ program test_employee
   employee%monthly_salary = 0.0
 
 end program test_employee
-``` 
+```
 
 ## Options to declare members of a derived type
 
@@ -238,13 +249,13 @@ type :: t_example
 end type
 ```
 
->The following attributes: `pointer`, `codimension`, `contiguous`, `volatile`, `asynchronous` are advanced features that will not be addressed in the *Quickstart* tutorial. However, they are presented here, in order for the readers to know that these features do exist and be able to recognize them. These features will be covered in detail in the upcoming *Advanced programing* mini-book.
+> The following attributes: `pointer`, `codimension`, `contiguous`, `volatile`, `asynchronous` are advanced features that will not be addressed in the _Quickstart_ tutorial. However, they are presented here, in order for the readers to know that these features do exist and be able to recognize them. These features will be covered in detail in the upcoming _Advanced programing_ mini-book.
 
 ## Type-bound procedures
 
-A derived type can contain functions or subroutines that are *bound* to it. We'll refer to them as _type-bound procedures_. Type-bound procedures follow the `contains` statement that, in turn, follows all member variable declarations.
+A derived type can contain functions or subroutines that are _bound_ to it. We'll refer to them as _type-bound procedures_. Type-bound procedures follow the `contains` statement that, in turn, follows all member variable declarations.
 
->It is impossible to describe type-bound procedures in full without delving into OOP features of modern Fortran. For now we'll focus on a simple example to show their basic use.
+> It is impossible to describe type-bound procedures in full without delving into OOP features of modern Fortran. For now we'll focus on a simple example to show their basic use.
 
 Here's an example of a derived type with a basic type-bound procedure:
 
@@ -289,10 +300,11 @@ program main
 
 end program main
 ```
+
 What is new:
 
- - `self` is an arbitrary name that we chose to represent the instance of the derived type `t_square` inside the type-bound function. This allows us to access its members and to automatically pass it as an argument when we invoke a type-bound procedure.
- - We now use `class(t_square)` instead of `type(t_square)` in the interface of the `area` function. This allows us to invoke the `area` function with any derived type that extends `t_square`. The keyword `class` introduces the OOP feature polymorphism.
+- `self` is an arbitrary name that we chose to represent the instance of the derived type `t_square` inside the type-bound function. This allows us to access its members and to automatically pass it as an argument when we invoke a type-bound procedure.
+- We now use `class(t_square)` instead of `type(t_square)` in the interface of the `area` function. This allows us to invoke the `area` function with any derived type that extends `t_square`. The keyword `class` introduces the OOP feature polymorphism.
 
 In the above example, the type-bound procedure `area` is defined as a function and can be invoked only in an expression, for example `x = sq%area()` or `print *, sq%area()`. If you define it instead as a subroutine, you can invoke it from its own `call` statement:
 
@@ -312,7 +324,8 @@ call sq%area(x)
 
 ! Do stuff with x...
 ```
-In contrast to the example with the type-bound function, we now have two arguments: 
 
-* `class(t_square), intent(in) :: self` -- the instance of the derived type itself
-* `real, intent(out) :: x` -- used to store the calculated area and return to the caller
+In contrast to the example with the type-bound function, we now have two arguments:
+
+- `class(t_square), intent(in) :: self` -- the instance of the derived type itself
+- `real, intent(out) :: x` -- used to store the calculated area and return to the caller

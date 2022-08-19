@@ -5,8 +5,8 @@ _procedures_ that can be reused by _calling_ them from other sections of code.
 
 Fortran has two forms of procedure:
 
-- __Subroutine__: invoked by a `call` statement
-- __Function__: invoked within an expression or assignment to which it returns a value
+- **Subroutine**: invoked by a `call` statement
+- **Function**: invoked within an expression or assignment to which it returns a value
 
 Both subroutines and functions have access to variables in the parent scope by _argument association_;
 unless the `value` attribute is specified, this is similar to call by reference.
@@ -16,7 +16,7 @@ unless the `value` attribute is specified, this is similar to call by reference.
 The subroutine input arguments, known as _dummy arguments_, are specified in parentheses after the subroutine name;
 the dummy argument types and attributes are declared within the body of the subroutine just like local variables.
 
-__Example:__
+**Example:**
 
 ```fortran
 ! Print matrix A to screen
@@ -35,16 +35,15 @@ subroutine print_matrix(n,m,A)
 end subroutine print_matrix
 ```
 
-
 Note the additional `intent` attribute when declaring the dummy arguments; this optional attribute signifies to the compiler whether the argument
 is ''read-only'' (`intent(in)`) ''write-only'' (`intent(out)`) or ''read-write'' (`intent(inout)`) within the procedure.
 In this example, the subroutine does not modify its arguments, hence all arguments are `intent(in)`.
 
->It is good practice to always specify the `intent` attribute for
->dummy arguments; this allows the compiler to check for unintentional errors and provides self-documentation.
-
+> It is good practice to always specify the `intent` attribute for
+> dummy arguments; this allows the compiler to check for unintentional errors and provides self-documentation.
 
 We can call this subroutine from a program using a `call` statement:
+
 ```fortran
 program call_sub
   implicit none
@@ -58,9 +57,8 @@ program call_sub
 end program call_sub
 ```
 
->This example uses a so-called _explicit-shape_ array argument since we have passed additional variables to describe
->the dimensions of the array `A`; this will not be necessary if we place our subroutine in a module as described later.
-
+> This example uses a so-called _explicit-shape_ array argument since we have passed additional variables to describe
+> the dimensions of the array `A`; this will not be necessary if we place our subroutine in a module as described later.
 
 ## Functions
 
@@ -76,7 +74,8 @@ function vector_norm(n,vec) result(norm)
 
 end function vector_norm
 ```
->In production code, the intrinsic function `norm2` should be used.
+
+> In production code, the intrinsic function `norm2` should be used.
 
 To execute this function:
 
@@ -94,10 +93,9 @@ program run_fcn
 end program run_fcn
 ```
 
->It is good programming practice for functions not to modify their arguments---that is, all function arguments should be `intent(in)`.
->Such functions are known as `pure` functions.
->Use subroutines if your procedure needs to modify its arguments.
-
+> It is good programming practice for functions not to modify their arguments---that is, all function arguments should be `intent(in)`.
+> Such functions are known as `pure` functions.
+> Use subroutines if your procedure needs to modify its arguments.
 
 ## Modules
 
@@ -107,10 +105,10 @@ They can contain data objects, type definitions, procedures, and interfaces.
 - Modules allow controlled scoping extension whereby entity access is made explicit
 - Modules automatically generate explicit interfaces required for modern procedures
 
->It is recommended to always place functions and subroutines
-within modules.
+> It is recommended to always place functions and subroutines
+> within modules.
 
-__Example:__ 
+**Example:**
 
 ```fortran
 module my_mod
@@ -123,7 +121,7 @@ module my_mod
   integer :: private_var
 
 contains
-    
+
   ! Print matrix A to screen
   subroutine print_matrix(A)
     real, intent(in) :: A(:,:)  ! An assumed-shape dummy argument
@@ -139,12 +137,13 @@ contains
 end module my_mod
 ```
 
->Compare this `print_matrix` subroutine with that written outside of a module
-we no longer have to explicitly pass the matrix dimensions and can instead take
-advantage of _assumed-shape_ arguments since the module will generate the required
-explicit interface for us. This results in a much simpler subroutine interface.
+> Compare this `print_matrix` subroutine with that written outside of a module
+> we no longer have to explicitly pass the matrix dimensions and can instead take
+> advantage of _assumed-shape_ arguments since the module will generate the required
+> explicit interface for us. This results in a much simpler subroutine interface.
 
 To `use` the module within a program:
+
 ```fortran
 program use_mod
   use my_mod
@@ -159,19 +158,16 @@ program use_mod
 end program use_mod
 ```
 
-__Example:__ explicit import list
+**Example:** explicit import list
 
 ```fortran
 use my_mod, only: public_var
 ```
 
-__Example:__ aliased import
+**Example:** aliased import
 
 ```fortran
 use my_mod, only: printMat=>print_matrix
 ```
 
->Each module should be written in a separate `.f90` source file. Modules need to be compiled prior to any program units that `use` them.
-
-
-
+> Each module should be written in a separate `.f90` source file. Modules need to be compiled prior to any program units that `use` them.

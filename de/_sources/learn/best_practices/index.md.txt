@@ -1,5 +1,6 @@
 :::{sectionauthor} Ondřej Čertík, John Pask, Jed Brown, Matthew Emmett, Juan Luis Cano Rodríguez, Neil Carlson, Andrea Vigliotti, Pierre Haessig, Vincent Magnin, Sebastian Ehlert, Jeremie Vandenplas
 :::
+
 # Fortran Best Practices
 
 This mini-book collects a modern canonical way of doing things in Fortran.
@@ -8,7 +9,7 @@ and common tasks. Generally, a canonical solution or pattern is presented and
 discussed. It is meant for programmers with basic familiarity of the Fortran syntax
 and programming in general.
 
-````{toctree}
+```{toctree}
 :maxdepth: 2
 :hidden:
 Allocatable Arrays <allocatable_arrays>
@@ -22,4 +23,4 @@ Modules and Programs <modules_programs>
 Multidimensional Arrays <multidim_arrays>
 Fortran Style Guide <style_guide>
 Type Casting in Callbacks <type_casting>
-````
+```

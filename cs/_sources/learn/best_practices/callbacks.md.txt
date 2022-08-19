@@ -2,7 +2,7 @@
 
 A callback is a function that is passed as an argument to another function.
 
-The preferred way of creating such a callback is to provide an *abstract interface*
+The preferred way of creating such a callback is to provide an _abstract interface_
 declaring the signature of the callback. This allows to use compile time checks
 for the passed callback.
 

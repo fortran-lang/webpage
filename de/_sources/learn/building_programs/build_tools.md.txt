@@ -10,7 +10,7 @@ Depending on the size of your project and the purpose of project different
 options for the build automation can be used.
 
 First, your integrated development environment probably provides a way to build
-your program. A popular cross-platform  tool is Microsoft's
+your program. A popular cross-platform tool is Microsoft's
 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a>,
 but others exist, such as
 <a href="https://atom.io/" target="_blank" rel="noopener">Atom</a>,
@@ -19,14 +19,14 @@ and <a href="http://www.codeblocks.org/" target="_blank" rel="noopener">Code::Bl
 They offer a graphical user-interface, but are often very specific for the
 compiler and platform.
 
-For smaller projects, the rule based build system ``make`` is a common
+For smaller projects, the rule based build system `make` is a common
 choice. Based on the rules defined it can perform task like (re)compiling
 object files from updated source files, creating libraries and linking
 executables.
-To use ``make`` for your project you have to encode those rules in ``Makefile``,
+To use `make` for your project you have to encode those rules in `Makefile`,
 which defines the interdependencies of all the final program, the intermediary
 object files or libraries and the actual source files.
-For a short introduction see [the guide on ``make``](#using-make-as-build-tool).
+For a short introduction see [the guide on `make`](#using-make-as-build-tool).
 
 Maintenance tools like autotools and CMake can generate Makefiles or
 Visual Studio project files via a high-level description. They abstract
@@ -48,44 +48,42 @@ learn a complex programming language first to add a new source file.
 Finally, consider what other project are using, those you are depending on and
 those that use (or will use) your project as dependency.
 
-
 ## Using make as build tool
 
-The most well-known and commonly used build system is called ``make``.
+The most well-known and commonly used build system is called `make`.
 It performs actions following rules defined in a configuration file
-called ``Makefile`` or ``makefile``, which usually leads to compiling a program
+called `Makefile` or `makefile`, which usually leads to compiling a program
 from the provided source code.
 
-
 ::::{tip}
-For an in-depth ``make`` tutorial lookup its info page. There is an online version of this <a href=“https://www.gnu.org/software/make/manual/make.html“ target=“_blank“ rel=“noopener“>info page, available.
+For an in-depth `make` tutorial lookup its info page. There is an online version of this <a href=“https://www.gnu.org/software/make/manual/make.html“ target=“_blank“ rel=“noopener“>info page, available.
 ::::
 We will start with the basics from your clean source directory. Create and open
-the file ``Makefile``, we start with a simple rule called *all*:
+the file `Makefile`, we start with a simple rule called _all_:
 
 ```make
 all:
 	echo "$@"
 ```
 
-After saving the ``Makefile`` run it by executing ``make`` in the same directory.
+After saving the `Makefile` run it by executing `make` in the same directory.
 You should see the following output:
 
     echo "all"
     all
 
-First, we note that ``make`` is substituting ``$@`` for the name of the rule,
-the second thing to note is that ``make`` is always printing the command it is
-running, finally, we see the result of running ``echo "all"``.
+First, we note that `make` is substituting `$@` for the name of the rule,
+the second thing to note is that `make` is always printing the command it is
+running, finally, we see the result of running `echo "all"`.
 
 ::::{note}
-We call the entry point of our ``Makefile`` always *all* by convention, but you can choose whatever name you like.
+We call the entry point of our `Makefile` always _all_ by convention, but you can choose whatever name you like.
 ::::
 
 ::::{note}
 You should not have noticed it if your editor is working correctly,
 but you have to indent the content of a rule with a tab character.
-In case you have problems running the above ``Makefile`` and see an error like
+In case you have problems running the above `Makefile` and see an error like
 
     Makefile:2: *** missing separator.  Stop.
 
@@ -93,7 +91,6 @@ The indentation is probably not correct. In this case replace the indentation
 in the second line with a tab character.
 
 ::::
-
 
 Now we want to make our rules more complicated, therefore we add another rule:
 
@@ -107,25 +104,25 @@ $(PROG):
 	echo "$@"
 ```
 
-Note how we declare variables in ``make``, you should always declare your local
-variables with ``:=``. To access the content of a variable we use the ``$(...)``,
+Note how we declare variables in `make`, you should always declare your local
+variables with `:=`. To access the content of a variable we use the `$(...)`,
 note that we have to enclose the variable name in parenthesis.
 
 ::::{note}
-The declaration of variables is usually done with ``:=``, but ``make`` does
-support *recursively expanded* variables as well with ``=``.
+The declaration of variables is usually done with `:=`, but `make` does
+support _recursively expanded_ variables as well with `=`.
 Normally, the first kind of declaration is wanted, as they are more predictable
 and do not have a runtime overhead from the recursive expansion.
 ::::
 
 We introduced a dependency of the rule all, namely the content of the variable
-``PROG``, also we modified the printout, we want to see all the dependencies
-of this rule, which are stored in the variable ``$^``.
-Now for the new rule which we name after the value of the variable ``PROG``,
-it does the same thing we did before for the rule *all*, note how the value
-of ``$@`` is dependent on the rule it is used in.
+`PROG`, also we modified the printout, we want to see all the dependencies
+of this rule, which are stored in the variable `$^`.
+Now for the new rule which we name after the value of the variable `PROG`,
+it does the same thing we did before for the rule _all_, note how the value
+of `$@` is dependent on the rule it is used in.
 
-Again check by running the ``make``, you should see:
+Again check by running the `make`, you should see:
 
     echo "my_prog"
     my_prog
@@ -133,13 +130,13 @@ Again check by running the ``make``, you should see:
     all depends on my_prog
 
 The dependency has been correctly resolved and evaluated before performing
-any action on the rule *all*.
-Let's run only the second rule: type ``make my_prog`` and you will only find
+any action on the rule _all_.
+Let's run only the second rule: type `make my_prog` and you will only find
 the first two lines in your terminal.
 
-The next step is to perform some real actions with ``make``, we take
+The next step is to perform some real actions with `make`, we take
 the source code from the previous chapter here and add new rules to our
-``Makefile``:
+`Makefile`:
 
 ```make
 OBJS := tabulate.o functions.o
@@ -154,25 +151,25 @@ $(OBJS): %.o: %.f90
 	gfortran -c -o $@ $<
 ```
 
-We define ``OBJS`` which stands for object files, our program depends on
-those ``OBJS`` and for each object file we create a rule to make them from
+We define `OBJS` which stands for object files, our program depends on
+those `OBJS` and for each object file we create a rule to make them from
 a source file.
-The last rule we introduced is a pattern matching rule, ``%`` is the common
-pattern between ``tabulate.o`` and ``tabulate.f90``, which connects our object file
-``tabulate.o`` to the source file ``tabulate.f90``.
-With this set, we run our compiler, here ``gfortran`` and translate the source
-file into an object file, we do not create an executable yet due to the ``-c``
+The last rule we introduced is a pattern matching rule, `%` is the common
+pattern between `tabulate.o` and `tabulate.f90`, which connects our object file
+`tabulate.o` to the source file `tabulate.f90`.
+With this set, we run our compiler, here `gfortran` and translate the source
+file into an object file, we do not create an executable yet due to the `-c`
 flag.
-Note the usage of the ``$<`` for the first element of the dependencies here.
+Note the usage of the `$<` for the first element of the dependencies here.
 
 After compiling all the object files we attempt to link the program, we do not
-use a linker directly, but ``gfortran`` to produce the executable.
+use a linker directly, but `gfortran` to produce the executable.
 
-Now we run the build script with ``make``:
+Now we run the build script with `make`:
 
     gfortran -c -o tabulate.o tabulate.f90
     tabulate.f90:2:7:
-    
+
         2 |    use user_functions
           |       1
     Fatal Error: Cannot open module file ‘user_functions.mod’ for reading at (1): No such file or directory
@@ -180,7 +177,7 @@ Now we run the build script with ``make``:
     make: *** [Makefile:10: tabulate.f90.o] Error 1
 
 We remember that we have dependencies between our source files, therefore we add
-this dependency explicitly to the ``Makefile`` with
+this dependency explicitly to the `Makefile` with
 
 ```make
 tabulate.o: functions.o
@@ -193,19 +190,19 @@ look like
     gfortran -c -o tabulate.o tabulate.f90
     gfortran -o my_prog tabulate.o functions.o
 
-You should find *four* new files in the directory now.
-Run ``my_prog`` to make sure everything works as expected.
-Let's run ``make`` again:
+You should find _four_ new files in the directory now.
+Run `my_prog` to make sure everything works as expected.
+Let's run `make` again:
 
     make: Nothing to be done for 'all'.
 
-Using the timestamps of the executable ``make`` was able to determine, it is
-newer than both ``tabulate.o`` and ``functions.o``, which in turn are newer than
-``tabulate.f90`` and ``functions.f90``.
+Using the timestamps of the executable `make` was able to determine, it is
+newer than both `tabulate.o` and `functions.o`, which in turn are newer than
+`tabulate.f90` and `functions.f90`.
 Therefore, the program is already up-to-date with the latest code and no
 action has to be performed.
 
-In the end, we will have a look at a complete ``Makefile``.
+In the end, we will have a look at a complete `Makefile`.
 
 ```make
 # Disable all of make's built-in rules (similar to Fortran's implicit none)
@@ -239,50 +236,49 @@ clean:
 	$(RM) $(filter %.o, $(OBJS)) $(wildcard *.mod) $(PROG)
 ```
 
-Since you are starting with ``make`` we highly recommend to always include
-the first line, like with Fortran's ``implicit none`` we do not want to have
-implicit rules messing up our ``Makefile`` in surprising and harmful ways.
+Since you are starting with `make` we highly recommend to always include
+the first line, like with Fortran's `implicit none` we do not want to have
+implicit rules messing up our `Makefile` in surprising and harmful ways.
 
 Next, we have a configuration section where we define variables, in case you
 want to switch out your compiler, it can be easily done here.
-We also introduced the ``SRCS`` variable to hold all source files, which is
+We also introduced the `SRCS` variable to hold all source files, which is
 more intuitive than specifying object files.
-We can easily create the object files by appending a ``.o`` suffix using the
-functions ``addsuffix``.
-The ``.PHONY`` is a special rule, which should be used for all entry points
-of your ``Makefile``, here we define two entry point, we already know *all*,
-the new *clean* rule deletes all the build artifacts again such that we indeed
+We can easily create the object files by appending a `.o` suffix using the
+functions `addsuffix`.
+The `.PHONY` is a special rule, which should be used for all entry points
+of your `Makefile`, here we define two entry point, we already know _all_,
+the new _clean_ rule deletes all the build artifacts again such that we indeed
 start with a clean directory.
 
 Also, we slightly changed the build rule for the object files to account for
-appending the ``.o`` suffix instead of substituting it.
+appending the `.o` suffix instead of substituting it.
 Notice that we still need to explicitly define the interdependencies in the
-``Makefile``. We also added a dependency for the object files on the ``Makefile``
+`Makefile`. We also added a dependency for the object files on the `Makefile`
 itself, in case you change the compiler, this will allow you to safely rebuild.
 
-Now you know enough about ``make`` to use it for building small projects.
-If you plan to use ``make`` more extensively, we have compiled a few tips
+Now you know enough about `make` to use it for building small projects.
+If you plan to use `make` more extensively, we have compiled a few tips
 for you as well.
 
 ::::{tip}
-In this guide, we avoided and disabled a lot of the commonly used ``make``
+In this guide, we avoided and disabled a lot of the commonly used `make`
 features that can be particularly troublesome if not used correctly, we highly
 recommend staying away from the builtin rules and variables if you do not feel
-confident working with ``make``, but explicitly declare all variables and rules.
+confident working with `make`, but explicitly declare all variables and rules.
 
-You will find that ``make`` is capable tool to automate short interdependent
+You will find that `make` is capable tool to automate short interdependent
 workflows and to build small projects. But for larger projects, you will
-probably soon run against some of it limitations. Usually, ``make`` is therefore
-not used alone but combined with other tools to generate the ``Makefile``
+probably soon run against some of it limitations. Usually, `make` is therefore
+not used alone but combined with other tools to generate the `Makefile`
 completely or in parts.
 ::::
-
 
 ### Recursively expanded variables
 
 Commonly seen in many projects are recursively expanded variables (declared with
-``=`` instead of ``:=``). Recursive expansion of your variables allows out-of-order
-declaration and other neat tricks with ``make``, since they are defined as rules,
+`=` instead of `:=`). Recursive expansion of your variables allows out-of-order
+declaration and other neat tricks with `make`, since they are defined as rules,
 which are expanded at runtime, rather than being defined while parsing.
 
 For example, declaring and using your Fortran flags with this snippet will work
@@ -297,20 +293,20 @@ include_dirs += -I./include
 include_dirs += -I/opt/some_dep/include
 ```
 
-You should find the expected (or maybe unexpected) printout after running ``make``
+You should find the expected (or maybe unexpected) printout after running `make`
 
     echo -I./include -I/opt/some_dep/include -O
     -I./include -I/opt/some_dep/include -O
 
 ::::{tip}
-appending with ``+=`` to an undefined variable will produce a recursively expanded variable with this state being inherited for all further appending.
+appending with `+=` to an undefined variable will produce a recursively expanded variable with this state being inherited for all further appending.
 ::::
 
 While, it seems like an interesting feature to use, it tends to lead to
 surprising and unexpected outcomes. Usually, when defining variables like your
 compiler, there is little reason to actually use the recursive expansion at all.
 
-The same can easily be archived using the ``:=`` declaration:
+The same can easily be archived using the `:=` declaration:
 
 ```make
 all:
@@ -322,26 +318,25 @@ FFLAGS := $(include_dirs) -O
 ```
 
 ::::{important}
-always think of a ``Makefile`` as a whole set of rules, it must be parsed completely before any rule can be evaluated.
+always think of a `Makefile` as a whole set of rules, it must be parsed completely before any rule can be evaluated.
 ::::
 
 You can use whatever kind of variables you like most, mixing them should be done
 carefully, of course. It is important to be aware of the differences between the
 two kinds and the respective implications.
 
-
 ### Comments and whitespace
 
 There are some caveats with whitespace and comments, which might pop up from
-time to time when using ``make``. First, ``make`` does not know of any data
+time to time when using `make`. First, `make` does not know of any data
 type except for strings and the default separator is just a space.
-This means ``make`` will give a hard time trying to build a project which
+This means `make` will give a hard time trying to build a project which
 has spaces in file names. If you encounter such case, renaming the file
 is possibly the easiest solution at hand.
 
 Another common problem is leading and trailing whitespace, once introduced,
-``make`` will happily carry it along and it does in fact make a difference
-when comparing strings in ``make``.
+`make` will happily carry it along and it does in fact make a difference
+when comparing strings in `make`.
 
 Those can be introduced by comments like
 
@@ -351,8 +346,8 @@ install:
 	echo "$(prefix)/lib"
 ```
 
-While the comment will be correctly removed by ``make``, the trailing two spaces
-are now part of the variable content. Run ``make`` and check that this is indeed
+While the comment will be correctly removed by `make`, the trailing two spaces
+are now part of the variable content. Run `make` and check that this is indeed
 the case:
 
 ```
@@ -361,7 +356,7 @@ echo "/usr  /lib"
 ```
 
 To solve this issue, you can either move the comment, or strip the whitespace with
-the ``strip`` function instead. Alternatively, you could try to ``join`` the
+the `strip` function instead. Alternatively, you could try to `join` the
 strings.
 
 ```make
@@ -371,34 +366,34 @@ install:
 	echo "$(join $(join $(prefix), /), lib)"
 ```
 
-All in all, none of this solutions will make your ``Makefile`` more readable,
+All in all, none of this solutions will make your `Makefile` more readable,
 therefore, it is prudent to pay extra attention to whitespace and comments when
-writing and using ``make``.
-
+writing and using `make`.
 
 ## The meson build system
 
-After you have learned the basics of ``make``, which we call a low-level build
-system, we will introduce ``meson``, a high-level build system.
+After you have learned the basics of `make`, which we call a low-level build
+system, we will introduce `meson`, a high-level build system.
 While you specify in a low-level build system how to build your program,
 you can use a high-level build system to specify what to build.
 A high-level build system will deal for you with how and generate
 build files for a low-level build system.
 
 There are plenty of high-level build systems available, but we will focus on
-``meson`` because it is constructed to be particularly user friendly.
-The default low-level build-system of ``meson`` is called ``ninja``.
+`meson` because it is constructed to be particularly user friendly.
+The default low-level build-system of `meson` is called `ninja`.
 
-Let's have a look at a complete ``meson.build`` file:
+Let's have a look at a complete `meson.build` file:
 
 <!-- meson is unknown by the highlighter, python looks okayish -->
+
 ```python
 project('my_proj', 'fortran', meson_version: '>=0.49')
 executable('my_prog', files('tabulate.f90', 'functions.f90'))
 ```
 
 And we are already done, the next step is to configure our low-level build system
-with ``meson setup build``, you should see output somewhat similar to this
+with `meson setup build`, you should see output somewhat similar to this
 
     The Meson build system
     Version: 0.53.2
@@ -416,18 +411,18 @@ with ``meson setup build``, you should see output somewhat similar to this
     Found ninja-1.10.0 at /usr/bin/ninja
 
 The provided information at this point is already more detailed than anything
-we could have provided in a ``Makefile``, let's run the build with
-``ninja -C build``, which should show something like
+we could have provided in a `Makefile`, let's run the build with
+`ninja -C build`, which should show something like
 
     [1/4] Compiling Fortran object 'my_prog@exe/functions.f90.o'.
     [2/4] Dep hack
     [3/4] Compiling Fortran object 'my_prog@exe/tabulate.f90.o'.
     [4/4] Linking target my_prog.
 
-Find and test your program at ``build/my_prog`` to ensure it works correctly.
-We note the steps ``ninja`` performed are the same we would have coded up in a
-``Makefile`` (including the dependency), yet we did not have to specify them,
-have a look at your ``meson.build`` file again:
+Find and test your program at `build/my_prog` to ensure it works correctly.
+We note the steps `ninja` performed are the same we would have coded up in a
+`Makefile` (including the dependency), yet we did not have to specify them,
+have a look at your `meson.build` file again:
 
 ```python
 project('my_proj', 'fortran', meson_version: '>=0.49')
@@ -435,27 +430,26 @@ executable('my_prog', files('tabulate.f90', 'functions.f90'))
 ```
 
 We only specified that we have a Fortran project (which happens to require
-a certain version of ``meson`` for the Fortran support) and told ``meson``
-to build an executable ``my_prog`` from the files ``tabulate.f90`` and
-``functions.f90``.
-We had not to tell ``meson`` how to build the project, it figured this out
+a certain version of `meson` for the Fortran support) and told `meson`
+to build an executable `my_prog` from the files `tabulate.f90` and
+`functions.f90`.
+We had not to tell `meson` how to build the project, it figured this out
 by itself.
 
 ::::{note}
-``meson`` is a cross-platform build system, the project you just specified
+`meson` is a cross-platform build system, the project you just specified
 for your program can be used to compile binaries for your native operating
 system or to cross-compile your project for other platforms.
-Similarly, the ``meson.build`` file is portable and will work on different
+Similarly, the `meson.build` file is portable and will work on different
 platforms as well.
 ::::
 
-The documentation of ``meson`` can be found at the
+The documentation of `meson` can be found at the
 <a href="https://mesonbuild.com/" target="_blank" rel="noopener">meson-build webpage</a>.
-
 
 ## Creating a CMake project
 
-Similar to ``meson`` CMake is a high-level build system as well and commonly
+Similar to `meson` CMake is a high-level build system as well and commonly
 used to build Fortran projects.
 
 ::::{note}
@@ -466,7 +460,7 @@ but your CMake build files can also become as complex as the program you are
 building.
 ::::
 
-Start by creating the file ``CMakeLists.txt`` with the content
+Start by creating the file `CMakeLists.txt` with the content
 
 ```cmake
 cmake_minimum_required(VERSION 3.7)
@@ -474,8 +468,8 @@ project("my_proj" LANGUAGES "Fortran")
 add_executable("my_prog" "tabulate.f90" "functions.f90")
 ```
 
-Similar to ``meson`` we are already done with our CMake build file.
-We configure our low-level build files with ``cmake -B build -G Ninja``,
+Similar to `meson` we are already done with our CMake build file.
+We configure our low-level build files with `cmake -B build -G Ninja`,
 you should see output similar to this
 
     -- The Fortran compiler identification is GNU 10.2.0
@@ -488,10 +482,10 @@ you should see output similar to this
     -- Generating done
     -- Build files have been written to: /home/awvwgk/Examples/build
 
-You might be surprised that CMake tries to use the compiler ``f95``, fortunately
-this is just a symbolic link to ``gfortran`` on most systems and not the actual
-``f95`` compiler.
-To give CMake a better hint you can export the environment variable ``FC=gfortran``
+You might be surprised that CMake tries to use the compiler `f95`, fortunately
+this is just a symbolic link to `gfortran` on most systems and not the actual
+`f95` compiler.
+To give CMake a better hint you can export the environment variable `FC=gfortran`
 rerunning should show the correct compiler name now
 
     -- The Fortran compiler identification is GNU 10.2.0
@@ -505,11 +499,11 @@ rerunning should show the correct compiler name now
     -- Build files have been written to: /home/awvwgk/Example/build
 
 In a similar manner you could use your Intel Fortran compiler instead to build
-your project (set ``FC=ifort``).
+your project (set `FC=ifort`).
 
 CMake provides support for several low-level build files, since the default is
-platform specific, we will just use ``ninja`` since we already used it together
-with ``meson``. As before, build your project with ``ninja -C build``:
+platform specific, we will just use `ninja` since we already used it together
+with `meson`. As before, build your project with `ninja -C build`:
 
     [1/6] Building Fortran preprocessed CMakeFiles/my_prog.dir/functions.f90-pp.f90
     [2/6] Building Fortran preprocessed CMakeFiles/my_prog.dir/tabulate.f90-pp.f90
@@ -518,13 +512,13 @@ with ``meson``. As before, build your project with ``ninja -C build``:
     [5/6] Building Fortran object CMakeFiles/my_prog.dir/tabulate.f90.o
     [6/6] Linking Fortran executable my_prog
 
-Find and test your program at ``build/my_prog`` to ensure it works correctly.
-The steps ``ninja`` performed are somewhat different, because there is usually
+Find and test your program at `build/my_prog` to ensure it works correctly.
+The steps `ninja` performed are somewhat different, because there is usually
 more than one way to write the low-level build files to accomplish the task
 of building a project. Fortunately, we do not have to concern ourselves but have
 our build system handle those details for us.
 
-Finally, we will shortly recap on our complete ``CMakeLists.txt`` to specify
+Finally, we will shortly recap on our complete `CMakeLists.txt` to specify
 our project:
 
 ```cmake
@@ -534,14 +528,14 @@ add_executable("my_prog" "tabulate.f90" "functions.f90")
 ```
 
 We specified that we have a Fortran project and told CMake to create an executable
-``my_prog`` from  the files ``tabulate.f90`` and ``functions.f90``.
+`my_prog` from the files `tabulate.f90` and `functions.f90`.
 CMake knows the details how to build the executable from the specified sources,
 so we do not have to worry about the actual steps in the build process.
 
 ::::{tip}
 CMake's offical reference can be found at the
-<a href="https://cmake.org/cmake/help/latest/", target="_blank" rel="noopener">CMake webpage</a>.
+<a href="https://cmake.org/cmake/help/latest/", target="\_blank" rel="noopener">CMake webpage</a>.
 It is organised in manpages, which are also available with your local CMake
-installation as well using ``man cmake``. While it covers all functionality of
+installation as well using `man cmake`. While it covers all functionality of
 CMake, it sometimes covers them only very briefly.
 ::::

@@ -48,21 +48,21 @@ Similarly, every procedure starts with a comment briefly describing its
 purpose and the intent of the dummy arguments. Documentation is one of the most
 important parts of creating long-living software, regardless of language.
 
-Second, imports (*use*) and exports (*public*) are explicitly given, this
+Second, imports (_use_) and exports (_public_) are explicitly given, this
 allows on a glance at the module source to check the used and available
 procedures, constants and derived types. The imports are usually limited
 to the module scope rather than reimported in every procedure or interface
-scope. Similarly, exports are made explicitly by adding a *private* statement
-on a single line and explicitly listing all exported symbols in *public*
+scope. Similarly, exports are made explicitly by adding a _private_ statement
+on a single line and explicitly listing all exported symbols in _public_
 statements.
 
 Finally, the `implicit none` statement works for the whole module and there
 is no need to repeat it within each procedure.
 
-Variables inside a module are static (*implicitly saved*). It is highly
+Variables inside a module are static (_implicitly saved_). It is highly
 recommended to limit the usage of module variables to constant expressions,
-like parameters or enumerators only or export them as *protected* rather
-than *public*.
+like parameters or enumerators only or export them as _protected_ rather
+than _public_.
 
 Submodules can be used to break long dependency chains and shorten recompilation
 cascades in Fortran programs. They also offer the possibility to provide specialized
@@ -139,6 +139,6 @@ Note that the module procedures do not have to be implemented in the same submod
 Several submodules can be used to reduce the compilation load for huge modules.
 
 Finally, when setting up a program, it is recommended to keep the actual implementations
-in the program body at minimum. Reusing implementations from modules allows you to write 
-reusable code and focus the program unit on conveying user input to the respective library 
+in the program body at minimum. Reusing implementations from modules allows you to write
+reusable code and focus the program unit on conveying user input to the respective library
 functions and objects.

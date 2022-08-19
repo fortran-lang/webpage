@@ -16,7 +16,7 @@ a literal like here
 integer, parameter :: dp = kind(0.0d0)
 ```
 
-or to rename the imported kind parameter from the ``iso_fortran_env`` module
+or to rename the imported kind parameter from the `iso_fortran_env` module
 
 ```fortran
 use, intrinsic :: iso_fortran_env, only : dp => real64
@@ -86,5 +86,5 @@ a = 3 * 1.0_dp / 4  ! 'a' is equal to 0.75_dp
 ```
 
 To print floating point numbers without losing precision use the unlimited
-format specifier ``(g0)`` or the exponential representation ``(es24.16e3)``,
+format specifier `(g0)` or the exponential representation `(es24.16e3)`,
 which will give you 17 significant digits of printout.

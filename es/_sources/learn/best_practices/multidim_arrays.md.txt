@@ -2,8 +2,8 @@
 
 Multidimensional arrays are stored in column-major order. This means the
 left-most (inner-most) index addresses elements contiguously.
-From a practical point this means that the array slice ``V(:, 1)`` is
-contiguous, while the stride between elements in the slice ``V(1, :)``
+From a practical point this means that the array slice `V(:, 1)` is
+contiguous, while the stride between elements in the slice `V(1, :)`
 is the dimension of the columns. This is important when passing array
 slices to procedures which expect to work on contiguous data.
 
@@ -13,8 +13,8 @@ the sequential access should always advance in unity strides.
 
 In the following example the inverse distance between two sets of points
 is evaluated. Note that the points are stored contiguously in the arrays
-``xyz1``/``xyz2``, while the inner-most loop is advancing the left-most
-index of the matrix ``a``.
+`xyz1`/`xyz2`, while the inner-most loop is advancing the left-most
+index of the matrix `a`.
 
 ```fortran
 subroutine coulomb_matrix(xyz1, xyz2, a)

@@ -17,7 +17,7 @@ where "supportlib.a" is a collection of one, two or many object files,
 all compiled and then put into a library. The extension ".a" is used by
 Linux and Linux-like platforms. On Windows the extension ".lib" is used.
 
-Creating your own libraries is not that complicated: 
+Creating your own libraries is not that complicated:
 on Linux, you can achieve this using a utility like `ar`:
 
 ```shell
@@ -38,22 +38,21 @@ c:\...> lib supportlib.lib file3.obj ...
 
 Note:
 
-* The command `ar` with the option `r` either creates the library (the
-name appears after the option) or adds new object files to the library
-(or replaces any existing ones).
-* The command `lib` will create a new library if you use specify the
-option `/out:` with the name of the new library next to it. To add
-object files to an existing library, leave out the `/out:` bit.
-* On platforms like Linux there is a particular convention to name
-libraries. If you name your library like "libname.a" (note the "lib"
-prefix), then you can refer to it as `-lname` in the link step.
-* Libraries are often sought in directories indicated by an option `-L`
-or `/LIBPATH`. This saves you from having to specify the exact path for
-every library.
+- The command `ar` with the option `r` either creates the library (the
+  name appears after the option) or adds new object files to the library
+  (or replaces any existing ones).
+- The command `lib` will create a new library if you use specify the
+  option `/out:` with the name of the new library next to it. To add
+  object files to an existing library, leave out the `/out:` bit.
+- On platforms like Linux there is a particular convention to name
+  libraries. If you name your library like "libname.a" (note the "lib"
+  prefix), then you can refer to it as `-lname` in the link step.
+- Libraries are often sought in directories indicated by an option `-L`
+  or `/LIBPATH`. This saves you from having to specify the exact path for
+  every library.
 
 Using libraries you can build very large programs without
 having to resort to extremely long command lines.
-
 
 ## Static versus dynamic libraries
 
@@ -92,11 +91,11 @@ $ ifort -dll -exe:supportlib.dll file1.obj file2.obj file3.obj ...
 
 The differences are that:
 
-* You need to specify a compile option on Linux, for gfortran that is `-fpic`,
-because the object code is slightly different.
-* You need to tell in the link step that you want a dynamic library (on
-Linux: a shared object/library, hence the extension ".so"; on Windows:
-a dynamic link library)
+- You need to specify a compile option on Linux, for gfortran that is `-fpic`,
+  because the object code is slightly different.
+- You need to tell in the link step that you want a dynamic library (on
+  Linux: a shared object/library, hence the extension ".so"; on Windows:
+  a dynamic link library)
 
 There is one more thing to be aware of: On Windows you must
 explicitly specify that a procedure is to be _exported_, i.e. is visible
@@ -124,6 +123,7 @@ gfortran on Cygwin and Intel Fortran on Windows. In both cases
 we look at the `tabulate` program in the file "tabulate.f90".
 
 ## GNU/Linux and gfortran
+
 The `tabulate` program requires a user-defined routine `f`. If we
 let it reside in a dynamic library, say "functions.dll", we can simply
 replace the implementation of the function by putting another dynamic
@@ -140,7 +140,7 @@ can take a shortcut:
 $ gfortran -shared -o functions.dll functions.f90
 ```
 
-This produces the files "functions.dll" and "user\_functions.mod". The
+This produces the files "functions.dll" and "user_functions.mod". The
 utility `nm` tells us the exact name of the function `f`:
 
 ```shell
@@ -174,6 +174,7 @@ interface for this function. The compiler/linker are not invoked anymore, so the
 can do no checking.
 
 ## Windows and Intel Fortran
+
 The setup is the same as with Linux, but on Windows it is necessary
 to explicitly export the routines. And an import library is generated —
 this is the library that should be used in the link step.
@@ -192,7 +193,7 @@ Again we take a shortcut:
 $ ifort -exe:functions.dll functions.f90 -dll
 ```
 
-This produces the files "functions.dll", "user\_functions.mod" as well as "functions.lib" (and two
+This produces the files "functions.dll", "user_functions.mod" as well as "functions.lib" (and two
 other files of no importance here). The "dependency walker" program tells us
 that the exact name of the function "f" is `FUNCTION_mp_F`. It is also exported, so that
 it can be found by the linker in the next step:

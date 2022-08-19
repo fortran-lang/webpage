@@ -12,10 +12,12 @@ A rich ecosystem of high-performance code
 
 {% for j in programming|sort(attribute='name') %}
 {% if j.github is defined %}
-## [{{j.name}}]({{"https://github.com/"+j.github}})  
-{{j.description}} 
 
-Tags: {{j.tags}} 
+## [{{j.name}}]({{"https://github.com/"+j.github}})
+
+{{j.description}}
+
+Tags: {{j.tags}}
 
 <img src="{{'https://img.shields.io/github/v/release/'+j.github+'?color=green'}}" alt="Release">
 <img src="{{'https://img.shields.io/github/license/'+j.github}}" alt="license">
@@ -25,10 +27,12 @@ Tags: {{j.tags}}
 <img src="{{'https://img.shields.io/github/issues/'+j.github+'?color=yellow'}}" alt="issues">
 
 {% elif j.gitlab is defined%}
-## [{{j.name}}]({{"https://gitlab.com/"+j.gitlab}})
-{{j.description}} 
 
-Tags: {{j.tags}} 
+## [{{j.name}}]({{"https://gitlab.com/"+j.gitlab}})
+
+{{j.description}}
+
+Tags: {{j.tags}}
 
 <img src="{{'https://img.shields.io/gitlab/v/release/'+j.gitlab+'?date_order_by=created_at&sort=date&color=green'}}" alt="Release">
 <img src="{{'https://img.shields.io/gitlab/license/'+j.gitlab}}" alt="license">
@@ -37,9 +41,9 @@ Tags: {{j.tags}}
 {% else %}
 ## [{{j.name}}]({{j.url}})
 
-{{j.description}} 
+{{j.description}}
 
-Tags: {{j.tags}} 
+Tags: {{j.tags}}
 {% endif %}
 
 {% endfor %}

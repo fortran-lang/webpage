@@ -48,30 +48,42 @@
     <link rel="prev" title="Information about compiler and compiler options used for building" href="../compiler/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-    var pr_number = -1;
-    $(document).ready(function () {
-
-        if (window.location.href.indexOf("/pr/") > -1) {
-            pr_number = window.location.href.split('/').indexOf("pr") + 1;
-            document.getElementById("pr").innerHTML = "pull request " + window.location.href.split('/')[pr_number];
-            document.getElementById("pr").href = "https://github.com/fortran-lang/webpage/pull/" + window.location.href.split('/')[pr_number];
-            var banner = document.getElementById("banner");
-            banner.style.display = "block";
-        }
-    });
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
 </script>
-<div id="banner" style='display:none' class="container">
-    <h3>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-git-pull-request">
-            <circle cx="18" cy="18" r="3"></circle>
-            <circle cx="6" cy="6" r="3"></circle>
-            <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
-            <line x1="6" y1="9" x2="6" y2="21"></line>
-        </svg>
-        <b>Site preview: </b>you are previewing unpublished changes for <a id="pr"></a>
-    </h3>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
 </div> 
 <link
   rel="alternate"
@@ -143,16 +155,23 @@
 </span>
     
     <div class="dropdown" id="version_switcher">
-    <button type="button" class="btn btn-sm navbar-btn dropdown-toggle" id="version_switcher_button"
-        data-toggle="dropdown">
-        pt
-        <!-- this text may get changed later by javascript -->
-        <span class="caret"></span>
-    </button>
-    <div id="version_switcher_menu" class="dropdown-menu list-group-flush py-0"
-        aria-labelledby="version_switcher_button">
-        <!-- dropdown will be populated by javascript on page load -->
-    </div>
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    pt
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
 </div>
 
 <!-- NOTE: this JS must live here (not in our global JS file) because it relies
@@ -161,106 +180,108 @@
 -->
 
 <script type="text/javascript">
-    // Check if corresponding page path exists in other version of docs
-    // and, if so, go there instead of the homepage of the other docs version
-    function checkPageExistsAndRedirect(event) {
-        const currentFilePath = "learn/intrinsics/cfi/index",
-            tryUrl = event.target.getAttribute("href");
-        location.href = tryUrl;
-        // this prevents the browser from following the href of the clicked node
-        // (which is fine because this function takes care of redirecting)
-        return false;
-    }
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "learn/intrinsics/cfi/index",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
 
-    // Populate the version switcher from the JSON config file
-    (function () {
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "learn/intrinsics/cfi/index";
+    const indexFilePath = "../../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
 
-        const currentFilePath = "learn/intrinsics/cfi/index";
-        const indexFilePath = "../../../";
-        let btn = document.getElementById("version_switcher_button");
-        // Set empty strings by default so that these attributes exist and can be used in CSS selectors
-        btn.dataset["activeVersionName"] = "";
-        btn.dataset["activeVersion"] = "";
-        // create links to the corresponding page in the other docs versions
-        data = [
-            {
-                "name": "en",
-                "version": "en",
-                "url": "../en/"
-            },
-            {
-                "name": "cs",
-                "version": "cs",
-                "url": "../cs/"
-            },
-            {
-                "name": "de",
-                "version": "de",
-                "url": "../de/"
-            },
-            {
-                "name": "es",
-                "version": "es",
-                "url": "../es/"
-            },
-            {
-                "name": "fr",
-                "version": "fr",
-                "url": "../fr/"
-            },
-            {
-                "name": "ja",
-                "version": "ja",
-                "url": "../ja/"
-            },
-            {
-                "name": "nl",
-                "version": "nl",
-                "url": "../nl/"
-            },
-            {
-                "name": "pt",
-                "version": "pt",
-                "url": "../pt/"
-            },
-            {
-                "name": "zh_CN",
-                "version": "zh_CN",
-                "url": "../zh_CN/"
-            }
-        ]; console.log(data);
-        $.each(data, function (index, entry) {
-            // if no custom name specified (e.g., "latest"), use version string
-            if (!("name" in entry)) {
-                entry.name = entry.version;
-            }
-            // create the node
-            const node = document.createElement("a");
-            node.setAttribute("class", "list-group-item list-group-item-action py-1");
-            node.textContent = `${entry.name}`;
-            node.setAttribute("href", `${indexFilePath}${entry.url}${currentFilePath}`);
-            // on click, AJAX calls will check if the linked page exists before
-            // trying to redirect, and if not, will redirect to the homepage
-            // for that version of the docs.
-            node.onclick = checkPageExistsAndRedirect;
-            // Add dataset values for the version and name in case people want
-            // to apply CSS styling based on this information.
-            node.dataset["versionName"] = entry.name;
-            node.dataset["version"] = entry.version;
-
-            $("#version_switcher_menu").append(node);
-            // replace dropdown button text with the preferred display name of
-            // this version, rather than using sphinx's  variable.
-            // also highlight the dropdown entry for the currently-viewed
-            // version's entry
-            if (entry.version == "pt") {
-                node.classList.add("active");
-                btn.innerText = btn.dataset["activeVersionName"] = entry.name;
-                btn.dataset["activeVersion"] = entry.version;
-            }
-        });
-
-    })();
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "pt") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
 </script>
     
   </div>
@@ -634,7 +655,7 @@
     </a>
    </li>
    <li class="toctree-l2">
-    <a class="reference internal" href="../GNU_Free_Documentation_License/">
+    <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
      GNU Free Documentation License
     </a>
    </li>
@@ -677,49 +698,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#name">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#syntax">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#description">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#arguments">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#returns">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#examples">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#standard">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -740,42 +761,42 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id1">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id2">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id3">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id4">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id5">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id6">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -796,42 +817,42 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id8">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id9">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id10">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id11">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id12">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id13">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -852,49 +873,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id15">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id16">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id17">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id18">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id19">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id20">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id21">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -915,49 +936,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id23">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id24">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id25">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id26">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id27">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id28">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id29">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -978,49 +999,49 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id31">
      <strong>
-      Nome
+      Name
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id32">
      <strong>
-      Sintaxe
+      Syntax
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id33">
      <strong>
-      Descrição
+      Description
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id34">
      <strong>
-      Argumentos
+      Arguments
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id35">
      <strong>
-      Retorno
+      Returns
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id36">
      <strong>
-      Exemplos
+      Examples
      </strong>
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#id37">
      <strong>
-      Padrão
+      Standard
      </strong>
     </a>
    </li>
@@ -1054,23 +1075,23 @@
 <section id="c-associated">
 <h2>c_associated<a class="headerlink" href="#c-associated" title="Permalink to this heading">#</a></h2>
 <section id="name">
-<h3><strong>Nome</strong><a class="headerlink" href="#name" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#name" title="Permalink to this heading">#</a></h3>
 <p><strong>c_associated</strong>(3) - [ISO_C_BINDING] Status of a C pointer</p>
 </section>
 <section id="syntax">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#syntax" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#syntax" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">(</span><span class="n">c_prt_1</span><span class="p">,</span><span class="w"> </span><span class="n">c_ptr_2</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="description">
-<h3><strong>Descrição</strong><a class="headerlink" href="#description" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#description" title="Permalink to this heading">#</a></h3>
 <p><strong>c_associated(c_prt_1[, c_ptr_2])</strong> determines the status of the
 C pointer c_ptr_1 or if c_ptr_1 is associated with the target
 c_ptr_2.</p>
 </section>
 <section id="arguments">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#arguments" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#arguments" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>c_ptr_1</strong></dt><dd><p>Scalar of the type c_ptr or c_funptr.</p>
@@ -1085,13 +1106,13 @@ c_ptr_2.</p>
 </ul>
 </section>
 <section id="returns">
-<h3><strong>Retorno</strong><a class="headerlink" href="#returns" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#returns" title="Permalink to this heading">#</a></h3>
 <p>The return value is of type <em>logical</em>; it is .false. if either c_ptr_1
 is a C NULL pointer or if c_ptr1 and c_ptr_2 point to different
 addresses.</p>
 </section>
 <section id="examples">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_associated</span><span class="w"></span>
 
@@ -1111,7 +1132,7 @@ addresses.</p>
 </div>
 </section>
 <section id="standard">
-<h3><strong>Padrão</strong><a class="headerlink" href="#standard" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#standard" title="Permalink to this heading">#</a></h3>
 <p>Fortran 2003 and later</p>
 </section>
 <section id="see-also">
@@ -1125,22 +1146,22 @@ addresses.</p>
 <section id="c-f-pointer">
 <h2>c_f_pointer<a class="headerlink" href="#c-f-pointer" title="Permalink to this heading">#</a></h2>
 <section id="id1">
-<h3><strong>Nome</strong><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
 <p><strong>c_f_pointer</strong>(3) - [ISO_C_BINDING] Convert C into Fortran pointer</p>
 </section>
 <section id="id2">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="p">,</span><span class="w"> </span><span class="nb">shape</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id3">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
 <p><strong>c_f_pointer(cptr, fptr[, shape])</strong> Assign the target, the C
 pointer, <strong>cptr</strong> to the Fortran pointer <strong>fptr</strong> and specify its shape.</p>
 </section>
 <section id="id4">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>cptr</strong></dt><dd><p>scalar of the type c_ptr. It is <strong>intent(in)</strong>.</p>
@@ -1162,7 +1183,7 @@ must be equal to the rank of <strong>fptr</strong>.</p>
 </ul>
 </section>
 <section id="id5">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_f_pointer</span><span class="w"></span>
 <span class="k">use </span><span class="nb">iso_c_binding</span>
@@ -1182,7 +1203,7 @@ must be equal to the rank of <strong>fptr</strong>.</p>
 </div>
 </section>
 <section id="id6">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
 <p>Fortran 2003 and later</p>
 </section>
 <section id="id7">
@@ -1196,22 +1217,22 @@ must be equal to the rank of <strong>fptr</strong>.</p>
 <section id="c-f-procpointer">
 <h2>c_f_procpointer<a class="headerlink" href="#c-f-procpointer" title="Permalink to this heading">#</a></h2>
 <section id="id8">
-<h3><strong>Nome</strong><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
 <p><strong>c_f_procpointer</strong>(3) - [ISO_C_BINDING] Convert C into Fortran procedure pointer</p>
 </section>
 <section id="id9">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">c_f_procpointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id10">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
 <p><strong>c_f_procpointer(cptr, fptr)</strong> assigns the target of the C function
 pointer <strong>cptr</strong> to the Fortran procedure pointer <strong>fptr</strong>.</p>
 </section>
 <section id="id11">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>cptr</strong></dt><dd><p>scalar of the type c_funptr. It is <strong>intent(in)</strong>.</p>
@@ -1226,7 +1247,7 @@ pointer <strong>cptr</strong> to the Fortran procedure pointer <strong>fptr</str
 </ul>
 </section>
 <section id="id12">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_f_procpointer</span><span class="w"></span>
 <span class="k">use </span><span class="nb">iso_c_binding</span>
@@ -1253,7 +1274,7 @@ pointer <strong>cptr</strong> to the Fortran procedure pointer <strong>fptr</str
 </div>
 </section>
 <section id="id13">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
 <p>Fortran 2003 and later</p>
 </section>
 <section id="id14">
@@ -1267,21 +1288,21 @@ pointer <strong>cptr</strong> to the Fortran procedure pointer <strong>fptr</str
 <section id="c-funloc">
 <h2>c_funloc<a class="headerlink" href="#c-funloc" title="Permalink to this heading">#</a></h2>
 <section id="id15">
-<h3><strong>Nome</strong><a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h3>
 <p><strong>c_funloc</strong>(3) - [ISO_C_BINDING] Obtain the C address of a procedure</p>
 </section>
 <section id="id16">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_funloc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id17">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
 <p><strong>c_funloc(x)</strong> determines the C address of the argument.</p>
 </section>
 <section id="id18">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>x</strong></dt><dd><p>Interoperable function or pointer to such function.</p>
@@ -1291,12 +1312,12 @@ pointer <strong>cptr</strong> to the Fortran procedure pointer <strong>fptr</str
 </ul>
 </section>
 <section id="id19">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
 <p>The return value is of type c_funptr and contains the C address of the
 argument.</p>
 </section>
 <section id="id20">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! program demo_c_funloc and module</span>
 <span class="k">module </span><span class="n">x</span><span class="w"></span>
@@ -1326,7 +1347,7 @@ argument.</p>
 </div>
 </section>
 <section id="id21">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h3>
 <p>Fortran 2003 and later</p>
 </section>
 <section id="id22">
@@ -1342,21 +1363,21 @@ argument.</p>
 <section id="c-loc">
 <h2>c_loc<a class="headerlink" href="#c-loc" title="Permalink to this heading">#</a></h2>
 <section id="id23">
-<h3><strong>Nome</strong><a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h3>
 <p><strong>c_loc</strong>(3) - [ISO_C_BINDING] Obtain the C address of an object</p>
 </section>
 <section id="id24">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id25">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
 <p><strong>c_loc(x)</strong> determines the C address of the argument.</p>
 </section>
 <section id="id26">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>x</strong></dt><dd><p>Shall have either the <em>pointer</em> or <em>target</em> attribute. It shall not be a
@@ -1369,12 +1390,12 @@ variable with no length type parameters.</p>
 </ul>
 </section>
 <section id="id27">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h3>
 <p>The return value is of type c_ptr and contains the C address of the
 argument.</p>
 </section>
 <section id="id28">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">subroutine </span><span class="n">association_test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
 <span class="w">   </span><span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">,</span><span class="w"> </span><span class="kt">c_ptr</span>
@@ -1388,7 +1409,7 @@ argument.</p>
 </div>
 </section>
 <section id="id29">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h3>
 <p>Fortran 2003 and later</p>
 </section>
 <section id="id30">
@@ -1404,22 +1425,22 @@ argument.</p>
 <section id="c-sizeof">
 <h2>c_sizeof<a class="headerlink" href="#c-sizeof" title="Permalink to this heading">#</a></h2>
 <section id="id31">
-<h3><strong>Nome</strong><a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h3>
+<h3><strong>Name</strong><a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h3>
 <p><strong>c_sizeof</strong>(3) - [ISO_C_BINDING] Size in bytes of an expression</p>
 </section>
 <section id="id32">
-<h3><strong>Sintaxe</strong><a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h3>
+<h3><strong>Syntax</strong><a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_sizeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id33">
-<h3><strong>Descrição</strong><a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h3>
+<h3><strong>Description</strong><a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h3>
 <p><strong>c_sizeof(x)</strong> calculates the number of bytes of storage the
 expression <strong>x</strong> occupies.</p>
 </section>
 <section id="id34">
-<h3><strong>Argumentos</strong><a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h3>
+<h3><strong>Arguments</strong><a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>x</strong></dt><dd><p>The argument shall be an interoperable data entity.</p>
@@ -1429,9 +1450,9 @@ expression <strong>x</strong> occupies.</p>
 </ul>
 </section>
 <section id="id35">
-<h3><strong>Retorno</strong><a class="headerlink" href="#id35" title="Permalink to this heading">#</a></h3>
+<h3><strong>Returns</strong><a class="headerlink" href="#id35" title="Permalink to this heading">#</a></h3>
 <p>The return value is of type integer and of the system-dependent kind
-c_size_t (from the <em>iso_c_binding</em> module). Its value is the
+c<em>size_t (from the _iso_c_binding</em> module). Its value is the
 number of bytes occupied by the argument. If the argument has the
 <em>pointer</em> attribute, the number of bytes of the storage area pointed to is
 returned. If the argument is of a derived type with <em>pointer</em> or
@@ -1439,7 +1460,7 @@ returned. If the argument is of a derived type with <em>pointer</em> or
 of the data pointed to by these components.</p>
 </section>
 <section id="id36">
-<h3><strong>Exemplos</strong><a class="headerlink" href="#id36" title="Permalink to this heading">#</a></h3>
+<h3><strong>Examples</strong><a class="headerlink" href="#id36" title="Permalink to this heading">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_sizeof</span><span class="w"></span>
 <span class="k">use </span><span class="nb">iso_c_binding</span>
@@ -1457,7 +1478,7 @@ of the data pointed to by these components.</p>
 default <em>real</em> variables are unusually padded.</p>
 </section>
 <section id="id37">
-<h3><strong>Padrão</strong><a class="headerlink" href="#id37" title="Permalink to this heading">#</a></h3>
+<h3><strong>Standard</strong><a class="headerlink" href="#id37" title="Permalink to this heading">#</a></h3>
 <p>Fortran 2008</p>
 </section>
 <section id="id38">

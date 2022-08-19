@@ -61,7 +61,7 @@ $ gfortran tabulate.f90 functions.o
 ```
 
 The first step compiles the module, resulting in an object file
-"functions.o" and a module intermediate file, "user\_functions.mod". This module
+"functions.o" and a module intermediate file, "user_functions.mod". This module
 file contains all the information the compiler needs to determine that
 the function `f` is defined in this module and what its interface is. This
 information is important: it enables the compiler to check that you call
@@ -72,10 +72,10 @@ check anything.
 
 The second step invokes the compiler in such a way that:
 
-* it compiles the file "tabulate.f90" (using the module file);
-* it invokes the linker to combine the object files tabulate.o and functions.o into an
-executable program — with the default name "a.out" or "a.exe" (if you
-want a different name, use the option "-o").
+- it compiles the file "tabulate.f90" (using the module file);
+- it invokes the linker to combine the object files tabulate.o and functions.o into an
+  executable program — with the default name "a.out" or "a.exe" (if you
+  want a different name, use the option "-o").
 
 What you do not see in general is that the linker also adds a number of
 extra files in this link step, the run-time libraries. These run-time

@@ -14,12 +14,12 @@ and details Fortran news from the previous month.
 
 We continued the work on the Fortran-lang website, specifically:
 
-* [#133](https://github.com/fortran-lang/fortran-lang.org/pull/133):
-Listing fpm packages on the Packages page of the website
-  
+- [#133](https://github.com/fortran-lang/fortran-lang.org/pull/133):
+  Listing fpm packages on the Packages page of the website
+
 Ongoing work:
 
-* [#117](https://github.com/fortran-lang/fortran-lang.org/issues/117): Adding a
+- [#117](https://github.com/fortran-lang/fortran-lang.org/issues/117): Adding a
   Benchmarks section, a new dedicated repository was created at
   https://github.com/fortran-lang/benchmarks and many details have been
   discussed in [issues](https://github.com/fortran-lang/benchmarks/issues) there
@@ -31,11 +31,11 @@ We welcome any new contributors to the website and the tutorials page in particu
 
 There hasn't been new stdlib development in August, however ongoing work and discussions continue:
 
-* [#227](https://github.com/fortran-lang/stdlib/issues/227): API proposal for logging facilities in stdlib
-* [#225](https://github.com/fortran-lang/stdlib/issues/225): Name convention for derived types in stdlib
-* [#224](https://github.com/fortran-lang/stdlib/issues/224): Handling and propagating errors inside stdlib
-* [#221](https://github.com/fortran-lang/stdlib/issues/221): API for a bitset data type
-* [#201](https://github.com/fortran-lang/stdlib/issues/201): API for file system operations
+- [#227](https://github.com/fortran-lang/stdlib/issues/227): API proposal for logging facilities in stdlib
+- [#225](https://github.com/fortran-lang/stdlib/issues/225): Name convention for derived types in stdlib
+- [#224](https://github.com/fortran-lang/stdlib/issues/224): Handling and propagating errors inside stdlib
+- [#221](https://github.com/fortran-lang/stdlib/issues/221): API for a bitset data type
+- [#201](https://github.com/fortran-lang/stdlib/issues/201): API for file system operations
 
 The candidate for file system operations to be included in stdlib is being developed by
 [@MarDiehl](https://github.com/MarDiehl) and [@arjenmarkus](https://github.com/arjenmarkus)
@@ -46,22 +46,22 @@ Please try it out and let us know how it works, if there are any issues, or if t
 
 Ongoing work in fpm:
 
-* [#146](https://github.com/fortran-lang/fpm/issues/146) (WIP): 
-Implementing internal dependencies and build backend in the Fortran fpm
+- [#146](https://github.com/fortran-lang/fpm/issues/146) (WIP):
+  Implementing internal dependencies and build backend in the Fortran fpm
 
 fpm is still in early development and we need as much help as we can get.
 Here's how you can help today:
 
-* Try to use it. Does it work? No? Let us know! Read the [fpm packaging guide](https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md) to learn how to build your package with fpm.
-* Browse the [open issues](https://github.com/fortran-lang/fpm/issues) and see if you can help implement any fixes or features.
-* Adapt your Fortran package for fpm and submit it to the [Registry](https://github.com/fortran-lang/fpm-registry).
-* Improve the documentation.
+- Try to use it. Does it work? No? Let us know! Read the [fpm packaging guide](https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md) to learn how to build your package with fpm.
+- Browse the [open issues](https://github.com/fortran-lang/fpm/issues) and see if you can help implement any fixes or features.
+- Adapt your Fortran package for fpm and submit it to the [Registry](https://github.com/fortran-lang/fpm-registry).
+- Improve the documentation.
 
 The short term goal of fpm is to make development and installation of Fortran packages with dependencies easier.
 Its long term goal is to build a rich and decentralized ecosystem of Fortran packages and create a healthy
 environment in which new open source Fortran projects are created and published with ease.
 
-##  Fortran benchmarks
+## Fortran benchmarks
 
 We created the [benchmarks repository](https://github.com/fortran-lang/benchmarks) with the goal to design and implement a comprehensive set of benchmarks.
 The benchmarks will aim to compare the performance of various Fortran compilers, as well as the performance of canonical algorithms implemented in Fortran and different languages.
@@ -75,7 +75,7 @@ GFortran 10.2 has been released, a bugfix release for 10.1.
 Bugs fixed include PR94361, a memory leak with finalizers.
 
 The development version of `gfortran` now supports the
-full OpenMP 4.5 specification.  This will be released
+full OpenMP 4.5 specification. This will be released
 with GCC 11, but of course people can already download
 and test it.
 
@@ -117,17 +117,17 @@ OpenACC support.
 
 What's new in LFortran:
 
-* 143 Merge Requests were merged and 22 issues fixed in August 2020
-* The C++ backend can now translate to C++ and compile many simple Fortran programs
-* The parser can now parse a large subset of Fortran (if you find something that
+- 143 Merge Requests were merged and 22 issues fixed in August 2020
+- The C++ backend can now translate to C++ and compile many simple Fortran programs
+- The parser can now parse a large subset of Fortran (if you find something that
   cannot be parsed, please [report](https://gitlab.com/lfortran/lfortran/-/issues) a bug). Not all the information is yet
   represented in the AST (so later stages of the compiler also work on a smaller
   subset), but one should not get parse errors anymore for most valid codes.
-* Initial `lfortran fmt` subcommand for formatting Fortran files, you can
+- Initial `lfortran fmt` subcommand for formatting Fortran files, you can
   provide feedback
   [here](https://fortran-lang.discourse.group/t/feedback-for-lfortran-fmt-to-format-fortran-source-code/281).
-* A new command `lfortran kernel` can run LFortran as a Jupyter kernel.
-* LFortran itself gives a nice Python like stacktrace (on Linux and macOS) in
+- A new command `lfortran kernel` can run LFortran as a Jupyter kernel.
+- LFortran itself gives a nice Python like stacktrace (on Linux and macOS) in
   Debug mode when an unhandled excetion happens or a segfault.
 
 Our goal for September is to get LFortran working for a much larger subset of
@@ -138,8 +138,8 @@ You can follow LFortran on Twitter for latest updates: [@lfortranorg](https://tw
 
 ## Events
 
-* We had our fourth Fortran Monthly call on August 20.
-You can watch the recording below:
+- We had our fourth Fortran Monthly call on August 20.
+  You can watch the recording below:
 
 <iframe width="560" height="315" src="https://www.youtube-nocookie.com/embed/fiAyhHkAKFc" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
 
@@ -151,11 +151,11 @@ join the [Discourse](https://fortran-lang.discourse.group) to stay tuned with th
 We thank everybody who contributed to fortran-lang in the past month by
 commenting in any of these repositories:
 
-* [fortran-lang/stdlib](https://github.com/fortran-lang/stdlib),
-* [fortran-lang/fpm](https://github.com/fortran-lang/fpm),
-* [fortran-lang/fpm-registry](https://github.com/fortran-lang/fpm-registry),
-* [fortran-lang/fortran-lang.org](https://github.com/fortran-lang/fortran-lang.org),
-* [fortran-lang/benchmarks](https://github.com/fortran-lang/benchmarks),
-* [j3-fortran/fortran_proposals](https://github.com/j3-fortran/fortran_proposals):
+- [fortran-lang/stdlib](https://github.com/fortran-lang/stdlib),
+- [fortran-lang/fpm](https://github.com/fortran-lang/fpm),
+- [fortran-lang/fpm-registry](https://github.com/fortran-lang/fpm-registry),
+- [fortran-lang/fortran-lang.org](https://github.com/fortran-lang/fortran-lang.org),
+- [fortran-lang/benchmarks](https://github.com/fortran-lang/benchmarks),
+- [j3-fortran/fortran_proposals](https://github.com/j3-fortran/fortran_proposals):
 
 <div id="gh-contributors" data-startdate="August 01 2020" data-enddate="August 31 2020" height="500px"></div>

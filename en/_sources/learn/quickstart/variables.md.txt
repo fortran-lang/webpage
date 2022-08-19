@@ -6,17 +6,17 @@ must have a type.
 
 There are 5 built-in data types in Fortran:
 
-* `integer` -- for data that represent whole numbers, positive or negative
-* `real` -- for floating-point data (not a whole number)
-* `complex` -- pair consisting of a real part and an imaginary part
-* `character` -- for text data
-* `logical` -- for data that represent boolean (true or false) values
+- `integer` -- for data that represent whole numbers, positive or negative
+- `real` -- for floating-point data (not a whole number)
+- `complex` -- pair consisting of a real part and an imaginary part
+- `character` -- for text data
+- `logical` -- for data that represent boolean (true or false) values
 
 Before we can use a variable, we must _declare_ it; this tells the compiler
 the variable type and any other variable attributes.
 
->Fortran is a _statically typed_ language, which means the type of each
-variable is fixed when the program is compiled---variable types cannot change while the program is running.
+> Fortran is a _statically typed_ language, which means the type of each
+> variable is fixed when the program is compiled---variable types cannot change while the program is running.
 
 # Declaring variables
 
@@ -32,7 +32,7 @@ where `<variable_type>` is one of the built-in variable types listed above and
 Variable names must start with a letter and can consist of letters, numbers and underscores.
 In the following example we declare a variable for each of the built-in types.
 
-__Example:__ variable declaration
+**Example:** variable declaration
 
 ```fortran
 program variables
@@ -47,21 +47,20 @@ program variables
 end program variables
 ```
 
->Fortran code is __case-insensitive__; you don't have to worry about the
-capitalisation of your variable names, but it's good practice to keep it consistent.
+> Fortran code is **case-insensitive**; you don't have to worry about the
+> capitalisation of your variable names, but it's good practice to keep it consistent.
 
 Note the additional statement at the beginning of the program: `implicit none`.
-This statement tells the compiler that all variables will be explicitly declared; without 
+This statement tells the compiler that all variables will be explicitly declared; without
 this statement variables will be implicitly typed according to the letter they begin with.
 
->Always use the `implicit none` statement at
-the beginning of each program and procedure. Implicit typing is considered bad practice in 
-modern programming since it hides information leading to more program errors.
-
+> Always use the `implicit none` statement at
+> the beginning of each program and procedure. Implicit typing is considered bad practice in
+> modern programming since it hides information leading to more program errors.
 
 Once we have declared a variable, we can assign and reassign values to it using the assignment operator `=`.
 
-__Example:__ variable assignment
+**Example:** variable assignment
 
 ```fortran
 amount = 10
@@ -75,10 +74,9 @@ Characters are surrounded by either single (`'`) or double quotes (`"`).
 
 Logical or boolean values can be either `.true.` or `.false.`.
 
->Watch out" content="for assignment at declaration: `integer :: amount = 1`. 
-__This is NOT a normal initialisation;__ it implies the `save` attribute which means that the variable retains
-its value between procedure calls. Good practice is to initialise your variables separately to their declaration.
-
+> Watch out" content="for assignment at declaration: `integer :: amount = 1`.
+> **This is NOT a normal initialisation;** it implies the `save` attribute which means that the variable retains
+> its value between procedure calls. Good practice is to initialise your variables separately to their declaration.
 
 ## Standard input / output
 
@@ -113,21 +111,21 @@ end program read_value
 
 This input source is commonly referred to as `standard input` or `stdin`.
 
-
 ## Expressions
+
 The usual set of arithmetic operators are available, listed in order or precedence:
 
-| Operator &nbsp;  | Description    |
-|:----------------:|----------------|
-| `**`             | Exponent       |
-| `*`              | Multiplication |
-| `/ `             | Division       |
-| `+`              | Addition       |
-| `-`              | Subtraction    |
+| Operator &nbsp; | Description    |
+| :-------------: | -------------- |
+|      `**`       | Exponent       |
+|       `*`       | Multiplication |
+|      `/ `       | Division       |
+|       `+`       | Addition       |
+|       `-`       | Subtraction    |
 
 <br>
 
-__Example:__ 
+**Example:**
 
 ```fortran
 program arithmetic
@@ -158,17 +156,13 @@ program arithmetic
 end program arithmetic
 ```
 
-
-
-
-
-
 ## Floating-point precision
 
 The desired floating-point precision can be explicitly declared using a `kind` parameter.
 The `iso_fortran_env` intrinsic module provides `kind` parameters for the common 32-bit and 64-bit floating-point types.
 
-__Example:__ explicit real `kind`
+**Example:** explicit real `kind`
+
 ```fortran
 program float
   use, intrinsic :: iso_fortran_env, only: sp=>real32, dp=>real64
@@ -183,9 +177,10 @@ program float
 end program float
 ```
 
->Always use a `kind` suffix for floating-point literal constants.
+> Always use a `kind` suffix for floating-point literal constants.
 
-__Example:__ C-interoperable `kind`s
+**Example:** C-interoperable `kind`s
+
 ```fortran
 program float
   use, intrinsic :: iso_c_binding, only: sp=>c_float, dp=>c_double

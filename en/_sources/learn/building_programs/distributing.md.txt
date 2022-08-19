@@ -7,7 +7,7 @@ choose from:
 2. Distribute a pre-built executable program
 3. Distribute static or dynamic libraries that people can use
 
-__Option 1: Distribute the entire source code__
+**Option 1: Distribute the entire source code**
 
 By far the simplest — for you as a programmer — is this one: you leave it
 up to the user to build it on their own machine. Unfortunately, that
@@ -15,7 +15,7 @@ means you will have to have a user-friendly build system in place and
 the user will have to have access to suitable compilers. For build systems:
 see the previous section.
 
-__Option 2: Distribute a pre-built executable program__
+**Option 2: Distribute a pre-built executable program**
 
 A pre-built program that does not need to be customised, other than via its
 input, will still need to come with the various run-time libraries and will
@@ -38,7 +38,7 @@ libraries are required and consult the documentation of the compiler.
 If your program does allow customisation, consider using dynamic libraries for this.
 More is said about this below.
 
-__Option 3: Distribute static or dynamic libraries that people can use__
+**Option 3: Distribute static or dynamic libraries that people can use**
 
 This option is a combination of the first two options. It does put some burden on
 the user, as they must create a main program that calls your routines in the
@@ -50,11 +50,12 @@ supply the module intermediate files. These files are compiler-specific, but so 
 the static libraries you build.
 
 ## Distributing the tabulation program
+
 As shown above, the tabulation program can be built with the user-defined function
 in a dynamic library. This enables you to:
 
-* Ship the executable (with the appropriate run-time libraries)
-* Provide a skeleton version of the module, something like:
+- Ship the executable (with the appropriate run-time libraries)
+- Provide a skeleton version of the module, something like:
 
 ```fortran
 module user_functions
@@ -72,7 +73,7 @@ end function f
 end module user_functions
 ```
 
-* Provide a basic build script with a command like:
+- Provide a basic build script with a command like:
 
 ```shell
 gfortran -o functions.dll functions.f90 -shared

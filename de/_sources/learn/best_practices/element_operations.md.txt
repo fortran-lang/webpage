@@ -2,15 +2,15 @@
 
 There are three approaches to perform element-wise operations on arrays when using subroutines and functions:
 
--   `elemental` procedures
--   *explicit-shape* arrays
--   implementing the operation for vectors and write simple wrapper
-    subroutines (that use `reshape` internally) for each array shape
+- `elemental` procedures
+- _explicit-shape_ arrays
+- implementing the operation for vectors and write simple wrapper
+  subroutines (that use `reshape` internally) for each array shape
 
 In the first approach, one uses the `elemental` keyword to create a
 function like this:
 
-``` fortran
+```fortran
 real(dp) elemental function nroot(n, x) result(y)
   integer, intent(in) :: n
   real(dp), intent(in) :: x
@@ -21,7 +21,7 @@ end function
 All arguments (in and out) must be scalars. You can then use this
 function with arrays of any (compatible) shape, for example:
 
-``` fortran
+```fortran
 print *, nroot(2, 9._dp)
 print *, nroot(2, [1._dp, 4._dp, 9._dp, 10._dp])
 print *, nroot(2, reshape([1._dp, 4._dp, 9._dp, 10._dp], [2, 2]))
@@ -31,7 +31,7 @@ print *, nroot([2, 3, 4, 5], 4._dp)
 
 The output will be:
 
-``` fortran
+```fortran
 3.0000000000000000
 1.0000000000000000        2.0000000000000000        3.0000000000000000        3.1622776601683795
 1.0000000000000000        2.0000000000000000        3.0000000000000000        3.1622776601683795
@@ -54,7 +54,7 @@ incompatible shapes, then one should use the other two approaches. One
 can make `nroot` operate on a vector and write a simple wrapper for
 other array shapes, e.g.:
 
-``` fortran
+```fortran
 function nroot(n, x) result(y)
   integer, intent(in) :: n
   real(dp), intent(in) :: x(:)
@@ -81,7 +81,7 @@ end function
 
 And use as follows:
 
-``` fortran
+```fortran
 print *, nroot_0d(2, 9._dp)
 print *, nroot(2, [1._dp, 4._dp, 9._dp, 10._dp])
 print *, nroot_2d(2, reshape([1._dp, 4._dp, 9._dp, 10._dp], [2, 2]))
@@ -89,16 +89,16 @@ print *, nroot_2d(2, reshape([1._dp, 4._dp, 9._dp, 10._dp], [2, 2]))
 
 This will print:
 
-``` fortran
+```fortran
 3.0000000000000000
 1.0000000000000000        2.0000000000000000        3.0000000000000000        3.1622776601683795
 1.0000000000000000        2.0000000000000000        3.0000000000000000        3.1622776601683795
 ```
 
-Or one can use *explicit-shape* arrays as
+Or one can use _explicit-shape_ arrays as
 follows:
 
-``` fortran
+```fortran
 function nroot(n, k, x) result(y)
   integer, intent(in) :: n, k
   real(dp), intent(in) :: x(k)
@@ -109,7 +109,7 @@ end function
 
 Use as follows:
 
-``` fortran
+```fortran
 print *, nroot(2, 1, [9._dp])
 print *, nroot(2, 4, [1._dp, 4._dp, 9._dp, 10._dp])
 print *, nroot(2, 4, reshape([1._dp, 4._dp, 9._dp, 10._dp], [2, 2]))
@@ -117,7 +117,7 @@ print *, nroot(2, 4, reshape([1._dp, 4._dp, 9._dp, 10._dp], [2, 2]))
 
 The output is the same as before:
 
-``` fortran
+```fortran
 3.0000000000000000
 1.0000000000000000        2.0000000000000000        3.0000000000000000        3.1622776601683795
 1.0000000000000000        2.0000000000000000        3.0000000000000000        3.1622776601683795

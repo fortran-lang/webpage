@@ -9,29 +9,29 @@ author: Milan Curcic, Ondřej Čertík, Sebastian Ehlert, Laurence Kedward, Arje
 We're happy to announce six students that will work on Fortran projects under
 the Google Summer of Code 2021 program:
 
-* [Aman Godara](https://github.com/aman-godara) will work on strings in the
+- [Aman Godara](https://github.com/aman-godara) will work on strings in the
   [Fortran Standard Library](https://github.com/fortran-lang/stdlib). Aman's
   mentors will be [Sebastian Ehlert](https://github.com/awvwgk) and
   [Milan Curcic](https://github.com/milancurcic).
-* [Rohit Goswami](https://github.com/haozeke) will work on the
+- [Rohit Goswami](https://github.com/haozeke) will work on the
   [LFortran](https://lfortran.org) compiler, specifically toward the capability
   to compile a complex physics package. Rohit's mentor will be
   [Ondřej Čertík](https://github.com/certik).
-* [Jakub Jelínek](https://github.com/kubajj) will work on handling compiler
+- [Jakub Jelínek](https://github.com/kubajj) will work on handling compiler
   arguments in the
   [Fortran Package Manager](https://github.com/fortran-lang/fpm). Jakub's
   mentors will be [Laurence Kedward](https://github.com/lkedward) and
   [Brad Richardson](https://github.com/everythingfunctional).
-* [Chetan Karwa](https://github.com/chetankarwa) will work on the linked list
+- [Chetan Karwa](https://github.com/chetankarwa) will work on the linked list
   support in the
   [Fortran Standard Library](https://github.com/fortran-lang/stdlib). Chetan's
   mentors will be [Arjen Markus](https://github.com/arjenmarkus) and
   [Milan Curcic](https://github.com/milancurcic).
-* [Thirumalai Shaktivel](https://gitlab.com/Thirumalai-Shaktivel) will work
+- [Thirumalai Shaktivel](https://gitlab.com/Thirumalai-Shaktivel) will work
   on the Abstract Syntax Tree generation in the [LFortran](https://lfortran.org)
   compiler. Thirumalai's mentor will be
   [Ondřej Čertík](https://github.com/certik).
-* [Gagandeep Singh](https://github.com/czgdp1807) will work on the support
+- [Gagandeep Singh](https://github.com/czgdp1807) will work on the support
   of arrays and allocatables in the [LFortran](https://lfortran.org) compiler.
   Gagandeep's mentor will be [Ondřej Čertík](https://github.com/certik).
   Gagandeep was accepted under the NumFOCUS application to GSoC.

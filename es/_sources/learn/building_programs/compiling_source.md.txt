@@ -8,13 +8,13 @@ same source code and the naming conventions are different.
 
 The consequences:
 
-* If you use a particular compiler for one source file, you need to use
-the same compiler (or a compatible one) for all other pieces. After
-all, a program may be built from many different source files and the
-compiled pieces have to cooperate.
-* Each source file will be compiled and the result is stored in a file
-with an extension like ".o" or ".obj". It is these object files that are
-the input for the next step: the link process.
+- If you use a particular compiler for one source file, you need to use
+  the same compiler (or a compatible one) for all other pieces. After
+  all, a program may be built from many different source files and the
+  compiled pieces have to cooperate.
+- Each source file will be compiled and the result is stored in a file
+  with an extension like ".o" or ".obj". It is these object files that are
+  the input for the next step: the link process.
 
 Compilers are complex pieces of software: they have to understand the
 language in much more detail and depth than the average programmer. They
@@ -49,11 +49,11 @@ Windows.
 
 Some remarks:
 
-* The compiler may complain about the contents of the source file, if it
-finds something wrong with it — a typo for instance or an unknown
-keyword. In that case the compilation process is broken off and you will
-not get an object file or an executable program. For instance, if
-the word "program" was inadvertently typed as "prgoram":
+- The compiler may complain about the contents of the source file, if it
+  finds something wrong with it — a typo for instance or an unknown
+  keyword. In that case the compilation process is broken off and you will
+  not get an object file or an executable program. For instance, if
+  the word "program" was inadvertently typed as "prgoram":
 
 ```shell
 $ gfortran hello3.f90
@@ -73,10 +73,10 @@ f951: Error: Unexpected end of file in 'hello.f90'
 Using this compilation report you can correct the source code and try
 again.
 
-* The step without "-c" can only succeed if the source file contains a
-main program — characterised by the `program` statement in Fortran.
-Otherwise the link step will complain about a missing "symbol", something
-along these lines:
+- The step without "-c" can only succeed if the source file contains a
+  main program — characterised by the `program` statement in Fortran.
+  Otherwise the link step will complain about a missing "symbol", something
+  along these lines:
 
 ```shell
 $ gfortran hello2.f90
@@ -94,11 +94,10 @@ compiler running in a Cygwin environment on Windows.
 
 Compilers also differ in the options they support, but in general:
 
-* Options for optimising the code — resulting in faster programs or
-smaller memory footprints;
-* Options for checking the source code — checks that a variable is not
-used before it has been given a value, for instance or checks if some
-extension to the language is used;
-* Options for the location of include or module files, see below;
-* Options for debugging.
-
+- Options for optimising the code — resulting in faster programs or
+  smaller memory footprints;
+- Options for checking the source code — checks that a variable is not
+  used before it has been given a value, for instance or checks if some
+  extension to the language is used;
+- Options for the location of include or module files, see below;
+- Options for debugging.
