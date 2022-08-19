@@ -27,7 +27,7 @@ pip3 install --user -r requirements.txt
 Build the site by invoking
 
 ```
-make dirhtml
+python3 build.py
 ```
 
 The website will be built in `build/html` and can be previewed by starting a webserver and opening the page with a browser (_e.g._ firefox, chromium or similar):
@@ -40,7 +40,7 @@ By default all languages will be built.
 To limit the build to a single language subtree, _i.e._ English, use
 
 ```
-make dirhtml LANGUAGES=en
+python3 build.py en
 ```
 
 After adding a new entry to package index, run the github action _fortran_packages_ before building the sphinx build.
@@ -97,7 +97,7 @@ which contain the original sentences and a placeholder for translations.
 To update translations run
 
 ```
-make gettext
+python3 intl.py
 ```
 
 if you only want to update a single translation add `LANGUAGES=de` to the command.
