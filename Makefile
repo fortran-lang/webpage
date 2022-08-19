@@ -16,18 +16,8 @@ help:
 
 .PHONY: help Makefile
 
-dirhtml: $(addprefix html/,$(LANGUAGES)) $(BUILDDIR)/html/index.html $(BUILDDIR)/html/CNAME
-	@echo "Pages available at file://$$PWD/$(BUILDDIR)/html/index.html"
+dirhtml:
+	@python3 build.py $(LANGUAGES)
 
-$(addprefix html/,$(LANGUAGES)): $(MAKEFILES)
-	@$(SPHINXBUILD) -b dirhtml "$(SOURCEDIR)" "$(BUILDDIR)/$@" $(SPHINXOPTS) -Dlanguage=$(word 2,$(subst /, ,$@))
-
-$(BUILDDIR)/html/index.html: source/html/index.html
-	@cp $< $@
-
-$(BUILDDIR)/html/CNAME: source/html/CNAME
-	@cp $< $@
-
-gettext: $(MAKEFILES)
-	@$(SPHINXBUILD) -b $@ "$(SOURCEDIR)" "$(BUILDDIR)/$@" $(SPHINXOPTS)
-	@$(SPHINXINTL) update -p "$(BUILDDIR)/$@" -d locale $(addprefix -l,$(filter-out en,$(LANGUAGES)))
+gettext:
+	@python3 intl.py $(filter-out en,$(LANGUAGES))
