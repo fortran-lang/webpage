@@ -1,40 +1,42 @@
-## dot\_product
-### __Name__
+## dot_product
 
-__dot\_product__(3) - \[TRANSFORMATIONAL\] Dot product function
+### **Name**
 
+**dot_product**(3) - \[TRANSFORMATIONAL\] Dot product function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = dot_product(vector_a, vector_b)
 ```
-### __Description__
 
-__dot\_product(vector\_a, vector\_b)__ computes the dot product
-multiplication of two vectors vector\_a and vector\_b. The two vectors
+### **Description**
+
+**dot_product(vector_a, vector_b)** computes the dot product
+multiplication of two vectors vector_a and vector_b. The two vectors
 may be either numeric or logical and must be arrays of rank one and of
 equal size. If the vectors are _integer_ or _real_, the result is
-__sum(vector\_a\*vector\_b)__. If the vectors are _complex_, the result is
-__sum(conjg(vector\_a)\*vector\_b)__. If the vectors are _logical_, the
-result is __any(vector\_a .and. vector\_b)__.
+**sum(vector_a\*vector_b)**. If the vectors are _complex_, the result is
+**sum(conjg(vector_a)\*vector_b)**. If the vectors are _logical_, the
+result is **any(vector_a .and. vector_b)**.
 
-### __Arguments__
+### **Arguments**
 
-  - __vector\_a__
-    : The type shall be numeric or _logical_, rank 1.
+- **vector_a**
+  : The type shall be numeric or _logical_, rank 1.
 
-  - __vector\_b__
-    : The type shall be numeric if vector\_a is of numeric type or _logical_
-    if vector\_a is of type _logical_. vector\_b shall be a rank-one
-    array.
+- **vector_b**
+  : The type shall be numeric if vector_a is of numeric type or _logical_
+  if vector_a is of type _logical_. vector_b shall be a rank-one
+  array.
 
-### __Returns__
+### **Returns**
 
 If the arguments are numeric, the return value is a scalar of numeric
 type, _integer_, _real_, or _complex_. If the arguments are _logical_, the
 return value is .true. or .false..
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -51,15 +53,18 @@ implicit none
     print *, dot_product(a,b)
 end program demo_dot_prod
 ```
-  Results:
+
+Results:
+
 ```text
      1  2  3
-   
+
      4  5  6
-   
+
              32
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 

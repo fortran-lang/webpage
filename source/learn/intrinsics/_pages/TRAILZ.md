@@ -1,28 +1,31 @@
 ## trailz
-### __Name__
 
-__trailz__(3) - \[BIT:COUNT\] Number of trailing zero bits of an integer
+### **Name**
 
-### __Syntax__
+**trailz**(3) - \[BIT:COUNT\] Number of trailing zero bits of an integer
+
+### **Syntax**
+
 ```fortran
    result = trailz(i) integer :: result
    integer(kind=NNN),intent(in) :: i
 ```
-### __Description__
 
-__trailz(3)__ returns the number of trailing zero bits of an _integer_ value
+### **Description**
 
-### __Arguments__
+**trailz(3)** returns the number of trailing zero bits of an _integer_ value
 
-  - __i__
-    : Shall be of type _integer_.
+### **Arguments**
 
-### __Returns__
+- **i**
+  : Shall be of type _integer_.
+
+### **Returns**
 
 The type of the return value is the default _integer_. If all the bits of
-I are zero, the result value is __bit\_size(i)__.
+I are zero, the result value is **bit_size(i)**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -100,15 +103,15 @@ Results:
  huge 0111111111111111111111111111111111111111111111111111111111111111
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__bit\_size__(3)](BIT_SIZE),
-[__popcnt__(3)](POPCNT),
-[__poppar__(3)](POPPAR),
-[__leadz__(3)](LEADZ)
+[**bit_size**(3)](BIT_SIZE),
+[**popcnt**(3)](POPCNT),
+[**poppar**(3)](POPPAR),
+[**leadz**(3)](LEADZ)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

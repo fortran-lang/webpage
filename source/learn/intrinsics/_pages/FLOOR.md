@@ -1,9 +1,11 @@
 ## floor
-### __Name__
 
-__floor__(3) - \[NUMERIC\] function to return largest integral value not greater than argument
+### **Name**
 
-### __Syntax__
+**floor**(3) - \[NUMERIC\] function to return largest integral value not greater than argument
+
+### **Syntax**
+
 ```fortran
 result = floor(a, KIND)
 
@@ -12,31 +14,33 @@ result = floor(a, KIND)
     real(kind=kind(a)),intent(in) :: a
     integer(kind=IKIND),intent(in),optional :: KIND
 ```
+
     where __KIND__ is any valid value for type _integer_.
-### __Description__
 
-__floor(a)__ returns the greatest integer less than or equal to __a__.
+### **Description**
+
+**floor(a)** returns the greatest integer less than or equal to **a**.
 That is, it picks the whole number at or to the left of the value on
-the scale __-huge(int(a,kind=KIND))-1__ to __huge(int(a),kind=KIND)__.
+the scale **-huge(int(a,kind=KIND))-1** to **huge(int(a),kind=KIND)**.
 
-### __Arguments__
+### **Arguments**
 
-  - __a__
-    : The type shall be _real_.
+- **a**
+  : The type shall be _real_.
 
-  - __kind__
-    : (Optional) A scalar _integer_ constant initialization expression
-    indicating the kind parameter of the result.
+- **kind**
+  : (Optional) A scalar _integer_ constant initialization expression
+  indicating the kind parameter of the result.
 
-### __Returns__
+### **Returns**
 
-The return value is of type _integer(kind)_ if __kind__ is present and of
-default-kind _integer_ otherwise. 
+The return value is of type _integer(kind)_ if **kind** is present and of
+default-kind _integer_ otherwise.
 
 The result is undefined if it cannot be represented in the specified
 integer type.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -45,8 +49,8 @@ program demo_floor
 implicit none
 real :: x = 63.29
 real :: y = -63.59
-    print *, x, floor(x) 
-    print *, y, floor(y) 
+    print *, x, floor(x)
+    print *, y, floor(y)
    ! elemental
    print *,floor([ &
    &  -2.7,  -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, &
@@ -60,30 +64,31 @@ real :: y = -63.59
    ! A=Nan, Infinity or  <huge(0_KIND)-1 < A > huge(0_KIND) is undefined
 end program demo_floor
 ```
+
 Results:
+
 ```text
       63.29000              63
      -63.59000             -64
              -3          -3          -3          -2          -2          -1
              -1           0           0           1           1           2
               2           2           2
-      2.000000       2.000000       2.000000    
+      2.000000       2.000000       2.000000
               2           1           1
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__ceiling__(3)](CEILING),
-[__nint__(3)](NINT)
+[**ceiling**(3)](CEILING),
+[**nint**(3)](NINT)
 
-
-[__aint__(3)](AINT),
-[__anint__(3)](ANINT),
-[__int__(3)](INT),
-[__selected_int_kind__(3)](SELECTED_INT_KIND)
+[**aint**(3)](AINT),
+[**anint**(3)](ANINT),
+[**int**(3)](INT),
+[**selected_int_kind**(3)](SELECTED_INT_KIND)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

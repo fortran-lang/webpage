@@ -1,46 +1,49 @@
 ## any
-### __Name__
 
-__any__(3) - \[ARRAY REDUCTION\] determines if any of the values in the logical array are true.
+### **Name**
 
+**any**(3) - \[ARRAY REDUCTION\] determines if any of the values in the logical array are true.
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = any(mask, dim)
 ```
-### __Description__
 
-__any(mask, dim)__ determines if any of the values in the logical
-array __mask__ along dimension __dim__ are __.true.__.
+### **Description**
 
-### __Arguments__
+**any(mask, dim)** determines if any of the values in the logical
+array **mask** along dimension **dim** are **.true.**.
 
-  - __mask__
-    : the type of the argument shall be _logical_ and it shall not be
-    scalar.
+### **Arguments**
 
-  - __dim__
-    : (optional) dim shall be a scalar integer with a value that lies
-    between one and the rank of mask.
+- **mask**
+  : the type of the argument shall be _logical_ and it shall not be
+  scalar.
 
-### __Returns__
+- **dim**
+  : (optional) dim shall be a scalar integer with a value that lies
+  between one and the rank of mask.
 
-__any(mask)__ returns a scalar value of type _logical_ where the kind type
-parameter is the same as the kind type parameter of __mask__. If __dim__ is
-present, then __any(mask, dim)__ returns an array with the rank of __mask__
-minus 1. The shape is determined from the shape of __mask__ where the __dim__
+### **Returns**
+
+**any(mask)** returns a scalar value of type _logical_ where the kind type
+parameter is the same as the kind type parameter of **mask**. If **dim** is
+present, then **any(mask, dim)** returns an array with the rank of **mask**
+minus 1. The shape is determined from the shape of **mask** where the **dim**
 dimension is elided.
 
-1.  __any(mask)__ is true if any element of __mask__ is true; otherwise, it
-    is __.false.__. It also is false if __mask__ has zero size.
+1.  **any(mask)** is true if any element of **mask** is true; otherwise, it
+    is **.false.**. It also is false if **mask** has zero size.
 
-2.  If the rank of __mask__ is one, then __any(mask, dim)__ is equivalent to
-    __any(mask)__. If the rank is greater than one, then __any(mask,
-    dim)__ is determined by applying __any()__ to the array sections.
+2.  If the rank of **mask** is one, then **any(mask, dim)** is equivalent to
+    **any(mask)**. If the rank is greater than one, then **any(mask,
+    dim)** is determined by applying **any()** to the array sections.
 
-### __Examples__
+### **Examples**
 
 Sample program:
+
 ```fortran
 program demo_any
 implicit none
@@ -59,13 +62,16 @@ logical l
      end subroutine section
 end program demo_any
 ```
-  Results:
+
+Results:
+
 ```text
     T
     T T T
     T T
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 

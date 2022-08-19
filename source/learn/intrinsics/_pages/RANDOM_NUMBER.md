@@ -1,24 +1,26 @@
-## random\_number
-### __Name__
+## random_number
 
-__random\_number__(3) - \[MATHEMATICS:RANDOM\] Pseudo-random number
+### **Name**
 
+**random_number**(3) - \[MATHEMATICS:RANDOM\] Pseudo-random number
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
    random_number(harvest)
 ```
-### __Description__
+
+### **Description**
 
 Returns a single pseudorandom number or an array of pseudorandom numbers
 from the uniform distribution over the range 0 \<= x \< 1.
 
-### __Arguments__
+### **Arguments**
 
-  - __harvest__
-    : Shall be a scalar or an array of type _real_.
+- **harvest**
+  : Shall be a scalar or an array of type _real_.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -39,9 +41,9 @@ real(kind=dp)        :: rand_val
    first=1
    last=10
    allocate(count(last-first+1))
-   ! To have a discrete uniform distribution on the integers 
+   ! To have a discrete uniform distribution on the integers
    ! [first, first+1, ..., last-1, last] carve the continuous
-   ! distribution up into last+1-first equal sized chunks, 
+   ! distribution up into last+1-first equal sized chunks,
    ! mapping each chunk to an integer.
    !
    ! One way is:
@@ -64,7 +66,9 @@ real(kind=dp)        :: rand_val
       write(*,'(i0,1x,i0)')(i,count(i),i=1,size(count))
 end program demo_random_number
 ```
+
 Results:
+
 ```
    1 10003588
    2 10000104
@@ -77,12 +81,13 @@ Results:
    9 10000252
    10 10000196
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__random\_seed__(3)](RANDOM_SEED)
+[**random_seed**(3)](RANDOM_SEED)
 
 ####### fortran-lang intrinsic descriptions

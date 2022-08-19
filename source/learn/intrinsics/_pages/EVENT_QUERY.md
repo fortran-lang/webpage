@@ -1,35 +1,37 @@
-## event\_query
-### __Name__
+## event_query
 
-__event\_query__(3) - \[COLLECTIVE\] Query whether a coarray event has occurred
+### **Name**
 
+**event_query**(3) - \[COLLECTIVE\] Query whether a coarray event has occurred
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 call event_query(event, count, stat)
 ```
-### __Description__
 
-__event\_query__ assigns the number of events to __count__ which have been
-posted to the __event__ variable and not yet been removed by calling
-__event\_wait__. When __stat__ is present and the invocation was successful, it
-is assigned the value __0__. If it is present and the invocation has failed,
-it is assigned a positive value and __count__ is assigned the value __-1__.
+### **Description**
 
-### __Arguments__
+**event_query** assigns the number of events to **count** which have been
+posted to the **event** variable and not yet been removed by calling
+**event_wait**. When **stat** is present and the invocation was successful, it
+is assigned the value **0**. If it is present and the invocation has failed,
+it is assigned a positive value and **count** is assigned the value **-1**.
 
-  - __event__
-    : (intent(in)) Scalar of type event\_type, defined in
-    iso\_fortran\_env; shall not be coindexed.
+### **Arguments**
 
-  - __count__
-    : (intent(out))Scalar integer with at least the precision of default
-    _integer_.
+- **event**
+  : (intent(in)) Scalar of type event_type, defined in
+  iso_fortran_env; shall not be coindexed.
 
-  - __stat__
-    : (OPTIONAL) Scalar default-kind _integer_ variable.
+- **count**
+  : (intent(out))Scalar integer with at least the precision of default
+  _integer_.
 
-### __Examples__
+- **stat**
+  : (OPTIONAL) Scalar default-kind _integer_ variable.
+
+### **Examples**
 
 Sample program:
 
@@ -48,7 +50,7 @@ integer :: cnt
 end program demo_event_query
 ```
 
-### __Standard__
+### **Standard**
 
 TS 18508 or later
 

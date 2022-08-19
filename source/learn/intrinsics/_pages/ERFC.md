@@ -1,10 +1,11 @@
 ## erfc
-### __Name__
 
-__erfc__(3) - \[MATHEMATICS\] Complementary error function
+### **Name**
 
+**erfc**(3) - \[MATHEMATICS\] Complementary error function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = erfc(x)
 
@@ -12,14 +13,15 @@ result = erfc(x)
    real(kind=KIND) :: erfc
    real(kind=KIND),intent(in) :: x
 ```
-### __Description__
 
-__erfc__(x) computes the complementary error function of __x__.  Simpy put
-this is equivalent to __1 - erf(x)__, but __erfc__ is provided because
-of the extreme loss of relative accuracy if __erf(x)__ is called for
-large __x__ and the result is subtracted from __1__.
+### **Description**
 
-__erfc(x)__ is defined as
+**erfc**(x) computes the complementary error function of **x**. Simpy put
+this is equivalent to **1 - erf(x)**, but **erfc** is provided because
+of the extreme loss of relative accuracy if **erf(x)** is called for
+large **x** and the result is subtracted from **1**.
+
+**erfc(x)** is defined as
 
 <!--
 $$
@@ -31,19 +33,19 @@ $$
 \text{erfc}(x) = 1 - \text{erf}(x) = 1 - \frac{2}{\sqrt{\pi}} \int_x^{\infty} e^{-t^2} dt.
 $$
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : The type shall be _real_.
+- **x**
+  : The type shall be _real_.
 
-### __Returns__
+### **Returns**
 
-The return value is of type _real_ and of the same kind as __x__. It lies in
+The return value is of type _real_ and of the same kind as **x**. It lies in
 the range
 
-> 0 \<= __erfc__(x) \<= 2.
+> 0 \<= **erfc**(x) \<= 2.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -56,16 +58,20 @@ real(kind=real64) :: x = 0.17_real64
     write(*,*)x, erfc(x)
 end program demo_erfc
 ```
-  Results:
+
+Results:
+
 ```text
-     0.17000000000000001       0.81000753879819121     
+     0.17000000000000001       0.81000753879819121
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2008 and later
 
 ### See also
-[__erf__(3)](ERF)
+
+[**erf**(3)](ERF)
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 

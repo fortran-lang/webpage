@@ -1,32 +1,35 @@
 ## tanh
-### __Name__
 
-__tanh__(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic tangent function
+### **Name**
 
+**tanh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic tangent function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 x = tanh(x)
 ```
-### __Description__
 
-__tanh(x)__ computes the hyperbolic tangent of __x__.
+### **Description**
 
-### __Arguments__
+**tanh(x)** computes the hyperbolic tangent of **x**.
 
-  - __x__
-    : The type shall be _real_ or _complex_.
+### **Arguments**
 
-### __Returns__
+- **x**
+  : The type shall be _real_ or _complex_.
 
-The return value has same type and kind as __x__. If __x__ is complex, the
-imaginary part of the result is in radians. If __x__ is _real_, the return
+### **Returns**
+
+The return value has same type and kind as **x**. If **x** is complex, the
+imaginary part of the result is in radians. If **x** is _real_, the return
 value lies in the range
 
 ```
       -1 <= tanh(x) <= 1.
 ```
-### __Examples__
+
+### **Examples**
 
 Sample program:
 
@@ -39,17 +42,21 @@ real(kind=real64) :: x = 2.1_real64
    write(*,*)x, tanh(x)
 end program demo_tanh
 ```
-  Results:
+
+Results:
+
 ```text
-      2.1000000000000001       0.97045193661345386     
+      2.1000000000000001       0.97045193661345386
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
-### __See Also__
+### **See Also**
+
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-[__atanh__(3)](ATANH)
+[**atanh**(3)](ATANH)
 
 ####### fortran-lang intrinsic descriptions

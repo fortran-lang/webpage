@@ -1,10 +1,11 @@
 ## index
-### __Name__
 
-__index__(3) - \[CHARACTER:SEARCH\] Position of a substring within a string
+### **Name**
 
+**index**(3) - \[CHARACTER:SEARCH\] Position of a substring within a string
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
    index(string, substring, back, kind) result(start)
 
@@ -14,35 +15,36 @@ __index__(3) - \[CHARACTER:SEARCH\] Position of a substring within a string
      integer,intent(in),optional :: kind
      integer(kind=KIND)          :: start
 ```
-### __Description__
+
+### **Description**
 
 Returns the position of the start of the leftmost or rightmost
-occurrence of string __substring__ in __string__, counting from one. If
-__substring__ is not present in __string__, zero is returned.
+occurrence of string **substring** in **string**, counting from one. If
+**substring** is not present in **string**, zero is returned.
 
-### __Arguments__
+### **Arguments**
 
-  - __string__
-    : string to be searched
+- **string**
+  : string to be searched
 
-  - __substring__
-    : string to attempt to locate in __string__
+- **substring**
+  : string to attempt to locate in **string**
 
-  - __back__
-    : If the __back__ argument is present and true, the return value is the
-    start of the rightmost occurrence rather than the leftmost.
+- **back**
+  : If the **back** argument is present and true, the return value is the
+  start of the rightmost occurrence rather than the leftmost.
 
-  - __kind__
-    : An _integer_ initialization expression indicating the kind parameter
-    of the result.
+- **kind**
+  : An _integer_ initialization expression indicating the kind parameter
+  of the result.
 
-### __Returns__
+### **Returns**
 
-  - __START__
-    : The return value is of type _integer_ and of kind __kind__. If __kind__ is
-    absent, the return value is of default integer kind.
+- **START**
+  : The return value is of type _integer_ and of kind **kind**. If **kind** is
+  absent, the return value is of default integer kind.
 
-### __Examples__
+### **Examples**
 
 Example program
 
@@ -60,27 +62,30 @@ character(len=*),parameter :: str=&
       index(str,'This').eq.0
 end program demo_index
 ```
+
 Expected Results:
+
 ```text
    T T T
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later, with KIND argument Fortran 2003
 and later
 
-### __See Also__
+### **See Also**
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
-  - __Elemental:__
-    [__adjustl__(3)](ADJUSTL), [__adjustr__(3)](ADJUSTR), [__index__(3)](INDEX),
-    [__scan__(3)](SCAN), [__verify__(3)](VERIFY)
+- **Elemental:**
+  [**adjustl**(3)](ADJUSTL), [**adjustr**(3)](ADJUSTR), [**index**(3)](INDEX),
+  [**scan**(3)](SCAN), [**verify**(3)](VERIFY)
 
-  - __Nonelemental:__
-    [__len\_trim__(3)](LEN_TRIM),
-    [__len__(3)](LEN),
-    [__repeat__(3)](REPEAT), [__trim__(3)](TRIM)
+- **Nonelemental:**
+  [**len_trim**(3)](LEN_TRIM),
+  [**len**(3)](LEN),
+  [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
 ####### fortran-lang intrinsic descriptions

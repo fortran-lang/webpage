@@ -1,41 +1,44 @@
 ## conjg
-### __Name__
 
-__conjg__(3) - \[NUMERIC\] Complex conjugate of a complex value
+### **Name**
 
-### __Syntax__
+**conjg**(3) - \[NUMERIC\] Complex conjugate of a complex value
+
+### **Syntax**
+
 ```fortran
 z = conjg(z)
 
    complex(kind=K) elemental function conjg(z)
-   complex(kind=K),intent(in) :: z 
+   complex(kind=K),intent(in) :: z
 ```
-where __K__ is the kind of the parameter __z__
 
-### __Description__
+where **K** is the kind of the parameter **z**
 
-__conjg(z)__ returns the complex conjugate of the _complex_ value __z__. 
+### **Description**
 
-In mathematics, the complex conjugate of a complex_ number is the number
+**conjg(z)** returns the complex conjugate of the _complex_ value **z**.
+
+In mathematics, the complex conjugate of a complex\_ number is the number
 with an equal real part and an imaginary part equal in magnitude but
-opposite in sign.  
+opposite in sign.
 
-That is, If __z__ is __(x, y)__ then the result is __(x, -y)__.
+That is, If **z** is **(x, y)** then the result is **(x, -y)**.
 
-For matrices of complex numbers, __conjg(array)__ represents the
-element-by-element conjugation of __array__; not the conjugate transpose
-of __array__ .
+For matrices of complex numbers, **conjg(array)** represents the
+element-by-element conjugation of **array**; not the conjugate transpose
+of **array** .
 
-### __Arguments__
+### **Arguments**
 
-  - __z__
-    : The type shall be _complex_.
+- **z**
+  : The type shall be _complex_.
 
-### __Returns__
+### **Returns**
 
 The return value is of type _complex_.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -74,14 +77,16 @@ integer :: i
 
 end program demo_conjg
 ```
-  Results:
+
+Results:
+
 ```fortran
  (2.000000,3.000000)
  (2.000000,-3.000000)
- 
+
  (1.23456789012346,-1.23456789012346)
  (1.23456789012346,1.23456789012346)
- 
+
  original
 (-1.0    , 2.0    ) ( 3.0    , 4.0    ) ( 5.0    ,-6.0    )
 ( 7.0    ,-8.0    ) ( 8.0    , 9.0    ) ( 9.0    , 9.0    )
@@ -92,7 +97,8 @@ end program demo_conjg
 ( 7.0    , 8.0    ) ( 8.0    ,-9.0    ) ( 9.0    ,-9.0    )
 ( 1.0    ,-9.0    ) ( 2.0    , 0.0    ) (-3.0    , 7.0    )
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later
 

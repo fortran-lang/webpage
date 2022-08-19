@@ -1,40 +1,43 @@
 ## real
-### __Name__
-__real__(3) - \[TYPE:NUMERIC\] Convert to real type
 
+### **Name**
 
-### __Syntax__
+**real**(3) - \[TYPE:NUMERIC\] Convert to real type
+
+### **Syntax**
+
 ```fortran
 result = real(x, kind)
 ```
-### __Description__
 
-__real(x, kind)__ converts its argument __x__ to a real type.
+### **Description**
 
-### __Arguments__
+**real(x, kind)** converts its argument **x** to a real type.
 
-  - __x__
-    : Shall be _integer_, _real_, or _complex_.
+### **Arguments**
 
-  - __kind__
-    : (Optional) An _integer_ initialization expression indicating the kind
-    parameter of the result.
+- **x**
+  : Shall be _integer_, _real_, or _complex_.
 
-### __Returns__
+- **kind**
+  : (Optional) An _integer_ initialization expression indicating the kind
+  parameter of the result.
+
+### **Returns**
 
 These functions return a _real_ variable or array under the following
 rules:
 
-1.  __real__(x) is converted to a default _real_ type if __x__ is an _integer_
+1.  **real**(x) is converted to a default _real_ type if **x** is an _integer_
     or _real_ variable.
 
-2.  __real__(x) is converted to a real type with the kind type parameter
-    of __x__ if __x__ is a _complex_ variable.
+2.  **real**(x) is converted to a real type with the kind type parameter
+    of **x** if **x** is a _complex_ variable.
 
-3.  __real(x, kind)__ is converted to a _real_ type with kind type
-    parameter __kind__ if __x__ is a _complex_, _integer_, or _real_ variable.
+3.  **real(x, kind)** is converted to a _real_ type with kind type
+    parameter **kind** if **x** is a _complex_, _integer_, or _real_ variable.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -61,13 +64,13 @@ Results:
  1.7976931348623157E+308  1.7976931348623157E+308  1.7976931348623157E+308
 ```
 
-### __Standard__
+### **Standard**
 
 FORTRAN 77 and later
 
-### __See Also__
+### **See Also**
 
-[__dble__(3)](DBLE),
-[__float__(3)](FLOAT)
+[**dble**(3)](DBLE),
+[**float**(3)](FLOAT)
 
 ####### fortran-lang intrinsic descriptions

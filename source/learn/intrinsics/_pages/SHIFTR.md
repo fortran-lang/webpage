@@ -1,39 +1,41 @@
 ## shiftr
-### __Name__
 
-__shiftr__(3) - \[BIT:SHIFT\] shift bits right
+### **Name**
 
+**shiftr**(3) - \[BIT:SHIFT\] shift bits right
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = shiftr(i, shift)
 ```
-### __Description__
 
-Returns a value corresponding to __i__ with all of the bits shifted right by
-__shift__ places. If the absolute value of __shift__ is greater than
-__bit\_size(i)__, the value is undefined. Bits shifted out from the
+### **Description**
+
+Returns a value corresponding to **i** with all of the bits shifted right by
+**shift** places. If the absolute value of **shift** is greater than
+**bit_size(i)**, the value is undefined. Bits shifted out from the
 right end are lost, and bits shifted in from the left end are set to 0.
 
-### __Arguments__
+### **Arguments**
 
-  - __i__
-    : The type shall be _integer_.
+- **i**
+  : The type shall be _integer_.
 
-  - __shift__
-    : The type shall be _integer_.
+- **shift**
+  : The type shall be _integer_.
 
-### __Returns__
+### **Returns**
 
-The return value is of type _integer_ and of the same kind as __i__.
+The return value is of type _integer_ and of the same kind as **i**.
 
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__shifta__(3)](SHIFTA),
-[__shiftl__(3)](SHIFTL)
+[**shifta**(3)](SHIFTA),
+[**shiftl**(3)](SHIFTL)
 
 ####### fortran-lang intrinsic descriptions

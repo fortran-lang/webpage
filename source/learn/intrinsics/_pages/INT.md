@@ -1,8 +1,11 @@
 ## int
-### __Name__
-__int__(3) - \[TYPE:NUMERIC\] Convert to integer type by truncating towards zero
 
-### __Syntax__
+### **Name**
+
+**int**(3) - \[TYPE:NUMERIC\] Convert to integer type by truncating towards zero
+
+### **Syntax**
+
 ```fortran
 result = int(a, kind)
 
@@ -10,44 +13,45 @@ result = int(a, kind)
  TYPE(kind=KIND),intent(in),optional :: a
  integer,optional :: kind
 ```
-### __Description__
+
+### **Description**
 
 Convert to integer type by truncating towards zero.
 
-### __Arguments__
+### **Arguments**
 
-  - __a__
-    : Shall be of type _integer_, _real_, or _complex_ or a BOZ-literal-constant.
+- **a**
+  : Shall be of type _integer_, _real_, or _complex_ or a BOZ-literal-constant.
 
-  - __kind__
-    : An _integer_ initialization expression indicating the kind
-    parameter of the result.
+- **kind**
+  : An _integer_ initialization expression indicating the kind
+  parameter of the result.
 
-    If not present the returned type is that of default integer type.
+  If not present the returned type is that of default integer type.
 
-### __Returns__
+### **Returns**
 
 returns an _integer_ variable or array applying the following rules:
 
- __Case__:
+**Case**:
 
- 1.  If __a__ is of type _integer_, __int__(a) = a
+1.  If **a** is of type _integer_, **int**(a) = a
 
- 2.  If __a__ is of type _real_ and __|a| \< 1, int(a)__ equals __0__. If __|a| \>=
-     1__, then __int(a)__ equals the integer whose magnitude does not exceed
-     __a__ and whose sign is the same as the sign of __a__.
+2.  If **a** is of type _real_ and **|a| \< 1, int(a)** equals **0**. If **|a| \>=
+    1**, then **int(a)** equals the integer whose magnitude does not exceed
+    **a** and whose sign is the same as the sign of **a**.
 
- 3.  If __a__ is of type _complex_, rule 2 is applied to the _real_ part of __a__.
+3.  If **a** is of type _complex_, rule 2 is applied to the _real_ part of **a**.
 
- 4.  If _a_ is a boz-literal constant, it is treated as an _integer_
-     with the _kind_ specified.
+4.  If _a_ is a boz-literal constant, it is treated as an _integer_
+    with the _kind_ specified.
 
-     The interpretation of a bit sequence whose most significant bit is
-     __1__ is processor dependent.
+    The interpretation of a bit sequence whose most significant bit is
+    **1** is processor dependent.
 
 The result is undefined if it cannot be represented in the specified integer type.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -55,7 +59,7 @@ Sample program:
 program demo_int
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
 implicit none
-integer :: i = 42 
+integer :: i = 42
 complex :: z = (-3.7, 1.0)
 real :: x=-10.5, y=10.5
 
@@ -71,7 +75,7 @@ real :: x=-10.5, y=10.5
    ! CAUTION:
    ! a number bigger than a default integer can represent
    ! produces an incorrect result and is not required to
-   ! be detected by the program. 
+   ! be detected by the program.
    x=real(huge(0))+1000.0
    print *, int(x),x
    ! using a larger kind
@@ -92,7 +96,9 @@ real :: x=-10.5, y=10.5
 
 end program demo_int
 ```
-  Results:
+
+Results:
+
 ```text
             -10   10
              42
@@ -103,22 +109,23 @@ end program demo_int
      9223372036854775807
      9223372036854775807
      9223372036854775807
-   
+
     -2          -2          -2          -2          -1
     -1           0           0           0           1
      1           2           2           2           2
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later
 
-### __See Also__
+### **See Also**
 
-[__aint__(3)](AINT),
-[__anint__(3)](ANINT),
-[__nint__(3)](NINT),
-[__selected_int_kind__(3)](SELECTED_INT_KIND),
-[__ceiling__(3)](CEILING),
-[__floor__(3)](FLOOR)
+[**aint**(3)](AINT),
+[**anint**(3)](ANINT),
+[**nint**(3)](NINT),
+[**selected_int_kind**(3)](SELECTED_INT_KIND),
+[**ceiling**(3)](CEILING),
+[**floor**(3)](FLOOR)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

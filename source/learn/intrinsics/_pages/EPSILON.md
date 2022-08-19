@@ -1,41 +1,46 @@
 ## epsilon
-### __Name__
 
-__epsilon__(3) - \[NUMERIC MODEL\] Epsilon function
+### **Name**
 
-### __Syntax__
+**epsilon**(3) - \[NUMERIC MODEL\] Epsilon function
+
+### **Syntax**
+
 ```fortran
 result = epsilon(x)
 ```
-### __Description__
 
-__epsilon(x)__ returns the floating point relative accuracy. 
-It is the nearly negligible number relative to __1__
-such that __1+ little_number__ is not equal to __1__; or more
+### **Description**
+
+**epsilon(x)** returns the floating point relative accuracy.
+It is the nearly negligible number relative to **1**
+such that **1+ little_number** is not equal to **1**; or more
 precisely
+
 ```fortran
    real( 1.0, kind(x)) + epsilon(x) /=  real( 1.0, kind(x))
 ```
-It may be thought of as the distance from 1.0 to the next largest
-floating point number. 
 
-One use of __epsilon__(3) is to select a _delta_ value for algorithms that
+It may be thought of as the distance from 1.0 to the next largest
+floating point number.
+
+One use of **epsilon**(3) is to select a _delta_ value for algorithms that
 search until the calculation is within _delta_ of an estimate.
 
 If _delta_ is too small the algorithm might never halt, as a computation
 summing values smaller than the decimal resolution of the data type does
 not change.
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : The type shall be _real_.
+- **x**
+  : The type shall be _real_.
 
-### __Returns__
+### **Returns**
 
 The return value is of the same type as the argument.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -47,10 +52,10 @@ real(kind=sp) :: x = 3.143
 real(kind=dp) :: y = 2.33d0
 
    ! so if x is of type real32, epsilon(x) has the value 2**-23
-   print *, epsilon(x) 
+   print *, epsilon(x)
    ! note just the type and kind of x matter, not the value
-   print *, epsilon(huge(x)) 
-   print *, epsilon(tiny(x)) 
+   print *, epsilon(huge(x))
+   print *, epsilon(tiny(x))
 
    ! the value changes with the kind of the real value though
    print *, epsilon(y)
@@ -90,7 +95,9 @@ end function my_dp_eps
 
 end program demo_epsilon
 ```
-  Results:
+
+Results:
+
 ```text
   1.1920929E-07
   1.1920929E-07
@@ -102,26 +109,27 @@ end program demo_epsilon
  T
   2.220446049250313E-016
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__digits__(3)](DIGITS),
-[__exponent__(3)](EXPONENT),
-[__fraction__(3)](FRACTION),
-[__huge__(3)](HUGE),
-[__maxexponent__(3)](MAXEXPONENT),
-[__minexponent__(3)](MINEXPONENT),
-[__nearest__(3)](NEAREST),
-[__precision__(3)](PRECISION),
-[__radix__(3)](RADIX),
-[__range__(3)](RANGE),
-[__rrspacing__(3)](RRSPACING),
-[__scale__(3)](SCALE),
-[__set\_exponent__(3)](SET_EXPONENT),
-[__spacing__(3)](SPACING),
-[__tiny__(3)](TINY)
+[**digits**(3)](DIGITS),
+[**exponent**(3)](EXPONENT),
+[**fraction**(3)](FRACTION),
+[**huge**(3)](HUGE),
+[**maxexponent**(3)](MAXEXPONENT),
+[**minexponent**(3)](MINEXPONENT),
+[**nearest**(3)](NEAREST),
+[**precision**(3)](PRECISION),
+[**radix**(3)](RADIX),
+[**range**(3)](RANGE),
+[**rrspacing**(3)](RRSPACING),
+[**scale**(3)](SCALE),
+[**set_exponent**(3)](SET_EXPONENT),
+[**spacing**(3)](SPACING),
+[**tiny**(3)](TINY)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

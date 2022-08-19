@@ -1,34 +1,36 @@
 ## tiny
-### __Name__
 
-__tiny__(3) - \[NUMERIC MODEL\] Smallest positive number of a real kind
+### **Name**
 
+**tiny**(3) - \[NUMERIC MODEL\] Smallest positive number of a real kind
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = tiny(x)
    real(kind=KIND) function(x)
    real(kind=KIND) :: x
 ```
-  where KIND may be any kind supported by type _real_
 
-### __Description__
+where KIND may be any kind supported by type _real_
 
-__tiny(x)__ returns the smallest positive (non zero) number of the type
-and kind of __x__.
+### **Description**
 
-### __Arguments__
+**tiny(x)** returns the smallest positive (non zero) number of the type
+and kind of **x**.
 
-  - __x__
-    : Shall be of type _real_.
+### **Arguments**
 
-### __Returns__
+- **x**
+  : Shall be of type _real_.
+
+### **Returns**
 
 The smallest positive value for the _real_ type of the specified kind.
 
-The return value is of the same type and kind as __x__.
+The return value is of the same type and kind as **x**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -39,31 +41,34 @@ implicit none
    print *, 'doubleprecision is from ',tiny(0.0d0),'to',huge(0.0d0)
 end program demo_tiny
 ```
+
 Results:
+
 ```text
  default real is from 1.17549435E-38 to 3.40282347E+38
  doubleprecision is from 2.2250738585072014E-308 to 1.7976931348623157E+308
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__digits__(3)](DIGITS),
-[__epsilon__(3)](EPSILON),
-[__exponent__(3)](EXPONENT),
-[__fraction__(3)](FRACTION),
-[__huge__(3)](HUGE),
-[__maxexponent__(3)](MAXEXPONENT),
-[__minexponent__(3)](MINEXPONENT),
-[__nearest__(3)](NEAREST),
-[__precision__(3)](PRECISION),
-[__radix__(3)](RADIX),
-[__range__(3)](RANGE),
-[__rrspacing__(3)](RRSPACING),
-[__scale__(3)](SCALE),
-[__set_exponent__(3)](SET_EXPONENT),
-[__spacing__(3)](SPACING)
+[**digits**(3)](DIGITS),
+[**epsilon**(3)](EPSILON),
+[**exponent**(3)](EXPONENT),
+[**fraction**(3)](FRACTION),
+[**huge**(3)](HUGE),
+[**maxexponent**(3)](MAXEXPONENT),
+[**minexponent**(3)](MINEXPONENT),
+[**nearest**(3)](NEAREST),
+[**precision**(3)](PRECISION),
+[**radix**(3)](RADIX),
+[**range**(3)](RANGE),
+[**rrspacing**(3)](RRSPACING),
+[**scale**(3)](SCALE),
+[**set_exponent**(3)](SET_EXPONENT),
+[**spacing**(3)](SPACING)
 
 ####### fortran-lang intrinsic descriptions

@@ -1,10 +1,11 @@
 ## aimag
-### __Name__
 
-__aimag__(3) - \[TYPE:NUMERIC\] Imaginary part of complex number
+### **Name**
 
+**aimag**(3) - \[TYPE:NUMERIC\] Imaginary part of complex number
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
     result = aimag(z)
 
@@ -12,21 +13,22 @@ __aimag__(3) - \[TYPE:NUMERIC\] Imaginary part of complex number
 
      complex(kind=KIND),intent(in) :: z
 ```
-### __Description__
 
-__aimag(z)__ yields the imaginary part of complex argument __z__.
+### **Description**
 
-### __Arguments__
+**aimag(z)** yields the imaginary part of complex argument **z**.
 
-  - __z__
-    : The type of the argument shall be _complex_.
+### **Arguments**
 
-### __Returns__
+- **z**
+  : The type of the argument shall be _complex_.
+
+### **Returns**
 
 The return value is of type _real_ with the kind type parameter of the
 argument.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -47,7 +49,9 @@ complex(kind=real64) z8
     print *, aimag([z4,z4/2.0,z4+z4,z4**3])
 end program demo_aimag
 ```
+
 Results:
+
 ```text
   2.000000       4.00000000000000
 
@@ -56,7 +60,8 @@ Results:
 
        2.000000       1.000000       4.000000      -2.000000
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later
 

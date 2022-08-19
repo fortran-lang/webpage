@@ -1,41 +1,45 @@
 ## maskr
-### __Name__
 
-__maskr__(3) - \[BIT:SET\] Generates a right-justified mask
+### **Name**
 
-### __Syntax__
+**maskr**(3) - \[BIT:SET\] Generates a right-justified mask
+
+### **Syntax**
+
 ```fortran
 result = maskr(i, kind)
 
   integer elemental function maskr(i,kind)
   integer,intent(in),optional :: kind
 ```
-### __Description__
 
-__maskr(i\[, kind\])__ has its rightmost __i__ bits set to 1, and the
+### **Description**
+
+**maskr(i\[, kind\])** has its rightmost **i** bits set to 1, and the
 remaining bits set to 0.
 
-### __Arguments__
+### **Arguments**
 
-  - __i__
-    : Shall be of type _integer_.
-      Its value must be non-negative, and less than or equal to the
-      number of bits for the kind of the result.
+- **i**
+  : Shall be of type _integer_.
+  Its value must be non-negative, and less than or equal to the
+  number of bits for the kind of the result.
 
-  - __kind__
-    : Shall be a scalar constant expression of type _integer_.
+- **kind**
+  : Shall be a scalar constant expression of type _integer_.
 
-### __Returns__
+### **Returns**
 
-The return value is of type _integer_. If __kind__ is present, it
+The return value is of type _integer_. If **kind** is present, it
 specifies the kind value of the return type; otherwise, it is of the
 default integer kind.
 
-It has its rightmost __i__ bits set to 1, and the remaining bits set to 0.
+It has its rightmost **i** bits set to 1, and the remaining bits set to 0.
 
-###  __Example__
+### **Example**
 
 Sample program:
+
 ```fortrqn
 program demo_maskr
 implicit none
@@ -50,7 +54,9 @@ integer :: i
    write(*,'(*(i11,1x,b0,1x,/))') maskr([(i,i,i=0,bit_size(0))])
 end program demo_maskr
 ```
+
 Results:
+
 ```text
 1 1 10000000000000000000000000000000
 
@@ -92,12 +98,13 @@ Results:
  2147483647 1111111111111111111111111111111
          -1 11111111111111111111111111111111
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__maskl__(3)](MASKL)
+[**maskl**(3)](MASKL)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

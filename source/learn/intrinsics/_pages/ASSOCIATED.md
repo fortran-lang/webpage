@@ -1,66 +1,68 @@
 ## associated
-### __Name__
 
-__associated__(3) - \[STATE\] Status of a pointer or pointer/target pair
+### **Name**
 
+**associated**(3) - \[STATE\] Status of a pointer or pointer/target pair
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = associated(pointer, target)
 ```
-### __Description__
 
-__associated(pointer \[, target\])__ determines the status of the
-pointer __pointer__ or if __pointer__ is associated with the target __target__.
+### **Description**
 
-### __Arguments__
+**associated(pointer \[, target\])** determines the status of the
+pointer **pointer** or if **pointer** is associated with the target **target**.
 
-  - __pointer__
-    : __pointer__ shall have the _pointer_ attribute and it can be of any type.
+### **Arguments**
 
-  - __target__
-    : (Optional) __target__ shall be a pointer or a target. It must have the
-    same type, kind type parameter, and array rank as __pointer__.
+- **pointer**
+  : **pointer** shall have the _pointer_ attribute and it can be of any type.
 
-The association status of neither __pointer__ nor __target__ shall be undefined.
+- **target**
+  : (Optional) **target** shall be a pointer or a target. It must have the
+  same type, kind type parameter, and array rank as **pointer**.
 
-### __Returns__
+The association status of neither **pointer** nor **target** shall be undefined.
 
-__associated(pointer)__ returns a scalar value of type _logical_.
+### **Returns**
+
+**associated(pointer)** returns a scalar value of type _logical_.
 There are several cases:
 
-1.  When the optional __target__ is not present then __associated(pointer)__
-    is true if __pointer__ is associated with a target; otherwise, it
+1.  When the optional **target** is not present then **associated(pointer)**
+    is true if **pointer** is associated with a target; otherwise, it
     returns false.
 
-2.  If __target__ is present and a scalar target, the result is true if
-    __target__ is not a zero-sized storage sequence and the target
-    associated with __pointer__ occupies the same storage units. If __pointer__
+2.  If **target** is present and a scalar target, the result is true if
+    **target** is not a zero-sized storage sequence and the target
+    associated with **pointer** occupies the same storage units. If **pointer**
     is disassociated, the result is false.
 
-3.  If __target__ is present and an array target, the result is true if
-    __target__ and __pointer__ have the same shape, are not zero-sized arrays,
+3.  If **target** is present and an array target, the result is true if
+    **target** and **pointer** have the same shape, are not zero-sized arrays,
     are arrays whose elements are not zero-sized storage sequences, and
-    __target__ and __pointer__ occupy the same storage units in array element
+    **target** and **pointer** occupy the same storage units in array element
     order.
 
-    As in case 2, the result is false, if __pointer__ is disassociated.
+    As in case 2, the result is false, if **pointer** is disassociated.
 
-4.  If __target__ is present and an scalar pointer, the result is true if
-    __target__ is associated with __pointer__, the target associated with __target__
+4.  If **target** is present and an scalar pointer, the result is true if
+    **target** is associated with **pointer**, the target associated with **target**
     are not zero-sized storage sequences and occupy the same storage
     units.
 
-    The result is __.false.__, if either __target__ or __pointer__ is disassociated.
+    The result is **.false.**, if either **target** or **pointer** is disassociated.
 
-5.  If __target__ is present and an array pointer, the result is true if
-    target associated with __pointer__ and the target associated with __target__
+5.  If **target** is present and an array pointer, the result is true if
+    target associated with **pointer** and the target associated with **target**
     have the same shape, are not zero-sized arrays, are arrays whose
-    elements are not zero-sized storage sequences, and __target__ and
-    __pointer__ occupy the same storage units in array element order. The
-    result is false, if either __target__ or __pointer__ is disassociated.
+    elements are not zero-sized storage sequences, and **target** and
+    **pointer** occupy the same storage units in array element order. The
+    result is false, if either **target** or **pointer** is disassociated.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -76,12 +78,13 @@ real, pointer :: ptr(:)
    & stop 'POINTER NOT ASSOCIATED TO TARGET'
 end program demo_associated
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__null__(3)](NULL)
+[**null**(3)](NULL)
 
 ####### fortran-lang intrinsic descriptions

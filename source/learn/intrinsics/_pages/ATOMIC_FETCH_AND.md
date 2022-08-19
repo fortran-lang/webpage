@@ -1,41 +1,43 @@
-## atomic\_fetch\_and
-### __Name__
+## atomic_fetch_and
 
-__atomic\_fetch\_and__(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise AND operation with prior fetch
+### **Name**
 
+**atomic_fetch_and**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise AND operation with prior fetch
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 call atomic_fetch_and(atom, value, old, stat)
 ```
-### __Description__
 
-__atomic\_fetch\_and(atom, value, old)__ atomically stores the value of
-__atom__ in __old__ and defines __atom__ with the bitwise AND between the values of
-__atom__ and __value__. When __stat__ is present and the invocation was successful,
-it is assigned the value __0__. If it is present and the invocation has
+### **Description**
+
+**atomic_fetch_and(atom, value, old)** atomically stores the value of
+**atom** in **old** and defines **atom** with the bitwise AND between the values of
+**atom** and **value**. When **stat** is present and the invocation was successful,
+it is assigned the value **0**. If it is present and the invocation has
 failed, it is assigned a positive value; in particular, for a coindexed
-__atom__, if the remote image has stopped, it is assigned the value of
-iso\_fortran\_env's stat\_stopped\_image and if the remote image has
-failed, the value stat\_failed\_image.
+**atom**, if the remote image has stopped, it is assigned the value of
+iso_fortran_env's stat_stopped_image and if the remote image has
+failed, the value stat_failed_image.
 
-### __Arguments__
+### **Arguments**
 
-  - __atom__
-    : Scalar coarray or coindexed variable of integer type with
-    atomic\_int\_kind kind.
+- **atom**
+  : Scalar coarray or coindexed variable of integer type with
+  atomic_int_kind kind.
 
-  - __value__
-    : Scalar of the same type as __atom__. If the kind is different, the value
-    is converted to the kind of __atom__.
+- **value**
+  : Scalar of the same type as **atom**. If the kind is different, the value
+  is converted to the kind of **atom**.
 
-  - __old__
-    : Scalar of the same type and kind as __atom__.
+- **old**
+  : Scalar of the same type and kind as **atom**.
 
-  - __stat__
-    : (optional) Scalar default-kind integer variable.
+- **stat**
+  : (optional) Scalar default-kind integer variable.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -48,19 +50,19 @@ integer(atomic_int_kind) :: atom[*], old
 end program demo_atomic_fetch_and
 ```
 
-### __Standard__
+### **Standard**
 
 TS 18508 or later
 
-### __See Also__
+### **See Also**
 
-[__atomic\_define__(3)](ATOMIC_DEFINE),
-[__atomic\_and__(3)](ATOMIC_AND),
-[__iso\_fortran\_env__(3)](),
+[**atomic_define**(3)](ATOMIC_DEFINE),
+[**atomic_and**(3)](ATOMIC_AND),
+[**iso_fortran_env**(3)](),
 
-[__atomic\_fetch\_add__(3)](ATOMIC_FETCH_ADD),
-[__atomic\_fetch\_or__(3)](ATOMIC_FETCH_OR),
+[**atomic_fetch_add**(3)](ATOMIC_FETCH_ADD),
+[**atomic_fetch_or**(3)](ATOMIC_FETCH_OR),
 
-[__atomic\_fetch\_xor__(3)](ATOMIC_FETCH_XOR)
+[**atomic_fetch_xor**(3)](ATOMIC_FETCH_XOR)
 
 ####### fortran-lang intrinsic descriptions

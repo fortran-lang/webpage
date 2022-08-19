@@ -1,26 +1,29 @@
 ## merge
-### __Name__
 
-__merge__(3) - \[ARRAY CONSTRUCTION\] Merge variables
+### **Name**
 
-### __Syntax__
+**merge**(3) - \[ARRAY CONSTRUCTION\] Merge variables
+
+### **Syntax**
+
 ```fortran
 result = merge(tsource, fsource, mask)
 ```
-### __Description__
 
-The elemental function __merge__(3) selects values from two arrays or
+### **Description**
+
+The elemental function **merge**(3) selects values from two arrays or
 scalars according to a logical mask. The result is equal to an element
-of __tsource__ where the corresponding element of __mask__ is __.true.__, or an
-element of __fsource__ when it is .false. .
+of **tsource** where the corresponding element of **mask** is **.true.**, or an
+element of **fsource** when it is .false. .
 
 Multi-dimensional arrays are supported.
 
-Note that argument expressions to __merge__(3) are not required to be
-short-circuited so (as an example) if the array __x__ contains zero values
+Note that argument expressions to **merge**(3) are not required to be
+short-circuited so (as an example) if the array **x** contains zero values
 in the statement below the standard does not prevent floating point
-divide by zero being generated; as __1.0/x__ may be evaluated for all values
-of __x__ before the mask is used to select which value to retain:
+divide by zero being generated; as **1.0/x** may be evaluated for all values
+of **x** before the mask is used to select which value to retain:
 
 ```fortran
       y = merge( 1.0/x, 0.0, x /= 0.0 )
@@ -30,7 +33,7 @@ Note the compiler is also free to short-circuit or to generate an
 infinity so this may work in many programming environments but is not
 recommended.
 
-For cases like this one may instead use masked assignment via the __where__
+For cases like this one may instead use masked assignment via the **where**
 construct:
 
 ```fortran
@@ -47,25 +50,25 @@ instead of the more obscure
       merge(1.0/merge(x,1.0,x /= 0.0), 0.0, x /= 0.0)
 ```
 
-### __Arguments__
+### **Arguments**
 
-  - __tsource__
-    : May be of any type, including user-defined.
+- **tsource**
+  : May be of any type, including user-defined.
 
-  - __fsource__
-    : Shall be of the same type and type parameters as __tsource__.
+- **fsource**
+  : Shall be of the same type and type parameters as **tsource**.
 
-  - __mask__
-    : Shall be of type _logical_.
+- **mask**
+  : Shall be of type _logical_.
 
 Note that (currently) _character_ values must be of the same length.
 
-### __Returns__
+### **Returns**
 
-The result is of the same type and type parameters as __tsource__. For any
-element the result is __tsource__ if __mask__ is true and __fsource__ otherwise.
+The result is of the same type and type parameters as **tsource**. For any
+element the result is **tsource** if **mask** is true and **fsource** otherwise.
 
-### __Examples__
+### **Examples**
 
 The value of
 
@@ -73,7 +76,7 @@ The value of
      merge (1.0, 0.0, k > 0)
 ```
 
-is 1.0 for K=5 and 0.0 for K=__-2__.
+is 1.0 for K=5 and 0.0 for K=**-2**.
 
 ```fortran
 program demo_merge
@@ -122,7 +125,9 @@ end subroutine printme
 
 end program demo_merge
 ```
+
 Expected Results:
+
 ```
     mask of logicals
      10   3  50
@@ -141,16 +146,16 @@ Expected Results:
       1   2   3
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__pack__(3)](PACK),
-[__unpack__(3)](UNPACK),
-[__pack__(3)](PACK),
-[__spread__(3)](SPREAD),
-[__unpack__(3)](UNPACK)   
+[**pack**(3)](PACK),
+[**unpack**(3)](UNPACK),
+[**pack**(3)](PACK),
+[**spread**(3)](SPREAD),
+[**unpack**(3)](UNPACK)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

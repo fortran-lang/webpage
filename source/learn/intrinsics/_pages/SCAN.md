@@ -1,43 +1,45 @@
 ## scan
-### __Name__
 
-__scan__(3) - \[CHARACTER:SEARCH\] Scan a string for the presence of a set of characters
+### **Name**
 
+**scan**(3) - \[CHARACTER:SEARCH\] Scan a string for the presence of a set of characters
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = scan(string, set[, back [, kind]])
 ```
-### __Description__
 
-Scans a __string__ for any of the characters in a __set__ of characters.
+### **Description**
 
-If __back__ is either absent or equals __.false.__, this function returns the
-position of the leftmost character of __STRING__ that is in __set__. If __back__
-equals __.true.__, the rightmost position is returned. If no character of __set__
-is found in __string__, the result is zero.
+Scans a **string** for any of the characters in a **set** of characters.
 
-### __Arguments__
+If **back** is either absent or equals **.false.**, this function returns the
+position of the leftmost character of **STRING** that is in **set**. If **back**
+equals **.true.**, the rightmost position is returned. If no character of **set**
+is found in **string**, the result is zero.
 
-  - __string__
-    : Shall be of type _character_.
+### **Arguments**
 
-  - __set__
-    : Shall be of type _character_.
+- **string**
+  : Shall be of type _character_.
 
-  - __back__
-    : (Optional) shall be of type _logical_.
+- **set**
+  : Shall be of type _character_.
 
-  - __kind__
-    : (Optional) An _integer_ initialization expression indicating the kind
-    parameter of the result.
+- **back**
+  : (Optional) shall be of type _logical_.
 
-### __Returns__
+- **kind**
+  : (Optional) An _integer_ initialization expression indicating the kind
+  parameter of the result.
 
-The return value is of type _integer_ and of kind __kind__. If __kind__ is absent,
+### **Returns**
+
+The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
 the return value is of default integer kind.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -49,28 +51,31 @@ implicit none
    write(*,*) scan("fortran", "c++")         ! 0, found none
 end program demo_scan
 ```
-  Results:
+
+Results:
+
 ```text
               2
               6
               0
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later, with KIND argument - Fortran 2003 and later
 
-### __See Also__
+### **See Also**
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
-  - __Elemental:__
-    [__adjustl__(3)](ADJUSTL), [__adjustr__(3)](ADJUSTR), [__index__(3)](INDEX),
-    [__scan__(3)](SCAN), [__verify__(3)](VERIFY)
+- **Elemental:**
+  [**adjustl**(3)](ADJUSTL), [**adjustr**(3)](ADJUSTR), [**index**(3)](INDEX),
+  [**scan**(3)](SCAN), [**verify**(3)](VERIFY)
 
-  - __Nonelemental:__
-    [__len\_trim__(3)](LEN_TRIM),
-    [__len__(3)](LEN),
-    [__repeat__(3)](REPEAT), [__trim__(3)](TRIM)
+- **Nonelemental:**
+  [**len_trim**(3)](LEN_TRIM),
+  [**len**(3)](LEN),
+  [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
 ####### fortran-lang intrinsic descriptions

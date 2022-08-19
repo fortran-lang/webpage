@@ -1,32 +1,34 @@
-## c\_f\_pointer
-### __Name__
+## c_f_pointer
 
-__c\_f\_pointer__(3) - \[ISO\_C\_BINDING\] Convert C into Fortran pointer
+### **Name**
 
+**c_f_pointer**(3) - \[ISO_C_BINDING\] Convert C into Fortran pointer
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 call c_f_pointer(cptr, fptr, shape)
 ```
-### __Description__
 
-__c\_f\_pointer(cptr, fptr\[, shape\])__ Assign the target, the C
-pointer, __cptr__ to the Fortran pointer __fptr__ and specify its shape.
+### **Description**
 
-### __Arguments__
+**c_f_pointer(cptr, fptr\[, shape\])** Assign the target, the C
+pointer, **cptr** to the Fortran pointer **fptr** and specify its shape.
 
-  - __cptr__
-    : scalar of the type c\_ptr. It is __intent(in)__.
+### **Arguments**
 
-  - __fptr__
-    : pointer interoperable with __cptr__. it is __intent(out)__.
+- **cptr**
+  : scalar of the type c_ptr. It is **intent(in)**.
 
-  - __shape__
-    : (Optional) Rank-one array of type _integer_ with __intent(in)__ .
-    It shall be present if and only if __fptr__ is an array. The size
-    must be equal to the rank of __fptr__.
+- **fptr**
+  : pointer interoperable with **cptr**. it is **intent(out)**.
 
-### __Examples__
+- **shape**
+  : (Optional) Rank-one array of type _integer_ with **intent(in)** .
+  It shall be present if and only if **fptr** is an array. The size
+  must be equal to the rank of **fptr**.
+
+### **Examples**
 
 Sample program:
 
@@ -47,14 +49,14 @@ real,pointer :: a(:)
 end program demo_c_f_pointer
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2003 and later
 
-### __See Also__
+### **See Also**
 
-[__c\_loc__(3)](C_LOC),
-[__c\_f\_procpointer__(3)](C_F_PROCPOINTER),
-__iso\_c\_binding__(3)
+[**c_loc**(3)](C_LOC),
+[**c_f_procpointer**(3)](C_F_PROCPOINTER),
+**iso_c_binding**(3)
 
 ####### fortran-lang intrinsic descriptions

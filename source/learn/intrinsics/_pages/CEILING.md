@@ -1,39 +1,41 @@
 ## ceiling
-### __Name__
 
-__ceiling__(3) - \[NUMERIC\] Integer ceiling function
+### **Name**
 
+**ceiling**(3) - \[NUMERIC\] Integer ceiling function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = ceiling(a, kind)
 
-   integer(kind=KIND) elemental function ceiling(a,kind) 
+   integer(kind=KIND) elemental function ceiling(a,kind)
    real(kind=ANY),intent(in)   :: a
    integer,intent(in),optional :: kind
 ```
-### __Description__
 
-__ceiling(a)__ returns the least integer greater than or equal to __a__.
+### **Description**
 
-### __Arguments__
+**ceiling(a)** returns the least integer greater than or equal to **a**.
 
-  - __a__
-    : The type shall be _real_.
+### **Arguments**
 
-  - __kind__
-    : An _integer_ initialization expression indicating the kind
-    parameter of the result.
+- **a**
+  : The type shall be _real_.
 
-### __Returns__
+- **kind**
+  : An _integer_ initialization expression indicating the kind
+  parameter of the result.
 
-The return value is of type __integer__(kind) if __kind__ is present and a
+### **Returns**
+
+The return value is of type **integer**(kind) if **kind** is present and a
 default-kind _integer_ otherwise.
 
 The result is undefined if it cannot be represented in the specified
 integer type.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -42,8 +44,8 @@ program demo_ceiling
 implicit none
 real :: x = 63.29
 real :: y = -63.59
-   print *, ceiling(x) 
-   print *, ceiling(y) 
+   print *, ceiling(x)
+   print *, ceiling(y)
    ! elemental
    print *,ceiling([ &
    &  -2.7,  -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, &
@@ -51,7 +53,9 @@ real :: y = -63.59
    &  +0.5,  +1.0, +1.5, +2.0, +2.2, +2.5, +2.7  ])
 end program demo_ceiling
 ```
-  Results:
+
+Results:
+
 ```text
    64
   -63
@@ -59,19 +63,19 @@ end program demo_ceiling
     0       0       1       1       2       2
     3       3       3
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__floor__(3)](FLOOR),
-[__nint__(3)](NINT)
+[**floor**(3)](FLOOR),
+[**nint**(3)](NINT)
 
-
-[__aint__(3)](AINT),
-[__anint__(3)](ANINT),
-[__int__(3)](INT),
-[__selected_int_kind__(3)](SELECTED_INT_KIND)
+[**aint**(3)](AINT),
+[**anint**(3)](ANINT),
+[**int**(3)](INT),
+[**selected_int_kind**(3)](SELECTED_INT_KIND)
 
 ####### fortran-lang intrinsic descriptions

@@ -1,40 +1,42 @@
 ## dshiftl
-### __Name__
 
-__dshiftl__(3) - \[BIT:COPY\] combines bits of arguments __i__ and __j__
+### **Name**
 
+**dshiftl**(3) - \[BIT:COPY\] combines bits of arguments **i** and **j**
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = dshiftl(i, j, shift)
 ```
-### __Description__
 
-__dshiftl(i, j, shift)__ combines bits of __i__ and __j__. The rightmost __shift__
-bits of the result are the leftmost __shift__ bits of __j__, and the remaining
-bits are the rightmost bits of __i__.
+### **Description**
 
-### __Arguments__
+**dshiftl(i, j, shift)** combines bits of **i** and **j**. The rightmost **shift**
+bits of the result are the leftmost **shift** bits of **j**, and the remaining
+bits are the rightmost bits of **i**.
 
-  - __i__
-    : Shall be of type _integer_.
+### **Arguments**
 
-  - __j__
-    : Shall be of type _integer_, and of the same kind as __i__.
+- **i**
+  : Shall be of type _integer_.
 
-  - __shift__
-    : Shall be of type _integer_.
+- **j**
+  : Shall be of type _integer_, and of the same kind as **i**.
 
-### __Returns__
+- **shift**
+  : Shall be of type _integer_.
 
-The return value has same type and kind as __i__.
+### **Returns**
 
-### __Standard__
+The return value has same type and kind as **i**.
+
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__dshiftr__(3)](DSHIFTR)
+[**dshiftr**(3)](DSHIFTR)
 
 ####### fortran-lang intrinsic descriptions

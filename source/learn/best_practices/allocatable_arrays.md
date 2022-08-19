@@ -1,9 +1,9 @@
 # Allocatable Arrays
 
-The ``allocatable`` attribute provides a safe way for memory handling.
-In comparison to variables with ``pointer`` attribute the memory is managed
+The `allocatable` attribute provides a safe way for memory handling.
+In comparison to variables with `pointer` attribute the memory is managed
 automatically and will be deallocated automatically once the variable goes
-out-of-scope. Using ``allocatable`` variables removes the possibility to
+out-of-scope. Using `allocatable` variables removes the possibility to
 create memory leaks in an application.
 
 They can be used in subroutines to create scratch or work arrays, where
@@ -14,7 +14,7 @@ real(dp), allocatable :: temp(:)
 allocate(temp(10))
 ```
 
-The allocation status can be checked using the ``allocated`` intrinsic
+The allocation status can be checked using the `allocated` intrinsic
 to avoid uninitialized access
 
 ```fortran
@@ -28,7 +28,7 @@ end subroutine show_arr
 ```
 
 To allocate variables inside a procedure the dummy argument has to carry
-the ``allocatable`` attribute. Using it in combination with ``intent(out)``
+the `allocatable` attribute. Using it in combination with `intent(out)`
 will deallocate previous allocations before entering the procedure:
 
 ```fortran
@@ -54,7 +54,7 @@ if (allocated(lam)) deallocate(lam)
 allocate(lam(10))
 ```
 
-Passing allocated arrays to procedures does not require the ``allocatable`` attribute
+Passing allocated arrays to procedures does not require the `allocatable` attribute
 for the dummy arguments anymore.
 
 ```fortran
@@ -78,13 +78,13 @@ end subroutine proc
 ```
 
 Passing an unallocated array in this context will lead to an invalid memory access.
-Allocatable arrays can be passed to ``optional`` dummy arguments -- if they are unallocated
-the argument will not be present. The ``allocatable`` attribute is not limited to
+Allocatable arrays can be passed to `optional` dummy arguments -- if they are unallocated
+the argument will not be present. The `allocatable` attribute is not limited to
 arrays and can also be associated with scalars, which can be useful in combination
-with ``optional`` dummy arguments.
+with `optional` dummy arguments.
 
-Allocations can be moved between different arrays with ``allocatable`` attribute
-using the ``move_alloc`` intrinsic subroutine.
+Allocations can be moved between different arrays with `allocatable` attribute
+using the `move_alloc` intrinsic subroutine.
 
 ```fortran
 subroutine resize(var, n)
@@ -124,4 +124,4 @@ real(dp), allocatable :: arr(:)
 allocate(arr(10), source=0.0_dp)
 ```
 
-The ``source`` keyword supports scalar and array valued variables and constants.
+The `source` keyword supports scalar and array valued variables and constants.

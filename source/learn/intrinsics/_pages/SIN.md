@@ -1,38 +1,41 @@
 ## sin
-### __Name__
 
-__sin__(3) - \[MATHEMATICS:TRIGONOMETRIC\] Sine function
+### **Name**
 
-### __Syntax__
+**sin**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Sine function
+
+### **Syntax**
+
 ```fortran
 result = sin(x)
 
     elemental TYPE(kind=KIND) function sin(x)
     TYPE(kind=KIND) :: x
 ```
+
 Where the returned value has the kind of the input value
 and TYPE may be _real_ or _complex_
 
-### __Description__
+### **Description**
 
-__sin(x)__ computes the sine of an angle given the size of the angle in
+**sin(x)** computes the sine of an angle given the size of the angle in
 radians.
 
 The sine of an angle in a right-angled triangle is the ratio of the
 length of the side opposite the given angle divided by the length of the
 hypotenuse.
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : The type shall be _real_ or _complex_ in radians.
+- **x**
+  : The type shall be _real_ or _complex_ in radians.
 
-### __Returns__
+### **Returns**
 
-  - __result__
-    : The return value has the same type and kind as __x__.
+- **result**
+  : The return value has the same type and kind as **x**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -44,7 +47,7 @@ real :: x = 0.0
 end program sample_sin
 ```
 
-### __Haversine Formula__
+### **Haversine Formula**
 
 From the article on "Haversine formula" in Wikipedia:
 
@@ -79,7 +82,7 @@ which converted to floating-point values in degrees is:
 And then use the haversine formula to roughly calculate the distance
 along the surface of the Earth between the locations:
 
- Sample program:
+Sample program:
 
 ```fortran
 program demo_sin
@@ -111,21 +114,23 @@ real, parameter :: deg_to_rad = atan(1.0)/45.0
 end function haversine
 end program demo_sin
 ```
+
 Results:
 
 ```text
     distance: 2886.4446 km
 ```
 
-### __Standard__
+### **Standard**
 
 FORTRAN 77 and later
 
-### __See Also__
+### **See Also**
+
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
-[__asin__(3)](ASIN),
-[__cos__(3)](COS),
-[__tan__(3)](TAN)
+[**asin**(3)](ASIN),
+[**cos**(3)](COS),
+[**tan**(3)](TAN)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

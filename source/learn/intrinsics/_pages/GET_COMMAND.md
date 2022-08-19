@@ -1,9 +1,11 @@
-## get\_command
-### __Name__
+## get_command
 
-__get\_command__(3) - \[SYSTEM:COMMAND LINE\] Get the entire command line
+### **Name**
 
-### __Syntax__
+**get_command**(3) - \[SYSTEM:COMMAND LINE\] Get the entire command line
+
+### **Syntax**
+
 ```fortran
    call get_command(command, length, status)
 
@@ -12,7 +14,8 @@ __get\_command__(3) - \[SYSTEM:COMMAND LINE\] Get the entire command line
     integer,intent(out),optional :: length
     integer,intent(out),optional :: status
 ```
-### __Description__
+
+### **Description**
 
 Retrieve the entire command line that was used to invoke the program.
 
@@ -23,24 +26,24 @@ turned off by turning off globbing or quoting the command line arguments
 and/or changing the default field separators, but this should rarely
 be necessary.
 
-### __Returns__
+### **Returns**
 
-  - __command__
-    : Shall be of type _character_ and of default kind. If
-    __command__ is present, stores the entire command line that was used to
-    invoke the program in __command__.
+- **command**
+  : Shall be of type _character_ and of default kind. If
+  **command** is present, stores the entire command line that was used to
+  invoke the program in **command**.
 
-  - __length__
-    : Shall be of type _integer_ and of default kind. If __length__
-    is present, it is assigned the length of the command line.
+- **length**
+  : Shall be of type _integer_ and of default kind. If **length**
+  is present, it is assigned the length of the command line.
 
-  - __status__
-    : Shall be of type _integer_ and of default kind. If __status__
-    is present, it is assigned 0 upon success of the command, __-1__ if
-    __command__ is too short to store the command line, or a positive value
-    in case of an error.
+- **status**
+  : Shall be of type _integer_ and of default kind. If **status**
+  is present, it is assigned 0 upon success of the command, **-1** if
+  **command** is too short to store the command line, or a positive value
+  in case of an error.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -60,7 +63,9 @@ character(len=:),allocatable :: COMMAND_LINE
    write(*,'("OUTPUT:",a)')COMMAND_LINE
 end program demo_get_command
 ```
+
 Results:
+
 ```bash
      # note that shell expansion removes some of the whitespace
      # without quotes
@@ -73,13 +78,14 @@ Results:
 
      OUTPUT:./test_get_command arguments  *><`~[]!{}?"'|
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2003 and later
 
-### __See Also__
+### **See Also**
 
-[__get\_command\_argument__(3)](GET_COMMAND_ARGUMENT),
-[__command\_argument\_count__(3)](COMMAND_ARGUMENT_COUNT)
+[**get_command_argument**(3)](GET_COMMAND_ARGUMENT),
+[**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

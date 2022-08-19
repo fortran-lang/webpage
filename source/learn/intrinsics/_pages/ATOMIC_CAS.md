@@ -1,46 +1,48 @@
-## atomic\_cas
-### __Name__
+## atomic_cas
 
-__atomic\_cas__(3) - \[ATOMIC\] Atomic compare and swap
+### **Name**
 
+**atomic_cas**(3) - \[ATOMIC\] Atomic compare and swap
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 call atomic_cas (atom, old, compare, new, stat)
 ```
-### __Description__
 
-atomic\_cas compares the variable __atom__ with the value of __compare__; if the
-value is the same, __atom__ is set to the value of __new__. Additionally, __old__ is
-set to the value of __atom__ that was used for the comparison. When __stat__ is
+### **Description**
+
+atomic_cas compares the variable **atom** with the value of **compare**; if the
+value is the same, **atom** is set to the value of **new**. Additionally, **old** is
+set to the value of **atom** that was used for the comparison. When **stat** is
 present and the invocation was successful, it is assigned the value 0.
 If it is present and the invocation has failed, it is assigned a
-positive value; in particular, for a coindexed __atom__, if the remote image
-has stopped, it is assigned the value of iso\_fortran\_env's
-stat\_stopped\_image and if the remote image has failed, the value
-stat\_failed\_image.
+positive value; in particular, for a coindexed **atom**, if the remote image
+has stopped, it is assigned the value of iso_fortran_env's
+stat_stopped_image and if the remote image has failed, the value
+stat_failed_image.
 
-### __Arguments__
+### **Arguments**
 
-  - __atom__
-    : Scalar coarray or coindexed variable of either integer type with
-    atomic\_int\_kind kind or logical type with atomic\_logical\_kind
-    kind.
+- **atom**
+  : Scalar coarray or coindexed variable of either integer type with
+  atomic_int_kind kind or logical type with atomic_logical_kind
+  kind.
 
-  - __old__
-    : Scalar of the same type and kind as __atom__.
+- **old**
+  : Scalar of the same type and kind as **atom**.
 
-  - __compare__
-    : Scalar variable of the same type and kind as __atom__.
+- **compare**
+  : Scalar variable of the same type and kind as **atom**.
 
-  - __new__
-    : Scalar variable of the same type as __atom__. If kind is different, the
-    value is converted to the kind of __atom__.
+- **new**
+  : Scalar variable of the same type as **atom**. If kind is different, the
+  value is converted to the kind of **atom**.
 
-  - __stat__
-    : (optional) Scalar default-kind integer variable.
+- **stat**
+  : (optional) Scalar default-kind integer variable.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -53,14 +55,14 @@ logical(atomic_logical_kind) :: atom[*], prev
 end program demo_atomic_cas
 ```
 
-### __Standard__
+### **Standard**
 
 TS 18508 or later
 
-### __See Also__
+### **See Also**
 
-[__atomic\_define__(3)](ATOMIC_DEFINE),
-[__atomic\_ref__(3)](ATOMIC_REF),
-[__iso\_fortran\_env__(3)]()
+[**atomic_define**(3)](ATOMIC_DEFINE),
+[**atomic_ref**(3)](ATOMIC_REF),
+[**iso_fortran_env**(3)]()
 
 ####### fortran-lang intrinsic descriptions

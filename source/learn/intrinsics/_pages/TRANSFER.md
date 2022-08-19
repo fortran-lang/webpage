@@ -1,55 +1,58 @@
 ## transfer
-### __Name__
 
-__transfer__(3) - \[TYPE:MOLD\] Transfer bit patterns
+### **Name**
 
+**transfer**(3) - \[TYPE:MOLD\] Transfer bit patterns
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = transfer(source, mold, size)
 ```
-### __Description__
 
-Interprets the bitwise representation of __source__ in memory as if it
+### **Description**
+
+Interprets the bitwise representation of **source** in memory as if it
 is the representation of a variable or array of the same type and type
-parameters as __mold__.
+parameters as **mold**.
 
 This is approximately equivalent to the C concept of \*casting\* one
 type to another.
 
-### __Arguments__
+### **Arguments**
 
-  - __source__
-    : Shall be a scalar or an array of any type.
+- **source**
+  : Shall be a scalar or an array of any type.
 
-  - __mold__
-    : Shall be a scalar or an array of any type.
+- **mold**
+  : Shall be a scalar or an array of any type.
 
-  - __size__
-    : (Optional) shall be a scalar of type _integer_.
+- **size**
+  : (Optional) shall be a scalar of type _integer_.
 
-### __Returns__
+### **Returns**
 
-The result has the same type as __mold__, with the bit level representation
-of __source__. If __size__ is present, the result is a one-dimensional array of
-length __size__. If __size__ is absent but __mold__ is an array (of any size or
+The result has the same type as **mold**, with the bit level representation
+of **source**. If **size** is present, the result is a one-dimensional array of
+length **size**. If **size** is absent but **mold** is an array (of any size or
 shape), the result is a one-dimensional array of the minimum length
-needed to contain the entirety of the bitwise representation of __source__.
-If __size__ is absent and __mold__ is a scalar, the result is a scalar.
+needed to contain the entirety of the bitwise representation of **source**.
+If **size** is absent and **mold** is a scalar, the result is a scalar.
 
 If the bitwise representation of the result is longer than that of
-__source__, then the leading bits of the result correspond to those of
-__source__ and any trailing bits are filled arbitrarily.
+**source**, then the leading bits of the result correspond to those of
+**source** and any trailing bits are filled arbitrarily.
 
 When the resulting bit representation does not correspond to a valid
-representation of a variable of the same type as __mold__, the results are
+representation of a variable of the same type as **mold**, the results are
 undefined, and subsequent operations on the result cannot be guaranteed
 to produce sensible behavior. For example, it is possible to create
-_logical_ variables for which __var__ and .not. var both appear to be true.
+_logical_ variables for which **var** and .not. var both appear to be true.
 
-### __Examples__
+### **Examples**
 
 Sample program:
+
 ```fortran
 program demo_transfer
 use,intrinsic :: iso_fortran_env, only : int32, real32
@@ -69,22 +72,25 @@ character(len=1)    :: chars(10)
    write(*,'(*("[",a,"]":,1x))')chars
 end program demo_transfer
 ```
+
 Results:
+
 ```text
    1111111110000000000000000000000 NaN
    1111111110000000000000000000000 2143289344
    [abcdefghij]
    [a] [b] [c] [d] [e] [f] [g] [h] [i] [j]
 ```
-### __Comments__
 
-_Joe Krahn_: Fortran uses __molding__ rather than __casting__.
+### **Comments**
+
+_Joe Krahn_: Fortran uses **molding** rather than **casting**.
 
 Casting, as in C, is an in-place reinterpretation. A cast is a device
 that is built around an object to change its shape.
 
 Fortran TRANSFER reinterprets data out-of-place. It can be considered
-__molding__ rather than casting. A __mold__ is a device that
+**molding** rather than casting. A **mold** is a device that
 confers a shape onto an object placed into it.
 
 The advantage of molding is that data is always valid in the context
@@ -97,7 +103,7 @@ can vary by compiler or compile options. In many cases, an EQUIVALENCE
 would be far more effective, but Fortran Standards committees seem
 oblivious to the benefits of EQUIVALENCEs when used sparingly.
 
-### __Standard__
+### **Standard**
 
 Fortran 90 and later
 

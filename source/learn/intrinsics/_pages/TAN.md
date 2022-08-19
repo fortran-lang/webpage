@@ -1,27 +1,29 @@
 ## tan
-### __Name__
 
-__tan__(3) - \[MATHEMATICS:TRIGONOMETRIC\] Tangent function
+### **Name**
 
+**tan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Tangent function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = tan(x)
 ```
-### __Description__
 
-__tan(x)__ computes the tangent of __x__.
+### **Description**
 
-### __Arguments__
+**tan(x)** computes the tangent of **x**.
 
-  - __x__
-    : The type shall be _real_ or _complex_.
+### **Arguments**
 
-### __Returns__
+- **x**
+  : The type shall be _real_ or _complex_.
 
-The return value has the same type and kind as __x__.
+### **Returns**
 
-### __Examples__
+The return value has the same type and kind as **x**.
+
+### **Examples**
 
 Sample program:
 
@@ -34,18 +36,21 @@ real(kind=real64) :: x = 0.165_real64
      write(*,*)x, tan(x)
 end program demo_tan
 ```
-  Results:
+
+Results:
+
 ```text
-     0.16500000000000001       0.16651386310913616     
+     0.16500000000000001       0.16651386310913616
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.
 
-### __See Also__
+### **See Also**
 
-[__atan__(3)](ATAN),
-[__cos__(3)](COS),
-[__sin__(3)](SIN)
+[**atan**(3)](ATAN),
+[**cos**(3)](COS),
+[**sin**(3)](SIN)
 
 ####### fortran-lang intrinsic descriptions

@@ -1,40 +1,43 @@
 ## exp
-### __Name__
 
-__exp__(3) - \[MATHEMATICS\] Exponential function
+### **Name**
 
-### __Syntax__
+**exp**(3) - \[MATHEMATICS\] Exponential function
+
+### **Syntax**
+
 ```fortran
 result = exp(x)
 ```
-### __Description__
 
-__exp__(x) computes the base "_e_" exponential of __x__ where "_e_" is
+### **Description**
+
+**exp**(x) computes the base "_e_" exponential of **x** where "_e_" is
 _Euler's constant_.
 
-If __x__ is of type _complex_, its imaginary part is regarded as a value
+If **x** is of type _complex_, its imaginary part is regarded as a value
 in radians such that (see _Euler's formula_):
 
-if 
-     __cx=(re,im)__ 
-then 
-     __exp(cx)=exp(re)*cmplx(cos(im),sin(im),kind=kind(cx))__
+if
+**cx=(re,im)**
+then
+**exp(cx)=exp(re)\*cmplx(cos(im),sin(im),kind=kind(cx))**
 
-Since __exp__(3) is the inverse function of __log__(3) the maximum valid magnitude
-of the _real_ component of __x__ is __log(huge(x))__.
+Since **exp**(3) is the inverse function of **log**(3) the maximum valid magnitude
+of the _real_ component of **x** is **log(huge(x))**.
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : The type shall be _real_ or _complex_.
+- **x**
+  : The type shall be _real_ or _complex_.
 
-### __Returns__
+### **Returns**
 
-The value of the result is __e\*\*x__ where __e__ is Euler's constant.
+The value of the result is **e\*\*x** where **e** is Euler's constant.
 
-The return value has the same type and kind as __x__.
+The return value has the same type and kind as **x**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -59,35 +62,38 @@ complex :: cx
    write(*,*)'is the same as',exp(re)*cmplx(cos(im),sin(im),kind=kind(cx))
 
    ! exp(3) is the inverse function of log(3) so
-   ! the real component of the input must be less than or equal to 
-   write(*,*)'maximum real component',log(huge(0.0)) 
+   ! the real component of the input must be less than or equal to
+   write(*,*)'maximum real component',log(huge(0.0))
    ! or for double precision
-   write(*,*)'maximum doubleprecision component',log(huge(0.0d0)) 
+   write(*,*)'maximum doubleprecision component',log(huge(0.0d0))
 
    ! but since the imaginary component is passed to the cos(3) and sin(3)
    ! functions the imaginary component can be any real value
 
 end program demo_exp
 ```
+
 Results:
+
 ```text
- Euler's constant is approximately   2.718282    
+ Euler's constant is approximately   2.718282
  given the complex value  (3.000000,4.000000)
  exp(x) is (-13.12878,-15.20078)
  is the same as (-13.12878,-15.20078)
- maximum real component   88.72284    
- maximum doubleprecision component   709.782712893384     
+ maximum real component   88.72284
+ maximum doubleprecision component   709.782712893384
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later
 
-### __See Also__
+### **See Also**
 
-* [__log__(3)](LOG)
+- [**log**(3)](LOG)
 
-* Wikipedia:[Exponential function](https://en.wikipedia.org/wiki/Exponential_function)
+- Wikipedia:[Exponential function](https://en.wikipedia.org/wiki/Exponential_function)
 
-* Wikipedia:[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
+- Wikipedia:[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

@@ -1,45 +1,47 @@
 ## dprod
-### __Name__
 
-__dprod__(3) - \[NUMERIC\] Double product function
+### **Name**
 
+**dprod**(3) - \[NUMERIC\] Double product function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = dprod(x, y)
 ```
-### __Description__
 
-__dprod(x,y)__ produces a higher _doubleprecision_ product of default _real_
-numbers __x__ and __y__.
+### **Description**
+
+**dprod(x,y)** produces a higher _doubleprecision_ product of default _real_
+numbers **x** and **y**.
 
 The result has a value equal to a processor-dependent approximation to
-the product of __x__ and __y__. It is recommended that the processor compute the
+the product of **x** and **y**. It is recommended that the processor compute the
 product in double precision, rather than in single precision and then
 converted to double precision.
 
-  - __x__
-    : shall be default real.
+- **x**
+  : shall be default real.
 
-  - __y__
-    : shall be default real.
+- **y**
+  : shall be default real.
 
 The setting of compiler options specifying _real_ size can affect this
 function.
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : Must be of default _real(kind=kind(0.0))_ type
+- **x**
+  : Must be of default _real(kind=kind(0.0))_ type
 
-  - __y__
-    : Must have the same type and kind parameters as __x__
+- **y**
+  : Must have the same type and kind parameters as **x**
 
-### __Returns__
+### **Returns**
 
 The return value is of type _real(kind=kind(0.0d0))_.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -71,14 +73,17 @@ real(kind=dp) :: dd
 
 end program demo_dprod
 ```
-  Results:
+
+Results:
+
 ```text
    11.959999313354501 11.9599991 4 8 8
         1196
-   11.9600000    
-   11.960000000000001     
+   11.9600000
+   11.960000000000001
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later
 

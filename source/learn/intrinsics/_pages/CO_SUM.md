@@ -1,42 +1,44 @@
-## co\_sum
-### __Name__
+## co_sum
 
-__co\_sum__(3) - \[COLLECTIVE\] Sum of values on the current set of images
+### **Name**
 
+**co_sum**(3) - \[COLLECTIVE\] Sum of values on the current set of images
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 call co_sum(a, result_image, stat, errmsg)
 ```
-### __Description__
 
-co\_sum sums up the values of each element of __a__ on all images of the
-current team. If result\_image is present, the summed-up values are
-returned in __a__ on the specified image only and the value of __a__ on the
-other images become undefined. If result\_image is not present, the
+### **Description**
+
+co_sum sums up the values of each element of **a** on all images of the
+current team. If result_image is present, the summed-up values are
+returned in **a** on the specified image only and the value of **a** on the
+other images become undefined. If result_image is not present, the
 value is returned on all images. If the execution was successful and
-__stat__ is present, it is assigned the value zero. If the execution failed,
-__stat__ gets assigned a nonzero value and, if present, __errmsg__ gets assigned
+**stat** is present, it is assigned the value zero. If the execution failed,
+**stat** gets assigned a nonzero value and, if present, **errmsg** gets assigned
 a value describing the occurred error.
 
-### __Arguments__
+### **Arguments**
 
-  - __a__
-    : shall be an integer, real or complex variable, which has the same
-    type and type parameters on all images of the team.
+- **a**
+  : shall be an integer, real or complex variable, which has the same
+  type and type parameters on all images of the team.
 
-  - __result\_image__
-    : (optional) a scalar integer expression; if present, it shall have
-    the same the same value on all images and refer to an image of the
-    current team.
+- **result_image**
+  : (optional) a scalar integer expression; if present, it shall have
+  the same the same value on all images and refer to an image of the
+  current team.
 
-  - __stat__
-    : (optional) a scalar integer variable
+- **stat**
+  : (optional) a scalar integer variable
 
-  - __errmsg__
-    : (optional) a scalar character variable
+- **errmsg**
+  : (optional) a scalar character variable
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -52,20 +54,22 @@ integer :: val
    endif
 end program demo_co_sum
 ```
-  Results:
+
+Results:
+
 ```text
     The sum is            1
 ```
 
-### __Standard__
+### **Standard**
 
 TS 18508 or later
 
-### __See Also__
+### **See Also**
 
-[__co\_max__(3)](CO_MAX),
-[__co\_min__(3)](CO_MIN),
-[__co\_reduce__(3)](CO_REDUCE),
-[__co\_broadcast__(3)](CO_BROADCAST)
+[**co_max**(3)](CO_MAX),
+[**co_min**(3)](CO_MIN),
+[**co_reduce**(3)](CO_REDUCE),
+[**co_broadcast**(3)](CO_BROADCAST)
 
 ####### fortran-lang intrinsic descriptions

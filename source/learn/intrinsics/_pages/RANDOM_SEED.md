@@ -1,39 +1,41 @@
-## random\_seed
-### __Name__
+## random_seed
 
-__random\_seed__(3) - \[MATHEMATICS:RANDOM\] Initialize a pseudo-random number sequence
+### **Name**
 
+**random_seed**(3) - \[MATHEMATICS:RANDOM\] Initialize a pseudo-random number sequence
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 call random_seed(size, put, get)
 ```
-### __Description__
+
+### **Description**
 
 Restarts or queries the state of the pseudorandom number generator used
-by random\_number.
+by random_number.
 
-If random\_seed is called without arguments, it is seeded with random
+If random_seed is called without arguments, it is seeded with random
 data retrieved from the operating system.
 
-### __Arguments__
+### **Arguments**
 
-  - __size__
-    : (Optional) Shall be a scalar and of type default _integer_, with
-    __intent(out)__. It specifies the minimum size of the arrays used
-    with the __put__ and __get__ arguments.
+- **size**
+  : (Optional) Shall be a scalar and of type default _integer_, with
+  **intent(out)**. It specifies the minimum size of the arrays used
+  with the **put** and **get** arguments.
 
-  - __put__
-    : (Optional) Shall be an array of type default _integer_ and rank one.
-    It is __intent(in)__ and the size of the array must be larger than
-    or equal to the number returned by the __size__ argument.
+- **put**
+  : (Optional) Shall be an array of type default _integer_ and rank one.
+  It is **intent(in)** and the size of the array must be larger than
+  or equal to the number returned by the **size** argument.
 
-  - __get__
-    : (Optional) Shall be an array of type default _integer_ and rank one.
-    It is __intent(out)__ and the size of the array must be larger than
-    or equal to the number returned by the __size__ argument.
+- **get**
+  : (Optional) Shall be an array of type default _integer_ and rank one.
+  It is **intent(out)** and the size of the array must be larger than
+  or equal to the number returned by the **size** argument.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -50,18 +52,20 @@ integer :: n
 
 end program demo_random_seed
 ```
-  Results:
+
+Results:
+
 ```text
      -674862499 -1750483360  -183136071  -317862567   682500039
      349459   344020729 -1725483289
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__random\_number__(3)](RANDOM_NUMBER)
+[**random_number**(3)](RANDOM_NUMBER)
 
 ####### fortran-lang intrinsic descriptions

@@ -1,44 +1,46 @@
-## extends\_type\_of
-### __Name__
+## extends_type_of
 
-__extends\_type\_of__(3) - \[STATE\] determine if the dynamic type of __a__ is an extension of the dynamic type of __mold__.
+### **Name**
 
+**extends_type_of**(3) - \[STATE\] determine if the dynamic type of **a** is an extension of the dynamic type of **mold**.
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result=extends_type_of(a, mold)
 ```
-### __Description__
 
-__extends\_type\_of__(3) is __.true.__ if and only if the dynamic type of __a__
-is an extension of the dynamic type of __mold__.
+### **Description**
 
-### __Options__
+**extends_type_of**(3) is **.true.** if and only if the dynamic type of **a**
+is an extension of the dynamic type of **mold**.
 
-  - __a__
-    : shall be an object of extensible type. If it is a pointer, it
-    shall not have an undefined association status.
+### **Options**
 
-  - __mold__
-    : shall be an object of extensible type. If it is a pointer, it
-    shall not have an undefined association status.
+- **a**
+  : shall be an object of extensible type. If it is a pointer, it
+  shall not have an undefined association status.
 
-### __Returns__
+- **mold**
+  : shall be an object of extensible type. If it is a pointer, it
+  shall not have an undefined association status.
 
-  - __result__
-    : Default logical scalar.
+### **Returns**
 
-  - __value__
-    : If __mold__ is unlimited polymorphic and is either a disassociated
-    pointer or unallocated allocatable variable, the result is
-    true; otherwise if __a__ is unlimited polymorphic and is either a
-    disassociated pointer or unallocated allocatable variable, the result
-    is false; otherwise the result is true if and only if the dynamic
-    type of __a__ is an extension type of the dynamic type of __mold__.
+- **result**
+  : Default logical scalar.
 
-    The dynamic type of a disassociated pointer or unallocated
-    allocatable variable is its declared type.
+- **value**
+  : If **mold** is unlimited polymorphic and is either a disassociated
+  pointer or unallocated allocatable variable, the result is
+  true; otherwise if **a** is unlimited polymorphic and is either a
+  disassociated pointer or unallocated allocatable variable, the result
+  is false; otherwise the result is true if and only if the dynamic
+  type of **a** is an extension type of the dynamic type of **mold**.
 
-### __Examples__
+  The dynamic type of a disassociated pointer or unallocated
+  allocatable variable is its declared type.
+
+### **Examples**
 
 ####### fortran-lang intrinsic descriptions

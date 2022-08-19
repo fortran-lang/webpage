@@ -1,38 +1,40 @@
-## num\_images
-### __Name__
+## num_images
 
-__num\_images__(3) - \[COLLECTIVE\] Number of images
+### **Name**
 
+**num_images**(3) - \[COLLECTIVE\] Number of images
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = num_images(distance, failed)
 ```
-### __Description__
+
+### **Description**
 
 Returns the number of images.
 
-### __Arguments__
+### **Arguments**
 
-  - __distance__
-    : (optional, __intent(in)__) Nonnegative scalar integer
+- **distance**
+  : (optional, **intent(in)**) Nonnegative scalar integer
 
-  - __failed__
-    : (optional, __intent(in)__) Scalar logical expression
+- **failed**
+  : (optional, **intent(in)**) Scalar logical expression
 
-### __Returns__
+### **Returns**
 
-Scalar default-kind _integer_. If __distance__ is not present or has value 0,
+Scalar default-kind _integer_. If **distance** is not present or has value 0,
 the number of images in the current team is returned. For values smaller
 or equal distance to the initial team, it returns the number of images
-index on the ancestor team which has a distance of __distance__ from the
-invoking team. If __distance__ is larger than the distance to the initial
-team, the number of images of the initial team is returned. If __failed__ is
+index on the ancestor team which has a distance of **distance** from the
+invoking team. If **distance** is larger than the distance to the initial
+team, the number of images of the initial team is returned. If **failed** is
 not present the total number of images is returned; if it has the value
 .true., the number of failed images is returned, otherwise, the number
 of images which do have not the failed status.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -53,13 +55,13 @@ integer :: i
 end program demo_num_images
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
 
-### __See Also__
+### **See Also**
 
-[__this\_image__(3)](THIS_IMAGE),
-[__image\_index__(3)](THIS_INDEX)
+[**this_image**(3)](THIS_IMAGE),
+[**image_index**(3)](THIS_INDEX)
 
 ####### fortran-lang intrinsic descriptions

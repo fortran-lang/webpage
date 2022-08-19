@@ -1,31 +1,41 @@
-{% extends "!layout.html" %}
-
-{% block extrahead %}
+{% extends "!layout.html" %} {% block extrahead %}
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
-    var pr_number = -1;
-    $(document).ready(function () {
-
-        if (window.location.href.indexOf("/pr/") > -1) {
-            pr_number = window.location.href.split('/').indexOf("pr") + 1;
-            document.getElementById("pr").innerHTML = "pull request " + window.location.href.split('/')[pr_number];
-            document.getElementById("pr").href = "https://github.com/fortran-lang/webpage/pull/" + window.location.href.split('/')[pr_number];
-            var banner = document.getElementById("banner");
-            banner.style.display = "block";
-        }
-    });
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
 </script>
-<div id="banner" style='display:none' class="container">
-    <h3>
-        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none"
-            stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"
-            class="feather feather-git-pull-request">
-            <circle cx="18" cy="18" r="3"></circle>
-            <circle cx="6" cy="6" r="3"></circle>
-            <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
-            <line x1="6" y1="9" x2="6" y2="21"></line>
-        </svg>
-        <b>Site preview: </b>you are previewing unpublished changes for <a id="pr"></a>
-    </h3>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
 </div>
 {%- endblock %}

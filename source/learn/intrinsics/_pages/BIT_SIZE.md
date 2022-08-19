@@ -1,35 +1,37 @@
-## bit\_size
-### __Name__
+## bit_size
 
-__bit\_size__(3) - \[BIT:INQUIRY\] Bit size inquiry function
+### **Name**
 
-### __Syntax__
+**bit_size**(3) - \[BIT:INQUIRY\] Bit size inquiry function
+
+### **Syntax**
+
 ```fortran
     result = bit_size(i)
-   
+
      function(kind=KIND) :: bit_size
      integer(kind=KIND),intent(in) :: ii
 ```
-### __Description__
 
-__bit\_size(i)__ returns the number of bits (integer precision plus sign
-bit) represented by the type of the _integer_ __i__.  __i__ can be a
+### **Description**
+
+**bit_size(i)** returns the number of bits (integer precision plus sign
+bit) represented by the type of the _integer_ **i**. **i** can be a
 scalar or an array.
 
-    
+### **Arguments**
 
-### __Arguments__
+- **i**
+  : An _integer_ value of any kind to determine the size of in bits.
+  Because only the type of the argument is examined, the argument need
+  not be defined.
 
-  - __i__
-    : An _integer_ value of any kind to determine the size of in bits.
-    Because only the type of the argument is examined, the argument need
-    not be defined.
+### **Returns**
 
-### __Returns__
     Returns the number of bits used to represent a value of the type
     of __i__.  The result is a _integer_ scalar of the same kind as __i__.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -50,7 +52,9 @@ character(len=*),parameter   :: fmt='(*(g0,1x))'
     write(*,fmt) int(bit_size(answer))
 end program demo_bit_size
 ```
-  Typical Results:
+
+Typical Results:
+
 ```text
    default integer size is 32 bits
    8 which is kind= 1
@@ -60,7 +64,7 @@ end program demo_bit_size
    64
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 95 and later
 

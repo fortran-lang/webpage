@@ -1,10 +1,11 @@
 ## iparity
-### __Name__
 
-__iparity__(3) - \[BIT:LOGICAL\] Bitwise exclusive or of array elements
+### **Name**
 
+**iparity**(3) - \[BIT:LOGICAL\] Bitwise exclusive or of array elements
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
   result = iparity(array, mask)
 
@@ -12,34 +13,35 @@ __iparity__(3) - \[BIT:LOGICAL\] Bitwise exclusive or of array elements
 
   result = iparity(array, dim, mask)
 ```
-### __Description__
 
-Reduces with bitwise _xor_ (exclusive _or_) the elements of __array__ along
-dimension __dim__ if the corresponding element in __mask__ is __.true.__.
+### **Description**
 
-### __Arguments__
+Reduces with bitwise _xor_ (exclusive _or_) the elements of **array** along
+dimension **dim** if the corresponding element in **mask** is **.true.**.
 
-  - __array__
-    : Shall be an array of type _integer_
+### **Arguments**
 
-  - __dim__
-    : (Optional) shall be a scalar of type _integer_ with a value in the
-    range from __"1" to "n"__, where __"n"__ equals the rank of __array__.
+- **array**
+  : Shall be an array of type _integer_
 
-  - __mask__
-    : (Optional) shall be of type _logical_ and either be a scalar or an
-    array of the same shape as __array__.
+- **dim**
+  : (Optional) shall be a scalar of type _integer_ with a value in the
+  range from **"1" to "n"**, where **"n"** equals the rank of **array**.
 
-### __Returns__
+- **mask**
+  : (Optional) shall be of type _logical_ and either be a scalar or an
+  array of the same shape as **array**.
 
-The result is of the same type as __array__.
+### **Returns**
 
-If __dim__ is absent, a scalar with the bitwise _xor_ of all elements in __array__
-is returned. Otherwise, an array of rank __n-1__, where __n__ equals the
-rank of __array__, and a shape similar to that of __array__ with dimension __dim__
+The result is of the same type as **array**.
+
+If **dim** is absent, a scalar with the bitwise _xor_ of all elements in **array**
+is returned. Otherwise, an array of rank **n-1**, where **n** equals the
+rank of **array**, and a shape similar to that of **array** with dimension **dim**
 dropped is returned.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -59,15 +61,15 @@ Results:
    01001110
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__iany__(3)](IANY),
-[__iall__(3)](IALL),
-[__ieor__(3)](IEOR),
-[__parity__(3)](PARITY)
+[**iany**(3)](IANY),
+[**iall**(3)](IALL),
+[**ieor**(3)](IEOR),
+[**parity**(3)](PARITY)
 
 ####### fortran-lang intrinsic descriptions

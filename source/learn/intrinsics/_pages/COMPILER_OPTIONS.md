@@ -1,28 +1,30 @@
-## compiler\_options
-### __Name__
+## compiler_options
 
-__compiler\_options__(3) - \[COMPILER INQUIRY\] Options passed to the compiler
+### **Name**
 
+**compiler_options**(3) - \[COMPILER INQUIRY\] Options passed to the compiler
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 str = compiler_options()
 ```
-### __Description__
 
-compiler\_options returns a string with the options used for compiling.
+### **Description**
 
-### __Arguments__
+compiler_options returns a string with the options used for compiling.
+
+### **Arguments**
 
 None.
 
-### __Returns__
+### **Returns**
 
 The return value is a default-kind string with system-dependent length.
 It contains the compiler flags used to compile the file, which called
-the compiler\_options intrinsic.
+the compiler_options intrinsic.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -37,7 +39,9 @@ implicit none
       compiler_options()
 end program demo_compiler_version
 ```
+
 Results:
+
 ```
    This file was compiled by GCC version 5.4.0 using the options
    -I /usr/include/w32api -I /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN
@@ -46,13 +50,14 @@ Results:
    -fno-range-check -frecord-marker=4
    -J /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2008
 
-### __See Also__
+### **See Also**
 
-[__compiler\_version__(3)](COMPILER_VERSION),
-__iso\_fortran\_env__(7)
+[**compiler_version**(3)](COMPILER_VERSION),
+**iso_fortran_env**(7)
 
 ####### fortran-lang intrinsic descriptions

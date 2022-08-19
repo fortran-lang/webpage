@@ -7,7 +7,8 @@ Vendor-specific extensions are not included.
 
 ::::{dropdown} Intrinsics
 :color: primary
-````{toctree}
+
+```{toctree}
 :maxdepth: 2
 array/index
 bit/index
@@ -23,26 +24,29 @@ system/index
 transform/index
 type/index
 GNU Free Documentation License <https://www.gnu.org/licenses/gpl-3.0.en.html>
-````
+```
+
 ::::
 
 ## Overview
+
 The standard documents and most vendor-supplied descriptions of
 the intrinsics are often very brief and concise to the point of the
 functionality of the intrinsics being obscure, particularly to someone
-unfamiliar with  the procedure.
+unfamiliar with the procedure.
 
 By describing the procedures here
-   * in greater detail
-   * with a working example
-   * providing links to additional resources
-     (including additional documents at fortran-lang.org and related
-     discussions in Fortran Discourse)
+
+- in greater detail
+- with a working example
+- providing links to additional resources
+  (including additional documents at fortran-lang.org and related
+  discussions in Fortran Discourse)
 
 these documents strive to be a valuable asset for Fortran programmers.
 
 This is a community-driven resource and everyone is encouraged to contribute
-to the documents. For contribution guidelines see {ref}``minibooks``
+to the documents. For contribution guidelines see {ref}`minibooks`
 and the following Copyright guidelines.
 
 ## See Also
@@ -73,12 +77,15 @@ tar xvfz /tmp/fortran.tgz
 cd man
 mandb -c
 ```
+
 then anyone on that plaform can enter commands like
+
 ```bash
 man sinh.3fortran     # specifically show Fortran sinh(3) documentation
 man -k . -s 3fortran  # list all fortran pages
 man -s 3fortran --regex '.*' |col -b # show all Fortran intrinsics
 ```
+
 See man(1) (ie. enter "man man") for more information.
 
 If you can only install the pages on your own ID, try
@@ -102,7 +109,7 @@ still having issues converting the markdown to the proper formats.
 Many of the documents presented here are modified versions of man-pages from the
 [Fortran Wiki](https://fortranwiki.org)
 and as such are available under the terms of the GNU
-Free Documentation License [__GFDL__](GNU_Free_Documentation_License.md)
+Free Documentation License [**GFDL**](GNU_Free_Documentation_License.md)
 with no invariant sections, front-cover texts, or back-cover texts.
 
 If you contribute to this site by modifying the files marked as GFDL,
@@ -114,10 +121,13 @@ or back-cover texts).
 If you contribute new material you thereby agree to release it under
 the MIT license, and should indicate this by placing MIT on the
 specially-formatted last line. For example, change
+
 ```text
 ###### fortran-lang intrinsic descriptions
 ```
+
 to
+
 ```text
 ###### fortran-lang intrinsic descriptions (License: MIT) @urbanjost
 ```

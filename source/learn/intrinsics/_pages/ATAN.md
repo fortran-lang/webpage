@@ -1,9 +1,11 @@
 ## atan
-### __Name__
 
-__atan__(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent function
+### **Name**
 
-### __Syntax__
+**atan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent function
+
+### **Syntax**
+
 ```fortran
   - result = __atan(y, x)__
 
@@ -11,32 +13,33 @@ __atan__(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent function
    TYPE(kind=KIND,intent(in) :: x
    TYPE(kind=KIND,intent(in),optional :: y
 ```
-where __TYPE__ may be _real_ or _complex_ and __KIND__ may be any __KIND__ supported
-by the associated type. If __y__ is present __x__ is _real`.
 
-### __Description__
+where **TYPE** may be _real_ or _complex_ and **KIND** may be any **KIND** supported
+by the associated type. If **y** is present **x** is \_real`.
 
-__atan(x)__ computes the arctangent of __x__.
+### **Description**
 
-### __Arguments__
+**atan(x)** computes the arctangent of **x**.
 
-  - __x__
-    : The type shall be _real_ or _complex_; if __y__ is present, __x__
-      shall be _real_.
+### **Arguments**
 
-  - __y__
-    : Shall be of the same type and kind as __x__. If __x__ is zero, __y__ 
-    must not be zero.
+- **x**
+  : The type shall be _real_ or _complex_; if **y** is present, **x**
+  shall be _real_.
 
-### __Returns__
+- **y**
+  : Shall be of the same type and kind as **x**. If **x** is zero, **y**
+  must not be zero.
 
-The returned value is of the same type and kind as __x__. If __y__ is
-present, the result is identical to __atan2(y,x)__. Otherwise, it is the
-arc tangent of __x__, where the real part of the result is in radians
+### **Returns**
+
+The returned value is of the same type and kind as **x**. If **y** is
+present, the result is identical to **atan2(y,x)**. Otherwise, it is the
+arc tangent of **x**, where the real part of the result is in radians
 and lies in the range
-__-PI/2 \<= atan(x) \<= PI/2__
+**-PI/2 \<= atan(x) \<= PI/2**
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -48,7 +51,7 @@ implicit none
 character(len=*),parameter :: all='(*(g0,1x))'
 real(kind=real64),parameter :: &
  Deg_Per_Rad = 57.2957795130823208767981548_real64
-real(kind=real64) :: x 
+real(kind=real64) :: x
     x=2.866_real64
     print all, atan(x)
 
@@ -59,7 +62,9 @@ real(kind=real64) :: x
 
 end program demo_atan
 ```
-  Results:
+
+Results:
+
 ```text
    1.235085437457879
    .7853981633974483 45.00000000000000
@@ -67,15 +72,16 @@ end program demo_atan
    -.7853981633974483 -45.00000000000000
    -2.356194490192345 -135.0000000000000
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later for a complex argument; and for two
 arguments Fortran 2008 or later
 
-### __See Also__
+### **See Also**
 
- - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
-[__atan2__(3)](ATAN2), [__tan__(3)](TAN)
+[**atan2**(3)](ATAN2), [**tan**(3)](TAN)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
