@@ -23,7 +23,7 @@ state/index
 system/index
 transform/index
 type/index
-GNU Free Documentation License <https://www.gnu.org/licenses/gpl-3.0.en.html>
+GNU Free Documentation License <https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html>
 ```
 
 ::::
