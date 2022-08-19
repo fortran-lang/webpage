@@ -62,7 +62,7 @@ The following criteria are not required but are recommended:
 Package index requests are made by pull requests against the [fortran-lang.org repository](https://github.com/fortran-lang/webpage/).
 See [this guide](https://guides.github.com/activities/forking/) for guidance on forking and making pull requests.
 
-Package details are listed in the `_data/package_index.yml` data file.
+Package details are listed in the `data/package_index.yml` data file.
 
 To add a package simply create a new entry within this file.
 The data file is ordered by high-level categories merely to aid in navigation;

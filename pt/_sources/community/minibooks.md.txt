@@ -42,7 +42,7 @@ The steps required for publishing a single-page mini-book are:
 
 - Write your tutorial content
 
-- Add an entry to [\_data/learning.yml](./_data/learning.yml) for your new mini-book
+- Add an entry to [data/learning.yml](./data/learning.yml) for your new mini-book
 
 - Open a pull request
 
@@ -113,7 +113,7 @@ In markdown, headings can be written as:
 ### 1.3 Add your mini-book to the Learn page
 
 To add your new mini-book to the _Learn_ page, you need to add a new entry
-in the [\_data/learning.yml](./_data/learning.yml) datafile.
+in the [data/learning.yml](./data/learning.yml) datafile.
 
 Open this file and create a new entry under the `books:` field in the following format:
 
@@ -160,7 +160,7 @@ The steps required for publishing a multi-page mini-book are:
 
 - Write your tutorial content in markdown files in your new folder
 
-- Add an entry to [\_data/learning.yml](./_data/learning.yml) for your new mini-book
+- Add an entry to [data/learning.yml](./data/learning.yml) for your new mini-book
 
 - Open a pull request
 
@@ -239,7 +239,7 @@ Each heading on the current page will show up in the inpage table-of-contents.
 ### 2.3 Add your mini-book to the Learn page
 
 To add your new mini-book to the _Learn_ page, you need to add a new entry
-in the [\_data/learning.yml](./_data/learning.yml) datafile.
+in the [data/learning.yml](./data/learning.yml) datafile.
 
 Open this file and create a new entry under the `books:` field in the following format:
 
