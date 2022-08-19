@@ -23,7 +23,7 @@ expression **x** occupies.
 ### **Returns**
 
 The return value is of type integer and of the system-dependent kind
-c_size_t (from the _iso_c_binding_ module). Its value is the
+c*size_t (from the \_iso_c_binding* module). Its value is the
 number of bytes occupied by the argument. If the argument has the
 _pointer_ attribute, the number of bytes of the storage area pointed to is
 returned. If the argument is of a derived type with _pointer_ or
