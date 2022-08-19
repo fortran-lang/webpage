@@ -152,7 +152,7 @@ html_theme_options = {
         },
         {
             "name": "RSS",
-            "url": "https://fortran-lang.org/news/atom.xml",
+            "url": "https://fortran-lang.org/en/news/atom.xml",
             "icon": "fas fa-rss",
         },
     ],
