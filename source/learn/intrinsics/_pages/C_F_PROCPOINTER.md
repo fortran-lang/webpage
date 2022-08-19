@@ -1,27 +1,29 @@
-## c\_f\_procpointer
-### __Name__
+## c_f_procpointer
 
-__c\_f\_procpointer__(3) - \[ISO\_C\_BINDING\] Convert C into Fortran procedure pointer
+### **Name**
 
+**c_f_procpointer**(3) - \[ISO_C_BINDING\] Convert C into Fortran procedure pointer
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 call c_f_procpointer(cptr, fptr)
 ```
-### __Description__
 
-__c\_f\_procpointer(cptr, fptr)__ assigns the target of the C function
-pointer __cptr__ to the Fortran procedure pointer __fptr__.
+### **Description**
 
-### __Arguments__
+**c_f_procpointer(cptr, fptr)** assigns the target of the C function
+pointer **cptr** to the Fortran procedure pointer **fptr**.
 
-  - __cptr__
-    : scalar of the type c\_funptr. It is __intent(in)__.
+### **Arguments**
 
-  - __fptr__
-    : procedure pointer interoperable with __cptr__. It is __intent(out)__.
+- **cptr**
+  : scalar of the type c_funptr. It is **intent(in)**.
 
-### __Examples__
+- **fptr**
+  : procedure pointer interoperable with **cptr**. It is **intent(out)**.
+
+### **Examples**
 
 Sample program:
 
@@ -49,14 +51,14 @@ procedure(func), pointer :: myFunc
 end program demo_c_f_procpointer
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2003 and later
 
-### __See Also__
+### **See Also**
 
-[__c\_loc__(3)](C_LOC),
-[__c\_f\_pointer__(3)](C_F_POINTER),
-__iso\_c\_binding__(3)
+[**c_loc**(3)](C_LOC),
+[**c_f_pointer**(3)](C_F_POINTER),
+**iso_c_binding**(3)
 
 ####### fortran-lang intrinsic descriptions

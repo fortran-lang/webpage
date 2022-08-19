@@ -1,38 +1,40 @@
-## same\_type\_as
-### __Name__
+## same_type_as
 
-__same\_type\_as__(3) - \[STATE\] Query dynamic types for equality
+### **Name**
 
+**same_type_as**(3) - \[STATE\] Query dynamic types for equality
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = same_type_as(a, b)
 ```
-### __Description__
+
+### **Description**
 
 Query dynamic types for equality.
 
-### __Arguments__
+### **Arguments**
 
-  - __a__
-    : Shall be an object of extensible declared type or unlimited
-    polymorphic.
+- **a**
+  : Shall be an object of extensible declared type or unlimited
+  polymorphic.
 
-  - __b__
-    : Shall be an object of extensible declared type or unlimited
-    polymorphic.
+- **b**
+  : Shall be an object of extensible declared type or unlimited
+  polymorphic.
 
-### __Returns__
+### **Returns**
 
 The return value is a scalar of type default logical. It is true if and
-only if the dynamic type of __a__ is the same as the dynamic type of __b__.
+only if the dynamic type of **a** is the same as the dynamic type of **b**.
 
-### __Standard__
+### **Standard**
 
 Fortran 2003 and later
 
-### __See Also__
+### **See Also**
 
-[__extends\_type\_of__(3)](EXTENDS_TYPE_OF)
+[**extends_type_of**(3)](EXTENDS_TYPE_OF)
 
 ####### fortran-lang intrinsic descriptions

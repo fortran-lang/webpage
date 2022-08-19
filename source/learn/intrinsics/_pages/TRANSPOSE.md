@@ -1,29 +1,31 @@
 ## transpose
-### __Name__
 
-__transpose__(3) - \[ARRAY MANIPULATION\] Transpose an array of rank two
+### **Name**
 
+**transpose**(3) - \[ARRAY MANIPULATION\] Transpose an array of rank two
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = transpose(matrix)
 ```
-### __Description__
+
+### **Description**
 
 Transpose an array of rank two. Element (i, j) of the result has the
-value __matrix(j, i)__, for all i, j.
+value **matrix(j, i)**, for all i, j.
 
-### __Arguments__
+### **Arguments**
 
-  - __matrix__
-    : Shall be an array of any type and have a rank of two.
+- **matrix**
+  : Shall be an array of any type and have a rank of two.
 
-### __Returns__
+### **Returns**
 
-The result has the same type as __matrix__, and has shape \[ m, n \] if
-__matrix__ has shape \[ n, m \].
+The result has the same type as **matrix**, and has shape \[ m, n \] if
+**matrix** has shape \[ n, m \].
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -79,7 +81,7 @@ Results:
     > [     5,    50, -1055 ]
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 95 and later
 

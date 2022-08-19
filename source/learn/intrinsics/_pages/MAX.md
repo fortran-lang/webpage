@@ -1,25 +1,28 @@
 ## max
-### __Name__
 
-__max__(3) - \[NUMERIC\] Maximum value of an argument list
+### **Name**
 
-### __Syntax__
+**max**(3) - \[NUMERIC\] Maximum value of an argument list
+
+### **Syntax**
+
 ```fortran
 result = max(a1, a2, a3, ...)
 ```
-### __Description__
+
+### **Description**
 
 Returns the argument with the largest (most positive) value.
 
-### __Arguments__
+### **Arguments**
 
-  - __a1__
-    : The type shall be _integer_ or _real_.
+- **a1**
+  : The type shall be _integer_ or _real_.
 
-  - __a2,a3,...__
-    : An expression of the same type and kind as __a1__.
+- **a2,a3,...**
+  : An expression of the same type and kind as **a1**.
 
-### __Returns__
+### **Returns**
 
 The return value corresponds to the maximum value among the arguments,
 and has the same type and kind as the first argument.
@@ -30,10 +33,10 @@ that all the arrays must be of the same size, and the returned value
 will be an array that is the result as if multiple calls were made with
 all scalar values with a single element of each array used in each call.
 If called with all arrays the returned array is the same as if multiple
-calls were made with __max(arr1(1),arr2(1), ...)__ to
-__max(arr1(N),arr2(N))__.
+calls were made with **max(arr1(1),arr2(1), ...)** to
+**max(arr1(N),arr2(N))**.
 
-### __Examples__
+### **Examples**
 
 Sample program
 
@@ -96,6 +99,7 @@ real :: arr2(5)= [20.0,21.0,32.0,-200.0,2200.0]
   & max(40.0,11.0,30.0,-100.0,arr2(:4),arr1)
 end program demo_max
 ```
+
 Results:
 
 ```text
@@ -105,14 +109,14 @@ Results:
     scalars and array: 40.000000 40.000000 40.000000 40.000000
 ```
 
-### __Standard__
+### **Standard**
 
 FORTRAN 77 and later
 
-### __See Also__
+### **See Also**
 
-[__maxloc__(3)](MAXLOC),
-[__maxval__(3)](MAXVAL),
-[__min__(3)](MIN)
+[**maxloc**(3)](MAXLOC),
+[**maxval**(3)](MAXVAL),
+[**min**(3)](MIN)
 
 ####### fortran-lang intrinsic descriptions

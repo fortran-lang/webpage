@@ -1,33 +1,36 @@
 ## present
-### __Name__
 
-__present__(3) - [STATE\] Determine whether an optional dummy argument
-                 is specified
+### **Name**
 
-### __Syntax__
+**present**(3) - [STATE\] Determine whether an optional dummy argument
+is specified
+
+### **Syntax**
+
 ```fortran
 result = present(a)
 
    function present (a)
    logical :: present
 ```
-### __Description__
+
+### **Description**
 
 Determines whether an optional dummy argument is present.
 
-### __Arguments__
+### **Arguments**
 
-  - __a__
-    : May be of any type and may be a pointer, scalar or array value,
-    or a dummy procedure. It shall be the name of an optional dummy
-    argument accessible within the current subroutine or function.
+- **a**
+  : May be of any type and may be a pointer, scalar or array value,
+  or a dummy procedure. It shall be the name of an optional dummy
+  argument accessible within the current subroutine or function.
 
-### __Returns__
+### **Returns**
 
-Returns either __.true.__ if the optional argument __a__ is present,
-or __.false.__ otherwise.
+Returns either **.true.** if the optional argument **a** is present,
+or **.false.** otherwise.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -48,12 +51,14 @@ end function
 
 end program demo_present
 ```
-  Results:
+
+Results:
+
 ```text
      0        1764
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 95 and later
 

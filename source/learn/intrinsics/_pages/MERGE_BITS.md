@@ -1,9 +1,11 @@
-## merge\_bits
-### __Name__
+## merge_bits
 
-__merge\_bits__(3) - \[BIT:COPY\] Merge bits using a mask
+### **Name**
 
-### __Syntax__
+**merge_bits**(3) - \[BIT:COPY\] Merge bits using a mask
+
+### **Syntax**
+
 ```fortran
 result = merge_bits(i, j, mask)
 
@@ -11,52 +13,54 @@ result = merge_bits(i, j, mask)
     integer(kind=KIND) ,intent(in) :: i, j, mask
     integer(kind=KIND) :: r
 ```
+
 where the result and all input values have the same _integer_ type and
-KIND with the exception that the mask and either __i__ or __j__ may be
+KIND with the exception that the mask and either **i** or **j** may be
 a BOZ constant.
 
-### __Description__
+### **Description**
 
 A common graphics operation in Ternary Raster Operations is to combine
 bits from two different sources, generally referred to as bit-blending.
-__merge\_bits__ performs a masked bit-blend of __i__ and __j__ using
-the bits of the __mask__ value to determine which of the input values
+**merge_bits** performs a masked bit-blend of **i** and **j** using
+the bits of the **mask** value to determine which of the input values
 to copy bits from.
 
 Specifically, The k-th bit of the result is equal to the k-th bit of
-__i__ if the k-th bit of __mask__ is __1__; it is equal to the k-th bit
-of __j__ otherwise (so all three input values must have the same number
+**i** if the k-th bit of **mask** is **1**; it is equal to the k-th bit
+of **j** otherwise (so all three input values must have the same number
 of bits).
 
 The resulting value is the same as would result from
 
     __ior (iand (i, mask),iand (j, not (mask)))__
 
-An exception to all values being of the same _integer_ type is that __i__
-or __j__ and/or the mask may be a BOZ constant (A BOZ constant means it is
-either a Binary, Octal, or Hexadecimal literal constant).  The BOZ values
+An exception to all values being of the same _integer_ type is that **i**
+or **j** and/or the mask may be a BOZ constant (A BOZ constant means it is
+either a Binary, Octal, or Hexadecimal literal constant). The BOZ values
 are converted to the _integer_ type of the non-BOZ value(s) as if called
-by the intrinsic function __int()__ with the kind of the non-BOZ value(s),
+by the intrinsic function **int()** with the kind of the non-BOZ value(s),
 so the BOZ values must be in the range of the type of the result.
 
-### __Arguments__
+### **Arguments**
 
-  - __i__ 
-  : value to select bits from when the associated bit in the mask is __1__.
+- **i**
+  : value to select bits from when the associated bit in the mask is **1**.
 
-  - __j__
-  : value to select bits from when the associated bit in the mask is __0__.
+- **j**
+  : value to select bits from when the associated bit in the mask is **0**.
 
-  - __mask__
-  : a value whose bits are used as a mask to select bits from __i__ and __j__
+- **mask**
+  : a value whose bits are used as a mask to select bits from **i** and **j**
 
-### __Returns__
+### **Returns**
 
-The bits blended from __i__ and __j__ using the mask __mask__. It is the
-same type as __i__ if __i__ is of type _integer_, otherwise the same type
-as __j__.
+The bits blended from **i** and **j** using the mask **mask**. It is the
+same type as **i** if **i** is of type _integer_, otherwise the same type
+as **j**.
 
-### __Example__
+### **Example**
+
 ```fortran
 program demo_merge_bits
 use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
@@ -74,11 +78,11 @@ character(len=*),parameter :: fmt='(*(g0, 1X))'
 
    msk=int(b'0101010101010101',kind=int16)
    print '("should get all zero bits =>",b16.16)', &
-   & merge_bits(if_one,if_zero,msk) 
+   & merge_bits(if_one,if_zero,msk)
 
    msk=int(b'1010101010101010',kind=int16)
    print '("should get all ones bits =>",b16.16)', &
-   & merge_bits(if_one,if_zero,msk) 
+   & merge_bits(if_one,if_zero,msk)
 
    ! using BOZ values
    print fmt, &
@@ -99,7 +103,9 @@ character(len=*),parameter :: fmt='(*(g0, 1X))'
 
 end program demo_merge_bits
 ```
-  Results:
+
+Results:
+
 ```text
     MERGE_BITS( 5,10,41) should be 3.=>           3
     MERGE_BITS(13,18,22) should be 4.=>           4
@@ -109,7 +115,7 @@ end program demo_merge_bits
    32767 32767 5877
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later
 

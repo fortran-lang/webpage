@@ -1,30 +1,30 @@
-## compiler\_version
-### __Name__
+## compiler_version
 
-__compiler\_version__(3) - \[COMPILER INQUIRY\] Compiler version string
+### **Name**
 
+**compiler_version**(3) - \[COMPILER INQUIRY\] Compiler version string
 
-### __Syntax__
+### **Syntax**
 
 ```fortran
 str = compiler_version()
 ```
 
-### __Description__
+### **Description**
 
-__compiler\_version__(3) returns a string containing the name and
+**compiler_version**(3) returns a string containing the name and
 version of the compiler.
 
-### __Arguments__
+### **Arguments**
 
 None.
 
-### __Returns__
+### **Returns**
 
 The return value is a default-kind string with system-dependent length.
 It contains the name of the compiler and its version number.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -39,7 +39,9 @@ implicit none
       compiler_options()
 end program demo_compiler_version
 ```
+
 Results:
+
 ```
    This file was compiled by GCC version 5.4.0 using the options
    -I /usr/include/w32api -I /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN
@@ -49,13 +51,13 @@ Results:
    -J /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2008
 
-### __See Also__
+### **See Also**
 
-[__compiler\_options__(3)](COMPILER_OPTIONS),
-__iso\_fortran\_env__(7)
+[**compiler_options**(3)](COMPILER_OPTIONS),
+**iso_fortran_env**(7)
 
 ####### fortran-lang intrinsic descriptions

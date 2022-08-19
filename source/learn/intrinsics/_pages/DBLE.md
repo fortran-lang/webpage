@@ -1,10 +1,11 @@
 ## dble
-### __Name__
 
-__dble__(3) - \[TYPE:NUMERIC\] Double conversion function
+### **Name**
 
+**dble**(3) - \[TYPE:NUMERIC\] Double conversion function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = dble(a)
 
@@ -12,24 +13,26 @@ result = dble(a)
     type(real(kind=kind(0.0d0)))     :: dble
     type(TYPE(kind=KIND)),intent(in) :: a
 ```
+
 where TYPE may be _integer_, _real_, or _complex_ and KIND any kind
 supported by the TYPE.
-### __Description__
 
-__dble(a)__ Converts __a__ to double precision _real_ type.
+### **Description**
 
-### __Arguments__
+**dble(a)** Converts **a** to double precision _real_ type.
 
-  - __a__
-    : The type shall be _integer_, _real_, or _complex_.
+### **Arguments**
 
-### __Returns__
+- **a**
+  : The type shall be _integer_, _real_, or _complex_.
+
+### **Returns**
 
 The return value is of type _doubleprecision_. For _complex_ input,
 the returned value has the magnitude and sign of the real component
 of the input value.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -42,17 +45,20 @@ complex :: z = (2.3,1.14)
    print *, dble(x), dble(i), dble(z)
 end program demo_dble
 ```
-  Results:
+
+Results:
+
 ```text
-  2.1800000667572021  5.0000000000000000   2.2999999523162842     
+  2.1800000667572021  5.0000000000000000   2.2999999523162842
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later
 
-### __See Also__
+### **See Also**
 
-[__float__(3)](FLOAT),
-[__real__(3)](REAL)
+[**float**(3)](FLOAT),
+[**real**(3)](REAL)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

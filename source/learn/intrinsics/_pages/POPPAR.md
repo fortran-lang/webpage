@@ -1,31 +1,33 @@
 ## poppar
-### __Name__
 
-__poppar__(3) - \[BIT:COUNT\] Parity of the number of bits set
+### **Name**
 
+**poppar**(3) - \[BIT:COUNT\] Parity of the number of bits set
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = poppar(i)
 ```
-### __Description__
+
+### **Description**
 
 Returns the parity of an integer's binary representation (i.e., the
 parity of the number of bits set).
 
-### __Arguments__
+### **Arguments**
 
-  - __i__
-    : Shall be of type _integer_.
+- **i**
+  : Shall be of type _integer_.
 
-### __Returns__
+### **Returns**
 
-The return value is equal to __0__ if __i__ has an even number of bits set and 1 if an odd
+The return value is equal to **0** if **i** has an even number of bits set and 1 if an odd
 number of bits are set.
 
 It is of type _integer_ and of the default _integer_ kind.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -41,7 +43,9 @@ implicit none
    print  *,  popcnt(huge(0_int64)),  poppar(huge(0_int64))
 end program demo_popcnt
 ```
-  Results:
+
+Results:
+
 ```text
               7           1
               7           1
@@ -49,14 +53,15 @@ end program demo_popcnt
              31           1
              63           1
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__popcnt__(3)](POPCNT),
-[__leadz__(3)](LEADZ),
-[__trailz__(3)](TRAILZ)
+[**popcnt**(3)](POPCNT),
+[**leadz**(3)](LEADZ),
+[**trailz**(3)](TRAILZ)
 
 ####### fortran-lang intrinsic descriptions

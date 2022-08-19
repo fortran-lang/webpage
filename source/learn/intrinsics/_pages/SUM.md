@@ -1,42 +1,44 @@
 ## sum
-### __Name__
 
-__sum__(3) - \[ARRAY REDUCTION\] sum the elements of an array
+### **Name**
 
+**sum**(3) - \[ARRAY REDUCTION\] sum the elements of an array
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
    result = sum(array[, mask])
    result = sum(array, dim[, mask])
 ```
-### __Description__
+
+### **Description**
 
 Adds the elements of ARRAY along dimension DIM if the corresponding
 element in MASK is TRUE.
 
-### __Arguments__
+### **Arguments**
 
-  - __array__
-    : Shall be an array of type _integer_, _real_ or _complex_.
+- **array**
+  : Shall be an array of type _integer_, _real_ or _complex_.
 
-  - __dim__
-    : (Optional) shall be a scalar of type _integer_ with a value in the
-    range from 1 to n, where n equals the rank of ARRAY.
+- **dim**
+  : (Optional) shall be a scalar of type _integer_ with a value in the
+  range from 1 to n, where n equals the rank of ARRAY.
 
-  - __mask__
-    : (Optional) shall be of type _logical_ and either be a scalar or an
-    array of the same shape as ARRAY.
+- **mask**
+  : (Optional) shall be of type _logical_ and either be a scalar or an
+  array of the same shape as ARRAY.
 
-### __Returns__
+### **Returns**
 
 The result is of the same type as ARRAY.
 
-If __dim__(3) is absent, a scalar with the sum of all elements in ARRAY
+If **dim**(3) is absent, a scalar with the sum of all elements in ARRAY
 is returned. Otherwise, an array of rank n-1, where n equals the rank of
 ARRAY, and a shape similar to that of ARRAY with dimension DIM dropped
 is returned.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -48,6 +50,7 @@ integer :: x(5) = [ 1, 2, 3, 4 ,5 ]
    print *, sum(x, mask=mod(x, 2)==1)     ! odd elements, sum = 9
 end program simple_sum
 ```
+
 Demonstrate Fortran 90 SUM function with MASK option
 
 ```fortran
@@ -77,11 +80,11 @@ Results:
  Sum of elements in c when corresponding elements in b>0 =   30.0000000
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
 intrinsics
 

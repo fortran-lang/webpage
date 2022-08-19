@@ -1,49 +1,52 @@
 ## nint
-### __Name__
 
-__nint__(3) - \[TYPE:NUMERIC\] Nearest whole number
+### **Name**
 
-### __Syntax__
+**nint**(3) - \[TYPE:NUMERIC\] Nearest whole number
+
+### **Syntax**
+
 ```fortran
     elemental function nint(x [, kind=NN]) result(ANSWER)
      real(kind=??),intent(in) :: x
      integer(kind=NN) :: ANSWER
 ```
-### __Description__
 
-__nint(x)__ rounds its argument to the nearest whole number with its
+### **Description**
+
+**nint(x)** rounds its argument to the nearest whole number with its
 sign preserved.
 
 The user must ensure the value is a valid value for the range of the
-__kind__ returned. If the processor cannot represent the result in the kind
+**kind** returned. If the processor cannot represent the result in the kind
 specified, the result is undefined.
 
-If __x__ is greater than zero, __nint(x)__ has the value __int(x+0.5)__.
+If **x** is greater than zero, **nint(x)** has the value **int(x+0.5)**.
 
-If __x__ is less than or equal to zero, __nint(x)__ has the value
-__int(a-0.5)__.
+If **x** is less than or equal to zero, **nint(x)** has the value
+**int(a-0.5)**.
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : The type of the argument shall be _real_.
+- **x**
+  : The type of the argument shall be _real_.
 
-  - __kind__
-    : (Optional) A constant _integer_ expression indicating the kind
-    parameter of the result. Otherwise, the kind type parameter is that
-    of default _integer_ type.
+- **kind**
+  : (Optional) A constant _integer_ expression indicating the kind
+  parameter of the result. Otherwise, the kind type parameter is that
+  of default _integer_ type.
 
-### __Returns__
+### **Returns**
 
-  - __answer__
-    : The result is the integer nearest __x__, or if there are two integers
-    equally near __x__, the result is whichever such _integer_ has the greater
-    magnitude.
+- **answer**
+  : The result is the integer nearest **x**, or if there are two integers
+  equally near **x**, the result is whichever such _integer_ has the greater
+  magnitude.
 
-    The result is undefined if it cannot be represented in the specified
-    integer type.
+  The result is undefined if it cannot be represented in the specified
+  integer type.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -87,7 +90,9 @@ endblock ISSUES
 
 end program demo_nint
 ```
-  Results:
+
+Results:
+
 ```text
      1    5   -5
     -3   -3   -2   -2   -2
@@ -106,17 +111,17 @@ end program demo_nint
     -9223372036854775808
 ```
 
-### __Standard__
+### **Standard**
 
 FORTRAN 77 and later, with KIND argument - Fortran 90 and later
 
-### __See Also__
+### **See Also**
 
-[__aint__(3)](AINT),
-[__anint__(3)](ANINT),
-[__int__(3)](INT),
-[__selected_int_kind__(3)](SELECTED_INT_KIND),
-[__ceiling__(3)](CEILING),
-[__floor__(3)](FLOOR)
+[**aint**(3)](AINT),
+[**anint**(3)](ANINT),
+[**int**(3)](INT),
+[**selected_int_kind**(3)](SELECTED_INT_KIND),
+[**ceiling**(3)](CEILING),
+[**floor**(3)](FLOOR)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

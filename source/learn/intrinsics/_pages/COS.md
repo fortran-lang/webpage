@@ -1,40 +1,43 @@
 ## cos
-### __Name__
 
-__cos__(3) - \[MATHEMATICS:TRIGONOMETRIC\] Cosine function
+### **Name**
 
-### __Syntax__
+**cos**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Cosine function
+
+### **Syntax**
+
 ```fortran
 result = cos(x)
 
    TYPE(kind=KIND),elemental :: cos
    TYPE(kind=KIND,intent(in) :: x
 ```
+
 where TYPE may be _real_ or _complex_ and KIND may be any KIND supported
 by the associated type.
 
-### __Description__
+### **Description**
 
-__cos(x)__ computes the cosine of an angle __x__ given the size of the
+**cos(x)** computes the cosine of an angle **x** given the size of the
 angle in radians.
 
 The cosine of a _real_ value is the ratio of the adjacent side to the
 hypotenuse of a right-angled triangle.
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : The type shall be _real_ or _complex_.
-    __x__ is assumed to be in radians.
+- **x**
+  : The type shall be _real_ or _complex_.
+  **x** is assumed to be in radians.
 
-### __Returns__
+### **Returns**
 
-The return value is of the same type and kind as __x__. 
+The return value is of the same type and kind as **x**.
 
-If __x__ is of the type _real_, the return value lies in
-the range __-1 \<= cos(x) \<= 1__ .
+If **x** is of the type _real_, the return value lies in
+the range **-1 \<= cos(x) \<= 1** .
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -51,7 +54,9 @@ doubleprecision,parameter :: PI=atan(1.0d0)*4.0d0
    write(*,*)'COS(3000*PI)=',cos(3000*PI)
 end program demo_cos
 ```
+
 Results:
+
 ```
    COS(0.0)=        1.00000000
    COS(PI)=        -1.0000000000000000
@@ -61,15 +66,17 @@ Results:
    COS(-2*PI)=      1.0000000000000000
    COS(-2000*PI)=   1.0000000000000000
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later
 
-### __See Also__
+### **See Also**
+
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
-[__acos__(3)](ACOS),
-[__sin__(3)](SIN),
-[__tan__(3)](TAN)
+[**acos**(3)](ACOS),
+[**sin**(3)](SIN),
+[**tan**(3)](TAN)
 
 ####### fortran-lang intrinsic descriptions

@@ -1,9 +1,11 @@
 ## product
-### __Name__
 
-__product__(3) - \[ARRAY REDUCTION\] Product of array elements
+### **Name**
 
-### __Syntax__
+**product**(3) - \[ARRAY REDUCTION\] Product of array elements
+
+### **Syntax**
+
 ```fortran
   result = product(array, dim, mask)
 
@@ -11,40 +13,40 @@ __product__(3) - \[ARRAY REDUCTION\] Product of array elements
     integer,intent(in),optional :: dim
     logical,intent(in),optional :: mask(..)
 ```
-where __NUMERIC__ is any numeric type
 
-### __Description__
+where **NUMERIC** is any numeric type
 
-Multiplies together all the selected elements of __array__, or along
-dimension __dim__ if the corresponding element in __mask__ is __.true.__.
+### **Description**
 
-If __dim__ is absent, a scalar with the product of all elements in __array__ is
-returned. (Note a zero-sized __array__ returns __1__).
+Multiplies together all the selected elements of **array**, or along
+dimension **dim** if the corresponding element in **mask** is **.true.**.
 
-When __dim__ is present, If the masked array has a dimension of one
-(ie. is a vector) the result is a scalar.  Otherwise, an array of rank
-__n-1__, where __n__ equals the rank of __array__, and a shape similar
-to that of __array__ with dimension __dim__ dropped is returned.
+If **dim** is absent, a scalar with the product of all elements in **array** is
+returned. (Note a zero-sized **array** returns **1**).
 
-### __Arguments__
+When **dim** is present, If the masked array has a dimension of one
+(ie. is a vector) the result is a scalar. Otherwise, an array of rank
+**n-1**, where **n** equals the rank of **array**, and a shape similar
+to that of **array** with dimension **dim** dropped is returned.
 
-  - __array__
-    : Shall be an array of type _integer_, _real_ or _complex_.
+### **Arguments**
 
-  - __dim__
-    : shall be a scalar of type _integer_ with a value in the
-    range from __1 to n__, where __n__ equals the rank of __array__.
+- **array**
+  : Shall be an array of type _integer_, _real_ or _complex_.
 
-  - __mask__
-    : shall be of type _logical_ and either be a scalar or an
-    array of the same shape as __array__.
+- **dim**
+  : shall be a scalar of type _integer_ with a value in the
+  range from **1 to n**, where **n** equals the rank of **array**.
 
-### __Returns__
+- **mask**
+  : shall be of type _logical_ and either be a scalar or an
+  array of the same shape as **array**.
 
-The result is of the same type as __array__.
+### **Returns**
 
+The result is of the same type as **array**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -52,14 +54,14 @@ Sample program:
 program demo_product
 implicit none
 character(len=*),parameter :: all='(*(g0,1x))' ! a handy format
-character(len=1),parameter :: nl=new_line('a') 
+character(len=1),parameter :: nl=new_line('a')
 
 NO_DIM: block
-!    If DIM is not specified, the result is the product of all the 
-!    selected array elements. 
+!    If DIM is not specified, the result is the product of all the
+!    selected array elements.
 integer :: i,n, p1, p2
 integer,allocatable :: array(:)
-   ! all elements are selected by default 
+   ! all elements are selected by default
    do n=1,10
       print all, 'factorial of ',n,' is ', product([(real(i),i=1,n)])
    enddo
@@ -73,10 +75,10 @@ integer,allocatable :: array(:)
 
    ! NOTE: If ARRAY is a zero-sized array, the result is equal to one
    print all
-   print all, 'zero-sized array=>',product([integer :: ]) 
+   print all, 'zero-sized array=>',product([integer :: ])
    ! NOTE: If nothing in the mask is true, this also results in a null
    !       array
-   print all, 'all elements have a false mask=>',product(array,mask=.false.) 
+   print all, 'all elements have a false mask=>',product(array,mask=.false.)
 
 endblock NO_DIM
 
@@ -117,8 +119,8 @@ integer :: box(2,3,4)
 
 !   If DIM is specified and ARRAY has rank greater than one, the
 !   result is a new array in which dimension DIM has been eliminated.
- 
-   ! pick a dimension to multiply though 
+
+   ! pick a dimension to multiply though
    call print_matrix_int('dim=1',product(box,dim=1))
 
    call print_matrix_int('dim=2',product(box,dim=2))
@@ -126,37 +128,39 @@ integer :: box(2,3,4)
    call print_matrix_int('dim=3',product(box,dim=3))
 
 endblock WITH_DIM
-  
+
 contains
-  
+
 subroutine print_matrix_int(title,arr)
 implicit none
-  
+
 !@(#) print small 2d integer arrays in row-column format
-  
+
 character(len=*),intent(in)  :: title
 integer,intent(in)           :: arr(:,:)
 integer                      :: i
 character(len=:),allocatable :: biggest
-  
+
    print all
    print all, trim(title),':(',shape(arr),')'  ! print title
    biggest='           '  ! make buffer to write integer into
    ! find how many characters to use for integers
-   write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2 
+   write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2
    ! use this format to write a row
-   biggest='(" > [",*(i'//trim(biggest)//':,","))'     
+   biggest='(" > [",*(i'//trim(biggest)//':,","))'
    ! print one row of array at a time
-   do i=1,size(arr,dim=1)                      
+   do i=1,size(arr,dim=1)
       write(*,fmt=biggest,advance='no')arr(i,:)
       write(*,'(" ]")')
    enddo
-  
+
 end subroutine print_matrix_int
-  
+
 end program demo_product
 ```
+
 Results:
+
 ```text
 factorial of  1  is  1.000000
 factorial of  2  is  2.000000
@@ -170,7 +174,7 @@ factorial of  9  is  362880.0
 factorial of  10  is  3628800.
 
  product of all elements 351000000
- odd * even = 
+ odd * even =
  4875 * 72000 = 351000000
 
 zero-sized array=> 1
@@ -217,13 +221,14 @@ dim=3 :( 2 3 )
  > [    -200,   -3200,  -16200 ]
  > [  -51200, -125000, -259200 ]
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__sum__(3)](SUM), note that an element by element multiplication is done
+[**sum**(3)](SUM), note that an element by element multiplication is done
 directly using the star character.
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

@@ -1,40 +1,42 @@
 ## cshift
-### __Name__
 
-__cshift__(3) - \[TRANSFORMATIONAL\] Circular shift elements of an array
+### **Name**
 
+**cshift**(3) - \[TRANSFORMATIONAL\] Circular shift elements of an array
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = cshift(array, shift, dim)
 ```
-### __Description__
 
-__cshift(array, shift \[, dim\])__ performs a circular shift on elements
-of __array__ along the dimension of __dim__. If __dim__ is omitted it is taken to be
-__1__. __dim__ is a scalar of type _integer_ in the range of __1 \<= dim \<= n__,
-where "n" is the rank of __array__. If the rank of __array__ is one, then all
-elements of __array__ are shifted by __shift__ places. If rank is greater than
-one, then all complete rank one sections of __array__ along the given
+### **Description**
+
+**cshift(array, shift \[, dim\])** performs a circular shift on elements
+of **array** along the dimension of **dim**. If **dim** is omitted it is taken to be
+**1**. **dim** is a scalar of type _integer_ in the range of **1 \<= dim \<= n**,
+where "n" is the rank of **array**. If the rank of **array** is one, then all
+elements of **array** are shifted by **shift** places. If rank is greater than
+one, then all complete rank one sections of **array** along the given
 dimension are shifted. Elements shifted out one end of each rank one
 section are shifted back in the other end.
 
-### __Arguments__
+### **Arguments**
 
-  - __array__
-    : Shall be an array of any type.
+- **array**
+  : Shall be an array of any type.
 
-  - __shift__
-    : The type shall be _integer_.
+- **shift**
+  : The type shall be _integer_.
 
-  - __dim__
-    : The type shall be _integer_.
+- **dim**
+  : The type shall be _integer_.
 
-### __Returns__
+### **Returns**
 
-Returns an array of same type and rank as the __array__ argument.
+Returns an array of same type and rank as the **array** argument.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -53,17 +55,20 @@ integer, dimension(3,3) :: a
     print '(3i3)', a(3,:)
 end program demo_cshift
 ```
-  Results:
+
+Results:
+
 ```text
      1  4  7
      2  5  8
      3  6  9
-    
+
      4  7  1
      8  2  5
      9  3  6
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 

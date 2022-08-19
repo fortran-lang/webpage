@@ -1,29 +1,31 @@
-## bessel\_j1
-### __Name__
+## bessel_j1
 
-__bessel\_j1__(3) - \[MATHEMATICS\] Bessel function of the first kind of order 1
+### **Name**
 
+**bessel_j1**(3) - \[MATHEMATICS\] Bessel function of the first kind of order 1
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
     result = bessel_j1(x)
 ```
-### __Description__
 
-__bessel\_j1(x)__ computes the Bessel function of the first kind
-of order __1__ of __x__.
+### **Description**
 
-### __Arguments__
+**bessel_j1(x)** computes the Bessel function of the first kind
+of order **1** of **x**.
 
-  - __x__
-    : The type shall be _real_.
+### **Arguments**
 
-### __Returns__
+- **x**
+  : The type shall be _real_.
 
-The return value is of type _real_ and lies in the range 
-__-0.5818 \<= bessel(0,x) \<= 0.5818__ . It has the same kind as __x__.
+### **Returns**
 
-### __Examples__
+The return value is of type _real_ and lies in the range
+**-0.5818 \<= bessel(0,x) \<= 0.5818** . It has the same kind as **x**.
+
+### **Examples**
 
 Sample program:
 
@@ -37,20 +39,23 @@ real(kind=real64) :: x = 1.0_real64
    write(*,*)x
 end program demo_besj1
 ```
-  Results:
+
+Results:
+
 ```text
-     0.44005058574493350     
+     0.44005058574493350
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__bessel\_j0__(3)](BESSEL_J0),
-[__bessel\_jn__(3)](BESSEL_JN), 
-[__bessel\_y0__(3)](BESSEL_Y0),
-[__bessel\_y1__(3)](BESSEL_Y1), 
-[__bessel\_yn__(3)](BESSEL_YN)
+[**bessel_j0**(3)](BESSEL_J0),
+[**bessel_jn**(3)](BESSEL_JN),
+[**bessel_y0**(3)](BESSEL_Y0),
+[**bessel_y1**(3)](BESSEL_Y1),
+[**bessel_yn**(3)](BESSEL_YN)
 
 ####### fortran-lang intrinsic descriptions

@@ -12,54 +12,53 @@ jobs:
   build:
     runs-on: ubuntu-latest
     if: github.event.issue.pull_request && contains(github.event.comment.body,'#build_preview')
-    
+
     steps:
-    - name: Checkout pr/${{github.event.issue.number}}
-      uses: actions/checkout@v3
-      
-    - name: Fetch pr/${{github.event.issue.number}}
-      run: |
-        git fetch origin pull/${{github.event.issue.number}}/head:pr-${{github.event.issue.number}}
-        git checkout pr-${{github.event.issue.number}}
-      
-    - name: Setup Python
-      uses: actions/setup-python@v4
-      with:
-        python-version: '3.10' 
+      - name: Checkout pr/${{github.event.issue.number}}
+        uses: actions/checkout@v3
 
-    - name: Install sphinx
-      run: pip3 install --user -r requirements.txt
-      
-    - name: Safe workflow for build preview
-      run: if [ -d "build" ]; then rm -Rf build; fi
-      
-    - name: delete _data folder
-      run: rm -Rf _data
-      
-    - name: download _data
-      run: mkdir _data && cd _data && gh run download -n _data
-      env:
+      - name: Fetch pr/${{github.event.issue.number}}
+        run: |
+          git fetch origin pull/${{github.event.issue.number}}/head:pr-${{github.event.issue.number}}
+          git checkout pr-${{github.event.issue.number}}
+
+      - name: Setup Python
+        uses: actions/setup-python@v4
+        with:
+          python-version: "3.10"
+
+      - name: Install sphinx
+        run: pip3 install --user -r requirements.txt
+
+      - name: Safe workflow for build preview
+        run: if [ -d "build" ]; then rm -Rf build; fi
+
+      - name: delete _data folder
+        run: rm -Rf _data
+
+      - name: download _data
+        run: mkdir _data && cd _data && gh run download -n _data
+        env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-      
-    - name: Build page
-      run: make dirhtml
-      
-    - run: touch build/html/.nojekyll
 
-    - name: Deploy documentation sphinx
-      uses: JamesIves/github-pages-deploy-action@v4.4.0
-      with:
-        token: ${{ secrets.GITHUB_TOKEN }}
-        branch: gh-pages
-        target-folder: pr/${{github.event.issue.number}}
-        folder: build/html
-        clean: false
-        git-config-email: 53436240+fortran-lang@users.noreply.github.com
-        git-config-name: Fortran
-        
-    - name: Comment on pull request
-      uses: peter-evans/create-or-update-comment@v2
-      with:
-       issue-number: ${{github.event.issue.number}}
-       body: "This PR has been built with Sphinx and can be previewed at: https://fortran-lang.github.io/webpage/pr/${{github.event.issue.number}}"
-       
+      - name: Build page
+        run: make dirhtml
+
+      - run: touch build/html/.nojekyll
+
+      - name: Deploy documentation sphinx
+        uses: JamesIves/github-pages-deploy-action@v4.4.0
+        with:
+          token: ${{ secrets.GITHUB_TOKEN }}
+          branch: gh-pages
+          target-folder: pr/${{github.event.issue.number}}
+          folder: build/html
+          clean: false
+          git-config-email: 53436240+fortran-lang@users.noreply.github.com
+          git-config-name: Fortran
+
+      - name: Comment on pull request
+        uses: peter-evans/create-or-update-comment@v2
+        with:
+          issue-number: ${{github.event.issue.number}}
+          body: "This PR has been built with Sphinx and can be previewed at: https://fortran-lang.github.io/webpage/pr/${{github.event.issue.number}}"

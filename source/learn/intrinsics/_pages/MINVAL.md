@@ -1,48 +1,51 @@
 ## minval
-### __Name__
 
-__minval__(3) - \[ARRAY REDUCTION\] Minimum value of an array
+### **Name**
 
-### __Syntax__
+**minval**(3) - \[ARRAY REDUCTION\] Minimum value of an array
+
+### **Syntax**
+
 ```fortran
 result = minval(array, dim, mask) result = minval(array, mask)
 ```
-### __Description__
+
+### **Description**
 
 Determines the minimum value of the elements in an array value, or, if
-the __dim__ argument is supplied, determines the minimum value along each
-row of the array in the __dim__ direction. 
+the **dim** argument is supplied, determines the minimum value along each
+row of the array in the **dim** direction.
 
-If __mask__ is present, only the
-elements for which __mask__ is __.true.__ are considered. 
+If **mask** is present, only the
+elements for which **mask** is **.true.** are considered.
 
-If the array has zero size, or all of the elements of __mask__ are
-.false., then the result is __huge(array)__ if __array__ is numeric, or a
-string of __char(len=255)__ characters if __array__ is of character type.
+If the array has zero size, or all of the elements of **mask** are
+.false., then the result is **huge(array)** if **array** is numeric, or a
+string of **char(len=255)** characters if **array** is of character type.
 
-### __Arguments__
+### **Arguments**
 
-  - __array__
-    : Shall be an array of type _integer_, _real_, or _character_.
+- **array**
+  : Shall be an array of type _integer_, _real_, or _character_.
 
-  - __dim__
-    : (Optional) Shall be a scalar of type _integer_, with a value between
-    one and the rank of ARRAY, inclusive. It may not be an optional
-    dummy argument.
+- **dim**
+  : (Optional) Shall be a scalar of type _integer_, with a value between
+  one and the rank of ARRAY, inclusive. It may not be an optional
+  dummy argument.
 
-  - __mask__
-    : Shall be an array of type _logical_, and conformable with __array__.
+- **mask**
+  : Shall be an array of type _logical_, and conformable with **array**.
 
-### __Returns__
+### **Returns**
 
-If __dim__ is absent, or if __array__ has a rank of one, the result is a scalar.
+If **dim** is absent, or if **array** has a rank of one, the result is a scalar.
 
-If __dim__ is present, the result is an array with a rank one less than the
-rank of __array__, and a size corresponding to the size of __array__ with the
-__dim__ dimension removed. In all cases, the result is of the same type and
-kind as __array__.
+If **dim** is present, the result is an array with a rank one less than the
+rank of **array**, and a size corresponding to the size of **array** with the
+**dim** dimension removed. In all cases, the result is of the same type and
+kind as **array**.
 
-### __Examples__
+### **Examples**
 
 sample program:
 
@@ -76,7 +79,7 @@ integer,save :: box(3,5,2)
    write(*,*)'What is the smallest element in each row?'
    write(*,g) minval(ints,dim=2)
 
-   ! notice the shape of the output has less columns 
+   ! notice the shape of the output has less columns
    ! than the input in this case
    write(*,*)'What is the smallest element in each column,'
    write(*,*)'considering only those elements that are'
@@ -103,12 +106,14 @@ integer,save :: box(3,5,2)
 
 end program demo_minval
 ```
+
 Results:
+
 ```text
  Given the array
-    1   -2    3    4    5    
-   10   20  -30   40   50    
-   11   22   33  -44   55    
+    1   -2    3    4    5
+   10   20  -30   40   50
+   11   22   33  -44   55
 
  What is the smallest element in the array?
    -44 at < 3 4 >
@@ -134,13 +139,13 @@ Results:
    shape of answer is  3 2
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__min__(3)](MIN),
-[__minloc__(3)](MINLOC)
+[**min**(3)](MIN),
+[**minloc**(3)](MINLOC)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

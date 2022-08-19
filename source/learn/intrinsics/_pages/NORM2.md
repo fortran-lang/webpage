@@ -1,10 +1,11 @@
 ## norm2
-### __Name__
 
-__norm2__(3) - \[MATHEMATICS\] Euclidean vector norm
+### **Name**
 
+**norm2**(3) - \[MATHEMATICS\] Euclidean vector norm
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = norm2(array, dim)
 
@@ -13,32 +14,33 @@ real function result norm2(array, dim)
    real,intent(in) :: array(..)
    integer,intent(in),optional :: dim
 ```
-### __Description__
 
-Calculates the Euclidean vector norm (L\_2 norm) of __array__ along
-dimension __dim__.
+### **Description**
 
-### __Arguments__
+Calculates the Euclidean vector norm (L_2 norm) of **array** along
+dimension **dim**.
 
-  - __array__
-    : Shall be an array of type _real_.
+### **Arguments**
 
-  - __dim__
-    : shall be a scalar of type _integer_ with a value in the
-    range from __1__ to  __rank(array)__.
+- **array**
+  : Shall be an array of type _real_.
 
-### __Returns__
+- **dim**
+  : shall be a scalar of type _integer_ with a value in the
+  range from **1** to **rank(array)**.
 
-The result is of the same type as __array__.
+### **Returns**
 
-If __dim__ is absent, a scalar with the square root of the sum of squares of
-the elements of __array__ is returned. 
+The result is of the same type as **array**.
 
-Otherwise, an array of rank __n-1__,
-where __n__ equals the rank of __array__, and a shape similar to that of __array__
+If **dim** is absent, a scalar with the square root of the sum of squares of
+the elements of **array** is returned.
+
+Otherwise, an array of rank **n-1**,
+where **n** equals the rank of **array**, and a shape similar to that of **array**
 with dimension DIM dropped is returned.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -64,27 +66,30 @@ write(*,*)'sqrt(sum(x**2))=',sqrt(sum(x**2))
 
 end program demo_norm2
 ```
+
 Results:
+
 ```text
  x=
       1.  2.  3.
       4.  5.  6.
       7.  8.  9.
- norm2(x)=   16.88194    
+ norm2(x)=   16.88194
  x**2=
       1.  4.  9.
      16. 25. 36.
      49. 64. 81.
- sqrt(sum(x**2))=   16.88194    
+ sqrt(sum(x**2))=   16.88194
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__product__(3)](PRODUCT),
-[__sum__(3)](SUM),
-[__hypot__(3)](HYPOT)
+[**product**(3)](PRODUCT),
+[**sum**(3)](SUM),
+[**hypot**(3)](HYPOT)
 
 ####### fortran-lang intrinsic descriptions

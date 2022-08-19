@@ -20,14 +20,14 @@ stewards of the language and we welcome you to join us.
 
 Here are some of the ways that you can participate:
 
-* [Fortran Discourse](https://fortran-lang.discourse.group/) discussion forum
-* Contribute to [fpm](https://github.com/fortran-lang/fpm/),
+- [Fortran Discourse](https://fortran-lang.discourse.group/) discussion forum
+- Contribute to [fpm](https://github.com/fortran-lang/fpm/),
   [stdlib](https://github.com/fortran-lang/stdlib/),
   the [Fortran website](https://github.com/fortran-lang/fortran-lang.org) or
   any other project
-* Join our monthly Fortran call (see announcements at Discourse)
-* Contribute to the Fortran monthly newsletter
-* Follow our Fortran Twitter account
+- Join our monthly Fortran call (see announcements at Discourse)
+- Contribute to the Fortran monthly newsletter
+- Follow our Fortran Twitter account
   [@fortranlang](https://twitter.com/fortranlang)
 
 Thank you everybody for your support so far. We are looking forward for the

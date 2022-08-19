@@ -1,34 +1,36 @@
 ## nearest
-### __Name__
 
-__nearest__(3) - \[MODEL\_COMPONENTS\] Nearest representable number
+### **Name**
 
+**nearest**(3) - \[MODEL_COMPONENTS\] Nearest representable number
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = nearest(x, s)
 ```
-### __Description__
 
-__nearest(x, s)__ returns the processor-representable number nearest to
-__x__ in the direction indicated by the sign of __s__.
+### **Description**
 
-### __Arguments__
+**nearest(x, s)** returns the processor-representable number nearest to
+**x** in the direction indicated by the sign of **s**.
 
-  - __x__
-    : Shall be of type _real_.
+### **Arguments**
 
-  - __s__
-    : Shall be of type _real_ and not equal to zero.
+- **x**
+  : Shall be of type _real_.
 
-### __Returns__
+- **s**
+  : Shall be of type _real_ and not equal to zero.
 
-The return value is of the same type as __x__. If __s__ is positive, __nearest__
-returns the processor-representable number greater than __x__ and nearest to
-it. If __s__ is negative, __nearest__ returns the processor-representable number
-smaller than __x__ and nearest to it.
+### **Returns**
 
-### __Examples__
+The return value is of the same type as **x**. If **s** is positive, **nearest**
+returns the processor-representable number greater than **x** and nearest to
+it. If **s** is negative, **nearest** returns the processor-representable number
+smaller than **x** and nearest to it.
+
+### **Examples**
 
 Sample program:
 
@@ -53,31 +55,33 @@ implicit none
 
 end program demo_nearest
 ```
-  Results:
+
+Results:
+
 ```text
    42.0000038146973    41.9999961853027    .762939453125000E-05
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__digits__(3)](DIGITS),
-[__epsilon__(3)](EPSILON),
-[__exponent__(3)](EXPONENT),
-[__fraction__(3)](FRACTION),
-[__huge__(3)](HUGE),
-[__maxexponent__(3)](MAXEXPONENT),
-[__minexponent__(3)](MINEXPONENT),
-[__precision__(3)](PRECISION),
-[__radix__(3)](RADIX),
-[__range__(3)](RANGE),
-[__rrspacing__(3)](RRSPACING),
-[__scale__(3)](SCALE),
-[__set\_exponent__(3)](SET_EXPONENT),
-[__spacing__(3)](SPACING),
-[__tiny__(3)](TINY)
-
+[**digits**(3)](DIGITS),
+[**epsilon**(3)](EPSILON),
+[**exponent**(3)](EXPONENT),
+[**fraction**(3)](FRACTION),
+[**huge**(3)](HUGE),
+[**maxexponent**(3)](MAXEXPONENT),
+[**minexponent**(3)](MINEXPONENT),
+[**precision**(3)](PRECISION),
+[**radix**(3)](RADIX),
+[**range**(3)](RANGE),
+[**rrspacing**(3)](RRSPACING),
+[**scale**(3)](SCALE),
+[**set_exponent**(3)](SET_EXPONENT),
+[**spacing**(3)](SPACING),
+[**tiny**(3)](TINY)
 
 ####### fortran-lang intrinsic descriptions

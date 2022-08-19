@@ -1,27 +1,29 @@
-## selected\_char\_kind
-### __Name__
+## selected_char_kind
 
-__selected\_char\_kind__(3) - \[KIND\] Choose character kind such as "Unicode"
+### **Name**
 
+**selected_char_kind**(3) - \[KIND\] Choose character kind such as "Unicode"
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = selected_char_kind(name)
 ```
-### __Description__
 
-__selected\_char\_kind(name)__ returns the kind value for the character
+### **Description**
+
+**selected_char_kind(name)** returns the kind value for the character
 set named NAME, if a character set with such a name is supported, or
-__-1__ otherwise. Currently, supported character sets include "ASCII"
-and "DEFAULT" (iwhich are equivalent), and "ISO\_10646" (Universal
+**-1** otherwise. Currently, supported character sets include "ASCII"
+and "DEFAULT" (iwhich are equivalent), and "ISO_10646" (Universal
 Character Set, UCS-4) which is commonly known as "Unicode".
 
-### __Arguments__
+### **Arguments**
 
-  - __name__
-    : Shall be a scalar and of the default character type.
+- **name**
+  : Shall be a scalar and of the default character type.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -46,12 +48,15 @@ character(kind=ucs4,  len=30) :: hello_world
    write (*,*) trim (hello_world)
 end program demo_selected_char_kind
 ```
-  Results:
+
+Results:
+
 ```text
     abcdefghijklmnopqrstuvwxyz
     Hello World and Ni Hao -- 你好
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2003 and later
 

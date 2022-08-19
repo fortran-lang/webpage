@@ -1,9 +1,11 @@
 ## btest
-### __Name__
 
-__btest__(3) - \[BIT:INQUIRY\] Tests a bit of an _integer_ value.
+### **Name**
 
-### __Syntax__
+**btest**(3) - \[BIT:INQUIRY\] Tests a bit of an _integer_ value.
+
+### **Syntax**
+
 ```fortran
    result = btest(i, pos)
 
@@ -11,30 +13,31 @@ __btest__(3) - \[BIT:INQUIRY\] Tests a bit of an _integer_ value.
     integer,intent(in)  :: i
     logical,intent(out) :: pos
 ```
- where __KIND__ is any _integer_ kind supported by the programming environment.
 
-### __Description__
+where **KIND** is any _integer_ kind supported by the programming environment.
 
-__btest(i,pos)__ returns logical __.true.__ if the bit at __pos__ in __i__ is set.
+### **Description**
 
-### __Arguments__
+**btest(i,pos)** returns logical **.true.** if the bit at **pos** in **i** is set.
 
-  - __i__
-    : The type shall be _integer_.
+### **Arguments**
 
-  - __pos__
-    : The bit position to query. it must be a valid position for the
-    value __i__; ie.  __0 <= pos <= bit_size(i)__ .
+- **i**
+  : The type shall be _integer_.
 
-    A value of zero refers to the least significant bit.
+- **pos**
+  : The bit position to query. it must be a valid position for the
+  value **i**; ie. **0 <= pos <= bit_size(i)** .
 
-### __Returns__
+  A value of zero refers to the least significant bit.
 
-   The result is a _logical_ that has the value __.true.__ if bit
-   position __pos__ of __i__ has the value __1__ and the value
-   __.false.__ if bit __pos__ of __i__ has the value __0__.
+### **Returns**
 
-### __Examples__
+The result is a _logical_ that has the value **.true.** if bit
+position **pos** of **i** has the value **1** and the value
+**.false.** if bit **pos** of **i** has the value **0**.
+
+### **Examples**
 
 Sample program:
 
@@ -56,7 +59,7 @@ character(len=*),parameter :: g='(*(g0))'
     enddo
     write(*,*)
 
-    ! a binary format the hard way. 
+    ! a binary format the hard way.
     ! Note going from bit_size(i) to zero.
     write(*,*)
     write(*,g)'so for ',i,' with a bit size of ',bit_size(i)
@@ -79,7 +82,9 @@ character(len=*),parameter :: g='(*(g0))'
     write(*,'(a,/,*(l2,1x,l2,/))')'the value of btest (2, a)',btest(2,a)
 end program demo_btest
 ```
+
 Results:
+
 ```text
 Looking at the integer: 33856=>11111111111111110111101111000000
 
@@ -89,15 +94,15 @@ Looking at the integer: 33856=>11111111111111110111101111000000
 11111111111111110111101111000000
 from bit 0 to bit 32==>
 FFFFFFTFFFTFFFFTFFFFFFFFFFFFFFFF
- 
+
 so for 33856 with a bit size of 32
 00000000000000001000010001000000
 ________________^____^___^______
- 
+
 and for -33856 with a bit size of 32
 11111111111111110111101111000000
 ^^^^^^^^^^^^^^^^_^^^^_^^^^______
- 
+
 given the array a ...
  1  3
  2  4
@@ -110,21 +115,22 @@ the value of btest (2, a)
  T  F
  F  F
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__ieor__(3)](IEOR),
-[__ibclr__(3)](IBCLR),
-[__not__(3)](NOT),
-[__ibclr__(3)](IBCLR),
-[__ibits__(3)](IBITS),
-[__ibset__(3)](IBSET),
-[__iand__(3)](IAND),
-[__ior__(3)](IOR),
-[__ieor__(3)](IEOR),
-[__mvbits__(3)](MVBITS)
+[**ieor**(3)](IEOR),
+[**ibclr**(3)](IBCLR),
+[**not**(3)](NOT),
+[**ibclr**(3)](IBCLR),
+[**ibits**(3)](IBITS),
+[**ibset**(3)](IBSET),
+[**iand**(3)](IAND),
+[**ior**(3)](IOR),
+[**ieor**(3)](IEOR),
+[**mvbits**(3)](MVBITS)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

@@ -1,7 +1,6 @@
 # Fortran Style Guide
 
-Naming Convention
------------------
+## Naming Convention
 
 Ultimately this is a matter of preference. Here is a style guide that we
 like and that seems to be prevalent in most scientific codes (as well as
@@ -33,15 +32,13 @@ consistent naming rules are a real help in this regard -- for both
 collaboration and for one's own sanity when going back to some old code
 you haven't seen in while.
 
-Indentation
------------
+## Indentation
 
 Use a consistent indentation to make your code readable.
 The amount of indentation is a matter of preference, the most common choices
 are two, three or four spaces.
 
-Comparison to Other Languages
------------------------------
+## Comparison to Other Languages
 
 On the other hand, in most of the rest of the programming world, where
 the main focus is, in one form or another, on defining and using large

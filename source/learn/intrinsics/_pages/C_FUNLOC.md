@@ -1,28 +1,30 @@
-## c\_funloc
-### __Name__
+## c_funloc
 
-__c\_funloc__(3) - \[ISO\_C\_BINDING\] Obtain the C address of a procedure
+### **Name**
 
+**c_funloc**(3) - \[ISO_C_BINDING\] Obtain the C address of a procedure
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = c_funloc(x)
 ```
-### __Description__
 
-__c\_funloc(x)__ determines the C address of the argument.
+### **Description**
 
-### __Arguments__
+**c_funloc(x)** determines the C address of the argument.
 
-  - __x__
-    : Interoperable function or pointer to such function.
+### **Arguments**
 
-### __Returns__
+- **x**
+  : Interoperable function or pointer to such function.
 
-The return value is of type c\_funptr and contains the C address of the
+### **Returns**
+
+The return value is of type c_funptr and contains the C address of the
 argument.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -53,17 +55,17 @@ end interface
 end program demo_c_funloc
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2003 and later
 
-### __See Also__
+### **See Also**
 
-[__c\_associated__(3)](C_ASSOCIATED),
-[__c\_loc__(3)](C_LOC),
-[__c\_f\_pointer__(3)](C_F_POINTER),
+[**c_associated**(3)](C_ASSOCIATED),
+[**c_loc**(3)](C_LOC),
+[**c_f_pointer**(3)](C_F_POINTER),
 
-[__c\_f\_procpointer__(3)](C_F_PROCPOINTER),
-__iso\_c\_binding__(3)
+[**c_f_procpointer**(3)](C_F_PROCPOINTER),
+**iso_c_binding**(3)
 
 ####### fortran-lang intrinsic descriptions

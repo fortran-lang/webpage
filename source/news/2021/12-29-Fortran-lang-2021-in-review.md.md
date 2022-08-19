@@ -28,29 +28,29 @@ have contributed code to stdlib, and more than 100 people have participated in
 discussions.
 More than a dozen new modules have been added in 2021:
 
-* `stdlib_array`: Provides `trueloc` and `falseloc` which allow you
+- `stdlib_array`: Provides `trueloc` and `falseloc` which allow you
   to index an array based on a logical condition in a functional style
-* `stdlib_hash`: Provides many hash algorithms, 32- and 64-bit alike
-* `stdlib_math`: Provides a number of common mathematical functions
-* `stdlib_random`: Pseudo-random integer number generation
-* `stdlib_selection`: Selection procedures for selecting elements from an array
+- `stdlib_hash`: Provides many hash algorithms, 32- and 64-bit alike
+- `stdlib_math`: Provides a number of common mathematical functions
+- `stdlib_random`: Pseudo-random integer number generation
+- `stdlib_selection`: Selection procedures for selecting elements from an array
   given a desired range
-* `stdlib_sorting`: Sorting procedures based on Rust's sorting algorithm and
+- `stdlib_sorting`: Sorting procedures based on Rust's sorting algorithm and
   introsort by David Musser
-* `stdlib_specialfunctions`: Provides the Legendre function and its derivative
+- `stdlib_specialfunctions`: Provides the Legendre function and its derivative
   in support of the Gaussian quadrature procedures
-* `stdlib_stats_distribution_normal`: Functions to sample values from a normal
+- `stdlib_stats_distribution_normal`: Functions to sample values from a normal
   distribution
-* `stdlib_stats_distribution_uniform`: Functions to sample values from a uniform
+- `stdlib_stats_distribution_uniform`: Functions to sample values from a uniform
   distribution
-* `stdlib_string_type`: Provides a `string_type` derived type that alleviates
+- `stdlib_string_type`: Provides a `string_type` derived type that alleviates
   some limitations of the variable-length `character` variables. `string_type`
   is compatible with all intrinsic procedures that operate on `character`.
-* `stdlib_stringlist_type`: A derived type that is a 1-dimensional list of
+- `stdlib_stringlist_type`: A derived type that is a 1-dimensional list of
   strings
-* `stdlib_strings`: Provides a number of inquiry and manipulation procedures that
+- `stdlib_strings`: Provides a number of inquiry and manipulation procedures that
   complement the intrinsic set
-* `stdlib_version`: Allows querying the version of the stdlib library build
+- `stdlib_version`: Allows querying the version of the stdlib library build
 
 which brings us to a total of 23 modules in stdlib.
 You can read about these modules in more detail on the
@@ -68,9 +68,9 @@ key improvements in terms of stdlib delivery:
    As stdlib matures and becomes more widely used, we expect releases to become
    more frequent.
 3. We now maintain a
-  [change log](https://github.com/fortran-lang/stdlib/blob/HEAD/CHANGELOG.md) where every change to the API is documented.
-  This is a useful document to reference when you want to know what's been
-  added to the stdlib since the latest release.
+   [change log](https://github.com/fortran-lang/stdlib/blob/HEAD/CHANGELOG.md) where every change to the API is documented.
+   This is a useful document to reference when you want to know what's been
+   added to the stdlib since the latest release.
 
 If you haven't tried stdlib yet, please do and let us know what you think
 and how we can improve it.
@@ -92,26 +92,26 @@ have contributed code to fpm.
 In 2021 fpm has advanced from v0.1.3 to v0.5.0.
 Key additions this year include (release version in parentheses):
 
-* CLI arguments for linker, archiver, and C compiler (0.5.0)
-* Support for MPI and LFortran (0.4.0)
-* Support for installed library modules via `external-modules` in the manifest
+- CLI arguments for linker, archiver, and C compiler (0.5.0)
+- Support for MPI and LFortran (0.4.0)
+- Support for installed library modules via `external-modules` in the manifest
   (0.3.0)
-* Automatic discovery of manifest files in parent directories (0.3.0)
-* Support for reading package version from file (0.3.0)
-* Support for include directories (0.2.0)
-* Support for `--flag` CLI option to specify compiler flags (0.2.0)
-* `fpm build --show-model` displays the internal representation of a package
+- Automatic discovery of manifest files in parent directories (0.3.0)
+- Support for reading package version from file (0.3.0)
+- Support for include directories (0.2.0)
+- Support for `--flag` CLI option to specify compiler flags (0.2.0)
+- `fpm build --show-model` displays the internal representation of a package
   (0.1.4)
-* Allow hyphen in new package names (0.1.4)
-* `fpm new` now supports `--full` and `--bare` to specify level of scaffolding
+- Allow hyphen in new package names (0.1.4)
+- `fpm new` now supports `--full` and `--bare` to specify level of scaffolding
   (0.1.4)
 
 Check out also these fpm plugins:
 
-* [fpm-search](https://github.com/brocolis/fpm-search):
+- [fpm-search](https://github.com/brocolis/fpm-search):
   Adds the `fpm search` command for searching for registered fpm packages from
   the command line.
-* [fpm-man](https://github.com/urbanjost/fpm-man):
+- [fpm-man](https://github.com/urbanjost/fpm-man):
   Adds the `fpm man` command for displaying man-style help pages about Fortran
   intrinsics and other language features.
 
@@ -121,9 +121,9 @@ It has truly been a game-changing tool for many of us.
 
 We have many ideas that we want to pursue, such as:
 
-* First-class integration with other package managers such as Spack and Conda
-* First-class integration with build systems like CMake and Meson
-* Improving [fpm's package registry](https://github.com/fortran-lang/fpm-registry), etc.
+- First-class integration with other package managers such as Spack and Conda
+- First-class integration with build systems like CMake and Meson
+- Improving [fpm's package registry](https://github.com/fortran-lang/fpm-registry), etc.
 
 We are always looking for new contributors.
 If any of these projects interest you, please join us.
@@ -138,7 +138,7 @@ If any of these projects interest you, please join us.
 
 Though not technically a Fortran-lang project,
 [LFortran](https://lfortran.org) has been growing close to the Fortran-lang
-community and projects largely thanks to its creator and lead developer 
+community and projects largely thanks to its creator and lead developer
 [Ondřej Čertík](https://github.com/certik) also being one of the founding
 members of Fortran-lang.
 LFortran has been developing rapidly this year and was released as a
@@ -186,6 +186,7 @@ Fortran-lang projects.
 The calls are advertised on Fortran Discourse and are open to everyone.
 Don't hesitate to join the call to meet other Fortran-lang participants and take part
 in different discussions.
+
 ## New projects
 
 In addition to the flagship projects summarized above, a few new projects
@@ -199,18 +200,18 @@ It is based on the classic
 [FFTPACK library from Netlib](http://www.netlib.org/fftpack/).
 fftpack was adopted by Fortran-lang in an effort to provide:
 
-* A community-maintained FFT library
-* Bug fixes to the existing codebase
-* Modern interfaces on top of the existing API
-* fpm package for easy use as a dependency.
+- A community-maintained FFT library
+- Bug fixes to the existing codebase
+- Modern interfaces on top of the existing API
+- fpm package for easy use as a dependency.
 
 ### test-drive
 
-[Test-drive](https://github.com/fortran-lang/test-drive) is a simple and 
+[Test-drive](https://github.com/fortran-lang/test-drive) is a simple and
 easy-to-use testing framework developed by
 [Sebastian Ehlert](https://github.com/awvwgk).
 It follows a simple functional style to collect and run your tests in parallel
-and print a minimal and clean diagnostic printout to the standard output. 
+and print a minimal and clean diagnostic printout to the standard output.
 Test-drive is currently used by both stdlib and fpm for their own test suites.
 Give test-drive a test drive for your next Fortran project!
 
@@ -222,11 +223,11 @@ documentation website for fpm, developed by
 Its key aim is to provide community-maintained documentation across four
 target audiences/use cases:
 
-* **Tutorials**: for learning how to use fpm for Fortran development
-* **How-to guides**: recipes for specific and concrete problems
-* **Design documents**: resources that document the design of various aspects of
+- **Tutorials**: for learning how to use fpm for Fortran development
+- **How-to guides**: recipes for specific and concrete problems
+- **Design documents**: resources that document the design of various aspects of
   fpm
-* **References**: specification documents of fpm components
+- **References**: specification documents of fpm components
 
 <center>
 <a href="https://fpm.fortran-lang.org">
@@ -242,15 +243,15 @@ located at [fortran-lang.github.io/fpm/](https://fortran-lang.github.io/fpm/).
 
 2021 has been the first year for Fortran-lang to participate in the
 [Google Summer of Code](https://summerofcode.withgoogle.com/) program.
-Together with NumFOCUS and LFortran, Fortran-lang had six students who worked on a 
+Together with NumFOCUS and LFortran, Fortran-lang had six students who worked on a
 variety of projects:
 
-* [Aman Godara](https://github.com/Aman-Godara) (Improving strings in stdlib)
-* [Chetan Karwa](https://github.com/chetankarwa) (Linked lists in stdlib)
-* [Gagandeep Singh](https://github.com/czgdp1807) (Arrays and allocatables in LFortran)
-* [Jakub Jelínek](https://github.com/kubajj) (Compiler arguments in fpm)
-* [Rohit Goswami](https://rgoswami.me/) (Compiling dftatom with LFortran)
-* [Thirumalai Shaktivel](https://github.com/Thirumalai-Shaktivel) (AST generation in LFortran)
+- [Aman Godara](https://github.com/Aman-Godara) (Improving strings in stdlib)
+- [Chetan Karwa](https://github.com/chetankarwa) (Linked lists in stdlib)
+- [Gagandeep Singh](https://github.com/czgdp1807) (Arrays and allocatables in LFortran)
+- [Jakub Jelínek](https://github.com/kubajj) (Compiler arguments in fpm)
+- [Rohit Goswami](https://rgoswami.me/) (Compiling dftatom with LFortran)
+- [Thirumalai Shaktivel](https://github.com/Thirumalai-Shaktivel) (AST generation in LFortran)
 
 You can read in more detail about their projects
 [here](https://summerofcode.withgoogle.com/archive/2021/organizations/6542461173760000).
@@ -275,7 +276,7 @@ Fortran conference, held on September 23-24.
 The keynote speaker this year was [Damian Rouson](https://github.com/rouson),
 the head of the
 [Computer Languages and Systems Software (CLaSS)](https://crd.lbl.gov/divisions/amcr/computer-science-amcr/class/)
-group at the Lawrence Berkeley National Lab. 
+group at the Lawrence Berkeley National Lab.
 Fortran-lang had a dedicated session (a Fortran-lang minisymposium) on the
 second day of the conference, with the talks about specific Fortran-lang
 projects as well as the Google Summer of Code student presentations.
@@ -342,30 +343,30 @@ Stay tuned for its publication.
 
 ## Summary
 
-* 2021 is behind us as another productive year.
-* Fortran-lang flagship projects such as
+- 2021 is behind us as another productive year.
+- Fortran-lang flagship projects such as
   [stdlib](https://github.com/fortran-lang/stdlib),
   [fpm](https://github.com/fortran-lang/fpm),
   [fortran-lang.org](https://fortran-lang.org), and
   [LFortran](https://lfortran.org) continue to grow and gain traction.
-* New Fortran-lang projects include
+- New Fortran-lang projects include
   [fftpack](https://github.com/fortran-lang/fftpack),
   [test-drive](https://github.com/fortran-lang/test-drive), and
   [fpm-docs](https://github.com/fortran-lang/fpm-docs).
-* Fortran-lang participated in the
+- Fortran-lang participated in the
   [Google Summer of Code](https://summerofcode.withgoogle.com/) program for
   the first time, and had 6 students working on projects across stdlib, fpm,
   and LFortran.
-* We had several presentations of Fortran-lang projects at
+- We had several presentations of Fortran-lang projects at
   [FortranCon 2021](https://www.youtube.com/playlist?list=PLeKbr7eYHjt5UaV9zQtY24oEbne9_uFni) and
   [PackagingCon 2021](https://www.youtube.com/watch?v=YG8zEM1lAVM).
-* New Fortran-lang [paper](https://arxiv.org/abs/2109.07382) is out and 
-another is in review.
+- New Fortran-lang [paper](https://arxiv.org/abs/2109.07382) is out and
+  another is in review.
 
 ## Thanks
 
 We thank all people who contributed to Fortran-lang projects and discussions
-on GitHub, Fortran Discourse, Fortran-lang mailing list, Twitter, and 
+on GitHub, Fortran Discourse, Fortran-lang mailing list, Twitter, and
 elsewhere.
 It wouldn't have been possible without you all.
 

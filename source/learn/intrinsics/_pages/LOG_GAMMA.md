@@ -1,27 +1,29 @@
-## log\_gamma
-### __Name__
+## log_gamma
 
-__log\_gamma__(3) - \[MATHEMATICS\] Logarithm of the Gamma function
+### **Name**
 
+**log_gamma**(3) - \[MATHEMATICS\] Logarithm of the Gamma function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 x = log_gamma(x)
 ```
-### __Description__
 
-__log\_gamma(x)__ computes the natural logarithm of the absolute value of the Gamma function.
+### **Description**
 
-### __Arguments__
+**log_gamma(x)** computes the natural logarithm of the absolute value of the Gamma function.
 
-  - __x__
-    : Shall be of type _real_ and neither zero nor a negative integer.
+### **Arguments**
 
-### __Returns__
+- **x**
+  : Shall be of type _real_ and neither zero nor a negative integer.
 
-The return value is of type _real_ of the same kind as __x__.
+### **Returns**
 
-### __Examples__
+The return value is of type _real_ of the same kind as **x**.
+
+### **Examples**
 
 Sample program:
 
@@ -32,16 +34,19 @@ real :: x = 1.0
    write(*,*)x,log_gamma(x) ! returns 0.0
 end program demo_log_gamma
 ```
-  Results:
+
+Results:
+
 ```text
-      1.00000000       0.00000000    
+      1.00000000       0.00000000
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-Gamma function: [__gamma__(3)](GAMMA)
+Gamma function: [**gamma**(3)](GAMMA)
 
 ####### fortran-lang intrinsic descriptions

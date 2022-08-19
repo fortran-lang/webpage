@@ -1,28 +1,30 @@
 ## kind
-### __Name__
 
-__kind__(3) - \[KIND INQUIRY\] Kind of an entity
+### **Name**
 
+**kind**(3) - \[KIND INQUIRY\] Kind of an entity
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 k = kind(x)
 ```
-### __Description__
 
-__kind(x)__ returns the kind value of the entity __x__.
+### **Description**
 
-### __Arguments__
+**kind(x)** returns the kind value of the entity **x**.
 
-  - __x__
-    : Shall be of type _logical_, _integer_, _real_, _complex_ or _character_.
+### **Arguments**
 
-### __Returns__
+- **x**
+  : Shall be of type _logical_, _integer_, _real_, _complex_ or _character_.
+
+### **Returns**
 
 The return value is a scalar of type _integer_ and of the default integer
 kind.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -37,12 +39,15 @@ integer,parameter :: kl = kind(.true.)
 
 end program demo_kind
 ```
-  Results:
+
+Results:
+
 ```text
     The default character kind is            1
     The default logical kind is            4
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 

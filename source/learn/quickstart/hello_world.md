@@ -6,15 +6,14 @@ the ubiquitous ["Hello, World!"](https://en.wikipedia.org/wiki/%22Hello,_World!%
 However, before we can write our program, we need to ensure that we have
 a Fortran compiler set up.
 
->Fortran is a *compiled language*, which means that, once written, the source code must be passed through a
->compiler to produce a machine executable that can be run.
-
+> Fortran is a _compiled language_, which means that, once written, the source code must be passed through a
+> compiler to produce a machine executable that can be run.
 
 # Compiler setup
 
-In this tutorial, we'll work with the free and open source 
-[GNU Fortran compiler (gfortran)](https://gcc.gnu.org/fortran/), 
-which is part of the 
+In this tutorial, we'll work with the free and open source
+[GNU Fortran compiler (gfortran)](https://gcc.gnu.org/fortran/),
+which is part of the
 [GNU Compiler Collection (GCC)](https://gcc.gnu.org/).
 
 To install gfortran on Linux, use your system package manager.
@@ -48,14 +47,16 @@ end program hello
 ```
 
 Having saved your program to `hello.f90`, compile at the command line with:
+
 ```shell
 $> gfortran hello.f90 -o hello
 ```
 
->`.f90` is the standard file extension for modern Fortran source files.
-The 90 refers to the first modern Fortran standard in 1990.
+> `.f90` is the standard file extension for modern Fortran source files.
+> The 90 refers to the first modern Fortran standard in 1990.
 
 To run your compiled program:
+
 ```shell
 $> ./hello
 Hello, World!

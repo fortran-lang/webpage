@@ -1,46 +1,49 @@
 ## ubound
-### __Name__
 
-__ubound__(3) - \[ARRAY INQUIRY\] Upper dimension bounds of an array
+### **Name**
 
-### __Syntax__
+**ubound**(3) - \[ARRAY INQUIRY\] Upper dimension bounds of an array
+
+### **Syntax**
+
 ```fortran
 result = ubound(array, dim, kind)
 ```
-### __Description__
+
+### **Description**
 
 Returns the upper bounds of an array, or a single upper bound along the
-__dim__ dimension.
+**dim** dimension.
 
-### __Arguments__
+### **Arguments**
 
-  - __array__
-    : Shall be an array, of any type.
+- **array**
+  : Shall be an array, of any type.
 
-  - __dim__
-    : (Optional) Shall be a scalar _integer_.
+- **dim**
+  : (Optional) Shall be a scalar _integer_.
 
-  - __kind__
-    : (Optional) An _integer_ initialization expression indicating the kind
-    parameter of the result.
+- **kind**
+  : (Optional) An _integer_ initialization expression indicating the kind
+  parameter of the result.
 
-### __Returns__
+### **Returns**
 
-The return value is of type _integer_ and of kind __kind__. If __kind__
+The return value is of type _integer_ and of kind **kind**. If **kind**
 is absent, the return value is of default integer kind.
 
-If __dim__ is absent, the result is an array of the upper bounds of
-__array__.
+If **dim** is absent, the result is an array of the upper bounds of
+**array**.
 
-If __dim__ is present, the result is a scalar corresponding to the upper
+If **dim** is present, the result is a scalar corresponding to the upper
 bound of the array along that dimension.
 
-If __array__ is an expression rather than a whole array or array
+If **array** is an expression rather than a whole array or array
 structure component, or if it has a zero extent along the relevant
 dimension, the upper bound is taken to be the number of elements along
 the relevant dimension.
 
-### __Examples__
+### **Examples**
 
 Note this function should not be used on assumed-size arrays or in any
 function without an explicit interface. Errors can occur if there is no
@@ -95,22 +98,25 @@ integer,intent(in) :: arr(:)
 end subroutine esub
 !end program demo_ubound
 ```
+
 Results:
+
 ```text
   MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
   CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
   MSUB: LOWER=           1 UPPER=          21 SIZE=          21
   ESUB: LOWER=           1 UPPER=          21 SIZE=          21
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later, with KIND argument Fortran 2003
 and later
 
-### __See Also__
+### **See Also**
 
-[__lbound__(3)](LBOUND),
-[__co\_ubound__(3)](CO_UBOUND),
+[**lbound**(3)](LBOUND),
+[**co_ubound**(3)](CO_UBOUND),
 [__co\_lbound__(3)(CO_LBOUND)]
 
 ####### fortran-lang intrinsic descriptions

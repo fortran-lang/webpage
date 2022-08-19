@@ -1,35 +1,37 @@
 ## anint
-### __Name__
 
-__anint__(3) - \[NUMERIC\] Nearest whole number
+### **Name**
 
+**anint**(3) - \[NUMERIC\] Nearest whole number
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = anint(a, kind)
 ```
-### __Description__
 
-__anint(a \[, kind\])__ rounds its argument to the nearest whole number.
+### **Description**
 
-### __Arguments__
+**anint(a \[, kind\])** rounds its argument to the nearest whole number.
 
-  - __a__
-    : the type of the argument shall be _real_.
+### **Arguments**
 
-  - __kind__
-    : (optional) an _integer_ initialization expression indicating the kind
-    parameter of the result.
+- **a**
+  : the type of the argument shall be _real_.
 
-### __Returns__
+- **kind**
+  : (optional) an _integer_ initialization expression indicating the kind
+  parameter of the result.
+
+### **Returns**
 
 The return value is of type real with the kind type parameter of the
-argument if the optional __kind__ is absent; otherwise, the kind type
-parameter will be given by __kind__. If __a__ is greater than zero, __anint(a)__
-returns __aint(a + 0.5)__. If __a__ is less than or equal to zero then it
-returns __aint(a - 0.5)__.
+argument if the optional **kind** is absent; otherwise, the kind type
+parameter will be given by **kind**. If **a** is greater than zero, **anint(a)**
+returns **aint(a + 0.5)**. If **a** is less than or equal to zero then it
+returns **aint(a - 0.5)**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -55,27 +57,30 @@ real(kind=real64) :: x8
 
 end program demo_anint
 ```
-  Results:
+
+Results:
+
 ```text
-    1.00000000       4.0000000000000000     
-    1.0000000000000000     
-  
+    1.00000000       4.0000000000000000
+    1.0000000000000000
+
    -3.00000000      -3.00000000      -2.00000000      -2.00000000
    -2.00000000      -1.00000000      -1.00000000       0.00000000
     1.00000000       1.00000000       2.00000000       2.00000000
     2.00000000       3.00000000       3.00000000
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later
 
-### __See Also__
+### **See Also**
 
-[__aint__(3)](AINT),
-[__int__(3)](INT),
-[__nint__(3)](NINT),
-[__selected_int_kind__(3)](SELECTED_INT_KIND),
-[__ceiling__(3)](CEILING),
-[__floor__(3)](FLOOR)
+[**aint**(3)](AINT),
+[**int**(3)](INT),
+[**nint**(3)](NINT),
+[**selected_int_kind**(3)](SELECTED_INT_KIND),
+[**ceiling**(3)](CEILING),
+[**floor**(3)](FLOOR)
 
 ####### fortran-lang intrinsic descriptions

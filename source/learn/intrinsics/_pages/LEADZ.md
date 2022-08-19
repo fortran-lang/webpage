@@ -1,28 +1,30 @@
 ## leadz
-### __Name__
 
-__leadz__(3) - \[BIT:COUNT\] Number of leading zero bits of an integer
+### **Name**
 
+**leadz**(3) - \[BIT:COUNT\] Number of leading zero bits of an integer
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = leadz(i)
 ```
-### __Description__
 
-__leadz__ returns the number of leading zero bits of an integer.
+### **Description**
 
-### __Arguments__
+**leadz** returns the number of leading zero bits of an integer.
 
-  - __i__
-    : Shall be of type _integer_.
+### **Arguments**
 
-### __Returns__
+- **i**
+  : Shall be of type _integer_.
+
+### **Returns**
 
 The type of the return value is the same as a default _integer_. If all
-the bits of __i__ are zero, the result value is __bit\_size(i)__.
+the bits of **i** are zero, the result value is **bit_size(i)**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -116,15 +118,15 @@ Results:
     FOR VALUE 01111111111111111111111111111111 OR 2147483647
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__bit\_size__(3)](BIT_SIZE),
-[__popcnt__(3)](POPCNT),
-[__poppar__(3)](POPPAR),
-[__trailz__(3)](TRAILZ)
+[**bit_size**(3)](BIT_SIZE),
+[**popcnt**(3)](POPCNT),
+[**poppar**(3)](POPPAR),
+[**trailz**(3)](TRAILZ)
 
 ####### fortran-lang intrinsic descriptions

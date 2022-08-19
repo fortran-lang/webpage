@@ -1,38 +1,40 @@
 ## cosh
-### __Name__
 
-__cosh__(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic cosine function
+### **Name**
 
+**cosh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic cosine function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
     result = cosh(x)
 
      TYPE(kind=KIND) elemental function cosh(x)
      TYPE(kind=KIND),intent(in) :: x
 ```
-where TYPE may be _real_ or _complex_ and KIND may be any 
-supported kind for the associated type. The returned __value__
-will be the same type and kind as the input value __x__.
 
-### __Description__
+where TYPE may be _real_ or _complex_ and KIND may be any
+supported kind for the associated type. The returned **value**
+will be the same type and kind as the input value **x**.
 
-__cosh(x)__ computes the hyperbolic cosine of __x__.
+### **Description**
 
-### __Arguments__
+**cosh(x)** computes the hyperbolic cosine of **x**.
 
-  - __x__
-    : The type shall be _real_ or _complex_.
+### **Arguments**
 
-### __Returns__
+- **x**
+  : The type shall be _real_ or _complex_.
 
-The return value has same type and kind as __x__. If __x__ is _complex_, the
+### **Returns**
+
+The return value has same type and kind as **x**. If **x** is _complex_, the
 imaginary part of the result is in radians.
 
-If __x__ is _real_, the return value has a lower bound of one, 
-__cosh(x) \>= 1__.
+If **x** is _real_, the return value has a lower bound of one,
+**cosh(x) \>= 1**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -46,13 +48,14 @@ real(kind=real64) :: x = 1.0_real64
 end program demo_cosh
 ```
 
-### __Standard__
+### **Standard**
 
 FORTRAN 77 and later, for a complex argument - Fortran 2008 or later
 
-### __See Also__
+### **See Also**
+
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-Inverse function: [__acosh__(3)](ACOSH)
+Inverse function: [**acosh**(3)](ACOSH)
 
 ####### fortran-lang intrinsic descriptions

@@ -1,28 +1,30 @@
-## move\_alloc
-### __Name__
+## move_alloc
 
-__move\_alloc__(3) - \[\] Move allocation from one object to another
+### **Name**
 
+**move_alloc**(3) - \[\] Move allocation from one object to another
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 call move_alloc(src, dest)
 ```
-### __Description__
 
-__move\_alloc(src, dest)__ moves the allocation from SRC to DEST. SRC
+### **Description**
+
+**move_alloc(src, dest)** moves the allocation from SRC to DEST. SRC
 will become deallocated in the process.
 
-### __Arguments__
+### **Arguments**
 
-  - __src__
-    : allocatable, __intent(inout)__, may be of any type and kind.
+- **src**
+  : allocatable, **intent(inout)**, may be of any type and kind.
 
-  - __dest__
-    : allocatable, __intent(out)__, shall be of the same type, kind and
-    rank as SRC.
+- **dest**
+  : allocatable, **intent(out)**, shall be of the same type, kind and
+  rank as SRC.
 
-### __Examples__
+### **Examples**
 
 Basic Sample program to allocate a bigger grid
 
@@ -55,17 +57,20 @@ integer :: n, i
    print '(99f8.3)', grid
 end program demo_move_alloc
 ```
-  Results:
+
+Results:
+
 ```text
     T F
       1.000   1.500   2.000   2.500   3.000   3.500
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2003 and later
 
-### __See Also__
+### **See Also**
 
-[__allocated__(3)](ALLOCATED)
+[**allocated**(3)](ALLOCATED)
 
 ####### fortran-lang intrinsic descriptions

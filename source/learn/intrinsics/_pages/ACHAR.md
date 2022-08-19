@@ -1,9 +1,11 @@
 ## achar
-### __Name__
 
-__achar__(3) - \[CHARACTER:CONVERSION\] returns a character in a specified position in the ASCII collating sequence
+### **Name**
 
-### __Syntax__
+**achar**(3) - \[CHARACTER:CONVERSION\] returns a character in a specified position in the ASCII collating sequence
+
+### **Syntax**
+
 ```fortran
   result = achar(i,kind=KIND)
 
@@ -12,38 +14,41 @@ __achar__(3) - \[CHARACTER:CONVERSION\] returns a character in a specified posit
     integer(kind=KIND),intent(in) :: i
     integer(kind=KIND),intent(in),optional :: kind
 ```
+
 where KIND may be any supported kind value for _integer_ types.
 
-### __Description__
+### **Description**
 
-__achar(i)__ returns the character located at position __i__ (commonly called the
+**achar(i)** returns the character located at position **i** (commonly called the
 _ADE_ or ASCII Decimal Equivalent) in the ASCII collating sequence.
 
-The __achar__(3) function is often used for generating in-band escape
+The **achar**(3) function is often used for generating in-band escape
 sequences to control terminal attributes.
+
 ```fortran
    write(*,'(*(a))')achar(27),'[2J'
 ```
+
 will clear the screen on an ANSI-compatible terminal display, for
 example.
 
-### __Arguments__
+### **Arguments**
 
-  - __i__
-    : the _integer_ value to convert to an ASCII character, in the range
-    0 to 127.
+- **i**
+  : the _integer_ value to convert to an ASCII character, in the range
+  0 to 127.
 
-  - __kind__
-    : (optional) an _integer_ initialization expression indicating the kind
-    parameter of the result.
+- **kind**
+  : (optional) an _integer_ initialization expression indicating the kind
+  parameter of the result.
 
-### __Returns__
+### **Returns**
 
 The return value is the requested character of type _character_ with a
-length of one. If the __kind__ argument is present, the return value is of
+length of one. If the **kind** argument is present, the return value is of
 the specified kind and of the default kind otherwise.
 
-### __Examples__
+### **Examples**
 
 ```fortran
 program demo_achar
@@ -88,7 +93,9 @@ integer,parameter             :: toupper = iachar('A')-iachar('a')
 end function upper
 end program demo_achar
 ```
+
 Results:
+
 ```
    decimal     =65
    character   =A
@@ -120,7 +127,8 @@ Results:
    120 x 121 y 122 z 123 { 124 | 125 } 126 ~
    MIXED CASE
 ```
-### __Note__
+
+### **Note**
 
 The ADEs (ASCII Decimal Equivalents) for ASCII are
 
@@ -145,20 +153,19 @@ The ADEs (ASCII Decimal Equivalents) for ASCII are
 *-------*-------*-------*-------*-------*-------*-------*-------*
 ```
 
-### __Standard__
+### **Standard**
 
 FORTRAN 77 and later, with KIND argument Fortran 2003 and later
 
-### __See Also__
+### **See Also**
 
-[__char__(3)](CHAR),
-[__iachar__(3)](IACHAR),
-[__ichar__(3)](ICHAR)
+[**char**(3)](CHAR),
+[**iachar**(3)](IACHAR),
+[**ichar**(3)](ICHAR)
 
-### __Resources__
+### **Resources**
 
 - [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code)
 - [M_attr module](https://github.com/urbanjost/M_attr) for controlling ANSI-compatible terminals
-
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

@@ -1,31 +1,34 @@
-## command\_argument\_count
-### __Name__
+## command_argument_count
 
-__command\_argument\_count__(3) - \[SYSTEM:COMMAND LINE\] Get number of command line arguments
+### **Name**
 
-### __Syntax__
+**command_argument_count**(3) - \[SYSTEM:COMMAND LINE\] Get number of command line arguments
+
+### **Syntax**
+
 ```fortran
     result = command_argument_count()
 
      integer function command_argument_count() result(count)
      integer :: count
 ```
-### __Description__
 
-   __command\_argument\_count()__ returns the number of arguments passed
-   on the command line when the containing program was invoked.
+### **Description**
 
-### __Arguments__
+**command_argument_count()** returns the number of arguments passed
+on the command line when the containing program was invoked.
+
+### **Arguments**
 
 None
 
-### __Returns__
+### **Returns**
 
-  - __count__
-    : The return value is of type default _integer_. It is the number of
-    arguments passed on the command line when the program was invoked.
+- **count**
+  : The return value is of type default _integer_. It is the number of
+  arguments passed on the command line when the program was invoked.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -50,13 +53,14 @@ Sample output:
    ./test_command_argument_count 'count arguments'
        1
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2003 and later
 
-### __See Also__
+### **See Also**
 
-[__get\_command__(3)](GET_COMMAND),
-[__get\_command\_argument__(3)](GET_COMMAND_ARGUMENT)
+[**get_command**(3)](GET_COMMAND),
+[**get_command_argument**(3)](GET_COMMAND_ARGUMENT)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

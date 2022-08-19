@@ -1,9 +1,11 @@
 ## adjustl
-### __Name__
 
-__adjustl__(3) - \[CHARACTER:WHITESPACE\] Left-adjust a string
+### **Name**
 
-### __Syntax__
+**adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-adjust a string
+
+### **Syntax**
+
 ```fortran
     result = adjustl(string)
 
@@ -11,23 +13,24 @@ __adjustl__(3) - \[CHARACTER:WHITESPACE\] Left-adjust a string
 
      character(len=*),intent(in) :: string
 ```
-### __Description__
 
-__adjustl(string)__ will left-adjust a string by removing leading
+### **Description**
+
+**adjustl(string)** will left-adjust a string by removing leading
 spaces. Spaces are inserted at the end of the string as needed.
 
-### __Arguments__
+### **Arguments**
 
-  - __string__
-    : the type shall be _character_.
+- **string**
+  : the type shall be _character_.
 
-### __Returns__
+### **Returns**
 
-The return value is of type _character_ and of the same kind as __string__
+The return value is of type _character_ and of the same kind as **string**
 where leading spaces are removed and the same number of spaces are
-inserted on the end of __string__.
+inserted on the end of **string**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -48,18 +51,21 @@ character(len=:),allocatable :: astr
     !
 end program demo_adjustl
 ```
+
 Results:
+
 ```text
    [sample string       ]
    [sample string]
    [allocatable string       ]
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__adjustr__(3)](ADJUSTR)
+[**adjustr**(3)](ADJUSTR)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

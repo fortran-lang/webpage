@@ -1,9 +1,11 @@
-## get\_command\_argument
-### __Name__
+## get_command_argument
 
-__get\_command\_argument__(3) - \[SYSTEM:COMMAND LINE\] Get command line arguments
+### **Name**
 
-### __Syntax__
+**get_command_argument**(3) - \[SYSTEM:COMMAND LINE\] Get command line arguments
+
+### **Syntax**
+
 ```fortran
      call get_command_argument(number, value, length, status)
 
@@ -13,9 +15,10 @@ __get\_command\_argument__(3) - \[SYSTEM:COMMAND LINE\] Get command line argumen
      integer,intent(out),optional          :: length
      integer,intent(out),optional          :: status
 ```
-### __Description__
 
-Retrieve the __number__-th argument that was passed on the command line
+### **Description**
+
+Retrieve the **number**-th argument that was passed on the command line
 when the containing program was invoked.
 
 There is not anything specifically stated about what an argument is but
@@ -23,34 +26,34 @@ in practice the arguments are split on whitespace unless the arguments
 are quoted and IFS values (Internal Field Separators) used by common
 shells are ignored.
 
-### __Options__
+### **Options**
 
-  - __number__
-    : Shall be a scalar of type __integer__, __number \>= 0__. If __number =
-    0__, __value__ is set to the name of the program (on systems that support
-    this feature).
+- **number**
+  : Shall be a scalar of type **integer**, **number \>= 0**. If **number =
+  0**, **value** is set to the name of the program (on systems that support
+  this feature).
 
-### __Returns__
+### **Returns**
 
-  - __value__
-    :Shall be a scalar of type _character_ and of default kind. After
-    get\_command\_argument returns, the __value__ argument holds the
-    __number__-th command line argument. If __value__ can not hold the argument,
-    it is truncated to fit the length of __value__. If there are less than
-    __number__ arguments specified at the command line, __value__ will be filled
-    with blanks.
+- **value**
+  :Shall be a scalar of type _character_ and of default kind. After
+  get_command_argument returns, the **value** argument holds the
+  **number**-th command line argument. If **value** can not hold the argument,
+  it is truncated to fit the length of **value**. If there are less than
+  **number** arguments specified at the command line, **value** will be filled
+  with blanks.
 
-  - __length__
-    :(Optional) Shall be a scalar of type _integer_. The __length__
-    argument contains the length of the __number__-th command line argument.
+- **length**
+  :(Optional) Shall be a scalar of type _integer_. The **length**
+  argument contains the length of the **number**-th command line argument.
 
-  - __status__
-    :(Optional) Shall be a scalar of type _integer_. If the argument
-    retrieval fails, __status__ is a positive number; if __value__ contains a
-    truncated command line argument, __status__ is __-1__; and otherwise the
-    __status__ is zero.
+- **status**
+  :(Optional) Shall be a scalar of type _integer_. If the argument
+  retrieval fails, **status** is a positive number; if **value** contains a
+  truncated command line argument, **status** is **-1**; and otherwise the
+  **status** is zero.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -84,7 +87,7 @@ character(len=:),allocatable :: args(:)
      longest=max(longest,argument_length)
   enddo
   !
-  ! allocate string array big enough to hold command line 
+  ! allocate string array big enough to hold command line
   ! argument strings and related information
   !
   allocate(character(len=longest) :: args(0:count))
@@ -103,7 +106,9 @@ character(len=:),allocatable :: args(:)
   & (i,istat(i),ilen(i),args(i)(:ilen(i)),i=0,count)
 end program demo_get_command_argument
 ```
+
 Results:
+
 ```text
 /demo_get_command_argument a    test  'of getting   arguments  ' "  leading"
 
@@ -115,13 +120,14 @@ Results:
 004 00000 00024 [of getting   arguments  ]
 005 00000 00018 [  leading]
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2003 and later
 
-### __See Also__
+### **See Also**
 
-[__get\_command__(3)](GET_COMMAND),
-[__command\_argument\_count__(3)](COMMAND_ARGUMENT_COUNT)
+[**get_command**(3)](GET_COMMAND),
+[**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

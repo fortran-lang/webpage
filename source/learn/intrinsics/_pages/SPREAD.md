@@ -1,10 +1,11 @@
 ## spread
-### __Name__
 
-__spread__(3) - \[ARRAY CONSTRUCTION\] Add a dimension to an array
+### **Name**
 
+**spread**(3) - \[ARRAY CONSTRUCTION\] Add a dimension to an array
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = spread(source, dim, ncopies)
 
@@ -14,34 +15,34 @@ result = spread(source, dim, ncopies)
    integer,intent(in) :: dim
    integer,intent(in) :: ncopies
 ```
-### __Description__
 
-Replicates a __source__ array __ncopies__ times along a specified
-dimension __dim__.
+### **Description**
+
+Replicates a **source** array **ncopies** times along a specified
+dimension **dim**.
 
 If SOURCE is scalar, the shape of the result is (MAX (NCOPIES, 0)).
 and each element of the result has a value equal to SOURCE.
 
-### __Arguments__
+### **Arguments**
 
-  - __source__
-    : Shall be a scalar or an array of any type and a rank less than
-    fifteen.
+- **source**
+  : Shall be a scalar or an array of any type and a rank less than
+  fifteen.
 
-  - __dim__
-    : Shall be a scalar of type _integer_ with a value in the range from
-    __1__ to __n+1__, where __n__ equals the rank of __source__.
+- **dim**
+  : Shall be a scalar of type _integer_ with a value in the range from
+  **1** to **n+1**, where **n** equals the rank of **source**.
 
-  - __ncopies__
-    : Shall be a scalar of type _integer_.
+- **ncopies**
+  : Shall be a scalar of type _integer_.
 
-### __Returns__
+### **Returns**
 
-The result is an array of the same type as __source__ and has rank __n+1__
-where __n__ equals the rank of __source__.
+The result is an array of the same type as **source** and has rank **n+1**
+where **n** equals the rank of **source**.
 
-
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -112,16 +113,16 @@ integer ( kind = 4 ) v(4)
 end program example_spread
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__pack__(3)](PACK),
-[__unpack__(3)](UNPACK),
-[__merge__(3)](MERGE),
-[__pack__(3)](PACK),
-[__unpack__(3)](UNPACK)   
+[**pack**(3)](PACK),
+[**unpack**(3)](UNPACK),
+[**merge**(3)](MERGE),
+[**pack**(3)](PACK),
+[**unpack**(3)](UNPACK)
 
 ####### fortran-lang intrinsic descriptions

@@ -1,34 +1,36 @@
-## c\_associated
-### __Name__
+## c_associated
 
-__c\_associated__(3) - \[ISO\_C\_BINDING\] Status of a C pointer
+### **Name**
 
+**c_associated**(3) - \[ISO_C_BINDING\] Status of a C pointer
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = c_associated(c_prt_1, c_ptr_2)
 ```
-### __Description__
 
-__c\_associated(c\_prt\_1\[, c\_ptr\_2\])__ determines the status of the
-C pointer c\_ptr\_1 or if c\_ptr\_1 is associated with the target
-c\_ptr\_2.
+### **Description**
 
-### __Arguments__
+**c_associated(c_prt_1\[, c_ptr_2\])** determines the status of the
+C pointer c_ptr_1 or if c_ptr_1 is associated with the target
+c_ptr_2.
 
-  - __c\_ptr\_1__
-    : Scalar of the type c\_ptr or c\_funptr.
+### **Arguments**
 
-  - __c\_ptr\_2__
-    : (Optional) Scalar of the same type as c\_ptr\_1.
+- **c_ptr_1**
+  : Scalar of the type c_ptr or c_funptr.
 
-### __Returns__
+- **c_ptr_2**
+  : (Optional) Scalar of the same type as c_ptr_1.
 
-The return value is of type _logical_; it is .false. if either c\_ptr\_1
-is a C NULL pointer or if c\_ptr1 and c\_ptr\_2 point to different
+### **Returns**
+
+The return value is of type _logical_; it is .false. if either c_ptr_1
+is a C NULL pointer or if c_ptr1 and c_ptr_2 point to different
 addresses.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -49,14 +51,14 @@ end subroutine association_test
 end program demo_c_associated
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2003 and later
 
-### __See Also__
+### **See Also**
 
-[__c\_loc__(3)](C_LOC),
-[__c\_funloc__(3)](C_FUNLOC),
-__iso\_c\_binding__(3)
+[**c_loc**(3)](C_LOC),
+[**c_funloc**(3)](C_FUNLOC),
+**iso_c_binding**(3)
 
 ####### fortran-lang intrinsic descriptions

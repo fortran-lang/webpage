@@ -1,10 +1,11 @@
 ## repeat
-### __Name__
 
-__repeat__(3) - \[CHARACTER\] Repeated string concatenation
+### **Name**
 
+**repeat**(3) - \[CHARACTER\] Repeated string concatenation
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = repeat(string, ncopies)
 
@@ -12,25 +13,26 @@ result = repeat(string, ncopies)
    character(len=*),intent(in)        :: string
    integer,intent(in)                 :: ncopies
 ```
-### __Description__
 
-Concatenates __ncopies__ copies of a string.
+### **Description**
 
-### __Arguments__
+Concatenates **ncopies** copies of a string.
 
-  - __string__
-    : The input string to repeatedly generate.
-    Shall be scalar and of type _character_.
+### **Arguments**
 
-  - __ncopies__
-    : Number of copies to make of _string_, greater than or equal to zero (0).
-    Shall be scalar and of type _integer_.
+- **string**
+  : The input string to repeatedly generate.
+  Shall be scalar and of type _character_.
 
-### __Returns__
+- **ncopies**
+  : Number of copies to make of _string_, greater than or equal to zero (0).
+  Shall be scalar and of type _integer_.
 
-A new scalar of type _character_ built up from __ncopies__ copies of __string__.
+### **Returns**
 
-### __Examples__
+A new scalar of type _character_ built up from **ncopies** copies of **string**.
+
+### **Examples**
 
 Sample program:
 
@@ -48,31 +50,34 @@ integer :: i, j
     enddo
 end program demo_repeat
 ```
-  Results:
+
+Results:
+
 ```
    ^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v^v
    ________________________________________________________________________
    1234567890123456789012345678901234567890123456789012345678901234567890
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
 Functions that perform operations on character strings:
 
-  - __Elemental:__
-    [__adjustl__(3)](ADJUSTL),
-    [__adjustr__(3)](ADJUSTR),
-    [__index__(3)](INDEX),
-    [__scan__(3)](SCAN),
-    [__verify__(3)](VERIFY)
+- **Elemental:**
+  [**adjustl**(3)](ADJUSTL),
+  [**adjustr**(3)](ADJUSTR),
+  [**index**(3)](INDEX),
+  [**scan**(3)](SCAN),
+  [**verify**(3)](VERIFY)
 
-  - __Non-elemental:__
-    [__len\_trim__(3)](LEN_TRIM),
-    [__len__(3)](LEN),
-    [__repeat__(3)](REPEAT),
-    [__trim__(3)](TRIM)
+- **Non-elemental:**
+  [**len_trim**(3)](LEN_TRIM),
+  [**len**(3)](LEN),
+  [**repeat**(3)](REPEAT),
+  [**trim**(3)](TRIM)
 
 ####### fortran-lang intrinsic descriptions

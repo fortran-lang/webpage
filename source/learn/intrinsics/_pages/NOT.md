@@ -1,25 +1,29 @@
 ## not
-### __Name__
-__not__(3) - \[BIT:LOGICAL\] Logical negation
 
-### __Syntax__
+### **Name**
+
+**not**(3) - \[BIT:LOGICAL\] Logical negation
+
+### **Syntax**
+
 ```fortran
 result = not(i)
 ```
-### __Description__
+
+### **Description**
 
 NOT returns the bitwise Boolean inverse of I.
 
-### __Arguments__
+### **Arguments**
 
-  - __i__
-    : The type shall be _integer_.
+- **i**
+  : The type shall be _integer_.
 
-### __Returns__
+### **Returns**
 
 The return type is _integer_, of the same kind as the argument.
 
-### __Examples__
+### **Examples**
 
 Sample program
 
@@ -42,18 +46,18 @@ Results:
    11111111111111111100101001010010 -13742
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__iand__(3)](IAND),
-[__ior__(3)](IOR),
-[__ieor__(3)](IEOR),
-[__ibits__(3)](IBITS),
-[__ibset__(3)](IBSET),
+[**iand**(3)](IAND),
+[**ior**(3)](IOR),
+[**ieor**(3)](IEOR),
+[**ibits**(3)](IBITS),
+[**ibset**(3)](IBSET),
 
-[__ibclr__(3)](IBCLR)
+[**ibclr**(3)](IBCLR)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

@@ -1,35 +1,37 @@
 ## unpack
-### __Name__
 
-__unpack__(3) - \[ARRAY CONSTRUCTION\] Store the elements of a vector in an array of higher rank
+### **Name**
 
+**unpack**(3) - \[ARRAY CONSTRUCTION\] Store the elements of a vector in an array of higher rank
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = unpack(vector, mask, field)
 ```
-### __Description__
 
-Store the elements of __vector__ in an array of higher rank.
+### **Description**
 
-### __Arguments__
+Store the elements of **vector** in an array of higher rank.
 
-  - __vector__
-    : Shall be an array of any type and rank one. It shall have at least
-    as many elements as __mask__ has __.true.__ values.
+### **Arguments**
 
-  - __mask__
-    : Shall be an array of type _logical_.
+- **vector**
+  : Shall be an array of any type and rank one. It shall have at least
+  as many elements as **mask** has **.true.** values.
 
-  - __field__
-    : Shall be of the same type as __vector__ and have the same shape as __mask__.
+- **mask**
+  : Shall be an array of type _logical_.
 
-### __Returns__
+- **field**
+  : Shall be of the same type as **vector** and have the same shape as **mask**.
 
-The resulting array corresponds to __field__ with __.true.__ elements of __mask__
-replaced by values from __vector__ in array element order.
+### **Returns**
 
-### __Examples__
+The resulting array corresponds to **field** with **.true.** elements of **mask**
+replaced by values from **vector** in array element order.
+
+### **Examples**
 
 Sample program:
 
@@ -46,21 +48,24 @@ integer :: field(2,2) = 0, unity(2,2)
 
 end program demo_unpack
 ```
-  Results:
+
+Results:
+
 ```text
               1           0           0           1           4
               2           2
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__pack__(3)](PACK),
-[__merge__(3)](MERGE),
-[__pack__(3)](PACK),
-[__spread__(3)](SPREAD),
-[__unpack__(3)](UNPACK)   
+[**pack**(3)](PACK),
+[**merge**(3)](MERGE),
+[**pack**(3)](PACK),
+[**spread**(3)](SPREAD),
+[**unpack**(3)](UNPACK)
 
 ####### fortran-lang intrinsic descriptions

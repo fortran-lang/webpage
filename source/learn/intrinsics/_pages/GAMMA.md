@@ -1,34 +1,40 @@
 ## gamma
-### __Name__
 
-__gamma__(3) - \[MATHEMATICS\] Gamma function, which yields factorials for positive whole numbers
+### **Name**
 
-### __Syntax__
+**gamma**(3) - \[MATHEMATICS\] Gamma function, which yields factorials for positive whole numbers
+
+### **Syntax**
+
 ```fortran
 x = gamma(x)
 ```
-### __Description__
 
-__gamma(x)__ computes Gamma of __x__. For positive whole number values of __n__ the
-Gamma function can be used to calculate factorials, as  __(n-1)!  == gamma(real(n))__.
-That is 
+### **Description**
+
+**gamma(x)** computes Gamma of **x**. For positive whole number values of **n** the
+Gamma function can be used to calculate factorials, as **(n-1)! == gamma(real(n))**.
+That is
+
 ```text
 n! == gamma(real(n+1))
 ```
 
-$$ \\__Gamma__(x) = \\int\_0\*\*\\infty
-t\*\*{x-1}{\\mathrm{e}}\*\*{__-t__}\\,{\\mathrm{d}}t $$
+$$
+\\__Gamma__(x) = \\int\_0\*\*\\infty
+t\*\*{x-1}{\\mathrm{e}}\*\*{__-t__}\\,{\\mathrm{d}}t
+$$
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : Shall be of type _real_ and neither zero nor a negative integer.
+- **x**
+  : Shall be of type _real_ and neither zero nor a negative integer.
 
-### __Returns__
+### **Returns**
 
 The return value is of type _real_ of the same kind as _x_.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -39,7 +45,7 @@ implicit none
 real :: x, xa(4)
 integer :: i
 
-   x = gamma(1.0) 
+   x = gamma(1.0)
    write(*,*)'gamma(1.0)=',x
 
    ! elemental
@@ -82,11 +88,13 @@ end function factorial
 
 end program demo_gamma
 ```
-  Results:
+
+Results:
+
 ```text
-    gamma(1.0)=   1.000000    
-      1.000000       1.000000       2.000000       6.000000    
-    
+    gamma(1.0)=   1.000000
+      1.000000       1.000000       2.000000       6.000000
+
               1   1.000000               1
               2   2.000000               2
               3   6.000000               6
@@ -114,13 +122,13 @@ end program demo_gamma
    factorial of 170  is  .7257415615307994E+307 .7257415615307999E+307
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-Logarithm of the Gamma function: [__log\_gamma__(3)](LOG_GAMMA)
+Logarithm of the Gamma function: [**log_gamma**(3)](LOG_GAMMA)
 
 [Wikipedia: Gamma_function](https://en.wikipedia.org/wiki/Gamma_function)
 

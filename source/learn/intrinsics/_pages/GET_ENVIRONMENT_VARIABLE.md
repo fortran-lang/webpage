@@ -1,9 +1,11 @@
-## get\_environment
-### __Name__
+## get_environment
 
-__get\_environment\_variable__(3) - \[SYSTEM:ENVIRONMENT\] Get an environmental variable
+### **Name**
 
-### __Syntax__
+**get_environment_variable**(3) - \[SYSTEM:ENVIRONMENT\] Get an environmental variable
+
+### **Syntax**
+
 ```fortran
   call get_environment_variable(name, value, length, status, trim_name)
 
@@ -13,53 +15,54 @@ __get\_environment\_variable__(3) - \[SYSTEM:ENVIRONMENT\] Get an environmental 
    integer,intent(out),optional :: status
    logical,intent(out),optional :: trim_name
 ```
-### __Description__
 
-Get the __value__ of the environmental variable __name__.
+### **Description**
 
-Note that __get\_environment\_variable__(3) need not be thread-safe. It
+Get the **value** of the environmental variable **name**.
+
+Note that **get_environment_variable**(3) need not be thread-safe. It
 is the responsibility of the user to ensure that the environment is not
 being updated concurrently.
 
-### __Options__
+### **Options**
 
-  - __name__
-    : The name of the environment variable to query.
+- **name**
+  : The name of the environment variable to query.
 
-    Shall be a scalar of type _character_ and of default kind.
+  Shall be a scalar of type _character_ and of default kind.
 
-### __Returns__
+### **Returns**
 
-  - __value__
-    : The value of the environment variable being queried.
+- **value**
+  : The value of the environment variable being queried.
 
-    Shall be a scalar of type _character_ and of default kind.
-    The value of __name__ is stored in __value__. If __value__ is not large enough
-    to hold the data, it is truncated. If __name__ is not set, __value__ will be
-    filled with blanks.
+  Shall be a scalar of type _character_ and of default kind.
+  The value of **name** is stored in **value**. If **value** is not large enough
+  to hold the data, it is truncated. If **name** is not set, **value** will be
+  filled with blanks.
 
-  - __length__
-    : Argument __length__ contains the length needed for storing the
-    environment variable __name__ or zero if it is not present.
+- **length**
+  : Argument **length** contains the length needed for storing the
+  environment variable **name** or zero if it is not present.
 
-    Shall be a scalar of type _integer_ and of default kind.
+  Shall be a scalar of type _integer_ and of default kind.
 
-  - __status__
-    : __status__ is __-1__ if __value__ is present but too short for the
-    environment variable; it is __1__ if the environment variable does not
-    exist and __2__ if the processor does not support environment variables;
-    in all other cases __status__ is zero.
+- **status**
+  : **status** is **-1** if **value** is present but too short for the
+  environment variable; it is **1** if the environment variable does not
+  exist and **2** if the processor does not support environment variables;
+  in all other cases **status** is zero.
 
-    Shall be a scalar of type _integer_ and of default kind.
+  Shall be a scalar of type _integer_ and of default kind.
 
-  - __trim\_name__
-    : If __trim\_name__ is present with the value __.false.__, the trailing blanks in
-    __name__ are significant; otherwise they are not part of the environment
-    variable name.
+- **trim_name**
+  : If **trim_name** is present with the value **.false.**, the trailing blanks in
+  **name** are significant; otherwise they are not part of the environment
+  variable name.
 
-    Shall be a scalar of type _logical_ and of default kind.
+  Shall be a scalar of type _logical_ and of default kind.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -119,7 +122,7 @@ Typical Results:
    HOME="/home/urbanjs"
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2003 and later
 

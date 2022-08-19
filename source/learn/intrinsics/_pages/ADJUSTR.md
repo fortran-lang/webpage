@@ -1,9 +1,11 @@
 ## adjustr
-### __Name__
 
-__adjustr__(3) - \[CHARACTER:WHITESPACE\] Right-adjust a string
+### **Name**
 
-### __Syntax__
+**adjustr**(3) - \[CHARACTER:WHITESPACE\] Right-adjust a string
+
+### **Syntax**
+
 ```fortran
     result = adjustr(string)
 
@@ -11,24 +13,25 @@ __adjustr__(3) - \[CHARACTER:WHITESPACE\] Right-adjust a string
      character(len=(len(string)) :: adjustr
      character(len=*),intent(in) :: string
 ```
-### __Description__
 
-__adjustr(string)__ right-adjusts a string by removing trailing
+### **Description**
+
+**adjustr(string)** right-adjusts a string by removing trailing
 spaces. Spaces are inserted at the start of the string as needed to
 retain the original length.
 
-### __Arguments__
+### **Arguments**
 
-  - __string__
-    : the type shall be _character_.
+- **string**
+  : the type shall be _character_.
 
-### __Returns__
+### **Returns**
 
-The return value is of type _character_ and of the same kind as __string__
+The return value is of type _character_ and of the same kind as **string**
 where trailing spaces are removed and the same number of spaces are
-inserted at the start of __string__.
+inserted at the start of **string**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -54,11 +57,13 @@ character(len=:),allocatable :: str2
    '  first           ', &
    '     second       ', &
    '         third    ' ])
-    
+
    write(*,'(a)')repeat('1234567890',5)
 end program demo_adjustr
 ```
+
 Results:
+
 ```text
    12345678901234567890123456789012345678901234567890
           sample string
@@ -67,12 +72,13 @@ Results:
                                                 third
    12345678901234567890123456789012345678901234567890
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__adjustl__(3)](ADJUSTL)
+[**adjustl**(3)](ADJUSTL)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
