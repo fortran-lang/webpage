@@ -11,7 +11,7 @@
 - [packages](https://fortran-lang.github.io/webpage/en/community/packages):
   adding an entry to the [Package index](https://fortran-lang.org/packages)
 
-## Setup
+
 
 ### Build fortran-lang.org site (Sphinx Version)
 
