@@ -25,9 +25,9 @@ import pathlib
 root = pathlib.Path(__file__).parent.parent
 
 data_files = {
-    "fortran-learn": pathlib.Path(root, "_data", "fortran_learn.json"),
-    "fortran-packages": pathlib.Path(root, "_data", "fortran_package.json"),
-    "contributors": pathlib.Path(root, "_data", "contributor.json"),
+    "fortran-learn": pathlib.Path(root, "data", "fortran_learn.json"),
+    "fortran-packages": pathlib.Path(root, "data", "fortran_package.json"),
+    "contributors": pathlib.Path(root, "data", "contributor.json"),
 }
 
 if not all(data.exists() for data in data_files.values()):

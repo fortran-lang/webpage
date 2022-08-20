@@ -103,8 +103,7 @@ contributor_repo = {
 
 
 def contributors(repo):
-    info = requests.get(
-        f"https://api.github.com/repos/{repo}/contributors").text
+    info = requests.get(f"https://api.github.com/repos/{repo}/contributors").text
     d = json.loads(info)
     if "message" in d:
         raise Exception(d["message"])
