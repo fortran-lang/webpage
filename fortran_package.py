@@ -7,9 +7,9 @@ import requests
 
 root = Path(__file__).parent
 
-with open(root / "_data" / "package_index.yml", "r") as f:
+with open(root / "data" / "package_index.yml", "r") as f:
     fortran_index = yaml.safe_load(f)
-with open(root / "_data" / "learning.yml", "r") as f:
+with open(root / "data" / "learning.yml", "r") as f:
     conf = yaml.safe_load(f)
 
 fortran_index_tags = []
@@ -84,9 +84,9 @@ conf["reference_books"] = conf["reference-books"]
 conf["reference_courses"] = conf["reference-courses"]
 conf["reference_links"] = conf["reference-links"]
 
-with open(root / "data" / "fortran_package.json", "w") as f:
+with open(root / "_data" / "fortran_package.json", "w") as f:
     json.dump(fortran_tags, f)
-with open(root / "data" / "fortran_learn.json", "w") as f:
+with open(root / "_data" / "fortran_learn.json", "w") as f:
     json.dump(conf, f)
 
 fortran_monthly = []
