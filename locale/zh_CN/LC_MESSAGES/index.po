@@ -5515,36 +5515,40 @@ msgid ""
 "instance: `-J../include` (so that the .mod files could all appear in the "
 "same directory)"
 msgstr ""
+"默认情况下.mod文件被放在和对象（object）文件相同的目录。当程序代码在不同的子"
+"文件夹被组织起来，编译整个项目，他们将被分散在整个树状目录中。幸运的是，许多"
+"编译器允许你指定这些文件的生成目录。对于gfortran是「-J」，示例「-J../"
+"inlcude」（这样.mod文件就在同一个目录生成）"
 
 #: ../../source/learn/building_programs/include_files.md:91
 msgid ""
 "For large programs, consisting of many source files, it is important to "
 "think through what organisation to use."
-msgstr ""
+msgstr "对于由许多源文件组成的大型程序来说，考虑清楚使用什么组织是很重要的。"
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/linking_pieces.md:1
 msgid "Linking the objects"
-msgstr ""
+msgstr "链接对象"
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/managing_libraries.md:1
 msgid "Managing libraries (static and dynamic libraries)"
-msgstr ""
+msgstr "管理库（静态和动态库）"
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/project_make.md:1
 msgid "An introduction to make"
-msgstr ""
+msgstr "一个make的介绍"
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/runtime_libraries.md:1
 msgid "Run-time libraries"
-msgstr ""
+msgstr "运行时库"
 
 #: ../../source/learn/building_programs/index.md:1
 msgid "Building programs"
-msgstr ""
+msgstr "构建程序"
 
 #: ../../source/learn/building_programs/index.md:3
 msgid ""
@@ -5555,6 +5559,10 @@ msgid ""
 "direct instructions. Two very simple examples of that type of language: "
 "Windows batch files and Linux shell scripts."
 msgstr ""
+"像Fortran、C、C++和Java这样的语言，简单说，它们有一些共同的特点：你用你选择的"
+"语言写代码，但你必须用这些源代码来构建一个可执行的程序。其他语言是解释型的—源"
+"代码被一个特殊的程序解析并作为直接指令。这种类型的语言有两个非常简单的例子："
+"Windows批处理文件和Linux shell脚本。"
 
 #: ../../source/learn/building_programs/index.md:11
 msgid ""
@@ -5564,20 +5572,25 @@ msgid ""
 "the human-readable source code into an efficient program that can be run on "
 "the computer."
 msgstr ""
+"在教程中我们集中讨论第一类编程语言，以Fortran为主要例子。编译型语言的一个优点"
+"是，构建可执行文件的过程被用来将人类可读的源代码转化为高效的机器可运行的程"
+"序。"
 
 #: ../../source/learn/building_programs/index.md:17
 msgid ""
 "Remark: this tutorial gives examples for the Windows and Linux operating "
 "systems, however the workflow and general principles still apply to macOS."
 msgstr ""
+"备注：本教程给出了在Windows和Linux操作系统上的例子，但是工作流和通用原理仍然"
+"适用于macOS。"
 
 #: ../../source/learn/building_programs/index.md:20
 msgid "Compiled languages"
-msgstr ""
+msgstr "编译语言"
 
 #: ../../source/learn/building_programs/index.md:22
 msgid "Let us have a look at a simple example:"
-msgstr ""
+msgstr "让我们看一个简单的例子："
 
 #: ../../source/learn/building_programs/index.md:30
 msgid ""
@@ -5586,6 +5599,8 @@ msgid ""
 "simple to express in source code, a lot of things actually happen when the "
 "executable that is built from this code runs:"
 msgstr ""
+"这是用Fortran可以编写的最简单的程序也是最著名的Fortran程序之一的变体。即使源"
+"代码的很简单，但当编译后的可执行程序运行时，实际会发生很多事："
 
 #: ../../source/learn/building_programs/index.md:35
 msgid ""
@@ -5593,18 +5608,21 @@ msgid ""
 "console — the window (DOS-box, xterm, ...) at which you type the program's "
 "name."
 msgstr ""
+"进程在计算机可以以这么一种方式启动。它可以向键入 程序名称的控制台窗口（DOS-"
+"box，xterm等）写入内容。"
 
 #: ../../source/learn/building_programs/index.md:38
 msgid ""
 "It writes the text \"Hello!\" to the console. To do so it must properly "
 "interact with the console."
-msgstr ""
+msgstr "他在控制台上写出文本「Hello!」。为了做到如此必须正确的与控制台交互。"
 
 #: ../../source/learn/building_programs/index.md:40
 msgid ""
 "When done, it finishes, cleaning up all the resources (memory, connection to "
 "the console etc.) it took."
 msgstr ""
+"完成后，它就结束了，清理掉它所占用的所有资源（内存、与控制台的连接等）。"
 
 #: ../../source/learn/building_programs/index.md:43
 msgid ""
@@ -5612,23 +5630,27 @@ msgid ""
 "consider all these details. In fact, this is the sort of things that is "
 "taken care of by the build process: the compiler and the linker."
 msgstr ""
+"幸运的是，做一个高级语言的程序员，你不需要考虑所有细节。实际上，这类事情细节"
+"是由构建过程定的（编译器和链接器）。"
 
 #: ../../source/learn/building_programs/linking_pieces.md:3
 msgid ""
 "Almost all programs, except for the simplest, are built up from different "
 "pieces. We are going to examine such a situation in more detail."
 msgstr ""
+"几乎所有程序，除了最简单的，都是用不同的片段组合构建的。我们将更详细地研究这"
+"种情况。"
 
 #: ../../source/learn/building_programs/linking_pieces.md:7
 msgid ""
 "Here is a general program for tabulating a function (source code in "
 "\"tabulate.f90\"):"
-msgstr ""
+msgstr "这是一个对函数制表的通用程序（源代码在 \"tabulate.f90\"）："
 
 #: ../../source/learn/building_programs/linking_pieces.md:28
 msgid ""
 "Note the `use` statement — this will be where we define the function `f`."
-msgstr ""
+msgstr "注意「use」语句—这将是我们定义函数「f」的地方。"
 
 #: ../../source/learn/building_programs/linking_pieces.md:30
 msgid ""
@@ -5638,12 +5660,15 @@ msgid ""
 "source file. We can give the general program to a user and they provide a "
 "specific source code."
 msgstr ""
+"我们想让程序具有通用性，所以要把具体的源代码--函数「f」的实现—与通用源代码分"
+"开。有几种方法来实现这一点，但其中一种是把它放在不同的源文件中。我们可以把通"
+"用程序交给用户，他们提供具体的源代码。"
 
 #: ../../source/learn/building_programs/linking_pieces.md:36
 msgid ""
 "Assume for the sake of the example that the function is implemented in a "
 "source file \"function.f90\" as:"
-msgstr ""
+msgstr "假设该函数在源文件「function.f90」中实现为："
 
 #: ../../source/learn/building_programs/linking_pieces.md:52
 msgid ""
@@ -5653,6 +5678,9 @@ msgid ""
 "to compile the source file containing our module first. A sequence of "
 "commands to do this is:"
 msgstr ""
+"构建具有这种特定函数的程序，我们需要编译两个源代码文件并通过链接来合并他们为"
+"一个可执行程序。因为「tabulate」程序依赖于function模块，我们需要首先编译包含"
+"我们模块的源文件。要执行的命令序列为："
 
 #: ../../source/learn/building_programs/linking_pieces.md:63
 msgid ""
@@ -51117,22 +51145,23 @@ msgstr ""
 
 #: ../../source/learn/building_programs/distributing.md:10
 msgid "__Option 1: Distribute the entire source code__"
-msgstr ""
+msgstr "__选项1：分发整个源代码__"
 
 #: ../../source/learn/building_programs/distributing.md:18
 msgid "__Option 2: Distribute a pre-built executable program__"
-msgstr ""
+msgstr "__选项2：分发 预编译可执行文件__"
 
 #: ../../source/learn/building_programs/distributing.md:41
 msgid ""
 "__Option 3: Distribute static or dynamic libraries that people can use__"
-msgstr ""
+msgstr "__选项3：分发用户可以直接调用的静态库或者动态库__"
 
 #: ../../source/learn/building_programs/include_files.md:55
 msgid ""
 "To successfully compile and subsequently build the program we need to tell "
 "the compiler where it can find the file \"user\\_functions.mod\":"
 msgstr ""
+"为了成功编译并构建程序我们需要告诉编译器如何找到\"user\\_functions.mod\"文件:"
 
 #: ../../source/learn/building_programs/linking_pieces.md:63
 msgid ""
@@ -60658,7 +60687,7 @@ msgstr ""
 #: ../../source/learn/building_programs/build_tools.md:305
 #, python-format
 msgid "{% include note.html content=\"\" %}"
-msgstr ""
+msgstr "{% include note.html content=\"\" %}"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:50
 msgid "__Example:__ single branch `if`"
@@ -62759,7 +62788,7 @@ msgstr ""
 
 #: ../../source/index.md:11
 msgid "Get started"
-msgstr ""
+msgstr "开始"
 
 #~ msgid ""
 #~ "For an in-depth ``make`` tutorial lookup its info page. There is an "
