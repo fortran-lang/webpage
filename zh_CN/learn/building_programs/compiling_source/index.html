@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Compiling the source code &#8212; Fortran Programming Language</title>
+    <title>编译源代码 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -44,8 +44,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
-    <link rel="next" title="Distributing your programs" href="../distributing/" />
-    <link rel="prev" title="Build tools" href="../build_tools/" /> 
+    <link rel="next" title="分发您的程序" href="../distributing/" />
+    <link rel="prev" title="构建工具" href="../build_tools/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -304,13 +304,13 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../compilers/">
-  Compilers
+  编译器
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../community/">
-  Community
+  社区
  </a>
 </li>
 
@@ -322,7 +322,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../news/">
-  News
+  新闻
  </a>
 </li>
 
@@ -421,7 +421,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../best_practices/">
-   Fortran Best Practices
+   Fortran最佳实践
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -431,57 +431,57 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/allocatable_arrays/">
-     Allocatable Arrays
+     可分配数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/arrays/">
-     Arrays
+     数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/callbacks/">
-     Callbacks
+     回调
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/element_operations/">
-     Element-wise Operations on Array
+     数组的逐元操作
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/file_io/">
-     File Input/Output
+     文件输入/输出
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/floating_point/">
-     Floating Point Numbers
+     浮点数
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/integer_division/">
-     Integer Division
+     整数除法
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/modules_programs/">
-     Modules and Programs
+     模块和程序
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/multidim_arrays/">
-     Multidimensional Arrays
+     多维数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/style_guide/">
-     Fortran Style Guide
+     Fortran风格指南
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/type_casting/">
-     Type Casting in Callbacks
+     回调中的类型转换
     </a>
    </li>
   </ul>
@@ -535,22 +535,22 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../build_tools/">
-     Build tools
+     构建工具
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Compiling the source code
+     编译源代码
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../distributing/">
-     Distributing your programs
+     分发您的程序
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../include_files/">
-     Include files and modules
+     包含文件和模块
     </a>
    </li>
    <li class="toctree-l2">
@@ -702,53 +702,27 @@
               
               <article class="bd-article" role="main">
                  <section id="compiling-the-source-code">
-<h1>Compiling the source code<a class="headerlink" href="#compiling-the-source-code" title="此标题的永久链接">#</a></h1>
-<p>The first step in the build process is to compile the source code. The
-output from this step is generally known as the object code — a set of
-instructions for the computer generated from the human-readable source
-code. Different compilers will produce different object codes from the
-same source code and the naming conventions are different.</p>
-<p>The consequences:</p>
+<h1>编译源代码<a class="headerlink" href="#compiling-the-source-code" title="此标题的永久链接">#</a></h1>
+<p>构建过程的第一步是编译源代码。此步骤的输出通常称为目标代码——一组由人类可读的源代码生成的计算机指令。不同的编译器会从相同的源代码生成不同的目标代码，命名约定也不同。</p>
+<p>结果：</p>
 <ul class="simple">
-<li><p>If you use a particular compiler for one source file, you need to use
-the same compiler (or a compatible one) for all other pieces. After
-all, a program may be built from many different source files and the
-compiled pieces have to cooperate.</p></li>
-<li><p>Each source file will be compiled and the result is stored in a file
-with an extension like “.o” or “.obj”. It is these object files that are
-the input for the next step: the link process.</p></li>
+<li><p>如果您对一个源文件使用特定的编译器，则需要对所有其他部分使用相同的编译器（或兼容的编译器）。毕竟，一个程序可能由许多不同的源文件构建而成，编译后的部分必须相互配合。</p></li>
+<li><p>每个源文件都将被编译并将结果存储在扩展名为 <code class="docutils literal notranslate"><span class="pre">.o</span></code> 或 <code class="docutils literal notranslate"><span class="pre">.obj</span></code> 的文件中。这些目标文件是下一步的输入：链接过程。</p></li>
 </ul>
-<p>Compilers are complex pieces of software: they have to understand the
-language in much more detail and depth than the average programmer. They
-also need to understand the inner working of the computer. And then,
-over the years they have been extended with numerous options to
-customise the compilation process and the final program that will be
-built.</p>
-<p>But the basics are simple enough. Take the gfortran compiler, part of
-the GNU compiler collection. To compile a simple program as the one
-above, that consists of one source file, you run the following command,
-assuming the source code is stored in the file “hello.f90”:</p>
+<p>编译器是复杂的软件：它们必须比普通程序员更详细、更深入地理解语言。它们还需要了解计算机的内部工作原理。然后，多年来，它们已经扩展了许多选项来自定义编译过程和将要构建的最终程序。</p>
+<p>但是基础很简单。以 gfortran 编译器为例，它是 GNU 编译器集合的一部分。要编译一个包含一个源文件的简单程序，请运行以下命令，假设源代码存储在文件 <code class="docutils literal notranslate"><span class="pre">hello.f90</span></code> 中：</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -c hello.f90
 </pre></div>
 </div>
-<p>This results in a file “hello.o” (as the gfortran compiler uses “.o” as
-the extension for the object files).</p>
-<p>The option “-c” means: only compile the source files. If you were to
-leave it out, then the default action of the compiler is to compile the
-source file and start the linker to build the actual executable program.
-The command:</p>
+<p>这会产生一个文件 <code class="docutils literal notranslate"><span class="pre">hello.o</span></code>（因为 gfortran 编译器使用 <code class="docutils literal notranslate"><span class="pre">.o</span></code> 作为目标文件的扩展名）。</p>
+<p>选项 <code class="docutils literal notranslate"><span class="pre">-c</span></code> 表示：只编译源文件。如果您不考虑它，那么编译器的默认操作是编译源文件并启动链接器以构建实际的可执行程序。命令：</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran hello.f90
 </pre></div>
 </div>
-<p>results in an executable file, “a.out” on Linux or “a.exe” on
-Windows.</p>
-<p>Some remarks:</p>
+<p>生成一个可执行文件，Linux 上的 <code class="docutils literal notranslate"><span class="pre">a.out</span></code> 或 Windows 上的 <code class="docutils literal notranslate"><span class="pre">a.exe</span></code>。</p>
+<p>一些备注：</p>
 <ul class="simple">
-<li><p>The compiler may complain about the contents of the source file, if it
-finds something wrong with it — a typo for instance or an unknown
-keyword. In that case the compilation process is broken off and you will
-not get an object file or an executable program. For instance, if
-the word “program” was inadvertently typed as “prgoram”:</p></li>
+<li><p>编译器可能会报错源文件的内容，如果它发现有问题——例如错字或未知关键字。在这种情况下，编译过程会中断，您将无法获得目标文件或可执行程序。例如，如果 <code class="docutils literal notranslate"><span class="pre">program</span></code> 这个词被无意中输入为 <code class="docutils literal notranslate"><span class="pre">prgoram</span></code>：</p></li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran hello3.f90
 hello.f90:1:0:
@@ -764,13 +738,9 @@ Error: Syntax error <span class="k">in</span> END PROGRAM statement at <span cla
 f951: Error: Unexpected end of file <span class="k">in</span> <span class="s1">&#39;hello.f90&#39;</span>
 </pre></div>
 </div>
-<p>Using this compilation report you can correct the source code and try
-again.</p>
+<p>使用此编译报告，您可以更正源代码并重试。</p>
 <ul class="simple">
-<li><p>The step without “-c” can only succeed if the source file contains a
-main program — characterised by the <code class="docutils literal notranslate"><span class="pre">program</span></code> statement in Fortran.
-Otherwise the link step will complain about a missing “symbol”, something
-along these lines:</p></li>
+<li><p>没有 <code class="docutils literal notranslate"><span class="pre">-c</span></code> 的步骤只有在源文件包含主程序时才能成功——以 Fortran 中的 <code class="docutils literal notranslate"><span class="pre">program</span></code> 语句为特征。否则，链接步骤将抱怨缺少 <code class="docutils literal notranslate"><span class="pre">symbol</span></code>，类似于以下内容：</p></li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran hello2.f90
 /usr/lib/../lib64/crt1.o: In <span class="k">function</span> <span class="sb">`</span>_start<span class="s1">&#39;:</span>
@@ -778,20 +748,14 @@ along these lines:</p></li>
 collect2: error: ld returned <span class="m">1</span> <span class="nb">exit</span> status
 </pre></div>
 </div>
-<p>The file “hello2.f90” is almost the same as the file “hello.f90”, except
-that the keyword <code class="docutils literal notranslate"><span class="pre">program</span></code> has been replaced by the keyword <code class="docutils literal notranslate"><span class="pre">subroutine</span></code>.</p>
-<p>The above examples of output from the compiler will differ per compiler
-and platform on which it runs. These examples come from the gfortran
-compiler running in a Cygwin environment on Windows.</p>
-<p>Compilers also differ in the options they support, but in general:</p>
+<p>文件<code class="docutils literal notranslate"><span class="pre">hello2.f90</span></code> 与文件 <code class="docutils literal notranslate"><span class="pre">hello.f90</span></code> 几乎相同，只是关键字<code class="docutils literal notranslate"><span class="pre">program</span></code>已被关键字<code class="docutils literal notranslate"><span class="pre">subroutine</span></code>替换。</p>
+<p>编译器的上述输出示例因编译器和运行平台而异。这些示例来自在 Windows 上的 Cygwin 环境中运行的 gfortran 编译器。</p>
+<p>编译器支持的选项也不同，但总的来说：</p>
 <ul class="simple">
-<li><p>Options for optimising the code — resulting in faster programs or
-smaller memory footprints;</p></li>
-<li><p>Options for checking the source code — checks that a variable is not
-used before it has been given a value, for instance or checks if some
-extension to the language is used;</p></li>
-<li><p>Options for the location of include or module files, see below;</p></li>
-<li><p>Options for debugging.</p></li>
+<li><p>优化代码的选项——导致更快的程序或更小的内存占用；</p></li>
+<li><p>检查源代码的选项——例如检查变量在被赋予值之前是否未被使用，或者检查是否使用了语言的某些扩展；</p></li>
+<li><p>包含或模块文件位置的选项，见下文；</p></li>
+<li><p>调试选项。</p></li>
 </ul>
 </section>
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Multidimensional Arrays &#8212; Fortran Programming Language</title>
+    <title>多维数组 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -44,8 +44,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
-    <link rel="next" title="Fortran Style Guide" href="../style_guide/" />
-    <link rel="prev" title="Modules and Programs" href="../modules_programs/" /> 
+    <link rel="next" title="Fortran风格指南" href="../style_guide/" />
+    <link rel="prev" title="模块和程序" href="../modules_programs/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -304,13 +304,13 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../compilers/">
-  Compilers
+  编译器
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../community/">
-  Community
+  社区
  </a>
 </li>
 
@@ -322,7 +322,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../news/">
-  News
+  新闻
  </a>
 </li>
 
@@ -421,7 +421,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Fortran最佳实践
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -431,57 +431,57 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../allocatable_arrays/">
-     Allocatable Arrays
+     可分配数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../callbacks/">
-     Callbacks
+     回调
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../element_operations/">
-     Element-wise Operations on Array
+     数组的逐元操作
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../file_io/">
-     File Input/Output
+     文件输入/输出
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../floating_point/">
-     Floating Point Numbers
+     浮点数
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../integer_division/">
-     Integer Division
+     整数除法
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../modules_programs/">
-     Modules and Programs
+     模块和程序
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Multidimensional Arrays
+     多维数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../style_guide/">
-     Fortran Style Guide
+     Fortran风格指南
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type_casting/">
-     Type Casting in Callbacks
+     回调中的类型转换
     </a>
    </li>
   </ul>
@@ -535,22 +535,22 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/build_tools/">
-     Build tools
+     构建工具
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/compiling_source/">
-     Compiling the source code
+     编译源代码
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/distributing/">
-     Distributing your programs
+     分发您的程序
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/include_files/">
-     Include files and modules
+     包含文件和模块
     </a>
    </li>
    <li class="toctree-l2">
@@ -702,20 +702,10 @@
               
               <article class="bd-article" role="main">
                  <section id="multidimensional-arrays">
-<h1>Multidimensional Arrays<a class="headerlink" href="#multidimensional-arrays" title="此标题的永久链接">#</a></h1>
-<p>Multidimensional arrays are stored in column-major order. This means the
-left-most (inner-most) index addresses elements contiguously.
-From a practical point this means that the array slice <code class="docutils literal notranslate"><span class="pre">V(:,</span> <span class="pre">1)</span></code> is
-contiguous, while the stride between elements in the slice <code class="docutils literal notranslate"><span class="pre">V(1,</span> <span class="pre">:)</span></code>
-is the dimension of the columns. This is important when passing array
-slices to procedures which expect to work on contiguous data.</p>
-<p>The locality of the memory is important to consider depending on
-your application, usually when performing operations on a multidimensional
-the sequential access should always advance in unity strides.</p>
-<p>In the following example the inverse distance between two sets of points
-is evaluated. Note that the points are stored contiguously in the arrays
-<code class="docutils literal notranslate"><span class="pre">xyz1</span></code>/<code class="docutils literal notranslate"><span class="pre">xyz2</span></code>, while the inner-most loop is advancing the left-most
-index of the matrix <code class="docutils literal notranslate"><span class="pre">a</span></code>.</p>
+<h1>多维数组<a class="headerlink" href="#multidimensional-arrays" title="此标题的永久链接">#</a></h1>
+<p>多维数组以列优先顺序存储。这意味着最左边（最里面）的索引连续寻址元素。从实际角度来看，这意味着数组切片<code class="docutils literal notranslate"><span class="pre">V(:,</span> <span class="pre">1)</span></code>是连续的，而切片<code class="docutils literal notranslate"><span class="pre">V(1,:)</span></code>中元素之间的步幅是列的维度。这在将数组切片传递给期望处理连续数据的过程时很重要。</p>
+<p>根据应用程序的不同，考虑内存的位置是很重要的， 通常在多维度上执行操作时，顺序访问总是应该以统一长度增加。</p>
+<p>在以下示例中，将评估两组点之间的反距离。请注意，这些点连续存储在数组 <code class="docutils literal notranslate"><span class="pre">xyz1</span></code>/<code class="docutils literal notranslate"><span class="pre">xyz2</span></code> 中，而最内层循环正在推进矩阵 <code class="docutils literal notranslate"><span class="pre">a</span></code> 的最左侧索引。</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">coulomb_matrix</span><span class="p">(</span><span class="n">xyz1</span><span class="p">,</span><span class="w"> </span><span class="n">xyz2</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">xyz1</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">xyz2</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
@@ -729,8 +719,7 @@ index of the matrix <code class="docutils literal notranslate"><span class="pre"
 <span class="k">end subroutine </span><span class="n">coulomb_matrix</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Another example would be the contraction of the third dimension of a rank
-three array:</p>
+<p>另一个例子是三维数组的第三维缩并：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">amat</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">amat</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="k">do </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">amat</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
@@ -740,11 +729,8 @@ three array:</p>
 <span class="k">end do</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Contiguous array slices can be used in array-bound remapping to allow usage
-of higher rank arrays as lower rank arrays without requiring to reshape
-and potentially create a temporary copy of the array.</p>
-<p>For example this can be used to contract the third dimension of a rank
-three array using a matrix-vector operation:</p>
+<p>可以在数组绑定中重映射，以使用连续数组切片。 允许将高维数组用作低维数组，而不需要重新格式化数组， 这样避免了有可能创建临时数组。</p>
+<p>例如，可以使用矩阵向量操作来缩并三维数组的第三维：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">matmul312</span><span class="p">(</span><span class="n">amat</span><span class="p">,</span><span class="w"> </span><span class="n">bvec</span><span class="p">,</span><span class="w"> </span><span class="n">cmat</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">contiguous</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">target</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">amat</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bvec</span><span class="p">(:)</span><span class="w"></span>

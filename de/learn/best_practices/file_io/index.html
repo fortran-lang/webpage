@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>File Input/Output &#8212; Fortran Programming Language</title>
+    <title>Datei Input/Output &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -298,7 +298,7 @@
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="../../">
-  Learn
+  Lernen
  </a>
 </li>
 
@@ -310,7 +310,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../community/">
-  Community
+  Gemeinschaft
  </a>
 </li>
 
@@ -451,7 +451,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     File Input/Output
+     Datei Input/Output
     </a>
    </li>
    <li class="toctree-l2">
@@ -702,7 +702,7 @@
               
               <article class="bd-article" role="main">
                  <section id="file-input-output">
-<h1>File Input/Output<a class="headerlink" href="#file-input-output" title="Permalink to this heading">#</a></h1>
+<h1>Datei Input/Output<a class="headerlink" href="#file-input-output" title="Permalink to this heading">#</a></h1>
 <p>In Fortran files are managed by unit identifiers. Interaction with the filesystem
 mainly happens through the <code class="docutils literal notranslate"><span class="pre">open</span></code> and <code class="docutils literal notranslate"><span class="pre">inquire</span></code> built-in procedures.
 Generally, the workflow is to open a file to a unit identifier, read and/or write
@@ -713,9 +713,7 @@ to it and close it again.</p>
 <span class="k">close</span><span class="p">(</span><span class="n">io</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>By default the file will be created if it is not existing already and opened for
-both reading and writing. Writing to an existing file will start in the first
-record (line) and therefore overwrite the file by default.</p>
+<p>Standardmäßig wird die Datei erstellt, wenn sie noch nicht vorhanden ist, und sowohl zum Lesen als auch zum Schreiben geöffnet. Das Schreiben in eine bestehende Datei beginnt im ersten Datensatz (Zeile) und überschreibt daher standardmäßig die Datei.</p>
 <p>To create a read-only access to a file the <code class="docutils literal notranslate"><span class="pre">status</span></code> and <code class="docutils literal notranslate"><span class="pre">action</span></code> have to be
 specified with</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="w"></span>
@@ -768,8 +766,7 @@ To append to an output file the <em>position</em> keyword can be specified expli
 <p>To reset the position in a file the built-in procedures <code class="docutils literal notranslate"><span class="pre">rewind</span></code> and <code class="docutils literal notranslate"><span class="pre">backspace</span></code>
 can be used. <code class="docutils literal notranslate"><span class="pre">rewind</span></code> will reset to the first record (line), while <code class="docutils literal notranslate"><span class="pre">backspace</span></code> will
 return to the previous record (line).</p>
-<p>Finally, to delete a file the file has to be opened and can be deleted after closing
-with</p>
+<p>Um eine Datei zu löschen, muss die Datei geöffnet werden und kann beim Schließen wie folgt gelöscht werde</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">exists</span><span class="w"></span>
 <span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span>
 <span class="k">inquire</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">exist</span><span class="o">=</span><span class="n">exists</span><span class="p">)</span><span class="w"></span>

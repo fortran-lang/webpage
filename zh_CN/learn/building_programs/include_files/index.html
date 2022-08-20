@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Include files and modules &#8212; Fortran Programming Language</title>
+    <title>包含文件和模块 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,7 +45,7 @@
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
     <link rel="next" title="Linking the objects" href="../linking_pieces/" />
-    <link rel="prev" title="Distributing your programs" href="../distributing/" /> 
+    <link rel="prev" title="分发您的程序" href="../distributing/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -304,13 +304,13 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../compilers/">
-  Compilers
+  编译器
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../community/">
-  Community
+  社区
  </a>
 </li>
 
@@ -322,7 +322,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../news/">
-  News
+  新闻
  </a>
 </li>
 
@@ -421,7 +421,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../best_practices/">
-   Fortran Best Practices
+   Fortran最佳实践
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -431,57 +431,57 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/allocatable_arrays/">
-     Allocatable Arrays
+     可分配数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/arrays/">
-     Arrays
+     数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/callbacks/">
-     Callbacks
+     回调
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/element_operations/">
-     Element-wise Operations on Array
+     数组的逐元操作
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/file_io/">
-     File Input/Output
+     文件输入/输出
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/floating_point/">
-     Floating Point Numbers
+     浮点数
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/integer_division/">
-     Integer Division
+     整数除法
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/modules_programs/">
-     Modules and Programs
+     模块和程序
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/multidim_arrays/">
-     Multidimensional Arrays
+     多维数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/style_guide/">
-     Fortran Style Guide
+     Fortran风格指南
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/type_casting/">
-     Type Casting in Callbacks
+     回调中的类型转换
     </a>
    </li>
   </ul>
@@ -535,22 +535,22 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../build_tools/">
-     Build tools
+     构建工具
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../compiling_source/">
-     Compiling the source code
+     编译源代码
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../distributing/">
-     Distributing your programs
+     分发您的程序
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Include files and modules
+     包含文件和模块
     </a>
    </li>
    <li class="toctree-l2">
@@ -702,31 +702,13 @@
               
               <article class="bd-article" role="main">
                  <section id="include-files-and-modules">
-<h1>Include files and modules<a class="headerlink" href="#include-files-and-modules" title="此标题的永久链接">#</a></h1>
-<p>Your program can be contained in various source files, all stored in the
-same directory or organised in some convenient directory tree. The
-details of the organisation depend on personal taste, arrangements made
-by the group of developers you belong to, or simply the history of the
-program. Whatever the directory structure is, you will encounter a
-situation where the compiler needs assistence in order to compile a
-particular source file:</p>
+<h1>包含文件和模块<a class="headerlink" href="#include-files-and-modules" title="此标题的永久链接">#</a></h1>
+<p>您的程序可以包含在各种源文件中，全部存储在同一目录中或组织在一些方便的目录树中。组织的细节取决于个人品味、您所属的开发人员组所做的安排，或者只是程序的历史。无论目录结构是什么，您都会遇到编译器需要帮助才能编译特定源文件的情况：</p>
 <ul class="simple">
-<li><p>Fortran (and other languages) has the possibility to include an
-external file. While this feature has become a bit less useful with the
-advent of modules, it still has its uses. Quite often, such “include
-files” are stored in a directory separated from the directories
-containing the source files, because they are used in several locations.
-Quite often the name of that directory is “include”.</p></li>
-<li><p>As we have seen, compiling source code that defines one or more modules, leads to
-the compiler generating so-called “module intermediate files” (with the extension “.mod”).
-The compiler needs access to these files to be able to read the interfaces
-and variables and what not, and based on this information, actually
-compile the source code that uses the various modules.</p></li>
+<li><p>Fortran（和其他语言）可以包含外部文件。虽然随着模块的出现，这个特性变得不那么有用了，但它仍然有它的用途。通常，此类“包含文件”存储在与包含源文件的目录分开的目录中，因为它们在多个位置使用。该目录的名称通常是“include”。</p></li>
+<li><p>正如我们所见，编译定义一个或多个模块的源代码会导致编译器生成所谓的“模块中间文件”（扩展名为<code class="docutils literal notranslate"><span class="pre">.mod</span></code>）。编译器需要访问这些文件才能读取接口和变量等等，并根据这些信息实际编译使用各种模块的源代码。</p></li>
 </ul>
-<p>Compilers support options like <code class="docutils literal notranslate"><span class="pre">-I</span></code> to indicate where these include
-files and module intermediate files are to be found. Suppose we store
-the two files of our <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> program in the following directory
-structure:</p>
+<p>编译器支持像 <code class="docutils literal notranslate"><span class="pre">-I</span></code> 这样的选项来指示这些包含文件和模块中间文件的位置。假设我们将 <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> 程序的两个文件存储在以下目录结构中：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tabulate</span><span class="o">/</span>
     <span class="n">main</span><span class="o">/</span>
         <span class="n">tabulate</span><span class="o">.</span><span class="n">f90</span>
@@ -734,12 +716,12 @@ structure:</p>
         <span class="n">functions</span><span class="o">.</span><span class="n">f90</span>
 </pre></div>
 </div>
-<p>Compiling the file “functions.f90” with the commands</p>
+<p>使用命令编译文件 <code class="docutils literal notranslate"><span class="pre">functions.f90</span></code></p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> sub
 $ gfortran -c functions.f90
 </pre></div>
 </div>
-<p>leads to this structure:</p>
+<p>导致这种结构：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tabulate</span><span class="o">/</span>
     <span class="n">main</span><span class="o">/</span>
         <span class="n">tabulate</span><span class="o">.</span><span class="n">f90</span>
@@ -749,14 +731,13 @@ $ gfortran -c functions.f90
         <span class="n">functions</span><span class="o">.</span><span class="n">o</span>
 </pre></div>
 </div>
-<p>To successfully compile and subsequently build the program we need to
-tell the compiler where it can find the file “user_functions.mod”:</p>
+<p>为了成功编译并随后构建程序，我们需要告诉编译器在哪里可以找到文件 <code class="docutils literal notranslate"><span class="pre">user_functions.mod</span></code>：</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ <span class="nb">cd</span> main
 $ gfortran -c tabulate.f90 -I ../sub
 $ gfortran -o tabulate tabulate.o ../sub/functions.o
 </pre></div>
 </div>
-<p>The result:</p>
+<p>结果：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">tabulate</span><span class="o">/</span>
     <span class="n">main</span><span class="o">/</span>
         <span class="n">tabulate</span><span class="o">.</span><span class="n">f90</span>
@@ -768,11 +749,9 @@ $ gfortran -o tabulate tabulate.o ../sub/functions.o
         <span class="n">user_functions</span><span class="o">.</span><span class="n">mod</span>
 </pre></div>
 </div>
-<p>Notes:</p>
+<p>注意：</p>
 <ul class="simple">
-<li><p>The details differ per compiler. Sometimes the <code class="docutils literal notranslate"><span class="pre">-I</span></code> option should be
-followed by a space and then the name of the directory, sometimes the
-directory should come consecutively.</p></li>
+<li><p>细节因编译器而异。有时 <code class="docutils literal notranslate"><span class="pre">-I</span></code> 选项后面应该跟一个空格，然后是目录的名称，有时目录应该是连续出现的。</p></li>
 <li><p>By default the module intermediate files (.mod) are put in the
 same directory as the object files. When your program code is organised
 in different subdirectories, they will get scattered over the directory

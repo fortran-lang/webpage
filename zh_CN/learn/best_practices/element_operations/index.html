@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Element-wise Operations on Arrays &#8212; Fortran Programming Language</title>
+    <title>数组的逐元操作 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -44,8 +44,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
-    <link rel="next" title="File Input/Output" href="../file_io/" />
-    <link rel="prev" title="Callbacks" href="../callbacks/" /> 
+    <link rel="next" title="文件输入/输出" href="../file_io/" />
+    <link rel="prev" title="回调" href="../callbacks/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -304,13 +304,13 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../compilers/">
-  Compilers
+  编译器
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../community/">
-  Community
+  社区
  </a>
 </li>
 
@@ -322,7 +322,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../news/">
-  News
+  新闻
  </a>
 </li>
 
@@ -421,7 +421,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Fortran最佳实践
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -431,57 +431,57 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../allocatable_arrays/">
-     Allocatable Arrays
+     可分配数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../callbacks/">
-     Callbacks
+     回调
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Element-wise Operations on Array
+     数组的逐元操作
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../file_io/">
-     File Input/Output
+     文件输入/输出
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../floating_point/">
-     Floating Point Numbers
+     浮点数
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../integer_division/">
-     Integer Division
+     整数除法
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../modules_programs/">
-     Modules and Programs
+     模块和程序
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../multidim_arrays/">
-     Multidimensional Arrays
+     多维数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../style_guide/">
-     Fortran Style Guide
+     Fortran风格指南
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type_casting/">
-     Type Casting in Callbacks
+     回调中的类型转换
     </a>
    </li>
   </ul>
@@ -535,22 +535,22 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/build_tools/">
-     Build tools
+     构建工具
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/compiling_source/">
-     Compiling the source code
+     编译源代码
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/distributing/">
-     Distributing your programs
+     分发您的程序
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/include_files/">
-     Include files and modules
+     包含文件和模块
     </a>
    </li>
    <li class="toctree-l2">
@@ -702,16 +702,14 @@
               
               <article class="bd-article" role="main">
                  <section id="element-wise-operations-on-arrays">
-<h1>Element-wise Operations on Arrays<a class="headerlink" href="#element-wise-operations-on-arrays" title="此标题的永久链接">#</a></h1>
-<p>There are three approaches to perform element-wise operations on arrays when using subroutines and functions:</p>
+<h1>数组的逐元操作<a class="headerlink" href="#element-wise-operations-on-arrays" title="此标题的永久链接">#</a></h1>
+<p>使用子例程和函数时，可以通过三种方法对数组执行逐元操作：</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">elemental</span></code> procedures</p></li>
-<li><p><em>explicit-shape</em> arrays</p></li>
-<li><p>implementing the operation for vectors and write simple wrapper
-subroutines (that use <code class="docutils literal notranslate"><span class="pre">reshape</span></code> internally) for each array shape</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">逐元(elemental)</span></code> 过程</p></li>
+<li><p><em>显式形状</em> 数组</p></li>
+<li><p>实现向量的操作并为每个数组形状编写简单的包装子例程（在内部使用 <code class="docutils literal notranslate"><span class="pre">reshape</span></code>）</p></li>
 </ul>
-<p>In the first approach, one uses the <code class="docutils literal notranslate"><span class="pre">elemental</span></code> keyword to create a
-function like this:</p>
+<p>在第一种方法中，使用 <code class="docutils literal notranslate"><span class="pre">elemental</span></code> 关键字来创建这样的函数：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="k">elemental function </span><span class="n">nroot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
@@ -719,8 +717,7 @@ function like this:</p>
 <span class="k">end function</span><span class="w"></span>
 </pre></div>
 </div>
-<p>All arguments (in and out) must be scalars. You can then use this
-function with arrays of any (compatible) shape, for example:</p>
+<p>所有参数（输入和输出）必须是标量。然后，您可以将此函数与任何（兼容）形状的数组一起使用，例如：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">)</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">1._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="mf">0._dp</span><span class="p">])</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nb">reshape</span><span class="p">([</span><span class="mf">1._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="mf">0._dp</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]))</span><span class="w"></span>
@@ -728,7 +725,7 @@ function with arrays of any (compatible) shape, for example:</p>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">],</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The output will be:</p>
+<p>输出将是：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="mf">3.0000000000000000</span><span class="w"></span>
 <span class="mf">1.0000000000000000</span><span class="w">        </span><span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">3.0000000000000000</span><span class="w">        </span><span class="mf">3.1622776601683795</span><span class="w"></span>
 <span class="mf">1.0000000000000000</span><span class="w">        </span><span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">3.0000000000000000</span><span class="w">        </span><span class="mf">3.1622776601683795</span><span class="w"></span>
@@ -736,18 +733,9 @@ function with arrays of any (compatible) shape, for example:</p>
 <span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">1.5874010519681994</span><span class="w">        </span><span class="mf">1.4142135623730951</span><span class="w">        </span><span class="mf">1.3195079107728942</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In the above, typically <code class="docutils literal notranslate"><span class="pre">n</span></code> is a parameter and <code class="docutils literal notranslate"><span class="pre">x</span></code> is the array of an
-arbitrary shape, but as you can see, Fortran does not care as long as
-the final operation makes sense (if one argument is an array, then the
-other arguments must be either arrays of the same shape or scalars). If
-it does not, you will get a compiler error.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">elemental</span></code> keyword implies the <code class="docutils literal notranslate"><span class="pre">pure</span></code> keyword, so the procedure
-must be pure. It results that <code class="docutils literal notranslate"><span class="pre">elemental</span> <span class="pre">procedures</span></code> can only use <code class="docutils literal notranslate"><span class="pre">pure</span></code> procedures and have no side effects.</p>
-<p>If the elemental procedure algorithm can be made faster using array
-operations inside, or if for some reasons the arguments must be arrays of
-incompatible shapes, then one should use the other two approaches. One
-can make <code class="docutils literal notranslate"><span class="pre">nroot</span></code> operate on a vector and write a simple wrapper for
-other array shapes, e.g.:</p>
+<p>在上面，通常 <code class="docutils literal notranslate"><span class="pre">n</span></code> 是一个参数，而 <code class="docutils literal notranslate"><span class="pre">x</span></code> 是任意形状的数组，但是正如您所看到的，Fortran 并不关心，只要最终的操作有意义（如果一个参数是一个数组，那么其他参数必须是相同形状的数组或标量）。如果没有，您将收到编译器错误。</p>
+<p><code class="docutils literal notranslate"><span class="pre">elemental</span></code> 关键字隐含了 <code class="docutils literal notranslate"><span class="pre">pure</span></code> 关键字，因此过程必须是纯的。这表明<code class="docutils literal notranslate"><span class="pre">逐元过程</span></code>只能使用<code class="docutils literal notranslate"><span class="pre">纯</span></code>过程，没有副作用。</p>
+<p>如果使用内部数组操作可以使基本过程算法更快，或者如果由于某些原因参数必须是不兼容形状的数组，那么应该使用其他两种方法。可以使 <code class="docutils literal notranslate"><span class="pre">nroot</span></code> 对向量进行操作，并为其他数组形状编写一个简单的包装器，例如：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">function </span><span class="n">nroot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">(:)</span><span class="w"></span>
@@ -772,20 +760,19 @@ other array shapes, e.g.:</p>
 <span class="k">end function</span><span class="w"></span>
 </pre></div>
 </div>
-<p>And use as follows:</p>
+<p>并按如下方式使用：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot_0d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">)</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">1._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="mf">0._dp</span><span class="p">])</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot_2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nb">reshape</span><span class="p">([</span><span class="mf">1._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="mf">0._dp</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]))</span><span class="w"></span>
 </pre></div>
 </div>
-<p>This will print:</p>
+<p>这将会打印：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="mf">3.0000000000000000</span><span class="w"></span>
 <span class="mf">1.0000000000000000</span><span class="w">        </span><span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">3.0000000000000000</span><span class="w">        </span><span class="mf">3.1622776601683795</span><span class="w"></span>
 <span class="mf">1.0000000000000000</span><span class="w">        </span><span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">3.0000000000000000</span><span class="w">        </span><span class="mf">3.1622776601683795</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Or one can use <em>explicit-shape</em> arrays as
-follows:</p>
+<p>或者可以使用 <em>显式形状</em> 数组，如下所示：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">function </span><span class="n">nroot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="w"></span>
@@ -794,13 +781,13 @@ follows:</p>
 <span class="k">end function</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Use as follows:</p>
+<p>使用如下：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">9._dp</span><span class="p">])</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">1._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="mf">0._dp</span><span class="p">])</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nb">reshape</span><span class="p">([</span><span class="mf">1._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="mf">0._dp</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]))</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The output is the same as before:</p>
+<p>输出与之前相同：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="mf">3.0000000000000000</span><span class="w"></span>
 <span class="mf">1.0000000000000000</span><span class="w">        </span><span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">3.0000000000000000</span><span class="w">        </span><span class="mf">3.1622776601683795</span><span class="w"></span>
 <span class="mf">1.0000000000000000</span><span class="w">        </span><span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">3.0000000000000000</span><span class="w">        </span><span class="mf">3.1622776601683795</span><span class="w"></span>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Type Casting in Callbacks &#8212; Fortran Programming Language</title>
+    <title>回调中的类型转换 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,7 +45,7 @@
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
     <link rel="next" title="Setting up your OS" href="../../os_setup/" />
-    <link rel="prev" title="Fortran Style Guide" href="../style_guide/" /> 
+    <link rel="prev" title="Fortran风格指南" href="../style_guide/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -304,13 +304,13 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../compilers/">
-  Compilers
+  编译器
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../community/">
-  Community
+  社区
  </a>
 </li>
 
@@ -322,7 +322,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../news/">
-  News
+  新闻
  </a>
 </li>
 
@@ -421,7 +421,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Fortran最佳实践
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -431,57 +431,57 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../allocatable_arrays/">
-     Allocatable Arrays
+     可分配数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../callbacks/">
-     Callbacks
+     回调
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../element_operations/">
-     Element-wise Operations on Array
+     数组的逐元操作
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../file_io/">
-     File Input/Output
+     文件输入/输出
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../floating_point/">
-     Floating Point Numbers
+     浮点数
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../integer_division/">
-     Integer Division
+     整数除法
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../modules_programs/">
-     Modules and Programs
+     模块和程序
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../multidim_arrays/">
-     Multidimensional Arrays
+     多维数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../style_guide/">
-     Fortran Style Guide
+     Fortran风格指南
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Type Casting in Callbacks
+     回调中的类型转换
     </a>
    </li>
   </ul>
@@ -535,22 +535,22 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/build_tools/">
-     Build tools
+     构建工具
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/compiling_source/">
-     Compiling the source code
+     编译源代码
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/distributing/">
-     Distributing your programs
+     分发您的程序
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/include_files/">
-     Include files and modules
+     包含文件和模块
     </a>
    </li>
    <li class="toctree-l2">
@@ -692,42 +692,42 @@
   <ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#work-arrays">
-   Work Arrays
+   工作数组
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#general-structure">
-   General Structure
+   通用结构
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#private-module-variables">
-   Private Module Variables
+   私有的模块变量
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#nested-functions">
-   Nested functions
+   嵌套函数
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-type-c-ptr-pointer">
-   Using type(c_ptr) Pointer
+   使用 type(c_ptr) 指针
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#transfer-intrinsic-function">
-   transfer() Intrinsic Function
+   transfer()内置函数
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#object-oriented-approach">
-   Object Oriented Approach
+   面向对象的策略
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#complete-example-of-void-vs-type-c-ptr-and-transfer">
-   Complete Example of void * vs type(c_ptr) and transfer()
+   void * vs type(c_ptr) 和 transfer() 的完整示例
   </a>
  </li>
 </ul>
@@ -747,18 +747,13 @@
               
               <article class="bd-article" role="main">
                  <section id="type-casting-in-callbacks">
-<h1>Type Casting in Callbacks<a class="headerlink" href="#type-casting-in-callbacks" title="此标题的永久链接">#</a></h1>
-<p>There are essentially five different ways to do type casting, each with its own
-advantages and disadvantages.</p>
-<p>The methods I, II and V can be used both in C and Fortran. The methods
-III and IV are only available in Fortran. The method VI is obsolete and
-should not be used.</p>
+<h1>回调中的类型转换<a class="headerlink" href="#type-casting-in-callbacks" title="此标题的永久链接">#</a></h1>
+<p>类型转换基本上有五种不同的方法，每种都有自己的优缺点。</p>
+<p>方法I、II和V可用于C和Fortran。方法III和方法IV只能在Fortran中使用。方法VI已过时，不应使用。</p>
 <section id="work-arrays">
-<h2>Work Arrays<a class="headerlink" href="#work-arrays" title="此标题的永久链接">#</a></h2>
-<p>Pass a “work array” which is packed with everything needed by
-the caller and unpacked by the called routine. This is the old way –
-e.g., how LAPACK does it.</p>
-<p>Integrator:</p>
+<h2>工作数组<a class="headerlink" href="#work-arrays" title="此标题的永久链接">#</a></h2>
+<p>传递一个“工作数组”，该数组打包调用所需的所有内容，并由被调用的例程解包。这是一种古老的方式–例如，LAPACK正是使用这种方法。</p>
+<p>积分器：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -785,7 +780,7 @@ e.g., how LAPACK does it.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Usage:</p>
+<p>用法：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">test</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">integrals</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">simpson</span><span class="w"></span>
@@ -818,13 +813,9 @@ e.g., how LAPACK does it.</p>
 </div>
 </section>
 <section id="general-structure">
-<h2>General Structure<a class="headerlink" href="#general-structure" title="此标题的永久链接">#</a></h2>
-<p>Define a general structure which encompass the variations you
-actually need (or are even remotely likely to need going forward). This
-single structure type can then change if needed as future
-needs/ideas permit but won’t likely need to change from passing, say,
-real numbers to, say, and instantiation of a text editor.</p>
-<p>Integrator:</p>
+<h2>通用结构<a class="headerlink" href="#general-structure" title="此标题的永久链接">#</a></h2>
+<p>定义一个通用的结构，包含目前实际的需求（甚至在未来的需求）。 这个通用结构类型可以根据未来的需求或设想而改变，但不太可能需要比如从传递实数更改为文本编辑器的实例化。</p>
+<p>积分器：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -860,7 +851,7 @@ real numbers to, say, and instantiation of a text editor.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Usage:</p>
+<p>用法：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">test</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">integrals</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">simpson</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="w"></span>
@@ -891,17 +882,13 @@ real numbers to, say, and instantiation of a text editor.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>There is only so much flexibility really needed. For example, you could
-define two structure types for this purpose, one for Schroedinger and
-one for Dirac. Each would then be sufficiently general and contain all
-the needed pieces with all the right labels.</p>
-<p>Point is: it needn’t be “one abstract type to encompass all” or bust.
-There are natural and viable options between “all” and “none”.</p>
+<p>真正需要的灵活性只有这么多。例如，可以为此定义两种结构类型，一种用于情况A，另一种用于情况B。然后，每一个都将具有足够的通用性，并包含所有需要的部分和正确的标志。</p>
+<p>注意：它不必是“一个包罗万象的抽象类”或空类。在“全部”和“无”之间有自然和可行的选择。</p>
 </section>
 <section id="private-module-variables">
-<h2>Private Module Variables<a class="headerlink" href="#private-module-variables" title="此标题的永久链接">#</a></h2>
-<p>Hide the variable arguments completely by passing in module variables.</p>
-<p>Integrator:</p>
+<h2>私有的模块变量<a class="headerlink" href="#private-module-variables" title="此标题的永久链接">#</a></h2>
+<p>通过传入模块变量来完全隐藏变量参数。</p>
+<p>积分器：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -926,7 +913,7 @@ There are natural and viable options between “all” and “none”.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Usage:</p>
+<p>用法：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">test</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">integrals</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">simpson</span><span class="w"></span>
@@ -954,14 +941,11 @@ There are natural and viable options between “all” and “none”.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>However it is best to avoid such global variables – even though really
-just semi-global – if possible. But sometimes it may be the simplest
-cleanest way. However, with a bit of thought, usually there is a better,
-safer, more explicit way along the lines of II or IV.</p>
+<p>但是，如果可能的话，最好避免这样的全局变量–即使实际上只是半全局变量(semi-global)。虽然有时这可能是最简单最干净的方式，然而，只要沿着II或IV的路线稍加思考，通常会有一个更好、更安全、更明确的方案。</p>
 </section>
 <section id="nested-functions">
-<h2>Nested functions<a class="headerlink" href="#nested-functions" title="此标题的永久链接">#</a></h2>
-<p>Integrator:</p>
+<h2>嵌套函数<a class="headerlink" href="#nested-functions" title="此标题的永久链接">#</a></h2>
+<p>积分器：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -986,7 +970,7 @@ safer, more explicit way along the lines of II or IV.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Usage:</p>
+<p>用法：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"></span>
 <span class="k">use </span><span class="n">integrals</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">simpson</span><span class="w"></span>
 <span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"></span>
@@ -1005,10 +989,9 @@ safer, more explicit way along the lines of II or IV.</p>
 </div>
 </section>
 <section id="using-type-c-ptr-pointer">
-<h2>Using type(c_ptr) Pointer<a class="headerlink" href="#using-type-c-ptr-pointer" title="此标题的永久链接">#</a></h2>
-<p>In C, one would use the <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*</span></code> pointer. In Fortran, one can use
-<code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> for exactly the same purpose.</p>
-<p>Integrator:</p>
+<h2>使用 type(c_ptr) 指针<a class="headerlink" href="#using-type-c-ptr-pointer" title="此标题的永久链接">#</a></h2>
+<p>在C语言中，可以使用<code class="docutils literal notranslate"><span class="pre">void*</span></code>指针。在Fortran中，可以使用<code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code>来达到完全相同的目的。</p>
+<p>积分器：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="kt">c_ptr</span>
@@ -1036,7 +1019,7 @@ safer, more explicit way along the lines of II or IV.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Usage:</p>
+<p>用法：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">test</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">integrals</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">simpson</span><span class="w"></span>
@@ -1072,31 +1055,20 @@ safer, more explicit way along the lines of II or IV.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>As always, with the advantages of such re-casting, as Fortran lets you
-do if you really want to, come also the disadvantages that fewer
-compile- and run-time checks are possible to catch errors; and with
-that, inevitably more leaky, bug-prone code. So one always has to
-balance the costs and benefits.</p>
-<p>Usually, in the context of scientific programming, where the main thrust
-is to represent and solve precise mathematical formulations (as opposed
-to create a GUI with some untold number of buttons, drop-downs, and
-other interface elements), simplest, least bug-prone, and fastest is to
-use one of the previous approaches.</p>
+<p>与以往一样，Fortran允许您在真正需要的情况下使用这种重新转换的优点， 但同时也有一些缺点，即编译和运行时检查可能无法捕获错误。因此，这将不可避免地会有更多的漏洞百出、容易出现bug的代码，所以需要考虑平衡成本和收益。</p>
+<p>通常，在科学计算中，主要目的是表示和求解精确的数学公式（而不是创建一个包含无数按钮、下拉框和其他界面元素的GUI)，所以，最简单、最不容易出错、最快的选择是使用前面的方法之一。</p>
 </section>
 <section id="transfer-intrinsic-function">
-<h2>transfer() Intrinsic Function<a class="headerlink" href="#transfer-intrinsic-function" title="此标题的永久链接">#</a></h2>
-<p>Before Fortran 2003, the only way to do type casting was using the
-<code class="docutils literal notranslate"><span class="pre">transfer</span></code> intrinsic function. It is functionally equivalent to the
-method V, but more verbose and more error prone. It is now obsolete and
-one should use the method V instead.</p>
-<p>Examples:</p>
+<h2>transfer()内置函数<a class="headerlink" href="#transfer-intrinsic-function" title="此标题的永久链接">#</a></h2>
+<p>在Fortran 2003之前，做类型转换的唯一方法是使用<code class="docutils literal notranslate"><span class="pre">transfer</span></code>内置函数。它在功能上与方法V等效，但更冗长，更容易出错。它现在已经过时了，应该使用方法V来代替。</p>
+<p>例子：</p>
 <p><a class="reference external" href="http://jblevins.org/log/transfer">http://jblevins.org/log/transfer</a></p>
 <p><a class="reference external" href="http://jblevins.org/research/generic-list.pdf">http://jblevins.org/research/generic-list.pdf</a></p>
 <p><a class="reference external" href="http://www.macresearch.org/advanced_fortran_90_callbacks_with_the_transfer_function">http://www.macresearch.org/advanced_fortran_90_callbacks_with_the_transfer_function</a></p>
 </section>
 <section id="object-oriented-approach">
-<h2>Object Oriented Approach<a class="headerlink" href="#object-oriented-approach" title="此标题的永久链接">#</a></h2>
-<p>The module:</p>
+<h2>面向对象的策略<a class="headerlink" href="#object-oriented-approach" title="此标题的永久链接">#</a></h2>
+<p>如下模块：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
@@ -1131,12 +1103,8 @@ one should use the method V instead.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The abstract type prescribes exactly what the integration routine needs,
-namely a method to evaluate the function, but imposes nothing else on
-the user. The user extends this type, providing a concrete
-implementation of the eval type bound procedure and adding necessary
-context data as components of the extended type.</p>
-<p>Usage:</p>
+<p>抽象类型准确地规定了集成例程需要什么，即函数求值的方法，但不会对用户强加任何其他东西。 用户扩展此类型，提供 eval 类型绑定过程的具体实现，并添加必要的上下文数据作为扩展类型的成员。</p>
+<p>用法：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">example_usage</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
@@ -1175,14 +1143,13 @@ context data as components of the extended type.</p>
 </div>
 </section>
 <section id="complete-example-of-void-vs-type-c-ptr-and-transfer">
-<h2>Complete Example of void * vs type(c_ptr) and transfer()<a class="headerlink" href="#complete-example-of-void-vs-type-c-ptr-and-transfer" title="此标题的永久链接">#</a></h2>
-<p>Here are three equivalent codes: one in C using <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*</span></code> and two codes
-in Fortran using <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> and <code class="docutils literal notranslate"><span class="pre">transfer()</span></code>:</p>
+<h2>void * vs type(c_ptr) 和 transfer() 的完整示例<a class="headerlink" href="#complete-example-of-void-vs-type-c-ptr-and-transfer" title="此标题的永久链接">#</a></h2>
+<p>这里有三个等价代码：在C中使用<code class="docutils literal notranslate"><span class="pre">void*</span></code>，在Fortran中使用<code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code>和<code class="docutils literal notranslate"><span class="pre">transfer()</span></code>：</p>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Language  </p></th>
-<th class="head"><p>Method</p></th>
-<th class="head"><p>Link</p></th>
+<tr class="row-odd"><th class="head"><p>语言  </p></th>
+<th class="head"><p>方法</p></th>
+<th class="head"><p>链接</p></th>
 </tr>
 </thead>
 <tbody>
@@ -1200,14 +1167,8 @@ in Fortran using <code class="docutils literal notranslate"><span class="pre">ty
 </tr>
 </tbody>
 </table>
-<p>The C code uses the standard C approach for writing extensible libraries
-that accept callbacks and contexts. The two Fortran codes show how to do
-the same. The <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> method is equivalent to the C version and
-that is the approach that should be used.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">transfer()</span></code> method is here for completeness only (before Fortran
-2003, it was the only way) and it is a little cumbersome, because the
-user needs to create auxiliary conversion functions for each of his
-types. As such, the <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> method should be used instead.</p>
+<p>C代码使用标准的C方法来编写接受回调和上下文的可扩展库。两个Fortran代码展示了如何做同样的事情。<code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code>方法与C版本等效，这是应该使用的方法。</p>
+<p>这里的<code class="docutils literal notranslate"><span class="pre">transfer()</span></code>方法只是为了完善对比（在Fortran2003之前，这是唯一的方法），它有点麻烦，因为用户需要为每个类型创建辅助转换函数。因此，推荐使用<code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code>方法代替它。</p>
 </section>
 </section>
 

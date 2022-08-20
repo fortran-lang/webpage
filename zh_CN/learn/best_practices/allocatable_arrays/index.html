@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Allocatable Arrays &#8212; Fortran Programming Language</title>
+    <title>可分配数组 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -44,8 +44,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
-    <link rel="next" title="Arrays" href="../arrays/" />
-    <link rel="prev" title="Fortran Best Practices" href="../" /> 
+    <link rel="next" title="数组" href="../arrays/" />
+    <link rel="prev" title="Fortran最佳实践" href="../" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -304,13 +304,13 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../compilers/">
-  Compilers
+  编译器
  </a>
 </li>
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../community/">
-  Community
+  社区
  </a>
 </li>
 
@@ -322,7 +322,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../news/">
-  News
+  新闻
  </a>
 </li>
 
@@ -421,7 +421,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Fortran最佳实践
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -431,57 +431,57 @@
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Allocatable Arrays
+     可分配数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../callbacks/">
-     Callbacks
+     回调
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../element_operations/">
-     Element-wise Operations on Array
+     数组的逐元操作
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../file_io/">
-     File Input/Output
+     文件输入/输出
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../floating_point/">
-     Floating Point Numbers
+     浮点数
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../integer_division/">
-     Integer Division
+     整数除法
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../modules_programs/">
-     Modules and Programs
+     模块和程序
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../multidim_arrays/">
-     Multidimensional Arrays
+     多维数组
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../style_guide/">
-     Fortran Style Guide
+     Fortran风格指南
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type_casting/">
-     Type Casting in Callbacks
+     回调中的类型转换
     </a>
    </li>
   </ul>
@@ -535,22 +535,22 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/build_tools/">
-     Build tools
+     构建工具
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/compiling_source/">
-     Compiling the source code
+     编译源代码
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/distributing/">
-     Distributing your programs
+     分发您的程序
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/include_files/">
-     Include files and modules
+     包含文件和模块
     </a>
    </li>
    <li class="toctree-l2">
@@ -702,20 +702,14 @@
               
               <article class="bd-article" role="main">
                  <section id="allocatable-arrays">
-<h1>Allocatable Arrays<a class="headerlink" href="#allocatable-arrays" title="此标题的永久链接">#</a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute provides a safe way for memory handling.
-In comparison to variables with <code class="docutils literal notranslate"><span class="pre">pointer</span></code> attribute the memory is managed
-automatically and will be deallocated automatically once the variable goes
-out-of-scope. Using <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> variables removes the possibility to
-create memory leaks in an application.</p>
-<p>They can be used in subroutines to create scratch or work arrays, where
-automatic arrays would become too large to fit on the stack.</p>
+<h1>可分配数组<a class="headerlink" href="#allocatable-arrays" title="此标题的永久链接">#</a></h1>
+<p><code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 属性为内存处理提供了一种安全的方式。与具有 <code class="docutils literal notranslate"><span class="pre">pointer</span></code> 属性的变量相比，内存是自动管理的，一旦变量超出范围，就会自动释放。使用 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 变量消除了在应用程序中创建内存泄漏的可能性。</p>
+<p>当自动数组变得太大而无法放入堆栈时，它们可以在子例程中用于创建临时数组或工作数组。</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">temp</span><span class="p">(:)</span><span class="w"></span>
 <span class="k">allocate</span><span class="p">(</span><span class="n">temp</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The allocation status can be checked using the <code class="docutils literal notranslate"><span class="pre">allocated</span></code> intrinsic
-to avoid uninitialized access</p>
+<p>可以使用 <code class="docutils literal notranslate"><span class="pre">allocated</span></code> 内部函数检查分配状态，以避免未初始化的访问</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span><span class="w"></span>
 
@@ -725,29 +719,24 @@ to avoid uninitialized access</p>
 <span class="k">end subroutine </span><span class="n">show_arr</span><span class="w"></span>
 </pre></div>
 </div>
-<p>To allocate variables inside a procedure the dummy argument has to carry
-the <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute. Using it in combination with <code class="docutils literal notranslate"><span class="pre">intent(out)</span></code>
-will deallocate previous allocations before entering the procedure:</p>
+<p>要在过程中分配变量，虚拟参数必须带有 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 属性。将它与 <code class="docutils literal notranslate"><span class="pre">intent(out)</span></code> 结合使用将在进入程序之前取消分配先前的分配：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">foo</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lam</span><span class="p">(:)</span><span class="w"></span>
 <span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">lam</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="w"></span>
 <span class="k">end subroutine </span><span class="n">foo</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The allocated array can be used afterwards like a normal array</p>
+<p>分配后的数组可以像普通数组一样使用</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lam</span><span class="p">(:)</span><span class="w"></span>
 <span class="k">call </span><span class="n">foo</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>An already allocated array cannot be allocated again without prior deallocation.
-Similarly, deallocation can only be invoked for allocated arrays. To reallocate
-an array use</p>
+<p>如果没有事先释放，则无法再次分配已分配的数组。同样，只能对已分配的数组释放。重新分配数组使用</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">lam</span><span class="p">))</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="w"></span>
 <span class="k">allocate</span><span class="p">(</span><span class="n">lam</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Passing allocated arrays to procedures does not require the <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute
-for the dummy arguments anymore.</p>
+<p>将分配的数组传递给过程不再需要虚拟参数的 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 属性。</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span><span class="w"></span>
 
@@ -767,13 +756,8 @@ for the dummy arguments anymore.</p>
 <span class="k">end subroutine </span><span class="n">proc</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Passing an unallocated array in this context will lead to an invalid memory access.
-Allocatable arrays can be passed to <code class="docutils literal notranslate"><span class="pre">optional</span></code> dummy arguments – if they are unallocated
-the argument will not be present. The <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute is not limited to
-arrays and can also be associated with scalars, which can be useful in combination
-with <code class="docutils literal notranslate"><span class="pre">optional</span></code> dummy arguments.</p>
-<p>Allocations can be moved between different arrays with <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute
-using the <code class="docutils literal notranslate"><span class="pre">move_alloc</span></code> intrinsic subroutine.</p>
+<p>在此上下文中传递未分配的数组将导致无效的内存访问。可分配数组可以传递给 <code class="docutils literal notranslate"><span class="pre">optional</span></code> 虚拟参数——如果它们未分配，则该参数将不存在。 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 属性不仅限于数组，还可以与标量相关联，这可以与 <code class="docutils literal notranslate"><span class="pre">optional</span></code> 虚拟参数结合使用。</p>
+<p>可以使用 <code class="docutils literal notranslate"><span class="pre">move_alloc</span></code> 内在子例程在具有 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 属性的不同数组之间移动分配。</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">resize</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">var</span><span class="p">(:)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
@@ -802,14 +786,12 @@ using the <code class="docutils literal notranslate"><span class="pre">move_allo
 <span class="k">end subroutine </span><span class="n">resize</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Finally, allocations do not initialize the array. The content of the uninitialized
-array is most likely just the bytes of whatever was previously at the respective address.
-The allocation supports initialization using the source attribute:</p>
+<p>最后，分配操作不会初始化数组。未初始化数组的内容很可能只是之前在对应地址的字节。分配操作支持使用 source 属性进行初始化：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span><span class="w"></span>
 <span class="k">allocate</span><span class="p">(</span><span class="n">arr</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">source</span><span class="o">=</span><span class="mf">0.0_dp</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">source</span></code> keyword supports scalar and array valued variables and constants.</p>
+<p><code class="docutils literal notranslate"><span class="pre">source</span></code> 关键字支持标量和数组值变量和常量。</p>
 </section>
 
 <div class="section">
