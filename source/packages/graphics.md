@@ -13,11 +13,17 @@ A rich ecosystem of high-performance code
 {% for j in graphics|sort(attribute='name') %}
 {% if j.github is defined %}
 
-## [{{j.name}}]({{"https://github.com/"+j.github}})
+<p>
 
-{{j.description}}
+## {fab}`github;1em` [{{j.name}}]({{"https://github.com/"+j.github}})
 
-Tags: {{j.tags}}
+{% if j.description is defined %}
+
+<p style="font-size:16px">{{j.description}} </p>
+{% endif %}
+{% if j.tags is defined %}
+<p style="font-size:14px">Tags: {{j.tags}} </p>
+{% endif %}
 
 <img src="{{'https://img.shields.io/github/v/release/'+j.github+'?color=green'}}" alt="Release">
 <img src="{{'https://img.shields.io/github/license/'+j.github}}" alt="license">
@@ -25,25 +31,39 @@ Tags: {{j.tags}}
 <img src="{{'https://img.shields.io/github/forks/'+j.github}}" alt="forks">
 <img src="{{'https://img.shields.io/github/last-commit/'+j.github+'?color=blue'}}" alt="last-commit">
 <img src="{{'https://img.shields.io/github/issues/'+j.github+'?color=yellow'}}" alt="issues">
-
+</p>
 {% elif j.gitlab is defined%}
+<p>
 
-## [{{j.name}}]({{"https://gitlab.com/"+j.gitlab}})
+## {fab}`gitlab;1em` [{{j.name}}]({{"https://gitlab.com/"+j.gitlab}})
 
-{{j.description}}
+{% if j.description is defined %}
 
-Tags: {{j.tags}}
+<p style="font-size:16px">{{j.description}} </p>
+{% endif %}
+{% if j.tags is defined %}
+<p style="font-size:14px">Tags: {{j.tags}} </p>
+{% endif %}
 
 <img src="{{'https://img.shields.io/gitlab/v/release/'+j.gitlab+'?date_order_by=created_at&sort=date&color=green'}}" alt="Release">
 <img src="{{'https://img.shields.io/gitlab/license/'+j.gitlab}}" alt="license">
 <img src="{{'https://img.shields.io/gitlab/forks/'+j.gitlab}}" alt="forks">
 <img src="{{'https://img.shields.io/gitlab/issues/all/'+j.gitlab+'?color=yellow'}}" alt="issues">
+</p>
 {% else %}
-## [{{j.name}}]({{j.url}})
+<p>
 
-{{j.description}}
+## {fab}`git-alt;1em` [{{j.name}}]({{j.url}})
 
-Tags: {{j.tags}}
+{% if j.description is defined %}
+
+<p style="font-size:16px">{{j.description}} </p>
+{% endif %}
+{% if j.tags is defined %}
+<p style="font-size:14px">Tags: {{j.tags}} </p>
+{% endif %}
+</p>
+
 {% endif %}
 
 {% endfor %}

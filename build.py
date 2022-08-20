@@ -130,7 +130,7 @@ if __name__ == "__main__":
     build_all(all_redirects, sys.argv[1:] if len(sys.argv) > 1 else all_languages)
 
     print()
-    print("Preview the documentation using")
+    print("Preview the fortran-lang.org site using")
     print()
     print(f'    python3 -m http.server -d "{outdir}"')
     print()
