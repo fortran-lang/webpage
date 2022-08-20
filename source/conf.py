@@ -127,12 +127,12 @@ html_theme_options = {
     "show_toc_level": 0,
     "footer_items": ["copyright"],
     "navbar_align": "right",
-    "navbar_start": ["navbar-logo","theme-switcher.html","version-switcher"],
+    "navbar_start": ["navbar-logo", "theme-switcher.html", "version-switcher"],
     "switcher": {
         "version_match": language,
     },
     "page_sidebar_items": ["inpage_toc.html"],
-    "navbar_end": ["navbar-icon-links",  "search-field.html"],
+    "navbar_end": ["navbar-icon-links", "search-field.html"],
     "search_bar_text": "Search",
     "icon_links": [
         {

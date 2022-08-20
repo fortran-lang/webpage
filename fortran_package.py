@@ -84,9 +84,9 @@ conf["reference_books"] = conf["reference-books"]
 conf["reference_courses"] = conf["reference-courses"]
 conf["reference_links"] = conf["reference-links"]
 
-with open(root / "_data" / "fortran_package.json", "w") as f:
+with open(root / "data" / "fortran_package.json", "w") as f:
     json.dump(fortran_tags, f)
-with open(root / "_data" / "fortran_learn.json", "w") as f:
+with open(root / "data" / "fortran_learn.json", "w") as f:
     json.dump(conf, f)
 
 fortran_monthly = []
@@ -126,5 +126,5 @@ contributor = list(set(contributor))
 contributor.sort()
 contributor_repo["contributor"] = contributor
 
-with open(root / "_data" / "contributor.json", "w") as f:
+with open(root / "data" / "contributor.json", "w") as f:
     json.dump(contributor_repo, f)
