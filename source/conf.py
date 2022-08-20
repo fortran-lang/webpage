@@ -127,7 +127,7 @@ html_theme_options = {
     "show_toc_level": 0,
     "footer_items": ["copyright"],
     "navbar_align": "right",
-    "navbar_start": ["navbar-logo", "theme-switcher.html", "version-switcher"],
+    "navbar_start": ["navbar-logo","theme-switcher.html","version-switcher"],
     "switcher": {
         "version_match": language,
     },
