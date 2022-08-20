@@ -132,7 +132,7 @@ html_theme_options = {
         "version_match": language,
     },
     "page_sidebar_items": ["inpage_toc.html"],
-    "navbar_end": ["navbar-icon-links", "search-field.html"],
+    "navbar_end": ["navbar-icon-links",  "search-field.html"],
     "search_bar_text": "Search",
     "icon_links": [
         {
