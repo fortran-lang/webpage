@@ -1,45 +1,48 @@
 ## lbound
-### __Name__
 
-__lbound__(3) - \[ARRAY INQUIRY\] Lower dimension bounds of an array
+### **Name**
 
-### __Syntax__
+**lbound**(3) - \[ARRAY INQUIRY\] Lower dimension bounds of an array
+
+### **Syntax**
+
 ```fortran
 result = lbound(array, dim, kind)
 
    TYPE(kind=KIND) elemental function lbound(array,dim,kind)
-   TYPE(kind=KIND),intent(in)  :: array 
+   TYPE(kind=KIND),intent(in)  :: array
    integer,optional,intent(in) :: dim
    integer,optional,intent(in) :: kind
 ```
-### __Description__
+
+### **Description**
 
 Returns the lower bounds of an array, or a single lower bound along the
-__dim__ dimension.
+**dim** dimension.
 
-### __Arguments__
+### **Arguments**
 
-  - __array__
-    : Shall be an array, of any type.
+- **array**
+  : Shall be an array, of any type.
 
-  - __dim__
-    : Shall be a scalar _integer_.
+- **dim**
+  : Shall be a scalar _integer_.
 
-  - __kind__
-    : An _integer_ initialization expression indicating the kind
-    parameter of the result.
+- **kind**
+  : An _integer_ initialization expression indicating the kind
+  parameter of the result.
 
-### __Returns__
+### **Returns**
 
-The return value is of type _integer_ and of kind __kind__. If __kind__ is absent,
-the return value is of default integer kind. If __dim__ is absent, the
-result is an array of the lower bounds of __array__. If __dim__ is present, the
+The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
+the return value is of default integer kind. If **dim** is absent, the
+result is an array of the lower bounds of **array**. If **dim** is present, the
 result is a scalar corresponding to the lower bound of the array along
-that dimension. If __array__ is an expression rather than a whole array or
+that dimension. If **array** is an expression rather than a whole array or
 array structure component, or if it has a zero extent along the relevant
 dimension, the lower bound is taken to be 1.
 
-### __Examples__
+### **Examples**
 
 Note that in my opinion this function should not be used on assumed-size
 arrays or in any function without an explicit interface. Errors can
@@ -95,6 +98,7 @@ end
 
 !end program demo_lbound
 ```
+
 Results:
 
 ```
@@ -104,13 +108,13 @@ Results:
    ESUB: LOWER=           1 UPPER=          21 SIZE=          21
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 95 and later, with KIND argument - Fortran 2003 and later
 
-### __See Also__
+### **See Also**
 
-[__ubound__(3)](UBOUND),
-[__co\_lbound__(3)](CO_LBOUND)
+[**ubound**(3)](UBOUND),
+[**co_lbound**(3)](CO_LBOUND)
 
 ####### fortran-lang intrinsic descriptions

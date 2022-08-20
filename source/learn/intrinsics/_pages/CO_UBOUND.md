@@ -1,46 +1,48 @@
-## co\_ubound
-### __Name__
+## co_ubound
 
-__co\_ubound__(3) - \[COLLECTIVE\] Upper codimension bounds of an array
+### **Name**
 
+**co_ubound**(3) - \[COLLECTIVE\] Upper codimension bounds of an array
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = co_ubound(coarray, dim, kind)
 ```
-### __Description__
+
+### **Description**
 
 Returns the upper cobounds of a coarray, or a single upper cobound along
-the __dim__ codimension.
+the **dim** codimension.
 
-### __Arguments__
+### **Arguments**
 
-  - __array__
-    : Shall be an coarray, of any type.
+- **array**
+  : Shall be an coarray, of any type.
 
-  - __dim__
-    : (Optional) Shall be a scalar _integer_.
+- **dim**
+  : (Optional) Shall be a scalar _integer_.
 
-  - __kind__
-    : (Optional) An _integer_ initialization expression indicating the kind
-    parameter of the result.
+- **kind**
+  : (Optional) An _integer_ initialization expression indicating the kind
+  parameter of the result.
 
-### __Returns__
+### **Returns**
 
-The return value is of type _integer_ and of kind __kind__. If __kind__ is absent,
-the return value is of default integer kind. If __dim__ is absent, the
-result is an array of the lower cobounds of __coarray__. If __dim__ is present,
+The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
+the return value is of default integer kind. If **dim** is absent, the
+result is an array of the lower cobounds of **coarray**. If **dim** is present,
 the result is a scalar corresponding to the lower cobound of the array
 along that codimension.
 
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__co\_lbound__(3)](CO_LBOUND),
-[__lbound__(3)](LBOUND),
-[__ubound__(3)](UBOUND)
+[**co_lbound**(3)](CO_LBOUND),
+[**lbound**(3)](LBOUND),
+[**ubound**(3)](UBOUND)
 
 ####### fortran-lang intrinsic descriptions

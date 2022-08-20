@@ -1,2 +1,1 @@
-News - The Fortran Programming Language
---------------------------------------
+## News

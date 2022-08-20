@@ -1,10 +1,11 @@
 ## aint
-### __Name__
 
-__aint__(3) - \[NUMERIC\] Truncate to a whole number
+### **Name**
 
+**aint**(3) - \[NUMERIC\] Truncate to a whole number
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = aint(x)
 
@@ -12,7 +13,9 @@ result = aint(x)
 
    real(kind=kind(x)),intent(in) :: x
 ```
+
 or
+
 ```fortran
 result = aint(x, KIND)
 
@@ -21,29 +24,30 @@ result = aint(x, KIND)
    integer,intent(in),optional   :: KIND
    real(kind=kind(x)),intent(in) :: x
 ```
-### __Description__
 
-__aint(x, kind)__ truncates its argument to a whole number.
+### **Description**
 
-### __Arguments__
+**aint(x, kind)** truncates its argument to a whole number.
 
-  - __x__
-    : the type of the argument shall be _real_.
+### **Arguments**
 
-  - __kind__
-    : (optional) an _integer_ initialization expression indicating the
-    kind parameter of the result.
+- **x**
+  : the type of the argument shall be _real_.
 
-### __Returns__
+- **kind**
+  : (optional) an _integer_ initialization expression indicating the
+  kind parameter of the result.
+
+### **Returns**
 
 The return value is of type _real_ with the kind type parameter of
-the argument if the optional __kind__ is absent; otherwise, the kind
-type parameter will be given by __kind__. If the magnitude of __x__
-is less than one, __aint(x)__ returns zero. If the magnitude is equal
+the argument if the optional **kind** is absent; otherwise, the kind
+type parameter will be given by **kind**. If the magnitude of **x**
+is less than one, **aint(x)** returns zero. If the magnitude is equal
 to or greater than one then it returns the largest whole number that
-does not exceed its magnitude. The sign is the same as the sign of __x__.
+does not exceed its magnitude. The sign is the same as the sign of **x**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -66,26 +70,29 @@ real(kind=real64) :: x8
 
 end program demo_aint
 ```
-  Results:
+
+Results:
+
 ```text
-     4.00000000       4.0000000000000000     
-   
+     4.00000000       4.0000000000000000
+
     -2.00000000      -2.00000000      -2.00000000      -2.00000000
     -1.00000000      -1.00000000      -0.00000000       0.00000000
      0.00000000       1.00000000       1.00000000       2.00000000
      2.00000000       2.00000000       2.00000000
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later
 
-### __See Also__
+### **See Also**
 
-[__anint__(3)](ANINT),
-[__int__(3)](INT),
-[__nint__(3)](NINT),
-[__selected_int_kind__(3)](SELECTED_INT_KIND),
-[__ceiling__(3)](CEILING),
-[__floor__(3)](FLOOR)
+[**anint**(3)](ANINT),
+[**int**(3)](INT),
+[**nint**(3)](NINT),
+[**selected_int_kind**(3)](SELECTED_INT_KIND),
+[**ceiling**(3)](CEILING),
+[**floor**(3)](FLOOR)
 
 ####### fortran-lang intrinsic descriptions

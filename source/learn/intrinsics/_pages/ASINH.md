@@ -1,35 +1,37 @@
 ## asinh
-### __Name__
 
-__asinh__(3) - \[MATHEMATICS:TRIGONOMETRIC\] Inverse hyperbolic sine function
+### **Name**
 
+**asinh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Inverse hyperbolic sine function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = asinh(x)
 
     elemental TYPE(kind=KIND) function asinh(x)
     TYPE(kind=KIND) :: x
 ```
-Where the returned value has the kind of the input value 
+
+Where the returned value has the kind of the input value
 and TYPE may be _real_ or _complex_
 
-### __Description__
+### **Description**
 
-__asinh(x)__ computes the inverse hyperbolic sine of __x__.
+**asinh(x)** computes the inverse hyperbolic sine of **x**.
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : The type shall be _real_ or _complex_.
+- **x**
+  : The type shall be _real_ or _complex_.
 
-### __Returns__
+### **Returns**
 
-The return value is of the same type and kind as __x__. If __x__ is _complex_, the
-imaginary part of the result is in radians and lies between 
-__-PI/2 \<= aimag(asinh(x)) \<= PI/2__.
+The return value is of the same type and kind as **x**. If **x** is _complex_, the
+imaginary part of the result is in radians and lies between
+**-PI/2 \<= aimag(asinh(x)) \<= PI/2**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -43,18 +45,21 @@ real(kind=dp), dimension(3) :: x = [ -1.0d0, 0.0d0, 1.0d0 ]
 
 end program demo_asinh
 ```
-  Results:
+
+Results:
+
 ```text
-  -0.88137358701954305  0.0000000000000000  0.88137358701954305     
+  -0.88137358701954305  0.0000000000000000  0.88137358701954305
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
+
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-Inverse function: [__sinh__(3)](SINH)
+Inverse function: [**sinh**(3)](SINH)
 
 ####### fortran-lang intrinsic descriptions

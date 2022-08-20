@@ -1,36 +1,38 @@
-## is\_iostat\_end
-### __Name__
+## is_iostat_end
 
-__is\_iostat\_end__(3) - \[STATE\] Test for end-of-file value
+### **Name**
 
+**is_iostat_end**(3) - \[STATE\] Test for end-of-file value
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 function is_iostat_end(i)
 
     logical function   :: is_iostat_end (i) result(yesno)
     integer,intent(in) :: i
 ```
-### __Description__
 
-is\_iostat\_end(3) tests whether a variable (assumed returned as a status
-from an I/O statement) has the "end of file" I/O status value. 
+### **Description**
+
+is_iostat_end(3) tests whether a variable (assumed returned as a status
+from an I/O statement) has the "end of file" I/O status value.
 
 The function is equivalent to comparing the variable with the
-__iostat\_end__ parameter of the intrinsic module __iso\_fortran\_env__.
+**iostat_end** parameter of the intrinsic module **iso_fortran_env**.
 
-### __Arguments__
+### **Arguments**
 
-  - __i__
-    : An _integer_ status value to test if indicating end of file.
+- **i**
+  : An _integer_ status value to test if indicating end of file.
 
-### __Returns__
+### **Returns**
 
-Returns a _logical_ of the default kind, __.true.__ if __i__ has the value
-which indicates an end of file condition for __iostat=__ specifiers, and is
-__.false.__ otherwise.
+Returns a _logical_ of the default kind, **.true.** if **i** has the value
+which indicates an end of file condition for **iostat=** specifiers, and is
+**.false.** otherwise.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -55,7 +57,7 @@ character(len=256) :: message
 end program demo_iostat
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2003 and later
 

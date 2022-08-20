@@ -1,46 +1,48 @@
-## this\_image
-### __Name__
+## this_image
 
-__this\_image__(3) - \[COLLECTIVE\] Cosubscript index of this image
+### **Name**
 
+**this_image**(3) - \[COLLECTIVE\] Cosubscript index of this image
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = this_image() result = this_image(distance) &
          & result = this_image(coarray, dim)
 ```
-### __Description__
+
+### **Description**
 
 Returns the cosubscript for this image.
 
-### __Arguments__
+### **Arguments**
 
-  - __distance__
-    : (optional, __intent(in)__) Nonnegative scalar integer (not permitted
-    together with __coarray__).
+- **distance**
+  : (optional, **intent(in)**) Nonnegative scalar integer (not permitted
+  together with **coarray**).
 
-  - __coarray__
-    : Coarray of any type (optional; if __dim__ present, required).
+- **coarray**
+  : Coarray of any type (optional; if **dim** present, required).
 
-  - __dim__
-    : default integer scalar (optional). If present, __dim__ shall be between
-    one and the corank of __coarray__.
+- **dim**
+  : default integer scalar (optional). If present, **dim** shall be between
+  one and the corank of **coarray**.
 
-### __Returns__
+### **Returns**
 
-Default integer. If __coarray__ is not present, it is scalar; if __distance__ is
-not present or has value __0__, its value is the image index on the invoking
+Default integer. If **coarray** is not present, it is scalar; if **distance** is
+not present or has value **0**, its value is the image index on the invoking
 image for the current team, for values smaller or equal distance to the
 initial team, it returns the image index on the ancestor team which has
-a distance of __distance__ from the invoking team. If __distance__ is larger
+a distance of **distance** from the invoking team. If **distance** is larger
 than the distance to the initial team, the image index of the initial
-team is returned. Otherwise when the __coarray__ is present, if __dim__ is not
+team is returned. Otherwise when the **coarray** is present, if **dim** is not
 present, a rank-1 array with corank elements is returned, containing the
-cosubscripts for __coarray__ specifying the invoking image. If __dim__ is
-present, a scalar is returned, with the value of the __dim__ element of
-__this\_image(coarray)__.
+cosubscripts for **coarray** specifying the invoking image. If **dim** is
+present, a scalar is returned, with the value of the **dim** element of
+**this_image(coarray)**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -58,14 +60,18 @@ integer :: i
    endif
 end program demo_this_image
 ```
-  Results:
+
+Results:
+
 ```text
    value[1] is 1
 ```
+
 !
 ! Check whether the current image is the initial image
 if (this_image(huge(1)) /= this_image())
 error stop "something is rotten here"
+
 ```
 
 ### __Standard__
@@ -79,3 +85,4 @@ or later
 [__image\_index__(3)](IMAGE_INDEX)
 
 ####### fortran-lang intrinsic descriptions
+```

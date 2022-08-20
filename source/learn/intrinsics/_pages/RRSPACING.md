@@ -1,49 +1,50 @@
 ## rrspacing
-### __Name__
 
-__rrspacing__(3) - \[MODEL\_COMPONENTS\] Reciprocal of the relative spacing
+### **Name**
 
+**rrspacing**(3) - \[MODEL_COMPONENTS\] Reciprocal of the relative spacing
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = rrspacing(x)
 ```
-### __Description__
 
-__rrspacing(x)__ returns the reciprocal of the relative spacing of model
-numbers near __x__.
+### **Description**
 
-### __Arguments__
+**rrspacing(x)** returns the reciprocal of the relative spacing of model
+numbers near **x**.
 
-  - __x__
-    : Shall be of type _real_.
+### **Arguments**
 
-### __Returns__
+- **x**
+  : Shall be of type _real_.
 
-The return value is of the same type and kind as __x__. The value returned
-is equal to __abs(fraction(x)) \* float(radix(x))\*\*digits(x)__.
+### **Returns**
 
-### __Standard__
+The return value is of the same type and kind as **x**. The value returned
+is equal to **abs(fraction(x)) \* float(radix(x))\*\*digits(x)**.
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__digits__(3)](DIGITS),
-[__epsilon__(3)](EPSILON),
-[__exponent__(3)](EXPONENT),
-[__fraction__(3)](FRACTION),
-[__huge__(3)](HUGE),
-[__maxexponent__(3)](MAXEXPONENT),
-[__minexponent__(3)](MINEXPONENT),
-[__nearest__(3)](NEAREST),
-[__precision__(3)](PRECISION),
-[__radix__(3)](RADIX),
-[__range__(3)](RANGE),
-[__scale__(3)](SCALE),
-[__set\_exponent__(3)](SET_EXPONENT),
-[__spacing__(3)](SPACING),
-[__tiny__(3)](TINY)
-
+[**digits**(3)](DIGITS),
+[**epsilon**(3)](EPSILON),
+[**exponent**(3)](EXPONENT),
+[**fraction**(3)](FRACTION),
+[**huge**(3)](HUGE),
+[**maxexponent**(3)](MAXEXPONENT),
+[**minexponent**(3)](MINEXPONENT),
+[**nearest**(3)](NEAREST),
+[**precision**(3)](PRECISION),
+[**radix**(3)](RADIX),
+[**range**(3)](RANGE),
+[**scale**(3)](SCALE),
+[**set_exponent**(3)](SET_EXPONENT),
+[**spacing**(3)](SPACING),
+[**tiny**(3)](TINY)
 
 ####### fortran-lang intrinsic descriptions

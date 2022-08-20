@@ -1,40 +1,43 @@
 ## asin
-### __Name__
 
-__asin__(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arcsine function
+### **Name**
 
-### __Syntax__
+**asin**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arcsine function
+
+### **Syntax**
+
 ```fortran
 result = asin(x)
 
     elemental TYPE(kind=KIND) function asin(x)
     TYPE(kind=KIND) :: x
 ```
-where the returned value has the kind of the input value 
+
+where the returned value has the kind of the input value
 and TYPE may be _real_ or _complex_
 
-### __Description__
+### **Description**
 
-__asin(x)__ computes the arcsine of its argument __x__.
+**asin(x)** computes the arcsine of its argument **x**.
 
 The arcsine is the inverse function of the sine function. It is commonly
 used in trigonometry when trying to find the angle when the lengths of
 the hypotenuse and the opposite side of a right triangle are known.
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : The type shall be either _real_ and a magnitude that is less than or
-    equal to one; or be _complex_.
+- **x**
+  : The type shall be either _real_ and a magnitude that is less than or
+  equal to one; or be _complex_.
 
-### __Returns__
+### **Returns**
 
-  - __result__
-    : The return value is of the same type and kind as __x__. The real part of
-    the result is in radians and lies in the range __-PI/2 \<=
-    asin(x) \<= PI/2__.
+- **result**
+  : The return value is of the same type and kind as **x**. The real part of
+  the result is in radians and lies in the range **-PI/2 \<=
+  asin(x) \<= PI/2**.
 
-### __Examples__
+### **Examples**
 
 The arcsine will allow you to find the measure of a right angle when you
 know the ratio of the side opposite the angle to the hypotenuse.
@@ -68,11 +71,13 @@ end program demo_asin
 ```
 
 Results:
+
 ```
     angle of incline(radians) =    2.5002604899361139E-002
     angle of incline(degrees) =    1.4325437375665075
     percent grade=   2.5000000000000000
 ```
+
 The percentage grade is the slope, written as a percent. To calculate
 the slope you divide the rise by the run. In the example the rise is
 1.25 mile over a run of 50 miles so the slope is 1.25/50 = 0.025.
@@ -84,14 +89,14 @@ the US this was the maximum grade on the first major US railroad, the
 Baltimore and Ohio. Note curves increase the frictional drag on a
 train reducing the allowable grade.
 
-### __Standard__
+### **Standard**
 
 FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
-### __See Also__
+### **See Also**
 
- - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
-Inverse function: [__sin__(3)](SIN)
+Inverse function: [**sin**(3)](SIN)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

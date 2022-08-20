@@ -1,52 +1,55 @@
 ## pack
-### __Name__
 
-__pack__(3) - \[ARRAY CONSTRUCTION\] Pack an array into an array of rank one
+### **Name**
 
-### __Syntax__
+**pack**(3) - \[ARRAY CONSTRUCTION\] Pack an array into an array of rank one
+
+### **Syntax**
+
 ```fortran
 result = pack(array, mask,vector)
 
    TYPE(kind=KIND) function pack(array,mask,vector)
    TYPE(kind=KIND),option(in) :: array(*)
-   logical  :: mask(*) 
+   logical  :: mask(*)
    TYPE(kind=KIND),option(in),optional :: vector(*)
 ```
-   where TYPE(kind=KIND) may be any type, where __array__ and __vector__
-   and the returned value must by of the same type. __mask__ may be a
-   scalar as well an an array.
 
-### __Description__
+where TYPE(kind=KIND) may be any type, where **array** and **vector**
+and the returned value must by of the same type. **mask** may be a
+scalar as well an an array.
+
+### **Description**
 
 Stores the elements of ARRAY in an array of rank one.
 
-The beginning of the resulting array is made up of elements whose __mask__
-equals __.true.__. Afterwards, positions are filled with elements taken from
-__vector__.
+The beginning of the resulting array is made up of elements whose **mask**
+equals **.true.**. Afterwards, positions are filled with elements taken from
+**vector**.
 
-### __Arguments__
+### **Arguments**
 
-  - __array__
-    : Shall be an array of any type.
+- **array**
+  : Shall be an array of any type.
 
-  - __mask__
-    : Shall be an array of type _logical_ and of the same size as __array__.
-    Alternatively, it may be a _logical_ scalar.
+- **mask**
+  : Shall be an array of type _logical_ and of the same size as **array**.
+  Alternatively, it may be a _logical_ scalar.
 
-  - __vector__
-    : (Optional) shall be an array of the same type as __array__ and of rank
-    one. If present, the number of elements in __vector__ shall be equal to
-    or greater than the number of true elements in __mask__. If __mask__ is
-    scalar, the number of elements in __vector__ shall be equal to or
-    greater than the number of elements in __array__.
+- **vector**
+  : (Optional) shall be an array of the same type as **array** and of rank
+  one. If present, the number of elements in **vector** shall be equal to
+  or greater than the number of true elements in **mask**. If **mask** is
+  scalar, the number of elements in **vector** shall be equal to or
+  greater than the number of elements in **array**.
 
-### __Returns__
+### **Returns**
 
-The result is an array of rank one and the same type as that of __array__.
-If __vector__ is present, the result size is that of __vector__, the number of
-__.true.__ values in __mask__ otherwise.
+The result is an array of rank one and the same type as that of **array**.
+If **vector** is present, the result size is that of **vector**, the number of
+**.true.** values in **mask** otherwise.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -89,23 +92,25 @@ end subroutine test3
 !
 end program demo_pack
 ```
-  Results:
+
+Results:
+
 ```text
-   1 5 
-   1 2 3 4 
-   bat        cat        
+   1 5
+   1 2 3 4
+   bat        cat
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__unpack__(3)](UNPACK),
-[__merge__(3)](MERGE),
-[__pack__(3)](PACK),
-[__spread__(3)](SPREAD),
-[__unpack__(3)](UNPACK)   
+[**unpack**(3)](UNPACK),
+[**merge**(3)](MERGE),
+[**pack**(3)](PACK),
+[**spread**(3)](SPREAD),
+[**unpack**(3)](UNPACK)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

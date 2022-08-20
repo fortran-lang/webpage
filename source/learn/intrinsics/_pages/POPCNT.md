@@ -1,28 +1,30 @@
 ## popcnt
-### __Name__
 
-__popcnt__(3) - \[BIT:COUNT\] Number of bits set
+### **Name**
 
+**popcnt**(3) - \[BIT:COUNT\] Number of bits set
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = popcnt(i)
 ```
-### __Description__
+
+### **Description**
 
 Returns the number of bits set in the binary representation of an
 _integer_.
 
-### __Arguments__
+### **Arguments**
 
-  - __i__
-    : Shall be of type _integer_.
+- **i**
+  : Shall be of type _integer_.
 
-### __Returns__
+### **Returns**
 
 The return value is of type _integer_ and of the default integer kind.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -39,7 +41,9 @@ implicit none
      print *, popcnt(huge(0_int64)), poppar(huge(0_int64))
 end program demo_popcnt
 ```
+
 Results:
+
 ```text
         7           1
        31           1
@@ -48,14 +52,15 @@ Results:
        31           1
        63           1
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__poppar__(3)](POPPAR),
-[__leadz__(3)](LEADZ),
-[__trailz__(3)](TRAILZ)
+[**poppar**(3)](POPPAR),
+[**leadz**(3)](LEADZ),
+[**trailz**(3)](TRAILZ)
 
 ####### fortran-lang intrinsic descriptions

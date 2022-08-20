@@ -1,10 +1,11 @@
 ## parity
-### __Name__
 
-__parity__(3) - \[TRANSFORMATIONAL\] Reduction with exclusive __OR__()
+### **Name**
 
+**parity**(3) - \[TRANSFORMATIONAL\] Reduction with exclusive **OR**()
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = parity(mask, dim)
 
@@ -13,8 +14,10 @@ result = parity(mask, dim)
     type(logical(kind=LKIND)),intent(in)         :: mask(..)
     type(integer(kind=KIND)),intent(in),optional :: dim
 ```
+
 where KIND and LKIND are any supported kind for the type.
-```
+
+````
 ### __Description__
 
 Calculates the parity (i.e. the reduction using .xor.) of __mask__ along
@@ -48,14 +51,17 @@ Sample program:
 program demo_parity
 implicit none
 logical :: x(2) = [ .true., .false. ]
-   print *, parity(x) 
+   print *, parity(x)
 end program demo_parity
-```
-  Results:
+````
+
+Results:
+
 ```text
     T
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2008 and later
 

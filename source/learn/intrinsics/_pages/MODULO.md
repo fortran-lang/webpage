@@ -1,40 +1,42 @@
 ## modulo
-### __Name__
 
-__modulo__(3) - \[NUMERIC\] Modulo function
+### **Name**
 
+**modulo**(3) - \[NUMERIC\] Modulo function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = modulo(a, p)
 ```
-### __Description__
 
-__modulo(a,p)__ computes the __a__ modulo __p__.
+### **Description**
 
-### __Arguments__
+**modulo(a,p)** computes the **a** modulo **p**.
 
-  - __a__
-    : Shall be a scalar of type _integer_ or _real_.
+### **Arguments**
 
-  - __p__
-    : Shall be a scalar of the same type and kind as __a__. It shall not be
-      zero.
+- **a**
+  : Shall be a scalar of type _integer_ or _real_.
 
-### __Returns__
+- **p**
+  : Shall be a scalar of the same type and kind as **a**. It shall not be
+  zero.
+
+### **Returns**
 
 The type and kind of the result are those of the arguments.
 
-  - If __a__ and __p__ are of type _integer_: __modulo(a,p)__ has the value of 
-    __a - floor (real(a) / real(p)) \* p__.
+- If **a** and **p** are of type _integer_: **modulo(a,p)** has the value of
+  **a - floor (real(a) / real(p)) \* p**.
 
-  - If __a__ and __p__ are of type _real_: __modulo(a,p)__ has the value of 
-    __a - floor (a / p) \* p__.
+- If **a** and **p** are of type _real_: **modulo(a,p)** has the value of
+  **a - floor (a / p) \* p**.
 
-The returned value has the same sign as __p__ and a magnitude less than the
-magnitude of __p__.
+The returned value has the same sign as **p** and a magnitude less than the
+magnitude of **p**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -51,21 +53,24 @@ implicit none
      print *, modulo(17.5,-5.5)   ! yields -4.5
 end program demo_modulo
 ```
-  Results:
+
+Results:
+
 ```text
               2
-      1.00000000    
+      1.00000000
               1
-      4.50000000    
+      4.50000000
              -1
-     -4.50000000    
+     -4.50000000
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__mod__(3)](MOD)
+[**mod**(3)](MOD)
 
 ####### fortran-lang intrinsic descriptions

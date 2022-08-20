@@ -1,28 +1,30 @@
-## bessel\_y0
-### __Name__
+## bessel_y0
 
-__bessel\_y0__(3) - \[MATHEMATICS\] Bessel function of the second kind of order 0
+### **Name**
 
+**bessel_y0**(3) - \[MATHEMATICS\] Bessel function of the second kind of order 0
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
     result = bessel_y0(x)
 ```
-### __Description__
 
-__bessel\_y0(x)__ computes the Bessel function of the second
-kind of order 0 of __x__.
+### **Description**
 
-### __Arguments__
+**bessel_y0(x)** computes the Bessel function of the second
+kind of order 0 of **x**.
 
-  - __x__
-    : The type shall be _real_.
+### **Arguments**
 
-### __Returns__
+- **x**
+  : The type shall be _real_.
 
-The return value is of type _real_. It has the same kind as __x__.
+### **Returns**
 
-### __Examples__
+The return value is of type _real_. It has the same kind as **x**.
+
+### **Examples**
 
 Sample program:
 
@@ -36,21 +38,23 @@ implicit none
   write(*,*)x
 end program demo_besy0
 ```
-  Results:
+
+Results:
+
 ```text
                     -Infinity
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__bessel\_j0__(3)](BESSEL_J0),
-[__bessel\_j1__(3)](BESSEL_J1),
-[__bessel\_jn__(3)](BESSEL_JN), 
-[__bessel\_y1__(3)](BESSEL_Y1), 
-[__bessel\_yn__(3)](BESSEL_YN)
+[**bessel_j0**(3)](BESSEL_J0),
+[**bessel_j1**(3)](BESSEL_J1),
+[**bessel_jn**(3)](BESSEL_JN),
+[**bessel_y1**(3)](BESSEL_Y1),
+[**bessel_yn**(3)](BESSEL_YN)
 
 ####### fortran-lang intrinsic descriptions

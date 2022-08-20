@@ -1,40 +1,45 @@
 ## maskl
-### __Name__
 
-__maskl__(3) - \[BIT:SET\] Generates a left justified mask
+### **Name**
 
-### __Syntax__
+**maskl**(3) - \[BIT:SET\] Generates a left justified mask
+
+### **Syntax**
+
 ```fortran
 result = maskl(i, kind)
 
   integer elemental function maskl(i,kind)
   integer,intent(in),optional :: kind
 ```
-### __Description__
 
-__maskl(i\[, *kind*\])__ has its leftmost __i__ bits set to __1__, and the
-remaining bits set to __0__.
+### **Description**
 
-### __Arguments__
+**maskl(i\[, _kind_\])** has its leftmost **i** bits set to **1**, and the
+remaining bits set to **0**.
 
-  - __i__
-    : Shall be of type _integer_.
-      Its value must be non-negative, and less than or equal to the
-      number of bits for the kind of the result.
+### **Arguments**
 
-  - __kind__
-    : Shall be a scalar constant expression of type _integer_.
+- **i**
+  : Shall be of type _integer_.
+  Its value must be non-negative, and less than or equal to the
+  number of bits for the kind of the result.
 
-### __Returns__
+- **kind**
+  : Shall be a scalar constant expression of type _integer_.
 
-The return value is of type _integer_. If __kind__ is present, it specifies
+### **Returns**
+
+The return value is of type _integer_. If **kind** is present, it specifies
 the kind value of the return type; otherwise, it is of the default
 integer kind.
 
-The leftmost __i__ bits are set to 1 and the other bits are set to 0.
+The leftmost **i** bits are set to 1 and the other bits are set to 0.
 
-### __Examples__
+### **Examples**
+
 Sample program:
+
 ```fortran
 program demo_maskl
 implicit none
@@ -45,7 +50,9 @@ integer :: i
    write(*,'(*(i11,1x,b0,1x,/))') maskl([(i,i,i=1,bit_size(0))])
 end program demo_maskl
 ```
-  Results:
+
+Results:
+
 ```text
 -2147483648 10000000000000000000000000000000
 
@@ -83,12 +90,13 @@ end program demo_maskl
          -2 11111111111111111111111111111110
          -1 11111111111111111111111111111111
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__maskr__(3)](MASKR)
+[**maskr**(3)](MASKR)
 
 ####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

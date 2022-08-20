@@ -1,10 +1,11 @@
 ## logical
-### __Name__
 
-__logical__(3) - \[TYPE:LOGICAL\] Converts one kind of _logical_ variable to another
+### **Name**
 
+**logical**(3) - \[TYPE:LOGICAL\] Converts one kind of _logical_ variable to another
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = logical(l, kind)
 
@@ -12,27 +13,28 @@ result = logical(l, kind)
   logical(kind=INK),intent(in) :: L
   integer,intent(in),optional :: KIND
 ```
-### __Description__
+
+### **Description**
 
 Converts one kind of _logical_ variable to another.
 
-### __Arguments__
+### **Arguments**
 
+- **l**
+  : The type shall be _logical_.
 
-  - __l__
-    : The type shall be _logical_.
+- **kind**
+  : (Optional) An _integer_ initialization expression indicating the kind
+  parameter of the result.
 
-  - __kind__
-    : (Optional) An _integer_ initialization expression indicating the kind
-    parameter of the result.
+### **Returns**
 
-### __Returns__
-
-The return value is a _logical_ value equal to __l__, with a kind
-corresponding to __kind__, or of the default logical kind if __kind__ is not
+The return value is a _logical_ value equal to **l**, with a kind
+corresponding to **kind**, or of the default logical kind if **kind** is not
 given.
 
-### __Examples__
+### **Examples**
+
 ```fortran
 program demo_logical
 ! Access array containing the kind type parameter values supported by this
@@ -41,13 +43,15 @@ use iso_fortran_env, only : logical_kinds
 
    ! list kind values supported on this platform, which generally vary
    ! in storage size
-   do i =1, size(logical_kinds) 
+   do i =1, size(logical_kinds)
       write(*,*)logical_kinds(i)
    enddo
 
 end program demo_logical
 ```
-  Results:
+
+Results:
+
 ```text
               1
               2
@@ -55,14 +59,15 @@ end program demo_logical
               8
              16
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
 
-### __See Also__
+### **See Also**
 
-[__int__(3)](INT),
-[__real__(3)](REAL),
-[__cmplx__(3)](CMPLX)
+[**int**(3)](INT),
+[**real**(3)](REAL),
+[**cmplx**(3)](CMPLX)
 
 ####### fortran-lang intrinsic descriptions

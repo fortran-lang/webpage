@@ -1,31 +1,33 @@
 ## iand
-### __Name__
 
-__iand__(3) - \[BIT:LOGICAL\] Bitwise logical and
+### **Name**
 
+**iand**(3) - \[BIT:LOGICAL\] Bitwise logical and
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = iand(i, j)
 ```
-### __Description__
 
-Bitwise logical __and__.
+### **Description**
 
-### __Arguments__
+Bitwise logical **and**.
 
-  - __i__
-    : The type shall be _integer_.
+### **Arguments**
 
-  - __j__
-    : The type shall be _integer_, of the same kind as __i__.
+- **i**
+  : The type shall be _integer_.
 
-### __Returns__
+- **j**
+  : The type shall be _integer_, of the same kind as **i**.
+
+### **Returns**
 
 The return type is _integer_, of the same kind as the arguments. (If the
 argument kinds differ, it is of the same kind as the larger argument.)
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -37,25 +39,28 @@ integer :: a, b
       write (*,*) iand(a, b)
 end program demo_iand
 ```
-  Results:
+
+Results:
+
 ```text
               3
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__ieor__(3)](IEOR), 
-[__ibclr__(3)](IBCLR),
-[__not__(3)](NOT),
-[__btest__(3)](BTEST),
-[__ibclr__(3)](IBCLR),
-[__ibits__(3)](IBITS),
-[__ibset__(3)](IBSET),
-[__ior__(3)](IOR),
-[__ieor__(3)](IEOR),
-[__mvbits__(3)](MVBITS)
+[**ieor**(3)](IEOR),
+[**ibclr**(3)](IBCLR),
+[**not**(3)](NOT),
+[**btest**(3)](BTEST),
+[**ibclr**(3)](IBCLR),
+[**ibits**(3)](IBITS),
+[**ibset**(3)](IBSET),
+[**ior**(3)](IOR),
+[**ieor**(3)](IEOR),
+[**mvbits**(3)](MVBITS)
 
 ####### fortran-lang intrinsic descriptions

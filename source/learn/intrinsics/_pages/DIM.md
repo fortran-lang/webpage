@@ -1,10 +1,11 @@
 ## dim
-### __Name__
 
-__dim__(3) - \[NUMERIC\] Positive difference
+### **Name**
 
+**dim**(3) - \[NUMERIC\] Positive difference
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = dim(x, y)
 
@@ -12,25 +13,27 @@ result = dim(x, y)
     type(TYPE(kind=KIND))            :: dim
     type(TYPE(kind=KIND)),intent(in) :: x, y
 ```
-where TYPE may be _real_ or _integer_ and KIND is any supported kind for the type.
-### __Description__
 
-__dim(x,y)__ returns the difference __x - y__ if the result is positive;
+where TYPE may be _real_ or _integer_ and KIND is any supported kind for the type.
+
+### **Description**
+
+**dim(x,y)** returns the difference **x - y** if the result is positive;
 otherwise it returns zero.
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : The type shall be _integer_ or _real_
+- **x**
+  : The type shall be _integer_ or _real_
 
-  - __y__
-    : The type shall be the same type and kind as __x__.
+- **y**
+  : The type shall be the same type and kind as **x**.
 
-### __Returns__
+### **Returns**
 
-The return value is the same type and kind as the input arguments __x__ and __y__.
+The return value is the same type and kind as the input arguments **x** and **y**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -50,15 +53,18 @@ real(kind=real64) :: x
     print *, dim(-10,[0,-10,-20])
 end program demo_dim
 ```
+
 Results:
+
 ```text
               0
-      3.21000000000000     
+      3.21000000000000
               0           0           1
               0           0           2
               0           0          10
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later
 

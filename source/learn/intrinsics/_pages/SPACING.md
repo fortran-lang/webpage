@@ -1,28 +1,30 @@
 ## spacing
-### __Name__
 
-__spacing__(3) - \[MODEL\_COMPONENTS\] Smallest distance between two numbers of a given type
+### **Name**
 
+**spacing**(3) - \[MODEL_COMPONENTS\] Smallest distance between two numbers of a given type
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = spacing(x)
 ```
-### __Description__
 
-Determines the distance between the argument __x__ and the nearest adjacent
+### **Description**
+
+Determines the distance between the argument **x** and the nearest adjacent
 number of the same type.
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : Shall be of type _real_.
+- **x**
+  : Shall be of type _real_.
 
-### __Returns__
+### **Returns**
 
-The result is of the same type as the input argument __x__.
+The result is of the same type as the input argument **x**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -36,32 +38,34 @@ integer, parameter :: dbl = selected_real_kind(p=13, r=200)
    write(*,*) spacing(1.0_dbl)      ! "2.220446049250313e-016" on i686
 end program demo_spacing
 ```
-  Results:
+
+Results:
+
 ```text
       1.19209290E-07
       2.2204460492503131E-016
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__digits__(3)](DIGITS),
-[__epsilon__(3)](EPSILON),
-[__exponent__(3)](EXPONENT),
-[__fraction__(3)](FRACTION),
-[__huge__(3)](HUGE),
-[__maxexponent__(3)](MAXEXPONENT),
-[__minexponent__(3)](MINEXPONENT),
-[__nearest__(3)](NEAREST),
-[__precision__(3)](PRECISION),
-[__radix__(3)](RADIX),
-[__range__(3)](RANGE),
-[__rrspacing__(3)](RRSPACING),
-[__scale__(3)](SCALE),
-[__set\_exponent__(3)](SET_EXPONENT),
-[__tiny__(3)](TINY)
-
+[**digits**(3)](DIGITS),
+[**epsilon**(3)](EPSILON),
+[**exponent**(3)](EXPONENT),
+[**fraction**(3)](FRACTION),
+[**huge**(3)](HUGE),
+[**maxexponent**(3)](MAXEXPONENT),
+[**minexponent**(3)](MINEXPONENT),
+[**nearest**(3)](NEAREST),
+[**precision**(3)](PRECISION),
+[**radix**(3)](RADIX),
+[**range**(3)](RANGE),
+[**rrspacing**(3)](RRSPACING),
+[**scale**(3)](SCALE),
+[**set_exponent**(3)](SET_EXPONENT),
+[**tiny**(3)](TINY)
 
 ####### fortran-lang intrinsic descriptions

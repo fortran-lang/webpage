@@ -1,48 +1,50 @@
-## new\_line
-### __Name__
+## new_line
 
-__new\_line__(3) - \[CHARACTER\] new-line character
+### **Name**
 
-### __Syntax__
+**new_line**(3) - \[CHARACTER\] new-line character
+
+### **Syntax**
+
 ```fortran
 result = new_line(c)
 
    character(len=1,kind=kind(c)) :: new_line(c)
    character(len=1),intent(in) :: c(..)
 ```
-### __Description__
 
-__new\_line(c)__ returns the new-line character.
+### **Description**
 
-   Case (i)
-   : If __a__ is default _character_ and the character in position __10__ of the
-   ASCII collating sequence is representable in the default character set,
-   then the result is __achar(10)__.
+**new_line(c)** returns the new-line character.
 
-   Case (ii)
-   : If __a__ is an ASCII character or an ISO 10646 character, then the
-   result is __char(10, kind (a))__.
+Case (i)
+: If **a** is default _character_ and the character in position **10** of the
+ASCII collating sequence is representable in the default character set,
+then the result is **achar(10)**.
 
-   Case (iii)
-   : Otherwise, the result is a processor-dependent character that
-   represents a newline in output to files connected for formatted
-   stream output if there is such a character.
+Case (ii)
+: If **a** is an ASCII character or an ISO 10646 character, then the
+result is **char(10, kind (a))**.
 
-   Case (iv)
-   : Otherwise, the result is the blank character.
+Case (iii)
+: Otherwise, the result is a processor-dependent character that
+represents a newline in output to files connected for formatted
+stream output if there is such a character.
 
-### __Arguments__
+Case (iv)
+: Otherwise, the result is the blank character.
 
-  - __C__
-    : The argument shall be a scalar or array of the type _character_.
+### **Arguments**
 
-### __Returns__
+- **C**
+  : The argument shall be a scalar or array of the type _character_.
+
+### **Returns**
 
 Returns a _character_ scalar of length one with the new-line character of
-the same kind as parameter __c__.
+the same kind as parameter **c**.
 
-
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -60,7 +62,9 @@ character(len=:),allocatable :: string
 
 end program demo_new_line
 ```
-  Results:
+
+Results:
+
 ```text
    This is record 1.
    This is record 2.
@@ -68,7 +72,8 @@ end program demo_new_line
    This is record 1.
    This is record 2.
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2003 and later
 

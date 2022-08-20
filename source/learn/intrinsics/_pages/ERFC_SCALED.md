@@ -1,33 +1,35 @@
-## erfc\_scaled
-### __Name__
+## erfc_scaled
 
-__erfc\_scaled__(3) - \[MATHEMATICS\] Error function
+### **Name**
 
+**erfc_scaled**(3) - \[MATHEMATICS\] Error function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = erfc_scaled(x)
 ```
-### __Description__
 
-__erfc\_scaled__(x) computes the exponentially-scaled complementary
-error function of __x__:
+### **Description**
+
+**erfc_scaled**(x) computes the exponentially-scaled complementary
+error function of **x**:
 
 $$
 e^{x^2} \frac{2}{\sqrt{\pi}} \int_{x}^{\infty}
 e^{-t^2} dt.
 $$
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : The type shall be _real_.
+- **x**
+  : The type shall be _real_.
 
-### __Returns__
+### **Returns**
 
-The return value is of type _real_ and of the same kind as __x__.
+The return value is of type _real_ and of the same kind as **x**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -36,15 +38,17 @@ program demo_erfc_scaled
 implicit none
 real(kind(0.0d0)) :: x = 0.17d0
    x = erfc_scaled(x)
-   print *, x 
+   print *, x
 end program demo_erfc_scaled
 ```
-  Results:
+
+Results:
+
 ```text
-     0.83375830214998126     
+     0.83375830214998126
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later
 

@@ -1,45 +1,47 @@
 ## maxloc
-### __Name__
 
-__maxloc__(3) - \[ARRAY:LOCATION\] Location of the maximum value within an array
+### **Name**
 
+**maxloc**(3) - \[ARRAY:LOCATION\] Location of the maximum value within an array
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = maxloc(array, dim, mask) result = maxloc(array, mask)
 ```
-### __Description__
+
+### **Description**
 
 Determines the location of the element in the array with the maximum
-value, or, if the __dim__ argument is supplied, determines the locations of
-the maximum element along each row of the array in the __dim__ direction. If
-__mask__ is present, only the elements for which __mask__ is __.true.__ are
+value, or, if the **dim** argument is supplied, determines the locations of
+the maximum element along each row of the array in the **dim** direction. If
+**mask** is present, only the elements for which **mask** is **.true.** are
 considered. If more than one element in the array has the maximum value,
 the location returned is that of the first such element in array element
-order. If the array has zero size, or all of the elements of __mask__ are
-.false., then the result is an array of zeroes. Similarly, if __dim__ is
-supplied and all of the elements of __mask__ along a given row are zero, the
+order. If the array has zero size, or all of the elements of **mask** are
+.false., then the result is an array of zeroes. Similarly, if **dim** is
+supplied and all of the elements of **mask** along a given row are zero, the
 result value for that row is zero.
 
-### __Arguments__
+### **Arguments**
 
-  - __array__
-    : Shall be an array of type _integer_, _real_, or _character_.
+- **array**
+  : Shall be an array of type _integer_, _real_, or _character_.
 
-  - __dim__
-    : (Optional) Shall be a scalar of type _integer_, with a value between
-    one and the rank of __array__, inclusive. It may not be an optional
-    dummy argument.
+- **dim**
+  : (Optional) Shall be a scalar of type _integer_, with a value between
+  one and the rank of **array**, inclusive. It may not be an optional
+  dummy argument.
 
-  - __mask__
-    : Shall be an array of type _logical_, and conformable with __array__.
+- **mask**
+  : Shall be an array of type _logical_, and conformable with **array**.
 
-### __Returns__
+### **Returns**
 
-If __dim__ is absent, the result is a rank-one array with a length equal to
-the rank of __array__. If __dim__ is present, the result is an array with a rank
-one less than the rank of __array__, and a size corresponding to the size of
-__array__ with the __dim__ dimension removed. If __dim__ is present and __array__ has a
+If **dim** is absent, the result is a rank-one array with a length equal to
+the rank of **array**. If **dim** is present, the result is an array with a rank
+one less than the rank of **array**, and a size corresponding to the size of
+**array** with the **dim** dimension removed. If **dim** is present and **array** has a
 rank of one, the result is a scalar. In all cases, the result is of
 default _integer_ type.
 
@@ -47,7 +49,7 @@ The value returned is reference to the offset from the beginning of the
 array, not necessarily the subscript value if the array subscripts do
 not start with one.
 
-### __Examples__
+### **Examples**
 
 sample program
 
@@ -77,7 +79,9 @@ integer,save :: ints(3,5)= reshape([&
 
 end program demo_maxloc
 ```
+
 Results:
+
 ```text
       3       5
       3       3       3       3       3
@@ -90,13 +94,14 @@ Results:
    2 48
    3 47
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__max__(3)](MAX),
-[__maxval__(3)](MAXVAL)
+[**max**(3)](MAX),
+[**maxval**(3)](MAXVAL)
 
 ####### fortran-lang intrinsic descriptions

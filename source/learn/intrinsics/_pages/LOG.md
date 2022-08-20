@@ -1,31 +1,33 @@
 ## log
-### __Name__
 
-__log__(3) - \[MATHEMATICS\] Logarithm function
+### **Name**
 
+**log**(3) - \[MATHEMATICS\] Logarithm function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = log(x)
 ```
-### __Description__
 
-__log(x)__ computes the natural logarithm of __x__, i.e. the logarithm to
+### **Description**
+
+**log(x)** computes the natural logarithm of **x**, i.e. the logarithm to
 the base "e".
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : The type shall be _real_ or _complex_.
+- **x**
+  : The type shall be _real_ or _complex_.
 
-### __Returns__
+### **Returns**
 
 The return value is of type _real_ or _complex_. The kind type parameter is
-the same as __x__. If __x__ is _complex_, the imaginary part OMEGA is in the range
+the same as **x**. If **x** is _complex_, the imaginary part OMEGA is in the range
 
-__-PI__ \< OMEGA \<= PI.
+**-PI** \< OMEGA \<= PI.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -38,12 +40,15 @@ implicit none
   write(*,*)z, log(z)
 end program demo_log
 ```
-  Results:
+
+Results:
+
 ```text
-      2.7182818284590451        1.0000000000000000     
+      2.7182818284590451        1.0000000000000000
    (1.00000000,2.00000000) (0.804718971,1.10714877)
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later
 

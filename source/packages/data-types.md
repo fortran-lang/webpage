@@ -12,33 +12,38 @@ A rich ecosystem of high-performance code
 
 {% for j in data_types|sort(attribute='name') %}
 {% if j.github is defined %}
-## [{{j.name}}]({{"https://github.com/"+j.github}})  
-{{j.description}} 
 
-Tags: {{j.tags}} 
+## [{{j.name}}]({{"https://github.com/"+j.github}})
 
-![Release]({{'https://img.shields.io/github/v/release/'+j.github+'?color=green'}})
-![license]({{'https://img.shields.io/github/license/'+j.github}})
-![stars]({{'https://img.shields.io/github/stars/'+j.github}})
-![forks]({{'https://img.shields.io/github/forks/'+j.github}})
-![last-commit]({{'https://img.shields.io/github/last-commit/'+j.github+'?color=blue'}})
-![issues]({{'https://img.shields.io/github/issues/'+j.github+'?color=yellow'}})
+{{j.description}}
+
+Tags: {{j.tags}}
+
+<img src="{{'https://img.shields.io/github/v/release/'+j.github+'?color=green'}}" alt="Release">
+<img src="{{'https://img.shields.io/github/license/'+j.github}}" alt="license">
+<img src="{{'https://img.shields.io/github/stars/'+j.github}}" alt="stars">
+<img src="{{'https://img.shields.io/github/forks/'+j.github}}" alt="forks">
+<img src="{{'https://img.shields.io/github/last-commit/'+j.github+'?color=blue'}}" alt="last-commit">
+<img src="{{'https://img.shields.io/github/issues/'+j.github+'?color=yellow'}}" alt="issues">
+
 {% elif j.gitlab is defined%}
+
 ## [{{j.name}}]({{"https://gitlab.com/"+j.gitlab}})
-{{j.description}} 
 
-Tags: {{j.tags}} 
+{{j.description}}
 
-![Release]({{'https://img.shields.io/gitlab/v/release/'+j.gitlab+'?date_order_by=created_at&sort=date&color=green'}})
-![license]({{'https://img.shields.io/gitlab/license/'+j.gitlab}})
-![forks]({{'https://img.shields.io/gitlab/forks/'+j.gitlab}})
-![issues]({{'https://img.shields.io/gitlab/issues/all/'+j.gitlab+'?color=yellow'}})
+Tags: {{j.tags}}
+
+<img src="{{'https://img.shields.io/gitlab/v/release/'+j.gitlab+'?date_order_by=created_at&sort=date&color=green'}}" alt="Release">
+<img src="{{'https://img.shields.io/gitlab/license/'+j.gitlab}}" alt="license">
+<img src="{{'https://img.shields.io/gitlab/forks/'+j.gitlab}}" alt="forks">
+<img src="{{'https://img.shields.io/gitlab/issues/all/'+j.gitlab+'?color=yellow'}}" alt="issues">
 {% else %}
 ## [{{j.name}}]({{j.url}})
 
-{{j.description}} 
+{{j.description}}
 
-Tags: {{j.tags}} 
+Tags: {{j.tags}}
 {% endif %}
 
 {% endfor %}

@@ -1,33 +1,35 @@
-## storage\_size
-### __Name__
+## storage_size
 
-__storage\_size__(3) - \[BIT:INQUIRY\] Storage size in bits
+### **Name**
 
+**storage_size**(3) - \[BIT:INQUIRY\] Storage size in bits
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = storage_size(a, kind)
 ```
-### __Description__
 
-Returns the storage size of argument __a__ in bits.
+### **Description**
 
-### __Arguments__
+Returns the storage size of argument **a** in bits.
 
-  - __a__
-    : Shall be a scalar or array of any type.
+### **Arguments**
 
-  - __kind__
-    : (Optional) shall be a scalar integer constant expression.
+- **a**
+  : Shall be a scalar or array of any type.
 
-### __Returns__
+- **kind**
+  : (Optional) shall be a scalar integer constant expression.
+
+### **Returns**
 
 The result is a scalar integer with the kind type parameter specified by
-__kind__ (or default integer type if __kind__ is missing). The result value is
+**kind** (or default integer type if **kind** is missing). The result value is
 the size expressed in bits for an element of an array that has the
-dynamic type and type parameters of __a__.
+dynamic type and type parameters of **a**.
 
-### __Examples__
+### **Examples**
 
 Sample program
 
@@ -41,7 +43,9 @@ implicit none
    write(*,*)'size of integer array ',storage_size([0,1,2,3,4,5,6,7,8,9])
 end program demo_storage_size
 ```
-  Results:
+
+Results:
+
 ```text
     size of integer                 32
     size of real                    32
@@ -49,12 +53,13 @@ end program demo_storage_size
     size of complex                 64
     size of integer array           32
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__c\_sizeof__(3)](C_SIZEOF)
+[**c_sizeof**(3)](C_SIZEOF)
 
 ####### fortran-lang intrinsic descriptions

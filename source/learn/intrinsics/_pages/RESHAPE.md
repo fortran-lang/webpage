@@ -1,42 +1,44 @@
 ## reshape
-### __Name__
 
-__reshape__(3) - \[ARRAY RESHAPE\] Function to reshape an array
+### **Name**
 
+**reshape**(3) - \[ARRAY RESHAPE\] Function to reshape an array
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = reshape(source, shape, pad, order)
 ```
-### __Description__
 
-Reshapes array __source__ to correspond to __shape__. If necessary, the new
-array may be padded with elements from __pad__ or permuted as defined by
-__order__.
+### **Description**
 
-### __Arguments__
+Reshapes array **source** to correspond to **shape**. If necessary, the new
+array may be padded with elements from **pad** or permuted as defined by
+**order**.
 
-  - __source__
-    : an array of any type.
+### **Arguments**
 
-  - __shape__
-    : an array of rank one and type _integer_. Its values must be positive
-    or zero.
+- **source**
+  : an array of any type.
 
-  - __pad__
-    : (Optional) an array of the same type as __source__.
+- **shape**
+  : an array of rank one and type _integer_. Its values must be positive
+  or zero.
 
-  - __order__
-    : (Optional) an array of type _integer_ and the same shape as __shape__. Its
-    values shall be a permutation of the numbers from 1 to n, where n is
-    the size of __shape__. If __order__ is absent, the natural ordering shall be
-    assumed.
+- **pad**
+  : (Optional) an array of the same type as **source**.
 
-### __Returns__
+- **order**
+  : (Optional) an array of type _integer_ and the same shape as **shape**. Its
+  values shall be a permutation of the numbers from 1 to n, where n is
+  the size of **shape**. If **order** is absent, the natural ordering shall be
+  assumed.
 
-The result is an array of shape __shape__ with the same type as __source__.
+### **Returns**
 
-### __Examples__
+The result is an array of shape **shape** with the same type as **source**.
+
+### **Examples**
 
 Sample program:
 
@@ -54,21 +56,24 @@ real,allocatable :: v(:)
     ! pack any array into a vector
     xx=1.0
     v=reshape(xx,[size(xx)])
-    write(*,*)shape(v),ubound(v) 
+    write(*,*)shape(v),ubound(v)
 end program demo_reshape
 ```
-  Results:
+
+Results:
+
 ```text
               4
               2           2
              12          12
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__shape__(3)](SHAPE)
+[**shape**(3)](SHAPE)
 
 ####### fortran-lang intrinsic descriptions

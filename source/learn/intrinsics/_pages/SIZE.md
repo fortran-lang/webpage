@@ -1,38 +1,40 @@
 ## size
-### __Name__
 
-__size__(3) - \[ARRAY INQUIRY\] Determine the size of an array
+### **Name**
 
+**size**(3) - \[ARRAY INQUIRY\] Determine the size of an array
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = size(array, dim, kind)
 ```
-### __Description__
 
-Determine the extent of __array__ along a specified dimension __dim__,
-or the total number of elements in __array__ if __dim__ is absent.
+### **Description**
 
-### __Arguments__
+Determine the extent of **array** along a specified dimension **dim**,
+or the total number of elements in **array** if **dim** is absent.
 
-  - __array__
-    : be an array of any type. If __array__ is a pointer it must be
-    associated and allocatable arrays must be allocated.
+### **Arguments**
 
-  - __dim__
-    : shall be a scalar of type _integer_ and its value shall be
-    in the range from 1 to n, where n equals the rank of __array__.
+- **array**
+  : be an array of any type. If **array** is a pointer it must be
+  associated and allocatable arrays must be allocated.
 
-  - __kind__
-    : An _integer_ initialization expression indicating the kind
-    parameter of the result.
+- **dim**
+  : shall be a scalar of type _integer_ and its value shall be
+  in the range from 1 to n, where n equals the rank of **array**.
 
-### __Returns__
+- **kind**
+  : An _integer_ initialization expression indicating the kind
+  parameter of the result.
 
-The return value is of type _integer_ and of kind __kind__. If __kind__
+### **Returns**
+
+The return value is of type _integer_ and of kind **kind**. If **kind**
 is absent, the return value is of default _integer_ kind.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -131,7 +133,9 @@ end subroutine nointerface
 !!
 end program demo_size
 ```
+
 Results:
+
 ```text
     SIZE of simple one-dimensional array=           3
     body
@@ -175,13 +179,14 @@ Results:
     UBOUND(arr,DIM=1):           3
     LBOUND(arr,DIM=2):           1
 ```
-### __Standard__
 
-Fortran 95 and later, with __kind__ argument - Fortran 2003 and later
+### **Standard**
 
-### __See Also__
+Fortran 95 and later, with **kind** argument - Fortran 2003 and later
 
-[__shape__(3)](SHAPE),
+### **See Also**
+
+[**shape**(3)](SHAPE),
 [__reshape__(3)])(RESHAPE)
 
 ####### fortran-lang intrinsic descriptions

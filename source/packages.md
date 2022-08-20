@@ -2,17 +2,15 @@
 sd_hide_title: true
 ---
 
-# Packages - The Fortran Programming Language
-
+# Packages
 
 :::{div} sd-text-center sd-fs-2 sd-font-weight-bold sd-text-primary
 Fortran Packages
 :::
- 
+
 :::{div} sd-text-center sd-fs-3
 A rich ecosystem of high-performance code
 :::
-
 
 :::{div} sd-fs-3 sd-font-weight-bold sd-text-primary
 Find a Package
@@ -25,13 +23,13 @@ Find a Package
 ::::{grid-item-card}
 :shadow: none
 
-:::{div} sd-fs-3 
+:::{div} sd-fs-3
 Package index
 :::
 
 :::{div} sd-fs-6
 The fortran-lang package index is community-maintained and lists open source Fortran-related projects.This includes large-scale scientific applications,function libraries, Fortran interfaces, and developer tools.<br>
-See [here](../community/packages/) for how to get your project listed.  <br>
+See [here](../community/packages/) for how to get your project listed. <br>
 Use the box above to search the package index by keyword, package name, or author username.
 :::
 
@@ -76,7 +74,7 @@ Libraries for reading, writing and parsing files and inputs
 
 Libraries for plotting data, handling images and generating user interfaces
 
-## [Examples and templates](../packages/examples) 
+## [Examples and templates](../packages/examples)
 
 Demonstration codes and templates for Fortran
 
@@ -98,7 +96,6 @@ Applications and libraries for applied mathematical and scientific problems
 
 See [package index guidelines](../community/packages) for how to get your project listed.
 
-
 :::{toctree}
 :hidden:
 packages/data-types
@@ -112,6 +109,3 @@ packages/programming
 packages/strings
 packages/scientific
 :::
-
-
-

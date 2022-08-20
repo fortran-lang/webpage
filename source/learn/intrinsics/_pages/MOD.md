@@ -1,34 +1,36 @@
 ## mod
-### __Name__
 
-__mod__(3) - \[NUMERIC\] Remainder function
+### **Name**
 
+**mod**(3) - \[NUMERIC\] Remainder function
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = mod(a, p)
 ```
-### __Description__
 
-__mod__(a,p) computes the remainder of the division of __a__ by __p__.
+### **Description**
 
-### __Arguments__
+**mod**(a,p) computes the remainder of the division of **a** by **p**.
 
-  - __a__
-    : Shall be a scalar of type _integer_ or _real_.
+### **Arguments**
 
-  - __p__
-    : Shall be a scalar of the same type and kind as __a__ and not equal to
-    zero.
+- **a**
+  : Shall be a scalar of type _integer_ or _real_.
 
-### __Returns__
+- **p**
+  : Shall be a scalar of the same type and kind as **a** and not equal to
+  zero.
 
-The return value is the result of __a - (int(a/p) \* p)__. The type and kind
+### **Returns**
+
+The return value is the result of **a - (int(a/p) \* p)**. The type and kind
 of the return value is the same as that of the arguments. The returned
-value has the same sign as __a__ and a magnitude less than the magnitude of
-__p__.
+value has the same sign as **a** and a magnitude less than the magnitude of
+**p**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -51,27 +53,30 @@ implicit none
      print *, mod(17.5d0,-5.5d0)  ! yields 1.0d0
 end program demo_mod
 ```
-  Results:
+
+Results:
+
 ```text
               2
-      1.00000000    
-      1.0000000000000000     
-      1.0000000000000000     
+      1.00000000
+      1.0000000000000000
+      1.0000000000000000
              -2
-     -1.00000000    
-     -1.0000000000000000     
-     -1.0000000000000000     
+     -1.00000000
+     -1.0000000000000000
+     -1.0000000000000000
               2
-      1.00000000    
-      1.0000000000000000     
-      1.0000000000000000     
+      1.00000000
+      1.0000000000000000
+      1.0000000000000000
 ```
-### __Standard__
+
+### **Standard**
 
 FORTRAN 77 and later
 
-### __See Also__
+### **See Also**
 
-[__modulo__(3)](MODULO)
+[**modulo**(3)](MODULO)
 
 ####### fortran-lang intrinsic descriptions

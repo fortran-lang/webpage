@@ -1,39 +1,42 @@
 ## sinh
-### __Name__
 
-__sinh__(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic sine function
+### **Name**
 
-### __Syntax__
+**sinh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic sine function
+
+### **Syntax**
+
 ```fortran
 result = sinh(x)
 
     elemental TYPE(kind=KIND) function sinh(x)
     TYPE(kind=KIND) :: x
 ```
-Where the returned value has the kind of the input value 
+
+Where the returned value has the kind of the input value
 and TYPE may be _real_ or _complex_
 
-### __Description__
+### **Description**
 
-__sinh(x)__ computes the hyperbolic sine of __x__.
+**sinh(x)** computes the hyperbolic sine of **x**.
 
 The hyperbolic sine of x is defined mathematically as:
 
-   __sinh(x) = (exp(x) - exp(-x)) / 2.0__
+**sinh(x) = (exp(x) - exp(-x)) / 2.0**
 
-If __x__ is of type _complex_ its imaginary part is regarded as a value
+If **x** is of type _complex_ its imaginary part is regarded as a value
 in radians.
 
-### __Arguments__
+### **Arguments**
 
-  - __x__
-    : The type shall be _real_ or _complex_.
+- **x**
+  : The type shall be _real_ or _complex_.
 
-### __Returns__
+### **Returns**
 
-The return value has same type and kind as __x__.
+The return value has same type and kind as **x**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -68,22 +71,26 @@ character(len=20) :: line
 
 end program demo_sinh
 ```
+
 Results:
+
 ```text
-  -1.1752011936438014     
-  -1.1752011936438014     
-  -1.1752011936438014       -3.6268604078470190      -0.33954055725615012     
+  -1.1752011936438014
+  -1.1752011936438014
+  -1.1752011936438014       -3.6268604078470190      -0.33954055725615012
                        NaN
                   Infinity
                   Infinity
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later, for a complex argument Fortran 2008 or later
 
-### __See Also__
+### **See Also**
+
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-[__asinh__(3)](ASINH)
+[**asinh**(3)](ASINH)
 
 ####### fortran-lang intrinsic descriptions

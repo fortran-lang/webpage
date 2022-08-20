@@ -52,15 +52,15 @@ FAQ
 
 :::{div} sd-fs-5 sd-font-weight-bold
 What is the status of Fortran?
-::: 
+:::
 
-Fortran is still in active development. The latest revision of the language is 
+Fortran is still in active development. The latest revision of the language is
 
 [Fortran 2018](https://isotc.iso.org/livelink/livelink?func=ll&objId=19441669&objAction=Open),and the next one, with the working title Fortran 202x, is planned for release in the next few years. Further, open source projects like the [Standard Library](https://github.com/fortran-lang/stdlib) and the [Fortran Package Manager](https://github.com/fortran-lang/fpm) are in active development.
 
 :::{div} sd-fs-5 sd-font-weight-bold
 What is Fortran used for?
-::: 
+:::
 
 Fortran is mostly used in domains that adopted computation early--science and engineering. These include numerical weather and ocean prediction, computational fluid dynamics, applied math, statistics, and finance. Fortran is the dominant language of High Performance Computing and is used to [benchmark the fastest supercomputers in the world](https://top500.org/).
 
@@ -105,22 +105,22 @@ Make Fortran better
 ::::{grid-item-card}
 :columns: 6
 
-:::{div} sd-fs-5 sd-font-weight-bold 
+:::{div} sd-fs-5 sd-font-weight-bold
 Write proposals
 :::
 
-Have an idea about how to improve the language? You can write new proposals or contribute to existing proposals to the Fortran Standard Committee on 
+Have an idea about how to improve the language? You can write new proposals or contribute to existing proposals to the Fortran Standard Committee on
 [GitHub](https://github.com/j3-fortran/fortran_proposals).
 
 ::::
 ::::{grid-item-card}
 :columns: 6
 
-:::{div} sd-fs-5 sd-font-weight-bold 
+:::{div} sd-fs-5 sd-font-weight-bold
 Develop tools
 :::
 
-You can also help make Fortran better by contributing to its suite of tools, such as 
+You can also help make Fortran better by contributing to its suite of tools, such as
 [Standard Library](https://github.com/fortran-lang/stdlib) ,[Package Manager](https://github.com/fortran-lang/fpm) ,[this website](https://github.com/fortran-lang/webpage).
 
 ::::
@@ -130,7 +130,7 @@ You can also help make Fortran better by contributing to its suite of tools, suc
 ::::{grid-item-card}
 :columns: 12
 
-:::{div} sd-fs-5 sd-font-weight-bold 
+:::{div} sd-fs-5 sd-font-weight-bold
 Write Fortran software
 :::
 
@@ -138,3 +138,14 @@ Or just write Fortran software for your research, business, or schoolwork. You c
 
 ::::
 :::::
+
+:::{toctree}
+:hidden:
+
+learn
+compilers
+community
+packages
+news
+
+:::

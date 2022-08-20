@@ -1,31 +1,33 @@
-## c\_loc
-### __Name__
+## c_loc
 
-__c\_loc__(3) - \[ISO\_C\_BINDING\] Obtain the C address of an object
+### **Name**
 
+**c_loc**(3) - \[ISO_C_BINDING\] Obtain the C address of an object
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = c_loc(x)
 ```
-### __Description__
 
-__c\_loc(x)__ determines the C address of the argument.
+### **Description**
 
-### __Arguments__
+**c_loc(x)** determines the C address of the argument.
 
-  - __x__
-    : Shall have either the _pointer_ or _target_ attribute. It shall not be a
-    coindexed object. It shall either be a variable with interoperable
-    type and kind type parameters, or be a scalar, nonpolymorphic
-    variable with no length type parameters.
+### **Arguments**
 
-### __Returns__
+- **x**
+  : Shall have either the _pointer_ or _target_ attribute. It shall not be a
+  coindexed object. It shall either be a variable with interoperable
+  type and kind type parameters, or be a scalar, nonpolymorphic
+  variable with no length type parameters.
 
-The return value is of type c\_ptr and contains the C address of the
+### **Returns**
+
+The return value is of type c_ptr and contains the C address of the
 argument.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -40,17 +42,17 @@ Sample program:
    end subroutine association_test
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 2003 and later
 
-### __See Also__
+### **See Also**
 
-[__c\_associated__(3)](C_ASSOCIATED),
-[__c\_funloc__(3)](C_FUNLOC),
-[__c\_f\_pointer__(3)](C_F_POINTER),
+[**c_associated**(3)](C_ASSOCIATED),
+[**c_funloc**(3)](C_FUNLOC),
+[**c_f_pointer**(3)](C_F_POINTER),
 
-[__c\_f\_procpointer__(3)](C_F_PROCPOINTER),
-__iso\_c\_binding__(3)
+[**c_f_procpointer**(3)](C_F_PROCPOINTER),
+**iso_c_binding**(3)
 
 ####### fortran-lang intrinsic descriptions

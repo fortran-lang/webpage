@@ -1,28 +1,30 @@
 ## rank
-### __Name__
 
-__rank__(3) - \[ARRAY INQUIRY\] Rank of a data object
+### **Name**
 
+**rank**(3) - \[ARRAY INQUIRY\] Rank of a data object
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = rank(a)
 ```
-### __Description__
 
-__rank(a)__ returns the rank of a scalar or array data object.
+### **Description**
 
-### __Arguments__
+**rank(a)** returns the rank of a scalar or array data object.
 
-  - __a__
-    : can be of any type
+### **Arguments**
 
-### __Returns__
+- **a**
+  : can be of any type
+
+### **Returns**
 
 The return value is of type _integer_ and of the default integer kind. For
 arrays, their rank is returned; for scalars zero is returned.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -35,11 +37,14 @@ real  :: c(10,20,30)
    print *, rank(a), rank(b), rank(c)
 end program demo_rank
 ```
+
 Results:
+
 ```text
    0           2           3
 ```
-### __Standard__
+
+### **Standard**
 
 TS 29113
 

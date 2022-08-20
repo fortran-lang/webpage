@@ -1,37 +1,39 @@
 ## blt
-### __Name__
 
-__blt__(3) - \[BIT:COMPARE\] Bitwise less than
+### **Name**
 
+**blt**(3) - \[BIT:COMPARE\] Bitwise less than
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
     result = blt(i, j)
 ```
-### __Description__
+
+### **Description**
 
 Determines whether an integer is bitwise less than another.
 
-### __Arguments__
+### **Arguments**
 
-  - __i__
-    : Shall be of _integer_ type.
+- **i**
+  : Shall be of _integer_ type.
 
-  - __j__
-    : Shall be of _integer_ type, and of the same kind as __i__.
+- **j**
+  : Shall be of _integer_ type, and of the same kind as **i**.
 
-### __Returns__
+### **Returns**
 
 The return value is of type _logical_ and of the default kind.
 
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later
 
-### __See Also__
+### **See Also**
 
-[__bge__(3)](BGE),
-[__bgt__(3)](BGT),
-[__ble__(3)](BLE)
+[**bge**(3)](BGE),
+[**bgt**(3)](BGT),
+[**ble**(3)](BLE)
 
 ####### fortran-lang intrinsic descriptions

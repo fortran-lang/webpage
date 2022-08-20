@@ -1,26 +1,28 @@
-## selected\_int\_kind
-### __Name__
+## selected_int_kind
 
-__selected\_int\_kind__(3) - \[KIND\] Choose integer kind
+### **Name**
 
+**selected_int_kind**(3) - \[KIND\] Choose integer kind
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = selected_int_kind(r)
 ```
-### __Description__
 
-__selected\_int\_kind(r)__ return the kind value of the smallest integer
-type that can represent all values ranging from __-10\*\*r__ (exclusive)
-to __10\*\*r__ (exclusive). If there is no integer kind that accommodates
-this range, selected\_int\_kind returns __-1__.
+### **Description**
 
-### __Arguments__
+**selected_int_kind(r)** return the kind value of the smallest integer
+type that can represent all values ranging from **-10\*\*r** (exclusive)
+to **10\*\*r** (exclusive). If there is no integer kind that accommodates
+this range, selected_int_kind returns **-1**.
 
-  - __r__
-    : Shall be a scalar and of type _integer_.
+### **Arguments**
 
-### __Examples__
+- **r**
+  : Shall be a scalar and of type _integer_.
+
+### **Examples**
 
 Sample program:
 
@@ -39,23 +41,26 @@ integer(kind=k15) :: i15
     print *, huge(i15) >= 10_k15**15-1
 end program demo_selected_int_kind
 ```
-  Results:
+
+Results:
+
 ```text
      2147483647  9223372036854775807
     T
     T
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__aint__(3)](AINT),
-[__anint__(3)](ANINT),
-[__int__(3)](INT),
-[__nint__(3)](NINT),
-[__ceiling__(3)](CEILING),
-[__floor__(3)](FLOOR)
+[**aint**(3)](AINT),
+[**anint**(3)](ANINT),
+[**int**(3)](INT),
+[**nint**(3)](NINT),
+[**ceiling**(3)](CEILING),
+[**floor**(3)](FLOOR)
 
 ####### fortran-lang intrinsic descriptions

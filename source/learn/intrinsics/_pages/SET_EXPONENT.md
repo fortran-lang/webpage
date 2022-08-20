@@ -1,33 +1,35 @@
-## set\_exponent
-### __Name__
+## set_exponent
 
-__set\_exponent__(3) - \[MODEL\_COMPONENTS\] Set the exponent of the model
+### **Name**
 
+**set_exponent**(3) - \[MODEL_COMPONENTS\] Set the exponent of the model
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = set_exponent(x, i)
 ```
-### __Description__
 
-__set\_exponent(x, i)__ returns the real number whose fractional part is
-that of __x__ and whose exponent part is __i__.
+### **Description**
 
-### __Arguments__
+**set_exponent(x, i)** returns the real number whose fractional part is
+that of **x** and whose exponent part is **i**.
 
-  - __x__
-    : Shall be of type _real_.
+### **Arguments**
 
-  - __i__
-    : Shall be of type _integer_.
+- **x**
+  : Shall be of type _real_.
 
-### __Returns__
+- **i**
+  : Shall be of type _integer_.
 
-The return value is of the same type and kind as __x__. The real number
-whose fractional part is that that of __x__ and whose exponent part if __i__ is
-returned; it is __fraction(x) \* radix(x)\*\*i__.
+### **Returns**
 
-### __Examples__
+The return value is of the same type and kind as **x**. The real number
+whose fractional part is that that of **x** and whose exponent part if **i** is
+returned; it is **fraction(x) \* radix(x)\*\*i**.
+
+### **Examples**
 
 Sample program:
 
@@ -39,31 +41,33 @@ integer :: i = 17
    print *, set_exponent(x, i), fraction(x) * radix(x)**i
 end program demo_setexp
 ```
-  Results:
+
+Results:
+
 ```text
-      74716.7891       74716.7891    
+      74716.7891       74716.7891
 ```
-### __Standard__
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__digits__(3)](DIGITS),
-[__epsilon__(3)](EPSILON),
-[__exponent__(3)](EXPONENT),
-[__fraction__(3)](FRACTION),
-[__huge__(3)](HUGE),
-[__maxexponent__(3)](MAXEXPONENT),
-[__minexponent__(3)](MINEXPONENT),
-[__nearest__(3)](NEAREST),
-[__precision__(3)](PRECISION),
-[__radix__(3)](RADIX),
-[__range__(3)](RANGE),
-[__rrspacing__(3)](RRSPACING),
-[__scale__(3)](SCALE),
-[__spacing__(3)](SPACING),
-[__tiny__(3)](TINY)
-
+[**digits**(3)](DIGITS),
+[**epsilon**(3)](EPSILON),
+[**exponent**(3)](EXPONENT),
+[**fraction**(3)](FRACTION),
+[**huge**(3)](HUGE),
+[**maxexponent**(3)](MAXEXPONENT),
+[**minexponent**(3)](MINEXPONENT),
+[**nearest**(3)](NEAREST),
+[**precision**(3)](PRECISION),
+[**radix**(3)](RADIX),
+[**range**(3)](RANGE),
+[**rrspacing**(3)](RRSPACING),
+[**scale**(3)](SCALE),
+[**spacing**(3)](SPACING),
+[**tiny**(3)](TINY)
 
 ####### fortran-lang intrinsic descriptions

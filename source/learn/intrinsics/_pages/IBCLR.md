@@ -1,47 +1,49 @@
 ## ibclr
-### __Name__
 
-__ibclr__(3) - \[BIT:SET\] Clear bit
+### **Name**
 
+**ibclr**(3) - \[BIT:SET\] Clear bit
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = ibclr(i, pos)
 ```
-### __Description__
 
-__ibclr__ returns the value of __i__ with the bit at position __pos__ set to zero.
+### **Description**
 
-### __Arguments__
+**ibclr** returns the value of **i** with the bit at position **pos** set to zero.
 
-  - __i__
-    : The type shall be _integer_.
+### **Arguments**
 
-  - __pos__
-    : The type shall be _integer_. A value of zero refers to the least
-    significant bit. __pos__ is an __intent(in)__ scalar or array of type
-    _integer_. The value of __pos__ must be within the range zero to
-    __(bit\_size(i)-1__).
+- **i**
+  : The type shall be _integer_.
 
-### __Returns__
+- **pos**
+  : The type shall be _integer_. A value of zero refers to the least
+  significant bit. **pos** is an **intent(in)** scalar or array of type
+  _integer_. The value of **pos** must be within the range zero to
+  **(bit_size(i)-1**).
 
-The return value is of type _integer_ and of the same kind as __i__.
+### **Returns**
 
-### __Standard__
+The return value is of type _integer_ and of the same kind as **i**.
+
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__ieor__(3)](IEOR), 
-[__not__(3)](NOT),
-[__btest__(3)](BTEST),
-[__ibclr__(3)](IBCLR),
-[__ibits__(3)](IBITS),
-[__ibset__(3)](IBSET),
-[__iand__(3)](IAND),
-[__ior__(3)](IOR),
-[__ieor__(3)](IEOR),
-[__mvbits__(3)](MVBITS)
+[**ieor**(3)](IEOR),
+[**not**(3)](NOT),
+[**btest**(3)](BTEST),
+[**ibclr**(3)](IBCLR),
+[**ibits**(3)](IBITS),
+[**ibset**(3)](IBSET),
+[**iand**(3)](IAND),
+[**ior**(3)](IOR),
+[**ieor**(3)](IEOR),
+[**mvbits**(3)](MVBITS)
 
 ####### fortran-lang intrinsic descriptions

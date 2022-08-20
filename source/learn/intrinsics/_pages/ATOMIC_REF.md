@@ -1,42 +1,44 @@
-## atomic\_ref
-### __Name__
+## atomic_ref
 
-__atomic\_ref__(3) - \[ATOMIC\] Obtaining the value of a variable atomically
+### **Name**
 
+**atomic_ref**(3) - \[ATOMIC\] Obtaining the value of a variable atomically
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 call atomic_ref(value, atom, stat)
 ```
-### __Description__
 
-__atomic\_ref(value, atom)__ atomically assigns the value of the
-variable __atom__ to __value__. When __stat__ is present and the invocation was
-successful, it is assigned the value __0__. If it is present and the
+### **Description**
+
+**atomic_ref(value, atom)** atomically assigns the value of the
+variable **atom** to **value**. When **stat** is present and the invocation was
+successful, it is assigned the value **0**. If it is present and the
 invocation has failed, it is assigned a positive value; in particular,
-for a coindexed __atom__, if the remote image has stopped, it is assigned
-the value of iso\_fortran\_env's __stat\_stopped\_image__ and if the remote
-image has failed, the value __stat\_failed\_image__.
+for a coindexed **atom**, if the remote image has stopped, it is assigned
+the value of iso_fortran_env's **stat_stopped_image** and if the remote
+image has failed, the value **stat_failed_image**.
 
-### __Arguments__
+### **Arguments**
 
-  - __value__
-    : Scalar of the same type as __atom__. If the kind is different, the value
-    is converted to the kind of __atom__.
+- **value**
+  : Scalar of the same type as **atom**. If the kind is different, the value
+  is converted to the kind of **atom**.
 
-  - __atom__
-    : Scalar coarray or coindexed variable of either integer type with
-    atomic\_int\_kind kind or logical type with atomic\_logical\_kind
-    kind.
+- **atom**
+  : Scalar coarray or coindexed variable of either integer type with
+  atomic_int_kind kind or logical type with atomic_logical_kind
+  kind.
 
-  - __stat__
-    : (optional) Scalar default-kind integer variable.
+- **stat**
+  : (optional) Scalar default-kind integer variable.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
-```fortran
+````fortran
 program demo_atomic_ref
 use iso_fortran_env
 implicit none
@@ -49,22 +51,22 @@ logical :: val
       print *, "Obtained"
    endif
 end program demo_atomic_ref
-```
+````
 
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later; with STAT, TS 18508 or later
 
-### __See Also__
+### **See Also**
 
-[__atomic\_define__(3)](ATOMIC_DEFINE),
-[__atomic\_cas__(3)](ATOMIC_CAS),
-[__iso\_fortran\_env__(3)](),
+[**atomic_define**(3)](ATOMIC_DEFINE),
+[**atomic_cas**(3)](ATOMIC_CAS),
+[**iso_fortran_env**(3)](),
 
-[__atomic\_fetch\_add__(3)](ATOMIC_ADD),
-[__atomic\_fetch\_and__(3)](ATOMIC_AND),
+[**atomic_fetch_add**(3)](ATOMIC_ADD),
+[**atomic_fetch_and**(3)](ATOMIC_AND),
 
-[__atomic\_fetch\_or__(3)](ATOMIC_OR),
-[__atomic\_fetch\_xor__(3)](ATOMIC_XOR)
+[**atomic_fetch_or**(3)](ATOMIC_OR),
+[**atomic_fetch_xor**(3)](ATOMIC_XOR)
 
 ####### fortran-lang intrinsic descriptions

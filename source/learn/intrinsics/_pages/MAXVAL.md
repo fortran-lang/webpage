@@ -1,50 +1,54 @@
 ## maxval
-### __Name__
 
-__maxval__(3) - \[ARRAY REDUCTION\] determines the maximum value in an array or row
+### **Name**
 
+**maxval**(3) - \[ARRAY REDUCTION\] determines the maximum value in an array or row
 
-### __Syntax__
+### **Syntax**
+
 ```fortran
 result = maxval(array, dim, mask)
 ```
-   or 
+
+or
+
 ```fortran
 result = maxval(array, mask)
 ```
-### __Description__
+
+### **Description**
 
 Determines the maximum value of the elements in an array value, or, if
-the __dim__ argument is supplied, determines the maximum value along each
-row of the array in the __dim__ direction. If __mask__ is present, only the
-elements for which __mask__ is __.true.__ are considered. If the array has zero
-size, or all of the elements of __mask__ are .false., then the result is the
-most negative number of the type and kind of __array__ if __array__ is numeric,
-or a string of nulls if __array__ is of character type.
+the **dim** argument is supplied, determines the maximum value along each
+row of the array in the **dim** direction. If **mask** is present, only the
+elements for which **mask** is **.true.** are considered. If the array has zero
+size, or all of the elements of **mask** are .false., then the result is the
+most negative number of the type and kind of **array** if **array** is numeric,
+or a string of nulls if **array** is of character type.
 
-### __Arguments__
+### **Arguments**
 
-  - __array__
-    : Shall be an array of type _integer_, _real_, or _character_.
+- **array**
+  : Shall be an array of type _integer_, _real_, or _character_.
 
-  - __dim__
-    : (Optional) Shall be a scalar of type _integer_, with a value between
-    one and the rank of __array__, inclusive. It may not be an optional
-    dummy argument.
+- **dim**
+  : (Optional) Shall be a scalar of type _integer_, with a value between
+  one and the rank of **array**, inclusive. It may not be an optional
+  dummy argument.
 
-  - __mask__
-    : (Optional) Shall be an array of type _logical_, and conformable with
-    __array__.
+- **mask**
+  : (Optional) Shall be an array of type _logical_, and conformable with
+  **array**.
 
-### __Returns__
+### **Returns**
 
-If __dim__ is absent, or if __array__ has a rank of one, the result is a scalar.
-If __dim__ is present, the result is an array with a rank one less than the
-rank of __array__, and a size corresponding to the size of __array__ with the
-__dim__ dimension removed. In all cases, the result is of the same type and
-kind as __array__.
+If **dim** is absent, or if **array** has a rank of one, the result is a scalar.
+If **dim** is present, the result is an array with a rank one less than the
+rank of **array**, and a size corresponding to the size of **array** with the
+**dim** dimension removed. In all cases, the result is of the same type and
+kind as **array**.
 
-### __Examples__
+### **Examples**
 
 sample program:
 
@@ -74,13 +78,13 @@ Results:
    22
 ```
 
-### __Standard__
+### **Standard**
 
 Fortran 95 and later
 
-### __See Also__
+### **See Also**
 
-[__max__(3)](MAX),
-[__maxloc__(3)](MAXLOC)
+[**max**(3)](MAX),
+[**maxloc**(3)](MAXLOC)
 
 ####### fortran-lang intrinsic descriptions
