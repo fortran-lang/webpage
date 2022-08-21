@@ -73,7 +73,7 @@ def intl_update(language: str) -> None:
     """
 
     subprocess.run(
-        ["sphinx-intl", "update", "-l", language, "-d", localedir, "-p", outdir],
+        ["sphinx-intl", "update", "-l", language, "-d", localedir, "-p", outdir, "-w", "80"],
         cwd=root,
         check=True,
     )
