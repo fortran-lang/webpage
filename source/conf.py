@@ -70,6 +70,7 @@ myst_enable_extensions = [
     "colon_fence",
     "deflist",
     "substitution",
+    "dollarmath",
     "html_image",
 ]
 myst_heading_anchors = 3
@@ -152,7 +153,7 @@ html_theme_options = {
         },
         {
             "name": "RSS",
-            "url": "https://fortran-lang.org/news/atom.xml",
+            "url": "https://fortran-lang.org/en/news/atom.xml",
             "icon": "fas fa-rss",
         },
     ],
