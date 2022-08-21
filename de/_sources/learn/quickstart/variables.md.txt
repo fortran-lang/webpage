@@ -113,7 +113,7 @@ This input source is commonly referred to as `standard input` or `stdin`.
 
 ## Expressions
 
-The usual set of arithmetic operators are available, listed in order or precedence:
+The usual set of arithmetic operators are available, listed in order of precedence:
 
 | Operator &nbsp; | Description    |
 | :-------------: | -------------- |
@@ -145,7 +145,7 @@ program arithmetic
   print *, 'Enter cylinder height:'
   read(*,*) height
 
-  area = pi * radius**2.0
+  area = pi * radius**2
   volume = area * height
 
   print *, 'Cylinder radius is: ', radius
