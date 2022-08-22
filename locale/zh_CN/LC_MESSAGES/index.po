@@ -10,7 +10,7 @@ msgstr ""
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-08-21 11:53+0200\n"
 "PO-Revision-Date: 2022-08-27 14:19+0000\n"
-"Last-Translator: Ys413 <2020172007@stu.mdjnu.edu.cn>\n"
+"Last-Translator: Euler-37 <1943133009@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "fortran-lang/webpage/zh_Hans/>\n"
 "Language: zh_CN\n"
@@ -5680,14 +5680,19 @@ msgid ""
 "the function with two arguments instead of one. If the compiler does not "
 "know anything about the function's interface, then it cannot check anything."
 msgstr ""
+"第一步编译模块，生成一个目标文件\"functions.o\"和一个模块的中间文件"
+"\"user_functions.mod\"。该模块文件包含编译器确定该模块中定义了函数 `f` 及其接"
+"口所需的所有信息。此信息很重要：它使得编译器能够检查您是否以正确的方式调用了"
+"该函数。可能是您犯了一个错误，使用了两个参数而不是一个参数调用了该函数。如果"
+"编译器对函数的接口一无所知，那么它就无法检查任何内容。"
 
 #: ../../source/learn/building_programs/linking_pieces.md:73
 msgid "The second step invokes the compiler in such a way that:"
-msgstr ""
+msgstr "第二步以如下方式调用编译器："
 
 #: ../../source/learn/building_programs/linking_pieces.md:75
 msgid "it compiles the file \"tabulate.f90\" (using the module file);"
-msgstr ""
+msgstr "它编译文件 \"tabulate.f90\"（使用模块文件）;"
 
 #: ../../source/learn/building_programs/linking_pieces.md:76
 msgid ""
@@ -5695,6 +5700,8 @@ msgid ""
 "into an executable program — with the default name \"a.out\" or \"a.exe"
 "\" (if you want a different name, use the option \"-o\")."
 msgstr ""
+"它调用链接器将对象文件tabulate.o和function.o合并成一个可执行程序--默认名称为 "
+"\"a.out \"或 \"a.exe\"（如果想要一个不同的名称，可以使用选项\"-o\"）。"
 
 #: ../../source/learn/building_programs/linking_pieces.md:80
 msgid ""
@@ -5703,12 +5710,15 @@ msgid ""
 "libraries contain all the \"standard\" stuff — low-level routines that do "
 "the input and output to screen, the `sin` function and much more."
 msgstr ""
+"链接器在这个链接步骤中还添加了一些额外的文件，即运行时库，这些通常是不可见得"
+"。这些运行时库包含了所有的 “标准 ”东西--执行输入和输出到屏幕的低级例程，`sin`"
+" 函数等等。"
 
 #: ../../source/learn/building_programs/linking_pieces.md:85
 msgid ""
 "If you want to see the gory details, add the option \"-v\". This instructs "
 "the compiler to report all the steps that are in detail."
-msgstr ""
+msgstr "如果要查看详细信息，可以添加选项“-v”。这时，编译器会报告所有详细步骤。"
 
 #: ../../source/learn/building_programs/linking_pieces.md:88
 msgid ""
@@ -5718,6 +5728,9 @@ msgid ""
 "Linux: shared objects or shared libraries). Without these run-time libraries "
 "the program will not start."
 msgstr ""
+"最终结果，即可执行程序，包含了编译后的源代码和使其工作的各种辅助例程。它还包"
+"含对动态运行时库的引用（在 Windows 中：DLL，在 Linux "
+"中：共享对象或共享库）。如果没有这些运行时库，程序将无法启动。"
 
 #: ../../source/learn/building_programs/managing_libraries.md:3
 msgid ""
@@ -5726,12 +5739,15 @@ msgid ""
 "be very long indeed. This soon becomes tedious or even impossible to "
 "maintain. So a different solution is called for: create your own libraries."
 msgstr ""
+"如果您需要管理一个由几十个源文件构建的程序（这并不少见！），指定所有目标文件"
+"所需的命令行将会非常长。这很快就变得乏味，甚至不可能维护。因此有一个不同的解"
+"决方案：创建自己的库。"
 
 #: ../../source/learn/building_programs/managing_libraries.md:9
 msgid ""
 "Libraries contain any number of object files in a compact form, so that the "
 "command-line becomes far shorter:"
-msgstr ""
+msgstr "库以紧凑的形式包含任意数量的目标文件，因此命令行变得更短："
 
 #: ../../source/learn/building_programs/managing_libraries.md:16
 msgid ""
@@ -5739,27 +5755,31 @@ msgid ""
 "compiled and then put into a library. The extension \".a\" is used by Linux "
 "and Linux-like platforms. On Windows the extension \".lib\" is used."
 msgstr ""
+"其中 \"supportlib.a \"是一个"
+"，两个或多个对象文件的集合，所有这些文件都经过编译，然后放入一个库中。"
+"扩展名\".a \"被Linux和类Linux平台使用。在Windows上使用扩展名\".lib\"。"
 
 #: ../../source/learn/building_programs/managing_libraries.md:20
 msgid ""
 "Creating your own libraries is not that complicated: on Linux, you can "
 "achieve this using a utility like `ar`:"
-msgstr ""
+msgstr "创建自己的库并不复杂：在Linux上，您可以使用像`ar`这样的程序来实现这一点："
 
 #: ../../source/learn/building_programs/managing_libraries.md:30
 msgid "or on Windows using the `lib` utility:"
-msgstr ""
+msgstr "或在Windows上使用`lib` 工具："
 
 #: ../../source/learn/building_programs/managing_libraries.md:39
 msgid "Note:"
-msgstr ""
+msgstr "注意："
 
 #: ../../source/learn/building_programs/managing_libraries.md:41
 msgid ""
 "The command `ar` with the option `r` either creates the library (the name "
 "appears after the option) or adds new object files to the library (or "
 "replaces any existing ones)."
-msgstr ""
+msgstr "带有选项 `r` 的 `ar`命令要么创建库（名称出现在选项之后），要么将新的目标文件"
+"添加到库中（或替换任何现有的）。"
 
 #: ../../source/learn/building_programs/managing_libraries.md:44
 msgid ""
@@ -5767,6 +5787,8 @@ msgid ""
 "out:` with the name of the new library next to it. To add object files to an "
 "existing library, leave out the `/out:` bit."
 msgstr ""
+"如果您使用选项 `/out：` 并在其旁边指定新库的名称，命令 `lib` "
+"将创建一个新库。要将对象文件添加到现有库中，请省略 `/out：` 。"
 
 #: ../../source/learn/building_programs/managing_libraries.md:47
 msgid ""
