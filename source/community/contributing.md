@@ -143,7 +143,6 @@ Three icon packs are available for use on `fortran-lang.org`:
 {octicon}`book;1em;sd-text-info`
 ```
 
-
 Visit the respective websites to browse available icons.
 
 ### Page contents

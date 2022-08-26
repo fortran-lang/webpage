@@ -68,7 +68,7 @@ learn/{{book-filename}}
 :::
 ```
 
-Replace `<book-filename>` with the filename of your markdown file
+Replace `{{book-filename}}` with the filename of your markdown file
 but **excluding the `.md` extension**. There should also be no trailing slash.
 
 **Example:** header
@@ -125,10 +125,10 @@ in the [data/learning.yml](./data/learning.yml) datafile.
 Open this file and create a new entry under the `books:` field in the following format:
 
 ```yaml
-- title: <book-title>
-  description: <book-description>
-  category: <book-category>
-  link: /learn/<book-filename>
+- title: {{book-title}}
+  description: {{book-description}}
+  category: {{book-category}}
+  link: /learn/{{book-filename}}
 ```
 
 The `title` field is what will be displayed on the _Learn_ page for your mini-book
@@ -225,14 +225,14 @@ in the [data/learning.yml](./data/learning.yml) datafile.
 Open this file and create a new entry under the `books:` field in the following format:
 
 ```yaml
-- title: <book-title>
-  description: <book-description>
-  category: <book-category>
-  link: /learn/<book-folder>
+- title: {{book-title}}
+  description: {{book-description}}
+  category: {{book-category}}
+  link: /learn/{{book-folder}}
   pages:
-    - link: /learn/<book-folder>/<page1-filename>
-    - link: /learn/<book-folder>/<page2-filename>
-    - link: /learn/<book-folder>/<page3-filename>
+    - link: /learn/{{book-folder}}/{{page1-filename}}
+    - link: /learn/{{book-folder}}/{{page2-filename}}
+    - link: /learn/{{book-folder}}/{{page3-filename}}
 ```
 
 The `title` field is what will be displayed on the _Learn_ page for your mini-book
