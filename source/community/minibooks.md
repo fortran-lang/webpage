@@ -177,7 +177,7 @@ Create a new folder in the `./learn/` directory with a short name that concisely
 All pages of your mini-book will be contained within this folder.
 
 The first page of your mini-book should be called `index.md`, so create a new markdown file in
-your mini-book folder called `index.md`, and add a toc in the following format of all the markdown files:
+your mini-book folder called `index.md`, and add a toc in the following format in all the markdown files:
 
 ```
 :::{toctree}
