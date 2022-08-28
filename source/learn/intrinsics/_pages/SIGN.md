@@ -14,40 +14,40 @@ result = sign(a, b)
     type(TYPE(kind=KIND)),intent(in) :: a, b
 ```
 
-where TYPE may be _real_ or _integer_ and KIND is any supported kind for the type.
-
-````
-### __Description__
-
-__sign__(a,b) returns the value of __a__ with the sign of __b__.
+where TYPE may be *real* or *integer* and KIND is any supported kind for the type.
 
 
-For processors that distinguish between positive and negative zeros  __sign()__ may be used to
-distinguish between __real__ values 0.0 and −0.0. SIGN (1.0, -0.0) will
+### **Description**
+
+**sign**(a,b) returns the value of **a** with the sign of **b**.
+
+
+For processors that distinguish between positive and negative zeros  **sign()** may be used to
+distinguish between **real** values 0.0 and −0.0. SIGN (1.0, -0.0) will
 return −1.0 when a negative zero is distinguishable.
 
     29  1 Description. Magnitude of A with the sign of B.
 
 
 
-### __Arguments__
+### **Arguments**
 
-  - __a__
-    : Shall be of type _integer_ or _real_
+  - **a**
+    : Shall be of type *integer* or *real*
 
-  - __b__
-    : Shall be of the same type and kind as __a__
+  - **b**
+    : Shall be of the same type and kind as **a**
 
-### __Returns__
+### **Returns**
 
-The kind of the return value is the magnitude of __a__ with the sign of  __b__. That is,
+The kind of the return value is the magnitude of **a** with the sign of **b**. That is,
 
-     -  If __b \>= 0__ then the result is __abs(a)__
-     -  else if __b < 0__ it is -__abs(a)__.
-     - if __b__ is _real_ and the processor distinguishes between __-0.0__ and __0.0__ then the
-       result is __-abs(a)__
+  - If **b \>= 0**, the result is **abs(a)**;
+  - else if **b < 0**, the result it is -**abs(a)**.
+  - If **b** is *real* and the processor distinguishes between **-0.0** and **0.0** then the
+    result is **-abs(a)**.
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
