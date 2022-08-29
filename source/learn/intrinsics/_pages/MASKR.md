@@ -107,4 +107,4 @@ Fortran 2008 and later
 
 [**maskl**(3)](MASKL)
 
-####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

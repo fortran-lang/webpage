@@ -99,4 +99,4 @@ Fortran 2008 and later
 
 [**maskr**(3)](MASKR)
 
-####### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
