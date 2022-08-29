@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Fortran Intrinsics &#8212; Fortran Programming Language</title>
+    <title>Fortran 内置函数 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -26,7 +26,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     <link rel="icon" sizes="256x256" type="image/ico" href="../../_static/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
 
@@ -45,7 +45,7 @@
     <link rel="index" title="索引" href="../../genindex/" />
     <link rel="search" title="搜索" href="../../search/" />
     <link rel="next" title="Properties and attributes of arrays" href="array/" />
-    <link rel="prev" title="Run-time libraries" href="../building_programs/runtime_libraries/" /> 
+    <link rel="prev" title="运行时库" href="../building_programs/runtime_libraries/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -298,7 +298,7 @@
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="../">
-  Learn
+  学习
  </a>
 </li>
 
@@ -525,7 +525,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../building_programs/">
-   Building programs
+   构建程序
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -555,29 +555,29 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../building_programs/linking_pieces/">
-     Linking the objects
+     链接对象
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../building_programs/managing_libraries/">
-     Managing libraries (static and dynamic libraries)
+     管理库（静态和动态库）
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../building_programs/project_make/">
-     An introduction to make
+     一个make的介绍
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../building_programs/runtime_libraries/">
-     Run-time libraries
+     运行时库
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
-   Fortran Intrinsics
+   Fortran 内置函数
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
@@ -606,7 +606,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="compiler/">
-     Information about compiler and compiler options used for building
+     有关用于构建的编译器和编译器选项的信息
     </a>
    </li>
    <li class="toctree-l2">
@@ -616,7 +616,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="math/">
-     General mathematical functions
+     一般数学函数
     </a>
    </li>
    <li class="toctree-l2">
@@ -656,7 +656,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
-     GNU Free Documentation License
+     GNU 自由文档许可证
     </a>
    </li>
   </ul>
@@ -691,14 +691,11 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="fortran-intrinsics">
-<h1>Fortran Intrinsics<a class="headerlink" href="#fortran-intrinsics" title="此标题的永久链接">#</a></h1>
-<p>This is a collection of extended descriptions of the Fortran intrinsics
-based on the reference document
-“<a class="reference external" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=19442438&amp;objAction=Open">Current F2018 Working Document as of April 2018</a>”.
-Vendor-specific extensions are not included.</p>
+<h1>Fortran 内置函数<a class="headerlink" href="#fortran-intrinsics" title="此标题的永久链接">#</a></h1>
+<p>这是基于参考文档“<a class="reference external" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=19442438&amp;objAction=Open">截至 2018 年 4 月的当前 F2018 工作文档</a>”的 Fortran 内置函数扩展描述的集合，不包括供应商特定的扩展。</p>
 <details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
 <summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
-Intrinsics<div class="sd-summary-down docutils">
+内置函数<div class="sd-summary-down docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
 <div class="sd-summary-up docutils">
 <svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
@@ -787,8 +784,8 @@ Intrinsics<div class="sd-summary-down docutils">
 <li class="toctree-l2"><a class="reference internal" href="character/#trim">trim</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="compiler/">Information about compiler and compiler options used for building</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="compiler/#compiler-options">compiler_options</a></li>
+<li class="toctree-l1"><a class="reference internal" href="compiler/">有关用于构建的编译器和编译器选项的信息</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compiler/#compiler-options">编译器选项</a></li>
 <li class="toctree-l2"><a class="reference internal" href="compiler/#compiler-version">compiler_version</a></li>
 </ul>
 </li>
@@ -801,7 +798,7 @@ Intrinsics<div class="sd-summary-down docutils">
 <li class="toctree-l2"><a class="reference internal" href="cfi/#c-sizeof">c_sizeof</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="math/">General mathematical functions</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="math/">一般数学函数</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="math/#acos">acos</a></li>
 <li class="toctree-l2"><a class="reference internal" href="math/#acosh">acosh</a></li>
 <li class="toctree-l2"><a class="reference internal" href="math/#asin">asin</a></li>
@@ -833,7 +830,7 @@ Intrinsics<div class="sd-summary-down docutils">
 <li class="toctree-l2"><a class="reference internal" href="math/#erfc-scaled">erfc_scaled</a></li>
 <li class="toctree-l2"><a class="reference internal" href="math/#gamma">gamma</a></li>
 <li class="toctree-l2"><a class="reference internal" href="math/#log-gamma">log_gamma</a></li>
-<li class="toctree-l2"><a class="reference internal" href="math/#id233">log_gamma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#id262">log_gamma</a></li>
 <li class="toctree-l2"><a class="reference internal" href="math/#norm2">norm2</a></li>
 </ul>
 </li>
@@ -950,46 +947,35 @@ Intrinsics<div class="sd-summary-down docutils">
 <li class="toctree-l2"><a class="reference internal" href="type/#selected-real-kind">selected_real_kind</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">GNU Free Documentation License</a></li>
+<li class="toctree-l1"><a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">GNU 自由文档许可证</a></li>
 </ul>
 </div>
 </div>
 </details><section id="overview">
-<h2>Overview<a class="headerlink" href="#overview" title="此标题的永久链接">#</a></h2>
-<p>The standard documents and most vendor-supplied descriptions of
-the intrinsics are often very brief and concise to the point of the
-functionality of the intrinsics being obscure, particularly to someone
-unfamiliar with the procedure.</p>
-<p>By describing the procedures here</p>
+<h2>概述<a class="headerlink" href="#overview" title="此标题的永久链接">#</a></h2>
+<p>标准文档和大多数供应商提供的内置函数描述通常非常简短，以至于内置函数的功能晦涩难懂，特别是对于不熟悉该过程的人。</p>
+<p>通过在此处描述例程</p>
 <ul class="simple">
-<li><p>in greater detail</p></li>
-<li><p>with a working example</p></li>
-<li><p>providing links to additional resources
-(including additional documents at fortran-lang.org and related
-discussions in Fortran Discourse)</p></li>
+<li><p>更详细</p></li>
+<li><p>有一个工作示例</p></li>
+<li><p>提供其他资源的链接（包括 fortran-lang.org 上的其他文档和 Fortran Discourse 中的相关讨论）</p></li>
 </ul>
-<p>these documents strive to be a valuable asset for Fortran programmers.</p>
-<p>This is a community-driven resource and everyone is encouraged to contribute
-to the documents. For contribution guidelines see <a class="reference internal" href="../../community/minibooks/#minibooks"><span class="std std-ref">fortran-lang.org 的迷你书教程</span></a>
-and the following Copyright guidelines.</p>
+<p>这些文档力求成为 Fortran 程序员的宝贵资产。</p>
+<p>这是一个社区驱动的资源，鼓励每个人为文档做出贡献。有关贡献指南，请参阅 <a class="reference internal" href="../../community/minibooks/#minibooks"><span class="std std-ref">fortran-lang.org 上的迷你书教程</span></a> 和以下版权指南。</p>
 </section>
 <section id="see-also">
-<h2>See Also<a class="headerlink" href="#see-also" title="此标题的永久链接">#</a></h2>
+<h2>也可以看看<a class="headerlink" href="#see-also" title="此标题的永久链接">#</a></h2>
 <ul class="simple">
-<li><p>The <a class="reference external" href="https://stdlib.fortran-lang.org/">Fortran stdlib</a> project</p></li>
-<li><p><a class="reference external" href="https://fortran-lang.org/packages/fpm">fpm(1)</a> packages, many of which are general-purpose libraries/modules</p></li>
+<li><p><a class="reference external" href="https://stdlib.fortran-lang.org/">Fortran 标准库</a> 项目</p></li>
+<li><p><a class="reference external" href="https://fortran-lang.org/packages/fpm">fpm(1)</a> 包，其中许多是通用库/模块</p></li>
 </ul>
-<p>Experimental</p>
+<p>实验性的</p>
 <ul>
-<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/slidy_byprocedure.html">review by procedure </a></p></li>
-<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/slidy_byheader.html">review by header </a></p></li>
-<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/fman.f90">fman(1)</a> A self-contained Fortran program that
-lets you view the non-graphical plain ASCII portions of the
-documentation from a terminal interface. Compile the program and
-enter “./fman –help” for directions.</p></li>
-<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/fortran.tgz">man pages</a> A gzipped tar(1) file containing
-early versions of man-pages derived from the markdown documents.</p>
-<p>Typical installation on a Linux platform as an administrator ( but it varies) :</p>
+<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/slidy_byprocedure.html">按程序审查</a></p></li>
+<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/slidy_byheader.html">标题审查</a></p></li>
+<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/fman.f90">fman(1)</a> 一个独立的 Fortran 程序，可让您从终端界面查看文档的非图形纯 ASCII 部分。编译程序并输入“./fman –help”以获取指导。</p></li>
+<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/fortran.tgz">手册页</a> 一个 gzip 压缩的 tar(1) 文件，其中包含从 markdown 文档派生的早期版本的手册页。</p>
+<p>以管理员身份在 Linux 平台上的典型安装（但会有所不同）：</p>
 </li>
 </ul>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># as the administrator</span>
@@ -999,14 +985,14 @@ tar xvfz /tmp/fortran.tgz
 mandb -c
 </pre></div>
 </div>
-<p>then anyone on that plaform can enter commands like</p>
+<p>然后该平台上的任何人都可以输入命令，例如</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man sinh.3fortran     <span class="c1"># specifically show Fortran sinh(3) documentation</span>
 man -k . -s 3fortran  <span class="c1"># list all fortran pages</span>
 man -s 3fortran --regex <span class="s1">&#39;.*&#39;</span> <span class="p">|</span>col -b <span class="c1"># show all Fortran intrinsics</span>
 </pre></div>
 </div>
-<p>See man(1) (ie. enter “man man”) for more information.</p>
-<p>If you can only install the pages on your own ID, try</p>
+<p>有关更多信息，请参见 man(1)（即输入“man man”）。</p>
+<p>如果您只能在自己的 ID 上安装页面，请尝试</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># as a user, placing the files in ~/man:</span>
 <span class="nb">cd</span>
 tar xvfz /tmp/fortran.tgz
@@ -1016,33 +1002,21 @@ mandb -c
 <span class="nb">export</span> <span class="nv">MANWIDTH</span><span class="o">=</span><span class="m">80</span>
 </pre></div>
 </div>
-<p>Still debating whether having to keep the document limited to ANSI
-characters is worth-while so these formats can be generated, and
-still having issues converting the markdown to the proper formats.</p>
+<p>仍在争论是否必须将文档限制为 ANSI 字符是否值得，以便可以生成这些格式，并且仍然存在将降价转换为正确格式的问题。</p>
 </section>
 <section id="text-content-copyrights">
-<h2>Text Content Copyrights<a class="headerlink" href="#text-content-copyrights" title="此标题的永久链接">#</a></h2>
-<p>Many of the documents presented here are modified versions of man-pages from the
-<a class="reference external" href="https://fortranwiki.org">Fortran Wiki</a>
-and as such are available under the terms of the GNU
-Free Documentation License <span class="xref myst"><strong>GFDL</strong></span>
-with no invariant sections, front-cover texts, or back-cover texts.</p>
-<p>If you contribute to this site by modifying the files marked as GFDL,
-you thereby agree to license the contributed material to the public
-under the GFDL (version 1.2 or any later version published by the Free
-Software Foundation, with no invariant sections, front-cover texts,
-or back-cover texts).</p>
-<p>If you contribute new material you thereby agree to release it under
-the MIT license, and should indicate this by placing MIT on the
-specially-formatted last line. For example, change</p>
+<h2>文字内容版权<a class="headerlink" href="#text-content-copyrights" title="此标题的永久链接">#</a></h2>
+<p>此处提供的许多文档是来自 <a class="reference external" href="https://fortranwiki.org">Fortran Wiki</a> 的手册页的修改版本，因此可根据 GNU 自由文档许可证 <span class="xref myst"><strong>GFDL</strong></span>，没有不变的部分、封面文本或封底文本。</p>
+<p>如果您通过修改标记为 GFDL 的文件为本网站做出贡献，则您因此同意根据 GFDL（1.2 版或自由软件基金会发布的任何更高版本，没有不变的部分，封面）向公众许可所贡献的材料文本或封底文本）。</p>
+<p>如果您提供新材料，则表示您同意在 MIT 许可下发布它，并应通过将 MIT 放在特殊格式的最后一行来表明这一点。例如，改变</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>###### fortran-lang intrinsic descriptions
 </pre></div>
 </div>
-<p>to</p>
+<p>至</p>
 <div class="highlight-text notranslate"><div class="highlight"><pre><span></span>###### fortran-lang intrinsic descriptions (License: MIT) @urbanjost
 </pre></div>
 </div>
-<p>Written in <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">Myst-Markdown</a></p>
+<p>在 <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">Myst-Markdown</a> 中书写</p>
 </section>
 </section>
 

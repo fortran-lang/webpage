@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Linking the objects &#8212; Fortran Programming Language</title>
+    <title>链接对象 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -26,7 +26,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     <link rel="icon" sizes="256x256" type="image/ico" href="../../../_static/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
 
@@ -44,7 +44,7 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
-    <link rel="next" title="Managing libraries (static and dynamic libraries)" href="../managing_libraries/" />
+    <link rel="next" title="管理库（静态和动态库）" href="../managing_libraries/" />
     <link rel="prev" title="包含文件和模块" href="../include_files/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -298,7 +298,7 @@
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="../../">
-  Learn
+  学习
  </a>
 </li>
 
@@ -525,7 +525,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Building programs
+   构建程序
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -555,29 +555,29 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Linking the objects
+     链接对象
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../managing_libraries/">
-     Managing libraries (static and dynamic libraries)
+     管理库（静态和动态库）
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../project_make/">
-     An introduction to make
+     一个make的介绍
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../runtime_libraries/">
-     Run-time libraries
+     运行时库
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../intrinsics/">
-   Fortran Intrinsics
+   Fortran 内置函数
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
@@ -606,7 +606,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/compiler/">
-     Information about compiler and compiler options used for building
+     有关用于构建的编译器和编译器选项的信息
     </a>
    </li>
    <li class="toctree-l2">
@@ -616,7 +616,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/math/">
-     General mathematical functions
+     一般数学函数
     </a>
    </li>
    <li class="toctree-l2">
@@ -656,7 +656,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
-     GNU Free Documentation License
+     GNU 自由文档许可证
     </a>
    </li>
   </ul>
@@ -695,12 +695,9 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="linking-the-objects">
-<h1>Linking the objects<a class="headerlink" href="#linking-the-objects" title="此标题的永久链接">#</a></h1>
-<p>Almost all programs, except for the simplest, are built up from
-different pieces. We are going to examine such a situation in
-more detail.</p>
-<p>Here is a general program for tabulating a function (source code in
-“tabulate.f90”):</p>
+<h1>链接对象<a class="headerlink" href="#linking-the-objects" title="此标题的永久链接">#</a></h1>
+<p>几乎所有程序，除了最简单的，都是用不同的片段组合构建的。我们将更详细地研究这种情况。</p>
+<p>这是一个对函数制表的通用程序（源代码在 “tabulate.f90”）：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">tabulate</span><span class="w"></span>
 <span class="w">    </span><span class="k">use </span><span class="n">user_functions</span><span class="w"></span>
 
@@ -718,14 +715,9 @@ more detail.</p>
 <span class="k">end program </span><span class="n">tabulate</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Note the <code class="docutils literal notranslate"><span class="pre">use</span></code> statement — this will be where we define the function <code class="docutils literal notranslate"><span class="pre">f</span></code>.</p>
-<p>We want to make the program general, so keep the
-specific source code — the implementation of the function <code class="docutils literal notranslate"><span class="pre">f</span></code> —
-separated from the general source code. There are several ways to
-achieve this, but one is to put it in a different source file. We can
-give the general program to a user and they provide a specific source code.</p>
-<p>Assume for the sake of the example that the function is implemented in a
-source file “function.f90” as:</p>
+<p>注意「use」语句—这将是我们定义函数「f」的地方。</p>
+<p>我们想让程序具有通用性，所以要把具体的源代码 —— 函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 的实现—与通用源代码分开。有几种方法来实现这一点，但其中一种是把它放在不同的源文件中。我们可以把通用程序交给用户，他们提供具体的源代码。</p>
+<p>假设该函数在源文件「function.f90」中实现为：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">user_functions</span><span class="w"></span>
 <span class="w">    </span><span class="k">implicit none</span>
 <span class="k">contains</span>
@@ -738,42 +730,20 @@ source file “function.f90” as:</p>
 <span class="k">end module </span><span class="n">user_functions</span><span class="w"></span>
 </pre></div>
 </div>
-<p>To build the program with this specific function, we need to compile two
-source files and combine them via the link step into one executable
-program. Because the program “tabulate” depends on the module
-“function”, we need to compile the source file containing our module
-first. A sequence of commands to do this is:</p>
+<p>构建具有这种特定函数的程序，我们需要编译两个源代码文件并通过链接来合并他们为一个可执行程序。因为「tabulate」程序依赖于function模块，我们需要首先编译包含我们模块的源文件。要执行的命令序列为：</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -c functions.f90
 $ gfortran tabulate.f90 functions.o
 </pre></div>
 </div>
-<p>The first step compiles the module, resulting in an object file
-“functions.o” and a module intermediate file, “user_functions.mod”. This module
-file contains all the information the compiler needs to determine that
-the function <code class="docutils literal notranslate"><span class="pre">f</span></code> is defined in this module and what its interface is. This
-information is important: it enables the compiler to check that you call
-the function in the right way. It might be that you made a mistake and
-called the function with two arguments instead of one. If the compiler
-does not know anything about the function’s interface, then it cannot
-check anything.</p>
-<p>The second step invokes the compiler in such a way that:</p>
+<p>第一步编译模块，生成一个目标文件”functions.o”和一个模块的中间文件”user_functions.mod”。该模块文件包含编译器确定该模块中定义了函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 及其接口所需的所有信息。此信息很重要：它使得编译器能够检查您是否以正确的方式调用了该函数。可能是您犯了一个错误，使用了两个参数而不是一个参数调用了该函数。如果编译器对函数的接口一无所知，那么它就无法检查任何内容。</p>
+<p>第二步以如下方式调用编译器：</p>
 <ul class="simple">
-<li><p>it compiles the file “tabulate.f90” (using the module file);</p></li>
-<li><p>it invokes the linker to combine the object files tabulate.o and functions.o into an
-executable program — with the default name “a.out” or “a.exe” (if you
-want a different name, use the option “-o”).</p></li>
+<li><p>它编译文件 “tabulate.f90”（使用模块文件）;</p></li>
+<li><p>它调用链接器将对象文件tabulate.o和function.o合并成一个可执行程序–默认名称为 “a.out “或 “a.exe”（如果想要一个不同的名称，可以使用选项”-o”）。</p></li>
 </ul>
-<p>What you do not see in general is that the linker also adds a number of
-extra files in this link step, the run-time libraries. These run-time
-libraries contain all the “standard” stuff — low-level routines that do
-the input and output to screen, the <code class="docutils literal notranslate"><span class="pre">sin</span></code> function and much more.</p>
-<p>If you want to see the gory details, add the option “-v”. This instructs
-the compiler to report all the steps that are in detail.</p>
-<p>The end result, the executable program, contains the compiled source
-code and various auxiliary routines that make it work. It also contains
-references to so-called dynamic run-time libraries (in Windows: DLLs, in
-Linux: shared objects or shared libraries). Without these run-time
-libraries the program will not start.</p>
+<p>链接器在这个链接步骤中还添加了一些额外的文件，即运行时库，这些通常是不可见得。这些运行时库包含了所有的 “标准 ”东西–执行输入和输出到屏幕的低级例程，<code class="docutils literal notranslate"><span class="pre">sin</span></code> 函数等等。</p>
+<p>如果要查看详细信息，可以添加选项“-v”。这时，编译器会报告所有详细步骤。</p>
+<p>最终结果，即可执行程序，包含了编译后的源代码和使其工作的各种辅助例程。它还包含对动态运行时库的引用（在 Windows 中：DLL，在 Linux 中：共享对象或共享库）。如果没有这些运行时库，程序将无法启动。</p>
 </section>
 
 <div class="section">

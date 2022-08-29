@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Building programs &#8212; Fortran Programming Language</title>
+    <title>构建程序 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -26,7 +26,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     <link rel="icon" sizes="256x256" type="image/ico" href="../../_static/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
 
@@ -298,7 +298,7 @@
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="../">
-  Learn
+  学习
  </a>
 </li>
 
@@ -525,7 +525,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="current reference internal" href="#">
-   Building programs
+   构建程序
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -555,29 +555,29 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="linking_pieces/">
-     Linking the objects
+     链接对象
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="managing_libraries/">
-     Managing libraries (static and dynamic libraries)
+     管理库（静态和动态库）
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="project_make/">
-     An introduction to make
+     一个make的介绍
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="runtime_libraries/">
-     Run-time libraries
+     运行时库
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../intrinsics/">
-   Fortran Intrinsics
+   Fortran 内置函数
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
@@ -606,7 +606,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../intrinsics/compiler/">
-     Information about compiler and compiler options used for building
+     有关用于构建的编译器和编译器选项的信息
     </a>
    </li>
    <li class="toctree-l2">
@@ -616,7 +616,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../intrinsics/math/">
-     General mathematical functions
+     一般数学函数
     </a>
    </li>
    <li class="toctree-l2">
@@ -656,7 +656,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
-     GNU Free Documentation License
+     GNU 自由文档许可证
     </a>
    </li>
   </ul>
@@ -691,45 +691,25 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="building-programs">
-<h1>Building programs<a class="headerlink" href="#building-programs" title="此标题的永久链接">#</a></h1>
-<p>Languages like Fortran, C, C++ and Java, to name but a few, share
-certain characteristics: you write code in your language of choice but
-then you have to build an executable program from that source code.
-Other languages are interpreted — the source code is analysed by a
-special program and taken as direct instructions. Two very simple
-examples of that type of language: Windows batch files and Linux shell
-scripts.</p>
-<p>In this tutorial we concentrate on the first type of languages, with
-Fortran as the main example. One advantage of compiled languages is that
-the build process that you need to build an executable program, is used
-to transform the human-readable source code into an efficient program
-that can be run on the computer.</p>
-<p>Remark: this tutorial gives examples for the Windows and Linux operating
-systems, however the workflow and general principles still apply to macOS.</p>
+<h1>构建程序<a class="headerlink" href="#building-programs" title="此标题的永久链接">#</a></h1>
+<p>像Fortran、C、C++和Java这样的语言，简单说，它们有一些共同的特点：你用你选择的语言写代码，但你必须用这些源代码来构建一个可执行的程序。其他语言是解释型的—源代码被一个特殊的程序解析并作为直接指令。这种类型的语言有两个非常简单的例子：Windows批处理文件和Linux shell脚本。</p>
+<p>在教程中我们集中讨论第一类编程语言，以Fortran为主要例子。编译型语言的一个优点是，构建可执行文件的过程被用来将人类可读的源代码转化为高效的机器可运行的程序。</p>
+<p>备注：本教程给出了在Windows和Linux操作系统上的例子，但是工作流和通用原理仍然适用于macOS。</p>
 <section id="compiled-languages">
-<h2>Compiled languages<a class="headerlink" href="#compiled-languages" title="此标题的永久链接">#</a></h2>
-<p>Let us have a look at a simple example:</p>
+<h2>编译语言<a class="headerlink" href="#compiled-languages" title="此标题的永久链接">#</a></h2>
+<p>让我们看一个简单的例子：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">hello</span><span class="w"></span>
 <span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;Hello!&#39;</span><span class="w"></span>
 <span class="k">end program </span><span class="n">hello</span><span class="w"></span>
 </pre></div>
 </div>
-<p>This is just about the simplest program you can write in Fortran and it
-is certainly a variation on one of the most famous programs. Even though
-it is simple to express in source code, a lot of things actually happen
-when the executable that is built from this code runs:</p>
+<p>这是用Fortran可以编写的最简单的程序也是最著名的Fortran程序之一的变体。即使源代码的很简单，但当编译后的可执行程序运行时，实际会发生很多事：</p>
 <ul class="simple">
-<li><p>A process is started on the computer in such a way that it can write
-to the console — the window (DOS-box, xterm, …) at which you type the
-program’s name.</p></li>
-<li><p>It writes the text “Hello!” to the console. To do so it must properly
-interact with the console.</p></li>
-<li><p>When done, it finishes, cleaning up all the resources (memory,
-connection to the console etc.) it took.</p></li>
+<li><p>进程在计算机可以以这么一种方式启动。它可以向键入 程序名称的控制台窗口（DOS-box，xterm等）写入内容。</p></li>
+<li><p>他在控制台上写出文本「Hello!」。为了做到如此必须正确的与控制台交互。</p></li>
+<li><p>完成后，它就结束了，清理掉它所占用的所有资源（内存、与控制台的连接等）。</p></li>
 </ul>
-<p>Fortunately, as a programmer in a high-level language you do not need to
-consider all these details. In fact, this is the sort of things that is
-taken care of by the build process: the compiler and the linker.</p>
+<p>幸运的是，做一个高级语言的程序员，你不需要考虑所有细节。实际上，这类事情细节是由构建过程定的（编译器和链接器）。</p>
 <div class="toctree-wrapper compound">
 </div>
 </section>

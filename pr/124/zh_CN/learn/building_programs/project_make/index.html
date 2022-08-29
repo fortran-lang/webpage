@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>An introduction to make &#8212; Fortran Programming Language</title>
+    <title>一个make的介绍 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -26,7 +26,7 @@
 
     <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
     <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
-    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.b7bb847fb20b106c3d81b95245e65545.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
     <link rel="icon" sizes="256x256" type="image/ico" href="../../../_static/images/favicon.ico" />
     <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
 
@@ -44,8 +44,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
-    <link rel="next" title="Run-time libraries" href="../runtime_libraries/" />
-    <link rel="prev" title="Managing libraries (static and dynamic libraries)" href="../managing_libraries/" /> 
+    <link rel="next" title="运行时库" href="../runtime_libraries/" />
+    <link rel="prev" title="管理库（静态和动态库）" href="../managing_libraries/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -298,7 +298,7 @@
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="../../">
-  Learn
+  学习
  </a>
 </li>
 
@@ -525,7 +525,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Building programs
+   构建程序
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -555,29 +555,29 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../linking_pieces/">
-     Linking the objects
+     链接对象
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../managing_libraries/">
-     Managing libraries (static and dynamic libraries)
+     管理库（静态和动态库）
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     An introduction to make
+     一个make的介绍
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../runtime_libraries/">
-     Run-time libraries
+     运行时库
     </a>
    </li>
   </ul>
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../intrinsics/">
-   Fortran Intrinsics
+   Fortran 内置函数
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
   <label for="toctree-checkbox-5">
@@ -606,7 +606,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/compiler/">
-     Information about compiler and compiler options used for building
+     有关用于构建的编译器和编译器选项的信息
     </a>
    </li>
    <li class="toctree-l2">
@@ -616,7 +616,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/math/">
-     General mathematical functions
+     一般数学函数
     </a>
    </li>
    <li class="toctree-l2">
@@ -656,7 +656,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
-     GNU Free Documentation License
+     GNU 自由文档许可证
     </a>
    </li>
   </ul>
@@ -693,7 +693,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#automatically-generated-dependencies">
-   Automatically generated dependencies
+   自动生成的依赖
   </a>
  </li>
 </ul>
@@ -710,52 +710,32 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="an-introduction-to-make">
-<h1>An introduction to make<a class="headerlink" href="#an-introduction-to-make" title="此标题的永久链接">#</a></h1>
-<p>We briefly discussed the basics of <code class="docutils literal notranslate"><span class="pre">make</span></code>. This chapter gives ideas
-and strategies to scale <code class="docutils literal notranslate"><span class="pre">make</span></code> for larger projects.</p>
-<p>Before going into detail with <code class="docutils literal notranslate"><span class="pre">make</span></code>, consider a few points:</p>
+<h1>一个make的介绍<a class="headerlink" href="#an-introduction-to-make" title="此标题的永久链接">#</a></h1>
+<p>我们简要讨论了 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的基础知识。本章给出了为大型项目扩展 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的想法和策略。</p>
+<p>在详细讨论<code class="docutils literal notranslate"><span class="pre">make</span></code>之前，请考虑以下几点:</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code> is a Unix tool and might give you a hard time when porting to non-Unix
-platforms. That said, there are also different flavors of <code class="docutils literal notranslate"><span class="pre">make</span></code> available,
-not all might support the features you want to use.</p></li>
-<li><p>While <code class="docutils literal notranslate"><span class="pre">make</span></code> gives you full control over the build process, it also
-means you are responsible for the entire build process, and you have to specify the rules for every detail of your project.
-You might find yourself spending a significant amount of time writing and
-maintaining your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> instead of developing your source code.</p></li>
-<li><p>You can work with your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, but think about other developers
-on your project who may not be familiar with <code class="docutils literal notranslate"><span class="pre">make</span></code>. How much time do you expect them to spend learning your
-<code class="docutils literal notranslate"><span class="pre">Makefile</span></code> and would they be able to debug or add features?</p></li>
-<li><p>Pure <code class="docutils literal notranslate"><span class="pre">make</span></code> will not scale. You will soon add auxiliary programs
-to dynamically or statically generate your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. Those introduce
-dependencies and possible sources of errors. The effort needed to test and document those
-tools should not be underestimated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code> 是一个 Unix 工具，在移植到非 Unix 平台时可能会给你带来困难。也就是说，还有不同风格的 <code class="docutils literal notranslate"><span class="pre">make</span></code> 可用，并非所有都支持您想要使用的功能。</p></li>
+<li><p>虽然 <code class="docutils literal notranslate"><span class="pre">make</span></code> 让你可以完全控制构建过程，但这也意味着你对整个构建过程负责，并且你必须为项目的每个细节指定规则。你可能会发现自己花费大量时间编写和维护 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>，而不是开发源代码。</p></li>
+<li><p>你可以使用你的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>，但请考虑你项目中可能不熟悉 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的其他开发人员。你希望他们花多少时间学习你的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>，他们是否能够调试或添加功能？</p></li>
+<li><p>纯 <code class="docutils literal notranslate"><span class="pre">make</span></code> 不会扩展。你将很快添加辅助程序来动态或静态生成你的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>。这些引入了依赖关系和可能的错误来源。不应低估测试和记录这些工具所需的工作量。</p></li>
 </ol>
-<p>If you think <code class="docutils literal notranslate"><span class="pre">make</span></code> is suitable for your needs, than you can start writing
-your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. For this course we will use real world examples from the
-package index, which (at the time of writing) use build systems other
-than <code class="docutils literal notranslate"><span class="pre">make</span></code>. This guide should present a general recommended style to write
-<code class="docutils literal notranslate"><span class="pre">make</span></code>, but also serve as demonstration of useful and interesting features.</p>
+<p>如果你认为 <code class="docutils literal notranslate"><span class="pre">make</span></code> 适合你的需要，那么你可以开始编写你的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>。在本课程中，我们将使用包索引中的真实示例，这些示例（在撰写本文时）使用 <code class="docutils literal notranslate"><span class="pre">make</span></code> 以外的构建系统。本指南应该提供一个普遍推荐的编写 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的风格，但也可以作为有用和有趣功能的演示。</p>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
-<p>Even if you find <code class="docutils literal notranslate"><span class="pre">make</span></code> unsuitable to build your project, it is <em>the</em> tool to automate workflows defined by files. Maybe you can leverage its power in a different context.</p>
+<p>即使你发现 <code class="docutils literal notranslate"><span class="pre">make</span></code> 不适合构建你的项目，它也是自动化由文件定义的工作流的工具。也许你可以在不同的环境中利用它的力量。</p>
 </div>
 <section id="getting-started">
 <h2>开始<a class="headerlink" href="#getting-started" title="此标题的永久链接">#</a></h2>
-<p>For this part we will work with
-<a href="https://github.com/jacobwilliams/fortran-csv-module/tree/1.2.0" target="_blank" rel="noopener"> the Fortran CSV module (v1.2.0)</a>.
-Our goal is to write a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to compile this project to a static library.
-Start by cloning the repository</p>
+<p>对于这一部分，我们将使用 <a href="https://github.com/jacobwilliams/fortran-csv-module/tree/1.2.0" target="_blank" rel="noopener"> Fortran CSV 模块（ v1.2.0)</a>。我们的目标是编写一个 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 来将此项目编译为一个静态库。首先克隆存储库</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">jacobwilliams</span><span class="o">/</span><span class="n">fortran</span><span class="o">-</span><span class="n">csv</span><span class="o">-</span><span class="n">module</span> <span class="o">-</span><span class="n">b</span> <span class="mf">1.2.0</span>
 <span class="n">cd</span> <span class="n">fortran</span><span class="o">-</span><span class="n">csv</span><span class="o">-</span><span class="n">module</span>
 </pre></div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
-<p>For this part we will work with the code from tag <code class="docutils literal notranslate"><span class="pre">1.2.0</span></code>, to make it as reproducible as possible. Feel free to use the latest version or another project instead.</p>
+<p>对于这一部分，我们将使用标签 <code class="docutils literal notranslate"><span class="pre">1.2.0</span></code> 中的代码，以使其尽可能可重现。随意使用最新版本或其他项目。</p>
 </div>
-<p>This project uses FoBiS as build system, and you can check the
-<code class="docutils literal notranslate"><span class="pre">build.sh</span></code> for options used with FoBiS. We are about to write a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>
-for this project. First, we check the directory structure and the source files</p>
+<p>该项目使用 FoBiS 作为构建系统，你可以检查 <code class="docutils literal notranslate"><span class="pre">build.sh</span></code> 以获取与 FoBiS 一起使用的选项。我们即将为这个项目编写一个“Makefile”。首先，我们检查目录结构和源文件</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.
 ├── build.sh
 ├── files
@@ -775,10 +755,8 @@ for this project. First, we check the directory structure and the source files</
         └── csv_write_test.f90
 </pre></div>
 </div>
-<p>We find seven different Fortran source files; the four in <code class="docutils literal notranslate"><span class="pre">src</span></code> should
-be compiled and added to a static library while the three in <code class="docutils literal notranslate"><span class="pre">src/tests</span></code>
-contain individual programs that depend on this static library.</p>
-<p>Start by creating a simple <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
+<p>我们找到了七个不同的 Fortran 源文件； <code class="docutils literal notranslate"><span class="pre">src</span></code> 中的四个应该被编译并添加到一个静态库中，而 <code class="docutils literal notranslate"><span class="pre">src/tests</span></code> 中的三个包含依赖于这个静态库的单独程序。</p>
+<p>首先创建一个简单的<code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable the default rules</span>
 <span class="nv">MAKEFLAGS</span> <span class="o">+=</span> --no-builtin-rules --no-builtin-variables
 
@@ -842,8 +820,7 @@ contain individual programs that depend on this static library.</p>
 	<span class="k">$(</span>RM<span class="k">)</span> <span class="k">$(</span>filter %.o, <span class="k">$(</span>OBJS<span class="k">)</span> <span class="k">$(</span>TEST_OBJS<span class="k">))</span> <span class="k">$(</span>filter %.exe, <span class="k">$(</span>TEST_EXE<span class="k">))</span> <span class="k">$(</span>LIB<span class="k">)</span> <span class="k">$(</span>wildcard *.mod<span class="k">)</span>
 </pre></div>
 </div>
-<p>Invoking <code class="docutils literal notranslate"><span class="pre">make</span></code> should build the static library and the test executables as
-expected:</p>
+<p>调用 <code class="docutils literal notranslate"><span class="pre">make</span></code> 应该按预期构建静态库和测试可执行文件：</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gfortran -c -o src/csv_kinds.f90.o src/csv_kinds.f90
 gfortran -c -o src/csv_parameters.f90.o src/csv_parameters.f90
 gfortran -c -o src/csv_utilities.f90.o src/csv_utilities.f90
@@ -857,28 +834,13 @@ gfortran -c -o src/tests/csv_write_test.f90.o src/tests/csv_write_test.f90
 gfortran -o src/tests/csv_write_test.exe src/tests/csv_write_test.f90.o libcsv.a
 </pre></div>
 </div>
-<p>There are a few things to note there, a <code class="docutils literal notranslate"><span class="pre">make</span></code> build usually interlaces the
-build artifacts and the source code, unless you put extra effort into implementing
-a build directory.
-Also, right now the the source files and dependencies are specified explicitly,
-which results in several additional lines even for such a simple project.</p>
+<p>有几点需要注意，<code class="docutils literal notranslate"><span class="pre">make</span></code> 构建通常会交织构建工件和源代码，除非你在实现构建目录方面付出了额外的努力。此外，现在源文件和依赖项是明确指定的，即使对于这样一个简单的项目，这也会导致多行。</p>
 </section>
 <section id="automatically-generated-dependencies">
-<h2>Automatically generated dependencies<a class="headerlink" href="#automatically-generated-dependencies" title="此标题的永久链接">#</a></h2>
-<p>The main drawback of <code class="docutils literal notranslate"><span class="pre">make</span></code> for Fortran is the missing capability to
-determine module dependencies. This is usually solved by either adding those
-by hand or automatically scanning the source code with an external tool.
-Some compilers (like the Intel Fortran compiler) also offer to generate dependencies in <code class="docutils literal notranslate"><span class="pre">make</span></code> format.</p>
-<p>Before diving into the dependency generation, we will outline the concept of
-a robust take on the dependency problem.
-First, we want an approach that can process all source files independently,
-while each source file provides (<code class="docutils literal notranslate"><span class="pre">module</span></code>) or requires (<code class="docutils literal notranslate"><span class="pre">use</span></code>) modules.
-When generating the dependencies only the name of the source file and the
-module files are known, and no information on the object file names should be
-required.</p>
-<p>If you check the dependency section above you will note that all dependencies are
-defined between object files rather than source files. To change this, we can
-generate a map from the source files their respective object files:</p>
+<h2>自动生成的依赖<a class="headerlink" href="#automatically-generated-dependencies" title="此标题的永久链接">#</a></h2>
+<p>Fortran 的 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的主要缺点是缺少确定模块依赖关系的能力。这通常通过手动添加或使用外部工具自动扫描源代码来解决。一些编译器（如英特尔 Fortran 编译器）还提供生成 <code class="docutils literal notranslate"><span class="pre">make</span></code> 格式的依赖项。</p>
+<p>在深入研究依赖生成之前，我们将概述对依赖问题进行稳健处理的概念。首先，我们想要一种可以独立处理所有源文件的方法，而每个源文件都提供（<code class="docutils literal notranslate"><span class="pre">module</span></code>）或需要（<code class="docutils literal notranslate"><span class="pre">use</span></code>）模块。生成依赖项时，只知道源文件和模块文件的名称，不需要有关目标文件名称的信息。</p>
+<p>如果你检查上面的依赖项部分，你会注意到所有依赖项都是在目标文件而不是源文件之间定义的。为了改变这一点，我们可以从源文件和它们各自的目标文件中生成一个映射：</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Define a map from each file name to its object file</span>
 <span class="nv">obj</span> <span class="o">=</span> <span class="k">$(</span>src<span class="k">)</span>.o
 <span class="nf">$(foreach src, $(SRCS) $(TEST_SRCS), $(eval $(src) </span><span class="o">:</span>= <span class="k">$(</span><span class="nv">obj</span><span class="k">)</span>))
@@ -973,7 +935,7 @@ not work with all Fortran code (namely submodules are not supported), but for
 this example it will suffice.</p>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
-<p>Using awk</p>
+<p>使用awk</p>
 <p>The above script uses the <code class="docutils literal notranslate"><span class="pre">awk</span></code> language, which is designed for the purpose
 of text stream processing and uses a C-like syntax. In <code class="docutils literal notranslate"><span class="pre">awk</span></code> you can define
 groups which are evaluated on certain events, <em>e.g.</em> when a line matches a
