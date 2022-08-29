@@ -87,4 +87,4 @@ Fortran 95 and later
 [**max**(3)](MAX),
 [**maxloc**(3)](MAXLOC)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

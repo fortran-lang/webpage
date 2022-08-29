@@ -61,4 +61,4 @@ Fortran 2003 and later
 [**c_f_pointer**(3)](C_F_POINTER),
 **iso_c_binding**(3)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

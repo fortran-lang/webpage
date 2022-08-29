@@ -80,4 +80,4 @@ Functions that perform operations on character strings:
   [**repeat**(3)](REPEAT),
   [**trim**(3)](TRIM)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

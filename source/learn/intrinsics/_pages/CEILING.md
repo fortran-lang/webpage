@@ -78,4 +78,4 @@ Fortran 95 and later
 [**int**(3)](INT),
 [**selected_int_kind**(3)](SELECTED_INT_KIND)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

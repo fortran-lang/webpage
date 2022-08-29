@@ -40,4 +40,4 @@ Fortran 95 and later
 
 [**ishftc**(3)](ISHFTC)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

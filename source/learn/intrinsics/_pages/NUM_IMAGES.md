@@ -64,4 +64,4 @@ Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
 [**this_image**(3)](THIS_IMAGE),
 [**image_index**(3)](THIS_INDEX)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

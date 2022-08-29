@@ -129,4 +129,4 @@ and **all(B /= C, DIM = 2)** is
 
 Fortran 95 and later
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

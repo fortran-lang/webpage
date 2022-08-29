@@ -76,4 +76,4 @@ Fortran 95 and later
 
 [**shape**(3)](SHAPE)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

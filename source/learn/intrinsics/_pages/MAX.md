@@ -119,4 +119,4 @@ FORTRAN 77 and later
 [**maxval**(3)](MAXVAL),
 [**min**(3)](MIN)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

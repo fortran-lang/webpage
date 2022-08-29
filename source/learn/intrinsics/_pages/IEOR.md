@@ -44,4 +44,4 @@ Fortran 95 and later
 [**ior**(3)](IOR),
 [**mvbits**(3)](MVBITS)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

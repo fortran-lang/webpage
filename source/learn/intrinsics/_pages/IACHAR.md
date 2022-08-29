@@ -92,4 +92,4 @@ of arguments, and search for certain arguments:
   [**len**(3)](LEN),
   [**repeat**(3)](REPEAT), [**trim**(3)](TRIM)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

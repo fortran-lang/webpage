@@ -60,4 +60,4 @@ Fortran 2008
 [**compiler_options**(3)](COMPILER_OPTIONS),
 **iso_fortran_env**(7)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

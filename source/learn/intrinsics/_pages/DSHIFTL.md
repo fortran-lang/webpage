@@ -39,4 +39,4 @@ Fortran 2008 and later
 
 [**dshiftr**(3)](DSHIFTR)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions
