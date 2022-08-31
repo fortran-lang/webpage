@@ -38,4 +38,4 @@ Fortran 2008 and later
 [**shifta**(3)](SHIFTA),
 [**shiftl**(3)](SHIFTL)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

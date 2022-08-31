@@ -65,4 +65,4 @@ TS 18508 or later
 
 [**atomic_fetch_xor**(3)](ATOMIC_FETCH_XOR)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

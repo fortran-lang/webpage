@@ -79,4 +79,4 @@ FORTRAN 77 and later
 [**sin**(3)](SIN),
 [**tan**(3)](TAN)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

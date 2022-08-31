@@ -36,4 +36,4 @@ Fortran 2008 and later
 [**bgt**(3),](BGT),
 [**blt**(3)](BLT)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

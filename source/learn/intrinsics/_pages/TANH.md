@@ -59,4 +59,4 @@ FORTRAN 77 and later, for a complex argument Fortran 2008 or later
 
 [**atanh**(3)](ATANH)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

@@ -68,4 +68,4 @@ Fortran 95 and later
 
 [**random_number**(3)](RANDOM_NUMBER)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

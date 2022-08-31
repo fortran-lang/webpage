@@ -37,4 +37,4 @@ Fortran 2003 and later
 
 [**extends_type_of**(3)](EXTENDS_TYPE_OF)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

@@ -90,4 +90,4 @@ Fortran 95 and later
 
 [**random_seed**(3)](RANDOM_SEED)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

@@ -93,4 +93,4 @@ Fortran 95 and later, for a complex argument Fortran 2008 or later
 
 [**asinh**(3)](ASINH)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

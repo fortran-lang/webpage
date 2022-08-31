@@ -75,4 +75,4 @@ Results:
 
 Fortran 95 and later
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

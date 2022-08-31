@@ -59,4 +59,4 @@ end program demo_co_broadcast
 [**co_sum**(3)](CO_SUM),
 [**co_reduce**(3)](CO_REDUCE)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions

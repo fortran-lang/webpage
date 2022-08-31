@@ -53,4 +53,4 @@ FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.
 [**cos**(3)](COS),
 [**sin**(3)](SIN)
 
-####### fortran-lang intrinsic descriptions
+###### fortran-lang intrinsic descriptions
