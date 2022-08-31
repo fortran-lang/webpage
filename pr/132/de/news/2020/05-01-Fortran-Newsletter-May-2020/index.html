@@ -1,0 +1,683 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Fortran newsletter: May 2020 &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../../../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../../genindex/" />
+    <link rel="search" title="Suche" href="../../../search/" /> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+    
+    <div class="dropdown" id="version_switcher">
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    de
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables news/2020/05-01-Fortran-Newsletter-May-2020 and {'version_match': 'de'}.
+-->
+
+<script type="text/javascript">
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "news/2020/05-01-Fortran-Newsletter-May-2020",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
+
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "news/2020/05-01-Fortran-Newsletter-May-2020";
+    const indexFilePath = "../../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
+
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "de") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
+</script>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../learn/">
+  Lernen
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../compilers/">
+  Compilers
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../community/">
+  Gemeinschaft
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../packages/">
+  Packages
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../">
+  News
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/en/news/atom.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Suche" aria-label="Search" autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  01 May 2020 
+</h2>
+
+<ul>
+   
+<li id="author">
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
+  >
+   
+  <a href="../../author/milan-curcic/">Milan Curcic</a>  
+</li>
+   
+<li id="category">
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
+  >
+   
+  <a href="../../category/newsletter/">newsletter</a>  
+</li>
+  
+</ul>
+
+<h3>
+  <a href="../../">Neueste Beiträge</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../2022/06-09-Fortran-Newsletter-June-2022/"
+      >09 June - Fortran newsletter: June 2022</a
+    >
+  </li>
+  
+  <li>
+    <a href="../../2022/05-05-Fortran-Newsletter-May-2022/"
+      >05 May - Fortran newsletter: May 2022</a
+    >
+  </li>
+  
+  <li>
+    <a href="../../2022/04-07-Fortran-Newsletter-April-2022/"
+      >07 April - Fortran newsletter: April 2022</a
+    >
+  </li>
+  
+  <li>
+    <a href="../../2022/03-09-Fortran-Newsletter-March-2022/"
+      >09 March - Fortran newsletter: March 2022</a
+    >
+  </li>
+  
+  <li>
+    <a href="../../2022/02-01-Fortran-Newsletter-February-2022/"
+      >01 February - Fortran newsletter: February 2022</a
+    >
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../archive/">Archiv</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../../2022/">2022 (6)</a>
+  </li>
+    
+  <li>
+    <a href="../../2021/">2021 (16)</a>
+  </li>
+    
+  <li>
+    <a href="../">2020 (11)</a>
+  </li>
+   
+</ul>
+
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+        
+<br />
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> Auf dieser Seite
+</div>
+
+<nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#this-website">
+   This website
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#standard-library">
+   Standard Library
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#package-manager">
+   Package Manager
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#wg5-convenor-candidates">
+   WG5 Convenor candidates
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#events">
+   Events
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#who-s-hiring">
+   Who’s hiring?
+  </a>
+ </li>
+</ul>
+</nav> 
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                 <section class="tex2jax_ignore mathjax_ignore" id="fortran-newsletter-may-2020">
+<h1>Fortran newsletter: May 2020<a class="headerlink" href="#fortran-newsletter-may-2020" title="Permalink to this heading">#</a></h1>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hello, World!&#39;</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Welcome to the first monthly Fortran newsletter.
+It will come out on the first calendar day of every month,
+detailing Fortran news from the previous month.</p>
+<section id="this-website">
+<h2>This website<a class="headerlink" href="#this-website" title="Permalink to this heading">#</a></h2>
+<p>If you came to this newsletter from elsewhere, welcome to the new Fortran website.
+We built this site mid-April and hope for it to be <em>the</em> home of Fortran on the internet,
+which traditionally there hasn’t been any to date.
+Look around and <a class="reference external" href="https://github.com/fortran-lang/fortran-lang.github.io/issues">let us know</a>
+if you have any suggestions for improvement.
+Specifically, <a class="reference internal" href="../../../learn/"><span class="doc std std-doc">Learn</span></a> and <a class="reference internal" href="../../../packages/"><span class="doc std std-doc">Packages</span></a> are the pages that
+we’ll be focusing on in the coming months.
+Please help us make them better!</p>
+</section>
+<section id="standard-library">
+<h2>Standard Library<a class="headerlink" href="#standard-library" title="Permalink to this heading">#</a></h2>
+<p>Here’s what’s new in Fortran Standard Library:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/172">#172</a>
+New function <code class="docutils literal notranslate"><span class="pre">cov</span></code> in the <code class="docutils literal notranslate"><span class="pre">stdlib_experimental_stats</span></code> module to compute covariance of array elements.
+Read the full specification <a class="reference external" href="https://github.com/fortran-lang/stdlib/blob/HEAD/src/stdlib_experimental_stats.md#cov---covariance-of-array-elements">here</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/168">#168</a>
+Specify recommended order of attributes for dummy arguments in the
+<a class="reference external" href="https://github.com/fortran-lang/stdlib/blob/HEAD/STYLE_GUIDE.md">Stdlib style guide</a>.</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/173">#173</a>
+Minor bug fix.</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/170">#170</a>
+WIP: Addition of <code class="docutils literal notranslate"><span class="pre">diag</span></code>, <code class="docutils literal notranslate"><span class="pre">eye</span></code>, and <code class="docutils literal notranslate"><span class="pre">trace</span></code> functions to make working with
+matrices easier.</p></li>
+</ul>
+</section>
+<section id="package-manager">
+<h2>Package Manager<a class="headerlink" href="#package-manager" title="Permalink to this heading">#</a></h2>
+<p>In the past month we’ve seen the first working implementation of the <a class="reference external" href="https://github.com/fortran-lang/fpm">Fortran Package Manager (FPM)</a>.
+Specifically:</p>
+<ul class="simple">
+<li><p>FPM supports three commands:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">fpm</span> <span class="pre">build</span></code>–compiles and links your application and/or library.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fpm</span> <span class="pre">test</span></code>–runs tests if your package has any test programs.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">fpm</span> <span class="pre">run</span></code>–runs the application if your package has an executable program.</p></li>
+</ul>
+</li>
+<li><p>FPM can build an executable program, a library, or a combination of both.</p></li>
+<li><p>Currently only gfortran is supported as the compiler backend. FPM will suport other compilers soon.</p></li>
+</ul>
+<p>Read the <a class="reference external" href="https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md">FPM packaging guide</a>
+to learn how to build your package with FPM.</p>
+<p>FPM is still in very early development, and we need as much help as we can get.
+Here’s how you can help today:</p>
+<ul class="simple">
+<li><p>Try to use it. Does it work? No? Let us know!</p></li>
+<li><p>Browse the <a class="reference external" href="https://github.com/fortran-lang/fpm/issues">open issues</a> and see if you can help implement any fixes or features.</p></li>
+<li><p>Adapt your Fortran package for FPM.</p></li>
+<li><p>Improve the documentation.</p></li>
+</ul>
+<p>The short term goal of FPM is to make development and installation of Fortran packages with dependencies easier.
+Its long term goal is to build a rich and decentralized ecosystem of Fortran packages and create a healthy
+environment in which new open source Fortran projects are created and published with ease.</p>
+</section>
+<section id="wg5-convenor-candidates">
+<h2>WG5 Convenor candidates<a class="headerlink" href="#wg5-convenor-candidates" title="Permalink to this heading">#</a></h2>
+<p>Last month was also the deadline for the <a class="reference external" href="https://wg5-fortran.org/">WG5</a>
+convenor candidates to apply for the next 3-year term (2021-2024).
+There are two candidates:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://stevelionel.com">Steve Lionel</a>, who is also the current WG5 convenor,
+announced running for another term.
+Read Steve’s <a class="reference external" href="https://stevelionel.com/drfortran/2020/04/25/doctor-fortran-in-forward">post</a>
+about how he has guided the standardization process over the past three years and his direction for the future.</p></li>
+<li><p><a class="reference external" href="https://ondrejcertik.com">Ondřej Čertík</a> has also announced announced to run
+for the WG5 convenor.
+Read Ondřej’s <a class="reference external" href="https://ondrejcertik.com/blog/2020/04/running-for-wg5-convenor-announcement/">announcement</a>
+and <a class="reference external" href="https://github.com/certik/wg5_platform_2020">platform</a>
+that detail current issues with Fortran language development and how to
+overcome them going forward.</p></li>
+</ul>
+</section>
+<section id="events">
+<h2>Events<a class="headerlink" href="#events" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://openteams.com">OpenTeams</a> and <a class="reference external" href="https://quansight.com">QuanSight</a> hosted Ondřej Čertík and Milan Curcic
+in the Episode 40 of the Open Source Directions Webinar.
+They talked about the current state and future of Fortran, as well as about building the Fortran community and developer tools.
+Read more about it and watch the video <span class="xref myst">here</span>.</p></li>
+<li><p><a class="reference external" href="https://tcevents.chem.uzh.ch/event/12">FortranCon 2020</a> will take place on July 2-4 in Zurich, Switzerland.
+Virtual participation is enabled for both attendees and speakers.
+Registration is free and due by June 1, 2020.</p></li>
+<li><p>J3/WG5 joint meeting will take place on October 12-16 in Las Vegas, Nevada.
+You can submit a proposal for the Standards committee <a class="reference external" href="https://github.com/j3-fortran/fortran_proposals">here</a>.
+For reference, you can read the <span class="xref myst">notes from the February meeting</span>.</p></li>
+</ul>
+</section>
+<section id="who-s-hiring">
+<h2>Who’s hiring?<a class="headerlink" href="#who-s-hiring" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p><a class="reference external" href="https://g.co/kgs/aogdeh">Intel Corporation (Santa Clara, CA): Software Engineer, Fortran</a></p></li>
+<li><p><a class="reference external" href="https://g.co/kgs/5X3d2Y">Intel Corporation (Hillsboro, OR): Software Engineer, Fortran</a></p></li>
+<li><p><a class="reference external" href="https://g.co/kgs/yuaohU">Pozent (York, PA): Fortran Technical Lead</a></p></li>
+<li><p><a class="reference external" href="https://g.co/kgs/VAWjWk">American Cybersystems, Inc. (Binghamton, NY): Software Engineer (Fortran, C/C++, Ada, C#, Java, Radar)</a></p></li>
+<li><p><a class="reference external" href="https://g.co/kgs/eLsn63">BravoTech (Dallas, TX): C++ / Fortran Developer</a></p></li>
+<li><p><a class="reference external" href="https://g.co/kgs/eYftiA">Siemens (Milford, OH): CAE Software Engineer (Fortran or C++) Design and Topology Optimization</a></p></li>
+</ul>
+</section>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../04-18-Fortran-Webinar/">
+      <i class="fa fa-arrow-circle-left"></i> Open Source Directions Fortran webinar
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../06-01-Fortran-Newsletter-June-2020/">
+      Fortran newsletter: June 2020 <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>
