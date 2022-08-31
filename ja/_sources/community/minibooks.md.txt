@@ -53,30 +53,37 @@ For single-page mini-books your tutorial will be entirely contained within a sin
 First create a new markdown document in the `./learn/{{name_of_minibook}}/` directory with the `.md` file extension
 and a short name that concisely describes the topic of your tutorial, _e.g._ `./learn/{{name_of_minibook}}/file_io.md`.
 
-Open your new markdown file and add a header in the following format:
+Open your new markdown file and append an entry in the toc of `learn.md` in the following format:
 
 ```
----
-layout: book
-title: <book-title>
-permalink: /learn/<name_of_minibook>/<book-filename>
----
+:::{toctree}
+:hidden:
+
+learn/quickstart/index
+learn/best_practices/index
+learn/os_setup/index
+learn/building_programs/index
+learn/intrinsics/index
+learn/{{book-filename}}
+:::
 ```
 
-You should replace `<book-title>` with a human-readable description of your tutorial content;
-this will be displayed as an `<h1>` heading at the top of your mini-book page.
-
-Replace `<book-filename>` with the filename of your markdown file
+Replace `{{book-filename}}` with the filename of your markdown file
 but **excluding the `.md` extension**. There should also be no trailing slash.
 
 **Example:** header
 
 ```
----
-layout: book
-title: Reading and writing files in Fortran
-permalink: /learn/file/file_io
----
+:::{toctree}
+:hidden:
+
+learn/quickstart/index
+learn/best_practices/index
+learn/os_setup/index
+learn/building_programs/index
+learn/intrinsics/index
+learn/file_io
+:::
 ```
 
 **NOT:** `permalink: /learn/file_io.md`
@@ -118,10 +125,10 @@ in the [data/learning.yml](./data/learning.yml) datafile.
 Open this file and create a new entry under the `books:` field in the following format:
 
 ```yaml
-- title: <book-title>
-  description: <book-description>
-  category: <book-category>
-  link: /learn/<book-filename>
+- title: {{book-title}}
+  description: {{book-description}}
+  category: {{book-category}}
+  link: /learn/{{book-filename}}
 ```
 
 The `title` field is what will be displayed on the _Learn_ page for your mini-book
@@ -144,7 +151,7 @@ The `link` field should exactly match the `permalink` field in your markdown doc
   link: /learn/file/file_io
 ```
 
-Save the modified `learning.yml` data file and run fortran*packages.py and rebuild the website on your local machine to check the results.
+Save the modified `learning.yml` data file and run fortran_package.py and rebuild the website on your local machine to check the results.
 If successful, a new link should appear on the \_Learn* page with the title of your new mini-book.
 
 Once you have completed your mini-book and added an entry to the `learning.yml` data file, open a pull request
@@ -170,67 +177,41 @@ Create a new folder in the `./learn/` directory with a short name that concisely
 All pages of your mini-book will be contained within this folder.
 
 The first page of your mini-book should be called `index.md`, so create a new markdown file in
-your mini-book folder called `index.md`, and add a header in the following format:
+your mini-book folder called `index.md`, and add a toc in the following format in all the markdown files:
 
 ```
----
-layout: book
-title: <book-title>
-permalink: /learn/<book-folder>
----
+:::{toctree}
+:hidden:
+
+file1
+file2
+:::
 ```
 
-The `title` field should contain a human-readable description of your mini-book tutorial.
-
-The `permalink` field should contain `/learn/` followed by the name of your mini-book folder.
 **There should be no trailing slash.**
 
-**Example:** header for `index.md`
+**Example:** toc for `index.md`
 
 ```
----
-layout: book
-title: Parallel programming with Coarrays
-permalink: /learn/coarrays
----
+:::{toctree}
+:hidden:
+
+learn/quickstart/index
+learn/best_practices/index
+learn/os_setup/index
+learn/building_programs/index
+learn/intrinsics/index
+:::
 ```
 
 **NOT:** `permalink: /learn/coarrays/`
 
-In your table of contents, this first page will be displayed as '_Introduction_';
-you should populate the remainder of `index.md` with an introduction to your
-mini-book tutorial which may include: a summary of the concepts covered; any prerequisites; and
-any references to other related mini-books or useful third-party resources.
+
+you should populate the remainder of `index.md` with an introduction to your mini-book tutorial which may include: a summary of the concepts covered; any prerequisites; and any references to other related mini-books or useful third-party resources.
 
 ### 2.2 Add pages to your mini-book
 
 For each new page in your mini-book, create a new markdown file in your mini-book folder.
-Each page needs a header, just like the `index.md`, but the `title` and `permalink` fields
-must be unique to each new page.
-
-```
----
-layout: book
-title: <page-title>
-permalink: /learn/<book-folder>/<page-filename>
----
-
-```
-
-Replace `<page-title>` with the title of your new page; this will be displayed in the hyperlinked table-of-contents.
-
-Replace `<page-filename>` with the name of the markdown file for your new page
-but **excluding the `.md` extension**.
-
-**Example:** a header for a new page `./learn/coarrays/background.md`
-
-```
----
-layout: book
-title: What are coarrays?
-permalink: /learn/coarrays/background
----
-```
 
 As with single-page mini-books, you should use headings to break-up each
 page into a logical structure.
@@ -244,14 +225,14 @@ in the [data/learning.yml](./data/learning.yml) datafile.
 Open this file and create a new entry under the `books:` field in the following format:
 
 ```yaml
-- title: <book-title>
-  description: <book-description>
-  category: <book-category>
-  link: /learn/<book-folder>
+- title: {{book-title}}
+  description: {{book-description}}
+  category: {{book-category}}
+  link: /learn/{{book-folder}}
   pages:
-    - link: /learn/<book-folder>/<page1-filename>
-    - link: /learn/<book-folder>/<page2-filename>
-    - link: /learn/<book-folder>/<page3-filename>
+    - link: /learn/{{book-folder}}/{{page1-filename}}
+    - link: /learn/{{book-folder}}/{{page2-filename}}
+    - link: /learn/{{book-folder}}/{{page3-filename}}
 ```
 
 The `title` field is what will be displayed on the _Learn_ page for your mini-book

@@ -12,7 +12,7 @@ Fortran-lang.org is open-source and contributions are welcome!
 
 **How is the site written?**
 
-The content of the website is primarily written in a combination of ReStructuredText, Markdown, HTML and YAML (for data).
+The content of the website is primarily written in a combination of Markdown (Myst flavoured), HTML and YAML (for data).
 This source is compiled to produce pure HTML which is what you see on the final website.
 
 The website is _static_ which means that once built, the content on the site is the same for all users;
@@ -76,7 +76,7 @@ This allows reviewers to directly view the generated result of your PR.
 **Note:** if you push subsequent commits to your pull request branch, you must rebuild the pull request preview by commenting on
 the pull request with '#build_preview'.
 
-After a pull request has been merged and successfully rendered, the maintainers will delete the preview build.
+After a pull request has been merged and successfully rendered, the workflows will delete the preview build.
 
 **Note:** if your pull request preview link doesn't work or doesn't update after re-building, try adding a random parameter to the end of the URL, _e.g._ `https://fortran-lang.org/pr/98?v=2` - the name and value of the parameter don't matter, but use different values for each update.
 This will force the GitHub content delivery network to serve you an updated version instead of a cached version which is out-of-date.
@@ -126,12 +126,10 @@ Hyperlinks that point to other parts of the fortran-lang.org website should be p
 Icons are an easy way to improve page aesthetic by breaking-up otherwise monotonic text passages and drawing attention to headings or key information.
 
 Three icon packs are available for use on `fortran-lang.org`:
+- [Sphinx-design](https://sphinx-design.readthedocs.io/en/sbt-theme/badges_buttons.html#inline-icons) (MIT License)
 
 - [Font awesome](https://fontawesome.com/icons?d=gallery) (CC BY 4.0 License)
 
-- [Feather](https://feathericons.com/) (MIT)
-
-- [Devicon](https://konpa.github.io/devicon/) (MIT)
 
 **Example:** Font awesome
 
@@ -139,16 +137,10 @@ Three icon packs are available for use on `fortran-lang.org`:
 <i class="fas fa-info-circle"></i>
 ```
 
-**Example:** Feather
+**Example:** Sphinx design Myst directives
 
-```html
-<i data-feather="globe"></i>
-```
-
-**Example:** Devicon
-
-```html
-<i class="devicon-github-plain"></i>
+```md
+{octicon}`book;1em;sd-text-info`
 ```
 
 Visit the respective websites to browse available icons.
@@ -156,19 +148,6 @@ Visit the respective websites to browse available icons.
 ### Page contents
 
 It is sometimes helpful to display hyperlinked page contents for lengthy pages. The page TOC tree has been automated and will generate the TOC of the current page. Whereas the method to generate TOC of the entire directory on `Fortran-lang.org` is:
-
-**For pages in RST:**
-add a toc tree directive at the end of the index page of the directory with the names of the all files in that directory.
-
-```
-.. toctree::
-   :maxdepth: 2
-
-   intro
-   strings
-   datatypes
-   numeric
-```
 
 **For pages in MD:**
 
