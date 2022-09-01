@@ -1,0 +1,2146 @@
+
+<!DOCTYPE html>
+
+<html lang="es">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Accessing external system information &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../../../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <link rel="index" title="Índice" href="../../../genindex/" />
+    <link rel="search" title="Búsqueda" href="../../../search/" />
+    <link rel="next" title="Matrix multiplication, dot product, and array shifts" href="../transform/" />
+    <link rel="prev" title="General and miscellaneous intrinsics" href="../state/" /> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+    
+    <div class="dropdown" id="version_switcher">
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    es
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables learn/intrinsics/system/index and {'version_match': 'es'}.
+-->
+
+<script type="text/javascript">
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "learn/intrinsics/system/index",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
+
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "learn/intrinsics/system/index";
+    const indexFilePath = "../../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
+
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "es") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
+</script>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../">
+  Aprender
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../compilers/">
+  Compilers
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../community/">
+  Comunidad
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../packages/">
+  Packages
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../news/">
+  News
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/en/news/atom.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Búsqueda" aria-label="Search" autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../quickstart/">
+   Quickstart tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/arrays_strings/">
+     Arrays and strings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/derived_types/">
+     Derived Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/hello_world/">
+     Hello world
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/operators_control_flow/">
+     Operators and flow control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/organising_code/">
+     Organising code structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/variables/">
+     Variables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../best_practices/">
+   Fortran Best Practices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/allocatable_arrays/">
+     Allocatable Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/arrays/">
+     Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/callbacks/">
+     Callbacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/element_operations/">
+     Element-wise Operations on Array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/file_io/">
+     File Input/Output
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/floating_point/">
+     Floating Point Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/integer_division/">
+     Integer Division
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/modules_programs/">
+     Modules and Programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/multidim_arrays/">
+     Multidimensional Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/style_guide/">
+     Fortran Style Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/type_casting/">
+     Type Casting in Callbacks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../os_setup/">
+   Setting up your OS
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/choose_compiler/">
+     Choosing a compiler
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/ides/">
+     IDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/install_gfortran/">
+     Installing GFortran
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/text_editors/">
+     Text Editors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/tips/">
+     Smart Tips
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../building_programs/">
+   Building programs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/build_tools/">
+     Build tools
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/compiling_source/">
+     Compiling the source code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/distributing/">
+     Distributing your programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/include_files/">
+     Include files and modules
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/linking_pieces/">
+     Linking the objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/managing_libraries/">
+     Managing libraries (static and dynamic libraries)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/project_make/">
+     An introduction to make
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/runtime_libraries/">
+     Run-time libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../">
+   Fortran Intrinsics
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../array/">
+     Properties and attributes of arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bit/">
+     Bit-level inquiry and manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../character/">
+     Basic procedures for manipulating
+     <em>
+      character
+     </em>
+     variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../compiler/">
+     Information about compiler and compiler options used for building
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cfi/">
+     Procedures for binding to C interfaces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../math/">
+     General mathematical functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../model/">
+     Controlling and querying the current numeric model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numeric/">
+     Manipulation and properties of numeric values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../parallel/">
+     Parallel programming using co_arrays and co_indexed arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../state/">
+     General and miscellaneous intrinsics
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Accessing external system information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transform/">
+     Matrix multiplication, dot product, and array shifts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../type/">
+     Types and kinds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
+     GNU Free Documentation License
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+        
+<br />
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#command-argument-count">
+   command_argument_count
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#name">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#syntax">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#description">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arguments">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#returns">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#see-also">
+     <strong>
+      See Also
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fortran-lang-intrinsic-descriptions-license-mit-urbanjost">
+       fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-command">
+   get_command
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     <strong>
+      See Also
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-command-argument">
+   get_command_argument
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#options">
+     <strong>
+      Options
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     <strong>
+      See Also
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cpu-time">
+   cpu_time
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id22">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
+     <strong>
+      See Also
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id24">
+       fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#date-and-time">
+   date_and_time
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id25">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id26">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id27">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id28">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id29">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id30">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id31">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#resources">
+     <strong>
+      Resources
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id32">
+       fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#system-clock">
+   system_clock
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id33">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id34">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id35">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id36">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id37">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id38">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id39">
+     <strong>
+      See Also
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fortran-lang-intrinsic-descriptions">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#execute-command-line">
+   execute_command_line
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id40">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id41">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id42">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id43">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id44">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#note">
+     <strong>
+      Note
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id45">
+     <strong>
+      Standard
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id46">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#get-environment">
+   get_environment
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id47">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id48">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id49">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id50">
+     <strong>
+      Options
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id51">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id52">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id53">
+     <strong>
+      Standard
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id54">
+       fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</nav> 
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                 <section class="tex2jax_ignore mathjax_ignore" id="accessing-external-system-information">
+<h1>Accessing external system information<a class="headerlink" href="#accessing-external-system-information" title="Enlace permanente a este encabezado">#</a></h1>
+<section id="command-argument-count">
+<h2>command_argument_count<a class="headerlink" href="#command-argument-count" title="Enlace permanente a este encabezado">#</a></h2>
+<section id="name">
+<h3><strong>Name</strong><a class="headerlink" href="#name" title="Enlace permanente a este encabezado">#</a></h3>
+<p><strong>command_argument_count</strong>(3) - [SYSTEM:COMMAND LINE] Get number of command line arguments</p>
+</section>
+<section id="syntax">
+<h3><strong>Syntax</strong><a class="headerlink" href="#syntax" title="Enlace permanente a este encabezado">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">command_argument_count</span><span class="p">()</span><span class="w"></span>
+
+<span class="w">     </span><span class="kt">integer </span><span class="k">function </span><span class="nb">command_argument_count</span><span class="p">()</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="nb">count</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="description">
+<h3><strong>Description</strong><a class="headerlink" href="#description" title="Enlace permanente a este encabezado">#</a></h3>
+<p><strong>command_argument_count()</strong> returns the number of arguments passed
+on the command line when the containing program was invoked.</p>
+</section>
+<section id="arguments">
+<h3><strong>Arguments</strong><a class="headerlink" href="#arguments" title="Enlace permanente a este encabezado">#</a></h3>
+<p>None</p>
+</section>
+<section id="returns">
+<h3><strong>Returns</strong><a class="headerlink" href="#returns" title="Enlace permanente a este encabezado">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>count</strong></dt><dd><p>The return value is of type default <em>integer</em>. It is the number of
+arguments passed on the command line when the program was invoked.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="examples">
+<h3><strong>Examples</strong><a class="headerlink" href="#examples" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_command_argument_count</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span>
+<span class="nb">   count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">command_argument_count</span><span class="p">()</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">count</span>
+<span class="k">end program </span><span class="n">demo_command_argument_count</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Sample output:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>   <span class="c1"># the command verb does not count</span>
+   ./test_command_argument_count
+       <span class="m">0</span>
+   <span class="c1"># quoted strings may count as one argument</span>
+   ./test_command_argument_count count arguments
+       <span class="m">2</span>
+   ./test_command_argument_count <span class="s1">&#39;count arguments&#39;</span>
+       <span class="m">1</span>
+</pre></div>
+</div>
+</section>
+<section id="standard">
+<h3><strong>Standard</strong><a class="headerlink" href="#standard" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Fortran 2003 and later</p>
+</section>
+<section id="see-also">
+<h3><strong>See Also</strong><a class="headerlink" href="#see-also" title="Enlace permanente a este encabezado">#</a></h3>
+<p><span class="xref myst"><strong>get_command</strong>(3)</span>,
+<span class="xref myst"><strong>get_command_argument</strong>(3)</span></p>
+<section id="fortran-lang-intrinsic-descriptions-license-mit-urbanjost">
+<h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#fortran-lang-intrinsic-descriptions-license-mit-urbanjost" title="Enlace permanente a este encabezado">#</a></h4>
+</section>
+</section>
+</section>
+<section id="get-command">
+<h2>get_command<a class="headerlink" href="#get-command" title="Enlace permanente a este encabezado">#</a></h2>
+<section id="id1">
+<h3><strong>Name</strong><a class="headerlink" href="#id1" title="Enlace permanente a este encabezado">#</a></h3>
+<p><strong>get_command</strong>(3) - [SYSTEM:COMMAND LINE] Get the entire command line</p>
+</section>
+<section id="id2">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id2" title="Enlace permanente a este encabezado">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">call </span><span class="nb">get_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">subroutine </span><span class="nb">get_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="n">length</span><span class="p">,</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">command</span><span class="w"></span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">length</span><span class="w"></span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">status</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3><strong>Description</strong><a class="headerlink" href="#id3" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Retrieve the entire command line that was used to invoke the program.</p>
+<p>Note that what is typed on the command line is often processed by
+a shell. The shell typically processes special characters and white
+space before passing it to the program. The processing can typically be
+turned off by turning off globbing or quoting the command line arguments
+and/or changing the default field separators, but this should rarely
+be necessary.</p>
+</section>
+<section id="id4">
+<h3><strong>Returns</strong><a class="headerlink" href="#id4" title="Enlace permanente a este encabezado">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>command</strong></dt><dd><p>Shall be of type <em>character</em> and of default kind. If
+<strong>command</strong> is present, stores the entire command line that was used to
+invoke the program in <strong>command</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>length</strong></dt><dd><p>Shall be of type <em>integer</em> and of default kind. If <strong>length</strong>
+is present, it is assigned the length of the command line.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>status</strong></dt><dd><p>Shall be of type <em>integer</em> and of default kind. If <strong>status</strong>
+is present, it is assigned 0 upon success of the command, <strong>-1</strong> if
+<strong>command</strong> is too short to store the command line, or a positive value
+in case of an error.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id5">
+<h3><strong>Examples</strong><a class="headerlink" href="#id5" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_get_command</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">COMMAND_LINE_LENGTH</span><span class="w"></span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">COMMAND_LINE</span><span class="w"></span>
+<span class="w">   </span><span class="c">! get command line length</span>
+<span class="w">   </span><span class="k">call </span><span class="nb">get_command</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="n">COMMAND_LINE_LENGTH</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="c">! allocate string big enough to hold command line</span>
+<span class="w">   </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">COMMAND_LINE_LENGTH</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">COMMAND_LINE</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="c">! get command line as a string</span>
+<span class="w">   </span><span class="k">call </span><span class="nb">get_command</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="n">COMMAND_LINE</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="c">! trim leading spaces just in case</span>
+<span class="w">   </span><span class="n">COMMAND_LINE</span><span class="o">=</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">COMMAND_LINE</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(&quot;OUTPUT:&quot;,a)&#39;</span><span class="p">)</span><span class="n">COMMAND_LINE</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_get_command</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>     <span class="c1"># note that shell expansion removes some of the whitespace</span>
+     <span class="c1"># without quotes</span>
+     ./test_get_command  arguments    on <span class="nb">command</span>   line to   <span class="nb">echo</span>
+
+     OUTPUT:./test_get_command arguments on <span class="nb">command</span> line to <span class="nb">echo</span>
+
+     <span class="c1"># using the bash shell with single quotes</span>
+     ./test_get_command  <span class="s1">&#39;arguments  *&gt;&lt;`~[]!{}?&quot;\&#39;</span><span class="p">|</span> <span class="s1">&#39;</span>
+
+<span class="s1">     OUTPUT:./test_get_command arguments  *&gt;&lt;`~[]!{}?&quot;&#39;</span><span class="p">|</span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3><strong>Standard</strong><a class="headerlink" href="#id6" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Fortran 2003 and later</p>
+</section>
+<section id="id7">
+<h3><strong>See Also</strong><a class="headerlink" href="#id7" title="Enlace permanente a este encabezado">#</a></h3>
+<p><span class="xref myst"><strong>get_command_argument</strong>(3)</span>,
+<span class="xref myst"><strong>command_argument_count</strong>(3)</span></p>
+<section id="id8">
+<h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#id8" title="Enlace permanente a este encabezado">#</a></h4>
+</section>
+</section>
+</section>
+<section id="get-command-argument">
+<h2>get_command_argument<a class="headerlink" href="#get-command-argument" title="Enlace permanente a este encabezado">#</a></h2>
+<section id="id9">
+<h3><strong>Name</strong><a class="headerlink" href="#id9" title="Enlace permanente a este encabezado">#</a></h3>
+<p><strong>get_command_argument</strong>(3) - [SYSTEM:COMMAND LINE] Get command line arguments</p>
+</section>
+<section id="id10">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id10" title="Enlace permanente a este encabezado">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">     </span><span class="k">subroutine </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="k">value</span><span class="p">,</span><span class="n">length</span><span class="p">.</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">                    </span><span class="kd">::</span><span class="w"> </span><span class="n">number</span><span class="w"></span>
+<span class="w">     </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span>
+<span class="k">     </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">length</span><span class="w"></span>
+<span class="w">     </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">status</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h3><strong>Description</strong><a class="headerlink" href="#id11" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Retrieve the <strong>number</strong>-th argument that was passed on the command line
+when the containing program was invoked.</p>
+<p>There is not anything specifically stated about what an argument is but
+in practice the arguments are split on whitespace unless the arguments
+are quoted and IFS values (Internal Field Separators) used by common
+shells are ignored.</p>
+</section>
+<section id="options">
+<h3><strong>Options</strong><a class="headerlink" href="#options" title="Enlace permanente a este encabezado">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>number</strong></dt><dd><p>Shall be a scalar of type <strong>integer</strong>, <strong>number &gt;= 0</strong>. If <strong>number =
+0</strong>, <strong>value</strong> is set to the name of the program (on systems that support
+this feature).</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id12">
+<h3><strong>Returns</strong><a class="headerlink" href="#id12" title="Enlace permanente a este encabezado">#</a></h3>
+<ul class="simple">
+<li><p><strong>value</strong>
+:Shall be a scalar of type <em>character</em> and of default kind. After
+get_command_argument returns, the <strong>value</strong> argument holds the
+<strong>number</strong>-th command line argument. If <strong>value</strong> can not hold the argument,
+it is truncated to fit the length of <strong>value</strong>. If there are less than
+<strong>number</strong> arguments specified at the command line, <strong>value</strong> will be filled
+with blanks.</p></li>
+<li><p><strong>length</strong>
+:(Optional) Shall be a scalar of type <em>integer</em>. The <strong>length</strong>
+argument contains the length of the <strong>number</strong>-th command line argument.</p></li>
+<li><p><strong>status</strong>
+:(Optional) Shall be a scalar of type <em>integer</em>. If the argument
+retrieval fails, <strong>status</strong> is a positive number; if <strong>value</strong> contains a
+truncated command line argument, <strong>status</strong> is <strong>-1</strong>; and otherwise the
+<strong>status</strong> is zero.</p></li>
+</ul>
+</section>
+<section id="id13">
+<h3><strong>Examples</strong><a class="headerlink" href="#id13" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_get_command_argument</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">progname</span><span class="w"></span>
+<span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="nb">stat</span>
+<span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">longest</span><span class="p">,</span><span class="w"> </span><span class="n">argument_length</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">,</span><span class="k">allocatable</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">istat</span><span class="p">(:),</span><span class="w"> </span><span class="n">ilen</span><span class="p">(:)</span><span class="w"></span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">args</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">  </span><span class="c">!</span>
+<span class="w">  </span><span class="c">! get number of arguments</span>
+<span class="w">  </span><span class="nb">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">command_argument_count</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;The number of arguments is &#39;</span><span class="p">,</span><span class="nb">count</span><span class="w"></span>
+<span class="w">  </span><span class="c">!</span>
+<span class="w">  </span><span class="c">! simple usage</span>
+<span class="w">  </span><span class="c">!</span>
+<span class="w">  </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">progname</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">     print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;The program&#39;s name is &quot;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nb">trim</span><span class="w"> </span><span class="p">(</span><span class="n">progname</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">endif</span><span class="w"></span>
+<span class="w">  </span><span class="c">!</span>
+<span class="w">  </span><span class="c">! showing how to make an array to hold any argument list</span>
+<span class="w">  </span><span class="c">!</span>
+<span class="w">  </span><span class="c">! find longest argument</span>
+<span class="w">  </span><span class="c">!</span>
+<span class="w">  </span><span class="n">longest</span><span class="o">=</span><span class="mi">0</span><span class="w"></span>
+<span class="w">  </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">count</span>
+<span class="nb">     </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="n">i</span><span class="p">,</span><span class="n">length</span><span class="o">=</span><span class="n">argument_length</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="n">longest</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">longest</span><span class="p">,</span><span class="n">argument_length</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">enddo</span><span class="w"></span>
+<span class="w">  </span><span class="c">!</span>
+<span class="w">  </span><span class="c">! allocate string array big enough to hold command line</span>
+<span class="w">  </span><span class="c">! argument strings and related information</span>
+<span class="w">  </span><span class="c">!</span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">longest</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">args</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">count</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">istat</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">count</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">ilen</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">count</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="c">!</span>
+<span class="w">  </span><span class="c">! read the arguments into the array</span>
+<span class="w">  </span><span class="c">!</span>
+<span class="w">  </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">count</span>
+<span class="nb">    </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">status</span><span class="o">=</span><span class="n">istat</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">length</span><span class="o">=</span><span class="n">ilen</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="k">enddo</span><span class="w"></span>
+<span class="w">  </span><span class="c">!</span>
+<span class="w">  </span><span class="c">! show the results</span>
+<span class="w">  </span><span class="c">!</span>
+<span class="w">  </span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(i3.3,1x,i0.5,1x,i0.5,1x,&quot;[&quot;,a,&quot;]&quot;)&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">  </span><span class="p">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">istat</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">ilen</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">args</span><span class="p">(</span><span class="n">i</span><span class="p">)(:</span><span class="n">ilen</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">count</span><span class="p">)</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_get_command_argument</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>/demo_get_command_argument a    test  &#39;of getting   arguments  &#39; &quot;  leading&quot;
+
+ The number of arguments is            5
+ The program&#39;s name is xxx
+000 00000 00003 [./test_get_command_argument]
+001 00000 00001 [a]
+003 00000 00004 [test]
+004 00000 00024 [of getting   arguments  ]
+005 00000 00018 [  leading]
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h3><strong>Standard</strong><a class="headerlink" href="#id14" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Fortran 2003 and later</p>
+</section>
+<section id="id15">
+<h3><strong>See Also</strong><a class="headerlink" href="#id15" title="Enlace permanente a este encabezado">#</a></h3>
+<p><span class="xref myst"><strong>get_command</strong>(3)</span>,
+<span class="xref myst"><strong>command_argument_count</strong>(3)</span></p>
+<section id="id16">
+<h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#id16" title="Enlace permanente a este encabezado">#</a></h4>
+</section>
+</section>
+</section>
+<section id="cpu-time">
+<h2>cpu_time<a class="headerlink" href="#cpu-time" title="Enlace permanente a este encabezado">#</a></h2>
+<section id="id17">
+<h3><strong>Name</strong><a class="headerlink" href="#id17" title="Enlace permanente a este encabezado">#</a></h3>
+<p><strong>cpu_time</strong>(3) - [SYSTEM:TIME] return CPU processor time in seconds</p>
+</section>
+<section id="id18">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id18" title="Enlace permanente a este encabezado">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="nb">time</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="kt">real</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">time</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id19">
+<h3><strong>Description</strong><a class="headerlink" href="#id19" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Returns a <em>real</em> value representing the elapsed CPU time in seconds. This
+is useful for testing segments of code to determine execution time.</p>
+<p>The exact definition of time is left imprecise because of the
+variability in what different processors are able to provide.</p>
+<p>If no time source is available, TIME is set to a negative value.</p>
+<p>Note that TIME may contain a system dependent, arbitrary offset and may
+not start with 0.0. For cpu_time the absolute value is meaningless.
+Only differences between subsequent calls, as shown in the example
+below, should be used.</p>
+<p>A processor for which a single result is inadequate (for example, a
+parallel processor) might choose to provide an additional version for
+which time is an array.</p>
+</section>
+<section id="id20">
+<h3><strong>Returns</strong><a class="headerlink" href="#id20" title="Enlace permanente a este encabezado">#</a></h3>
+<ul>
+<li><dl class="simple myst">
+<dt><strong>TIME</strong></dt><dd><p>The type shall be <em>real</em> with <strong>intent(out)</strong>. It is assigned a
+processor-dependent approximation to the processor time in seconds.
+If the processor cannot return a meaningful time, a
+processor-dependent negative value</p>
+</dd>
+</dl>
+<ul class="simple">
+<li><p><strong>is returned.</strong>
+The start time is left imprecise because the purpose is to time
+sections of code, as in the example. This might or might not
+include system overhead time.</p></li>
+</ul>
+</li>
+</ul>
+</section>
+<section id="id21">
+<h3><strong>Examples</strong><a class="headerlink" href="#id21" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_cpu_time</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">finish</span><span class="w"></span>
+<span class="w">   </span><span class="c">!</span>
+<span class="w">   </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="n">start</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="c">! put code to test here</span>
+<span class="w">   </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="n">finish</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="c">!</span>
+<span class="w">   </span><span class="c">! writes processor time taken by the piece of code.</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(&quot;Processor Time = &quot;,f6.3,&quot; seconds.&quot;)&#39;</span><span class="p">,</span><span class="n">finish</span><span class="o">-</span><span class="n">start</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_cpu_time</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>   Processor Time =  0.000 seconds.
+</pre></div>
+</div>
+</section>
+<section id="id22">
+<h3><strong>Standard</strong><a class="headerlink" href="#id22" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Fortran 95 and later</p>
+</section>
+<section id="id23">
+<h3><strong>See Also</strong><a class="headerlink" href="#id23" title="Enlace permanente a este encabezado">#</a></h3>
+<p><span class="xref myst"><strong>system_clock</strong>(3)</span>,
+<span class="xref myst"><strong>date_and_time</strong>(3)</span></p>
+<section id="id24">
+<h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#id24" title="Enlace permanente a este encabezado">#</a></h4>
+</section>
+</section>
+</section>
+<section id="date-and-time">
+<h2>date_and_time<a class="headerlink" href="#date-and-time" title="Enlace permanente a este encabezado">#</a></h2>
+<section id="id25">
+<h3><strong>Name</strong><a class="headerlink" href="#id25" title="Enlace permanente a este encabezado">#</a></h3>
+<p><strong>date_and_time</strong>(3) - [SYSTEM:TIME] gets current time</p>
+</section>
+<section id="id26">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id26" title="Enlace permanente a este encabezado">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">subroutine </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">zone</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">     </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">date</span><span class="w"></span>
+<span class="w">     </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">time</span>
+<span class="nb">     </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">zone</span><span class="w"></span>
+<span class="w">     </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id27">
+<h3><strong>Description</strong><a class="headerlink" href="#id27" title="Enlace permanente a este encabezado">#</a></h3>
+<p><strong>date_and_time(date, time, zone, values)</strong> gets the corresponding
+date and time information from the real-time system clock.</p>
+<p>Unavailable time and date <em>character</em> parameters return blanks.</p>
+</section>
+<section id="id28">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id28" title="Enlace permanente a este encabezado">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>date</strong></dt><dd><p>A character string of default kind of the form CCYYMMDD, of length 8 or larger.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>time</strong></dt><dd><p>A character string of default kind of the form HHMMSS.SSS, of length 10 or larger.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>zone</strong></dt><dd><p>A character string of default kind of the form (+-)HHMM, of length 5 or larger,
+representing the difference with respect to Coordinated Universal Time (UTC).</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>values</strong></dt><dd><p>An <em>integer</em> array of eight elements that contains:</p>
+</dd>
+<dt>- <strong>values</strong>(1)</dt><dd><p>The year</p>
+</dd>
+<dt>- <strong>values</strong>(2)</dt><dd><p>The month</p>
+</dd>
+<dt>- <strong>values</strong>(3)</dt><dd><p>The day of the month</p>
+</dd>
+<dt>- <strong>values</strong>(4)</dt><dd><p>Time difference with UTC in minutes</p>
+</dd>
+<dt>- <strong>values</strong>(5)</dt><dd><p>The hour of the day</p>
+</dd>
+<dt>- <strong>values</strong>(6)</dt><dd><p>The minutes of the hour</p>
+</dd>
+<dt>- <strong>values</strong>(7)</dt><dd><p>The seconds of the minute</p>
+</dd>
+<dt>- <strong>values</strong>(8)</dt><dd><p>The milliseconds of the second</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id29">
+<h3><strong>Examples</strong><a class="headerlink" href="#id29" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_date_and_time</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">date</span><span class="w"></span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="nb">time</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">zone</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">,</span><span class="k">dimension</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">values</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">call </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="nb">time</span><span class="p">,</span><span class="n">zone</span><span class="p">,</span><span class="n">values</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="c">! using keyword arguments</span>
+<span class="w">    </span><span class="k">call </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">DATE</span><span class="o">=</span><span class="n">date</span><span class="p">,</span><span class="nb">TIME</span><span class="o">=</span><span class="nb">time</span><span class="p">,</span><span class="n">ZONE</span><span class="o">=</span><span class="n">zone</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(*(g0))&#39;</span><span class="p">,</span><span class="s1">&#39;DATE=&quot;&#39;</span><span class="p">,</span><span class="n">date</span><span class="p">,</span><span class="s1">&#39;&quot; TIME=&quot;&#39;</span><span class="p">,</span><span class="nb">time</span><span class="p">,</span><span class="s1">&#39;&quot; ZONE=&quot;&#39;</span><span class="p">,</span><span class="n">zone</span><span class="p">,</span><span class="s1">&#39;&quot;&#39;</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">call </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">VALUES</span><span class="o">=</span><span class="n">values</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(i5,a)&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39; - The year&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39; - The month&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="s1">&#39; - The day of the month&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="s1">&#39; - Time difference with UTC in minutes&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="s1">&#39; - The hour of the day&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="s1">&#39; - The minutes of the hour&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="s1">&#39; - The seconds of the minute&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="s1">&#39; - The milliseconds of the second&#39;</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_date_and_time</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="n">DATE</span><span class="o">=</span><span class="s2">&quot;20201222&quot;</span> <span class="n">TIME</span><span class="o">=</span><span class="s2">&quot;165738.779&quot;</span> <span class="n">ZONE</span><span class="o">=</span><span class="s2">&quot;-0500&quot;</span>
+    <span class="mi">2020</span> <span class="o">-</span> <span class="n">The</span> <span class="n">year</span>
+      <span class="mi">12</span> <span class="o">-</span> <span class="n">The</span> <span class="n">month</span>
+      <span class="mi">22</span> <span class="o">-</span> <span class="n">The</span> <span class="n">day</span> <span class="n">of</span> <span class="n">the</span> <span class="n">month</span>
+    <span class="o">-</span><span class="mi">300</span> <span class="o">-</span> <span class="n">Time</span> <span class="n">difference</span> <span class="k">with</span> <span class="n">UTC</span> <span class="ow">in</span> <span class="n">minutes</span>
+      <span class="mi">16</span> <span class="o">-</span> <span class="n">The</span> <span class="n">hour</span> <span class="n">of</span> <span class="n">the</span> <span class="n">day</span>
+      <span class="mi">57</span> <span class="o">-</span> <span class="n">The</span> <span class="n">minutes</span> <span class="n">of</span> <span class="n">the</span> <span class="n">hour</span>
+      <span class="mi">38</span> <span class="o">-</span> <span class="n">The</span> <span class="n">seconds</span> <span class="n">of</span> <span class="n">the</span> <span class="n">minute</span>
+     <span class="mi">779</span> <span class="o">-</span> <span class="n">The</span> <span class="n">milliseconds</span> <span class="n">of</span> <span class="n">the</span> <span class="n">second</span>
+</pre></div>
+</div>
+</section>
+<section id="id30">
+<h3><strong>Standard</strong><a class="headerlink" href="#id30" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Fortran 95 and later</p>
+</section>
+<section id="id31">
+<h3><strong>See Also</strong><a class="headerlink" href="#id31" title="Enlace permanente a este encabezado">#</a></h3>
+<p><span class="xref myst"><strong>cpu_time</strong>(3)</span>,
+<span class="xref myst"><strong>system_clock</strong>(3)</span></p>
+</section>
+<section id="resources">
+<h3><strong>Resources</strong><a class="headerlink" href="#resources" title="Enlace permanente a este encabezado">#</a></h3>
+<p>date and time conversion, formatting and computation</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/urbanjost/M_time">M_time</a></p></li>
+<li><p><a class="reference external" href="https://github.com/wavebitscientific/datetime-fortran">datetime</a></p></li>
+<li><p><a class="reference external" href="https://github.com/wavebitscientific/datetime-fortran">datetime-fortran</a></p></li>
+</ul>
+<section id="id32">
+<h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#id32" title="Enlace permanente a este encabezado">#</a></h4>
+</section>
+</section>
+</section>
+<section id="system-clock">
+<h2>system_clock<a class="headerlink" href="#system-clock" title="Enlace permanente a este encabezado">#</a></h2>
+<section id="id33">
+<h3><strong>Name</strong><a class="headerlink" href="#id33" title="Enlace permanente a este encabezado">#</a></h3>
+<p><strong>system_clock</strong>(3) - [SYSTEM:TIME] Return numeric data from a real-time clock.</p>
+</section>
+<section id="id34">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id34" title="Enlace permanente a este encabezado">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="nb">system_clock</span><span class="p">(</span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span>
+<span class="nb">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">count_rate</span><span class="w"></span>
+<span class="w">    </span><span class="c">! or !</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">count_rate</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">count_max</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id35">
+<h3><strong>Description</strong><a class="headerlink" href="#id35" title="Enlace permanente a este encabezado">#</a></h3>
+<p><strong>system_clock</strong> lets you measure durations of time with the precision of
+the smallest time increment generally available on a system by returning
+processor-dependent values based on the current value of the processor
+clock. The <strong>clock</strong> value is incremented by one for each clock count until
+the value <strong>count_max</strong> is reached and is then reset to zero at the next
+count. <strong>clock</strong> therefore is a modulo value that lies in the range <strong>0 to
+count_max</strong>. <strong>count_rate</strong> and <strong>count_max</strong> are assumed constant (even though
+CPU rates can vary on a single platform).</p>
+<p><strong>count_rate</strong> is system dependent and can vary depending on the kind of
+the arguments.</p>
+<p>If there is no clock, or querying the clock fails, <strong>count</strong> is set to
+<strong>-huge(count)</strong>, and <strong>count_rate</strong> and <strong>count_max</strong> are set to zero.</p>
+<p><strong>system_clock</strong> is typically used to measure short time intervals (system
+clocks may be 24-hour clocks or measure processor clock ticks since
+boot, for example). It is most often used for measuring or tracking the
+time spent in code blocks in lieu of using profiling tools.</p>
+</section>
+<section id="id36">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id36" title="Enlace permanente a este encabezado">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>count</strong></dt><dd><p>(optional) shall be an <em>integer</em> scalar. It is assigned a
+processor-dependent value based on the current value of the
+processor clock, or <strong>-huge(count)</strong> if there is no clock. The
+processor-dependent value is incremented by one for each clock count
+until the value <strong>count_max</strong> is reached and is reset to zero at the
+next count. It lies in the range <strong>0</strong> to <strong>count_max</strong> if there is a
+clock.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>count_rate</strong></dt><dd><p>(optional) shall be an <em>integer</em> or <em>real</em> scalar. It is assigned a
+processor-dependent approximation to the number of processor clock
+counts per second, or zero if there is no clock.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>count_max</strong></dt><dd><p>(optional) shall be an <em>integer</em> scalar. It is assigned the maximum
+value that <strong>COUNT</strong> can have, or zero if there is no clock.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id37">
+<h3><strong>Examples</strong><a class="headerlink" href="#id37" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_system_clock</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">wp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="mf">1.0d0</span><span class="p">)</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">finish</span><span class="w"></span>
+<span class="kt">real</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="n">time_read</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="nb">system_clock</span><span class="p">(</span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="nb">system_clock</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="c">! &lt;&lt;&lt;&lt; code to time</span>
+<span class="w">   </span><span class="k">call </span><span class="nb">system_clock</span><span class="p">(</span><span class="n">finish</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="n">time_read</span><span class="o">=</span><span class="p">(</span><span class="n">finish</span><span class="o">-</span><span class="n">start</span><span class="p">)</span><span class="o">/</span><span class="kt">real</span><span class="p">(</span><span class="n">count_rate</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(a30,1x,f7.4,1x,a)&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;time * : &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">time_read</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; seconds&#39;</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">demo_system_clock</span><span class="w"></span>
+</pre></div>
+</div>
+<p>If the processor clock is a 24-hour clock that registers time at
+approximately 18.20648193 ticks per second, at 11:30 A.M. the reference</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="k">call </span><span class="nb">system_clock</span><span class="w"> </span><span class="p">(</span><span class="nb">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<p>defines</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>      C = (11*3600+30*60)*18.20648193 = 753748,
+      R = 18.20648193, and
+      M = 24*3600*18.20648193-1 = 1573039.
+</pre></div>
+</div>
+</section>
+<section id="id38">
+<h3><strong>Standard</strong><a class="headerlink" href="#id38" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Fortran 95 and later</p>
+</section>
+<section id="id39">
+<h3><strong>See Also</strong><a class="headerlink" href="#id39" title="Enlace permanente a este encabezado">#</a></h3>
+<p><span class="xref myst"><strong>date_and_time</strong>(3)</span>,
+<span class="xref myst"><strong>cpu_time</strong>(3)</span></p>
+<section id="fortran-lang-intrinsic-descriptions">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#fortran-lang-intrinsic-descriptions" title="Enlace permanente a este encabezado">#</a></h4>
+</section>
+</section>
+</section>
+<section id="execute-command-line">
+<h2>execute_command_line<a class="headerlink" href="#execute-command-line" title="Enlace permanente a este encabezado">#</a></h2>
+<section id="id40">
+<h3><strong>Name</strong><a class="headerlink" href="#id40" title="Enlace permanente a este encabezado">#</a></h3>
+<p><strong>execute_command_line</strong>(3) - [SYSTEM:PROCESSES] Execute a shell command</p>
+</section>
+<section id="id41">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id41" title="Enlace permanente a este encabezado">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">subroutine </span><span class="nb">execute_command_line</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="w"> </span><span class="n">wait</span><span class="p">,</span><span class="w"> </span><span class="n">exitstat</span><span class="p">,</span><span class="w"> </span><span class="n">cmdstat</span><span class="p">,</span><span class="w"> </span><span class="n">cmdmsg</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">command</span><span class="w"></span>
+<span class="w">    </span><span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">wait</span><span class="w"></span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">exitstat</span><span class="w"></span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cmdstat</span><span class="w"></span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cmdmsg</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id42">
+<h3><strong>Description</strong><a class="headerlink" href="#id42" title="Enlace permanente a este encabezado">#</a></h3>
+<p>The <strong>command</strong> argument is passed to the shell and executed. (The shell is
+generally <strong>sh</strong>(1) on Unix systems, and cmd.exe on Windows.) If <strong>wait</strong> is
+present and has the value <strong>.false.</strong>, the execution of the command is
+asynchronous if the system supports it; otherwise, the command is
+executed synchronously.</p>
+<p>The three last arguments allow the user to get status information. After
+synchronous execution, <strong>exitstat</strong> contains the integer exit code of the
+command, as returned by <strong>system</strong>. <strong>cmdstat</strong> is set to zero if the command
+line was executed (whatever its exit status was). <strong>cmdmsg</strong> is assigned an
+error message if an error has occurred.</p>
+<p>Note that the system call need not be thread-safe. It is the
+responsibility of the user to ensure that the system is not called
+concurrently if required.</p>
+<p>When the command is executed synchronously, <strong>execute_command_line</strong>
+returns after the command line has completed execution. Otherwise,
+<strong>execute_command_line</strong> returns without waiting.</p>
+</section>
+<section id="id43">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id43" title="Enlace permanente a este encabezado">#</a></h3>
+<ul>
+<li><dl class="simple myst">
+<dt><strong>command</strong></dt><dd><p>a default <em>character</em> scalar containing the command line to be
+executed. The interpretation is programming-environment dependent.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>wait</strong></dt><dd><p>(Optional) a default <em>logical</em> scalar. If <strong>wait</strong> is present with the
+value .false., and the processor supports asynchronous execution of
+the command, the command is executed asynchronously; otherwise it is
+executed synchronously.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>exitstat</strong></dt><dd><p>(Optional) an <em>integer</em> of the default kind with <strong>intent(inout)</strong>. If
+the command is executed synchronously, it is assigned the value of
+the processor-dependent exit status. Otherwise, the value of
+<strong>exitstat</strong> is unchanged.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>cmdstat</strong></dt><dd><p>(Optional) an <em>integer</em> of default kind with <strong>intent(inout)</strong>. If an
+error condition occurs and <strong>cmdstat</strong> is not present, error termination
+of execution of the image is initiated.</p>
+</dd>
+</dl>
+<p>It is assigned the value <strong>-1</strong> if the processor does not support
+command line execution, a processor-dependent positive value if an
+error condition occurs, or the value <strong>-2</strong> if no error condition
+occurs but <strong>wait</strong> is present with the value false and the processor
+does not support asynchronous execution. Otherwise it is assigned
+the value 0.</p>
+</li>
+<li><dl class="simple myst">
+<dt><strong>cmdmsg</strong></dt><dd><p>(Optional) a <em>character</em> scalar of the default kind. It is an <strong>intent
+(inout)</strong> argument.If an error condition occurs, it is assigned a
+processor-dependent explanatory message.Otherwise, it is unchanged.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id44">
+<h3><strong>Examples</strong><a class="headerlink" href="#id44" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_exec</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="k">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="nb">execute_command_line</span><span class="p">(</span><span class="s2">&quot;external_prog.exe&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">exitstat</span><span class="o">=</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Exit status of external_prog.exe was &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">call </span><span class="nb">execute_command_line</span><span class="p">(</span><span class="s2">&quot;reindex_files.exe&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wait</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Now reindexing files in the background&quot;</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_exec</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="note">
+<h3><strong>Note</strong><a class="headerlink" href="#note" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Because this intrinsic is making a system call, it is very system
+dependent. Its behavior with respect to signaling is processor
+dependent. In particular, on POSIX-compliant systems, the SIGINT and
+SIGQUIT signals will be ignored, and the SIGCHLD will be blocked. As
+such, if the parent process is terminated, the child process might not
+be terminated alongside.</p>
+</section>
+<section id="id45">
+<h3><strong>Standard</strong><a class="headerlink" href="#id45" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Fortran 2008 and later</p>
+<section id="id46">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id46" title="Enlace permanente a este encabezado">#</a></h4>
+</section>
+</section>
+</section>
+<section id="get-environment">
+<h2>get_environment<a class="headerlink" href="#get-environment" title="Enlace permanente a este encabezado">#</a></h2>
+<section id="id47">
+<h3><strong>Name</strong><a class="headerlink" href="#id47" title="Enlace permanente a este encabezado">#</a></h3>
+<p><strong>get_environment_variable</strong>(3) - [SYSTEM:ENVIRONMENT] Get an environmental variable</p>
+</section>
+<section id="id48">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id48" title="Enlace permanente a este encabezado">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">call </span><span class="nb">get_environment_variable</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">trim_name</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span>
+<span class="k">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">length</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">status</span><span class="w"></span>
+<span class="w">   </span><span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">trim_name</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id49">
+<h3><strong>Description</strong><a class="headerlink" href="#id49" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Get the <strong>value</strong> of the environmental variable <strong>name</strong>.</p>
+<p>Note that <strong>get_environment_variable</strong>(3) need not be thread-safe. It
+is the responsibility of the user to ensure that the environment is not
+being updated concurrently.</p>
+</section>
+<section id="id50">
+<h3><strong>Options</strong><a class="headerlink" href="#id50" title="Enlace permanente a este encabezado">#</a></h3>
+<ul>
+<li><dl class="simple myst">
+<dt><strong>name</strong></dt><dd><p>The name of the environment variable to query.</p>
+</dd>
+</dl>
+<p>Shall be a scalar of type <em>character</em> and of default kind.</p>
+</li>
+</ul>
+</section>
+<section id="id51">
+<h3><strong>Returns</strong><a class="headerlink" href="#id51" title="Enlace permanente a este encabezado">#</a></h3>
+<ul>
+<li><dl class="simple myst">
+<dt><strong>value</strong></dt><dd><p>The value of the environment variable being queried.</p>
+</dd>
+</dl>
+<p>Shall be a scalar of type <em>character</em> and of default kind.
+The value of <strong>name</strong> is stored in <strong>value</strong>. If <strong>value</strong> is not large enough
+to hold the data, it is truncated. If <strong>name</strong> is not set, <strong>value</strong> will be
+filled with blanks.</p>
+</li>
+<li><dl class="simple myst">
+<dt><strong>length</strong></dt><dd><p>Argument <strong>length</strong> contains the length needed for storing the
+environment variable <strong>name</strong> or zero if it is not present.</p>
+</dd>
+</dl>
+<p>Shall be a scalar of type <em>integer</em> and of default kind.</p>
+</li>
+<li><dl class="simple myst">
+<dt><strong>status</strong></dt><dd><p><strong>status</strong> is <strong>-1</strong> if <strong>value</strong> is present but too short for the
+environment variable; it is <strong>1</strong> if the environment variable does not
+exist and <strong>2</strong> if the processor does not support environment variables;
+in all other cases <strong>status</strong> is zero.</p>
+</dd>
+</dl>
+<p>Shall be a scalar of type <em>integer</em> and of default kind.</p>
+</li>
+<li><dl class="simple myst">
+<dt><strong>trim_name</strong></dt><dd><p>If <strong>trim_name</strong> is present with the value <strong>.false.</strong>, the trailing blanks in
+<strong>name</strong> are significant; otherwise they are not part of the environment
+variable name.</p>
+</dd>
+</dl>
+<p>Shall be a scalar of type <em>logical</em> and of default kind.</p>
+</li>
+</ul>
+</section>
+<section id="id52">
+<h3><strong>Examples</strong><a class="headerlink" href="#id52" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_getenv</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">homedir</span><span class="w"></span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">var</span><span class="w"></span>
+<span class="w">     </span><span class="n">var</span><span class="o">=</span><span class="s1">&#39;HOME&#39;</span><span class="w"></span>
+<span class="w">     </span><span class="n">homedir</span><span class="o">=</span><span class="n">get_env</span><span class="p">(</span><span class="n">var</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(a,&quot;=&quot;&quot;&quot;,a,&quot;&quot;&quot;&quot;)&#39;</span><span class="p">)</span><span class="n">var</span><span class="p">,</span><span class="n">homedir</span><span class="w"></span>
+
+<span class="k">contains</span>
+
+<span class="k">function </span><span class="n">get_env</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span><span class="n">DEFAULT</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="k">VALUE</span><span class="p">)</span><span class="w"></span>
+<span class="c">! a function that makes calling get_environment_variable(3) simple</span>
+<span class="k">implicit none</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">NAME</span><span class="w"></span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">DEFAULT</span><span class="w"></span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w">         </span><span class="kd">::</span><span class="w"> </span><span class="k">VALUE</span>
+<span class="kt">integer</span><span class="w">                              </span><span class="kd">::</span><span class="w"> </span><span class="n">howbig</span><span class="w"></span>
+<span class="kt">integer</span><span class="w">                              </span><span class="kd">::</span><span class="w"> </span><span class="nb">stat</span>
+<span class="kt">integer</span><span class="w">                              </span><span class="kd">::</span><span class="w"> </span><span class="n">length</span><span class="w"></span>
+<span class="w">   </span><span class="c">! get length required to hold value</span>
+<span class="w">   </span><span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="w"></span>
+<span class="w">   </span><span class="k">VALUE</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="n">NAME</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="k">then</span>
+<span class="k">      call </span><span class="nb">get_environment_variable</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">NAME</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="o">=</span><span class="n">howbig</span><span class="p">,</span><span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">,</span><span class="n">trim_name</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span><span class="w"></span>
+<span class="w">      </span><span class="k">select case</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="c">!*!print *, NAME, &quot; is not defined in the environment. Strange...&quot;</span>
+<span class="w">       </span><span class="k">VALUE</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="c">!*!print *, &amp;</span>
+<span class="w">       </span><span class="c">!*!&quot;This processor does not support environment variables. Boooh!&quot;</span>
+<span class="w">       </span><span class="k">VALUE</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">case </span><span class="n">default</span><span class="w"></span>
+<span class="w">       </span><span class="c">! make string to hold value of sufficient size</span>
+<span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="k">VALUE</span><span class="p">))</span><span class="k">deallocate</span><span class="p">(</span><span class="k">VALUE</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">howbig</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">VALUE</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="c">! get value</span>
+<span class="w">       </span><span class="k">call </span><span class="nb">get_environment_variable</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">       </span><span class="p">&amp;</span><span class="w"> </span><span class="n">NAME</span><span class="p">,</span><span class="k">VALUE</span><span class="p">,</span><span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">,</span><span class="n">trim_name</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span><span class="w"></span>
+<span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="nb">stat</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">VALUE</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">end select</span>
+<span class="k">   endif</span>
+<span class="k">   if</span><span class="p">(</span><span class="k">VALUE</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="nb">present</span><span class="p">(</span><span class="n">DEFAULT</span><span class="p">))</span><span class="k">VALUE</span><span class="o">=</span><span class="n">DEFAULT</span><span class="w"></span>
+<span class="k">end function </span><span class="n">get_env</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">demo_getenv</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Typical Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>   HOME=&quot;/home/urbanjs&quot;
+</pre></div>
+</div>
+</section>
+<section id="id53">
+<h3><strong>Standard</strong><a class="headerlink" href="#id53" title="Enlace permanente a este encabezado">#</a></h3>
+<p>Fortran 2003 and later</p>
+<section id="id54">
+<h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#id54" title="Enlace permanente a este encabezado">#</a></h4>
+</section>
+</section>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>
