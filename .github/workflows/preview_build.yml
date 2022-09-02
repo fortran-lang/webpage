@@ -33,14 +33,6 @@ jobs:
       - name: Safe workflow for build preview
         run: if [ -d "build" ]; then rm -Rf build; fi
 
-      - name: delete _data folder
-        run: rm -Rf _data
-
-      - name: download _data
-        run: mkdir _data && cd _data && gh run download -n _data
-        env:
-          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-
       - name: Build page
         run: python3 build.py
 
