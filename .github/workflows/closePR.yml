@@ -12,6 +12,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if:  github.event.pull_request && contains(github.event.comment.body, '#delete_preview') 
 
     steps:
       # Checkout existing gh-pages branch into PUBLISH_DIR
@@ -22,8 +23,7 @@ jobs:
 
       # Cleanup preview files
       - name: PR Cleanup
-        run: |
-          rm -rf pr/${{github.event.number}}
+        run: rm -rf pr/${{github.event.number}}
 
       - name: Commit and push to gh-pages
         uses: EndBug/add-and-commit@v9.1.0
