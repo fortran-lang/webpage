@@ -9,7 +9,7 @@ on: [pull_request]
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.pull_request.merged == true || contains(github.event.comment.body, '#delete_preview')
+    if: contains(github.event.comment.body, '#delete_preview')
 
     steps:
       # Checkout existing gh-pages branch into PUBLISH_DIR
