@@ -11,7 +11,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: github.event.issue.pull_request && contains(github.event.comment.body,'#build_preview')
+    if: github.event.issue.pull_request
 
     steps:
       - name: Checkout pr/${{github.event.issue.number}}
@@ -32,9 +32,14 @@ jobs:
 
       - name: Safe workflow for build preview
         run: if [ -d "build" ]; then rm -Rf build; fi
-
+        
       - name: Build page
-        run: python3 build.py
+        if: contains(github.event.comment.body, '#build_preview')  
+        run: python3 build.py en
+
+      - name: Build page translations
+        if: contains(github.event.comment.body, '#build_translation')  
+        run: python3 build.py 
 
       - run: touch build/html/.nojekyll
 
