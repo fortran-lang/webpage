@@ -6,6 +6,9 @@ sd_hide_title: true
 
 :::{div} sd-text-center sd-fs-3 sd-font-weight-bold sd-text-primary
 Fortran
+:::
+
+:::{div} sd-text-center sd-fs-3 sd-font-weight-bold sd-text-primary
 High-performance parallel programming language
 :::
 
