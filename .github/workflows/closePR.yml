@@ -6,11 +6,13 @@ name: PR Preview Cleanup
 
 on:
   pull_request:
+    types:
+      - closed
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: contains(github.event.comment.body, '#delete_preview')
+    if:  github.event.pull_request.merged == true
 
     steps:
       # Checkout existing gh-pages branch into PUBLISH_DIR
