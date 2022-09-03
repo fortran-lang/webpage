@@ -1,16 +1,18 @@
 # Github action to cleanup a PR preview
-#  Runs when a pull request comment contains '#delete_preview'
+# Runs when a pull request comment contains '#delete_preview'
 #
 
 name: PR Preview Cleanup
 
 on:
   pull_request:
+    types:
+      - closed
 
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: contains(github.event.comment.body, '#delete_preview')
+    if: github.event.pull_request.merged == true || contains(github.event.comment.body, '#delete_preview')
 
     steps:
       # Checkout existing gh-pages branch into PUBLISH_DIR
