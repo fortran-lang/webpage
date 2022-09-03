@@ -15,6 +15,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
+    if: github.event.pull_request.merged == true || contains(github.event.comment.body, '#delete_preview')
 
     steps:
       # Checkout existing gh-pages branch into PUBLISH_DIR
@@ -24,14 +25,9 @@ jobs:
           ref: gh-pages
 
       # Cleanup preview files
-      - name: PR Cleanup manually
-        if: contains(github.event.comment.body, '#delete_preview')
+      - name: PR Cleanup 
         run: rm -rf pr/${{github.event.issue.number}}
       
-      - name: PR Cleanup workflow
-        if: github.event.pull_request.merged == true
-        run: rm -rf pr/${{github.event.number}}
-
       - name: Commit and push to gh-pages
         uses: EndBug/add-and-commit@v9.1.0
         with:
