@@ -8,10 +8,13 @@ on:
   issue_comment:
     types: [created]
 
+  pull_request:
+    types:
+      - closed
+
 jobs:
   build:
     runs-on: ubuntu-latest
-    if: contains(github.event.comment.body, '#delete_preview')
 
     steps:
       # Checkout existing gh-pages branch into PUBLISH_DIR
@@ -21,7 +24,12 @@ jobs:
           ref: gh-pages
 
       # Cleanup preview files
-      - name: PR Cleanup
+      - name: PR Cleanup manually
+        if: contains(github.event.comment.body, '#delete_preview')
+        run: rm -rf pr/${{github.event.issue.number}}
+      
+      - name: PR Cleanup workflow
+        if: github.event.pull_request.merged == true
         run: rm -rf pr/${{github.event.issue.number}}
 
       - name: Commit and push to gh-pages
