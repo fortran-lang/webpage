@@ -1,0 +1,1584 @@
+
+<!DOCTYPE html>
+
+<html lang="cs">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Matrix multiplication, dot product, and array shifts &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../../../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <link rel="index" title="Rejstřík" href="../../../genindex/" />
+    <link rel="search" title="Vyhledávání" href="../../../search/" />
+    <link rel="next" title="Types and kinds" href="../type/" />
+    <link rel="prev" title="Accessing external system information" href="../system/" /> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+    
+    <div class="dropdown" id="version_switcher">
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    cs
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables learn/intrinsics/transform/index and {'json_url': 'https://fortran-lang.org/', 'version_match': 'cs'}.
+-->
+
+<script type="text/javascript">
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "learn/intrinsics/transform/index",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
+
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "learn/intrinsics/transform/index";
+    const indexFilePath = "../../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
+
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "cs") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
+</script>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../">
+  Learn
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../compilers/">
+  Compilers
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../community/">
+  Komunita
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../packages/">
+  Packages
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../news/">
+  News
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/en/news/atom.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Vyhledávání" aria-label="Search" autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../quickstart/">
+   Quickstart tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/arrays_strings/">
+     Arrays and strings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/derived_types/">
+     Derived Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/hello_world/">
+     Hello world
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/operators_control_flow/">
+     Operators and flow control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/organising_code/">
+     Organising code structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/variables/">
+     Variables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../best_practices/">
+   Fortran Best Practices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/allocatable_arrays/">
+     Allocatable Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/arrays/">
+     Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/callbacks/">
+     Callbacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/element_operations/">
+     Element-wise Operations on Array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/file_io/">
+     File Input/Output
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/floating_point/">
+     Floating Point Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/integer_division/">
+     Integer Division
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/modules_programs/">
+     Modules and Programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/multidim_arrays/">
+     Multidimensional Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/style_guide/">
+     Fortran Style Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/type_casting/">
+     Type Casting in Callbacks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../os_setup/">
+   Setting up your OS
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/choose_compiler/">
+     Choosing a compiler
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/ides/">
+     IDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/install_gfortran/">
+     Installing GFortran
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/text_editors/">
+     Text Editors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/tips/">
+     Smart Tips
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../building_programs/">
+   Building programs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/build_tools/">
+     Build tools
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/compiling_source/">
+     Compiling the source code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/distributing/">
+     Distributing your programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/include_files/">
+     Include files and modules
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/linking_pieces/">
+     Linking the objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/managing_libraries/">
+     Managing libraries (static and dynamic libraries)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/project_make/">
+     An introduction to make
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/runtime_libraries/">
+     Run-time libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../">
+   Fortran Intrinsics
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../array/">
+     Properties and attributes of arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bit/">
+     Bit-level inquiry and manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../character/">
+     Basic procedures for manipulating
+     <em>
+      character
+     </em>
+     variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../compiler/">
+     Information about compiler and compiler options used for building
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cfi/">
+     Procedures for binding to C interfaces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../math/">
+     General mathematical functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../model/">
+     Controlling and querying the current numeric model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numeric/">
+     Manipulation and properties of numeric values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../parallel/">
+     Parallel programming using co_arrays and co_indexed arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../state/">
+     General and miscellaneous intrinsics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system/">
+     Accessing external system information
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Matrix multiplication, dot product, and array shifts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../type/">
+     Types and kinds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
+     GNU Free Documentation License
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+        
+<br />
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cshift">
+   cshift
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#name">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#syntax">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#description">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arguments">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#returns">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard">
+     <strong>
+      Standard
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fortran-lang-intrinsic-descriptions">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dot-product">
+   dot_product
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     <strong>
+      Standard
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eoshift">
+   eoshift
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     <strong>
+      Standard
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matmul">
+   matmul
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id22">
+     <strong>
+      Standard
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id23">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parity">
+   parity
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id24">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id25">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id26">
+     <strong>
+      Standard
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id27">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#null">
+   null
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id28">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id29">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id30">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id31">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id32">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id33">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id34">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#see-also">
+     <strong>
+      See Also
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id35">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</nav> 
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                 <section class="tex2jax_ignore mathjax_ignore" id="matrix-multiplication-dot-product-and-array-shifts">
+<h1>Matrix multiplication, dot product, and array shifts<a class="headerlink" href="#matrix-multiplication-dot-product-and-array-shifts" title="Permalink to this heading">#</a></h1>
+<section id="cshift">
+<h2>cshift<a class="headerlink" href="#cshift" title="Permalink to this heading">#</a></h2>
+<section id="name">
+<h3><strong>Name</strong><a class="headerlink" href="#name" title="Permalink to this heading">#</a></h3>
+<p><strong>cshift</strong>(3) - [TRANSFORMATIONAL] Circular shift elements of an array</p>
+</section>
+<section id="syntax">
+<h3><strong>Syntax</strong><a class="headerlink" href="#syntax" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">cshift</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">shift</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="description">
+<h3><strong>Description</strong><a class="headerlink" href="#description" title="Permalink to this heading">#</a></h3>
+<p><strong>cshift(array, shift [, dim])</strong> performs a circular shift on elements
+of <strong>array</strong> along the dimension of <strong>dim</strong>. If <strong>dim</strong> is omitted it is taken to be
+<strong>1</strong>. <strong>dim</strong> is a scalar of type <em>integer</em> in the range of <strong>1 &lt;= dim &lt;= n</strong>,
+where „n“ is the rank of <strong>array</strong>. If the rank of <strong>array</strong> is one, then all
+elements of <strong>array</strong> are shifted by <strong>shift</strong> places. If rank is greater than
+one, then all complete rank one sections of <strong>array</strong> along the given
+dimension are shifted. Elements shifted out one end of each rank one
+section are shifted back in the other end.</p>
+</section>
+<section id="arguments">
+<h3><strong>Arguments</strong><a class="headerlink" href="#arguments" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>array</strong></dt><dd><p>Shall be an array of any type.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>shift</strong></dt><dd><p>The type shall be <em>integer</em>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>dim</strong></dt><dd><p>The type shall be <em>integer</em>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="returns">
+<h3><strong>Returns</strong><a class="headerlink" href="#returns" title="Permalink to this heading">#</a></h3>
+<p>Returns an array of same type and rank as the <strong>array</strong> argument.</p>
+</section>
+<section id="examples">
+<h3><strong>Examples</strong><a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_cshift</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">reshape</span><span class="p">(</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">])</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span><span class="w"></span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">cshift</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">SHIFT</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">DIM</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_cshift</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     1  4  7
+     2  5  8
+     3  6  9
+
+     4  7  1
+     8  2  5
+     9  3  6
+</pre></div>
+</div>
+</section>
+<section id="standard">
+<h3><strong>Standard</strong><a class="headerlink" href="#standard" title="Permalink to this heading">#</a></h3>
+<p>Fortran 95 and later</p>
+<section id="fortran-lang-intrinsic-descriptions">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#fortran-lang-intrinsic-descriptions" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="dot-product">
+<h2>dot_product<a class="headerlink" href="#dot-product" title="Permalink to this heading">#</a></h2>
+<section id="id1">
+<h3><strong>Name</strong><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p><strong>dot_product</strong>(3) - [TRANSFORMATIONAL] Dot product function</p>
+</section>
+<section id="id2">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dot_product</span><span class="p">(</span><span class="n">vector_a</span><span class="p">,</span><span class="w"> </span><span class="n">vector_b</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3><strong>Description</strong><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p><strong>dot_product(vector_a, vector_b)</strong> computes the dot product
+multiplication of two vectors vector<em>a and vector_b. The two vectors
+may be either numeric or logical and must be arrays of rank one and of
+equal size. If the vectors are _integer</em> or <em>real</em>, the result is
+<strong>sum(vector_a*vector_b)</strong>. If the vectors are <em>complex</em>, the result is
+<strong>sum(conjg(vector_a)*vector_b)</strong>. If the vectors are <em>logical</em>, the
+result is <strong>any(vector_a .and. vector_b)</strong>.</p>
+</section>
+<section id="id4">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>vector_a</strong></dt><dd><p>The type shall be numeric or <em>logical</em>, rank 1.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>vector_b</strong></dt><dd><p>The type shall be numeric if vector<em>a is of numeric type or _logical</em>
+if vector<em>a is of type _logical</em>. vector_b shall be a rank-one
+array.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id5">
+<h3><strong>Returns</strong><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p>If the arguments are numeric, the return value is a scalar of numeric
+type, <em>integer</em>, <em>real</em>, or <em>complex</em>. If the arguments are <em>logical</em>, the
+return value is .true. or .false..</p>
+</section>
+<section id="id6">
+<h3><strong>Examples</strong><a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_dot_prod</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">dot_product</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_dot_prod</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     1  2  3
+
+     4  5  6
+
+             32
+</pre></div>
+</div>
+</section>
+<section id="id7">
+<h3><strong>Standard</strong><a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<p>Fortran 95 and later</p>
+<section id="id8">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="eoshift">
+<h2>eoshift<a class="headerlink" href="#eoshift" title="Permalink to this heading">#</a></h2>
+<section id="id9">
+<h3><strong>Name</strong><a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<p><strong>eoshift</strong>(3) - [TRANSFORMATIONAL] End-off shift elements of an array</p>
+</section>
+<section id="id10">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">eoshift</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">shift</span><span class="p">,</span><span class="w"> </span><span class="n">boundary</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h3><strong>Description</strong><a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<p><strong>eoshift(array, shift[, boundary, dim])</strong> performs an end-off shift
+on elements of <strong>array</strong> along the dimension of <strong>dim</strong>. If <strong>dim</strong> is omitted it is
+taken to be <strong>1</strong>. <strong>dim</strong> is a scalar of type <em>integer</em> in the range of <strong>1 &lt;= DIM
+&lt;= n</strong> where <strong>„n“</strong> is the rank of <strong>array</strong>. If the rank of <strong>array</strong> is one, then
+all elements of <strong>array</strong> are shifted by <strong>shift</strong> places. If rank is greater
+than one, then all complete rank one sections of <strong>array</strong> along the given
+dimension are shifted. Elements shifted out one end of each rank one
+section are dropped. If <strong>boundary</strong> is present then the corresponding value
+of from <strong>boundary</strong> is copied back in the other end. If <strong>boundary</strong> is not
+present then the following are copied in depending on the type of <strong>array</strong>.</p>
+<p>*Array Type* - *Boundary Value*</p>
+<ul class="simple">
+<li><p>Numeric 0 of the type and kind of <strong>array</strong></p></li>
+<li><p>Logical .false.</p></li>
+<li><p><strong>Character(len)</strong> LEN blanks</p></li>
+</ul>
+</section>
+<section id="id12">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>array</strong></dt><dd><p>May be any type, not scalar.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>shift</strong></dt><dd><p>The type shall be <em>integer</em>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>boundary</strong></dt><dd><p>Same type as ARRAY.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>dim</strong></dt><dd><p>The type shall be <em>integer</em>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id13">
+<h3><strong>Returns</strong><a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
+<p>Returns an array of same type and rank as the <strong>array</strong> argument.</p>
+</section>
+<section id="id14">
+<h3><strong>Examples</strong><a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_eoshift</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">reshape</span><span class="p">(</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">])</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span><span class="w"></span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">eoshift</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">SHIFT</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">BOUNDARY</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nb">DIM</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_eoshift</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     1  4  7
+     2  5  8
+     3  6  9
+
+     4  7 -5
+     8 -5 -5
+     6  9 -5
+</pre></div>
+</div>
+</section>
+<section id="id15">
+<h3><strong>Standard</strong><a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h3>
+<p>Fortran 95 and later</p>
+<section id="id16">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="matmul">
+<h2>matmul<a class="headerlink" href="#matmul" title="Permalink to this heading">#</a></h2>
+<section id="id17">
+<h3><strong>Name</strong><a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
+<p><strong>matmul</strong>(3) - [TRANSFORMATIONAL] matrix multiplication</p>
+</section>
+<section id="id18">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">matmul</span><span class="p">(</span><span class="n">matrix_a</span><span class="p">,</span><span class="w"> </span><span class="n">matrix_b</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id19">
+<h3><strong>Description</strong><a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
+<p>Performs a matrix multiplication on numeric or logical arguments.</p>
+</section>
+<section id="id20">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>matrix_a</strong></dt><dd><p>An array of <em>integer</em>, <em>real</em>, <em>complex</em>, or <em>logical</em> type, with a rank of
+one or two.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>matrix_b</strong></dt><dd><p>An array of <em>integer</em>, <em>real</em>, or <em>complex</em> type if <strong>matrix_a</strong> is of a
+numeric type; otherwise, an array of <em>logical</em> type. The rank shall be
+one or two, and the first (or only) dimension of <strong>matrix_b</strong> shall be
+equal to the last (or only) dimension of <strong>matrix_a</strong>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id21">
+<h3><strong>Returns</strong><a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h3>
+<p>The matrix product of <strong>matrix_a</strong> and <strong>matrix_b</strong>. The type and kind of the
+result follow the usual type and kind promotion rules, as for the * or
+.and. operators.</p>
+</section>
+<section id="id22">
+<h3><strong>Standard</strong><a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h3>
+<p>Fortran 95 and later</p>
+<section id="id23">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="parity">
+<h2>parity<a class="headerlink" href="#parity" title="Permalink to this heading">#</a></h2>
+<section id="id24">
+<h3><strong>Name</strong><a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
+<p><strong>parity</strong>(3) - [TRANSFORMATIONAL] Reduction with exclusive <strong>OR</strong>()</p>
+</section>
+<section id="id25">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parity</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="k">function </span><span class="nb">parity</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="kt">logical</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">LKIND</span><span class="p">))</span><span class="w">                    </span><span class="kd">::</span><span class="w"> </span><span class="nb">dim</span>
+<span class="nb">    </span><span class="k">type</span><span class="p">(</span><span class="kt">logical</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">LKIND</span><span class="p">)),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">         </span><span class="kd">::</span><span class="w"> </span><span class="n">mask</span><span class="p">(..)</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">dim</span><span class="w"></span>
+</pre></div>
+</div>
+<p>where KIND and LKIND are any supported kind for the type.</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>### __Description__
+
+Calculates the parity (i.e. the reduction using .xor.) of __mask__ along
+dimension __dim__.
+
+### __Arguments__
+
+  - __mask__
+    : Shall be an array of type _logical_.
+
+  - __dim__
+    : (Optional) shall be a scalar of type _integer_ with a value in the
+    range from __1 to n__, where __n__ equals the rank of __mask__.
+
+### __Returns__
+
+The result is of the same type as __mask__.
+
+If __dim__ is absent, a scalar with the parity of all elements in __mask__ is
+returned: __.true.__ if an odd number of elements are __.true.__ and __.false.__
+otherwise.
+
+When __dim__ is specified the returned shape is similar to that of __mask__
+with dimension __dim__ dropped.
+
+### __Examples__
+
+Sample program:
+
+```fortran
+program demo_parity
+implicit none
+logical :: x(2) = [ .true., .false. ]
+   print *, parity(x)
+end program demo_parity
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    T
+</pre></div>
+</div>
+</section>
+<section id="id26">
+<h3><strong>Standard</strong><a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h3>
+<p>Fortran 2008 and later</p>
+<section id="id27">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="null">
+<h2>null<a class="headerlink" href="#null" title="Permalink to this heading">#</a></h2>
+<section id="id28">
+<h3><strong>Name</strong><a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h3>
+<p><strong>null</strong>(3) - [TRANSFORMATIONAL] Function that returns a disassociated pointer</p>
+</section>
+<section id="id29">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">ptr</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">null</span><span class="p">(</span><span class="n">mold</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id30">
+<h3><strong>Description</strong><a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h3>
+<p>Returns a disassociated pointer.</p>
+<p>If <strong>mold</strong> is present, a disassociated pointer of the same type is
+returned, otherwise the type is determined by context.</p>
+<p>In <em>Fortran 95</em>, <strong>mold</strong> is optional. Please note that <em>Fortran 2003</em> includes cases where it is required.</p>
+</section>
+<section id="id31">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>mold</strong></dt><dd><p>(Optional) shall be a pointer of any association status and of any
+type.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id32">
+<h3><strong>Returns</strong><a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h3>
+<p>A disassociated pointer or an unallocated allocatable entity.</p>
+</section>
+<section id="id33">
+<h3><strong>Examples</strong><a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!program demo_null</span>
+<span class="k">module </span><span class="n">showit</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="k">private</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">g</span><span class="o">=</span><span class="s1">&#39;(*(g0,1x))&#39;</span><span class="w"></span>
+<span class="k">public </span><span class="n">gen</span><span class="w"></span>
+<span class="c">! a generic interface that only differs in the</span>
+<span class="c">! type of the pointer the second argument is</span>
+<span class="k">interface </span><span class="n">gen</span><span class="w"></span>
+<span class="w"> </span><span class="k">module procedure </span><span class="n">s1</span><span class="w"></span>
+<span class="w"> </span><span class="k">module procedure </span><span class="n">s2</span><span class="w"></span>
+<span class="k">end interface</span>
+
+<span class="k">contains</span>
+
+<span class="k">subroutine </span><span class="n">s1</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">pi</span><span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="kt">integer </span><span class="n">j</span><span class="w"></span>
+<span class="w"> </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pi</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span><span class="k">then</span>
+<span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">g</span><span class="p">)</span><span class="s1">&#39;Two integers in S1:,&#39;</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="s1">&#39;and&#39;</span><span class="p">,</span><span class="n">pi</span><span class="w"></span>
+<span class="w">   </span><span class="k">else</span>
+<span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">g</span><span class="p">)</span><span class="s1">&#39;One integer in S1:,&#39;</span><span class="p">,</span><span class="n">j</span><span class="w"></span>
+<span class="w">   </span><span class="k">endif</span>
+<span class="k">end subroutine </span><span class="n">s1</span><span class="w"></span>
+
+<span class="k">subroutine </span><span class="n">s2</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">pr</span><span class="p">)</span><span class="w"></span>
+<span class="w"> </span><span class="kt">integer </span><span class="n">k</span><span class="w"></span>
+<span class="w"> </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pr</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">pr</span><span class="p">))</span><span class="k">then</span>
+<span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">g</span><span class="p">)</span><span class="s1">&#39;integer and real in S2:,&#39;</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="s1">&#39;and&#39;</span><span class="p">,</span><span class="n">pr</span><span class="w"></span>
+<span class="w">   </span><span class="k">else</span>
+<span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">g</span><span class="p">)</span><span class="s1">&#39;One integer in S2:,&#39;</span><span class="p">,</span><span class="n">k</span><span class="w"></span>
+<span class="w">   </span><span class="k">endif</span>
+<span class="k">end subroutine </span><span class="n">s2</span><span class="w"></span>
+
+<span class="k">end module </span><span class="n">showit</span><span class="w"></span>
+
+<span class="k">use </span><span class="n">showit</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">gen</span><span class="w"></span>
+
+<span class="kt">real</span><span class="p">,</span><span class="k">target</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="mf">0.0</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">,</span><span class="k">target</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span><span class="w"></span>
+
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">real_ptr</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">integer_ptr</span><span class="w"></span>
+
+<span class="c">! so how do we call S1() or S2() with a disassociated pointer?</span>
+
+<span class="c">! the answer is the null() function with a mold value</span>
+
+<span class="c">! since s1() and s2() both have a first integer</span>
+<span class="c">! argument the NULL() pointer must be associated</span>
+<span class="c">! to a real or integer type via the mold option</span>
+<span class="c">! so the following can distinguish whether s1(1)</span>
+<span class="c">! or s2() is called, even though the pointers are</span>
+<span class="c">! not associated or defined</span>
+
+<span class="k">call </span><span class="n">gen</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">null</span><span class="w"> </span><span class="p">(</span><span class="n">real_ptr</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">    </span><span class="c">! invokes s2</span>
+<span class="k">call </span><span class="n">gen</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nb">null</span><span class="w"> </span><span class="p">(</span><span class="n">integer_ptr</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c">! invokes s1</span>
+<span class="n">real_ptr</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="n">integer_ptr</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="k">call </span><span class="n">gen</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">real_ptr</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c">! invokes s2</span>
+<span class="k">call </span><span class="n">gen</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">integer_ptr</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c">! invokes s1</span>
+
+<span class="k">end</span><span class="w"></span>
+<span class="c">!end program demo_null</span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>   One integer in S2:, 1
+   One integer in S1:, 2
+   integer and real in S2:, 3 and 200.000000
+   Two integers in S1:, 4 and 100
+</pre></div>
+</div>
+</section>
+<section id="id34">
+<h3><strong>Standard</strong><a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h3>
+<p>Fortran 95 and later</p>
+</section>
+<section id="see-also">
+<h3><strong>See Also</strong><a class="headerlink" href="#see-also" title="Permalink to this heading">#</a></h3>
+<p><span class="xref myst"><strong>associated</strong>(3)</span></p>
+<section id="id35">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id35" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>
