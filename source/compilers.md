@@ -35,9 +35,7 @@ based on the NVIDIA/PGI commercial compiler.
 
 [LFortran](https://lfortran.org) is a modern, interactive, LLVM-based Fortran
 compiler.
-
-[LFortran WASM Compiler](https://dev.lfortran.org/) is a statically served, WASM based LFortran Compiler for running the code in the web browsers.
-
+Also available online at [dev.lfortran.org](https://dev.lfortran.org/) using a statically served, WASM based LFortran Compiler for running code in web browsers.
 <p style="font-size:24px;color:#734f96;"><b>Commercial compilers</b></p>
 
 <h4> <b> Intel</b></h4>
