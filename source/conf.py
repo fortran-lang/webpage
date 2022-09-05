@@ -130,6 +130,7 @@ html_theme_options = {
     "navbar_align": "right",
     "navbar_start": ["navbar-logo","theme-switcher.html","version-switcher"],
     "switcher": {
+        "json_url":"",   
         "version_match": language,
     },
     "page_sidebar_items": ["inpage_toc.html"],
