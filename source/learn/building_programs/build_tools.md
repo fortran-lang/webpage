@@ -56,8 +56,9 @@ called `Makefile` or `makefile`, which usually leads to compiling a program
 from the provided source code.
 
 ::::{tip}
-For an in-depth `make` tutorial lookup its info page. There is an online version of this <a href=“https://www.gnu.org/software/make/manual/make.html“ target=“_blank“ rel=“noopener“>info page, available.
+For an in-depth `make` tutorial lookup its info page. There is an online version of this <a href="https://www.gnu.org/software/make/manual/make.html" target="_blank" rel="noopener">info page</a>, available.
 ::::
+
 We will start with the basics from your clean source directory. Create and open
 the file `Makefile`, we start with a simple rule called _all_:
 
