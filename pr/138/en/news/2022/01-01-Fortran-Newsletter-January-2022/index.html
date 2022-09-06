@@ -1,0 +1,937 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Fortran newsletter: January 2022 &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../../../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" /> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+    
+    <div class="dropdown" id="version_switcher">
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    en
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables news/2022/01-01-Fortran-Newsletter-January-2022 and {'version_match': 'en'}.
+-->
+
+<script type="text/javascript">
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "news/2022/01-01-Fortran-Newsletter-January-2022",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
+
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "news/2022/01-01-Fortran-Newsletter-January-2022";
+    const indexFilePath = "../../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
+
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "en") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
+</script>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../learn/">
+  Learn
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../compilers/">
+  Compilers
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../community/">
+  Community
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../packages/">
+  Packages
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../">
+  News
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/en/news/atom.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search" aria-label="Search" autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items">  
+<h2>
+   <i class="fa fa-calendar"></i>
+  01 January 2022 
+</h2>
+
+<ul>
+   
+<li id="author">
+  <span
+    ><i class="fa-fw fa fa-user"></i></span
+  >
+   
+  <a href="../../author/milan-curcic/">Milan Curcic</a>,   
+  <a href="../../author/sebastian-ehlert/">Sebastian Ehlert</a>,   
+  <a href="../../author/alexis-perry-holby/">Alexis Perry-Holby</a>,   
+  <a href="../../author/ondrej-certik/">Ondřej Čertík</a>,   
+  <a href="../../author/jeremie-vandenplas/">Jérémie Vandenplas</a>  
+</li>
+   
+<li id="category">
+  <span
+    ><i class="fa-fw fa fa-folder-open"></i></span
+  >
+   
+  <a href="../../category/newsletter/">newsletter</a>  
+</li>
+  
+</ul>
+
+<h3>
+  <a href="../../">Recent Posts</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../06-09-Fortran-Newsletter-June-2022/"
+      >09 June - Fortran newsletter: June 2022</a
+    >
+  </li>
+  
+  <li>
+    <a href="../05-05-Fortran-Newsletter-May-2022/"
+      >05 May - Fortran newsletter: May 2022</a
+    >
+  </li>
+  
+  <li>
+    <a href="../04-07-Fortran-Newsletter-April-2022/"
+      >07 April - Fortran newsletter: April 2022</a
+    >
+  </li>
+  
+  <li>
+    <a href="../03-09-Fortran-Newsletter-March-2022/"
+      >09 March - Fortran newsletter: March 2022</a
+    >
+  </li>
+  
+  <li>
+    <a href="../02-01-Fortran-Newsletter-February-2022/"
+      >01 February - Fortran newsletter: February 2022</a
+    >
+  </li>
+  
+</ul>
+
+<h3>
+  <a href="../../archive/">Archives</a>
+</h3>
+<ul>
+   
+  <li>
+    <a href="../">2022 (6)</a>
+  </li>
+    
+  <li>
+    <a href="../../2021/">2021 (16)</a>
+  </li>
+    
+  <li>
+    <a href="../../2020/">2020 (11)</a>
+  </li>
+   
+</ul>
+
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+        
+<br />
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fortran-lang-org">
+   fortran-lang.org
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#work-in-progress">
+     Work in progress
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fortran-standard-library">
+   Fortran Standard Library
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     Work in progress
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#fortran-package-manager">
+   Fortran Package Manager
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     Work in progress
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#compilers">
+   Compilers
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#flang">
+     Flang
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#lfortran">
+     LFortran
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#events">
+   Events
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#contributors">
+   Contributors
+  </a>
+ </li>
+</ul>
+</nav> 
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                 <section class="tex2jax_ignore mathjax_ignore" id="fortran-newsletter-january-2022">
+<h1>Fortran newsletter: January 2022<a class="headerlink" href="#fortran-newsletter-january-2022" title="Permalink to this heading">#</a></h1>
+<p>Happy New Year and welcome to the January 2022 edition of the monthly Fortran
+newsletter.
+The newsletter comes out at the beginning of every month and details
+Fortran news from the previous month.</p>
+<section id="fortran-lang-org">
+<h2>fortran-lang.org<a class="headerlink" href="#fortran-lang-org" title="Permalink to this heading">#</a></h2>
+<p>Here’s what’s new and ongoing in the fortran-lang.org repo:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fortran-lang.org/pull/349">#349</a>:
+Newsletter draft for December 2021</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fortran-lang.org/pull/350">#350</a>:
+Updated CaNS item so that it shows the version</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fortran-lang.org/pull/353">#353</a>:
+Add MCST LCC C, C++ and Fortran compiler</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fortran-lang.org/pull/351">#351</a>:
+Use HEAD to reference default branch</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fortran-lang.org/pull/355">#355</a>:
+2021 review article draft</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fortran-lang.org/pull/356">#356</a> (WIP):
+Adding Fortran Error Handler to packages index</p></li>
+</ul>
+<section id="work-in-progress">
+<h3>Work in progress<a class="headerlink" href="#work-in-progress" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fortran-lang.org/pull/347">#347</a> (WIP):
+Fortran Intrinsics</p></li>
+</ul>
+<p><a class="reference external" href="https://github.com/fortran-lang/fortran-lang.org/issues">Let us know</a>
+if you have any suggestions for the website and its content.
+We welcome any new contributors to the website and the tutorials page in particular - see the
+<a class="reference external" href="https://github.com/fortran-lang/fortran-lang.org/blob/HEAD/CONTRIBUTING.md">contributor guide</a>
+for how to get started.</p>
+</section>
+</section>
+<section id="fortran-standard-library">
+<h2>Fortran Standard Library<a class="headerlink" href="#fortran-standard-library" title="Permalink to this heading">#</a></h2>
+<p>Here’s what’s new in stdlib:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/500">#500</a>:
+Selection algorithms</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/586">#586</a>:
+Update of stdlib_stats.md</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/581">#581</a>:
+Add routines for saving/loading arrays in npy format</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/590">#590</a>:
+Update changelog</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/588">#588</a>:
+Error on no tests in CTest</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/585">#585</a>:
+stdlib_selection: correction of typos and addition of some checks</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/591">#591</a>:
+Fix compilation errors with makefiles due to command-line variable assignments</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/273">#273</a>:
+Probability Distribution and Statistical Functions – Normal Distribution Module</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/584">#584</a>:
+Replace the call to sort by select in stdlib_stats_median</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/593">#593</a>:
+Probability Distribution and Statistical Functions – Uniform Distribution Module</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/594">#594</a>:
+Minor update to makefile installation instructions</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/596">#596</a>:
+Rename references to default branch</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/600">#600</a>:
+Fix iomsg allocation in save_npy</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/488">#488</a>:
+[stdlib_math] add <code class="docutils literal notranslate"><span class="pre">is_close</span></code> routines.</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/597">#597</a>:
+Add getline to read whole line from formatted unit</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/498">#498</a>:
+[stdlib_math] add <code class="docutils literal notranslate"><span class="pre">arg/argd/argpi</span></code></p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/603">#603</a>:
+Implement trueloc/falseloc</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/573">#573</a>:
+Revised Hash functions incorporating changes in the main Stdlib repository.</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/609">#609</a>:
+Consistent spec titles</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/610">#610</a>:
+Fixed tables in stdlib_hash_procedures.md</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/499">#499</a>:
+[stdlib_linalg] matrix property checks</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/613">#613</a>:
+Ignore hash testing binaries and logs</p></li>
+</ul>
+<section id="id1">
+<h3>Work in progress<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/611">#611</a> (WIP):
+Hash maps</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/605">#605</a> (WIP):
+[stdlib_math] Add function <code class="docutils literal notranslate"><span class="pre">diff</span></code></p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/604">#604</a> (WIP):
+Add get_argument, get_variable and set_variable</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/580">#580</a> (WIP):
+Add terminal and color escape sequences</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/552">#552</a> (WIP):
+fixed bug in stringlist</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/536">#536</a> (WIP):
+Fix conversion warnings</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/520">#520</a> (WIP):
+[stdlib_io] add <code class="docutils literal notranslate"><span class="pre">disp</span></code>(display variable values formatted).</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/517">#517</a> (WIP):
+adding SPEC_TEMPLATE.md #504</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/514">#514</a> (WIP):
+pop, drop &amp; get with basic range feature for stringlist</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/491">#491</a> (WIP):
+Stdlib linked list</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/473">#473</a> (WIP):
+Error stop improvements</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/363">#363</a> (WIP):
+Sorting string’s characters according to their ASCII values</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/286">#286</a> (WIP):
+Probability Distribution and Statistical Functions – Beta Distribution Module</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/278">#278</a> (WIP):
+Probability Distribution and Statistical Functions – Gamma Distribution Module</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/276">#276</a> (WIP):
+Probability Distribution and Statistical Functions – Exponential Distribution Module</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib/pull/189">#189</a> (WIP):
+Initial implementation of COO / CSR sparse format</p></li>
+</ul>
+<p>Please help improve stdlib by testing and <a class="reference external" href="https://github.com/fortran-lang/stdlib/issues?q=is%3Apr+is%3Aopen+label%3A%22reviewers+needed%22">reviewing pull requests</a>!</p>
+<p>The candidate for file system operations to be included in stdlib is being developed by
+<a class="reference external" href="https://github.com/MarDiehl">&#64;MarDiehl</a> and <a class="reference external" href="https://github.com/arjenmarkus">&#64;arjenmarkus</a>
+in <a class="reference external" href="https://github.com/MarDiehl/stdlib_os">this repository</a>.
+Please try it out and let us know how it works, if there are any issues, or if the API can be improved.</p>
+</section>
+</section>
+<section id="fortran-package-manager">
+<h2>Fortran Package Manager<a class="headerlink" href="#fortran-package-manager" title="Permalink to this heading">#</a></h2>
+<p>Here’s what’s new in fpm:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fpm/pull/634">#634</a>:
+Better extraction of the Fortran compiler from the MPI wrapper</p></li>
+</ul>
+<section id="id2">
+<h3>Work in progress<a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fpm/pull/642">#642</a> (WIP):
+Replace polymorphic assignment with move_alloc</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fpm/pull/630">#630</a> (WIP):
+allow backfilling of current directory in fpm-new subcommand</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fpm/pull/622">#622</a> (WIP):
+Cleanup the backend output</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fpm/pull/608">#608</a> (WIP):
+–env switch lets you specify the prefix of the compiler-related environment variables</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fpm/pull/539">#539</a> (WIP):
+Add parent packages into dependency tree</p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fpm/pull/498">#498</a> (WIP):
+Compiler flags profiles</p></li>
+</ul>
+<p><code class="docutils literal notranslate"><span class="pre">fpm</span></code> is still in early development and we need as much help as we can get.
+Here’s how you can help today:</p>
+<ul class="simple">
+<li><p>Use it and let us know what you think! Read the <a class="reference external" href="https://fpm.fortran-lang.org/en/tutorial">fpm packaging guide</a>
+to learn how to build your package with fpm, and the <a class="reference external" href="https://fpm.fortran-lang.org/en/spec/manifest.html">manifest reference</a>
+to learn what are all the things that you can specify in the fpm.toml file.</p></li>
+<li><p>Browse existing <em>fpm</em> packages on the <a class="reference external" href="https://fortran-lang.org/packages/fpm">fortran-lang website</a></p></li>
+<li><p>Browse the <a class="reference external" href="https://github.com/fortran-lang/fpm/issues">open issues</a> and see if you can help implement any fixes or features.</p></li>
+<li><p>Adapt your Fortran package for fpm and submit it to the <a class="reference external" href="https://github.com/fortran-lang/fpm-registry">Registry</a>.</p></li>
+<li><p>Improve the documentation.</p></li>
+</ul>
+<p>The short-term goal of fpm is to make development and installation of Fortran packages with dependencies easier.
+Its long term goal is to build a rich and decentralized ecosystem of Fortran packages and create a healthy
+environment in which new open source Fortran projects are created and published with ease.</p>
+</section>
+</section>
+<section id="compilers">
+<h2>Compilers<a class="headerlink" href="#compilers" title="Permalink to this heading">#</a></h2>
+<section id="flang">
+<h3>Flang<a class="headerlink" href="#flang" title="Permalink to this heading">#</a></h3>
+<p>Recent development updates:</p>
+<ul class="simple">
+<li><p>FIR</p>
+<ul>
+<li><p>Add fir.box_isarray, fir.box_isptr and fir.box_isalloc conversion.</p></li>
+<li><p>Add !fir.vector type conversion</p></li>
+<li><p>Add type conversion for <code class="docutils literal notranslate"><span class="pre">fir.boxchar</span></code></p></li>
+<li><p>Add !fir.alloca conversion</p></li>
+<li><p>Add placeholder conversion pattern for disptach operations</p></li>
+<li><p>Add fir.select_case conversion</p></li>
+<li><p>Add !fir.field type conversion</p></li>
+<li><p>Transform <code class="docutils literal notranslate"><span class="pre">IsPresentOpConversion</span></code> and <code class="docutils literal notranslate"><span class="pre">AbsentOpConversion</span></code></p></li>
+<li><p>Add type conversion for FIR heap type</p></li>
+<li><p>Add type conversion for FIR integer kind</p></li>
+<li><p>Add !fir.len type conversion</p></li>
+<li><p>Transform <code class="docutils literal notranslate"><span class="pre">fir.emboxchar</span></code> to a sequence of LLVM MLIR</p></li>
+<li><p>Add fir.select_type conversion placeholder</p></li>
+<li><p>Remove extra return in SelectTypeOpConversion</p></li>
+<li><p>Transform <code class="docutils literal notranslate"><span class="pre">fir.unboxchar</span></code> to a sequence of LLVM MLIR</p></li>
+<li><p>Add fir.global_len conversion placeholder</p></li>
+<li><p>Add the FIR LLVMPointer Type</p></li>
+<li><p>Add fir.cmpc conversion</p></li>
+<li><p>Add fir.gentypedesc conversion</p></li>
+<li><p>Transform <code class="docutils literal notranslate"><span class="pre">fir.boxchar_len</span></code> to a sequence of LLVM MLIR</p></li>
+<li><p>Add missing <code class="docutils literal notranslate"><span class="pre">HasParent</span></code> in <code class="docutils literal notranslate"><span class="pre">fir_DTEntryOp</span></code></p></li>
+<li><p>Add fir.string_lit conversion</p></li>
+<li><p>Add conversion patterns for slice, shape, shapeshift and shift ops</p></li>
+<li><p>Add fir.box_tdesc conversion</p></li>
+<li><p>!fir.tdesc type conversion</p></li>
+<li><p>Add fir.constc conversion</p></li>
+<li><p>Add fir.embox conversion</p></li>
+<li><p>Notify conversion failure for Proc ops, types</p></li>
+<li><p>Add tests for mlir::ComplexType conversion</p></li>
+<li><p>Add <code class="docutils literal notranslate"><span class="pre">fir.end</span></code> conversion placeholder</p></li>
+<li><p>Transform <code class="docutils literal notranslate"><span class="pre">fir.field_index</span></code> to a sequence of LLVM MLIR</p></li>
+<li><p>Add a factory class for creating Complex Ops</p></li>
+<li><p>Add fir.no_reassoc conversion</p></li>
+<li><p>Set !fir.len_param_index conversion to unimplemented</p></li>
+<li><p>Add base for runtime builder unittests</p></li>
+<li><p>Add fir transformational intrinsic builder</p></li>
+<li><p>Add assignment runtime API builder</p></li>
+<li><p>Add data flow optimization pass</p></li>
+<li><p>Add array value copy pass</p></li>
+<li><p>Add fir reduction builder</p></li>
+<li><p>Add fir numeric intrinsic runtime call builder</p></li>
+<li><p>Add fircg.ext_embox conversion</p></li>
+<li><p>Add fir derived type runtime builder</p></li>
+<li><p>Add fir character builder</p></li>
+<li><p>Add fircg.ext_array_coor conversion</p></li>
+<li><p>Upstream conversion of the XRebox Op</p></li>
+<li><p>Convert fir.allocmem and fir.freemem operations to calls to malloc and free, respectively</p></li>
+</ul>
+</li>
+<li><p>Runtime</p>
+<ul>
+<li><p>Fix vector cshift runtime with non zero lower bounds</p></li>
+<li><p>Respect NO_STOP_MESSAGE=1 in runtime</p></li>
+<li><p>Runtime performance improvements to real formatted input</p></li>
+<li><p>Allow write after non advancing read in IO runtime</p></li>
+<li><p>Fix reversed comparison in RESHAPE() runtime</p></li>
+<li><p>Define &amp; implement a lowering support API IsContiguous() in runtime</p></li>
+<li><p>Don’t close stderr in runtime (fixes STOP output)</p></li>
+<li><p>Return arrays in Transfer runtime with SIZE argument</p></li>
+<li><p>Fix INQUIRE(FILE=,NAME=)</p></li>
+<li><p>Add ragged array runtime functions</p></li>
+</ul>
+</li>
+<li><p>Allow exterior branch to outermost WHERE construct statement</p></li>
+<li><p>Fix ORDER= argument to RESHAPE</p></li>
+<li><p>Fix rounding edge case in F output editing</p></li>
+<li><p>Handle ENTRY names in IsPureProcedure() predicate</p></li>
+<li><p>Allow implicit procedure pointers to associate with explicit procedures</p></li>
+<li><p>Fix a bug in INQUIRE(IOLENGTH=) output</p></li>
+<li><p>Remove default argument from function template specialization</p></li>
+<li><p>Check ArrayRef base for contiguity in IsSimplyContiguousHelper</p></li>
+<li><p>Deal with negative character lengths in semantics</p></li>
+<li><p>Fix INQUIRE(PAD=) and (POSITION=) for predefined units</p></li>
+<li><p>Add a semantics test for co_sum</p></li>
+<li><p>Fix off-by-one results from folding MAXEXPONENT and MINEXPONENT</p></li>
+<li><p>Skip <code class="docutils literal notranslate"><span class="pre">Fortran</span> <span class="pre">STOP:</span></code> before message when NO_STOP_MESSAGE is set</p></li>
+<li><p>Fix printing of constc and parsing of #fir.real</p></li>
+<li><p>Predefine unit 0 connected to stderr</p></li>
+<li><p>Add -fno-automatic, refine IsSaved()</p></li>
+<li><p>Correct the argument keyword for AIMAG(Z=…)</p></li>
+<li><p>Inclusive language: remove instances of master</p></li>
+<li><p>Return true in IsSymplyContiguous for allocatables</p></li>
+<li><p>Fix usage &amp; catch errors for MAX/MIN with keyword= arguments</p></li>
+<li><p>Re-fold bounds expressions in DATA implied DO loops</p></li>
+<li><p>Correct INQUIRE(POSITION= &amp; PAD=)</p></li>
+<li><p>Rearrange prototype &amp; code placement of IsCoarray()</p></li>
+<li><p>Replace notifyMatchFailure with TODO hard failures</p></li>
+<li><p>TargetRewrite: Rewrite fir.address_of(func)</p></li>
+<li><p>Fix folding of EXPONENT() intrinsic function</p></li>
+<li><p>OPEN(RECL=) handling for sequential formatted I/O</p></li>
+<li><p>Avoid potential deadlock in CloseAll()</p></li>
+</ul>
+<p>Call notes are recorded and available upon request <a class="reference external" href="https://docs.google.com/document/d/10T-S2J3GrahpG4Ooif93NSTz2zBW0MQc_RlwHi0-afY">here</a>. Please contact Alexis Perry-Holby at aperry&#64;lanl.gov for document access.</p>
+</section>
+<section id="lfortran">
+<h3>LFortran<a class="headerlink" href="#lfortran" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p>Beginning of refactoring of ASR (Abstract Semantic Representation) into a standalone library</p></li>
+<li><p>New intrinsics: mvbits, bge, bgt, ble, blt, ibits</p></li>
+<li><p>generic procedure resolution fixes</p></li>
+<li><p>FreeBSD fixes</p></li>
+<li><p>Implement <code class="docutils literal notranslate"><span class="pre">.xor.</span></code> (LFortran as well as GFortran extension)</p></li>
+<li><p>Fixes to large integers (BigInt) handling</p></li>
+<li><p>Added support for <code class="docutils literal notranslate"><span class="pre">private</span></code>, <code class="docutils literal notranslate"><span class="pre">final</span></code> attributes in derived types/classes</p></li>
+</ul>
+<p>The following people contributed code in December 2021: Ondřej Čertík, Gagandeep Singh, Harris Snyder</p>
+<p>We are looking for new contributors. Please do not hesitate to contact us if
+you are interested. We will help you get up to speed.</p>
+</section>
+</section>
+<section id="events">
+<h2>Events<a class="headerlink" href="#events" title="Permalink to this heading">#</a></h2>
+<ul>
+<li><p>fpm has a new documentation website hosted at
+<a class="reference external" href="https://fpm.fortran-lang.org/">fpm.fortran-lang.org</a>.
+This website will provide user-oriented tutorials and how-to guides, as well
+as developer-oriented reference documents and specifications.
+We welcome all contributions to the fpm documentation, including translations
+to other languages.
+Please visit the <a class="reference external" href="https://github.com/fortran-lang/fpm-docs">fpm-docs repo</a> to
+get started.</p></li>
+<li><p>We had our 21st Fortran Monthly call on December 14.
+You can watch the recording below:</p>
+<iframe width="560" height="315" src="https://www.youtube.com/embed/NSvL2yrefH8" frameborder="0" allow="accelerometer; autoplay; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe>
+</li>
+<li><p>We also wrote a review of the Fortran-lang projects in 2021. Read it
+<span class="xref myst">here</span>.</p></li>
+</ul>
+<p>As usual, subscribe to the <a class="reference external" href="https://groups.io/g/fortran-lang">mailing list</a> and/or
+join the <a class="reference external" href="https://fortran-lang.discourse.group">Discourse</a> to stay tuned with the future meetings.</p>
+</section>
+<section id="contributors">
+<h2>Contributors<a class="headerlink" href="#contributors" title="Permalink to this heading">#</a></h2>
+<p>We thank everybody who contributed to fortran-lang in the past month by
+commenting in any of these repositories:</p>
+<ul class="simple">
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib">fortran-lang/stdlib</a></p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/stdlib-cmake-example">fortran-lang/stdlib-cmake-example</a></p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fpm">fortran-lang/fpm</a></p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fpm-registry">fortran-lang/fpm-registry</a></p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fpm-docs">fortran-lang/fpm-docs</a></p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/setup-fpm">fortran-lang/setup-fpm</a></p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fpm-haskell">fortran-lang/fpm-haskell</a></p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fortran-lang.org">fortran-lang/fortran-lang.org</a></p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/benchmarks">fortran-lang/benchmarks</a></p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fortran-forum-article-template">fortran-lang/fortran-forum-article-template</a></p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/fftpack">fortran-lang/fftpack</a></p></li>
+<li><p><a class="reference external" href="https://github.com/fortran-lang/test-drive">fortran-lang/test-drive</a></p></li>
+<li><p><a class="reference external" href="https://github.com/j3-fortran/fortran_proposals">j3-fortran/fortran_proposals</a></p></li>
+</ul>
+<div id="gh-contributors" data-startdate="December 01 2021" data-enddate="January 01 2022" height="500px"></div>
+</section>
+</section>
+
+<div class="section">
+    
+
+<div class="section">
+  <span style="float: left">
+     
+    <a href="../../2021/12-29-Fortran-lang-2021-in-review/">
+      <i class="fa fa-arrow-circle-left"></i> Fortran-lang: 2021 in review
+    </a>
+    
+  </span>
+  <span>&nbsp;</span>
+  <span style="float: right">
+     
+    <a href="../02-01-Fortran-Newsletter-February-2022/">
+      Fortran newsletter: February 2022 <i
+        class="fa fa-arrow-circle-right"
+      ></i
+      >
+    </a>
+    
+  </span>
+</div>
+  
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

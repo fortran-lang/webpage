@@ -1,0 +1,1078 @@
+
+<!DOCTYPE html>
+
+<html lang="de">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Fortran Intrinsics &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../" id="documentation_options" src="../../_static/documentation_options.js"></script>
+    <script src="../../_static/jquery.js"></script>
+    <script src="../../_static/underscore.js"></script>
+    <script src="../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../_static/doctools.js"></script>
+    <script src="../../_static/clipboard.min.js"></script>
+    <script src="../../_static/copybutton.js"></script>
+    <script src="../../_static/translations.js"></script>
+    <script src="../../_static/design-tabs.js"></script>
+    <link rel="index" title="Stichwortverzeichnis" href="../../genindex/" />
+    <link rel="search" title="Suche" href="../../search/" />
+    <link rel="next" title="Properties and attributes of arrays" href="array/" />
+    <link rel="prev" title="Run-time libraries" href="../building_programs/runtime_libraries/" /> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../">
+  
+  
+  
+  
+    <img src="../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+    
+    <div class="dropdown" id="version_switcher">
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    de
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables learn/intrinsics/index and {'version_match': 'de'}.
+-->
+
+<script type="text/javascript">
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "learn/intrinsics/index",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
+
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "learn/intrinsics/index";
+    const indexFilePath = "../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
+
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "de") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
+</script>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../">
+  Lernen
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../compilers/">
+  Compilers
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../community/">
+  Gemeinschaft
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../packages/">
+  Packages
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../news/">
+  News
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/en/news/atom.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Suche" aria-label="Search" autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../quickstart/">
+   Quickstart tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/arrays_strings/">
+     Arrays and strings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/derived_types/">
+     Derived Types
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/hello_world/">
+     Hello world
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/operators_control_flow/">
+     Operators and flow control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/organising_code/">
+     Organising code structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../quickstart/variables/">
+     Variables
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../best_practices/">
+   Fortran Best Practices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best_practices/allocatable_arrays/">
+     Allocatable Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best_practices/arrays/">
+     Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best_practices/callbacks/">
+     Callbacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best_practices/element_operations/">
+     Element-wise Operations on Array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best_practices/file_io/">
+     Datei Input/Output
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best_practices/floating_point/">
+     Floating Point Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best_practices/integer_division/">
+     Integer Division
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best_practices/modules_programs/">
+     Modules and Programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best_practices/multidim_arrays/">
+     Multidimensional Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best_practices/style_guide/">
+     Fortran Style Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../best_practices/type_casting/">
+     Type Casting in Callbacks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../os_setup/">
+   Setting up your OS
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../os_setup/choose_compiler/">
+     Choosing a compiler
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../os_setup/ides/">
+     IDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../os_setup/install_gfortran/">
+     Installing GFortran
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../os_setup/text_editors/">
+     Text Editors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../os_setup/tips/">
+     Smart Tips
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../building_programs/">
+   Building programs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../building_programs/build_tools/">
+     Build tools
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../building_programs/compiling_source/">
+     Compiling the source code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../building_programs/distributing/">
+     Distributing your programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../building_programs/include_files/">
+     Include files and modules
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../building_programs/linking_pieces/">
+     Linking the objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../building_programs/managing_libraries/">
+     Managing libraries (static and dynamic libraries)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../building_programs/project_make/">
+     An introduction to make
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../building_programs/runtime_libraries/">
+     Run-time libraries
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="current reference internal" href="#">
+   Fortran Intrinsics
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="array/">
+     Properties and attributes of arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="bit/">
+     Bit-level inquiry and manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="character/">
+     Basic procedures for manipulating
+     <em>
+      character
+     </em>
+     variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="compiler/">
+     Information about compiler and compiler options used for building
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="cfi/">
+     Procedures for binding to C interfaces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="math/">
+     General mathematical functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="model/">
+     Controlling and querying the current numeric model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="numeric/">
+     Manipulation and properties of numeric values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="parallel/">
+     Parallel programming using co_arrays and co_indexed arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="state/">
+     General and miscellaneous intrinsics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="system/">
+     Accessing external system information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="transform/">
+     Matrix multiplication, dot product, and array shifts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="type/">
+     Types and kinds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
+     GNU Free Documentation License
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+         
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                 <section class="tex2jax_ignore mathjax_ignore" id="fortran-intrinsics">
+<h1>Fortran Intrinsics<a class="headerlink" href="#fortran-intrinsics" title="Permalink to this heading">#</a></h1>
+<p>This is a collection of extended descriptions of the Fortran intrinsics
+based on the reference document
+„<a class="reference external" href="http://isotc.iso.org/livelink/livelink?func=ll&amp;objId=19442438&amp;objAction=Open">Current F2018 Working Document as of April 2018</a>“.
+Vendor-specific extensions are not included.</p>
+<details class="sd-sphinx-override sd-dropdown sd-card sd-mb-3">
+<summary class="sd-summary-title sd-card-header sd-bg-primary sd-bg-text-primary">
+Intrinsics<div class="sd-summary-down docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-down" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M5.22 8.72a.75.75 0 000 1.06l6.25 6.25a.75.75 0 001.06 0l6.25-6.25a.75.75 0 00-1.06-1.06L12 14.44 6.28 8.72a.75.75 0 00-1.06 0z"></path></svg></div>
+<div class="sd-summary-up docutils">
+<svg version="1.1" width="1.5em" height="1.5em" class="sd-octicon sd-octicon-chevron-up" viewBox="0 0 24 24" aria-hidden="true"><path fill-rule="evenodd" d="M18.78 15.28a.75.75 0 000-1.06l-6.25-6.25a.75.75 0 00-1.06 0l-6.25 6.25a.75.75 0 101.06 1.06L12 9.56l5.72 5.72a.75.75 0 001.06 0z"></path></svg></div>
+</summary><div class="sd-summary-content sd-card-body docutils">
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="array/">Properties and attributes of arrays</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="array/#merge">merge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#pack">pack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#spread">spread</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#unpack">unpack</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#allocated">allocated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#is-contiguous">is_contiguous</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#lbound">lbound</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#rank">rank</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#shape">shape</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#size">size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#ubound">ubound</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#maxloc">maxloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#minloc">minloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#findloc">findloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#transpose">transpose</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#all">all</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#any">any</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#count">count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#maxval">maxval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#minval">minval</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#product">product</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#sum">sum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#reshape">reshape</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="bit/">Bit-level inquiry and manipulation</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="bit/#bge">bge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#bgt">bgt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#ble">ble</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#blt">blt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#bit-size">bit_size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#btest">btest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#storage-size">storage_size</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#leadz">leadz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#popcnt">popcnt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#poppar">poppar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#trailz">trailz</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#dshiftl">dshiftl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#dshiftr">dshiftr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#merge-bits">merge_bits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#mvbits">mvbits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#ibits">ibits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#ibclr">ibclr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#ibset">ibset</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#maskl">maskl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#maskr">maskr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#iparity">iparity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#iall">iall</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#iand">iand</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#iany">iany</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#ieor">ieor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#ior">ior</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#not">not</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#ishftc">ishftc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#ishft">ishft</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#shifta">shifta</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#shiftl">shiftl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="bit/#shiftr">shiftr</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="character/">Basic procedures for manipulating <em>character</em> variables</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="character/#len">len</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#new-line">new_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#repeat">repeat</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#achar">achar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#char">char</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#iachar">iachar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#ichar">ichar</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#index">index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#scan">scan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#verify">verify</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#lge">lge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#lgt">lgt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#lle">lle</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#llt">llt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#adjustl">adjustl</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#adjustr">adjustr</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#len-trim">len_trim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="character/#trim">trim</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="compiler/">Information about compiler and compiler options used for building</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="compiler/#compiler-options">compiler_options</a></li>
+<li class="toctree-l2"><a class="reference internal" href="compiler/#compiler-version">compiler_version</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="cfi/">Procedures for binding to C interfaces</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="cfi/#c-associated">c_associated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfi/#c-f-pointer">c_f_pointer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfi/#c-f-procpointer">c_f_procpointer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfi/#c-funloc">c_funloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfi/#c-loc">c_loc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="cfi/#c-sizeof">c_sizeof</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="math/">General mathematical functions</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="math/#acos">acos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#acosh">acosh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#asin">asin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#asinh">asinh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#atan">atan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#atan2">atan2</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#atanh">atanh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#cos">cos</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#cosh">cosh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#sin">sin</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#sinh">sinh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#tan">tan</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#tanh">tanh</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#random-number">random_number</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#random-seed">random_seed</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#exp">exp</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#log">log</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#log10">log10</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#sqrt">sqrt</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#hypot">hypot</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#bessel-j0">bessel_j0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#bessel-j1">bessel_j1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#bessel-jn">bessel_jn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#bessel-y0">bessel_y0</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#bessel-y1">bessel_y1</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#bessel-yn">bessel_yn</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#erf">erf</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#erfc">erfc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#erfc-scaled">erfc_scaled</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#gamma">gamma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#log-gamma">log_gamma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#id262">log_gamma</a></li>
+<li class="toctree-l2"><a class="reference internal" href="math/#norm2">norm2</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="model/">Controlling and querying the current numeric model</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="model/#exponent">exponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#fraction">fraction</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#nearest">nearest</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#rrspacing">rrspacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#scale">scale</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#set-exponent">set_exponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#spacing">spacing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#digits">digits</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#epsilon">epsilon</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#huge">huge</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#maxexponent">maxexponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#minexponent">minexponent</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#precision">precision</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#radix">radix</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#range">range</a></li>
+<li class="toctree-l2"><a class="reference internal" href="model/#tiny">tiny</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="numeric/">Manipulation and properties of numeric values</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#abs">abs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#aint">aint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#anint">anint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#ceiling">ceiling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#conjg">conjg</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#dim">dim</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#dprod">dprod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#floor">floor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#max">max</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#min">min</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#mod">mod</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#modulo">modulo</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#sign">sign</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#cshift">cshift</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#dot-product">dot_product</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#eoshift">eoshift</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#matmul">matmul</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#parity">parity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="numeric/#null">null</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="parallel/">Parallel programming using co_arrays and co_indexed arrays</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#co-broadcast">co_broadcast</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#co-lbound">co_lbound</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#co-max">co_max</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#co-min">co_min</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#co-reduce">co_reduce</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#co-sum">co_sum</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#co-ubound">co_ubound</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#event-query">event_query</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#image-index">image_index</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#num-images">num_images</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#this-image">this_image</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#atomic-and">atomic_and</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#atomic-fetch-and">atomic_fetch_and</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#atomic-fetch-or">atomic_fetch_or</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#atomic-fetch-xor">atomic_fetch_xor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#atomic-or">atomic_or</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#atomic-xor">atomic_xor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#atomic-add">atomic_add</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#atomic-cas">atomic_cas</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#atomic-define">atomic_define</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#atomic-fetch-add">atomic_fetch_add</a></li>
+<li class="toctree-l2"><a class="reference internal" href="parallel/#atomic-ref">atomic_ref</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="state/">General and miscellaneous intrinsics</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="state/#associated">associated</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state/#extends-type-of">extends_type_of</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state/#is-iostat-end">is_iostat_end</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state/#is-iostat-eor">is_iostat_eor</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state/#move-alloc">move_alloc</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state/#present">present</a></li>
+<li class="toctree-l2"><a class="reference internal" href="state/#same-type-as">same_type_as</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="system/">Accessing external system information</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="system/#command-argument-count">command_argument_count</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/#get-command">get_command</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/#get-command-argument">get_command_argument</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/#cpu-time">cpu_time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/#date-and-time">date_and_time</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/#system-clock">system_clock</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/#execute-command-line">execute_command_line</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/#get-environment">get_environment</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="transform/">Matrix multiplication, dot product, and array shifts</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="transform/#cshift">cshift</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transform/#dot-product">dot_product</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transform/#eoshift">eoshift</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transform/#matmul">matmul</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transform/#parity">parity</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transform/#null">null</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="type/">Types and kinds</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="type/#fortran-data-types">Fortran Data Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#implicit-typing">Implicit Typing</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#aimag">aimag</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#cmplx">cmplx</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#int">int</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#nint">nint</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#real">real</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#dble">dble</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#transfer">transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#logical">logical</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#kind">kind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#selected-char-kind">selected_char_kind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#selected-int-kind">selected_int_kind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#selected-real-kind">selected_real_kind</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">GNU Free Documentation License</a></li>
+</ul>
+</div>
+</div>
+</details><section id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
+<p>The standard documents and most vendor-supplied descriptions of
+the intrinsics are often very brief and concise to the point of the
+functionality of the intrinsics being obscure, particularly to someone
+unfamiliar with the procedure.</p>
+<p>By describing the procedures here</p>
+<ul class="simple">
+<li><p>in greater detail</p></li>
+<li><p>with a working example</p></li>
+<li><p>providing links to additional resources
+(including additional documents at fortran-lang.org and related
+discussions in Fortran Discourse)</p></li>
+</ul>
+<p>these documents strive to be a valuable asset for Fortran programmers.</p>
+<p>This is a community-driven resource and everyone is encouraged to contribute
+to the documents. For contribution guidelines see <a class="reference internal" href="../../community/minibooks/#minibooks"><span class="std std-ref">Mini-book Tutorials on fortran-lang.org</span></a>
+and the following Copyright guidelines.</p>
+</section>
+<section id="see-also">
+<h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">#</a></h2>
+<ul class="simple">
+<li><p>The <a class="reference external" href="https://stdlib.fortran-lang.org/">Fortran stdlib</a> project</p></li>
+<li><p><a class="reference external" href="https://fortran-lang.org/packages/fpm">fpm(1)</a> packages, many of which are general-purpose libraries/modules</p></li>
+</ul>
+<p>Experimental</p>
+<ul>
+<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/slidy_byprocedure.html">review by procedure </a></p></li>
+<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/slidy_byheader.html">review by header </a></p></li>
+<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/fman.f90">fman(1)</a> A self-contained Fortran program that
+lets you view the non-graphical plain ASCII portions of the
+documentation from a terminal interface. Compile the program and
+enter „./fman –help“ for directions.</p></li>
+<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/fortran.tgz">man pages</a> A gzipped tar(1) file containing
+early versions of man-pages derived from the markdown documents.</p>
+<p>Typical installation on a Linux platform as an administrator ( but it varies) :</p>
+</li>
+</ul>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># as the administrator</span>
+<span class="nb">cd</span> /usr/share
+tar xvfz /tmp/fortran.tgz
+<span class="nb">cd</span> man
+mandb -c
+</pre></div>
+</div>
+<p>then anyone on that plaform can enter commands like</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man sinh.3fortran     <span class="c1"># specifically show Fortran sinh(3) documentation</span>
+man -k . -s 3fortran  <span class="c1"># list all fortran pages</span>
+man -s 3fortran --regex <span class="s1">&#39;.*&#39;</span> <span class="p">|</span>col -b <span class="c1"># show all Fortran intrinsics</span>
+</pre></div>
+</div>
+<p>See man(1) (ie. enter „man man“) for more information.</p>
+<p>If you can only install the pages on your own ID, try</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># as a user, placing the files in ~/man:</span>
+<span class="nb">cd</span>
+tar xvfz /tmp/fortran.tgz
+<span class="nb">cd</span> man
+mandb -c
+<span class="nb">export</span> <span class="nv">MANPATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$MANPATH</span><span class="s2">:</span><span class="nv">$HOME</span><span class="s2">/man&quot;</span>
+<span class="nb">export</span> <span class="nv">MANWIDTH</span><span class="o">=</span><span class="m">80</span>
+</pre></div>
+</div>
+<p>Still debating whether having to keep the document limited to ANSI
+characters is worth-while so these formats can be generated, and
+still having issues converting the markdown to the proper formats.</p>
+</section>
+<section id="text-content-copyrights">
+<h2>Text Content Copyrights<a class="headerlink" href="#text-content-copyrights" title="Permalink to this heading">#</a></h2>
+<p>Many of the documents presented here are modified versions of man-pages from the
+<a class="reference external" href="https://fortranwiki.org">Fortran Wiki</a>
+and as such are available under the terms of the GNU
+Free Documentation License <span class="xref myst"><strong>GFDL</strong></span>
+with no invariant sections, front-cover texts, or back-cover texts.</p>
+<p>If you contribute to this site by modifying the files marked as GFDL,
+you thereby agree to license the contributed material to the public
+under the GFDL (version 1.2 or any later version published by the Free
+Software Foundation, with no invariant sections, front-cover texts,
+or back-cover texts).</p>
+<p>If you contribute new material you thereby agree to release it under
+the MIT license, and should indicate this by placing MIT on the
+specially-formatted last line. For example, change</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>###### fortran-lang intrinsic descriptions
+</pre></div>
+</div>
+<p>to</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>###### fortran-lang intrinsic descriptions (License: MIT) @urbanjost
+</pre></div>
+</div>
+<p>Written in <a class="reference external" href="https://myst-parser.readthedocs.io/en/latest/">Myst-Markdown</a></p>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>
