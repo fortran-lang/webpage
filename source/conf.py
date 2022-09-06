@@ -45,7 +45,7 @@ with open(data_files["contributors"], "r", encoding="utf-8") as f:
 # -- Project information -----------------------------------------------------
 
 project = "Fortran-lang.org website"
-copyright = "2022, Fortran Community"
+copyright = "2020-2022, Fortran Community"
 author = "Fortran Community"
 
 # The full version, including alpha/beta/rc tags
