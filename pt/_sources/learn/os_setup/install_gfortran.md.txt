@@ -70,7 +70,7 @@ Finally, you can switch between different versions or set the default one with t
 sudo yum install gcc-gfortran
 ```
 
-Since Fedora 22 and Red Hat Enterprise Linux 8, `dnf` is the default package manager for Fedora:
+Since Fedora 22 and Red Hat Enterprise Linux 8, `dnf` is the default package manager:
 
 ```bash
 sudo dnf install gcc-gfortran
