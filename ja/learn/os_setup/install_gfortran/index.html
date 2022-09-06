@@ -709,13 +709,13 @@
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#rpm-based-red-hat-linux-centos-fedora-opensuse-mandrake-linux">
-     RPM-based (Red Hat Linux, CentOS, Fedora, openSuse, Mandrake Linux)
+    <a class="reference internal nav-link" href="#rpm-based-red-hat-enterprise-linux-centos-fedora-opensuse">
+     RPM-based (Red Hat Enterprise Linux, CentOS, Fedora, openSUSE)
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
-    <a class="reference internal nav-link" href="#arch-based-arch-linux-antergos-manjaro-etc">
-     Arch-based (Arch Linux, Antergos, Manjaro, etc...)
+    <a class="reference internal nav-link" href="#arch-based-arch-linux-endeavouros-manjaro-etc">
+     Arch-based (Arch Linux, EndeavourOS, Manjaro, etc...)
     </a>
    </li>
   </ul>
@@ -783,17 +783,17 @@
 <p>Three sources provide quick and easy way to install GFortran compiler on Windows:</p>
 <ol class="arabic simple">
 <li><p><a class="reference external" href="http://www.equation.com/servlet/equation.cmd?fa=fortran">http://www.equation.com</a>, provides 32 and 64-bit x86
-executables of the latest (10.2) gcc-version.</p></li>
-<li><p><a class="reference external" href="https://jmeubank.github.io/tdm-gcc/articles/2020-03/9.2.0-release">TDM GCC</a>, provides 32 and 64-bit x86 executables of the 9.2 gcc-version.</p></li>
-<li><p><a class="reference external" href="http://mingw-w64.org/doku.php/download/mingw-builds">MinGW-w64</a> provides a 64-bit x86 executable of the 8.1.0 gcc-version.</p></li>
+executables for GCC version 12.1.</p></li>
+<li><p><a class="reference external" href="https://jmeubank.github.io/tdm-gcc/articles/2021-05/10.3.0-release">TDM GCC</a>, provides 32 and 64-bit x86 executables for GCC version 10.3.</p></li>
+<li><p><a class="reference external" href="https://www.mingw-w64.org/downloads/#mingw-builds">MinGW-w64</a> provides a 64-bit x86 executable for GCC version 12.2.</p></li>
 </ol>
 <p>In all the above choices, the process is straightforward—just download the installer and follow the installation wizard.</p>
 <section id="unix-like-development-on-windows">
 <h3>Unix-like development on Windows<a class="headerlink" href="#unix-like-development-on-windows" title="この見出しへのパーマリンク">#</a></h3>
 <p>For those familiar with a unix-like development environment, several emulation options are available on Windows each of which provide packages for gfortran:</p>
 <ul class="simple">
-<li><p><strong>Cygwin:</strong> A runtime environment that provides POSIX compatibility to Windows;</p></li>
-<li><p><strong>MSYS2:</strong> A collection of Unix-like development tools, based on modern Cygwin and MinGW-w64;</p></li>
+<li><p><strong>Cygwin:</strong> A runtime environment that provides POSIX compatibility to Windows.</p></li>
+<li><p><strong>MSYS2:</strong> A collection of Unix-like development tools, based on modern Cygwin and MinGW-w64.</p></li>
 <li><p><strong>Windows Subsystem for Linux (WSL):</strong> An official compatibility layer for running Linux binary executables on Windows. With <a class="reference external" href="https://github.com/microsoft/wslg">Windows Subsystem for Linux GUI</a> one can run text editors and other graphical programs.</p></li>
 </ul>
 <p>All of the above approaches provide access to common shells such as bash and development tools including GNU coreutils, Make, CMake, autotools, git, grep, sed, awk, ssh, etc.</p>
@@ -810,37 +810,37 @@ executables of the latest (10.2) gcc-version.</p></li>
 </div>
 <p>If nothing is returned then gfortran is not installed.
 To install gfortran type:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install gfortran
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install gfortran
 </pre></div>
 </div>
 <p>to check what version was installed type:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>gfortran --version
 </pre></div>
 </div>
-<p>You can install multiple versions up to version 9 by typing the version number immediately after &quot;gfortran&quot;, e.g.:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt-get install gfortran-7
+<p>You can install multiple versions up to version 10 (on Ubuntu 22.04) by typing the version number immediately after &quot;gfortran&quot;, e.g.:</p>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo apt install gfortran-8
 </pre></div>
 </div>
-<p>To install the latest version 10 you need first to add / update the following repository and then install:</p>
+<p>To install newer versions on older Ubuntu releases, you will first need to add the following repository, update, and then install:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo add-apt-repository ppa:ubuntu-toolchain-r/test
 sudo apt update
 sudo apt install gfortran-10
 </pre></div>
 </div>
-<p>Finally, you can switch between different versions or set the default one with the <strong>update-alternatives</strong> (<a class="reference external" href="https://manpages.ubuntu.com/manpages/trusty/man8/update-alternatives.8.html#:~:text=update%2Dalternatives%20creates%2C%20removes%2C,system%20at%20the%20same%20time.">see manpage</a>). There are many online tutorials on how to use this feature. A well structured one using as an example C and C++ can be found <a class="reference external" href="https://linuxconfig.org/how-to-switch-between-multiple-gcc-and-g-compiler-versions-on-ubuntu-20-04-lts-focal-fossa">here</a>, you can apply the same logic by replacing either <code class="docutils literal notranslate"><span class="pre">gcc</span></code> or <code class="docutils literal notranslate"><span class="pre">g++</span></code> with <code class="docutils literal notranslate"><span class="pre">gfortran</span></code>.</p>
+<p>Finally, you can switch between different versions or set the default one with the <strong>update-alternatives</strong> (<a class="reference external" href="https://manpages.ubuntu.com/manpages/jammy/en/man1/update-alternatives.1.html">see manpage</a>). There are many online tutorials on how to use this feature. A well structured one using as an example C and C++ can be found <a class="reference external" href="https://linuxconfig.org/how-to-switch-between-multiple-gcc-and-g-compiler-versions-on-ubuntu-22-04-lts-jammy-jellyfish">here</a>, you can apply the same logic by replacing either <code class="docutils literal notranslate"><span class="pre">gcc</span></code> or <code class="docutils literal notranslate"><span class="pre">g++</span></code> with <code class="docutils literal notranslate"><span class="pre">gfortran</span></code>.</p>
 </section>
-<section id="rpm-based-red-hat-linux-centos-fedora-opensuse-mandrake-linux">
-<h3>RPM-based (Red Hat Linux, CentOS, Fedora, openSuse, Mandrake Linux)<a class="headerlink" href="#rpm-based-red-hat-linux-centos-fedora-opensuse-mandrake-linux" title="この見出しへのパーマリンク">#</a></h3>
+<section id="rpm-based-red-hat-enterprise-linux-centos-fedora-opensuse">
+<h3>RPM-based (Red Hat Enterprise Linux, CentOS, Fedora, openSUSE)<a class="headerlink" href="#rpm-based-red-hat-enterprise-linux-centos-fedora-opensuse" title="この見出しへのパーマリンク">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo yum install gcc-gfortran
 </pre></div>
 </div>
-<p>Since Fedora 22, <code class="docutils literal notranslate"><span class="pre">dnf</span></code> is the default package manager for Fedora:</p>
+<p>Since Fedora 22 and Red Hat Enterprise Linux 8, <code class="docutils literal notranslate"><span class="pre">dnf</span></code> is the default package manager for Fedora:</p>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo dnf install gcc-gfortran
 </pre></div>
 </div>
 </section>
-<section id="arch-based-arch-linux-antergos-manjaro-etc">
-<h3>Arch-based (Arch Linux, Antergos, Manjaro, etc...)<a class="headerlink" href="#arch-based-arch-linux-antergos-manjaro-etc" title="この見出しへのパーマリンク">#</a></h3>
+<section id="arch-based-arch-linux-endeavouros-manjaro-etc">
+<h3>Arch-based (Arch Linux, EndeavourOS, Manjaro, etc...)<a class="headerlink" href="#arch-based-arch-linux-endeavouros-manjaro-etc" title="この見出しへのパーマリンク">#</a></h3>
 <div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>sudo pacman -S gcc-fortran
 </pre></div>
 </div>
