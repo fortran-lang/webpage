@@ -64,7 +64,7 @@ the program with a new version of the library.
 
 A flexible alternative is to use the so-called dynamic libraries. These
 libraries remain outside the executable program and as a consequence
-can be replaced without rebulding the entire program. Compilers and
+can be replaced without rebuilding the entire program. Compilers and
 indeed the operating system itself rely heavily on such dynamic
 libraries. You could consider dynamic libraries as a sort of executable
 programs that need a bit of help to be run.

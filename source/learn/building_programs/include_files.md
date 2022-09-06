@@ -5,7 +5,7 @@ same directory or organised in some convenient directory tree. The
 details of the organisation depend on personal taste, arrangements made
 by the group of developers you belong to, or simply the history of the
 program. Whatever the directory structure is, you will encounter a
-situation where the compiler needs assistence in order to compile a
+situation where the compiler needs assistance in order to compile a
 particular source file:
 
 - Fortran (and other languages) has the possibility to include an

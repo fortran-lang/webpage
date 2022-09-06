@@ -179,7 +179,7 @@ end program float
 
 > Always use a `kind` suffix for floating-point literal constants.
 
-**Example:** C-interoperable `kind`s
+**Example:** C-interoperable `kind`
 
 ```fortran
 program float
