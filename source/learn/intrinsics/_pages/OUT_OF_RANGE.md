@@ -20,20 +20,20 @@
    **mold**.
 
 ### **Arguments**
-     - **x**           
-       : a scalar of type _integer_ or _real_ to be tested for whether
-       it can be stored in a variable of the type and kind of **mold**
+   - **x**           
+     : a scalar of type _integer_ or _real_ to be tested for whether
+     it can be stored in a variable of the type and kind of **mold**
 
-     - **mold**        
-       : shall be an _integer_ or _real_ scalar. If it is a variable, it
-       need not be defined, as only the type and kind are queried.
+   - **mold**        
+     : shall be an _integer_ or _real_ scalar. If it is a variable, it
+     need not be defined, as only the type and kind are queried.
 
-     - **round** 
-       : flag whether to round the value of **xx** before validating it as
-       an integer value like **mold**.
+   - **round** 
+     : flag whether to round the value of **xx** before validating it as
+     an integer value like **mold**.
 
-       **round** can only be present if **x** is of type
-       _real_ and **mold** is of type _integer_.
+     **round** can only be present if **x** is of type
+     _real_ and **mold** is of type _integer_.
 
 ### **Returns**
 
