@@ -7,11 +7,11 @@
 ### **Syntax**
 
 ```fortran
-  - result = __atan(y, x)__
+   result = atan(y, x)
 
-   TYPE(kind=KIND):: atan
-   TYPE(kind=KIND,intent(in) :: x
-   TYPE(kind=KIND,intent(in),optional :: y
+    TYPE(kind=KIND):: atan
+    TYPE(kind=KIND,intent(in) :: x
+    TYPE(kind=KIND,intent(in),optional :: y
 ```
 
 where **TYPE** may be _real_ or _complex_ and **KIND** may be any **KIND** supported

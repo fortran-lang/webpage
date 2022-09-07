@@ -131,30 +131,30 @@ endblock WITH_DIM
 
 contains
 
-subroutine print_matrix_int(title,arr)
-implicit none
-
-!@(#) print small 2d integer arrays in row-column format
-
-character(len=*),intent(in)  :: title
-integer,intent(in)           :: arr(:,:)
-integer                      :: i
-character(len=:),allocatable :: biggest
-
-   print all
-   print all, trim(title),':(',shape(arr),')'  ! print title
-   biggest='           '  ! make buffer to write integer into
-   ! find how many characters to use for integers
-   write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2
-   ! use this format to write a row
-   biggest='(" > [",*(i'//trim(biggest)//':,","))'
-   ! print one row of array at a time
-   do i=1,size(arr,dim=1)
-      write(*,fmt=biggest,advance='no')arr(i,:)
-      write(*,'(" ]")')
-   enddo
-
-end subroutine print_matrix_int
+   subroutine print_matrix_int(title,arr)
+   implicit none
+   
+   !@(#) print small 2d integer arrays in row-column format
+   
+   character(len=*),intent(in)  :: title
+   integer,intent(in)           :: arr(:,:)
+   integer                      :: i
+   character(len=:),allocatable :: biggest
+   
+      print all
+      print all, trim(title),':(',shape(arr),')'  ! print title
+      biggest='           '  ! make buffer to write integer into
+      ! find how many characters to use for integers
+      write(biggest,'(i0)')ceiling(log10(real(maxval(abs(arr)))))+2
+      ! use this format to write a row
+      biggest='(" > [",*(i'//trim(biggest)//':,","))'
+      ! print one row of array at a time
+      do i=1,size(arr,dim=1)
+         write(*,fmt=biggest,advance='no')arr(i,:)
+         write(*,'(" ]")')
+      enddo
+   
+   end subroutine print_matrix_int
 
 end program demo_product
 ```

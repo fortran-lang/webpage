@@ -50,6 +50,8 @@ the specified kind and of the default kind otherwise.
 
 ### **Examples**
 
+Sample program:
+
 ```fortran
 program demo_achar
 use,intrinsic::iso_fortran_env,only:int8,int16,int32,int64

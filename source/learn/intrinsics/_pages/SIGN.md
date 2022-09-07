@@ -14,40 +14,41 @@ result = sign(a, b)
     type(TYPE(kind=KIND)),intent(in) :: a, b
 ```
 
-where TYPE may be _real_ or _integer_ and KIND is any supported kind for the type.
+where TYPE may be _real_ or _integer_ and KIND is any supported kind
+for the type.
 
-````
-### __Description__
+### **Description**
 
-__sign__(a,b) returns the value of __a__ with the sign of __b__.
-
-
-For processors that distinguish between positive and negative zeros  __sign()__ may be used to
-distinguish between __real__ values 0.0 and −0.0. SIGN (1.0, -0.0) will
-return −1.0 when a negative zero is distinguishable.
-
-    29  1 Description. Magnitude of A with the sign of B.
+__sign__(a,b) return a value with the magnitude of __a__ but with the
+sign of __b__.
 
 
+For processors that distinguish between positive and negative zeros
+__sign()__ may be used to distinguish between __real__ values 0.0 and
+−0.0. SIGN (1.0, -0.0) will return −1.0 when a negative zero is
+distinguishable.
 
-### __Arguments__
 
-  - __a__
+### **Arguments**
+
+  - **a**
     : Shall be of type _integer_ or _real_
 
-  - __b__
-    : Shall be of the same type and kind as __a__
+  - **b**
+    : Shall be of the same type and kind as **a**
 
-### __Returns__
+### **Returns**
 
-The kind of the return value is the magnitude of __a__ with the sign of  __b__. That is,
+The kind of the return value is the magnitude of __a__ with the sign of
+__b__. That is,
 
-     -  If __b \>= 0__ then the result is __abs(a)__
-     -  else if __b < 0__ it is -__abs(a)__.
-     - if __b__ is _real_ and the processor distinguishes between __-0.0__ and __0.0__ then the
-       result is __-abs(a)__
+  - If __b \>= 0__ then the result is __abs(a)__
+  - else if __b < 0__ it is -__abs(a)__.
+  - if __b__ is _real_ and the processor distinguishes between __-0.0__
+    and __0.0__ then the
+    result is __-abs(a)__
 
-### __Examples__
+### **Examples**
 
 Sample program:
 
@@ -60,7 +61,8 @@ implicit none
 
    print *,  sign( -12.0, [1.0, 0.0, -1.0] )
 
-   print *,  'can I distinguise 0 from -0? ', sign( 1.0, -0.0 ) .ne. sign( 1.0, 0.0 )
+   print *,  'can I distinguish 0 from -0? ', &
+   &  sign( 1.0, -0.0 ) .ne. sign( 1.0, 0.0 )
 end program demo_sign
 ````
 
@@ -71,7 +73,7 @@ Results:
              12
             -12
       12.00000       12.00000      -12.00000
-    can I distinguise 0 from -0?  F
+    can I distinguish 0 from -0?  F
 ```
 
 ### **Standard**
