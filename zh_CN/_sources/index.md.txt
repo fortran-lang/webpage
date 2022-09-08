@@ -142,7 +142,7 @@ You can also help make Fortran better by contributing to its suite of tools, suc
 Write Fortran software
 :::
 
-Or just write Fortran software for your research, business, or schoolwork. You can learn how to [get started here.](learn).
+Or just write Fortran software for your research, business, or schoolwork. You can learn how to [get started here](learn).
 
 ::::
 :::::
