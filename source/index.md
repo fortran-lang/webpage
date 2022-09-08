@@ -129,8 +129,7 @@ Have an idea about how to improve the language? You can write new proposals or c
 Develop tools
 :::
 
-You can also help make Fortran better by contributing to its suite of tools, such as
-[Standard Library](https://github.com/fortran-lang/stdlib) ,[Package Manager](https://github.com/fortran-lang/fpm) ,[this website](https://github.com/fortran-lang/webpage).
+You can also help make Fortran better by contributing to its suite of tools, such as [Standard Library](https://github.com/fortran-lang/stdlib), [Package Manager](https://github.com/fortran-lang/fpm), [this website](https://github.com/fortran-lang/webpage).
 
 ::::
 :::::

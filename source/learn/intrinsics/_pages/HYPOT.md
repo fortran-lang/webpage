@@ -17,7 +17,7 @@ where **x,y,value** shall all be of the same **kind**.
 
 ### **Description**
 
-**hypot(x,y)** is referred to as the Euclidean distance function. It is equal to $\sqrt{x^2+y^2}$ , without undue underflow or overflow.
+**hypot(x,y)** is referred to as the Euclidean distance function. It is equal to $\sqrt{x^2+y^2}$, without undue underflow or overflow.
 
 In mathematics, the _Euclidean distance_ between two points in Euclidean
 space is the length of a line segment between two points.
