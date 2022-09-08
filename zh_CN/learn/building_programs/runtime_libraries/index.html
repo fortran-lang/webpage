@@ -587,7 +587,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/array/">
-     Properties and attributes of arrays
+     数组的属性和属性
     </a>
    </li>
    <li class="toctree-l2">
@@ -696,9 +696,7 @@
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="run-time-libraries">
 <h1>运行时库<a class="headerlink" href="#run-time-libraries" title="此标题的永久链接">#</a></h1>
-<p>To illustrate that even a simple program depends on external run-time
-libraries, here is the output from the <code class="docutils literal notranslate"><span class="pre">ldd</span></code> utility that reports such
-dependencies:</p>
+<p>为了说明即使是一个简单的程序也依赖于外部运行时库，下面是报告此类依赖关系的 <code class="docutils literal notranslate"><span class="pre">ldd</span></code> 实用程序的输出：</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ldd tabulate.exe
         ntdll.dll <span class="o">=</span>&gt; /cygdrive/c/WINDOWS/SYSTEM32/ntdll.dll <span class="o">(</span>0x7ff88f2b0000<span class="o">)</span>
         KERNEL32.DLL <span class="o">=</span>&gt; /cygdrive/c/WINDOWS/System32/KERNEL32.DLL <span class="o">(</span>0x7ff88e450000<span class="o">)</span>
@@ -709,45 +707,23 @@ dependencies:</p>
         cyggcc_s-seh-1.dll <span class="o">=</span>&gt; /usr/bin/cyggcc_s-seh-1.dll <span class="o">(</span>0x3f7000000<span class="o">)</span>
 </pre></div>
 </div>
-<p>Other compilers or other versions of the same compiler will probably
-require different dynamic libraries. As long as you run the program on
-the same computer — or, more accurately, within the same environment —
-there should be no problem. However, when such a library cannot be
-found, you will get (hopefully) an error message and the program stops
-immediately.</p>
-<p>Therefore it is good to know what libraries are required. On Linux and
-Linux-like environments, the <code class="docutils literal notranslate"><span class="pre">ldd</span></code> utility is a great help. On Windows,
-you may want to use the <code class="docutils literal notranslate"><span class="pre">dependency</span> <span class="pre">walker</span></code> (the latest version, which
-works very nicely with Windows 10, is found here: <a class="reference external" href="https://github.com/lucasg/Dependencies">https://github.com/lucasg/Dependencies</a>)</p>
-<p>Another thing you should know is where the program tries to find these
-libraries. That is a vast subject in its own right and full of
-complications and history. Here we merely scratch the surface:</p>
-<p><em>On Linux:</em></p>
+<p>其他编译器或同一编译器的其他版本可能需要不同的动态库。只要您在同一台计算机上运行程序——或者更准确地说，在同一环境中——应该没有问题。但是，当找不到这样的库时，您会（希望）收到一条错误消息，并且程序会立即停止。</p>
+<p>因此，最好知道需要哪些库。在 Linux 和类似 Linux 的环境中，<code class="docutils literal notranslate"><span class="pre">ldd</span></code> 实用程序很有帮助。在 Windows 上，您可能想要使用 <code class="docutils literal notranslate"><span class="pre">dependency</span> <span class="pre">walker</span></code>（最新版本，可以很好地与 Windows 10 配合使用，可在此处找到：&lt;https://github.com/lucasg/Dependencies[X303X ])</p>
+<p>您应该知道的另一件事是程序试图在哪里找到这些库。这本身就是一个庞大的主题，充满了复杂性和历史。在这里，我们只是触及表面：</p>
+<p><em>在 Linux 上：</em></p>
 <ul class="simple">
-<li><p>The environment variable <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code> is used. It consists of a
-list of directories to be searched, each directory separated via colons
-(:) from the others. For instance: <code class="docutils literal notranslate"><span class="pre">/usr/lib:/usr/local/lib</span></code> — typical
-system directories.</p></li>
-<li><p>At the link step you can also use an option to set <code class="docutils literal notranslate"><span class="pre">RPATH</span></code>, a list
-of directories that is put into the executable file itself.</p></li>
-<li><p>Then there are several system directories that are searched.</p></li>
+<li><p>使用环境变量 <code class="docutils literal notranslate"><span class="pre">LD_LIBRARY_PATH</span></code>。它由要搜索的目录列表组成，每个目录通过冒号 (:) 与其他目录分隔。例如： <code class="docutils literal notranslate"><span class="pre">/usr/lib:/usr/local/lib</span></code> — 典型的系统目录。</p></li>
+<li><p>在链接步骤中，您还可以使用选项设置 <code class="docutils literal notranslate"><span class="pre">RPATH</span></code>，即放入可执行文件本身的目录列表。</p></li>
+<li><p>然后有几个系统目录被搜索。</p></li>
 </ul>
-<p><em>On Windows:</em></p>
+<p><em>在 Windows 上：</em></p>
 <ul class="simple">
-<li><p>The directory containing the executable program may also contain
-dynamic libraries.</p></li>
-<li><p>The environment variable “PATH” is used. Again a list of directories
-to be searched, but now the separating character is the semicolon (;).</p></li>
-<li><p>A set of system directories is searched.</p></li>
+<li><p>包含可执行程序的目录也可能包含动态库。</p></li>
+<li><p>使用环境变量“PATH”。再次列出要搜索的目录，但现在分隔字符是分号 (;)。</p></li>
+<li><p>搜索一组系统目录。</p></li>
 </ul>
-<p>Unfortunately, the details can change from one version of the operating
-system to the next. The above is merely an indication — use tools like
-“ldd” or “dependency walker” to find out what libraries are loaded and
-where they are found.</p>
-<p>If you want to share your program with colleagues or clients or simply
-users all over the world, you will have to take care that, besides the
-program, you also distribute the libraries it depends on. For more
-information: see below.</p>
+<p>不幸的是，细节可能会从一个版本的操作系统更改为下一个版本。以上只是一个指示——使用“ldd”或“dependency walker”之类的工具来找出加载了哪些库以及在哪里找到它们。</p>
+<p>如果您想与世界各地的同事或客户或简单的用户共享您的程序，您必须注意，除了程序之外，您还要分发它所依赖的库。更多信息：见下文。</p>
 </section>
 
 <div class="section">

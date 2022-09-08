@@ -587,7 +587,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/array/">
-     Properties and attributes of arrays
+     数组的属性和属性
     </a>
    </li>
    <li class="toctree-l2">
@@ -846,12 +846,8 @@ gfortran -o src/tests/csv_write_test.exe src/tests/csv_write_test.f90.o libcsv.a
 <span class="nf">$(foreach src, $(SRCS) $(TEST_SRCS), $(eval $(src) </span><span class="o">:</span>= <span class="k">$(</span><span class="nv">obj</span><span class="k">)</span>))
 </pre></div>
 </div>
-<p>Note the declaration of <code class="docutils literal notranslate"><span class="pre">obj</span></code> as recursively expanded variable, we effectively
-use this mechanism to define a function in <code class="docutils literal notranslate"><span class="pre">make</span></code>. The <code class="docutils literal notranslate"><span class="pre">foreach</span></code> function
-allows us to loop over all source files, while the <code class="docutils literal notranslate"><span class="pre">eval</span></code> function allows us
-to generate <code class="docutils literal notranslate"><span class="pre">make</span></code> statements and evaluate them for this <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
-<p>We adjust the dependencies accordingly as we can now define the name of the
-object files through the source file names:</p>
+<p>注意 <code class="docutils literal notranslate"><span class="pre">obj</span></code> 声明为递归扩展变量，我们有效地使用这种机制在 <code class="docutils literal notranslate"><span class="pre">make</span></code> 中定义一个函数。 <code class="docutils literal notranslate"><span class="pre">foreach</span></code> 函数允许我们遍历所有源文件，而 <code class="docutils literal notranslate"><span class="pre">eval</span></code> 函数允许我们生成 <code class="docutils literal notranslate"><span class="pre">make</span></code> 语句并针对 `Makefile[ X296X]。</p>
+<p>我们相应地调整依赖关系，因为我们现在可以通过源文件名定义目标文件的名称：</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Define all module interdependencies</span>
 <span class="nv">csv_kinds.mod</span> <span class="o">:=</span> <span class="k">$(</span>src/csv_kinds.f90<span class="k">)</span>
 <span class="nv">csv_module.mod</span> <span class="o">:=</span> <span class="k">$(</span>src/csv_module.F90<span class="k">)</span>
@@ -868,10 +864,8 @@ object files through the source file names:</p>
 <span class="nf">$(src/tests/csv_write_test.f90)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
 </pre></div>
 </div>
-<p>The same strategy of creating a map is already used for the module files, now
-it is just expanded to the object files as well.</p>
-<p>To generate the respective dependency map automatically we will use an
-<code class="docutils literal notranslate"><span class="pre">awk</span></code> script here</p>
+<p>创建映射的相同策略已经用于模块文件，现在它也只是扩展到目标文件。</p>
+<p>为了自动生成相应的依赖关系图，我们将在这里使用 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 脚本</p>
 <div class="highlight-awk notranslate"><div class="highlight"><pre><span></span><span class="c1">#!/usr/bin/awk -f</span>
 
 <span class="nb">BEGIN</span> <span class="p">{</span>
@@ -930,48 +924,26 @@ it is just expanded to the object files as well.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This script makes a few assumptions about the source code it parses, so it will
-not work with all Fortran code (namely submodules are not supported), but for
-this example it will suffice.</p>
+<p>这个脚本对它解析的源代码做了一些假设，所以它不适用于所有的 Fortran 代码（即不支持子模块），但对于这个例子来说就足够了。</p>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>使用awk</p>
-<p>The above script uses the <code class="docutils literal notranslate"><span class="pre">awk</span></code> language, which is designed for the purpose
-of text stream processing and uses a C-like syntax. In <code class="docutils literal notranslate"><span class="pre">awk</span></code> you can define
-groups which are evaluated on certain events, <em>e.g.</em> when a line matches a
-specific pattern, usually expressed by a
-<a href="https://en.wikipedia.org/wiki/Regular_expression" target="_blank" rel="noopener"> regular expression</a>.</p>
-<p>This <code class="docutils literal notranslate"><span class="pre">awk</span></code> script defines five groups, two of them use the special pattern
-<code class="docutils literal notranslate"><span class="pre">BEGIN</span></code> and <code class="docutils literal notranslate"><span class="pre">END</span></code> which are run before the script starts and after the script
-finishes, respectively.
-Before the script starts we make the script case-insensitive since we are dealing
-with Fortran source code here.
-We also use the special variable <code class="docutils literal notranslate"><span class="pre">FILENAME</span></code> to determine which file we are
-currently parsing and to allow processing multiple files at once.</p>
-<p>With the three patterns defined we are looking for <code class="docutils literal notranslate"><span class="pre">module</span></code>, <code class="docutils literal notranslate"><span class="pre">use</span></code> and
-<code class="docutils literal notranslate"><span class="pre">include</span></code> statements as the first space delimited entry. With the used
-pattern not all valid Fortran code will be parsed correctly.
-A failing example would be:</p>
+<p>上面的脚本使用了 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 语言，该语言是为文本流处理而设计的，使用了类似 C 的语法。在 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 中，您可以定义在某些事件上评估的组，_ 例如当行匹配特定模式时的 _，通常由 <a href="https://en.wikipedia.org/wiki/Regular_expression" target="_blank" rel="noopener"> 正则表达式 </a> 表示。</p>
+<p>这个 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 脚本定义了五个组，其中两个使用特殊模式 <code class="docutils literal notranslate"><span class="pre">BEGIN</span></code> 和 <code class="docutils literal notranslate"><span class="pre">END</span></code> 分别在脚本开始之前和脚本结束之后运行。在脚本开始之前，我们使脚本不区分大小写，因为我们在这里处理 Fortran 源代码。我们还使用特殊变量 <code class="docutils literal notranslate"><span class="pre">FILENAME</span></code> 来确定我们当前正在解析哪个文件，并允许一次处理多个文件。</p>
+<p>定义了三种模式后，我们正在寻找 <code class="docutils literal notranslate"><span class="pre">module</span></code>、<code class="docutils literal notranslate"><span class="pre">use</span></code> 和 <code class="docutils literal notranslate"><span class="pre">include</span></code> 语句作为第一个以空格分隔的条目。使用使用的模式，并非所有有效的 Fortran 代码都会被正确解析。一个失败的例子是：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="kd">::</span><span class="n">my_module</span><span class="p">,</span><span class="k">only</span><span class="p">:</span><span class="n">proc</span><span class="w"></span>
 </pre></div>
 </div>
-<p>To make this parsable by the <code class="docutils literal notranslate"><span class="pre">awk</span></code> script we can add another group directly
-after the <code class="docutils literal notranslate"><span class="pre">BEGIN</span></code> group, modifying the stream while processing it with</p>
+<p>为了让 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 脚本可以解析这个，我们可以在 <code class="docutils literal notranslate"><span class="pre">BEGIN</span></code> 组之后直接添加另一个组，在处理流的同时修改它</p>
 <div class="highlight-awk notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="kr">gsub</span><span class="p">(</span><span class="sr">/,|:/</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In theory you would need a full Fortran parser to deal with continuation lines
-and other difficulties. This might be possible to implement in <code class="docutils literal notranslate"><span class="pre">awk</span></code> but
-would require a huge script in the end.</p>
-<p>Also, keep in mind that generating the dependencies should be fast, an expensive
-parser can produce a significant overhead when generating dependencies for a large
-code base. Making reasonable assumptions can simplify and speed up this step, but
-also introduces an error source in your build tools.</p>
+<p>理论上，您需要一个完整的 Fortran 解析器来处理续行和其他困难。这可能可以在 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 中实现，但最终需要一个巨大的脚本。</p>
+<p>另外，请记住，生成依赖项应该很快，在为大型代码库生成依赖项时，昂贵的解析器会产生很大的开销。做出合理的假设可以简化和加快这一步，但也会在构建工具中引入错误源。</p>
 </div>
-<p>Make the script executable (<code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">gen-deps.awk</span></code>) and test it with
-<code class="docutils literal notranslate"><span class="pre">./gen-deps.awk</span> <span class="pre">$(find</span> <span class="pre">src</span> <span class="pre">-name</span> <span class="pre">'*.[fF]90')</span></code>. You should see output like this:</p>
+<p>使脚本可执行 (<code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">gen-deps.awk</span></code>) 并使用 `./gen-deps.awk $(find src -name ‘*.[fF]90’)[ X114X]。你应该看到这样的输出：</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>csv_utilities.mod = $(src/csv_utilities.f90)
 csv_kinds.mod = $(src/csv_kinds.f90)
 csv_parameters.mod = $(src/csv_parameters.f90)
@@ -992,15 +964,8 @@ $(src/csv_module.F90) += $(csv_parameters.mod)
 $(src/csv_module.F90) += $(iso_fortran_env.mod)
 </pre></div>
 </div>
-<p>Note that the scripts output will use recursively expanded variables and not
-define any dependencies yet, because out-of-order declaration of variables
-might be necessary and we do not want to create any target by accident.
-You can verify that the same information as in the above handwritten snippet is
-present. The only exception is the additional dependency on the
-<code class="docutils literal notranslate"><span class="pre">iso_fortran_env.mod</span></code>, since it is an undefined variable it will just expand
-to an empty string and not introduce any further dependencies.</p>
-<p>Now, you can finally include this piece in your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to automate the
-dependency generation:</p>
+<p>请注意，脚本输出将使用递归扩展变量并且尚未定义任何依赖项，因为可能需要无序声明变量，并且我们不想意外创建任何目标。您可以验证是否存在与上述手写片段中相同的信息。唯一的例外是对 <code class="docutils literal notranslate"><span class="pre">iso_fortran_env.mod</span></code> 的额外依赖，因为它是一个未定义的变量，它只会扩展为一个空字符串并且不会引入任何进一步的依赖。</p>
+<p>现在，你终于可以在你的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 中包含这个片段来自动生成依赖了：</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable the default rules</span>
 <span class="nv">MAKEFLAGS</span> <span class="o">+=</span> --no-builtin-rules --no-builtin-variables
 
@@ -1068,18 +1033,9 @@ dependency generation:</p>
 	<span class="k">$(</span>RM<span class="k">)</span> <span class="k">$(</span>filter %.o, <span class="k">$(</span>OBJS<span class="k">)</span> <span class="k">$(</span>TEST_OBJS<span class="k">))</span> <span class="k">$(</span>filter %.d, <span class="k">$(</span>DEPS<span class="k">)</span> <span class="k">$(</span>TEST_DEPS<span class="k">))</span> <span class="k">$(</span>filter %.exe, <span class="k">$(</span>TEST_EXE<span class="k">))</span> <span class="k">$(</span>LIB<span class="k">)</span> <span class="k">$(</span>wildcard *.mod<span class="k">)</span>
 </pre></div>
 </div>
-<p>Here additional dependency files are generated for each source file individually
-and than included into the main <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.
-Also, the dependency files are added as dependency to the object files to ensure
-they are generated before the object is compiled. The pipe character in
-the dependencies defines an order of the rules without a timestamp dependency,
-because it is not necessary to recompile an object file in case dependencies are
-regenerated and potentially unchanged.</p>
-<p>Again, we make use of the <code class="docutils literal notranslate"><span class="pre">eval</span></code> function to generate the dependencies in a
-<code class="docutils literal notranslate"><span class="pre">foreach</span></code> loop over all object files. Note that we created a map between
-the object files in the dependency files, expanding <code class="docutils literal notranslate"><span class="pre">dep</span></code> once yields the
-object file name, expanding it again yields the object files it depends on.</p>
-<p>Building your project with <code class="docutils literal notranslate"><span class="pre">make</span></code> should give an output similar to</p>
+<p>这里为每个源文件单独生成额外的依赖文件，然后包含在主 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 中。此外，依赖文件作为对对象文件的依赖被添加，以确保在编译对象之前生成它们。依赖关系中的管道字符定义了没有时间戳依赖关系的规则顺序，因为在重新生成依赖关系并且可能未更改的情况下，不需要重新编译目标文件。</p>
+<p>同样，我们使用 <code class="docutils literal notranslate"><span class="pre">eval</span></code> 函数在所有目标文件的 <code class="docutils literal notranslate"><span class="pre">foreach</span></code> 循环中生成依赖关系。请注意，我们在依赖文件中的目标文件之间创建了一个映射，展开 <code class="docutils literal notranslate"><span class="pre">dep</span></code> 一次会产生目标文件名，再次展开它会产生它所依赖的目标文件。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">make</span></code> 构建项目应该会给出类似于</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./gen-deps.awk src/csv_utilities.f90 &gt; src/csv_utilities.f90.d
 ./gen-deps.awk src/csv_parameters.f90 &gt; src/csv_parameters.f90.d
 ./gen-deps.awk src/csv_module.F90 &gt; src/csv_module.F90.d
@@ -1100,15 +1056,12 @@ gfortran -c -o src/tests/csv_write_test.f90.o src/tests/csv_write_test.f90
 gfortran -o src/tests/csv_write_test.exe src/tests/csv_write_test.f90.o libcsv.a
 </pre></div>
 </div>
-<p>Once the dependency files are generated, <code class="docutils literal notranslate"><span class="pre">make</span></code> will only update them if the
-source changes and not require to rebuild them again for every invocation.</p>
+<p>一旦生成了依赖文件，<code class="docutils literal notranslate"><span class="pre">make</span></code> 只会在源代码更改时更新它们，并且不需要为每次调用再次重建它们。</p>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
-<p>With correct dependencies you can leverage parallel execution of your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, just use the <code class="docutils literal notranslate"><span class="pre">-j</span></code> flag to create multiple <code class="docutils literal notranslate"><span class="pre">make</span></code> processes.</p>
+<p>通过正确的依赖关系，您可以利用 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 的并行执行，只需使用 <code class="docutils literal notranslate"><span class="pre">-j</span></code> 标志来创建多个 <code class="docutils literal notranslate"><span class="pre">make</span></code> 进程。</p>
 </div>
-<p>Since dependencies can now be generated automatically, there is no need to specify
-the source files explicitly, the <code class="docutils literal notranslate"><span class="pre">wildcard</span></code> function can be used to determine
-them dynamically:</p>
+<p>由于现在可以自动生成依赖项，因此无需显式指定源文件，可以使用 <code class="docutils literal notranslate"><span class="pre">wildcard</span></code> 函数动态确定它们：</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># List of all source files</span>
 <span class="nv">SRCS</span> <span class="o">:=</span> <span class="k">$(</span>wildcard src/*.f90<span class="k">)</span> <span class="se">\</span>
         <span class="k">$(</span>wildcard src/*.F90<span class="k">)</span>
