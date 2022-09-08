@@ -44,7 +44,7 @@ Sample program:
 ```fortran
 program demo_exp
 implicit none
-real :: x , re, im
+real :: x, re, im
 complex :: cx
 
    x = 1.0
