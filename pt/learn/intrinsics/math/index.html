@@ -178,7 +178,7 @@
 
 <!-- NOTE: this JS must live here (not in our global JS file) because it relies
      on being processed by Jinja before it is run (specifically for replacing
-     variables learn/intrinsics/math/index and {'version_match': 'pt'}.
+     variables learn/intrinsics/math/index and {'json_url': 'https://fortran-lang.org/', 'version_match': 'pt'}.
 -->
 
 <script type="text/javascript">
@@ -3171,6 +3171,7 @@ of the track using the arcsine. Given</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
 </pre></div>
 </div>
+<p>Exemplo de programa:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_asin</span><span class="w"></span>
 <span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span><span class="w"></span>
 <span class="k">implicit none</span><span class="w"></span>
@@ -3301,11 +3302,11 @@ imaginary part of the result is in radians and lies between
 </section>
 <section id="id28">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>  - result = __atan(y, x)__
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">atan</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 
-   TYPE(kind=KIND):: atan
-   TYPE(kind=KIND,intent(in) :: x
-   TYPE(kind=KIND,intent(in),optional :: y
+<span class="w">    </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="kd">::</span><span class="w"> </span><span class="nb">atan</span>
+<span class="nb">    </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="w">    </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">y</span><span class="w"></span>
 </pre></div>
 </div>
 <p>where <strong>TYPE</strong> may be <em>real</em> or <em>complex</em> and <strong>KIND</strong> may be any <strong>KIND</strong> supported
@@ -5151,7 +5152,7 @@ range <strong>-1</strong> &lt;= <strong>erf</strong>(x) &lt;= 1 .</p>
 </section>
 <section id="id229">
 <h3><strong>Descrição</strong><a class="headerlink" href="#id229" title="Permalink to this heading">#</a></h3>
-<p><strong>erfc</strong>(x) computes the complementary error function of <strong>x</strong>. Simpy put
+<p><strong>erfc</strong>(x) computes the complementary error function of <strong>x</strong>. Simply put
 this is equivalent to <strong>1 - erf(x)</strong>, but <strong>erfc</strong> is provided because
 of the extreme loss of relative accuracy if <strong>erf(x)</strong> is called for
 large <strong>x</strong> and the result is subtracted from <strong>1</strong>.</p>
@@ -5353,19 +5354,17 @@ t\*\*{x-1}{\\mathrm{e}}\*\*{__-t__}\\,{\\mathrm{d}}t
 <span class="w">      </span><span class="k">enddo</span>
 <span class="k">   endblock </span><span class="n">FAC</span><span class="w"></span>
 
-<span class="k">contains</span>
-
-<span class="k">function </span><span class="n">factorial</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="w"></span>
-<span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="mi">0</span><span class="n">d0</span><span class="p">)</span><span class="w"></span>
-<span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
-<span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">f</span><span class="w"></span>
-<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">le</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
-<span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0))&#39;</span><span class="p">)</span><span class="s1">&#39;&lt;ERROR&gt; gamma(3) function value &#39;</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39; &lt;= 0&#39;</span><span class="w"></span>
-<span class="w">      </span><span class="k">stop</span><span class="w">      </span><span class="s1">&#39;&lt;STOP&gt; bad value in gamma function&#39;</span><span class="w"></span>
-<span class="w">   </span><span class="k">endif</span>
-<span class="k">   </span><span class="n">f</span><span class="o">=</span><span class="nb">gamma</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="w"></span>
-<span class="k">end function </span><span class="n">factorial</span><span class="w"></span>
-
+<span class="w">   </span><span class="k">contains</span>
+<span class="k">   function </span><span class="n">factorial</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="mi">0</span><span class="n">d0</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">   </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">f</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">le</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
+<span class="k">         write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0))&#39;</span><span class="p">)</span><span class="s1">&#39;&lt;ERROR&gt; gamma(3) function value &#39;</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39; &lt;= 0&#39;</span><span class="w"></span>
+<span class="w">         </span><span class="k">stop</span><span class="w">      </span><span class="s1">&#39;&lt;STOP&gt; bad value in gamma function&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">endif</span>
+<span class="k">      </span><span class="n">f</span><span class="o">=</span><span class="nb">gamma</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="w"></span>
+<span class="w">   </span><span class="k">end function </span><span class="n">factorial</span><span class="w"></span>
 <span class="k">end program </span><span class="n">demo_gamma</span><span class="w"></span>
 </pre></div>
 </div>

@@ -88,6 +88,10 @@ For more information refer to the **implicit** statement.
 
 ```
 
+```{include} ../_pages/OUT_OF_RANGE.md
+
+```
+
 ```{include} ../_pages/SELECTED_CHAR_KIND.md
 
 ```
