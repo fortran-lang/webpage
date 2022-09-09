@@ -1,10 +1,13 @@
 # Github action to cleanup a PR preview
-#  Runs when a pull request comment contains '#delete_preview'
+# Runs when a pull request is merged or comment contains '#delete_preview'
 #
 
 name: PR Preview Cleanup
 
 on:
+  issue_comment:
+    types: [created]
+
   pull_request:
     types:
       - closed
@@ -12,7 +15,7 @@ on:
 jobs:
   build:
     runs-on: ubuntu-latest
-    if:  github.event.pull_request.merged == true
+    if: github.event.pull_request.merged == true || contains(github.event.comment.body, '#delete_preview')
 
     steps:
       # Checkout existing gh-pages branch into PUBLISH_DIR
@@ -22,14 +25,13 @@ jobs:
           ref: gh-pages
 
       # Cleanup preview files
-      - name: PR Cleanup
-        run: |
-          rm -rf pr/${{github.event.number}}
-
+      - name: PR Cleanup 
+        run: rm -rf pr/${{github.event.issue.number}}
+      
       - name: Commit and push to gh-pages
         uses: EndBug/add-and-commit@v9.1.0
         with:
-          message: "Sphinx build cleanup pr/${{github.event.number}}"
+          message: "Sphinx build cleanup pr/${{github.event.issue.number}}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
 
@@ -37,5 +39,5 @@ jobs:
       - name: Comment on pull request
         uses: peter-evans/create-or-update-comment@v2
         with:
-          issue-number: ${{github.event.number}}
+          issue-number: ${{github.event.issue.number}}
           body: The preview build for this PR has now been deleted.
