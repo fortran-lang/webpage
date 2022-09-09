@@ -7,8 +7,10 @@
 ### **Syntax**
 
 ```fortran
-result = this_image() result = this_image(distance) &
-         & result = this_image(coarray, dim)
+   result = this_image() 
+   !or
+   result = this_image(distance) 
+   result = this_image(coarray, dim)
 ```
 
 ### **Description**
@@ -67,22 +69,15 @@ Results:
    value[1] is 1
 ```
 
-!
-! Check whether the current image is the initial image
-if (this_image(huge(1)) /= this_image())
-error stop "something is rotten here"
-
-```
-
-### __Standard__
+### **Standard**
 
 Fortran 2008 and later. With DISTANCE argument, TS 18508
 or later
 
-### __See Also__
+### **See Also**
 
-[__num\_images__(3)](NUM_IMAGES),
-[__image\_index__(3)](IMAGE_INDEX)
+[**num\_images**(3)](NUM_IMAGES),
+[**image\_index**(3)](IMAGE_INDEX)
 
 ###### fortran-lang intrinsic descriptions
 ```

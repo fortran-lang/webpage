@@ -14,24 +14,24 @@
    TYPE(kind=KIND),intent(in) :: a
 ```
 
-where the TYPE and KIND is determined by the type and type attributes
-of **a**, which may be any _real_, _integer_, or _complex_ value.
+   where the TYPE and KIND is determined by the type and type attributes
+   of **a**, which may be any _real_, _integer_, or _complex_ value.
 
-If the type of **a** is _cmplx_ the type returned will be _real_ with
-the same kind as the _real_ part of the input value.
+   If the type of **a** is _cmplx_ the type returned will be _real_
+   with the same kind as the _real_ part of the input value.
 
-Otherwise the returned type will be the same type as **a**.
+   Otherwise the returned type will be the same type as **a**.
 
 ### **Description**
 
-**abs(a)** computes the absolute value of numeric argument **a**.
+   **abs(a)** computes the absolute value of numeric argument **a**.
 
-In mathematics, the absolute value or modulus of a real number **x**,
-denoted **|x|**, is the magnitude of **x** without regard to its sign.
+   In mathematics, the absolute value or modulus of a real number **x**,
+   denoted **|x|**, is the magnitude of **x** without regard to its sign.
 
-The absolute value of a number may be thought of as its distance from
-zero, which is the definition used by **abs**(3) when dealing with
-_complex_ values (_see below_).
+   The absolute value of a number may be thought of as its distance from
+   zero, which is the definition used by **abs**(3) when dealing with
+   _complex_ values (_see below_).
 
 ### **Arguments**
 
@@ -41,13 +41,12 @@ _complex_ values (_see below_).
 
 ### **Returns**
 
-If **a** is of type _integer_ or _real_, the value of the result is
-**|a|** and of the same type and kind as the input argument.
+   If **a** is of type _integer_ or _real_, the value of the result is
+   **|a|** and of the same type and kind as the input argument.
 
-(Take particular note) if **a** is _complex_ with value **(x, y)**,
-the result is a _real_ equal to a processor-dependent approximation to
-**sqrt(x\*\*2 + y\*\*2)**
-computed without undue overflow or underflow.
+   (Take particular note) if **a** is _complex_ with value **(x, y)**,
+   the result is a _real_ equal to a processor-dependent approximation to
+   **sqrt(x\*\*2 + y\*\*2)** computed without undue overflow or underflow.
 
 ### **Examples**
 
@@ -125,6 +124,6 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later
+   FORTRAN 77 and later
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

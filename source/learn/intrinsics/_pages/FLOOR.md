@@ -14,8 +14,7 @@ result = floor(a, KIND)
     real(kind=kind(a)),intent(in) :: a
     integer(kind=IKIND),intent(in),optional :: KIND
 ```
-
-    where __KIND__ is any valid value for type _integer_.
+where _KIND_ is any valid value for type _integer_.
 
 ### **Description**
 

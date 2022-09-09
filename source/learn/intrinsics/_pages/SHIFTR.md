@@ -12,10 +12,10 @@ result = shiftr(i, shift)
 
 ### **Description**
 
-Returns a value corresponding to **i** with all of the bits shifted right by
-**shift** places. If the absolute value of **shift** is greater than
-**bit_size(i)**, the value is undefined. Bits shifted out from the
-right end are lost, and bits shifted in from the left end are set to 0.
+Returns a value corresponding to **i** with all of the bits shifted right
+by **shift** places. If the absolute value of **shift** is greater than
+**bit_size(i)**, the value is undefined. Bits shifted out from the right
+end are lost, and bits shifted in from the left end are set to 0.
 
 ### **Arguments**
 

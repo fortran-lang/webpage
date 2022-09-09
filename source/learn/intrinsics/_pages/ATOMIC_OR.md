@@ -7,7 +7,7 @@
 ### **Syntax**
 
 ```fortran
-call atomic_or__(atom, value, stat)
+call atomic_or(atom, value, stat)
 ```
 
 ### **Description**

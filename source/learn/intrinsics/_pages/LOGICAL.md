@@ -35,6 +35,8 @@ given.
 
 ### **Examples**
 
+Sample program:
+
 ```fortran
 program demo_logical
 ! Access array containing the kind type parameter values supported by this
@@ -49,7 +51,6 @@ use iso_fortran_env, only : logical_kinds
 
 end program demo_logical
 ```
-
 Results:
 
 ```text
@@ -59,7 +60,6 @@ Results:
               8
              16
 ```
-
 ### **Standard**
 
 Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009

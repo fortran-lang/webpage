@@ -28,8 +28,8 @@ scalar or an array.
 
 ### **Returns**
 
-    Returns the number of bits used to represent a value of the type
-    of __i__.  The result is a _integer_ scalar of the same kind as __i__.
+Returns the number of bits used to represent a value of the type
+of __i__.  The result is a _integer_ scalar of the same kind as __i__.
 
 ### **Examples**
 
