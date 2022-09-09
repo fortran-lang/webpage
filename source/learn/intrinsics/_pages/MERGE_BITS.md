@@ -32,9 +32,9 @@ of **j** otherwise (so all three input values must have the same number
 of bits).
 
 The resulting value is the same as would result from
-
-    __ior (iand (i, mask),iand (j, not (mask)))__
-
+```fortran
+    ior (iand (i, mask),iand (j, not (mask)))
+```
 An exception to all values being of the same _integer_ type is that **i**
 or **j** and/or the mask may be a BOZ constant (A BOZ constant means it is
 either a Binary, Octal, or Hexadecimal literal constant). The BOZ values
@@ -60,6 +60,8 @@ same type as **i** if **i** is of type _integer_, otherwise the same type
 as **j**.
 
 ### **Example**
+
+Sample program:
 
 ```fortran
 program demo_merge_bits
@@ -103,7 +105,6 @@ character(len=*),parameter :: fmt='(*(g0, 1X))'
 
 end program demo_merge_bits
 ```
-
 Results:
 
 ```text
@@ -114,7 +115,6 @@ Results:
    32767 32751 5877
    32767 32767 5877
 ```
-
 ### **Standard**
 
 Fortran 2008 and later

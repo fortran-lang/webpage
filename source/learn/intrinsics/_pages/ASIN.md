@@ -48,6 +48,8 @@ of the track using the arcsine. Given
 
      sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
 
+Sample program:
+
 ```fortran
 program demo_asin
 use, intrinsic :: iso_fortran_env, only : dp=>real64

@@ -16,7 +16,7 @@ result = erfc(x)
 
 ### **Description**
 
-**erfc**(x) computes the complementary error function of **x**. Simpy put
+**erfc**(x) computes the complementary error function of **x**. Simply put
 this is equivalent to **1 - erf(x)**, but **erfc** is provided because
 of the extreme loss of relative accuracy if **erf(x)** is called for
 large **x** and the result is subtracted from **1**.

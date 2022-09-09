@@ -73,19 +73,17 @@ integer :: i
       enddo
    endblock FAC
 
-contains
-
-function factorial(i) result(f)
-integer,parameter :: dp=kind(0d0)
-integer,intent(in) :: i
-real :: f
-   if(i.le.0)then
-      write(*,'(*(g0))')'<ERROR> gamma(3) function value ',i,' <= 0'
-      stop      '<STOP> bad value in gamma function'
-   endif
-   f=gamma(real(i+1))
-end function factorial
-
+   contains
+   function factorial(i) result(f)
+   integer,parameter :: dp=kind(0d0)
+   integer,intent(in) :: i
+   real :: f
+      if(i.le.0)then
+         write(*,'(*(g0))')'<ERROR> gamma(3) function value ',i,' <= 0'
+         stop      '<STOP> bad value in gamma function'
+      endif
+      f=gamma(real(i+1))
+   end function factorial
 end program demo_gamma
 ```
 
