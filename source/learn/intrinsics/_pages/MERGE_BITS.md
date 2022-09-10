@@ -10,7 +10,7 @@
 result = merge_bits(i, j, mask)
 
     elemental function merge_bits(i,j,mask) result(r)
-    integer(kind=KIND), intent(in) :: i, j, mask
+    integer(kind=KIND) ,intent(in) :: i, j, mask
     integer(kind=KIND) :: r
 ```
 

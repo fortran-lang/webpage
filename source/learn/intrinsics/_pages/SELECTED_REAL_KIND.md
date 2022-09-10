@@ -41,19 +41,24 @@ than one real data type meet the criteria, the kind of the data type
 with the smallest decimal precision is returned. If no real data type
 matches the criteria, the result is
 
-- **-1** if the processor does not support a real data type with a
-  precision greater than or equal to **p**, but the **r** and **radix**
-  requirements can be fulfilled
+  - **-1** 
+  : if the processor does not support a real data type with a
+    precision greater than or equal to **p**, but the **r** and **radix**
+    requirements can be fulfilled
 
-  - **-2** if the processor does not support a real type with an
+  - **-2** 
+  : if the processor does not support a real type with an
     exponent range greater than or equal to **r**, but **p** and **radix** are
     fulfillable
 
-  - **-3** if **radix** but not **p** and **r** requirements are fulfillable
+  - **-3** 
+  : if **radix** but not **p** and **r** requirements are fulfillable
 
-  - **-4** if **radix** and either **p** or **r** requirements are fulfillable
+  - **-4** 
+  : if **radix** and either **p** or **r** requirements are fulfillable
 
-  - **-5** if there is no real type with the given **radix**
+  - **-5** 
+  : if there is no real type with the given **radix**
 
 ### **Examples**
 

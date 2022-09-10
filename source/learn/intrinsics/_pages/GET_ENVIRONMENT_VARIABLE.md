@@ -1,4 +1,4 @@
-## get_environment
+## get_environment_variable
 
 ### **Name**
 
@@ -29,7 +29,7 @@ being updated concurrently.
 - **name**
   : The name of the environment variable to query.
 
-  Shall be a scalar of type _character_ and of default kind.
+    Shall be a scalar of type _character_ and of default kind.
 
 ### **Returns**
 
@@ -37,9 +37,9 @@ being updated concurrently.
   : The value of the environment variable being queried.
 
   Shall be a scalar of type _character_ and of default kind.
-  The value of **name** is stored in **value**. If **value** is not large enough
-  to hold the data, it is truncated. If **name** is not set, **value** will be
-  filled with blanks.
+  The value of **name** is stored in **value**. If **value** is not
+  large enough to hold the data, it is truncated. If **name** is not
+  set, **value** will be filled with blanks.
 
 - **length**
   : Argument **length** contains the length needed for storing the
@@ -49,16 +49,16 @@ being updated concurrently.
 
 - **status**
   : **status** is **-1** if **value** is present but too short for the
-  environment variable; it is **1** if the environment variable does not
-  exist and **2** if the processor does not support environment variables;
-  in all other cases **status** is zero.
+  environment variable; it is **1** if the environment variable does
+  not exist and **2** if the processor does not support environment
+  variables; in all other cases **status** is zero.
 
   Shall be a scalar of type _integer_ and of default kind.
 
 - **trim_name**
-  : If **trim_name** is present with the value **.false.**, the trailing blanks in
-  **name** are significant; otherwise they are not part of the environment
-  variable name.
+  : If **trim_name** is present with the value **.false.**, the trailing
+  blanks in **name** are significant; otherwise they are not part of the
+  environment variable name.
 
   Shall be a scalar of type _logical_ and of default kind.
 

@@ -20,16 +20,14 @@ all elements of **array** are shifted by **shift** places. If rank is greater
 than one, then all complete rank one sections of **array** along the given
 dimension are shifted. Elements shifted out one end of each rank one
 section are dropped. If **boundary** is present then the corresponding value
-of from **boundary** is copied back in the other end. If **boundary** is not
+from **boundary** is copied back in the other end. If **boundary** is not
 present then the following are copied in depending on the type of **array**.
 
-\*Array Type\* - \*Boundary Value\*
-
-- Numeric 0 of the type and kind of **array**
-
-- Logical .false.
-
-- **Character(len)** LEN blanks
+    Array Type     | Boundary Value
+    -----------------------------------------------------
+    Numeric        | 0 of the type and kind of **array**
+    Logical        | .false.
+    Character(len) |  LEN blanks
 
 ### **Arguments**
 
@@ -56,16 +54,18 @@ Sample program:
 ```fortran
 program demo_eoshift
 implicit none
-    integer, dimension(3,3) :: a
+integer, dimension(3,3) :: a
+integer :: i
+
     a = reshape( [ 1, 2, 3, 4, 5, 6, 7, 8, 9 ], [ 3, 3 ])
-    print '(3i3)', a(1,:)
-    print '(3i3)', a(2,:)
-    print '(3i3)', a(3,:)
-    a = eoshift(a, SHIFT=[1, 2, 1], BOUNDARY=-5, DIM=2)
+    print '(3i3)', (a(i,:),i=1,3)
+
     print *
-    print '(3i3)', a(1,:)
-    print '(3i3)', a(2,:)
-    print '(3i3)', a(3,:)
+
+    ! shift it
+    a = eoshift(a, SHIFT=[1, 2, 1], BOUNDARY=-5, DIM=2)
+    print '(3i3)', (a(i,:),i=1,3)
+
 end program demo_eoshift
 ```
 

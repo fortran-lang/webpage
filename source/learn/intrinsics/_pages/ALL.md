@@ -117,11 +117,9 @@ Case (ii):
    then all(B /= C, DIM = 1) is
 
       [true, false, false]
-```
 
-and **all(B /= C, DIM = 2)** is
+   and **all(B /= C, DIM = 2)** is
 
-```
         [false, false].
 ```
 
