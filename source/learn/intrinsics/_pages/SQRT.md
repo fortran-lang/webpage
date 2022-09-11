@@ -14,7 +14,7 @@ result = sqrt(x)
    TYPE(kind=KIND) :: value
 ```
 
-Where TYPE may be _real_ or _complex_ and **KIND** may be any
+Where **TYPE** may be _real_ or _complex_ and **KIND** may be any
 kind valid for the declared type.
 
 ### **Description**
@@ -34,7 +34,7 @@ is called the principal square root.
 The principal square root of 9 is 3, for example, even though (-3)\*(-3)
 is also 9.
 
-A _real_, _radicand_ must be positive.
+A _real_ radicand must be positive.
 
 Square roots of negative numbers are a special case of complex numbers,
 where the components of the _radicand_ need not be positive in order to
@@ -43,7 +43,7 @@ have a valid square root.
 ### **Arguments**
 
 - **x**
-  : If **x** is real its value must be greater than or equal to zero.
+  : If **x** is _real_ its value must be greater than or equal to zero.
   The type shall be _real_ or _complex_.
 
 ### **Returns**

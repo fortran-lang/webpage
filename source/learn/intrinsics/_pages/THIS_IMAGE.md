@@ -7,10 +7,16 @@
 ### **Syntax**
 
 ```fortran
-   result = this_image() 
-   !or
-   result = this_image(distance) 
-   result = this_image(coarray, dim)
+result = this_image() 
+```
+or
+```
+```fortran
+result = this_image(distance) 
+```
+or
+```fortran
+result = this_image(coarray, dim)
 ```
 
 ### **Description**

@@ -19,8 +19,8 @@ Returns the argument with the smallest (most negative) value.
 - **a1**
   : The type shall be _integer_ or _real_.
 
-- **a2, a3, \`\`\`**
-  : An expression of the same type and kind as **A1**.
+- **a2, a3, ...**
+  : An expression of the same type and kind as **a1**.
 
 ### **Returns**
 

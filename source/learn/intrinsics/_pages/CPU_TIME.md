@@ -32,16 +32,15 @@ which time is an array.
 
 ### **Returns**
 
-- **TIME**
+- **time**
   : The type shall be _real_ with **intent(out)**. It is assigned a
   processor-dependent approximation to the processor time in seconds.
   If the processor cannot return a meaningful time, a
-  processor-dependent negative value
+  processor-dependent negative value is returned.
 
-  - **is returned.**
-    The start time is left imprecise because the purpose is to time
-    sections of code, as in the example. This might or might not
-    include system overhead time.
+  : The start time is left imprecise because the purpose is to time
+  sections of code, as in the example. This might or might not
+  include system overhead time.
 
 ### **Examples**
 

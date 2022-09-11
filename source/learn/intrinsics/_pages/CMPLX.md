@@ -36,14 +36,11 @@ present. If **y** is present it is converted to the imaginary component. If
 The Fortran 90 language defines **cmplx**(3) as always returning a result
 that is type **complex(kind=KIND(0.0))**.
 
-This means \`**cmplx(d1,d2)**', where **\`d1'** and **\`d2'** are
+This means **cmplx(d1,d2)**, where **d1** and **d2** are
 _doubleprecision_, is treated as:
-fortran
-
-```
+```fortran
       cmplx(sngl(d1), sngl(d2))
 ```
-
 _doubleprecision complex_ numbers require specifying a precision.
 
 It was necessary for Fortran 90 to specify this behavior for
@@ -79,7 +76,7 @@ can be accessed independently with a component-like syntax in f2018:
 
 A complex-part-designator is
 
-``fortran
+```fortran
 designator % RE
 or
 designator % IM.

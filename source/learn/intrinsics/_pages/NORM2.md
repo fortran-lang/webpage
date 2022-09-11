@@ -47,7 +47,6 @@ Sample program:
 ```fortran
 program demo_norm2
 implicit none
-integer :: i
 
 real :: x(3,3) = reshape([ &
    1, 2, 3, &

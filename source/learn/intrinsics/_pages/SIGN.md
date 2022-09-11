@@ -28,14 +28,15 @@ __sign()__ may be used to distinguish between __real__ values 0.0 and
 −0.0. SIGN (1.0, -0.0) will return −1.0 when a negative zero is
 distinguishable.
 
-
 ### **Arguments**
 
   - **a**
-    : Shall be of type _integer_ or _real_
+    : The value whos magnitude will be returned. Shall be of type
+    _integer_ or _real_
 
   - **b**
-    : Shall be of the same type and kind as **a**
+    : The value whose sign will be returned. Shall be of the same type
+    and kind as **a**
 
 ### **Returns**
 
@@ -51,7 +52,6 @@ __b__. That is,
 ### **Examples**
 
 Sample program:
-
 ```fortran
 program demo_sign
 implicit none
@@ -65,7 +65,6 @@ implicit none
    &  sign( 1.0, -0.0 ) .ne. sign( 1.0, 0.0 )
 end program demo_sign
 ````
-
 Results:
 
 ```text
@@ -75,7 +74,6 @@ Results:
       12.00000       12.00000      -12.00000
     can I distinguish 0 from -0?  F
 ```
-
 ### **Standard**
 
 FORTRAN 77 and later

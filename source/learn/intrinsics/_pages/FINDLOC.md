@@ -65,13 +65,13 @@ the result is an array of rank one and of size equal to the rank of
 **array**; otherwise, the result is of rank n - 1 and shape
 
 ```
-   [d1 , d2 , . . . , dDIM-1 , dDIM+1 , . . . , dn ]
+   [d1, d2, . . ., dDIM-1, dDIM+1, . . ., dn ]
 ```
 
 where
 
 ```
-   [d1 , d2 , . . . , dn ]
+   [d1, d2, . . ., dn ]
 ```
 
 is the shape of **array**.
@@ -112,7 +112,7 @@ is a scalar whose value is equal to that of the first element of
 Otherwise, the value of element
 
 ```
-      (s1 , s2 , . . . , sDIM-1 , sDIM+1 , . . . , sn )
+      (s1, s2, . . ., sDIM-1, sDIM+1, . . ., sn )
 ```
 
 of the result is equal to
@@ -120,7 +120,7 @@ of the result is equal to
 ```
       findloc (array (s1, s2, ..., sdim-1, :, sdim+1, ..., sn ), &
       value, dim=1 [, mask = mask (s1, s2, ..., sdim-1, :,
-                      sdim+1 , ... , sn )]).
+                      sdim+1, ..., sn )]).
 ```
 
 ### **Examples**

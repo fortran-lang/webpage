@@ -21,8 +21,8 @@ result = spread(source, dim, ncopies)
 Replicates a **source** array **ncopies** times along a specified
 dimension **dim**.
 
-If SOURCE is scalar, the shape of the result is (MAX (NCOPIES, 0)).
-and each element of the result has a value equal to SOURCE.
+If **source** is scalar, the shape of the result is (MAX (NCOPIES, 0)).
+and each element of the result has a value equal to **source**.
 
 ### **Arguments**
 
