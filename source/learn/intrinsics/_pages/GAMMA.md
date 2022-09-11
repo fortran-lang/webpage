@@ -126,7 +126,7 @@ Fortran 2008 and later
 
 ### **See Also**
 
-Logarithm of the Gamma function: [**log_gamma**(3)](LOG_GAMMA)
+Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
 
 [Wikipedia: Gamma_function](https://en.wikipedia.org/wiki/Gamma_function)
 

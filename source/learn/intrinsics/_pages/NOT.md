@@ -52,12 +52,12 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**iand**(3)](IAND),
-[**ior**(3)](IOR),
-[**ieor**(3)](IEOR),
-[**ibits**(3)](IBITS),
-[**ibset**(3)](IBSET),
+[**iand**(3)](#iand),
+[**ior**(3)](#ior),
+[**ieor**(3)](#ieor),
+[**ibits**(3)](#ibits),
+[**ibset**(3)](#ibset),
 
-[**ibclr**(3)](IBCLR)
+[**ibclr**(3)](#ibclr)
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

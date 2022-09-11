@@ -52,54 +52,9 @@ implicit none
 
 For more information refer to the **implicit** statement.
 
-```{include} ../_pages/AIMAG.md
-
+::::{jinja} intrinsics
+{% for name in type %}
+```{include} _pages/{{ name }}.md
 ```
-
-```{include} ../_pages/CMPLX.md
-
-```
-
-```{include} ../_pages/INT.md
-
-```
-
-```{include} ../_pages/NINT.md
-
-```
-
-```{include} ../_pages/REAL.md
-
-```
-
-```{include} ../_pages/DBLE.md
-
-```
-
-```{include} ../_pages/TRANSFER.md
-
-```
-
-```{include} ../_pages/LOGICAL.md
-
-```
-
-```{include} ../_pages/KIND.md
-
-```
-
-```{include} ../_pages/OUT_OF_RANGE.md
-
-```
-
-```{include} ../_pages/SELECTED_CHAR_KIND.md
-
-```
-
-```{include} ../_pages/SELECTED_INT_KIND.md
-
-```
-
-```{include} ../_pages/SELECTED_REAL_KIND.md
-
-```
+{% endfor %}
+::::

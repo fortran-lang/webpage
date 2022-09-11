@@ -70,7 +70,7 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**dble**(3)](DBLE),
-[**float**(3)](FLOAT)
+[**dble**(3)](#dble),
+[**float**(3)](#float)
 
 ###### fortran-lang intrinsic descriptions

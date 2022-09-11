@@ -117,11 +117,11 @@ FORTRAN 77 and later, with KIND argument - Fortran 90 and later
 
 ### **See Also**
 
-[**aint**(3)](AINT),
-[**anint**(3)](ANINT),
-[**int**(3)](INT),
-[**selected_int_kind**(3)](SELECTED_INT_KIND),
-[**ceiling**(3)](CEILING),
-[**floor**(3)](FLOOR)
+[**aint**(3)](#aint),
+[**anint**(3)](#anint),
+[**int**(3)](#int),
+[**selected_int_kind**(3)](#selected_int_kind),
+[**ceiling**(3)](#ceiling),
+[**floor**(3)](#floor)
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

@@ -66,8 +66,8 @@ Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
 
 ### **See Also**
 
-[**int**(3)](INT),
-[**real**(3)](REAL),
-[**cmplx**(3)](CMPLX)
+[**int**(3)](#int),
+[**real**(3)](#real),
+[**cmplx**(3)](#cmplx)
 
 ###### fortran-lang intrinsic descriptions

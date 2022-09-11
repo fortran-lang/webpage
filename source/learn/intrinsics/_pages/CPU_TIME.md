@@ -72,7 +72,7 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**system_clock**(3)](SYSTEM_CLOCK),
-[**date_and_time**(3)](DATE_AND_TIME)
+[**system_clock**(3)](#system_clock),
+[**date_and_time**(3)](#date_and_time)
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

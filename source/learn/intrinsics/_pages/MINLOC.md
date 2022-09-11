@@ -89,7 +89,7 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**min**(3)](MIN),
-[**minval**(3)](MINVAL)
+[**min**(3)](#min),
+[**minval**(3)](#minval)
 
 ###### fortran-lang intrinsic descriptions

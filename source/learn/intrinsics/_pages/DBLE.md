@@ -58,7 +58,7 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**float**(3)](FLOAT),
-[**real**(3)](REAL)
+[**float**(3)](#float),
+[**real**(3)](#real)
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

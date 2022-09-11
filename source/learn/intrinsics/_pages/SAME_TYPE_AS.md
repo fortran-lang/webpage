@@ -35,6 +35,6 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**extends_type_of**(3)](EXTENDS_TYPE_OF)
+[**extends_type_of**(3)](#extends_type_of)
 
 ###### fortran-lang intrinsic descriptions

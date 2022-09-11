@@ -88,6 +88,6 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**random_seed**(3)](RANDOM_SEED)
+[**random_seed**(3)](#random_seed)
 
 ###### fortran-lang intrinsic descriptions

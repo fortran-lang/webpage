@@ -109,9 +109,9 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bit_size**(3)](BIT_SIZE),
-[**popcnt**(3)](POPCNT),
-[**poppar**(3)](POPPAR),
-[**leadz**(3)](LEADZ)
+[**bit_size**(3)](#bit_size),
+[**popcnt**(3)](#popcnt),
+[**poppar**(3)](#poppar),
+[**leadz**(3)](#leadz)
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

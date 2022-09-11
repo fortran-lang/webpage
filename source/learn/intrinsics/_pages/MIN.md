@@ -50,8 +50,8 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**max**(3)](MAX),
-[**minloc**(3)](MINLOC),
-[**minval**(3)](MINVAL)
+[**max**(3)](#max),
+[**minloc**(3)](#minloc),
+[**minval**(3)](#minval)
 
 ###### fortran-lang intrinsic descriptions

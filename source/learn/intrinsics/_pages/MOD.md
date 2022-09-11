@@ -77,6 +77,6 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**modulo**(3)](MODULO)
+[**modulo**(3)](#modulo)
 
 ###### fortran-lang intrinsic descriptions
