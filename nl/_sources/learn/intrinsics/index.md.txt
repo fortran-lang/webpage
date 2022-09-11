@@ -10,19 +10,19 @@ Vendor-specific extensions are not included.
 
 ```{toctree}
 :maxdepth: 2
-array/index
-bit/index
-character/index
-compiler/index
-cfi/index
-math/index
-model/index
-numeric/index
-parallel/index
-state/index
-system/index
-transform/index
-type/index
+array
+bit
+character
+compiler
+cfi
+math
+model
+numeric
+parallel
+state
+system
+transform
+type
 GNU Free Documentation License <https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html>
 
 ::::
