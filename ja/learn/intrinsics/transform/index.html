@@ -1064,6 +1064,76 @@
    </li>
   </ul>
  </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reduce">
+   reduce
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id40">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id41">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id42">
+     <strong>
+      description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#options">
+     <strong>
+      options
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#result">
+     <strong>
+      result
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id43">
+     <strong>
+      examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id44">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id45">
+     <strong>
+      Standard
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fortran-lang-intrinsic-descriptions-license-mit-urbanjost">
+       fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
 </ul>
 </nav> 
     </div>
@@ -1263,14 +1333,15 @@ all elements of <strong>array</strong> are shifted by <strong>shift</strong> pla
 than one, then all complete rank one sections of <strong>array</strong> along the given
 dimension are shifted. Elements shifted out one end of each rank one
 section are dropped. If <strong>boundary</strong> is present then the corresponding value
-of from <strong>boundary</strong> is copied back in the other end. If <strong>boundary</strong> is not
+from <strong>boundary</strong> is copied back in the other end. If <strong>boundary</strong> is not
 present then the following are copied in depending on the type of <strong>array</strong>.</p>
-<p>*Array Type* - *Boundary Value*</p>
-<ul class="simple">
-<li><p>Numeric 0 of the type and kind of <strong>array</strong></p></li>
-<li><p>Logical .false.</p></li>
-<li><p><strong>Character(len)</strong> LEN blanks</p></li>
-</ul>
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Array Type     | Boundary Value
+-----------------------------------------------------
+Numeric        | 0 of the type and kind of **array**
+Logical        | .false.
+Character(len) |  LEN blanks
+</pre></div>
+</div>
 </section>
 <section id="id12">
 <h3><strong>Arguments</strong><a class="headerlink" href="#id12" title="この見出しへのパーマリンク">#</a></h3>
@@ -1306,16 +1377,18 @@ present then the following are copied in depending on the type of <strong>array<
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_eoshift</span><span class="w"></span>
 <span class="k">implicit none</span>
-<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+
 <span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">reshape</span><span class="p">(</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">])</span><span class="w"></span>
-<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="w"></span>
-<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="w"></span>
-<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span><span class="w"></span>
-<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">eoshift</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">SHIFT</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">BOUNDARY</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nb">DIM</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,:),</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+
 <span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="w"></span>
-<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="w"></span>
-<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="w"></span>
-<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span><span class="w"></span>
+
+<span class="w">    </span><span class="c">! shift it</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">eoshift</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">SHIFT</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">BOUNDARY</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nb">DIM</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,:),</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+
 <span class="k">end program </span><span class="n">demo_eoshift</span><span class="w"></span>
 </pre></div>
 </div>
@@ -1579,6 +1652,205 @@ type.</p>
 <p><span class="xref myst"><strong>associated</strong>(3)</span></p>
 <section id="id39">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id39" title="この見出しへのパーマリンク">#</a></h4>
+</section>
+</section>
+</section>
+<section id="reduce">
+<h2>reduce<a class="headerlink" href="#reduce" title="この見出しへのパーマリンク">#</a></h2>
+<section id="id40">
+<h3><strong>Name</strong><a class="headerlink" href="#id40" title="この見出しへのパーマリンク">#</a></h3>
+<p><strong>reduce</strong>(3) - [TRANSFORMATIONAL] general reduction of an array</p>
+</section>
+<section id="id41">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id41" title="この見出しへのパーマリンク">#</a></h3>
+<p>There are two forms to this function:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="n">reduce</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">identity</span><span class="p">,</span><span class="w"> </span><span class="n">ordered</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="n">reduce</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">identity</span><span class="p">,</span><span class="w"> </span><span class="n">ordered</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="k">array</span>
+<span class="k">      pure function</span><span class="w">                  </span><span class="kd">::</span><span class="w"> </span><span class="n">operation</span><span class="w"></span>
+<span class="w">      </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="nb">dim</span>
+<span class="nb">      </span><span class="kt">logical</span><span class="p">,</span><span class="k">optional</span><span class="w">               </span><span class="kd">::</span><span class="w"> </span><span class="n">mask</span><span class="w"></span>
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">identity</span><span class="w"></span>
+<span class="w">      </span><span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="n">ordered</span><span class="w"></span>
+</pre></div>
+</div>
+<p>where TYPE may be of any type. TYPE must be the same for <strong>array</strong>
+and <strong>identity</strong>.</p>
+</section>
+<section id="id42">
+<h3><strong>description</strong><a class="headerlink" href="#id42" title="この見出しへのパーマリンク">#</a></h3>
+<p>Reduce a list of conditionally selected values from an array to a
+single value by iteratively applying a binary function.</p>
+<p>Common in functional programming, a <strong>reduce</strong> function applies a
+binary operator (a pure function with two arguments) to all elements
+cumulatively.</p>
+<p><strong>reduce</strong> is a &quot;higher-order&quot; function; ie. it is a function that
+receives other functions as arguments.</p>
+<p>The <strong>reduce</strong> function receives a binary operator (a function with
+two arguments, just like the basic arithmetic operators). It is first
+applied to two unused values in the list to generate an accumulator
+value which is subsequently used as the first argument to the function
+as the function is recursively applied to all the remaining selected
+values in the input array.</p>
+</section>
+<section id="options">
+<h3><strong>options</strong><a class="headerlink" href="#options" title="この見出しへのパーマリンク">#</a></h3>
+<ul>
+<li><dl class="simple myst">
+<dt><strong>array</strong></dt><dd><p>An array of any type and allowed rank to select values from.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>operation</strong></dt><dd><p>shall be a pure function with exactly two arguments;
+each argument shall be a scalar, nonallocatable,
+nonpointer, nonpolymorphic, nonoptional dummy data object
+with the same type and type parameters as <strong>array</strong>. If
+one argument has the ASYNCHRONOUS, TARGET, or VALUE
+attribute, the other shall have that attribute. Its result
+shall be a nonpolymorphic scalar and have the same type
+and type parameters as <strong>array</strong>. <strong>operation</strong> should
+implement a mathematically associative operation. It
+need not be commutative.</p>
+</dd>
+</dl>
+<p>NOTE</p>
+<p>If <strong>operation</strong> is not computationally associative, REDUCE
+without ORDERED=.TRUE. with the same argument values
+might not always produce the same result, as the processor
+can apply the associative law to the evaluation.</p>
+<p>Many operations that mathematically are associative are
+not when applied to floating-point numbers. The order
+you sum values in may affect the result, for example.</p>
+</li>
+<li><dl class="simple myst">
+<dt><strong>dim</strong></dt><dd><p>An integer scalar with a value in the range
+1&lt;= <strong>dim</strong> &lt;= n, where n is the rank of <strong>array</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>mask</strong></dt><dd><p>(optional) shall be of type logical and shall be
+conformable with <strong>array</strong>.</p>
+</dd>
+</dl>
+<p>When present only those elements of <strong>array</strong> are passed
+to <strong>operation</strong> for which the corresponding elements
+of <strong>mask</strong> are true, as if *<em>array</em> was filtered with
+<strong>pack(3)</strong>.</p>
+</li>
+<li><dl class="simple myst">
+<dt><strong>identity</strong></dt><dd><p>shall be scalar with the same type and type parameters as <strong>array</strong>.
+If the initial sequence is empty, the result has the value <strong>identify</strong>
+if <strong>identify</strong> is present, and otherwise, error termination is
+initiated.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>ordered</strong></dt><dd><p>shall be a logical scalar. If <strong>ordered</strong> is present with the value
+<em>.true.</em>, the calls to the <strong>operator</strong> function begins with the first
+two elements of <strong>array</strong> and the process continues in row-column
+order until the sequence has only one element which is the value of the
+reduction. Otherwise, the compiler is free to assume that the operation
+is commutative and may evaluate the reduction in the most optimal way.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="result">
+<h3><strong>result</strong><a class="headerlink" href="#result" title="この見出しへのパーマリンク">#</a></h3>
+<p>The result is of the same type and type parameters as <strong>array</strong>. It is
+scalar if <strong>dim</strong> does not appear.</p>
+<p>If <strong>dim</strong> is present, it indicates the one dimension along which to
+perform the reduction, and the resultant array has a rank reduced by
+one relative to the input array.</p>
+</section>
+<section id="id43">
+<h3><strong>examples</strong><a class="headerlink" href="#id43" title="この見出しへのパーマリンク">#</a></h3>
+<p>The following examples all use the function MY_MULT, which returns
+the product of its two real arguments.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">program </span><span class="n">demo_reduce</span><span class="w"></span>
+<span class="w">   </span><span class="k">implicit none</span>
+<span class="k">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">f</span><span class="o">=</span><span class="s1">&#39;(&quot;[&quot;,*(g0,&quot;,&quot;,1x),&quot;]&quot;)&#39;</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:),</span><span class="w"> </span><span class="n">b</span><span class="p">(:,:)</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">! Basic usage:</span>
+<span class="w">      </span><span class="c">! the product of the elements of an array</span>
+<span class="w">      </span><span class="n">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">arr</span><span class="w"></span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;product=&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">reduce</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">my_mult</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;sum=&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">reduce</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">my_sum</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">! Examples of masking:</span>
+<span class="w">      </span><span class="c">! the product of only the positive elements of an array</span>
+<span class="w">      </span><span class="n">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">3</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;positive value product=&#39;</span><span class="p">,</span><span class="n">reduce</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">my_mult</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="o">=</span><span class="n">arr</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="c">!write(*,*)&#39;positive value sum=&#39;,reduce(pack(arr,mask=arr&gt;0), my_mult )</span>
+<span class="w">   </span><span class="c">! sum values ignoring negative values</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;sum positive values=&#39;</span><span class="p">,</span><span class="n">reduce</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">my_sum</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="o">=</span><span class="n">arr</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="c">!write(*,*)&#39;sum positive values=&#39;,reduce(pack(arr,mask=arr&gt;0), my_sum )</span>
+
+<span class="w">   </span><span class="c">! a single-valued array returns the single value as the</span>
+<span class="w">   </span><span class="c">! calls to the operator stop when only one element remains</span>
+<span class="w">      </span><span class="n">arr</span><span class="o">=</span><span class="p">[</span><span class="w"> </span><span class="mi">1234</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;single value sum&#39;</span><span class="p">,</span><span class="n">reduce</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">my_sum</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;single value product&#39;</span><span class="p">,</span><span class="n">reduce</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">my_mult</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">! Example of operations along a dimension:</span>
+<span class="w">   </span><span class="c">!  If B is the array   1 3 5</span>
+<span class="w">   </span><span class="c">!                      2 4 6</span>
+<span class="w">      </span><span class="n">b</span><span class="o">=</span><span class="nb">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span><span class="w"></span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="n">REDUCE</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">MY_MULT</span><span class="p">),</span><span class="s1">&#39;should be [720]&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="n">REDUCE</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">MY_MULT</span><span class="p">,</span><span class="w"> </span><span class="nb">DIM</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39;should be [2,12,30]&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="n">REDUCE</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">MY_MULT</span><span class="p">,</span><span class="w"> </span><span class="nb">DIM</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;should be [15, 48]&#39;</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">contains</span>
+
+<span class="k">   pure function </span><span class="n">my_mult</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="w">            </span><span class="kd">::</span><span class="w"> </span><span class="n">c</span><span class="w"></span>
+<span class="w">      </span><span class="n">c</span><span class="o">=</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="w"></span>
+<span class="w">   </span><span class="k">end function </span><span class="n">my_mult</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">pure function </span><span class="n">my_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="w">            </span><span class="kd">::</span><span class="w"> </span><span class="n">c</span><span class="w"></span>
+<span class="w">      </span><span class="n">c</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="n">b</span><span class="w"></span>
+<span class="w">   </span><span class="k">end function </span><span class="n">my_sum</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">end program </span><span class="n">demo_reduce</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     &gt;  1 2 3 4
+     &gt;  product= 24
+     &gt;  sum=     10
+     &gt;  positive value sum= 6
+     &gt;  sum positive values= 6
+     &gt;  single value sum     1234
+     &gt;  single value product 1234
+     &gt; [720, should be [720],
+     &gt; [2, 12, 30, should be [2,12,30],
+     &gt; [15, 48, should be [15, 48],
+</pre></div>
+</div>
+</section>
+<section id="id44">
+<h3><strong>See Also</strong><a class="headerlink" href="#id44" title="この見出しへのパーマリンク">#</a></h3>
+<ul class="simple">
+<li><p><span class="xref myst">co_reduce(3)</span></p></li>
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Associative_property">associative:wipipedia</a></p></li>
+</ul>
+</section>
+<section id="id45">
+<h3><strong>Standard</strong><a class="headerlink" href="#id45" title="この見出しへのパーマリンク">#</a></h3>
+<p>Fortran 2018</p>
+<section id="fortran-lang-intrinsic-descriptions-license-mit-urbanjost">
+<h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#fortran-lang-intrinsic-descriptions-license-mit-urbanjost" title="この見出しへのパーマリンク">#</a></h4>
 </section>
 </section>
 </section>

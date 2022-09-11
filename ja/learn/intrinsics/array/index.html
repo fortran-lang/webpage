@@ -2566,8 +2566,8 @@ If <strong>vector</strong> is present, the result size is that of <strong>vector
 <h3><strong>Description</strong><a class="headerlink" href="#id12" title="この見出しへのパーマリンク">#</a></h3>
 <p>Replicates a <strong>source</strong> array <strong>ncopies</strong> times along a specified
 dimension <strong>dim</strong>.</p>
-<p>If SOURCE is scalar, the shape of the result is (MAX (NCOPIES, 0)).
-and each element of the result has a value equal to SOURCE.</p>
+<p>If <strong>source</strong> is scalar, the shape of the result is (MAX (NCOPIES, 0)).
+and each element of the result has a value equal to <strong>source</strong>.</p>
 </section>
 <section id="id13">
 <h3><strong>Arguments</strong><a class="headerlink" href="#id13" title="この見出しへのパーマリンク">#</a></h3>
@@ -2686,17 +2686,27 @@ where <strong>n</strong> equals the rank of <strong>source</strong>.</p>
 <h2>unpack<a class="headerlink" href="#unpack" title="この見出しへのパーマリンク">#</a></h2>
 <section id="id18">
 <h3><strong>Name</strong><a class="headerlink" href="#id18" title="この見出しへのパーマリンク">#</a></h3>
-<p><strong>unpack</strong>(3) - [ARRAY CONSTRUCTION] Store the elements of a vector in an array of higher rank</p>
+<p><strong>unpack</strong>(3) - [ARRAY CONSTRUCTION] scatter the elements of a vector
+into an array using a mask</p>
 </section>
 <section id="id19">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id19" title="この見出しへのパーマリンク">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">unpack</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="p">)</span><span class="w"></span>
+
+<span class="w"> </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vector</span><span class="p">(:)</span><span class="w"></span>
+<span class="w"> </span><span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">               </span><span class="kd">::</span><span class="w"> </span><span class="n">mask</span><span class="p">(..)</span><span class="w"></span>
+<span class="w"> </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">field</span><span class="p">(..)</span><span class="w"></span>
+<span class="w"> </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">))</span><span class="w">            </span><span class="kd">::</span><span class="w"> </span><span class="k">result</span><span class="p">(..)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id20">
 <h3><strong>Description</strong><a class="headerlink" href="#id20" title="この見出しへのパーマリンク">#</a></h3>
-<p>Store the elements of <strong>vector</strong> in an array of higher rank.</p>
+<p>Scatter the elements of <strong>vector</strong> into a copy of an array <strong>field</strong>
+of any rank using <em>.true.</em> values from <strong>mask</strong> in array element order
+to specify placement of the <strong>vector</strong> values.</p>
+<p>So a copy of <strong>field</strong> is generated with select elements replaced with
+values from <strong>vector</strong>.</p>
 </section>
 <section id="id21">
 <h3><strong>Arguments</strong><a class="headerlink" href="#id21" title="この見出しへのパーマリンク">#</a></h3>
@@ -2713,7 +2723,8 @@ as many elements as <strong>mask</strong> has <strong>.true.</strong> values.</p
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>field</strong></dt><dd><p>Shall be of the same type as <strong>vector</strong> and have the same shape as <strong>mask</strong>.</p>
+<dt><strong>field</strong></dt><dd><p>Shall be of the same type and type parameters as <strong>vector</strong> and
+shall be conformable with <strong>mask</strong>.</p>
 </dd>
 </dl>
 </li>
@@ -2721,11 +2732,42 @@ as many elements as <strong>mask</strong> has <strong>.true.</strong> values.</p
 </section>
 <section id="id22">
 <h3><strong>Returns</strong><a class="headerlink" href="#id22" title="この見出しへのパーマリンク">#</a></h3>
-<p>The resulting array corresponds to <strong>field</strong> with <strong>.true.</strong> elements of <strong>mask</strong>
-replaced by values from <strong>vector</strong> in array element order.</p>
+<p>The result is an array of the same type and type parameters as <strong>vector</strong>
+and the same shape as <strong>mask</strong>.</p>
+<p>The element of the result that corresponds to the ith true element
+of MASK, in array element order, has the value VECTOR (i) for i =
+1, 2, . . ., t, where t is the number of true values in MASK. Each
+other element has a value equal to FIELD if FIELD is scalar or to the
+corresponding element of FIELD if it is an array.</p>
+<p>The resulting array corresponds to <strong>field</strong> with <strong>.true.</strong> elements
+of <strong>mask</strong> replaced by values from <strong>vector</strong> in array element order.</p>
 </section>
 <section id="id23">
 <h3><strong>Examples</strong><a class="headerlink" href="#id23" title="この見出しへのパーマリンク">#</a></h3>
+<p>Particular values may be &quot;scattered&quot; to particular positions in an array by using</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                       1 0 0        
+    If M is the array  0 1 0 
+                       0 0 1  
+
+    V is the array [1, 2, 3],
+		               . T .
+    and Q is the logical mask  T . .
+  	                       . . T
+    where &quot;T&quot; represents true and &quot;.&quot; represents false, then the result of 
+
+    UNPACK (V, MASK = Q, FIELD = M) has the value
+                                       
+      1 2 0 
+      1 1 0  
+      0 0 3 
+
+    and the result of UNPACK (V, MASK = Q, FIELD = 0) has the value
+
+      0 2 0
+      1 0 0 
+      0 0 3
+</pre></div>
+</div>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_unpack</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -3580,15 +3622,15 @@ and later</p>
 <section id="id90">
 <h3><strong>Description</strong><a class="headerlink" href="#id90" title="この見出しへのパーマリンク">#</a></h3>
 <p>Determines the location of the element in the array with the maximum
-value, or, if the <strong>dim</strong> argument is supplied, determines the locations of
-the maximum element along each row of the array in the <strong>dim</strong> direction. If
-<strong>mask</strong> is present, only the elements for which <strong>mask</strong> is <strong>.true.</strong> are
-considered. If more than one element in the array has the maximum value,
-the location returned is that of the first such element in array element
-order. If the array has zero size, or all of the elements of <strong>mask</strong> are
-.false., then the result is an array of zeroes. Similarly, if <strong>dim</strong> is
-supplied and all of the elements of <strong>mask</strong> along a given row are zero, the
-result value for that row is zero.</p>
+value, or, if the <strong>dim</strong> argument is supplied, determines the locations
+of the maximum element along each row of the array in the <strong>dim</strong>
+direction. If <strong>mask</strong> is present, only the elements for which <strong>mask</strong>
+is <strong>.true.</strong> are considered. If more than one element in the array has
+the maximum value, the location returned is that of the first such element
+in array element order. If the array has zero size, or all of the elements
+of <strong>mask</strong> are .false., then the result is an array of zeroes. Similarly,
+if <strong>dim</strong> is supplied and all of the elements of <strong>mask</strong> along a given
+row are zero, the result value for that row is zero.</p>
 </section>
 <section id="id91">
 <h3><strong>Arguments</strong><a class="headerlink" href="#id91" title="この見出しへのパーマリンク">#</a></h3>
@@ -3614,12 +3656,12 @@ dummy argument.</p>
 </section>
 <section id="id92">
 <h3><strong>Returns</strong><a class="headerlink" href="#id92" title="この見出しへのパーマリンク">#</a></h3>
-<p>If <strong>dim</strong> is absent, the result is a rank-one array with a length equal to
-the rank of <strong>array</strong>. If <strong>dim</strong> is present, the result is an array with a rank
-one less than the rank of <strong>array</strong>, and a size corresponding to the size of
-<strong>array</strong> with the <strong>dim</strong> dimension removed. If <strong>dim</strong> is present and <strong>array</strong> has a
-rank of one, the result is a scalar. In all cases, the result is of
-default <em>integer</em> type.</p>
+<p>If <strong>dim</strong> is absent, the result is a rank-one array with a length equal
+to the rank of <strong>array</strong>. If <strong>dim</strong> is present, the result is an array
+with a rank one less than the rank of <strong>array</strong>, and a size corresponding
+to the size of <strong>array</strong> with the <strong>dim</strong> dimension removed. If <strong>dim</strong>
+is present and <strong>array</strong> has a rank of one, the result is a scalar. In
+all cases, the result is of default <em>integer</em> type.</p>
 <p>The value returned is reference to the offset from the beginning of the
 array, not necessarily the subscript value if the array subscripts do
 not start with one.</p>
@@ -3860,11 +3902,11 @@ parameter is that specified by the value of <strong>kind</strong>; otherwise the
 type parameter is that of default integer type. If <strong>dim</strong> does not appear,
 the result is an array of rank one and of size equal to the rank of
 <strong>array</strong>; otherwise, the result is of rank n - 1 and shape</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="p">[</span><span class="n">d1</span> <span class="p">,</span> <span class="n">d2</span> <span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">,</span> <span class="n">dDIM</span><span class="o">-</span><span class="mi">1</span> <span class="p">,</span> <span class="n">dDIM</span><span class="o">+</span><span class="mi">1</span> <span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">,</span> <span class="n">dn</span> <span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="p">[</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">,</span> <span class="n">dDIM</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dDIM</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">,</span> <span class="n">dn</span> <span class="p">]</span>
 </pre></div>
 </div>
 <p>where</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="p">[</span><span class="n">d1</span> <span class="p">,</span> <span class="n">d2</span> <span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">,</span> <span class="n">dn</span> <span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="p">[</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">,</span> <span class="n">dn</span> <span class="p">]</span>
 </pre></div>
 </div>
 <p>is the shape of <strong>array</strong>.</p>
@@ -3899,13 +3941,13 @@ If <strong>array</strong> has rank one, the result of</p></li>
 </pre></div>
 </div>
 <p>Otherwise, the value of element</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="p">(</span><span class="n">s1</span> <span class="p">,</span> <span class="n">s2</span> <span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">,</span> <span class="n">sDIM</span><span class="o">-</span><span class="mi">1</span> <span class="p">,</span> <span class="n">sDIM</span><span class="o">+</span><span class="mi">1</span> <span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">,</span> <span class="n">sn</span> <span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">,</span> <span class="n">sDIM</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">sDIM</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">,</span> <span class="n">sn</span> <span class="p">)</span>
 </pre></div>
 </div>
 <p>of the result is equal to</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">findloc</span> <span class="p">(</span><span class="n">array</span> <span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">sdim</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="n">sdim</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">sn</span> <span class="p">),</span> <span class="o">&amp;</span>
       <span class="n">value</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span> <span class="p">[,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span> <span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">sdim</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span>
-                      <span class="n">sdim</span><span class="o">+</span><span class="mi">1</span> <span class="p">,</span> <span class="o">...</span> <span class="p">,</span> <span class="n">sn</span> <span class="p">)])</span><span class="o">.</span>
+                      <span class="n">sdim</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">sn</span> <span class="p">)])</span><span class="o">.</span>
 </pre></div>
 </div>
 </section>
@@ -4117,8 +4159,8 @@ dim)</strong> is determined by applying <strong>all()</strong> to the array sect
 <li><p>Result Characteristics. The result is of type <em>logical</em> with the
 same kind type parameter as <strong>mask</strong>. It is scalar if <strong>dim</strong>
 is absent or <strong>n = 1</strong>; otherwise, the result has rank <strong>n - 1</strong>
-and shape <strong>[d1 , d2 , . . . , dDIM-1 , dDIM+1 , . . . , dn ]</strong>
-where <strong>[d1 , d2 , . . . , dn ]</strong> is the shape of <strong>mask</strong>.</p></li>
+and shape <strong>[d1, d2, . . ., dDIM-1, dDIM+1, . . ., dn ]</strong>
+where <strong>[d1, d2, . . ., dn ]</strong> is the shape of <strong>mask</strong>.</p></li>
 <li><p>Result Value.</p>
 <dl class="simple myst">
 <dt>Case (i):</dt><dd><p>The result of <strong>all(mask)</strong> has the value true if all
@@ -4127,10 +4169,10 @@ size zero, and the result has value false if any element
 of <strong>mask</strong> is false.</p>
 </dd>
 <dt>Case (ii):</dt><dd><p>If <strong>mask</strong> has rank one, <strong>all(mask,dim)</strong> is equal to
-<strong>all(mask)</strong>. Otherwise, the value of element <strong>(s1 , s2 ,
-. . . , sdim-1 , sdim+1 , . . . , sn )</strong> of all <strong>(mask,
-dim)</strong> is equal to <strong>all(mask (s1 , s2 , . . . , sdim-1 ,
-:, sdim+1 , . . . , sn ))</strong>.</p>
+<strong>all(mask)</strong>. Otherwise, the value of element <strong>(s1, s2,
+. . ., sdim-1, sdim+1, . . ., sn )</strong> of all <strong>(mask,
+dim)</strong> is equal to <strong>all(mask (s1, s2, . . ., sdim-1,
+:, sdim+1, . . ., sn ))</strong>.</p>
 </dd>
 </dl>
 </li>
@@ -4181,10 +4223,10 @@ dim)</strong> is equal to <strong>all(mask (s1 , s2 , . . . , sdim-1 ,
    then all(B /= C, DIM = 1) is
 
       [true, false, false]
-</pre></div>
-</div>
-<p>and <strong>all(B /= C, DIM = 2)</strong> is</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="p">[</span><span class="n">false</span><span class="p">,</span> <span class="n">false</span><span class="p">]</span><span class="o">.</span>
+
+   and **all(B /= C, DIM = 2)** is
+
+        [false, false].
 </pre></div>
 </div>
 </section>

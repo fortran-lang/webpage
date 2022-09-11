@@ -592,7 +592,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="bit/">
-     Bit-level inquiry and manipulation
+     位级别查询和操作
     </a>
    </li>
    <li class="toctree-l2">
@@ -710,7 +710,7 @@
 <li class="toctree-l2"><a class="reference internal" href="array/#allocated">allocated</a></li>
 <li class="toctree-l2"><a class="reference internal" href="array/#is-contiguous">is_contiguous</a></li>
 <li class="toctree-l2"><a class="reference internal" href="array/#lbound">绑定</a></li>
-<li class="toctree-l2"><a class="reference internal" href="array/#rank">秩</a></li>
+<li class="toctree-l2"><a class="reference internal" href="array/#rank">rank</a></li>
 <li class="toctree-l2"><a class="reference internal" href="array/#shape">形状</a></li>
 <li class="toctree-l2"><a class="reference internal" href="array/#size">尺寸</a></li>
 <li class="toctree-l2"><a class="reference internal" href="array/#ubound">未绑定</a></li>
@@ -728,7 +728,7 @@
 <li class="toctree-l2"><a class="reference internal" href="array/#reshape">reshape</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="bit/">Bit-level inquiry and manipulation</a><ul>
+<li class="toctree-l1"><a class="reference internal" href="bit/">位级别查询和操作</a><ul>
 <li class="toctree-l2"><a class="reference internal" href="bit/#bge">bge</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bit/#bgt">bgt</a></li>
 <li class="toctree-l2"><a class="reference internal" href="bit/#ble">ble</a></li>
@@ -918,7 +918,7 @@
 <li class="toctree-l2"><a class="reference internal" href="system/#date-and-time">date_and_time</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system/#system-clock">system_clock</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system/#execute-command-line">execute_command_line</a></li>
-<li class="toctree-l2"><a class="reference internal" href="system/#get-environment">get_environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/#get-environment-variable">get_environment_variable</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="transform/">Matrix multiplication, dot product, and array shifts</a><ul>
@@ -928,6 +928,7 @@
 <li class="toctree-l2"><a class="reference internal" href="transform/#matmul">matmul</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transform/#parity">parity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transform/#null">null</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transform/#reduce">reduce</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="type/">Types and kinds</a><ul>
@@ -954,56 +955,33 @@
 </div>
 </details><section id="overview">
 <h2>概述<a class="headerlink" href="#overview" title="此标题的永久链接">#</a></h2>
-<p>标准文档和大多数供应商提供的内置函数描述通常非常简短，以至于内置函数的功能晦涩难懂，特别是对于不熟悉该过程的人。</p>
+<p>The standard documents and most vendor-supplied descriptions of the
+intrinsics are often very brief and concise to the point where the
+functionality of the intrinsics becomes obscure, particularly to someone
+unfamiliar with the procedure.</p>
 <p>通过在此处描述例程</p>
 <ul class="simple">
 <li><p>更详细</p></li>
 <li><p>有一个工作示例</p></li>
 <li><p>提供其他资源的链接（包括 fortran-lang.org 上的其他文档和 Fortran Discourse 中的相关讨论）</p></li>
 </ul>
-<p>这些文档力求成为 Fortran 程序员的宝贵资产。</p>
-<p>这是一个社区驱动的资源，鼓励每个人为文档做出贡献。有关贡献指南，请参阅 <a class="reference internal" href="../../community/minibooks/#minibooks"><span class="std std-ref">fortran-lang.org 上的迷你书教程</span></a> 和以下版权指南。</p>
+<p>these documents strive to clarify the intrinsics for Fortran programmers.</p>
+<p>This is a community-driven resource and everyone is encouraged to contribute
+to the documents. For contribution guidelines see <a class="reference internal" href="../../community/minibooks/"><span class="doc std std-doc">minibook guide</span></a>
+and the following Copyright guidelines.</p>
 </section>
 <section id="see-also">
 <h2>也可以看看<a class="headerlink" href="#see-also" title="此标题的永久链接">#</a></h2>
 <ul class="simple">
 <li><p><a class="reference external" href="https://stdlib.fortran-lang.org/">Fortran 标准库</a> 项目</p></li>
 <li><p><a class="reference external" href="https://fortran-lang.org/packages/fpm">fpm(1)</a> 包，其中许多是通用库/模块</p></li>
+<li><p><a class="reference external" href="https://github.com/urbanjost/M_intrinsics">M_intrinsics</a> a related project
+to leverage the descriptions here to generate man-pages and an OS-agnostic CLI
+(Command Line Interface) program. This includes a tar(1) and zip(1)
+file of man-pages and a self-contained Fortran program that lets you
+view the non-graphical plain ASCII portions of the documentation from
+a terminal interface.</p></li>
 </ul>
-<p>实验性的</p>
-<ul>
-<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/slidy_byprocedure.html">按程序审查</a></p></li>
-<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/slidy_byheader.html">标题审查</a></p></li>
-<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/fman.f90">fman(1)</a> 一个独立的 Fortran 程序，可让您从终端界面查看文档的非图形纯 ASCII 部分。编译程序并输入“./fman –help”以获取指导。</p></li>
-<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/fortran.tgz">手册页</a> 一个 gzip 压缩的 tar(1) 文件，其中包含从 markdown 文档派生的早期版本的手册页。</p>
-<p>以管理员身份在 Linux 平台上的典型安装（但会有所不同）：</p>
-</li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># as the administrator</span>
-<span class="nb">cd</span> /usr/share
-tar xvfz /tmp/fortran.tgz
-<span class="nb">cd</span> man
-mandb -c
-</pre></div>
-</div>
-<p>然后该平台上的任何人都可以输入命令，例如</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man sinh.3fortran     <span class="c1"># specifically show Fortran sinh(3) documentation</span>
-man -k . -s 3fortran  <span class="c1"># list all fortran pages</span>
-man -s 3fortran --regex <span class="s1">&#39;.*&#39;</span> <span class="p">|</span>col -b <span class="c1"># show all Fortran intrinsics</span>
-</pre></div>
-</div>
-<p>有关更多信息，请参见 man(1)（即输入“man man”）。</p>
-<p>如果您只能在自己的 ID 上安装页面，请尝试</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># as a user, placing the files in ~/man:</span>
-<span class="nb">cd</span>
-tar xvfz /tmp/fortran.tgz
-<span class="nb">cd</span> man
-mandb -c
-<span class="nb">export</span> <span class="nv">MANPATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$MANPATH</span><span class="s2">:</span><span class="nv">$HOME</span><span class="s2">/man&quot;</span>
-<span class="nb">export</span> <span class="nv">MANWIDTH</span><span class="o">=</span><span class="m">80</span>
-</pre></div>
-</div>
-<p>仍在争论是否必须将文档限制为 ANSI 字符是否值得，以便可以生成这些格式，并且仍然存在将降价转换为正确格式的问题。</p>
 </section>
 <section id="text-content-copyrights">
 <h2>文字内容版权<a class="headerlink" href="#text-content-copyrights" title="此标题的永久链接">#</a></h2>

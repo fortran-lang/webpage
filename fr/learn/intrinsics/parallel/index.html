@@ -2430,7 +2430,7 @@ the occurred error.</p>
 </section>
 <section id="id26">
 <h3><strong>Arguments</strong><a class="headerlink" href="#id26" title="Lien permanent vers cette rubrique">#</a></h3>
-<ul>
+<ul class="simple">
 <li><dl class="simple myst">
 <dt><strong>a</strong></dt><dd><p>is an <strong>intent(inout)</strong> argument and shall be nonpolymorphic. If it
 is allocatable, it shall be allocated; if it is a pointer, it shall
@@ -2446,16 +2446,17 @@ be nonpolymorphic and have the same type and type parameters as <strong>a</stron
 The function shall return a nonallocatable scalar of the same type
 and type parameters as <strong>a</strong>. The function shall be the same on all
 images and with regards to the arguments mathematically commutative
-and associative. Note that OPERATION may not be an elemental</p>
+and associative. Note that OPERATION may not be an elemental unless
+it is an intrinsic function.</p>
 </dd>
 </dl>
-<ul class="simple">
-<li><p><strong>function, unless it is an intrinsic function.</strong>
-result_image</p></li>
-<li><p>(optional) a scalar integer expression; if present, it shall
+</li>
+<li><dl class="simple myst">
+<dt><strong>result_image</strong></dt><dd><p>(optional) a scalar integer expression; if present, it shall
 have the same the same value on all images and refer to an image
-of the current team.</p></li>
-</ul>
+of the current team.</p>
+</dd>
+</dl>
 </li>
 <li><dl class="simple myst">
 <dt><strong>stat</strong></dt><dd><p>(optional) a scalar integer variable</p>
@@ -2877,10 +2878,16 @@ of images which do have not the failed status.</p>
 </section>
 <section id="id73">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id73" title="Lien permanent vers cette rubrique">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span>
-<span class="w">   </span><span class="c">!or</span>
-<span class="w">   </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">(</span><span class="n">distance</span><span class="p">)</span><span class="w"> </span>
-<span class="w">   </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>```fortran
+result = this_image(distance) 
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>

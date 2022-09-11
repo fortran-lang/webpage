@@ -1149,8 +1149,8 @@
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
-  <a class="reference internal nav-link" href="#get-environment">
-   get_environment
+  <a class="reference internal nav-link" href="#get-environment-variable">
+   get_environment_variable
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -1438,21 +1438,30 @@ this feature).</p>
 <section id="id12">
 <h3><strong>Returns</strong><a class="headerlink" href="#id12" title="Enlace permanente a este encabezado">#</a></h3>
 <ul class="simple">
-<li><p><strong>value</strong>
-:Shall be a scalar of type <em>character</em> and of default kind. After
+<li><dl class="simple myst">
+<dt><strong>value</strong></dt><dd><p>Shall be a scalar of type <em>character</em> and of default kind. After
 get_command_argument returns, the <strong>value</strong> argument holds the
 <strong>number</strong>-th command line argument. If <strong>value</strong> can not hold the argument,
 it is truncated to fit the length of <strong>value</strong>. If there are less than
 <strong>number</strong> arguments specified at the command line, <strong>value</strong> will be filled
-with blanks.</p></li>
-<li><p><strong>length</strong>
-:(Optional) Shall be a scalar of type <em>integer</em>. The <strong>length</strong>
-argument contains the length of the <strong>number</strong>-th command line argument.</p></li>
-<li><p><strong>status</strong>
-:(Optional) Shall be a scalar of type <em>integer</em>. If the argument
+with blanks.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>length</strong></dt><dd><p>(Optional) Shall be a scalar of type <em>integer</em>. The <strong>length</strong>
+argument contains the length of the <strong>number</strong>-th command line argument.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>status</strong></dt><dd><p>(Optional) Shall be a scalar of type <em>integer</em>. If the argument
 retrieval fails, <strong>status</strong> is a positive number; if <strong>value</strong> contains a
 truncated command line argument, <strong>status</strong> is <strong>-1</strong>; and otherwise the
-<strong>status</strong> is zero.</p></li>
+<strong>status</strong> is zero.</p>
+</dd>
+</dl>
+</li>
 </ul>
 </section>
 <section id="id13">
@@ -1563,20 +1572,18 @@ which time is an array.</p>
 </section>
 <section id="id20">
 <h3><strong>Returns</strong><a class="headerlink" href="#id20" title="Enlace permanente a este encabezado">#</a></h3>
-<ul>
+<ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>TIME</strong></dt><dd><p>The type shall be <em>real</em> with <strong>intent(out)</strong>. It is assigned a
+<dt><strong>time</strong></dt><dd><p>The type shall be <em>real</em> with <strong>intent(out)</strong>. It is assigned a
 processor-dependent approximation to the processor time in seconds.
 If the processor cannot return a meaningful time, a
-processor-dependent negative value</p>
+processor-dependent negative value is returned.</p>
+</dd>
+<dd><p>The start time is left imprecise because the purpose is to time
+sections of code, as in the example. This might or might not
+include system overhead time.</p>
 </dd>
 </dl>
-<ul class="simple">
-<li><p><strong>is returned.</strong>
-The start time is left imprecise because the purpose is to time
-sections of code, as in the example. This might or might not
-include system overhead time.</p></li>
-</ul>
 </li>
 </ul>
 </section>
@@ -1639,7 +1646,7 @@ date and time information from the real-time system clock.</p>
 </section>
 <section id="id28">
 <h3><strong>Arguments</strong><a class="headerlink" href="#id28" title="Enlace permanente a este encabezado">#</a></h3>
-<ul class="simple">
+<ul>
 <li><dl class="simple myst">
 <dt><strong>date</strong></dt><dd><p>A character string of default kind of the form CCYYMMDD, of length 8 or larger.</p>
 </dd>
@@ -1659,23 +1666,17 @@ representing the difference with respect to Coordinated Universal Time (UTC).</p
 <li><dl class="simple myst">
 <dt><strong>values</strong></dt><dd><p>An <em>integer</em> array of eight elements that contains:</p>
 </dd>
-<dt>- <strong>values</strong>(1)</dt><dd><p>The year</p>
-</dd>
-<dt>- <strong>values</strong>(2)</dt><dd><p>The month</p>
-</dd>
-<dt>- <strong>values</strong>(3)</dt><dd><p>The day of the month</p>
-</dd>
-<dt>- <strong>values</strong>(4)</dt><dd><p>Time difference with UTC in minutes</p>
-</dd>
-<dt>- <strong>values</strong>(5)</dt><dd><p>The hour of the day</p>
-</dd>
-<dt>- <strong>values</strong>(6)</dt><dd><p>The minutes of the hour</p>
-</dd>
-<dt>- <strong>values</strong>(7)</dt><dd><p>The seconds of the minute</p>
-</dd>
-<dt>- <strong>values</strong>(8)</dt><dd><p>The milliseconds of the second</p>
-</dd>
 </dl>
+<ul class="simple">
+<li><p><strong>values</strong>(1) : The year</p></li>
+<li><p><strong>values</strong>(2) : The month</p></li>
+<li><p><strong>values</strong>(3) : The day of the month</p></li>
+<li><p><strong>values</strong>(4) : Time difference with UTC in minutes</p></li>
+<li><p><strong>values</strong>(5) : The hour of the day</p></li>
+<li><p><strong>values</strong>(6) : The minutes of the hour</p></li>
+<li><p><strong>values</strong>(7) : The seconds of the minute</p></li>
+<li><p><strong>values</strong>(8) : The milliseconds of the second</p></li>
+</ul>
 </li>
 </ul>
 </section>
@@ -1973,8 +1974,8 @@ be terminated alongside.</p>
 </section>
 </section>
 </section>
-<section id="get-environment">
-<h2>get_environment<a class="headerlink" href="#get-environment" title="Enlace permanente a este encabezado">#</a></h2>
+<section id="get-environment-variable">
+<h2>get_environment_variable<a class="headerlink" href="#get-environment-variable" title="Enlace permanente a este encabezado">#</a></h2>
 <section id="id47">
 <h3><strong>Name</strong><a class="headerlink" href="#id47" title="Enlace permanente a este encabezado">#</a></h3>
 <p><strong>get_environment_variable</strong>(3) - [SYSTEM:ENVIRONMENT] Get an environmental variable</p>
@@ -2003,9 +2004,9 @@ being updated concurrently.</p>
 <ul>
 <li><dl class="simple myst">
 <dt><strong>name</strong></dt><dd><p>The name of the environment variable to query.</p>
+<p>Shall be a scalar of type <em>character</em> and of default kind.</p>
 </dd>
 </dl>
-<p>Shall be a scalar of type <em>character</em> and of default kind.</p>
 </li>
 </ul>
 </section>
@@ -2017,9 +2018,9 @@ being updated concurrently.</p>
 </dd>
 </dl>
 <p>Shall be a scalar of type <em>character</em> and of default kind.
-The value of <strong>name</strong> is stored in <strong>value</strong>. If <strong>value</strong> is not large enough
-to hold the data, it is truncated. If <strong>name</strong> is not set, <strong>value</strong> will be
-filled with blanks.</p>
+The value of <strong>name</strong> is stored in <strong>value</strong>. If <strong>value</strong> is not
+large enough to hold the data, it is truncated. If <strong>name</strong> is not
+set, <strong>value</strong> will be filled with blanks.</p>
 </li>
 <li><dl class="simple myst">
 <dt><strong>length</strong></dt><dd><p>Argument <strong>length</strong> contains the length needed for storing the
@@ -2030,17 +2031,17 @@ environment variable <strong>name</strong> or zero if it is not present.</p>
 </li>
 <li><dl class="simple myst">
 <dt><strong>status</strong></dt><dd><p><strong>status</strong> is <strong>-1</strong> if <strong>value</strong> is present but too short for the
-environment variable; it is <strong>1</strong> if the environment variable does not
-exist and <strong>2</strong> if the processor does not support environment variables;
-in all other cases <strong>status</strong> is zero.</p>
+environment variable; it is <strong>1</strong> if the environment variable does
+not exist and <strong>2</strong> if the processor does not support environment
+variables; in all other cases <strong>status</strong> is zero.</p>
 </dd>
 </dl>
 <p>Shall be a scalar of type <em>integer</em> and of default kind.</p>
 </li>
 <li><dl class="simple myst">
-<dt><strong>trim_name</strong></dt><dd><p>If <strong>trim_name</strong> is present with the value <strong>.false.</strong>, the trailing blanks in
-<strong>name</strong> are significant; otherwise they are not part of the environment
-variable name.</p>
+<dt><strong>trim_name</strong></dt><dd><p>If <strong>trim_name</strong> is present with the value <strong>.false.</strong>, the trailing
+blanks in <strong>name</strong> are significant; otherwise they are not part of the
+environment variable name.</p>
 </dd>
 </dl>
 <p>Shall be a scalar of type <em>logical</em> and of default kind.</p>

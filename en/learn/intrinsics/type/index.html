@@ -1754,10 +1754,9 @@ present. If <strong>y</strong> is present it is converted to the imaginary compo
 <h3><strong>cmplx(3) and double precision</strong><a class="headerlink" href="#cmplx-3-and-double-precision" title="Permalink to this heading">#</a></h3>
 <p>The Fortran 90 language defines <strong>cmplx</strong>(3) as always returning a result
 that is type <strong>complex(kind=KIND(0.0))</strong>.</p>
-<p>This means `<strong>cmplx(d1,d2)</strong>’, where <strong>`d1’</strong> and <strong>`d2’</strong> are
-<em>doubleprecision</em>, is treated as:
-fortran</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">cmplx</span><span class="p">(</span><span class="n">sngl</span><span class="p">(</span><span class="n">d1</span><span class="p">),</span> <span class="n">sngl</span><span class="p">(</span><span class="n">d2</span><span class="p">))</span>
+<p>This means <strong>cmplx(d1,d2)</strong>, where <strong>d1</strong> and <strong>d2</strong> are
+<em>doubleprecision</em>, is treated as:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nb">cmplx</span><span class="p">(</span><span class="nb">sngl</span><span class="p">(</span><span class="n">d1</span><span class="p">),</span><span class="w"> </span><span class="nb">sngl</span><span class="p">(</span><span class="n">d2</span><span class="p">))</span><span class="w"></span>
 </pre></div>
 </div>
 <p><em>doubleprecision complex</em> numbers require specifying a precision.</p>
@@ -1789,24 +1788,20 @@ argument used to specify the desired kind of complex result.</p>
 <p>F2018 COMPONENT SYNTAX The real and imaginary parts of a complex entity
 can be accessed independently with a component-like syntax in f2018:</p>
 <p>A complex-part-designator is</p>
-<p>``fortran
-designator % RE
-or
-designator % IM.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-Where the designator is of complex type.
-
-So designator%RE designates the real part of a complex value,
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">designator</span><span class="w"> </span><span class="p">%</span><span class="w"> </span><span class="n">RE</span><span class="w"></span>
+<span class="nb">or</span>
+<span class="n">designator</span><span class="w"> </span><span class="p">%</span><span class="w"> </span><span class="n">IM</span><span class="p">.</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Where the designator is of complex type.</p>
+<p>So designator%RE designates the real part of a complex value,
 designator%IM designates the imaginary part of complex value. The type
-of a complex-part-designator is _real_, and its kind and shape are those
-of the designator.
-
-The following are examples of complex part designators:
-
-```fortran
-       impedance%re           !-- Same value as _real_(impedance)
-       fft%im                 !-- Same value as AIMAG(fft)
-       x%im = 0.0             !-- Sets the imaginary part of x to zero
+of a complex-part-designator is <em>real</em>, and its kind and shape are those
+of the designator.</p>
+<p>The following are examples of complex part designators:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">       </span><span class="n">impedance</span><span class="p">%</span><span class="n">re</span><span class="w">           </span><span class="c">!-- Same value as _real_(impedance)</span>
+<span class="w">       </span><span class="n">fft</span><span class="p">%</span><span class="n">im</span><span class="w">                 </span><span class="c">!-- Same value as AIMAG(fft)</span>
+<span class="w">       </span><span class="n">x</span><span class="p">%</span><span class="n">im</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="w">             </span><span class="c">!-- Sets the imaginary part of x to zero</span>
 </pre></div>
 </div>
 </section>
@@ -2309,7 +2304,7 @@ of the input value.</p>
 <p>Interprets the bitwise representation of <strong>source</strong> in memory as if it
 is the representation of a variable or array of the same type and type
 parameters as <strong>mold</strong>.</p>
-<p>This is approximately equivalent to the C concept of *casting* one
+<p>This is approximately equivalent to the C concept of “casting” one
 type to another.</p>
 </section>
 <section id="id47">
@@ -2866,18 +2861,20 @@ than one real data type meet the criteria, the kind of the data type
 with the smallest decimal precision is returned. If no real data type
 matches the criteria, the result is</p>
 <ul class="simple">
-<li><p><strong>-1</strong> if the processor does not support a real data type with a
+<li><p><strong>-1</strong>
+: if the processor does not support a real data type with a
 precision greater than or equal to <strong>p</strong>, but the <strong>r</strong> and <strong>radix</strong>
-requirements can be fulfilled</p>
-<ul>
-<li><p><strong>-2</strong> if the processor does not support a real type with an
+requirements can be fulfilled</p></li>
+<li><p><strong>-2</strong>
+: if the processor does not support a real type with an
 exponent range greater than or equal to <strong>r</strong>, but <strong>p</strong> and <strong>radix</strong> are
 fulfillable</p></li>
-<li><p><strong>-3</strong> if <strong>radix</strong> but not <strong>p</strong> and <strong>r</strong> requirements are fulfillable</p></li>
-<li><p><strong>-4</strong> if <strong>radix</strong> and either <strong>p</strong> or <strong>r</strong> requirements are fulfillable</p></li>
-<li><p><strong>-5</strong> if there is no real type with the given <strong>radix</strong></p></li>
-</ul>
-</li>
+<li><p><strong>-3</strong>
+: if <strong>radix</strong> but not <strong>p</strong> and <strong>r</strong> requirements are fulfillable</p></li>
+<li><p><strong>-4</strong>
+: if <strong>radix</strong> and either <strong>p</strong> or <strong>r</strong> requirements are fulfillable</p></li>
+<li><p><strong>-5</strong>
+: if there is no real type with the given <strong>radix</strong></p></li>
 </ul>
 </section>
 <section id="id97">

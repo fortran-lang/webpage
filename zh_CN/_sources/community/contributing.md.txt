@@ -1,12 +1,10 @@
-(contributing)=
-
 # Contributing to fortran-lang.org
 
 Fortran-lang.org is open-source and contributions are welcome!
 
-- See {ref}`packages` for how to add an entry to the [Package index](https://fortran-lang.org/en/packages)
+- See [package index guide](packages) for how to add an entry to the [Package index](/packages)
 
-- See {ref}`minibooks` for how to write and structure a mini-book tutorial for the [Learn](https://fortran-lang.org/learn) section
+- See [minibook guide](minibooks) for how to write and structure a mini-book tutorial for the [Learn](/learn) section
 
 ## Introduction
 
@@ -29,7 +27,7 @@ The majority of the site content is written in [Markdown](https://github.com/ada
 
 The Fortran-lang site uses the Python-based [Sphinx static site generator](https://www.sphinx-doc.org/en/master/) to compile the RST,Markdown and HTML files.
 It is recommended for contributors to install Python on your development computer so that changes can be previewed locally, however this is not mandatory since site previews can be generated during the pull request process (see below for more information).
-See [README.md](README.md) for how to setup Sphinx and build the site.
+See [README.md](https://github.com/fortran-lang/webpage/blob/HEAD/README.md) for how to setup Sphinx and build the site.
 
 The GitHub repository default branch only ever contains the 'source code' for the website, not the final compiled result; an automated service compiles this source code every time an update is pushed and stores the compiled result on the [`gh-pages`](https://github.com/fortran-lang/webpage/tree/gh-pages) branch which is served up at <https://fortran-lang.org>.
 
@@ -58,7 +56,7 @@ The workflow for doing so takes the following form:
 5. Create a pull request in the fortran-lang/webpage from your modified fork branch
    - (See [github help: creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) )
 
-**Note: Before opening a pull request you must build your changes locally using Sphinx (see [README.md](README.md)) to verify that your changes build correctly and render as you expect.**
+**Note: Before opening a pull request you must build your changes locally using Sphinx (see [README.md](https://github.com/fortran-lang/webpage/HEAD/blob/README.md)) to verify that your changes build correctly and render as you expect.**
 
 **Note: You can continue to push changes to your fork branch after you open a pull request - the pull request will update accordingly**
 

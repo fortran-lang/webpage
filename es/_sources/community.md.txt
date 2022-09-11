@@ -117,7 +117,7 @@ on the project workflow and recommended practices.
 
 [Contributor guide for stdlib](https://github.com/fortran-lang/stdlib/blob/HEAD/WORKFLOW.md) <br>
 [Contributor guide for fpm](https://github.com/fortran-lang/fpm/blob/HEAD/CONTRIBUTING.md)<br>
-[Contributor guide for fortran-lang.org](contributing)
+[Contributor guide for fortran-lang.org](community/contributing)
 
 ::::
 ::::{grid-item-card}

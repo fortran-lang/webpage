@@ -592,7 +592,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../bit/">
-     Bit-level inquiry and manipulation
+     位级别查询和操作
     </a>
    </li>
    <li class="toctree-l2">
@@ -899,7 +899,7 @@
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#fortran-lang-intrinsic-descriptions-license-mit-urbanjost">
-       fortran-lang 内在描述（许可证：麻省理工学院）@urbanjost
+       Fortran内置过程描述（许可证：MIT）@urbanjost
       </a>
      </li>
     </ul>
@@ -969,7 +969,7 @@
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id25">
-       fortran-lang 内在描述（许可证：麻省理工学院）@urbanjost
+       Fortran内置过程描述（许可证：MIT）@urbanjost
       </a>
      </li>
     </ul>
@@ -1109,7 +1109,7 @@
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id43">
-       fortran-lang 内在描述（许可证：麻省理工学院）@urbanjost
+       Fortran内置过程描述（许可证：MIT）@urbanjost
       </a>
      </li>
     </ul>
@@ -1375,7 +1375,7 @@
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id76">
-       fortran-lang 内在描述（许可证：麻省理工学院）@urbanjost
+       Fortran内置过程描述（许可证：MIT）@urbanjost
       </a>
      </li>
     </ul>
@@ -1755,10 +1755,9 @@ present. If <strong>y</strong> is present it is converted to the imaginary compo
 <h3><strong>cmplx(3) and double precision</strong><a class="headerlink" href="#cmplx-3-and-double-precision" title="此标题的永久链接">#</a></h3>
 <p>The Fortran 90 language defines <strong>cmplx</strong>(3) as always returning a result
 that is type <strong>complex(kind=KIND(0.0))</strong>.</p>
-<p>This means `<strong>cmplx(d1,d2)</strong>’, where <strong>`d1’</strong> and <strong>`d2’</strong> are
-<em>doubleprecision</em>, is treated as:
-fortran</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">cmplx</span><span class="p">(</span><span class="n">sngl</span><span class="p">(</span><span class="n">d1</span><span class="p">),</span> <span class="n">sngl</span><span class="p">(</span><span class="n">d2</span><span class="p">))</span>
+<p>This means <strong>cmplx(d1,d2)</strong>, where <strong>d1</strong> and <strong>d2</strong> are
+<em>doubleprecision</em>, is treated as:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nb">cmplx</span><span class="p">(</span><span class="nb">sngl</span><span class="p">(</span><span class="n">d1</span><span class="p">),</span><span class="w"> </span><span class="nb">sngl</span><span class="p">(</span><span class="n">d2</span><span class="p">))</span><span class="w"></span>
 </pre></div>
 </div>
 <p><em>doubleprecision complex</em> numbers require specifying a precision.</p>
@@ -1790,24 +1789,20 @@ argument used to specify the desired kind of complex result.</p>
 <p>F2018 COMPONENT SYNTAX The real and imaginary parts of a complex entity
 can be accessed independently with a component-like syntax in f2018:</p>
 <p>A complex-part-designator is</p>
-<p>``fortran
-designator % RE
-or
-designator % IM.</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>
-Where the designator is of complex type.
-
-So designator%RE designates the real part of a complex value,
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">designator</span><span class="w"> </span><span class="p">%</span><span class="w"> </span><span class="n">RE</span><span class="w"></span>
+<span class="nb">or</span>
+<span class="n">designator</span><span class="w"> </span><span class="p">%</span><span class="w"> </span><span class="n">IM</span><span class="p">.</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Where the designator is of complex type.</p>
+<p>So designator%RE designates the real part of a complex value,
 designator%IM designates the imaginary part of complex value. The type
-of a complex-part-designator is _real_, and its kind and shape are those
-of the designator.
-
-The following are examples of complex part designators:
-
-```fortran
-       impedance%re           !-- Same value as _real_(impedance)
-       fft%im                 !-- Same value as AIMAG(fft)
-       x%im = 0.0             !-- Sets the imaginary part of x to zero
+of a complex-part-designator is <em>real</em>, and its kind and shape are those
+of the designator.</p>
+<p>The following are examples of complex part designators:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">       </span><span class="n">impedance</span><span class="p">%</span><span class="n">re</span><span class="w">           </span><span class="c">!-- Same value as _real_(impedance)</span>
+<span class="w">       </span><span class="n">fft</span><span class="p">%</span><span class="n">im</span><span class="w">                 </span><span class="c">!-- Same value as AIMAG(fft)</span>
+<span class="w">       </span><span class="n">x</span><span class="p">%</span><span class="n">im</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="w">             </span><span class="c">!-- Sets the imaginary part of x to zero</span>
 </pre></div>
 </div>
 </section>
@@ -1851,7 +1846,7 @@ specified. If <strong>kind</strong> is not specified, the result is of the defau
 <span class="k">end program </span><span class="n">demo_aimag</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Typical Results:</p>
+<p>典型结果：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">Z4</span><span class="o">=</span> <span class="p">(</span><span class="mf">1.23456788</span><span class="p">,</span><span class="mf">1.23456788</span><span class="p">)</span>
     <span class="n">Z8</span><span class="o">=</span> <span class="p">(</span><span class="mf">1.2345678901234567</span><span class="p">,</span><span class="mf">1.2345678901234567</span><span class="p">)</span>
     <span class="n">Z8</span> <span class="n">defined</span> <span class="k">with</span> <span class="n">constants</span><span class="o">=</span> <span class="p">(</span><span class="mf">1.2345678901234567</span><span class="p">,</span><span class="mf">1.2345678901234567</span><span class="p">)</span>
@@ -2003,7 +1998,7 @@ with the <em>kind</em> specified.</p>
 <span class="xref myst"><strong>ceiling</strong>(3)</span>,
 <span class="xref myst"><strong>floor</strong>(3)</span></p>
 <section id="fortran-lang-intrinsic-descriptions-license-mit-urbanjost">
-<h4>fortran-lang 内在描述（许可证：麻省理工学院）&#64;urbanjost<a class="headerlink" href="#fortran-lang-intrinsic-descriptions-license-mit-urbanjost" title="此标题的永久链接">#</a></h4>
+<h4>Fortran内置过程描述（许可证：MIT）&#64;urbanjost<a class="headerlink" href="#fortran-lang-intrinsic-descriptions-license-mit-urbanjost" title="此标题的永久链接">#</a></h4>
 </section>
 </section>
 </section>
@@ -2138,7 +2133,7 @@ integer type.</p>
 <span class="xref myst"><strong>ceiling</strong>(3)</span>,
 <span class="xref myst"><strong>floor</strong>(3)</span></p>
 <section id="id25">
-<h4>fortran-lang 内在描述（许可证：麻省理工学院）&#64;urbanjost<a class="headerlink" href="#id25" title="此标题的永久链接">#</a></h4>
+<h4>Fortran内置过程描述（许可证：MIT）&#64;urbanjost<a class="headerlink" href="#id25" title="此标题的永久链接">#</a></h4>
 </section>
 </section>
 </section>
@@ -2287,7 +2282,7 @@ of the input value.</p>
 <p><span class="xref myst"><strong>float</strong>(3)</span>,
 <span class="xref myst"><strong>real</strong>(3)</span></p>
 <section id="id43">
-<h4>fortran-lang 内在描述（许可证：麻省理工学院）&#64;urbanjost<a class="headerlink" href="#id43" title="此标题的永久链接">#</a></h4>
+<h4>Fortran内置过程描述（许可证：MIT）&#64;urbanjost<a class="headerlink" href="#id43" title="此标题的永久链接">#</a></h4>
 </section>
 </section>
 </section>
@@ -2308,7 +2303,7 @@ of the input value.</p>
 <p>Interprets the bitwise representation of <strong>source</strong> in memory as if it
 is the representation of a variable or array of the same type and type
 parameters as <strong>mold</strong>.</p>
-<p>This is approximately equivalent to the C concept of *casting* one
+<p>This is approximately equivalent to the C concept of “casting” one
 type to another.</p>
 </section>
 <section id="id47">
@@ -2427,7 +2422,7 @@ oblivious to the benefits of EQUIVALENCEs when used sparingly.</p>
 <h3><strong>参数</strong><a class="headerlink" href="#id55" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>l</strong></dt><dd><p>The type shall be <em>logical</em>.</p>
+<dt><strong>l</strong></dt><dd><p>类型应为 <em>logical</em>。</p>
 </dd>
 </dl>
 </li>
@@ -2670,7 +2665,7 @@ di   culties on many processors.</p>
 <h3><strong>标准</strong><a class="headerlink" href="#id75" title="此标题的永久链接">#</a></h3>
 <p>FORTRAN 2018 and later</p>
 <section id="id76">
-<h4>fortran-lang 内在描述（许可证：麻省理工学院）&#64;urbanjost<a class="headerlink" href="#id76" title="此标题的永久链接">#</a></h4>
+<h4>Fortran内置过程描述（许可证：MIT）&#64;urbanjost<a class="headerlink" href="#id76" title="此标题的永久链接">#</a></h4>
 </section>
 </section>
 </section>
@@ -2864,18 +2859,20 @@ than one real data type meet the criteria, the kind of the data type
 with the smallest decimal precision is returned. If no real data type
 matches the criteria, the result is</p>
 <ul class="simple">
-<li><p><strong>-1</strong> if the processor does not support a real data type with a
+<li><p><strong>-1</strong>
+: if the processor does not support a real data type with a
 precision greater than or equal to <strong>p</strong>, but the <strong>r</strong> and <strong>radix</strong>
-requirements can be fulfilled</p>
-<ul>
-<li><p><strong>-2</strong> if the processor does not support a real type with an
+requirements can be fulfilled</p></li>
+<li><p><strong>-2</strong>
+: if the processor does not support a real type with an
 exponent range greater than or equal to <strong>r</strong>, but <strong>p</strong> and <strong>radix</strong> are
 fulfillable</p></li>
-<li><p><strong>-3</strong> if <strong>radix</strong> but not <strong>p</strong> and <strong>r</strong> requirements are fulfillable</p></li>
-<li><p><strong>-4</strong> if <strong>radix</strong> and either <strong>p</strong> or <strong>r</strong> requirements are fulfillable</p></li>
-<li><p><strong>-5</strong> if there is no real type with the given <strong>radix</strong></p></li>
-</ul>
-</li>
+<li><p><strong>-3</strong>
+: if <strong>radix</strong> but not <strong>p</strong> and <strong>r</strong> requirements are fulfillable</p></li>
+<li><p><strong>-4</strong>
+: if <strong>radix</strong> and either <strong>p</strong> or <strong>r</strong> requirements are fulfillable</p></li>
+<li><p><strong>-5</strong>
+: if there is no real type with the given <strong>radix</strong></p></li>
 </ul>
 </section>
 <section id="id97">
