@@ -101,7 +101,7 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**max**(3)](MAX),
-[**maxval**(3)](MAXVAL)
+[**max**(3)](#max),
+[**maxval**(3)](#maxval)
 
 ###### fortran-lang intrinsic descriptions

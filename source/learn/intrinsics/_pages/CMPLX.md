@@ -150,13 +150,13 @@ Typical Results:
 
 ### **See Also**
 
-- [**aimag**(3)](AIMAG) - Imaginary part of complex number
+- [**aimag**(3)](#aimag) - Imaginary part of complex number
 
-- [**cmplx**(3)](CMPLX) - Complex conversion function
+- [**cmplx**(3)](#cmplx) - Complex conversion function
 
-- [**conjg**(3)](CONJG) - Complex conjugate function
+- [**conjg**(3)](#conjg) - Complex conjugate function
 
-- [**real**(3)](REAL) - Convert to real type
+- [**real**(3)](#real) - Convert to real type
 
 ### **Standard**
 

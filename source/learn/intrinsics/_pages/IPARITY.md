@@ -67,9 +67,9 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**iany**(3)](IANY),
-[**iall**(3)](IALL),
-[**ieor**(3)](IEOR),
-[**parity**(3)](PARITY)
+[**iany**(3)](#iany),
+[**iall**(3)](#iall),
+[**ieor**(3)](#ieor),
+[**parity**(3)](#parity)
 
 ###### fortran-lang intrinsic descriptions

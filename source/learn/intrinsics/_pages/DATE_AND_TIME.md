@@ -97,8 +97,8 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**cpu_time**(3)](CPU_TIME),
-[**system_clock**(3)](SYSTEM_CLOCK)
+[**cpu_time**(3)](#cpu_time),
+[**system_clock**(3)](#system_clock)
 
 ### **Resources**
 

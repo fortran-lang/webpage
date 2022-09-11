@@ -82,8 +82,8 @@ or later
 
 ### **See Also**
 
-[**num\_images**(3)](NUM_IMAGES),
-[**image\_index**(3)](IMAGE_INDEX)
+[**num\_images**(3)](#num_images),
+[**image\_index**(3)](#image_index)
 
 ###### fortran-lang intrinsic descriptions
 ```

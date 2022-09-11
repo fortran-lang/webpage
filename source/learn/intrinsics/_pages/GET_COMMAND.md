@@ -85,7 +85,7 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**get_command_argument**(3)](GET_COMMAND_ARGUMENT),
-[**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
+[**get_command_argument**(3)](#get_command_argument),
+[**command_argument_count**(3)](#command_argument_count)
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

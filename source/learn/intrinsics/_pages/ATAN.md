@@ -82,6 +82,6 @@ arguments Fortran 2008 or later
 
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
-[**atan2**(3)](ATAN2), [**tan**(3)](TAN)
+[**atan2**(3)](#atan2), [**tan**(3)](#tan)
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

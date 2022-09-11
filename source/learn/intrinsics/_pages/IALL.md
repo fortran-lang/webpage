@@ -72,8 +72,8 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**iany**(3)](IANY),
-[**iparity**(3)](IPARITY),
-[**iand**(3)](IAND)
+[**iany**(3)](#iany),
+[**iparity**(3)](#iparity),
+[**iand**(3)](#iand)
 
 ###### fortran-lang intrinsic descriptions

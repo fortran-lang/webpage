@@ -60,8 +60,8 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**popcnt**(3)](POPCNT),
-[**leadz**(3)](LEADZ),
-[**trailz**(3)](TRAILZ)
+[**popcnt**(3)](#popcnt),
+[**leadz**(3)](#leadz),
+[**trailz**(3)](#trailz)
 
 ###### fortran-lang intrinsic descriptions

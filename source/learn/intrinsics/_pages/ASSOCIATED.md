@@ -85,6 +85,6 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**null**(3)](NULL)
+[**null**(3)](#null)
 
 ###### fortran-lang intrinsic descriptions

@@ -19,6 +19,7 @@ Fortran-lang webpage configuration file.
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
 import json
+import yaml
 import sys
 import pathlib
 
@@ -28,6 +29,7 @@ data_files = {
     "fortran-learn": pathlib.Path(root, "_data", "fortran_learn.json"),
     "fortran-packages": pathlib.Path(root, "_data", "fortran_package.json"),
     "contributors": pathlib.Path(root, "_data", "contributor.json"),
+    "intrinsics": pathlib.Path(root, "data", "intrinsics.yml"),
 }
 
 if not all(data.exists() for data in data_files.values()):
@@ -41,6 +43,8 @@ with open(data_files["fortran-packages"], "r", encoding="utf-8") as f:
     fortran_tags = json.load(f)
 with open(data_files["contributors"], "r", encoding="utf-8") as f:
     contributors = json.load(f)
+with open(data_files["intrinsics"], "r", encoding="utf-8") as f:
+    intrinsics = yaml.safe_load(f)
 
 # -- Project information -----------------------------------------------------
 
@@ -99,6 +103,7 @@ jinja_contexts = {
     "conf": conf,
     "fortran_index": fortran_tags,
     "contributors": contributors,
+    "intrinsics": intrinsics,
 }
 
 

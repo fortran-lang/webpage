@@ -80,15 +80,15 @@ Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](ADJUSTL),
-  [**adjustr**(3)](ADJUSTR),
-  [**index**(3)](INDEX),
-  [**scan**(3)](SCAN),
-  [**verify**(3)](VERIFY)
+  [**adjustl**(3)](#adjustl),
+  [**adjustr**(3)](#adjustr),
+  [**index**(3)](#index),
+  [**scan**(3)](#scan),
+  [**verify**(3)](#verify)
 
 - **Nonelemental:**
-  [**repeat**(3)](REPEAT),
-  [**len**(3)](LEN),
-  [**trim**(3)](TRIM)
+  [**repeat**(3)](#repeat),
+  [**len**(3)](#len),
+  [**trim**(3)](#trim)
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
