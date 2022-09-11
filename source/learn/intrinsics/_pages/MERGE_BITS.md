@@ -10,7 +10,7 @@
 result = merge_bits(i, j, mask)
 
     elemental function merge_bits(i,j,mask) result(r)
-    integer(kind=KIND) ,intent(in) :: i, j, mask
+    integer(kind=KIND), intent(in) :: i, j, mask
     integer(kind=KIND) :: r
 ```
 
@@ -89,7 +89,7 @@ character(len=*),parameter :: fmt='(*(g0, 1X))'
    ! using BOZ values
    print fmt, &
    & merge_bits(32767_int16,    o'12345',         32767_int16), &
-   & merge_bits(o'12345'   , 32767_int16, b'0000000000010101'), &
+   & merge_bits(o'12345', 32767_int16, b'0000000000010101'), &
    & merge_bits(32767_int16,    o'12345',             z'1234')
 
    ! a do-it-yourself equivalent for comparison and validation
@@ -119,4 +119,4 @@ Results:
 
 Fortran 2008 and later
 
-###### fortran-lang intrinsic descriptions (license MIT) @urbanjost
+###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

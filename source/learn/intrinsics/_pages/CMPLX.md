@@ -135,7 +135,7 @@ complex(kind=dp) :: z8
    ! NOTE:
    ! The following is intuitive and works without calling cmplx(3)
    ! but does not work for variables just constants
-   z8 = (1.2345678901234567d0 , 1.2345678901234567d0 )
+   z8 = (1.2345678901234567d0, 1.2345678901234567d0 )
    print *, 'Z8 defined with constants=',z8
 end program demo_aimag
 ```

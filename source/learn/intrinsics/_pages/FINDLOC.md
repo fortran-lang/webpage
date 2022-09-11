@@ -65,13 +65,13 @@ the result is an array of rank one and of size equal to the rank of
 **array**; otherwise, the result is of rank n - 1 and shape
 
 ```
-   [d1 , d2 , . . . , dDIM-1 , dDIM+1 , . . . , dn ]
+   [d1, d2, . . ., dDIM-1, dDIM+1, . . ., dn ]
 ```
 
 where
 
 ```
-   [d1 , d2 , . . . , dn ]
+   [d1, d2, . . ., dn ]
 ```
 
 is the shape of **array**.
@@ -82,7 +82,7 @@ is the shape of **array**.
   The result of **findloc (array, value)** is a rank-one array whose
   element values are the values of the subscripts of an element of
   **array** whose value matches **value**. If there is such a value, the
-  ith subscript returned lies in the range 1 to ei , where ei is the
+  ith subscript returned lies in the range 1 to ei, where ei is the
   extent of the ith dimension of **array**. If no elements match **value**
   or **array** has size zero, all elements of the result are zero.
 
@@ -91,7 +91,7 @@ is the shape of **array**.
   rank-one array whose element values are the values of the subscripts
   of an element of **array**, corresponding to a true element of **mask**,
   whose value matches **value**. If there is such a value, the ith
-  subscript returned lies in the range 1 to ei , where ei is the
+  subscript returned lies in the range 1 to ei, where ei is the
   extent of the ith dimension of **array**. If no elements match
   **value**, **array** has size zero, or every element of **mask** has the
   value false, all elements of the result are zero.
@@ -112,7 +112,7 @@ is a scalar whose value is equal to that of the first element of
 Otherwise, the value of element
 
 ```
-      (s1 , s2 , . . . , sDIM-1 , sDIM+1 , . . . , sn )
+      (s1, s2, . . ., sDIM-1, sDIM+1, . . ., sn )
 ```
 
 of the result is equal to
@@ -120,7 +120,7 @@ of the result is equal to
 ```
       findloc (array (s1, s2, ..., sdim-1, :, sdim+1, ..., sn ), &
       value, dim=1 [, mask = mask (s1, s2, ..., sdim-1, :,
-                      sdim+1 , ... , sn )]).
+                      sdim+1, ..., sn )]).
 ```
 
 ### **Examples**

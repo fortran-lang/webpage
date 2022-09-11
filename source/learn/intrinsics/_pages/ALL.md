@@ -46,8 +46,8 @@ where the **dim** dimension is elided.
 3.  Result Characteristics. The result is of type _logical_ with the
     same kind type parameter as **mask**. It is scalar if **dim**
     is absent or **n = 1**; otherwise, the result has rank **n - 1**
-    and shape **\[d1 , d2 , . . . , dDIM-1 , dDIM+1 , . . . , dn \]**
-    where **\[d1 , d2 , . . . , dn \]** is the shape of **mask**.
+    and shape **\[d1, d2, . . ., dDIM-1, dDIM+1, . . ., dn \]**
+    where **\[d1, d2, . . ., dn \]** is the shape of **mask**.
 
 4.  Result Value.
 
@@ -59,10 +59,10 @@ where the **dim** dimension is elided.
 
     Case (ii):
     : If **mask** has rank one, **all(mask,dim)** is equal to
-    **all(mask)**. Otherwise, the value of element **(s1 , s2 ,
-    . . . , sdim-1 , sdim+1 , . . . , sn )** of all **(mask,
-    dim)** is equal to **all(mask (s1 , s2 , . . . , sdim-1 ,
-    :, sdim+1 , . . . , sn ))**.
+    **all(mask)**. Otherwise, the value of element **(s1, s2,
+    . . ., sdim-1, sdim+1, . . ., sn )** of all **(mask,
+    dim)** is equal to **all(mask (s1, s2, . . ., sdim-1,
+    :, sdim+1, . . ., sn ))**.
 
 ### **Examples**
 
