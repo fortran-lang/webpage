@@ -1,5 +1,3 @@
-(packages)=
-
 # Fortran-lang.org package index
 
 ## Package criteria

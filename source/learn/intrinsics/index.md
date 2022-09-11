@@ -45,7 +45,7 @@ By describing the procedures here
 these documents strive to clarify the intrinsics for Fortran programmers.
 
 This is a community-driven resource and everyone is encouraged to contribute
-to the documents. For contribution guidelines see {ref}`minibooks`
+to the documents. For contribution guidelines see [minibook guide](/community/minibooks)
 and the following Copyright guidelines.
 
 ## See Also
