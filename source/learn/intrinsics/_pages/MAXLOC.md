@@ -13,15 +13,15 @@ result = maxloc(array, dim, mask) result = maxloc(array, mask)
 ### **Description**
 
 Determines the location of the element in the array with the maximum
-value, or, if the **dim** argument is supplied, determines the locations of
-the maximum element along each row of the array in the **dim** direction. If
-**mask** is present, only the elements for which **mask** is **.true.** are
-considered. If more than one element in the array has the maximum value,
-the location returned is that of the first such element in array element
-order. If the array has zero size, or all of the elements of **mask** are
-.false., then the result is an array of zeroes. Similarly, if **dim** is
-supplied and all of the elements of **mask** along a given row are zero, the
-result value for that row is zero.
+value, or, if the **dim** argument is supplied, determines the locations
+of the maximum element along each row of the array in the **dim**
+direction. If **mask** is present, only the elements for which **mask**
+is **.true.** are considered. If more than one element in the array has
+the maximum value, the location returned is that of the first such element
+in array element order. If the array has zero size, or all of the elements
+of **mask** are .false., then the result is an array of zeroes. Similarly,
+if **dim** is supplied and all of the elements of **mask** along a given
+row are zero, the result value for that row is zero.
 
 ### **Arguments**
 
@@ -38,12 +38,12 @@ result value for that row is zero.
 
 ### **Returns**
 
-If **dim** is absent, the result is a rank-one array with a length equal to
-the rank of **array**. If **dim** is present, the result is an array with a rank
-one less than the rank of **array**, and a size corresponding to the size of
-**array** with the **dim** dimension removed. If **dim** is present and **array** has a
-rank of one, the result is a scalar. In all cases, the result is of
-default _integer_ type.
+If **dim** is absent, the result is a rank-one array with a length equal
+to the rank of **array**. If **dim** is present, the result is an array
+with a rank one less than the rank of **array**, and a size corresponding
+to the size of **array** with the **dim** dimension removed. If **dim**
+is present and **array** has a rank of one, the result is a scalar. In
+all cases, the result is of default _integer_ type.
 
 The value returned is reference to the offset from the beginning of the
 array, not necessarily the subscript value if the array subscripts do

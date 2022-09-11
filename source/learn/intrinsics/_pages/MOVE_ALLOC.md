@@ -12,8 +12,8 @@ call move_alloc(src, dest)
 
 ### **Description**
 
-**move_alloc(src, dest)** moves the allocation from SRC to DEST. SRC
-will become deallocated in the process.
+**move_alloc(src, dest)** moves the allocation from **src*( to
+**dest*. **src** will become deallocated in the process.
 
 ### **Arguments**
 
@@ -22,7 +22,7 @@ will become deallocated in the process.
 
 - **dest**
   : allocatable, **intent(out)**, shall be of the same type, kind and
-  rank as SRC.
+  rank as **src*.
 
 ### **Examples**
 

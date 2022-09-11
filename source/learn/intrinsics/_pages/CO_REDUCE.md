@@ -40,14 +40,14 @@ the occurred error.
   The function shall return a nonallocatable scalar of the same type
   and type parameters as **a**. The function shall be the same on all
   images and with regards to the arguments mathematically commutative
-  and associative. Note that OPERATION may not be an elemental
+  and associative. Note that OPERATION may not be an elemental unless
+  it is an intrinsic function.
 
-  - **function, unless it is an intrinsic function.**
-    result_image
+- **result_image**
 
-  - (optional) a scalar integer expression; if present, it shall
-    have the same the same value on all images and refer to an image
-    of the current team.
+  : (optional) a scalar integer expression; if present, it shall
+  have the same the same value on all images and refer to an image
+  of the current team.
 
 - **stat**
   : (optional) a scalar integer variable

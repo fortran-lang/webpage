@@ -16,7 +16,7 @@ Interprets the bitwise representation of **source** in memory as if it
 is the representation of a variable or array of the same type and type
 parameters as **mold**.
 
-This is approximately equivalent to the C concept of \*casting\* one
+This is approximately equivalent to the C concept of "casting" one
 type to another.
 
 ### **Arguments**

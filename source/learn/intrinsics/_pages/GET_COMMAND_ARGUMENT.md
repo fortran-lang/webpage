@@ -36,7 +36,7 @@ shells are ignored.
 ### **Returns**
 
 - **value**
-  :Shall be a scalar of type _character_ and of default kind. After
+  : Shall be a scalar of type _character_ and of default kind. After
   get_command_argument returns, the **value** argument holds the
   **number**-th command line argument. If **value** can not hold the argument,
   it is truncated to fit the length of **value**. If there are less than
@@ -44,11 +44,11 @@ shells are ignored.
   with blanks.
 
 - **length**
-  :(Optional) Shall be a scalar of type _integer_. The **length**
+  : (Optional) Shall be a scalar of type _integer_. The **length**
   argument contains the length of the **number**-th command line argument.
 
 - **status**
-  :(Optional) Shall be a scalar of type _integer_. If the argument
+  : (Optional) Shall be a scalar of type _integer_. If the argument
   retrieval fails, **status** is a positive number; if **value** contains a
   truncated command line argument, **status** is **-1**; and otherwise the
   **status** is zero.
