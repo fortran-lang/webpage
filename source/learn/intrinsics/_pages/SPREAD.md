@@ -119,10 +119,10 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**pack**(3)](PACK),
-[**unpack**(3)](UNPACK),
-[**merge**(3)](MERGE),
-[**pack**(3)](PACK),
-[**unpack**(3)](UNPACK)
+[**pack**(3)](#pack),
+[**unpack**(3)](#unpack),
+[**merge**(3)](#merge),
+[**pack**(3)](#pack),
+[**unpack**(3)](#unpack)
 
 ###### fortran-lang intrinsic descriptions

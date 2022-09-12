@@ -115,8 +115,8 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**maxloc**(3)](MAXLOC),
-[**maxval**(3)](MAXVAL),
-[**min**(3)](MIN)
+[**maxloc**(3)](#maxloc),
+[**maxval**(3)](#maxval),
+[**min**(3)](#min)
 
 ###### fortran-lang intrinsic descriptions

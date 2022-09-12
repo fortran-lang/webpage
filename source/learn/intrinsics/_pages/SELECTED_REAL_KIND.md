@@ -94,8 +94,8 @@ Fortran 95 and later; with RADIX - Fortran 2008 and later
 
 ### **See Also**
 
-[**precision**(3)](PRECISION),
-[**range**(3)](RANGE),
-[**radix**(3)](RADIX)
+[**precision**(3)](#precision),
+[**range**(3)](#range),
+[**radix**(3)](#radix)
 
 ###### fortran-lang intrinsic descriptions

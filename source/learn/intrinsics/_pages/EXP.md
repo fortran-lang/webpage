@@ -90,7 +90,7 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-- [**log**(3)](LOG)
+- [**log**(3)](#log)
 
 - Wikipedia:[Exponential function](https://en.wikipedia.org/wiki/Exponential_function)
 

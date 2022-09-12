@@ -70,12 +70,12 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**floor**(3)](FLOOR),
-[**nint**(3)](NINT)
+[**floor**(3)](#floor),
+[**nint**(3)](#nint)
 
-[**aint**(3)](AINT),
-[**anint**(3)](ANINT),
-[**int**(3)](INT),
-[**selected_int_kind**(3)](SELECTED_INT_KIND)
+[**aint**(3)](#aint),
+[**anint**(3)](#anint),
+[**int**(3)](#int),
+[**selected_int_kind**(3)](#selected_int_kind)
 
 ###### fortran-lang intrinsic descriptions

@@ -103,7 +103,7 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**date_and_time**(3)](DATE_AND_TIME),
-[**cpu_time**(3)](CPU_TIME)
+[**date_and_time**(3)](#date_and_time),
+[**cpu_time**(3)](#cpu_time)
 
 ###### fortran-lang intrinsic descriptions

@@ -94,9 +94,9 @@ TS 18508 or later
 
 ### **See Also**
 
-[**co_min**(3)](CO_MIN),
-[**co_max**(3)](CO_MAX),
-[**co_sum**(3)](CO_SUM),
-[**co_broadcast**(3)](CO_BROADCAST)
+[**co_min**(3)](#co_min),
+[**co_max**(3)](#co_max),
+[**co_sum**(3)](#co_sum),
+[**co_broadcast**(3)](#co_broadcast)
 
 ###### fortran-lang intrinsic descriptions

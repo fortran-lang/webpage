@@ -228,7 +228,7 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**sum**(3)](SUM), note that an element by element multiplication is done
+[**sum**(3)](#sum), note that an element by element multiplication is done
 directly using the star character.
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

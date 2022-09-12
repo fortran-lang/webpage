@@ -91,6 +91,6 @@ Fortran 95 and later, for a complex argument Fortran 2008 or later
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-[**asinh**(3)](ASINH)
+[**asinh**(3)](#asinh)
 
 ###### fortran-lang intrinsic descriptions

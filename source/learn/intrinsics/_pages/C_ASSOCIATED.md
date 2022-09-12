@@ -57,8 +57,8 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**c_loc**(3)](C_LOC),
-[**c_funloc**(3)](C_FUNLOC),
+[**c_loc**(3)](#c_loc),
+[**c_funloc**(3)](#c_funloc),
 **iso_c_binding**(3)
 
 ###### fortran-lang intrinsic descriptions

@@ -105,6 +105,6 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**maskl**(3)](MASKL)
+[**maskl**(3)](#maskl)
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost

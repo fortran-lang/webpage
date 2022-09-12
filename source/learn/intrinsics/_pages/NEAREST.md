@@ -68,20 +68,20 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**digits**(3)](DIGITS),
-[**epsilon**(3)](EPSILON),
-[**exponent**(3)](EXPONENT),
-[**fraction**(3)](FRACTION),
-[**huge**(3)](HUGE),
-[**maxexponent**(3)](MAXEXPONENT),
-[**minexponent**(3)](MINEXPONENT),
-[**precision**(3)](PRECISION),
-[**radix**(3)](RADIX),
-[**range**(3)](RANGE),
-[**rrspacing**(3)](RRSPACING),
-[**scale**(3)](SCALE),
-[**set_exponent**(3)](SET_EXPONENT),
-[**spacing**(3)](SPACING),
-[**tiny**(3)](TINY)
+[**digits**(3)](#digits),
+[**epsilon**(3)](#epsilon),
+[**exponent**(3)](#exponent),
+[**fraction**(3)](#fraction),
+[**huge**(3)](#huge),
+[**maxexponent**(3)](#maxexponent),
+[**minexponent**(3)](#minexponent),
+[**precision**(3)](#precision),
+[**radix**(3)](#radix),
+[**range**(3)](#range),
+[**rrspacing**(3)](#rrspacing),
+[**scale**(3)](#scale),
+[**set_exponent**(3)](#set_exponent),
+[**spacing**(3)](#spacing),
+[**tiny**(3)](#tiny)
 
 ###### fortran-lang intrinsic descriptions

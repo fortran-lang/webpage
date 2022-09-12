@@ -61,11 +61,11 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**c_associated**(3)](C_ASSOCIATED),
-[**c_loc**(3)](C_LOC),
-[**c_f_pointer**(3)](C_F_POINTER),
+[**c_associated**(3)](#c_associated),
+[**c_loc**(3)](#c_loc),
+[**c_f_pointer**(3)](#c_f_pointer),
 
-[**c_f_procpointer**(3)](C_F_PROCPOINTER),
+[**c_f_procpointer**(3)](#c_f_procpointer),
 **iso_c_binding**(3)
 
 ###### fortran-lang intrinsic descriptions

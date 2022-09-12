@@ -75,8 +75,8 @@ FORTRAN 77 and later
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
-[**acos**(3)](ACOS),
-[**sin**(3)](SIN),
-[**tan**(3)](TAN)
+[**acos**(3)](#acos),
+[**sin**(3)](#sin),
+[**tan**(3)](#tan)
 
 ###### fortran-lang intrinsic descriptions

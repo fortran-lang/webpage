@@ -129,8 +129,8 @@ FORTRAN 77 and later
 
 - [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
 
-[**asin**(3)](ASIN),
-[**cos**(3)](COS),
-[**tan**(3)](TAN)
+[**asin**(3)](#asin),
+[**cos**(3)](#cos),
+[**tan**(3)](#tan)
 
 ###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
