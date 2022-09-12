@@ -175,14 +175,14 @@
 
 <!-- NOTE: this JS must live here (not in our global JS file) because it relies
      on being processed by Jinja before it is run (specifically for replacing
-     variables learn/intrinsics/array/index and {'version_match': 'en'}.
+     variables learn/intrinsics/array and {'json_url': 'https://fortran-lang.org/', 'version_match': 'en'}.
 -->
 
 <script type="text/javascript">
   // Check if corresponding page path exists in other version of docs
   // and, if so, go there instead of the homepage of the other docs version
   function checkPageExistsAndRedirect(event) {
-    const currentFilePath = "learn/intrinsics/array/index",
+    const currentFilePath = "learn/intrinsics/array",
       tryUrl = event.target.getAttribute("href");
     location.href = tryUrl;
     // this prevents the browser from following the href of the clicked node
@@ -192,7 +192,7 @@
 
   // Populate the version switcher from the JSON config file
   (function () {
-    const currentFilePath = "learn/intrinsics/array/index";
+    const currentFilePath = "learn/intrinsics/array";
     const indexFilePath = "../../../";
     let btn = document.getElementById("version_switcher_button");
     // Set empty strings by default so that these attributes exist and can be used in CSS selectors
@@ -2410,11 +2410,11 @@ element the result is <strong>tsource</strong> if <strong>mask</strong> is true 
 </section>
 <section id="see-also">
 <h3><strong>See Also</strong><a class="headerlink" href="#see-also" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>pack</strong>(3)</span>,
-<span class="xref myst"><strong>unpack</strong>(3)</span>,
-<span class="xref myst"><strong>pack</strong>(3)</span>,
-<span class="xref myst"><strong>spread</strong>(3)</span>,
-<span class="xref myst"><strong>unpack</strong>(3)</span></p>
+<p><a class="reference internal" href="#pack"><span class="std std-doc"><strong>pack</strong>(3)</span></a>,
+<a class="reference internal" href="#unpack"><span class="std std-doc"><strong>unpack</strong>(3)</span></a>,
+<a class="reference internal" href="#pack"><span class="std std-doc"><strong>pack</strong>(3)</span></a>,
+<a class="reference internal" href="#spread"><span class="std std-doc"><strong>spread</strong>(3)</span></a>,
+<a class="reference internal" href="#unpack"><span class="std std-doc"><strong>unpack</strong>(3)</span></a></p>
 <section id="fortran-lang-intrinsic-descriptions-license-mit-urbanjost">
 <h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#fortran-lang-intrinsic-descriptions-license-mit-urbanjost" title="Permalink to this heading">#</a></h4>
 </section>
@@ -2533,11 +2533,11 @@ If <strong>vector</strong> is present, the result size is that of <strong>vector
 </section>
 <section id="id8">
 <h3><strong>See Also</strong><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>unpack</strong>(3)</span>,
-<span class="xref myst"><strong>merge</strong>(3)</span>,
-<span class="xref myst"><strong>pack</strong>(3)</span>,
-<span class="xref myst"><strong>spread</strong>(3)</span>,
-<span class="xref myst"><strong>unpack</strong>(3)</span></p>
+<p><a class="reference internal" href="#unpack"><span class="std std-doc"><strong>unpack</strong>(3)</span></a>,
+<a class="reference internal" href="#merge"><span class="std std-doc"><strong>merge</strong>(3)</span></a>,
+<a class="reference internal" href="#pack"><span class="std std-doc"><strong>pack</strong>(3)</span></a>,
+<a class="reference internal" href="#spread"><span class="std std-doc"><strong>spread</strong>(3)</span></a>,
+<a class="reference internal" href="#unpack"><span class="std std-doc"><strong>unpack</strong>(3)</span></a></p>
 <section id="id9">
 <h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h4>
 </section>
@@ -2565,8 +2565,8 @@ If <strong>vector</strong> is present, the result size is that of <strong>vector
 <h3><strong>Description</strong><a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
 <p>Replicates a <strong>source</strong> array <strong>ncopies</strong> times along a specified
 dimension <strong>dim</strong>.</p>
-<p>If SOURCE is scalar, the shape of the result is (MAX (NCOPIES, 0)).
-and each element of the result has a value equal to SOURCE.</p>
+<p>If <strong>source</strong> is scalar, the shape of the result is (MAX (NCOPIES, 0)).
+and each element of the result has a value equal to <strong>source</strong>.</p>
 </section>
 <section id="id13">
 <h3><strong>Arguments</strong><a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
@@ -2671,11 +2671,11 @@ where <strong>n</strong> equals the rank of <strong>source</strong>.</p>
 </section>
 <section id="id17">
 <h3><strong>See Also</strong><a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>pack</strong>(3)</span>,
-<span class="xref myst"><strong>unpack</strong>(3)</span>,
-<span class="xref myst"><strong>merge</strong>(3)</span>,
-<span class="xref myst"><strong>pack</strong>(3)</span>,
-<span class="xref myst"><strong>unpack</strong>(3)</span></p>
+<p><a class="reference internal" href="#pack"><span class="std std-doc"><strong>pack</strong>(3)</span></a>,
+<a class="reference internal" href="#unpack"><span class="std std-doc"><strong>unpack</strong>(3)</span></a>,
+<a class="reference internal" href="#merge"><span class="std std-doc"><strong>merge</strong>(3)</span></a>,
+<a class="reference internal" href="#pack"><span class="std std-doc"><strong>pack</strong>(3)</span></a>,
+<a class="reference internal" href="#unpack"><span class="std std-doc"><strong>unpack</strong>(3)</span></a></p>
 <section id="fortran-lang-intrinsic-descriptions">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#fortran-lang-intrinsic-descriptions" title="Permalink to this heading">#</a></h4>
 </section>
@@ -2685,17 +2685,27 @@ where <strong>n</strong> equals the rank of <strong>source</strong>.</p>
 <h2>unpack<a class="headerlink" href="#unpack" title="Permalink to this heading">#</a></h2>
 <section id="id18">
 <h3><strong>Name</strong><a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h3>
-<p><strong>unpack</strong>(3) - [ARRAY CONSTRUCTION] Store the elements of a vector in an array of higher rank</p>
+<p><strong>unpack</strong>(3) - [ARRAY CONSTRUCTION] scatter the elements of a vector
+into an array using a mask</p>
 </section>
 <section id="id19">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">unpack</span><span class="p">(</span><span class="n">vector</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="p">)</span><span class="w"></span>
+
+<span class="w"> </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vector</span><span class="p">(:)</span><span class="w"></span>
+<span class="w"> </span><span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">               </span><span class="kd">::</span><span class="w"> </span><span class="n">mask</span><span class="p">(..)</span><span class="w"></span>
+<span class="w"> </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">field</span><span class="p">(..)</span><span class="w"></span>
+<span class="w"> </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">))</span><span class="w">            </span><span class="kd">::</span><span class="w"> </span><span class="k">result</span><span class="p">(..)</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id20">
 <h3><strong>Description</strong><a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
-<p>Store the elements of <strong>vector</strong> in an array of higher rank.</p>
+<p>Scatter the elements of <strong>vector</strong> into a copy of an array <strong>field</strong>
+of any rank using <em>.true.</em> values from <strong>mask</strong> in array element order
+to specify placement of the <strong>vector</strong> values.</p>
+<p>So a copy of <strong>field</strong> is generated with select elements replaced with
+values from <strong>vector</strong>.</p>
 </section>
 <section id="id21">
 <h3><strong>Arguments</strong><a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h3>
@@ -2712,7 +2722,8 @@ as many elements as <strong>mask</strong> has <strong>.true.</strong> values.</p
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>field</strong></dt><dd><p>Shall be of the same type as <strong>vector</strong> and have the same shape as <strong>mask</strong>.</p>
+<dt><strong>field</strong></dt><dd><p>Shall be of the same type and type parameters as <strong>vector</strong> and
+shall be conformable with <strong>mask</strong>.</p>
 </dd>
 </dl>
 </li>
@@ -2720,11 +2731,42 @@ as many elements as <strong>mask</strong> has <strong>.true.</strong> values.</p
 </section>
 <section id="id22">
 <h3><strong>Returns</strong><a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h3>
-<p>The resulting array corresponds to <strong>field</strong> with <strong>.true.</strong> elements of <strong>mask</strong>
-replaced by values from <strong>vector</strong> in array element order.</p>
+<p>The result is an array of the same type and type parameters as <strong>vector</strong>
+and the same shape as <strong>mask</strong>.</p>
+<p>The element of the result that corresponds to the ith true element
+of MASK, in array element order, has the value VECTOR (i) for i =
+1, 2, …, t, where t is the number of true values in MASK. Each
+other element has a value equal to FIELD if FIELD is scalar or to the
+corresponding element of FIELD if it is an array.</p>
+<p>The resulting array corresponds to <strong>field</strong> with <strong>.true.</strong> elements
+of <strong>mask</strong> replaced by values from <strong>vector</strong> in array element order.</p>
 </section>
 <section id="id23">
 <h3><strong>Examples</strong><a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h3>
+<p>Particular values may be “scattered” to particular positions in an array by using</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>                       1 0 0        
+    If M is the array  0 1 0 
+                       0 0 1  
+
+    V is the array [1, 2, 3],
+		               . T .
+    and Q is the logical mask  T . .
+  	                       . . T
+    where &quot;T&quot; represents true and &quot;.&quot; represents false, then the result of 
+
+    UNPACK (V, MASK = Q, FIELD = M) has the value
+                                       
+      1 2 0 
+      1 1 0  
+      0 0 3 
+
+    and the result of UNPACK (V, MASK = Q, FIELD = 0) has the value
+
+      0 2 0
+      1 0 0 
+      0 0 3
+</pre></div>
+</div>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_unpack</span><span class="w"></span>
 <span class="k">implicit none</span>
@@ -2751,11 +2793,11 @@ replaced by values from <strong>vector</strong> in array element order.</p>
 </section>
 <section id="id25">
 <h3><strong>See Also</strong><a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>pack</strong>(3)</span>,
-<span class="xref myst"><strong>merge</strong>(3)</span>,
-<span class="xref myst"><strong>pack</strong>(3)</span>,
-<span class="xref myst"><strong>spread</strong>(3)</span>,
-<span class="xref myst"><strong>unpack</strong>(3)</span></p>
+<p><a class="reference internal" href="#pack"><span class="std std-doc"><strong>pack</strong>(3)</span></a>,
+<a class="reference internal" href="#merge"><span class="std std-doc"><strong>merge</strong>(3)</span></a>,
+<a class="reference internal" href="#pack"><span class="std std-doc"><strong>pack</strong>(3)</span></a>,
+<a class="reference internal" href="#spread"><span class="std std-doc"><strong>spread</strong>(3)</span></a>,
+<a class="reference internal" href="#unpack"><span class="std std-doc"><strong>unpack</strong>(3)</span></a></p>
 <section id="id26">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3095,7 +3137,7 @@ occur if there is no interface defined.</p>
 </section>
 <section id="id51">
 <h3><strong>See Also</strong><a class="headerlink" href="#id51" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>ubound</strong>(3)</span>,
+<p><a class="reference internal" href="#ubound"><span class="std std-doc"><strong>ubound</strong>(3)</span></a>,
 <span class="xref myst"><strong>co_lbound</strong>(3)</span></p>
 <section id="id52">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id52" title="Permalink to this heading">#</a></h4>
@@ -3229,8 +3271,8 @@ value has the default integer kind otherwise the specified kind.</p>
 </section>
 <section id="id68">
 <h3><strong>See Also</strong><a class="headerlink" href="#id68" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>reshape</strong>(3)</span>,
-<span class="xref myst"><strong>size</strong>(3)</span></p>
+<p><a class="reference internal" href="#reshape"><span class="std std-doc"><strong>reshape</strong>(3)</span></a>,
+<a class="reference internal" href="#size"><span class="std std-doc"><strong>size</strong>(3)</span></a></p>
 <section id="id69">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id69" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3430,7 +3472,7 @@ is absent, the return value is of default <em>integer</em> kind.</p>
 </section>
 <section id="id77">
 <h3><strong>See Also</strong><a class="headerlink" href="#id77" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>shape</strong>(3)</span>,
+<p><a class="reference internal" href="#shape"><span class="std std-doc"><strong>shape</strong>(3)</span></a>,
 [<strong>reshape</strong>(3)])(RESHAPE)</p>
 <section id="id78">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id78" title="Permalink to this heading">#</a></h4>
@@ -3556,9 +3598,9 @@ and later</p>
 </section>
 <section id="id86">
 <h3><strong>See Also</strong><a class="headerlink" href="#id86" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>lbound</strong>(3)</span>,
+<p><a class="reference internal" href="#lbound"><span class="std std-doc"><strong>lbound</strong>(3)</span></a>,
 <span class="xref myst"><strong>co_ubound</strong>(3)</span>,
-[<strong>co_lbound</strong>(3)(CO_LBOUND)]</p>
+[<strong>co_lbound</strong>(3)(co_lbound)]</p>
 <section id="id87">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id87" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3579,15 +3621,15 @@ and later</p>
 <section id="id90">
 <h3><strong>Description</strong><a class="headerlink" href="#id90" title="Permalink to this heading">#</a></h3>
 <p>Determines the location of the element in the array with the maximum
-value, or, if the <strong>dim</strong> argument is supplied, determines the locations of
-the maximum element along each row of the array in the <strong>dim</strong> direction. If
-<strong>mask</strong> is present, only the elements for which <strong>mask</strong> is <strong>.true.</strong> are
-considered. If more than one element in the array has the maximum value,
-the location returned is that of the first such element in array element
-order. If the array has zero size, or all of the elements of <strong>mask</strong> are
-.false., then the result is an array of zeroes. Similarly, if <strong>dim</strong> is
-supplied and all of the elements of <strong>mask</strong> along a given row are zero, the
-result value for that row is zero.</p>
+value, or, if the <strong>dim</strong> argument is supplied, determines the locations
+of the maximum element along each row of the array in the <strong>dim</strong>
+direction. If <strong>mask</strong> is present, only the elements for which <strong>mask</strong>
+is <strong>.true.</strong> are considered. If more than one element in the array has
+the maximum value, the location returned is that of the first such element
+in array element order. If the array has zero size, or all of the elements
+of <strong>mask</strong> are .false., then the result is an array of zeroes. Similarly,
+if <strong>dim</strong> is supplied and all of the elements of <strong>mask</strong> along a given
+row are zero, the result value for that row is zero.</p>
 </section>
 <section id="id91">
 <h3><strong>Arguments</strong><a class="headerlink" href="#id91" title="Permalink to this heading">#</a></h3>
@@ -3613,12 +3655,12 @@ dummy argument.</p>
 </section>
 <section id="id92">
 <h3><strong>Returns</strong><a class="headerlink" href="#id92" title="Permalink to this heading">#</a></h3>
-<p>If <strong>dim</strong> is absent, the result is a rank-one array with a length equal to
-the rank of <strong>array</strong>. If <strong>dim</strong> is present, the result is an array with a rank
-one less than the rank of <strong>array</strong>, and a size corresponding to the size of
-<strong>array</strong> with the <strong>dim</strong> dimension removed. If <strong>dim</strong> is present and <strong>array</strong> has a
-rank of one, the result is a scalar. In all cases, the result is of
-default <em>integer</em> type.</p>
+<p>If <strong>dim</strong> is absent, the result is a rank-one array with a length equal
+to the rank of <strong>array</strong>. If <strong>dim</strong> is present, the result is an array
+with a rank one less than the rank of <strong>array</strong>, and a size corresponding
+to the size of <strong>array</strong> with the <strong>dim</strong> dimension removed. If <strong>dim</strong>
+is present and <strong>array</strong> has a rank of one, the result is a scalar. In
+all cases, the result is of default <em>integer</em> type.</p>
 <p>The value returned is reference to the offset from the beginning of the
 array, not necessarily the subscript value if the array subscripts do
 not start with one.</p>
@@ -3673,7 +3715,7 @@ not start with one.</p>
 <section id="id95">
 <h3><strong>See Also</strong><a class="headerlink" href="#id95" title="Permalink to this heading">#</a></h3>
 <p><span class="xref myst"><strong>max</strong>(3)</span>,
-<span class="xref myst"><strong>maxval</strong>(3)</span></p>
+<a class="reference internal" href="#maxval"><span class="std std-doc"><strong>maxval</strong>(3)</span></a></p>
 <section id="id96">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id96" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3775,7 +3817,7 @@ default <em>integer</em> type.</p>
 <section id="id104">
 <h3><strong>See Also</strong><a class="headerlink" href="#id104" title="Permalink to this heading">#</a></h3>
 <p><span class="xref myst"><strong>min</strong>(3)</span>,
-<span class="xref myst"><strong>minval</strong>(3)</span></p>
+<a class="reference internal" href="#minval"><span class="std std-doc"><strong>minval</strong>(3)</span></a></p>
 <section id="id105">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id105" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3859,11 +3901,11 @@ parameter is that specified by the value of <strong>kind</strong>; otherwise the
 type parameter is that of default integer type. If <strong>dim</strong> does not appear,
 the result is an array of rank one and of size equal to the rank of
 <strong>array</strong>; otherwise, the result is of rank n - 1 and shape</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="p">[</span><span class="n">d1</span> <span class="p">,</span> <span class="n">d2</span> <span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">,</span> <span class="n">dDIM</span><span class="o">-</span><span class="mi">1</span> <span class="p">,</span> <span class="n">dDIM</span><span class="o">+</span><span class="mi">1</span> <span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">,</span> <span class="n">dn</span> <span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="p">[</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">,</span> <span class="n">dDIM</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">dDIM</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">,</span> <span class="n">dn</span> <span class="p">]</span>
 </pre></div>
 </div>
 <p>where</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="p">[</span><span class="n">d1</span> <span class="p">,</span> <span class="n">d2</span> <span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">,</span> <span class="n">dn</span> <span class="p">]</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="p">[</span><span class="n">d1</span><span class="p">,</span> <span class="n">d2</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">,</span> <span class="n">dn</span> <span class="p">]</span>
 </pre></div>
 </div>
 <p>is the shape of <strong>array</strong>.</p>
@@ -3875,7 +3917,7 @@ the result is an array of rank one and of size equal to the rank of
 The result of <strong>findloc (array, value)</strong> is a rank-one array whose
 element values are the values of the subscripts of an element of
 <strong>array</strong> whose value matches <strong>value</strong>. If there is such a value, the
-ith subscript returned lies in the range 1 to ei , where ei is the
+ith subscript returned lies in the range 1 to ei, where ei is the
 extent of the ith dimension of <strong>array</strong>. If no elements match <strong>value</strong>
 or <strong>array</strong> has size zero, all elements of the result are zero.</p></li>
 <li><p><strong>Case (ii):</strong>
@@ -3883,7 +3925,7 @@ the result of <strong>findloc (array, value, mask = mask)</strong> is a
 rank-one array whose element values are the values of the subscripts
 of an element of <strong>array</strong>, corresponding to a true element of <strong>mask</strong>,
 whose value matches <strong>value</strong>. If there is such a value, the ith
-subscript returned lies in the range 1 to ei , where ei is the
+subscript returned lies in the range 1 to ei, where ei is the
 extent of the ith dimension of <strong>array</strong>. If no elements match
 <strong>value</strong>, <strong>array</strong> has size zero, or every element of <strong>mask</strong> has the
 value false, all elements of the result are zero.</p></li>
@@ -3898,13 +3940,13 @@ If <strong>array</strong> has rank one, the result of</p></li>
 </pre></div>
 </div>
 <p>Otherwise, the value of element</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="p">(</span><span class="n">s1</span> <span class="p">,</span> <span class="n">s2</span> <span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">,</span> <span class="n">sDIM</span><span class="o">-</span><span class="mi">1</span> <span class="p">,</span> <span class="n">sDIM</span><span class="o">+</span><span class="mi">1</span> <span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span> <span class="p">,</span> <span class="n">sn</span> <span class="p">)</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">,</span> <span class="n">sDIM</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="n">sDIM</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">.</span> <span class="o">.</span> <span class="o">.</span><span class="p">,</span> <span class="n">sn</span> <span class="p">)</span>
 </pre></div>
 </div>
 <p>of the result is equal to</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">findloc</span> <span class="p">(</span><span class="n">array</span> <span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">sdim</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span> <span class="n">sdim</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">sn</span> <span class="p">),</span> <span class="o">&amp;</span>
       <span class="n">value</span><span class="p">,</span> <span class="n">dim</span><span class="o">=</span><span class="mi">1</span> <span class="p">[,</span> <span class="n">mask</span> <span class="o">=</span> <span class="n">mask</span> <span class="p">(</span><span class="n">s1</span><span class="p">,</span> <span class="n">s2</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">sdim</span><span class="o">-</span><span class="mi">1</span><span class="p">,</span> <span class="p">:,</span>
-                      <span class="n">sdim</span><span class="o">+</span><span class="mi">1</span> <span class="p">,</span> <span class="o">...</span> <span class="p">,</span> <span class="n">sn</span> <span class="p">)])</span><span class="o">.</span>
+                      <span class="n">sdim</span><span class="o">+</span><span class="mi">1</span><span class="p">,</span> <span class="o">...</span><span class="p">,</span> <span class="n">sn</span> <span class="p">)])</span><span class="o">.</span>
 </pre></div>
 </div>
 </section>
@@ -4116,8 +4158,8 @@ dim)</strong> is determined by applying <strong>all()</strong> to the array sect
 <li><p>Result Characteristics. The result is of type <em>logical</em> with the
 same kind type parameter as <strong>mask</strong>. It is scalar if <strong>dim</strong>
 is absent or <strong>n = 1</strong>; otherwise, the result has rank <strong>n - 1</strong>
-and shape <strong>[d1 , d2 , … , dDIM-1 , dDIM+1 , … , dn ]</strong>
-where <strong>[d1 , d2 , … , dn ]</strong> is the shape of <strong>mask</strong>.</p></li>
+and shape <strong>[d1, d2, …, dDIM-1, dDIM+1, …, dn ]</strong>
+where <strong>[d1, d2, …, dn ]</strong> is the shape of <strong>mask</strong>.</p></li>
 <li><p>Result Value.</p>
 <dl class="simple myst">
 <dt>Case (i):</dt><dd><p>The result of <strong>all(mask)</strong> has the value true if all
@@ -4126,10 +4168,10 @@ size zero, and the result has value false if any element
 of <strong>mask</strong> is false.</p>
 </dd>
 <dt>Case (ii):</dt><dd><p>If <strong>mask</strong> has rank one, <strong>all(mask,dim)</strong> is equal to
-<strong>all(mask)</strong>. Otherwise, the value of element <strong>(s1 , s2 ,
-… , sdim-1 , sdim+1 , … , sn )</strong> of all <strong>(mask,
-dim)</strong> is equal to <strong>all(mask (s1 , s2 , … , sdim-1 ,
-:, sdim+1 , … , sn ))</strong>.</p>
+<strong>all(mask)</strong>. Otherwise, the value of element <strong>(s1, s2,
+…, sdim-1, sdim+1, …, sn )</strong> of all <strong>(mask,
+dim)</strong> is equal to <strong>all(mask (s1, s2, …, sdim-1,
+:, sdim+1, …, sn ))</strong>.</p>
 </dd>
 </dl>
 </li>
@@ -4180,10 +4222,10 @@ dim)</strong> is equal to <strong>all(mask (s1 , s2 , … , sdim-1 ,
    then all(B /= C, DIM = 1) is
 
       [true, false, false]
-</pre></div>
-</div>
-<p>and <strong>all(B /= C, DIM = 2)</strong> is</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>        <span class="p">[</span><span class="n">false</span><span class="p">,</span> <span class="n">false</span><span class="p">]</span><span class="o">.</span>
+
+   and **all(B /= C, DIM = 2)** is
+
+        [false, false].
 </pre></div>
 </div>
 </section>
@@ -4472,7 +4514,7 @@ kind as <strong>array</strong>.</p>
 <section id="id152">
 <h3><strong>See Also</strong><a class="headerlink" href="#id152" title="Permalink to this heading">#</a></h3>
 <p><span class="xref myst"><strong>max</strong>(3)</span>,
-<span class="xref myst"><strong>maxloc</strong>(3)</span></p>
+<a class="reference internal" href="#maxloc"><span class="std std-doc"><strong>maxloc</strong>(3)</span></a></p>
 <section id="id153">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id153" title="Permalink to this heading">#</a></h4>
 </section>
@@ -4629,7 +4671,7 @@ kind as <strong>array</strong>.</p>
 <section id="id161">
 <h3><strong>See Also</strong><a class="headerlink" href="#id161" title="Permalink to this heading">#</a></h3>
 <p><span class="xref myst"><strong>min</strong>(3)</span>,
-<span class="xref myst"><strong>minloc</strong>(3)</span></p>
+<a class="reference internal" href="#minloc"><span class="std std-doc"><strong>minloc</strong>(3)</span></a></p>
 <section id="id162">
 <h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#id162" title="Permalink to this heading">#</a></h4>
 </section>
@@ -4772,30 +4814,30 @@ array of the same shape as <strong>array</strong>.</p>
 
 <span class="k">contains</span>
 
-<span class="k">subroutine </span><span class="n">print_matrix_int</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
-<span class="k">implicit none</span><span class="w"></span>
-
-<span class="c">!@(#) print small 2d integer arrays in row-column format</span>
-
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">title</span><span class="w"></span>
-<span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:,:)</span><span class="w"></span>
-<span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">biggest</span><span class="w"></span>
-
-<span class="w">   </span><span class="k">print all</span>
-<span class="k">   print all</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">title</span><span class="p">),</span><span class="s1">&#39;:(&#39;</span><span class="p">,</span><span class="nb">shape</span><span class="p">(</span><span class="n">arr</span><span class="p">),</span><span class="s1">&#39;)&#39;</span><span class="w">  </span><span class="c">! print title</span>
-<span class="w">   </span><span class="n">biggest</span><span class="o">=</span><span class="s1">&#39;           &#39;</span><span class="w">  </span><span class="c">! make buffer to write integer into</span>
-<span class="w">   </span><span class="c">! find how many characters to use for integers</span>
-<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="n">biggest</span><span class="p">,</span><span class="s1">&#39;(i0)&#39;</span><span class="p">)</span><span class="nb">ceiling</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">maxval</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">arr</span><span class="p">)))))</span><span class="o">+</span><span class="mi">2</span><span class="w"></span>
-<span class="w">   </span><span class="c">! use this format to write a row</span>
-<span class="w">   </span><span class="n">biggest</span><span class="o">=</span><span class="s1">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">biggest</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;:,&quot;,&quot;))&#39;</span><span class="w"></span>
-<span class="w">   </span><span class="c">! print one row of array at a time</span>
-<span class="w">   </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="n">biggest</span><span class="p">,</span><span class="n">advance</span><span class="o">=</span><span class="s1">&#39;no&#39;</span><span class="p">)</span><span class="n">arr</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span><span class="w"></span>
-<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(&quot; ]&quot;)&#39;</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">enddo</span>
-
-<span class="k">end subroutine </span><span class="n">print_matrix_int</span><span class="w"></span>
+<span class="k">   subroutine </span><span class="n">print_matrix_int</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">implicit none</span><span class="w"></span>
+<span class="w">   </span>
+<span class="w">   </span><span class="c">!@(#) print small 2d integer arrays in row-column format</span>
+<span class="w">   </span>
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">title</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:,:)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">biggest</span><span class="w"></span>
+<span class="w">   </span>
+<span class="w">      </span><span class="k">print all</span>
+<span class="k">      print all</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">title</span><span class="p">),</span><span class="s1">&#39;:(&#39;</span><span class="p">,</span><span class="nb">shape</span><span class="p">(</span><span class="n">arr</span><span class="p">),</span><span class="s1">&#39;)&#39;</span><span class="w">  </span><span class="c">! print title</span>
+<span class="w">      </span><span class="n">biggest</span><span class="o">=</span><span class="s1">&#39;           &#39;</span><span class="w">  </span><span class="c">! make buffer to write integer into</span>
+<span class="w">      </span><span class="c">! find how many characters to use for integers</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="n">biggest</span><span class="p">,</span><span class="s1">&#39;(i0)&#39;</span><span class="p">)</span><span class="nb">ceiling</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">maxval</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">arr</span><span class="p">)))))</span><span class="o">+</span><span class="mi">2</span><span class="w"></span>
+<span class="w">      </span><span class="c">! use this format to write a row</span>
+<span class="w">      </span><span class="n">biggest</span><span class="o">=</span><span class="s1">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">biggest</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;:,&quot;,&quot;))&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="c">! print one row of array at a time</span>
+<span class="w">      </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">         </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="n">biggest</span><span class="p">,</span><span class="n">advance</span><span class="o">=</span><span class="s1">&#39;no&#39;</span><span class="p">)</span><span class="n">arr</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span><span class="w"></span>
+<span class="w">         </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(&quot; ]&quot;)&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">enddo</span>
+<span class="k">   </span>
+<span class="k">   end subroutine </span><span class="n">print_matrix_int</span><span class="w"></span>
 
 <span class="k">end program </span><span class="n">demo_product</span><span class="w"></span>
 </pre></div>
@@ -4868,7 +4910,7 @@ dim=3 :( 2 3 )
 </section>
 <section id="id170">
 <h3><strong>See Also</strong><a class="headerlink" href="#id170" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>sum</strong>(3)</span>, note that an element by element multiplication is done
+<p><a class="reference internal" href="#sum"><span class="std std-doc"><strong>sum</strong>(3)</span></a>, note that an element by element multiplication is done
 directly using the star character.</p>
 <section id="id171">
 <h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#id171" title="Permalink to this heading">#</a></h4>
@@ -4928,7 +4970,7 @@ is returned.</p>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">simple_sum</span><span class="w"></span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">,</span><span class="mi">5</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
 <span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w">                        </span><span class="c">! all elements, sum = 15</span>
 <span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="o">=</span><span class="nb">mod</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="o">==</span><span class="mi">1</span><span class="p">)</span><span class="w">     </span><span class="c">! odd elements, sum = 9</span>
 <span class="k">end program </span><span class="n">simple_sum</span><span class="w"></span>
@@ -4946,7 +4988,7 @@ is returned.</p>
 <span class="w">   </span><span class="n">csum</span><span class="o">=</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">nd</span><span class="p">))</span><span class="w"></span>
 <span class="w">   </span><span class="n">cpsum</span><span class="o">=</span><span class="w"> </span><span class="nb">sum</span><span class="w"> </span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">nd</span><span class="p">),</span><span class="w"> </span><span class="n">mask</span><span class="o">=</span><span class="n">c</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="w"></span>
 <span class="w">   </span><span class="n">cbpsum</span><span class="o">=</span><span class="w"> </span><span class="nb">sum</span><span class="p">(</span><span class="n">c</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">nd</span><span class="p">),</span><span class="w"> </span><span class="n">mask</span><span class="o">=</span><span class="n">b</span><span class="p">.</span><span class="n">gt</span><span class="p">.</span><span class="mf">0.0</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sum of all elements in c = &#39;</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">csum</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sum of all elements in c = &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">csum</span><span class="w"></span>
 <span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sum of Positive elements in c = &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">cpsum</span><span class="w"></span>
 <span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Sum of elements in c when corresponding elements in b&gt;0&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
 <span class="w">   </span><span class="p">&amp;</span><span class="w"> </span><span class="s1">&#39; =&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">cbpsum</span><span class="w"></span>
@@ -5056,7 +5098,7 @@ assumed.</p>
 </section>
 <section id="id188">
 <h3><strong>See Also</strong><a class="headerlink" href="#id188" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>shape</strong>(3)</span></p>
+<p><a class="reference internal" href="#shape"><span class="std std-doc"><strong>shape</strong>(3)</span></a></p>
 <section id="id189">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id189" title="Permalink to this heading">#</a></h4>
 </section>
@@ -5086,7 +5128,7 @@ assumed.</p>
   
   <div class="footer-item">
     <p class="copyright">
-    &copy; Copyright 2022, Fortran Community.<br>
+    &copy; Copyright 2020-2022, Fortran Community.<br>
 </p>
   </div>
   

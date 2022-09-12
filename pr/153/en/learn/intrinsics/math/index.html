@@ -177,14 +177,14 @@
 
 <!-- NOTE: this JS must live here (not in our global JS file) because it relies
      on being processed by Jinja before it is run (specifically for replacing
-     variables learn/intrinsics/math/index and {'version_match': 'en'}.
+     variables learn/intrinsics/math and {'json_url': 'https://fortran-lang.org/', 'version_match': 'en'}.
 -->
 
 <script type="text/javascript">
   // Check if corresponding page path exists in other version of docs
   // and, if so, go there instead of the homepage of the other docs version
   function checkPageExistsAndRedirect(event) {
-    const currentFilePath = "learn/intrinsics/math/index",
+    const currentFilePath = "learn/intrinsics/math",
       tryUrl = event.target.getAttribute("href");
     location.href = tryUrl;
     // this prevents the browser from following the href of the clicked node
@@ -194,7 +194,7 @@
 
   // Populate the version switcher from the JSON config file
   (function () {
-    const currentFilePath = "learn/intrinsics/math/index";
+    const currentFilePath = "learn/intrinsics/math";
     const indexFilePath = "../../../";
     let btn = document.getElementById("version_switcher_button");
     // Set empty strings by default so that these attributes exist and can be used in CSS selectors
@@ -2594,7 +2594,7 @@
     <ul class="nav section-nav flex-column">
      <li class="toc-h4 nav-item toc-entry">
       <a class="reference internal nav-link" href="#id235">
-       fortran-lang intrinsic descriptions license: MIT) @urbanjost
+       fortran-lang intrinsic descriptions (license: MIT) @urbanjost
       </a>
      </li>
     </ul>
@@ -3107,7 +3107,7 @@ lies between</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hyperbolic_functions">Wikipedia:hyperbolic functions</a></p></li>
 </ul>
-<p>Inverse function: <span class="xref myst"><strong>cosh</strong>(3)</span></p>
+<p>Inverse function: <a class="reference internal" href="#cosh"><span class="std std-doc"><strong>cosh</strong>(3)</span></a></p>
 <section id="id9">
 <h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3170,6 +3170,7 @@ of the track using the arcsine. Given</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span> sin(theta) = 1.25 miles/50 miles (opposite/hypotenuse)
 </pre></div>
 </div>
+<p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_asin</span><span class="w"></span>
 <span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span><span class="w"></span>
 <span class="k">implicit none</span><span class="w"></span>
@@ -3216,7 +3217,7 @@ train reducing the allowable grade.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">wikipedia: inverse trigonometric functions</a></p></li>
 </ul>
-<p>Inverse function: <span class="xref myst"><strong>sin</strong>(3)</span></p>
+<p>Inverse function: <a class="reference internal" href="#sin"><span class="std std-doc"><strong>sin</strong>(3)</span></a></p>
 <section id="id18">
 <h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3286,7 +3287,7 @@ imaginary part of the result is in radians and lies between
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hyperbolic_functions">Wikipedia:hyperbolic functions</a></p></li>
 </ul>
-<p>Inverse function: <span class="xref myst"><strong>sinh</strong>(3)</span></p>
+<p>Inverse function: <a class="reference internal" href="#sinh"><span class="std std-doc"><strong>sinh</strong>(3)</span></a></p>
 <section id="fortran-lang-intrinsic-descriptions">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#fortran-lang-intrinsic-descriptions" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3300,11 +3301,11 @@ imaginary part of the result is in radians and lies between
 </section>
 <section id="id28">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span>  - result = __atan(y, x)__
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">atan</span><span class="p">(</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
 
-   TYPE(kind=KIND):: atan
-   TYPE(kind=KIND,intent(in) :: x
-   TYPE(kind=KIND,intent(in),optional :: y
+<span class="w">    </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="kd">::</span><span class="w"> </span><span class="nb">atan</span>
+<span class="nb">    </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="w">    </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">y</span><span class="w"></span>
 </pre></div>
 </div>
 <p>where <strong>TYPE</strong> may be <em>real</em> or <em>complex</em> and <strong>KIND</strong> may be any <strong>KIND</strong> supported
@@ -3380,7 +3381,7 @@ arguments Fortran 2008 or later</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Inverse_trigonometric_functions">wikipedia: inverse trigonometric functions</a></p></li>
 </ul>
-<p><span class="xref myst"><strong>atan2</strong>(3)</span>, <span class="xref myst"><strong>tan</strong>(3)</span></p>
+<p><a class="reference internal" href="#atan2"><span class="std std-doc"><strong>atan2</strong>(3)</span></a>, <a class="reference internal" href="#tan"><span class="std std-doc"><strong>tan</strong>(3)</span></a></p>
 <section id="id35">
 <h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#id35" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3518,7 +3519,7 @@ imaginary part of the result is in radians and lies between</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hyperbolic_functions">Wikipedia:hyperbolic functions</a></p></li>
 </ul>
-<p>Inverse function: <span class="xref myst"><strong>tanh</strong>(3)</span></p>
+<p>Inverse function: <a class="reference internal" href="#tanh"><span class="std std-doc"><strong>tanh</strong>(3)</span></a></p>
 <section id="id52">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id52" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3601,9 +3602,9 @@ the range <strong>-1 &lt;= cos(x) &lt;= 1</strong> .</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Sine_and_cosine">Wikipedia:sine and cosine</a></p></li>
 </ul>
-<p><span class="xref myst"><strong>acos</strong>(3)</span>,
-<span class="xref myst"><strong>sin</strong>(3)</span>,
-<span class="xref myst"><strong>tan</strong>(3)</span></p>
+<p><a class="reference internal" href="#acos"><span class="std std-doc"><strong>acos</strong>(3)</span></a>,
+<a class="reference internal" href="#sin"><span class="std std-doc"><strong>sin</strong>(3)</span></a>,
+<a class="reference internal" href="#tan"><span class="std std-doc"><strong>tan</strong>(3)</span></a></p>
 <section id="id61">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id61" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3670,7 +3671,7 @@ imaginary part of the result is in radians.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hyperbolic_functions">Wikipedia:hyperbolic functions</a></p></li>
 </ul>
-<p>Inverse function: <span class="xref myst"><strong>acosh</strong>(3)</span></p>
+<p>Inverse function: <a class="reference internal" href="#acosh"><span class="std std-doc"><strong>acosh</strong>(3)</span></a></p>
 <section id="id70">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id70" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3805,9 +3806,9 @@ along the surface of the Earth between the locations:</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Sine_and_cosine">Wikipedia:sine and cosine</a></p></li>
 </ul>
-<p><span class="xref myst"><strong>asin</strong>(3)</span>,
-<span class="xref myst"><strong>cos</strong>(3)</span>,
-<span class="xref myst"><strong>tan</strong>(3)</span></p>
+<p><a class="reference internal" href="#asin"><span class="std std-doc"><strong>asin</strong>(3)</span></a>,
+<a class="reference internal" href="#cos"><span class="std std-doc"><strong>cos</strong>(3)</span></a>,
+<a class="reference internal" href="#tan"><span class="std std-doc"><strong>tan</strong>(3)</span></a></p>
 <section id="id79">
 <h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#id79" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3905,7 +3906,7 @@ in radians.</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hyperbolic_functions">Wikipedia:hyperbolic functions</a></p></li>
 </ul>
-<p><span class="xref myst"><strong>asinh</strong>(3)</span></p>
+<p><a class="reference internal" href="#asinh"><span class="std std-doc"><strong>asinh</strong>(3)</span></a></p>
 <section id="id88">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id88" title="Permalink to this heading">#</a></h4>
 </section>
@@ -3964,9 +3965,9 @@ in radians.</p>
 </section>
 <section id="id96">
 <h3><strong>See Also</strong><a class="headerlink" href="#id96" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>atan</strong>(3)</span>,
-<span class="xref myst"><strong>cos</strong>(3)</span>,
-<span class="xref myst"><strong>sin</strong>(3)</span></p>
+<p><a class="reference internal" href="#atan"><span class="std std-doc"><strong>atan</strong>(3)</span></a>,
+<a class="reference internal" href="#cos"><span class="std std-doc"><strong>cos</strong>(3)</span></a>,
+<a class="reference internal" href="#sin"><span class="std std-doc"><strong>sin</strong>(3)</span></a></p>
 <section id="id97">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id97" title="Permalink to this heading">#</a></h4>
 </section>
@@ -4033,7 +4034,7 @@ value lies in the range</p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Hyperbolic_functions">Wikipedia:hyperbolic functions</a></p></li>
 </ul>
-<p><span class="xref myst"><strong>atanh</strong>(3)</span></p>
+<p><a class="reference internal" href="#atanh"><span class="std std-doc"><strong>atanh</strong>(3)</span></a></p>
 <section id="id106">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id106" title="Permalink to this heading">#</a></h4>
 </section>
@@ -4131,7 +4132,7 @@ from the uniform distribution over the range 0 &lt;= x &lt; 1.</p>
 </section>
 <section id="id113">
 <h3><strong>See Also</strong><a class="headerlink" href="#id113" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>random_seed</strong>(3)</span></p>
+<p><a class="reference internal" href="#random-seed"><span class="std std-doc"><strong>random_seed</strong>(3)</span></a></p>
 <section id="id114">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id114" title="Permalink to this heading">#</a></h4>
 </section>
@@ -4210,7 +4211,7 @@ or equal to the number returned by the <strong>size</strong> argument.</p>
 </section>
 <section id="id121">
 <h3><strong>See Also</strong><a class="headerlink" href="#id121" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>random_number</strong>(3)</span></p>
+<p><a class="reference internal" href="#random-number"><span class="std std-doc"><strong>random_number</strong>(3)</span></a></p>
 <section id="id122">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id122" title="Permalink to this heading">#</a></h4>
 </section>
@@ -4261,7 +4262,7 @@ of the <em>real</em> component of <strong>x</strong> is <strong>log(huge(x))</st
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_exp</span><span class="w"></span>
 <span class="k">implicit none</span>
-<span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">,</span><span class="w"> </span><span class="n">re</span><span class="p">,</span><span class="w"> </span><span class="n">im</span><span class="w"></span>
+<span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">re</span><span class="p">,</span><span class="w"> </span><span class="n">im</span><span class="w"></span>
 <span class="kt">complex</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cx</span><span class="w"></span>
 
 <span class="w">   </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0</span><span class="w"></span>
@@ -4307,7 +4308,7 @@ of the <em>real</em> component of <strong>x</strong> is <strong>log(huge(x))</st
 <section id="id130">
 <h3><strong>See Also</strong><a class="headerlink" href="#id130" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
-<li><p><span class="xref myst"><strong>log</strong>(3)</span></p></li>
+<li><p><a class="reference internal" href="#log"><span class="std std-doc"><strong>log</strong>(3)</span></a></p></li>
 <li><p>Wikipedia:<a class="reference external" href="https://en.wikipedia.org/wiki/Exponential_function">Exponential function</a></p></li>
 <li><p>Wikipedia:<a class="reference external" href="https://en.wikipedia.org/wiki/Euler%27s_formula">Euler’s formula</a></p></li>
 </ul>
@@ -4459,7 +4460,7 @@ the same as <strong>x</strong>.</p>
 <span class="w">   </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Where TYPE may be <em>real</em> or <em>complex</em> and <strong>KIND</strong> may be any
+<p>Where <strong>TYPE</strong> may be <em>real</em> or <em>complex</em> and <strong>KIND</strong> may be any
 kind valid for the declared type.</p>
 </section>
 <section id="id150">
@@ -4474,7 +4475,7 @@ magnitude, one positive and one negative. The nonnegative square root
 is called the principal square root.</p>
 <p>The principal square root of 9 is 3, for example, even though (-3)*(-3)
 is also 9.</p>
-<p>A <em>real</em>, <em>radicand</em> must be positive.</p>
+<p>A <em>real</em> radicand must be positive.</p>
 <p>Square roots of negative numbers are a special case of complex numbers,
 where the components of the <em>radicand</em> need not be positive in order to
 have a valid square root.</p>
@@ -4483,7 +4484,7 @@ have a valid square root.</p>
 <h3><strong>Arguments</strong><a class="headerlink" href="#id151" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>x</strong></dt><dd><p>If <strong>x</strong> is real its value must be greater than or equal to zero.
+<dt><strong>x</strong></dt><dd><p>If <strong>x</strong> is <em>real</em> its value must be greater than or equal to zero.
 The type shall be <em>real</em> or <em>complex</em>.</p>
 </dd>
 </dl>
@@ -4553,7 +4554,8 @@ the same as <strong>x</strong>.</p>
 </section>
 <section id="id158">
 <h3><strong>Description</strong><a class="headerlink" href="#id158" title="Permalink to this heading">#</a></h3>
-<p><strong>hypot(x,y)</strong> is referred to as the Euclidean distance function. It is equal to <span class="math notranslate nohighlight">\(\sqrt{x^2+y^2}\)</span> , without undue underflow or overflow.</p>
+<p><strong>hypot(x,y)</strong> is referred to as the Euclidean distance function. It is
+equal to <span class="math notranslate nohighlight">\(\sqrt{x^2+y^2}\)</span>, without undue underflow or overflow.</p>
 <p>In mathematics, the <em>Euclidean distance</em> between two points in Euclidean
 space is the length of a line segment between two points.</p>
 <p><strong>hypot(x,y)</strong> returns the distance between the point <strong>&lt;x,y&gt;</strong> and the origin.</p>
@@ -4576,8 +4578,8 @@ space is the length of a line segment between two points.</p>
 <section id="id160">
 <h3><strong>Returns</strong><a class="headerlink" href="#id160" title="Permalink to this heading">#</a></h3>
 <p>The return value has the same type and kind type parameter as <strong>x</strong>.</p>
-<p>The result is the positive magnitude of the distance of the point <strong>&lt;x,y&gt;</strong> from the
-origin <strong>&lt;0.0,0.0&gt;</strong> .</p>
+<p>The result is the positive magnitude of the distance of the point
+<strong>&lt;x,y&gt;</strong> from the origin <strong>&lt;0.0,0.0&gt;</strong> .</p>
 </section>
 <section id="id161">
 <h3><strong>Examples</strong><a class="headerlink" href="#id161" title="Permalink to this heading">#</a></h3>
@@ -4693,11 +4695,11 @@ of order <strong>0</strong> of <strong>x</strong>.</p>
 </section>
 <section id="id171">
 <h3><strong>See Also</strong><a class="headerlink" href="#id171" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>bessel_j1</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_jn</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_y0</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_y1</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_yn</strong>(3)</span></p>
+<p><a class="reference internal" href="#bessel-j1"><span class="std std-doc"><strong>bessel_j1</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-jn"><span class="std std-doc"><strong>bessel_jn</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-y0"><span class="std std-doc"><strong>bessel_y0</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-y1"><span class="std std-doc"><strong>bessel_y1</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-yn"><span class="std std-doc"><strong>bessel_yn</strong>(3)</span></a></p>
 <section id="id172">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id172" title="Permalink to this heading">#</a></h4>
 </section>
@@ -4759,11 +4761,11 @@ of order <strong>1</strong> of <strong>x</strong>.</p>
 </section>
 <section id="id180">
 <h3><strong>See Also</strong><a class="headerlink" href="#id180" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>bessel_j0</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_jn</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_y0</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_y1</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_yn</strong>(3)</span></p>
+<p><a class="reference internal" href="#bessel-j0"><span class="std std-doc"><strong>bessel_j0</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-jn"><span class="std std-doc"><strong>bessel_jn</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-y0"><span class="std std-doc"><strong>bessel_y0</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-y1"><span class="std std-doc"><strong>bessel_y1</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-yn"><span class="std std-doc"><strong>bessel_yn</strong>(3)</span></a></p>
 <section id="id181">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id181" title="Permalink to this heading">#</a></h4>
 </section>
@@ -4845,11 +4847,11 @@ of the first kind of the orders <strong>n1</strong> to <strong>n2</strong>.</p>
 </section>
 <section id="id189">
 <h3><strong>See Also</strong><a class="headerlink" href="#id189" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>bessel_j0</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_j1</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_y0</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_y1</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_yn</strong>(3)</span></p>
+<p><a class="reference internal" href="#bessel-j0"><span class="std std-doc"><strong>bessel_j0</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-j1"><span class="std std-doc"><strong>bessel_j1</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-y0"><span class="std std-doc"><strong>bessel_y0</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-y1"><span class="std std-doc"><strong>bessel_y1</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-yn"><span class="std std-doc"><strong>bessel_yn</strong>(3)</span></a></p>
 <section id="id190">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id190" title="Permalink to this heading">#</a></h4>
 </section>
@@ -4910,11 +4912,11 @@ kind of order 0 of <strong>x</strong>.</p>
 </section>
 <section id="id198">
 <h3><strong>See Also</strong><a class="headerlink" href="#id198" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>bessel_j0</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_j1</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_jn</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_y1</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_yn</strong>(3)</span></p>
+<p><a class="reference internal" href="#bessel-j0"><span class="std std-doc"><strong>bessel_j0</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-j1"><span class="std std-doc"><strong>bessel_j1</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-jn"><span class="std std-doc"><strong>bessel_jn</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-y1"><span class="std std-doc"><strong>bessel_y1</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-yn"><span class="std std-doc"><strong>bessel_yn</strong>(3)</span></a></p>
 <section id="id199">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id199" title="Permalink to this heading">#</a></h4>
 </section>
@@ -4970,11 +4972,11 @@ kind of order 1 of <strong>x</strong>.</p>
 </section>
 <section id="id207">
 <h3><strong>See Also</strong><a class="headerlink" href="#id207" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>bessel_j0</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_j1</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_jn</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_y0</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_yn</strong>(3)</span></p>
+<p><a class="reference internal" href="#bessel-j0"><span class="std std-doc"><strong>bessel_j0</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-j1"><span class="std std-doc"><strong>bessel_j1</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-jn"><span class="std std-doc"><strong>bessel_jn</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-y0"><span class="std std-doc"><strong>bessel_y0</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-yn"><span class="std std-doc"><strong>bessel_yn</strong>(3)</span></a></p>
 <section id="id208">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id208" title="Permalink to this heading">#</a></h4>
 </section>
@@ -5055,11 +5057,11 @@ function|Bessel functions of the first kind of the orders <strong>n1</strong> to
 </section>
 <section id="id216">
 <h3><strong>See Also</strong><a class="headerlink" href="#id216" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>bessel_j0</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_j1</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_jn</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_y0</strong>(3)</span>,
-<span class="xref myst"><strong>bessel_y1</strong>(3)</span></p>
+<p><a class="reference internal" href="#bessel-j0"><span class="std std-doc"><strong>bessel_j0</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-j1"><span class="std std-doc"><strong>bessel_j1</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-jn"><span class="std std-doc"><strong>bessel_jn</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-y0"><span class="std std-doc"><strong>bessel_y0</strong>(3)</span></a>,
+<a class="reference internal" href="#bessel-y1"><span class="std std-doc"><strong>bessel_y1</strong>(3)</span></a></p>
 <section id="id217">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id217" title="Permalink to this heading">#</a></h4>
 </section>
@@ -5123,7 +5125,7 @@ range <strong>-1</strong> &lt;= <strong>erf</strong>(x) &lt;= 1 .</p>
 </section>
 <section id="id225">
 <h3>See also<a class="headerlink" href="#id225" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>erfc</strong>(3)</span></p>
+<p><a class="reference internal" href="#erfc"><span class="std std-doc"><strong>erfc</strong>(3)</span></a></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Error_function">Wikipedia:error function</a></p></li>
 </ul>
@@ -5150,7 +5152,7 @@ range <strong>-1</strong> &lt;= <strong>erf</strong>(x) &lt;= 1 .</p>
 </section>
 <section id="id229">
 <h3><strong>Description</strong><a class="headerlink" href="#id229" title="Permalink to this heading">#</a></h3>
-<p><strong>erfc</strong>(x) computes the complementary error function of <strong>x</strong>. Simpy put
+<p><strong>erfc</strong>(x) computes the complementary error function of <strong>x</strong>. Simply put
 this is equivalent to <strong>1 - erf(x)</strong>, but <strong>erfc</strong> is provided because
 of the extreme loss of relative accuracy if <strong>erf(x)</strong> is called for
 large <strong>x</strong> and the result is subtracted from <strong>1</strong>.</p>
@@ -5206,12 +5208,12 @@ the range</p>
 </section>
 <section id="id234">
 <h3>See also<a class="headerlink" href="#id234" title="Permalink to this heading">#</a></h3>
-<p><span class="xref myst"><strong>erf</strong>(3)</span></p>
+<p><a class="reference internal" href="#erf"><span class="std std-doc"><strong>erf</strong>(3)</span></a></p>
 <ul class="simple">
 <li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Error_function">Wikipedia:error function</a></p></li>
 </ul>
 <section id="id235">
-<h4>fortran-lang intrinsic descriptions license: MIT) &#64;urbanjost<a class="headerlink" href="#id235" title="Permalink to this heading">#</a></h4>
+<h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#id235" title="Permalink to this heading">#</a></h4>
 </section>
 </section>
 </section>
@@ -5352,19 +5354,17 @@ t\*\*{x-1}{\\mathrm{e}}\*\*{__-t__}\\,{\\mathrm{d}}t
 <span class="w">      </span><span class="k">enddo</span>
 <span class="k">   endblock </span><span class="n">FAC</span><span class="w"></span>
 
-<span class="k">contains</span>
-
-<span class="k">function </span><span class="n">factorial</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="w"></span>
-<span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="mi">0</span><span class="n">d0</span><span class="p">)</span><span class="w"></span>
-<span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
-<span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">f</span><span class="w"></span>
-<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">le</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
-<span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0))&#39;</span><span class="p">)</span><span class="s1">&#39;&lt;ERROR&gt; gamma(3) function value &#39;</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39; &lt;= 0&#39;</span><span class="w"></span>
-<span class="w">      </span><span class="k">stop</span><span class="w">      </span><span class="s1">&#39;&lt;STOP&gt; bad value in gamma function&#39;</span><span class="w"></span>
-<span class="w">   </span><span class="k">endif</span>
-<span class="k">   </span><span class="n">f</span><span class="o">=</span><span class="nb">gamma</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="w"></span>
-<span class="k">end function </span><span class="n">factorial</span><span class="w"></span>
-
+<span class="w">   </span><span class="k">contains</span>
+<span class="k">   function </span><span class="n">factorial</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">f</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="mi">0</span><span class="n">d0</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">   </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">f</span><span class="w"></span>
+<span class="w">      </span><span class="k">if</span><span class="p">(</span><span class="n">i</span><span class="p">.</span><span class="n">le</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
+<span class="k">         write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(*(g0))&#39;</span><span class="p">)</span><span class="s1">&#39;&lt;ERROR&gt; gamma(3) function value &#39;</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="s1">&#39; &lt;= 0&#39;</span><span class="w"></span>
+<span class="w">         </span><span class="k">stop</span><span class="w">      </span><span class="s1">&#39;&lt;STOP&gt; bad value in gamma function&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">endif</span>
+<span class="k">      </span><span class="n">f</span><span class="o">=</span><span class="nb">gamma</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="n">i</span><span class="o">+</span><span class="mi">1</span><span class="p">))</span><span class="w"></span>
+<span class="w">   </span><span class="k">end function </span><span class="n">factorial</span><span class="w"></span>
 <span class="k">end program </span><span class="n">demo_gamma</span><span class="w"></span>
 </pre></div>
 </div>
@@ -5406,7 +5406,7 @@ t\*\*{x-1}{\\mathrm{e}}\*\*{__-t__}\\,{\\mathrm{d}}t
 </section>
 <section id="id251">
 <h3><strong>See Also</strong><a class="headerlink" href="#id251" title="Permalink to this heading">#</a></h3>
-<p>Logarithm of the Gamma function: <span class="xref myst"><strong>log_gamma</strong>(3)</span></p>
+<p>Logarithm of the Gamma function: <a class="reference internal" href="#log-gamma"><span class="std std-doc"><strong>log_gamma</strong>(3)</span></a></p>
 <p><a class="reference external" href="https://en.wikipedia.org/wiki/Gamma_function">Wikipedia: Gamma_function</a></p>
 <section id="id252">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id252" title="Permalink to this heading">#</a></h4>
@@ -5464,7 +5464,7 @@ t\*\*{x-1}{\\mathrm{e}}\*\*{__-t__}\\,{\\mathrm{d}}t
 </section>
 <section id="id260">
 <h3><strong>See Also</strong><a class="headerlink" href="#id260" title="Permalink to this heading">#</a></h3>
-<p>Gamma function: <span class="xref myst"><strong>gamma</strong>(3)</span></p>
+<p>Gamma function: <a class="reference internal" href="#gamma"><span class="std std-doc"><strong>gamma</strong>(3)</span></a></p>
 <section id="id261">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id261" title="Permalink to this heading">#</a></h4>
 </section>
@@ -5521,7 +5521,7 @@ t\*\*{x-1}{\\mathrm{e}}\*\*{__-t__}\\,{\\mathrm{d}}t
 </section>
 <section id="id270">
 <h3><strong>See Also</strong><a class="headerlink" href="#id270" title="Permalink to this heading">#</a></h3>
-<p>Gamma function: <span class="xref myst"><strong>gamma</strong>(3)</span></p>
+<p>Gamma function: <a class="reference internal" href="#gamma"><span class="std std-doc"><strong>gamma</strong>(3)</span></a></p>
 <section id="id271">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id271" title="Permalink to this heading">#</a></h4>
 </section>
@@ -5579,11 +5579,10 @@ with dimension DIM dropped is returned.</p>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_norm2</span><span class="w"></span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
 
 <span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">reshape</span><span class="p">([</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
 <span class="w">   </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">   </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="w"> </span><span class="p">,</span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">   </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
 <span class="w">   </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="w">  </span><span class="p">&amp;</span><span class="w"></span>
 <span class="p">],</span><span class="nb">shape</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="n">order</span><span class="o">=</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="w"></span>
 
@@ -5621,7 +5620,7 @@ with dimension DIM dropped is returned.</p>
 <h3><strong>See Also</strong><a class="headerlink" href="#id279" title="Permalink to this heading">#</a></h3>
 <p><span class="xref myst"><strong>product</strong>(3)</span>,
 <span class="xref myst"><strong>sum</strong>(3)</span>,
-<span class="xref myst"><strong>hypot</strong>(3)</span></p>
+<a class="reference internal" href="#hypot"><span class="std std-doc"><strong>hypot</strong>(3)</span></a></p>
 <section id="id280">
 <h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id280" title="Permalink to this heading">#</a></h4>
 </section>
@@ -5651,7 +5650,7 @@ with dimension DIM dropped is returned.</p>
   
   <div class="footer-item">
     <p class="copyright">
-    &copy; Copyright 2022, Fortran Community.<br>
+    &copy; Copyright 2020-2022, Fortran Community.<br>
 </p>
   </div>
   

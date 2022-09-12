@@ -175,7 +175,7 @@
 
 <!-- NOTE: this JS must live here (not in our global JS file) because it relies
      on being processed by Jinja before it is run (specifically for replacing
-     variables learn/intrinsics/index and {'version_match': 'en'}.
+     variables learn/intrinsics/index and {'json_url': 'https://fortran-lang.org/', 'version_match': 'en'}.
 -->
 
 <script type="text/javascript">
@@ -920,7 +920,7 @@ Intrinsics<div class="sd-summary-down docutils">
 <li class="toctree-l2"><a class="reference internal" href="system/#date-and-time">date_and_time</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system/#system-clock">system_clock</a></li>
 <li class="toctree-l2"><a class="reference internal" href="system/#execute-command-line">execute_command_line</a></li>
-<li class="toctree-l2"><a class="reference internal" href="system/#get-environment">get_environment</a></li>
+<li class="toctree-l2"><a class="reference internal" href="system/#get-environment-variable">get_environment_variable</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="transform/">Matrix multiplication, dot product, and array shifts</a><ul>
@@ -930,6 +930,7 @@ Intrinsics<div class="sd-summary-down docutils">
 <li class="toctree-l2"><a class="reference internal" href="transform/#matmul">matmul</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transform/#parity">parity</a></li>
 <li class="toctree-l2"><a class="reference internal" href="transform/#null">null</a></li>
+<li class="toctree-l2"><a class="reference internal" href="transform/#reduce">reduce</a></li>
 </ul>
 </li>
 <li class="toctree-l1"><a class="reference internal" href="type/">Types and kinds</a><ul>
@@ -944,6 +945,7 @@ Intrinsics<div class="sd-summary-down docutils">
 <li class="toctree-l2"><a class="reference internal" href="type/#transfer">transfer</a></li>
 <li class="toctree-l2"><a class="reference internal" href="type/#logical">logical</a></li>
 <li class="toctree-l2"><a class="reference internal" href="type/#kind">kind</a></li>
+<li class="toctree-l2"><a class="reference internal" href="type/#out-of-range">out_of_range</a></li>
 <li class="toctree-l2"><a class="reference internal" href="type/#selected-char-kind">selected_char_kind</a></li>
 <li class="toctree-l2"><a class="reference internal" href="type/#selected-int-kind">selected_int_kind</a></li>
 <li class="toctree-l2"><a class="reference internal" href="type/#selected-real-kind">selected_real_kind</a></li>
@@ -955,9 +957,9 @@ Intrinsics<div class="sd-summary-down docutils">
 </div>
 </details><section id="overview">
 <h2>Overview<a class="headerlink" href="#overview" title="Permalink to this heading">#</a></h2>
-<p>The standard documents and most vendor-supplied descriptions of
-the intrinsics are often very brief and concise to the point of the
-functionality of the intrinsics being obscure, particularly to someone
+<p>The standard documents and most vendor-supplied descriptions of the
+intrinsics are often very brief and concise to the point where the
+functionality of the intrinsics becomes obscure, particularly to someone
 unfamiliar with the procedure.</p>
 <p>By describing the procedures here</p>
 <ul class="simple">
@@ -967,65 +969,32 @@ unfamiliar with the procedure.</p>
 (including additional documents at fortran-lang.org and related
 discussions in Fortran Discourse)</p></li>
 </ul>
-<p>these documents strive to be a valuable asset for Fortran programmers.</p>
+<p>these documents strive to clarify the intrinsics for Fortran programmers.</p>
 <p>This is a community-driven resource and everyone is encouraged to contribute
-to the documents. For contribution guidelines see <a class="reference internal" href="../../community/minibooks/#minibooks"><span class="std std-ref">Mini-book Tutorials on fortran-lang.org</span></a>
+to the documents. For contribution guidelines see <a class="reference internal" href="../../community/minibooks/"><span class="doc std std-doc">minibook guide</span></a>
 and the following Copyright guidelines.</p>
 </section>
 <section id="see-also">
 <h2>See Also<a class="headerlink" href="#see-also" title="Permalink to this heading">#</a></h2>
 <ul class="simple">
 <li><p>The <a class="reference external" href="https://stdlib.fortran-lang.org/">Fortran stdlib</a> project</p></li>
-<li><p><a class="reference external" href="https://fortran-lang.org/packages/fpm">fpm(1)</a> packages, many of which are general-purpose libraries/modules</p></li>
+<li><p><a class="reference external" href="https://fortran-lang.org/packages/fpm">fpm(1)</a> packages, many of
+which are general-purpose libraries/modules</p></li>
+<li><p><a class="reference external" href="https://github.com/urbanjost/M_intrinsics">M_intrinsics</a> a related project
+to leverage the descriptions here to generate man-pages and an OS-agnostic CLI
+(Command Line Interface) program. This includes a tar(1) and zip(1)
+file of man-pages and a self-contained Fortran program that lets you
+view the non-graphical plain ASCII portions of the documentation from
+a terminal interface.</p></li>
 </ul>
-<p>Experimental</p>
-<ul>
-<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/slidy_byprocedure.html">review by procedure </a></p></li>
-<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/slidy_byheader.html">review by header </a></p></li>
-<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/fman.f90">fman(1)</a> A self-contained Fortran program that
-lets you view the non-graphical plain ASCII portions of the
-documentation from a terminal interface. Compile the program and
-enter “./fman –help” for directions.</p></li>
-<li><p><a class="reference external" href="http://www.urbanjost.altervista.org/SUPPLEMENTS/fortran.tgz">man pages</a> A gzipped tar(1) file containing
-early versions of man-pages derived from the markdown documents.</p>
-<p>Typical installation on a Linux platform as an administrator ( but it varies) :</p>
-</li>
-</ul>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># as the administrator</span>
-<span class="nb">cd</span> /usr/share
-tar xvfz /tmp/fortran.tgz
-<span class="nb">cd</span> man
-mandb -c
-</pre></div>
-</div>
-<p>then anyone on that plaform can enter commands like</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>man sinh.3fortran     <span class="c1"># specifically show Fortran sinh(3) documentation</span>
-man -k . -s 3fortran  <span class="c1"># list all fortran pages</span>
-man -s 3fortran --regex <span class="s1">&#39;.*&#39;</span> <span class="p">|</span>col -b <span class="c1"># show all Fortran intrinsics</span>
-</pre></div>
-</div>
-<p>See man(1) (ie. enter “man man”) for more information.</p>
-<p>If you can only install the pages on your own ID, try</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="c1"># as a user, placing the files in ~/man:</span>
-<span class="nb">cd</span>
-tar xvfz /tmp/fortran.tgz
-<span class="nb">cd</span> man
-mandb -c
-<span class="nb">export</span> <span class="nv">MANPATH</span><span class="o">=</span><span class="s2">&quot;</span><span class="nv">$MANPATH</span><span class="s2">:</span><span class="nv">$HOME</span><span class="s2">/man&quot;</span>
-<span class="nb">export</span> <span class="nv">MANWIDTH</span><span class="o">=</span><span class="m">80</span>
-</pre></div>
-</div>
-<p>Still debating whether having to keep the document limited to ANSI
-characters is worth-while so these formats can be generated, and
-still having issues converting the markdown to the proper formats.</p>
 </section>
 <section id="text-content-copyrights">
 <h2>Text Content Copyrights<a class="headerlink" href="#text-content-copyrights" title="Permalink to this heading">#</a></h2>
-<p>Many of the documents presented here are modified versions of man-pages from the
-<a class="reference external" href="https://fortranwiki.org">Fortran Wiki</a>
-and as such are available under the terms of the GNU
-Free Documentation License <span class="xref myst"><strong>GFDL</strong></span>
-with no invariant sections, front-cover texts, or back-cover texts.</p>
+<p>Many of the documents presented here are modified versions of
+man-pages from the <a class="reference external" href="https://fortranwiki.org">Fortran Wiki</a> and as such
+are available under the terms of the GNU Free Documentation License
+<span class="xref myst"><strong>GFDL</strong></span> with no invariant sections,
+front-cover texts, or back-cover texts.</p>
 <p>If you contribute to this site by modifying the files marked as GFDL,
 you thereby agree to license the contributed material to the public
 under the GFDL (version 1.2 or any later version published by the Free
@@ -1067,7 +1036,7 @@ specially-formatted last line. For example, change</p>
   
   <div class="footer-item">
     <p class="copyright">
-    &copy; Copyright 2022, Fortran Community.<br>
+    &copy; Copyright 2020-2022, Fortran Community.<br>
 </p>
   </div>
   
