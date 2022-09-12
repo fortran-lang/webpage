@@ -155,9 +155,9 @@ In print
 :::{toctree}
 :hidden:
 
-learn/quickstart/index
-learn/best_practices/index
 learn/os_setup/index
+learn/quickstart/index
 learn/building_programs/index
+learn/best_practices/index
 learn/intrinsics/index
 :::
