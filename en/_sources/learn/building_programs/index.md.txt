@@ -45,13 +45,14 @@ consider all these details. In fact, this is the sort of things that is
 taken care of by the build process: the compiler and the linker.
 
 ```{toctree}
+:maxdepth: 2
 :hidden:
-Build tools <build_tools>
 Compiling the source code <compiling_source>
-Distributing your programs <distributing>
-Include files and modules <include_files>
 Linking the objects <linking_pieces>
-Managing libraries (static and dynamic libraries) <managing_libraries>
-An introduction to make <project_make>
 Run-time libraries <runtime_libraries>
+Include files and modules <include_files>
+Managing libraries (static and dynamic libraries) <managing_libraries>
+Build tools <build_tools>
+An introduction to make <project_make>
+Distributing your programs <distributing>
 ```

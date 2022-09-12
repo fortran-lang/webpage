@@ -26,8 +26,8 @@ _The choice of text editors and IDEs has been controversial among the developers
 ```{toctree}
 :hidden:
 Choosing a compiler <choose_compiler>
-IDEs <ides>
 Installing GFortran <install_gfortran>
 Text Editors <text_editors>
+IDEs <ides>
 Smart Tips <tips>
 ```

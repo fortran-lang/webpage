@@ -34,7 +34,7 @@ achieve this, but one is to put it in a different source file. We can
 give the general program to a user and they provide a specific source code.
 
 Assume for the sake of the example that the function is implemented in a
-source file "function.f90" as:
+source file "functions.f90" as:
 
 ```fortran
 module user_functions
