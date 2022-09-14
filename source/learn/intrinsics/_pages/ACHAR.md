@@ -161,13 +161,13 @@ FORTRAN 77 and later, with KIND argument Fortran 2003 and later
 
 ### **See Also**
 
-[**char**(3)](#char),
-[**iachar**(3)](#iachar),
-[**ichar**(3)](#ichar)
+[**char**(3)](CHAR),
+[**iachar**(3)](IACHAR),
+[**ichar**(3)](ICHAR)
 
 ### **Resources**
 
 - [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code)
 - [M_attr module](https://github.com/urbanjost/M_attr) for controlling ANSI-compatible terminals
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

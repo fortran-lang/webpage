@@ -44,12 +44,12 @@ result value for that row is zero.
 
 ### **Returns**
 
-If **dim** is absent, the result is a rank-one array with a length equal to
-the rank of **array**. If **dim** is present, the result is an array with a rank
-one less than the rank of **array**, and a size corresponding to the size of
-**array** with the **dim** dimension removed. If **dim** is present and **array** has a
-rank of one, the result is a scalar. In all cases, the result is of
-default _integer_ type.
+If **dim** is absent, the result is a rank-one array with a length equal
+to the rank of **array**. If **dim** is present, the result is an array
+with a rank one less than the rank of **array**, and a size corresponding
+to the size of **array** with the **dim** dimension removed. If **dim**
+is present and **array** has a rank of one, the result is a scalar. In
+all cases, the result is of default _integer_ type.
 
 ### **Examples**
 
@@ -63,13 +63,13 @@ integer,save :: ints(3,5)= reshape([&
    9, 15,  6, 12,  3, &
   14,  5, 11,  2,  8  &
 ],shape(ints),order=[2,1])
-    write(*,*) minloc(ints)
-    write(*,*) minloc(ints,dim=1)
-    write(*,*) minloc(ints,dim=2)
-    ! where in each column is the smallest number .gt. 10 ?
-    write(*,*) minloc(ints,dim=2,mask=ints.gt.10)
-    ! a one-dimensional array with dim=1 explicitly listed returns a scalar
-    write(*,*) minloc(pack(ints,.true.),dim=1) ! scalar
+   write(*,*) minloc(ints)
+   write(*,*) minloc(ints,dim=1)
+   write(*,*) minloc(ints,dim=2)
+   ! where in each column is the smallest number .gt. 10 ?
+   write(*,*) minloc(ints,dim=2,mask=ints.gt.10)
+   ! a one-dimensional array with dim=1 explicitly listed returns a scalar
+   write(*,*) minloc(pack(ints,.true.),dim=1) ! scalar
 end program demo_minloc
 ```
 
@@ -89,7 +89,7 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**min**(3)](#min),
-[**minval**(3)](#minval)
+[**min**(3)](MIN),
+[**minval**(3)](MINVAL)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

@@ -71,6 +71,6 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**allocated**(3)](#allocated)
+[**allocated**(3)](ALLOCATED)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

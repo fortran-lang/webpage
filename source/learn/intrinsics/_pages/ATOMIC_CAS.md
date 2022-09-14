@@ -61,8 +61,8 @@ TS 18508 or later
 
 ### **See Also**
 
-[**atomic_define**(3)](#atomic_define),
-[**atomic_ref**(3)](#atomic_ref),
-[**iso_fortran_env**(3)](#)
+[**atomic_define**(3)](ATOMIC_DEFINE),
+[**atomic_ref**(3)](ATOMIC_REF),
+[**iso_fortran_env**(3)]()
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

@@ -71,8 +71,8 @@ Fortran 2008 and later
 
 ### See also
 
-[**erf**(3)](#erf)
+[**erf**(3)](ERF)
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

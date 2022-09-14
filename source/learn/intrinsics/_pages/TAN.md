@@ -49,8 +49,8 @@ FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.
 
 ### **See Also**
 
-[**atan**(3)](#atan),
-[**cos**(3)](#cos),
-[**sin**(3)](#sin)
+[**atan**(3)](ATAN),
+[**cos**(3)](COS),
+[**sin**(3)](SIN)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

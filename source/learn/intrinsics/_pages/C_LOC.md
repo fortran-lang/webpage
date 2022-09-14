@@ -48,11 +48,11 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**c_associated**(3)](#c_associated),
-[**c_funloc**(3)](#c_funloc),
-[**c_f_pointer**(3)](#c_f_pointer),
+[**c_associated**(3)](C_ASSOCIATED),
+[**c_funloc**(3)](C_FUNLOC),
+[**c_f_pointer**(3)](C_F_POINTER),
 
-[**c_f_procpointer**(3)](#c_f_procpointer),
+[**c_f_procpointer**(3)](C_F_PROCPOINTER),
 **iso_c_binding**(3)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

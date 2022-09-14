@@ -13,10 +13,13 @@
 
      complex(kind=KIND),intent(in) :: z
 ```
-
 ### **Description**
 
 **aimag(z)** yields the imaginary part of complex argument **z**.
+
+This is similar to the modern complex-part-designator **%IM** which also
+designates the imaginary part of a value, accept a designator can appear
+on the left-hand side of an assignment as well, as in **val%im=10.0**.
 
 ### **Arguments**
 
@@ -49,9 +52,7 @@ complex(kind=real64) z8
     print *, aimag([z4,z4/2.0,z4+z4,z4**3])
 end program demo_aimag
 ```
-
 Results:
-
 ```text
   2.000000       4.00000000000000
 
@@ -60,9 +61,13 @@ Results:
 
        2.000000       1.000000       4.000000      -2.000000
 ```
+### **See Also**
+
+[**real**(3)](REAL),
+[**cmplx**(3)](CMPLX)
 
 ### **Standard**
 
 FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

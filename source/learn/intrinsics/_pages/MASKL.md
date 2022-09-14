@@ -97,6 +97,6 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**maskr**(3)](#maskr)
+[**maskr**(3)](MASKR)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

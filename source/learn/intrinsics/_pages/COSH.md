@@ -56,6 +56,6 @@ FORTRAN 77 and later, for a complex argument - Fortran 2008 or later
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-Inverse function: [**acosh**(3)](#acosh)
+Inverse function: [**acosh**(3)](ACOSH)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

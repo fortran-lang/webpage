@@ -61,4 +61,4 @@ end program demo_iostat
 
 Fortran 2003 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

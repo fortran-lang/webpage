@@ -88,4 +88,4 @@ Fortran 95 and later
 
 intrinsics
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

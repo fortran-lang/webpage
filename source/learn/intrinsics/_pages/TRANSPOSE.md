@@ -12,18 +12,22 @@ result = transpose(matrix)
 
 ### **Description**
 
-Transpose an array of rank two. Element (i, j) of the result has the
-value **matrix(j, i)**, for all i, j.
+Transpose an array of rank two. 
+
+A array is transposed by interchanging the rows and columns of the given
+matrix. That is, element (i, j) of the result has the value of element(j,
+i) for all (i, j).
 
 ### **Arguments**
 
 - **matrix**
-  : Shall be an array of any type and have a rank of two.
+  : The array to transpose, which shall be of any type and have a rank
+  of two.
 
 ### **Returns**
 
-The result has the same type as **matrix**, and has shape \[ m, n \] if
-**matrix** has shape \[ n, m \].
+The transpose of the input array.  The result has the same type as
+**matrix**, and has shape \[ m, n \] if **matrix** has shape \[ n, m \].
 
 ### **Examples**
 
@@ -80,9 +84,8 @@ Results:
     > [     4,    40,    44 ]
     > [     5,    50, -1055 ]
 ```
-
 ### **Standard**
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

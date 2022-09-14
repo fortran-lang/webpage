@@ -62,6 +62,6 @@ Fortran 2008 and later
 
 - [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
 
-Inverse function: [**cosh**(3)](#cosh)
+Inverse function: [**cosh**(3)](COSH)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

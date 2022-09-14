@@ -110,7 +110,7 @@ end program demo_get_command_argument
 Results:
 
 ```text
-/demo_get_command_argument a    test  'of getting   arguments  ' "  leading"
+/demo_get_command_argument a   test  'of getting   arguments ' "  leading"
 
  The number of arguments is            5
  The program's name is xxx
@@ -127,7 +127,7 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**get_command**(3)](#get_command),
-[**command_argument_count**(3)](#command_argument_count)
+[**get_command**(3)](GET_COMMAND),
+[**command_argument_count**(3)](COMMAND_ARGUMENT_COUNT)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

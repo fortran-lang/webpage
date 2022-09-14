@@ -43,25 +43,25 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**lge**(3)](#lge),
-[**lle**(3)](#lle),
-[**llt**(3)](#llt)
+[**lge**(3)](LGE),
+[**lle**(3)](LLE),
+[**llt**(3)](LLT)
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
 
 - **Elemental:**
-  [**adjustl**(3)](#adjustl),
-  [**adjustr**(3)](#adjustr),
-  [**index**(3)](#index),
+  [**adjustl**(3)](ADJUSTL),
+  [**adjustr**(3)](ADJUSTR),
+  [**index**(3)](INDEX),
 
-[**scan**(3)](#scan),
-[**verify**(3)](#verify)
+[**scan**(3)](SCAN),
+[**verify**(3)](VERIFY)
 
 - **Nonelemental:**
-  [**len_trim**(3)](#len_trim),
-  [**len**(3)](#len),
-  [**repeat**(3)](#repeat),
-  [**trim**(3)](#trim)
+  [**len_trim**(3)](LEN_TRIM),
+  [**len**(3)](LEN),
+  [**repeat**(3)](REPEAT),
+  [**trim**(3)](TRIM)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

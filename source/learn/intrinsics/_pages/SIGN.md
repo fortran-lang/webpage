@@ -78,4 +78,4 @@ Results:
 
 FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT)
+_fortran-lang intrinsic descriptions (license: MIT)_

@@ -20,8 +20,7 @@ in the array along dimension **dim**.
 ### **Arguments**
 
 - **mask**
-  : shall be a logical array. That is, the type of the argument shall be
-  _logical_ and it shall not be scalar.
+  : shall be a logical array. 
 
 - **dim**
   : (optional) **dim** shall be a scalar integer with a value that lies
@@ -71,60 +70,38 @@ Sample program:
 ```fortran
 program demo_all
 implicit none
-logical l
-   l = all([.true., .true., .true.])
-   print *, l
-   call section
-
-contains
-
-subroutine section
-integer a(2,3), b(2,3)
-  a = 1
-  b = 1
-  b(2,2) = 2
-  print *, all(a .eq. b, 1)
-  print *, all(a .eq. b, 2)
-end subroutine section
+logical bool
+  ! basic usage
+   ! is everything true?
+   bool = all([ .true., .true., .true. ])
+   bool = all([ .true., .false., .true. ])
+   print *, bool
+  ! by a dimension
+   ARRAYS: block
+   integer :: a(2,3), b(2,3)
+    ! set everything to one except one value in b
+    a = 1
+    b = 1
+    b(2,2) = 2
+    ! now compare those two arrays
+    print *,'entire array :', all(a .eq. b )
+    print *,'compare columns:', all(a .eq. b, dim=1)
+    print *,'compare rows:', all(a .eq. b, dim=2)
+  end block ARRAYS
 end program demo_all
 ```
-
-Results:
-
+  Results:
 ```text
     T
-    T F T
-    T F
+    F
+    entire array : F
+    compare columns: T F T
+    compare rows: T F
 ```
-
-Case (i):
-
-```text
-     The value of all([.TRUE., .FALSE., .TRUE.]) is false.
-```
-
-Case (ii):
-
-```text
-                          1|3|5
-   If B is the array      -+-+-
-                          2|4|6
-
-                          0|3|5
-   and C is the array     -+-+-
-                          7|4|8
-
-   then all(B /= C, DIM = 1) is
-
-      [true, false, false]
-
-   and **all(B /= C, DIM = 2)** is
-
-        [false, false].
-```
+### **See Also**
+[**any**(3)](ANY)
 
 ### **Standard**
-
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

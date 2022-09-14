@@ -76,11 +76,11 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**aint**(3)](#aint),
-[**int**(3)](#int),
-[**nint**(3)](#nint),
-[**selected_int_kind**(3)](#selected_int_kind),
-[**ceiling**(3)](#ceiling),
-[**floor**(3)](#floor)
+[**aint**(3)](AINT),
+[**int**(3)](INT),
+[**nint**(3)](NINT),
+[**selected_int_kind**(3)](SELECTED_INT_KIND),
+[**ceiling**(3)](CEILING),
+[**floor**(3)](FLOOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

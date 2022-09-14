@@ -59,8 +59,8 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**poppar**(3)](#poppar),
-[**leadz**(3)](#leadz),
-[**trailz**(3)](#trailz)
+[**poppar**(3)](POPPAR),
+[**leadz**(3)](LEADZ),
+[**trailz**(3)](TRAILZ)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

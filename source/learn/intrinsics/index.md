@@ -29,24 +29,17 @@ GNU Free Documentation License <https://www.gnu.org/licenses/old-licenses/fdl-1.
 
 ## Overview
 
-The standard documents and most vendor-supplied descriptions of the
-intrinsics are often very brief and concise to the point where the
-functionality of the intrinsics becomes obscure, particularly to someone
-unfamiliar with the procedure.
+These documents expand on the intrinsic descriptions in the Fortran standard
+by providing 
 
-By describing the procedures here
+- expanded descriptions including the purpose and uses of the procedures,
+  instead of just the technical specifications.
+- tested working examples
+- links to additional resources
 
-- in greater detail
-- with a working example
-- providing links to additional resources
-  (including additional documents at fortran-lang.org and related
-  discussions in Fortran Discourse)
-
-these documents strive to clarify the intrinsics for Fortran programmers.
-
-This is a community-driven resource and everyone is encouraged to contribute
-to the documents. For contribution guidelines see [minibook guide](/community/minibooks)
-and the following Copyright guidelines.
+This is a community-driven resource and everyone is encouraged to
+contribute to the documents. For contribution guidelines see [minibook
+guide](/community/minibooks) and the following Copyright guidelines.
 
 ## See Also
 
@@ -81,13 +74,13 @@ the MIT license, and should indicate this by placing MIT on the
 specially-formatted last line. For example, change
 
 ```text
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_
 ```
 
 to
 
 ```text
-###### fortran-lang intrinsic descriptions (License: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (License: MIT) @urbanjost_
 ```
 
 Written in [Myst-Markdown](https://myst-parser.readthedocs.io/en/latest/)

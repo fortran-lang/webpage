@@ -66,6 +66,6 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**random_number**(3)](#random_number)
+[**random_number**(3)](RANDOM_NUMBER)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

@@ -66,9 +66,9 @@ TS 18508 or later
 
 ### **See Also**
 
-[**co_min**(3)](#co_min),
-[**co_sum**(3)](#co_sum),
-[**co_reduce**(3)](#co_reduce),
-[**co_broadcast**(3)](#co_broadcast)
+[**co_min**(3)](CO_MIN),
+[**co_sum**(3)](CO_SUM),
+[**co_reduce**(3)](CO_REDUCE),
+[**co_broadcast**(3)](CO_BROADCAST)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

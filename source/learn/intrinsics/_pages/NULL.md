@@ -117,6 +117,6 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**associated**(3)](#associated)
+[**associated**(3)](ASSOCIATED)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

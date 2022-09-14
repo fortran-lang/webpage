@@ -145,7 +145,7 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**min**(3)](#min),
-[**minloc**(3)](#minloc)
+[**min**(3)](MIN),
+[**minloc**(3)](MINLOC)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

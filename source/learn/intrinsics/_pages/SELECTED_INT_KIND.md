@@ -56,11 +56,11 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**aint**(3)](#aint),
-[**anint**(3)](#anint),
-[**int**(3)](#int),
-[**nint**(3)](#nint),
-[**ceiling**(3)](#ceiling),
-[**floor**(3)](#floor)
+[**aint**(3)](AINT),
+[**anint**(3)](ANINT),
+[**int**(3)](INT),
+[**nint**(3)](NINT),
+[**ceiling**(3)](CEILING),
+[**floor**(3)](FLOOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

@@ -116,4 +116,4 @@ Results:
 
 Fortran 2008 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

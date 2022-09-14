@@ -35,7 +35,7 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**shifta**(3)](#shifta),
-[**shiftl**(3)](#shiftl)
+[**shifta**(3)](SHIFTA),
+[**shiftl**(3)](SHIFTL)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

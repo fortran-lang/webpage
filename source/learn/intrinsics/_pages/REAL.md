@@ -14,10 +14,15 @@ result = real(x, kind)
 
 **real(x, kind)** converts its argument **x** to a real type.
 
+For complex values this is similar to the modern complex-part-designator
+**%RE** which also designates the real part of a value, accept a
+designator can appear on the left-hand side of an assignment as well,
+as in **val%re=(3.0,4.0)**.
+
 ### **Arguments**
 
 - **x**
-  : Shall be _integer_, _real_, or _complex_.
+  : Shall be _integer_, _real_, or _complex_ to convert to _real_.
 
 - **kind**
   : (Optional) An _integer_ initialization expression indicating the kind
@@ -31,8 +36,8 @@ rules:
 1.  **real**(x) is converted to a default _real_ type if **x** is an _integer_
     or _real_ variable.
 
-2.  **real**(x) is converted to a real type with the kind type parameter
-    of **x** if **x** is a _complex_ variable.
+2.  **real**(x) is converted to a _real_ type with the magnitude of the _real_
+    component of a complex value with kind type parameter of **x**.
 
 3.  **real(x, kind)** is converted to a _real_ type with kind type
     parameter **kind** if **x** is a _complex_, _integer_, or _real_ variable.
@@ -70,7 +75,9 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**dble**(3)](#dble),
-[**float**(3)](#float)
+[**dble**(3)](DBLE),
+[**cmplx**(3)](CMPLX),
+[**aimag**(3)](AIMAG),
+[**int**(3)](INT)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

@@ -115,8 +115,8 @@ and later
 
 ### **See Also**
 
-[**lbound**(3)](#lbound),
-[**co_ubound**(3)](#co_ubound),
-[__co\_lbound__(3)(co_lbound)]
+[**lbound**(3)](LBOUND),
+[**co_ubound**(3)](CO_UBOUND),
+[__co\_lbound__(3)(CO_LBOUND)]
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

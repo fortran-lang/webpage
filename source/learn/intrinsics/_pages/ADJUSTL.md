@@ -66,6 +66,6 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**adjustr**(3)](#adjustr)
+[**adjustr**(3)](ADJUSTR)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

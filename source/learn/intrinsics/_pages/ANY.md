@@ -70,9 +70,11 @@ Results:
     T T T
     T T
 ```
+### **See Also**
+[**any**(3)](ALL)
 
 ### **Standard**
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

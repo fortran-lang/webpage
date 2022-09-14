@@ -124,9 +124,9 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bit_size**(3)](#bit_size),
-[**popcnt**(3)](#popcnt),
-[**poppar**(3)](#poppar),
-[**trailz**(3)](#trailz)
+[**bit_size**(3)](BIT_SIZE),
+[**popcnt**(3)](POPCNT),
+[**poppar**(3)](POPPAR),
+[**trailz**(3)](TRAILZ)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

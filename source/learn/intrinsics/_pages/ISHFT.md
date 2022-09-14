@@ -38,6 +38,6 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ishftc**(3)](#ishftc)
+[**ishftc**(3)](ISHFTC)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

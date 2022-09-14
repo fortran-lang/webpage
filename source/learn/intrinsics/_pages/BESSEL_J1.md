@@ -52,10 +52,10 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bessel_j0**(3)](#bessel_j0),
-[**bessel_jn**(3)](#bessel_jn),
-[**bessel_y0**(3)](#bessel_y0),
-[**bessel_y1**(3)](#bessel_y1),
-[**bessel_yn**(3)](#bessel_yn)
+[**bessel_j0**(3)](BESSEL_J0),
+[**bessel_jn**(3)](BESSEL_JN),
+[**bessel_y0**(3)](BESSEL_Y0),
+[**bessel_y1**(3)](BESSEL_Y1),
+[**bessel_yn**(3)](BESSEL_YN)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

@@ -107,4 +107,4 @@ oblivious to the benefits of EQUIVALENCEs when used sparingly.
 
 Fortran 90 and later
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

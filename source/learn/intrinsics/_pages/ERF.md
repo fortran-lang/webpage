@@ -54,8 +54,8 @@ Fortran 2008 and later
 
 ### See also
 
-[**erfc**(3)](#erfc)
+[**erfc**(3)](ERFC)
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

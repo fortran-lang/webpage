@@ -52,13 +52,13 @@ TS 18508 or later
 
 ### **See Also**
 
-[**atomic_define**(3)](#atomic_define),
-[**atomic_fetch_or**(3)](#atomic_fetch),
+[**atomic_define**(3)](ATOMIC_DEFINE),
+[**atomic_fetch_or**(3)](ATOMIC_FETCH),
 
-[**iso_fortran_env**(3)](#),
-[**atomic_add**(3)](#atomic_add),
-[**atomic_or**(3)](#atomic_or),
+[**iso_fortran_env**(3)](),
+[**atomic_add**(3)](ATOMIC_ADD),
+[**atomic_or**(3)](ATOMIC_OR),
 
-[**atomic_xor**(3)](#atomic_xor)
+[**atomic_xor**(3)](ATOMIC_XOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

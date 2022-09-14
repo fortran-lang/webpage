@@ -78,7 +78,8 @@ integer,allocatable :: array(:)
    print all, 'zero-sized array=>',product([integer :: ])
    ! NOTE: If nothing in the mask is true, this also results in a null
    !       array
-   print all, 'all elements have a false mask=>',product(array,mask=.false.)
+   print all, 'all elements have a false mask=>', &
+            & product(array,mask=.false.)
 
 endblock NO_DIM
 
@@ -115,7 +116,8 @@ integer :: box(2,3,4)
 
    ! only one plane has negative values, so note all the "1" values
    ! for vectors with no elements
-   call print_matrix_int('negative values',product(box,mask=box < 0,dim=1))
+   call print_matrix_int('negative values', &
+   & product(box,mask=box < 0,dim=1))
 
 !   If DIM is specified and ARRAY has rank greater than one, the
 !   result is a new array in which dimension DIM has been eliminated.
@@ -133,14 +135,14 @@ contains
 
    subroutine print_matrix_int(title,arr)
    implicit none
-   
+
    !@(#) print small 2d integer arrays in row-column format
-   
+
    character(len=*),intent(in)  :: title
    integer,intent(in)           :: arr(:,:)
    integer                      :: i
    character(len=:),allocatable :: biggest
-   
+
       print all
       print all, trim(title),':(',shape(arr),')'  ! print title
       biggest='           '  ! make buffer to write integer into
@@ -153,7 +155,7 @@ contains
          write(*,fmt=biggest,advance='no')arr(i,:)
          write(*,'(" ]")')
       enddo
-   
+
    end subroutine print_matrix_int
 
 end program demo_product
@@ -228,7 +230,7 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**sum**(3)](#sum), note that an element by element multiplication is done
+[**sum**(3)](SUM), note that an element by element multiplication is done
 directly using the star character.
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

@@ -90,10 +90,10 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-- [**log**(3)](#log)
+- [**log**(3)](LOG)
 
 - Wikipedia:[Exponential function](https://en.wikipedia.org/wiki/Exponential_function)
 
 - Wikipedia:[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

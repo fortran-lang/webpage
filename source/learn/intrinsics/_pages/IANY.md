@@ -69,8 +69,8 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**iparity**(3)](#iparity),
-[**iall**(3)](#iall),
-[**ior**(3)](#ior)
+[**iparity**(3)](IPARITY),
+[**iall**(3)](IALL),
+[**ior**(3)](IOR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

@@ -35,15 +35,14 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ieor**(3)](#ieor),
-[**not**(3)](#not),
-[**btest**(3)](#btest),
-[**ibclr**(3)](#ibclr),
-[**ibits**(3)](#ibits),
-[**ibset**(3)](#ibset),
-[**iand**(3)](#iand),
-[**ior**(3)](#ior),
-[**ieor**(3)](#ieor),
-[**mvbits**(3)](#mvbits)
+[**btest**(3)](BTEST),
+[**iand**(3)](IAND),
+[**ibclr**(3)](IBCLR),
+[**ibits**(3)](IBITS),
+[**ibset**(3)](IBSET),
+[**ieor**(3)](IEOR),
+[**ior**(3)](IOR),
+[**mvbits**(3)](MVBITS),
+[**not**(3)](NOT)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

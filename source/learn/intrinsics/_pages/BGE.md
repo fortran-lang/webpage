@@ -33,8 +33,8 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**bgt**(3)](#bgt),
-[**ble**(3)](#ble),
-[**blt**(3)](#bit)
+[**bgt**(3)](BGT),
+[**ble**(3)](BLE),
+[**blt**(3)](BIT)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

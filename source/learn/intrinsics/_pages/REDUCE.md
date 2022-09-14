@@ -12,7 +12,6 @@ There are two forms to this function:
    reduce(array, operation, mask, identity, ordered)
    reduce(array, operation, dim, mask, identity, ordered)
 ```
-
 ```fortran
       type(TYPE),intent(in)          :: array
       pure function                  :: operation
@@ -128,10 +127,8 @@ one relative to the input array.
       ! the product of only the positive elements of an array
       arr=[1, -1, 2, -2, 3, -3 ]
       write(*,*)'positive value product=',reduce(arr, my_mult, mask=arr>0)
-      !write(*,*)'positive value sum=',reduce(pack(arr,mask=arr>0), my_mult )
    ! sum values ignoring negative values
       write(*,*)'sum positive values=',reduce(arr, my_sum, mask=arr>0)
-      !write(*,*)'sum positive values=',reduce(pack(arr,mask=arr>0), my_sum )
 
    ! a single-valued array returns the single value as the
    ! calls to the operator stop when only one element remains
@@ -176,14 +173,12 @@ one relative to the input array.
      > [2, 12, 30, should be [2,12,30],
      > [15, 48, should be [15, 48],
 ````
-
 ### **See Also**
 - [co_reduce(3)](CO_REDUCE)
 - [associative:wipipedia](https://en.wikipedia.org/wiki/Associative_property)
-
 
 ### **Standard**
 
    Fortran 2018
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

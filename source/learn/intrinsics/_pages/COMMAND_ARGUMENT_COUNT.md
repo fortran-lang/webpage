@@ -60,7 +60,7 @@ Fortran 2003 and later
 
 ### **See Also**
 
-[**get_command**(3)](#get_command),
-[**get_command_argument**(3)](#get_command_argument)
+[**get_command**(3)](GET_COMMAND),
+[**get_command_argument**(3)](GET_COMMAND_ARGUMENT)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

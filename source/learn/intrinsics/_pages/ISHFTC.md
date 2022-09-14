@@ -42,6 +42,6 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**ishft**(3)](#ishft)
+[**ishft**(3)](ISHFT)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

@@ -37,6 +37,6 @@ Fortran 2008 and later
 
 ### **See Also**
 
-[**dshiftr**(3)](#dshiftr)
+[**dshiftr**(3)](DSHIFTR)
 
-###### fortran-lang intrinsic descriptions
+_fortran-lang intrinsic descriptions_

@@ -107,10 +107,8 @@ Fortran 95 and later
 
 ### **See Also**
 
-[**unpack**(3)](#unpack),
-[**merge**(3)](#merge),
-[**pack**(3)](#pack),
-[**spread**(3)](#spread),
-[**unpack**(3)](#unpack)
+[**merge**(3)](MERGE),
+[**spread**(3)](SPREAD),
+[**unpack**(3)](UNPACK)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+_fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
