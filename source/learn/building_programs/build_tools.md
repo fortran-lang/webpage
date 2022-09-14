@@ -56,8 +56,9 @@ called `Makefile` or `makefile`, which usually leads to compiling a program
 from the provided source code.
 
 ::::{tip}
-For an in-depth `make` tutorial lookup its info page. There is an online version of this <a href=“https://www.gnu.org/software/make/manual/make.html“ target=“_blank“ rel=“noopener“>info page, available.
+For an in-depth `make` tutorial lookup its info page. There is an online version of this <a href="https://www.gnu.org/software/make/manual/make.html" target="_blank" rel="noopener">info page</a>, available.
 ::::
+
 We will start with the basics from your clean source directory. Create and open
 the file `Makefile`, we start with a simple rule called _all_:
 
@@ -306,7 +307,7 @@ While, it seems like an interesting feature to use, it tends to lead to
 surprising and unexpected outcomes. Usually, when defining variables like your
 compiler, there is little reason to actually use the recursive expansion at all.
 
-The same can easily be archived using the `:=` declaration:
+The same can easily be achieved using the `:=` declaration:
 
 ```make
 all:
@@ -533,7 +534,7 @@ CMake knows the details how to build the executable from the specified sources,
 so we do not have to worry about the actual steps in the build process.
 
 ::::{tip}
-CMake's offical reference can be found at the
+CMake's official reference can be found at the
 <a href="https://cmake.org/cmake/help/latest/", target="\_blank" rel="noopener">CMake webpage</a>.
 It is organised in manpages, which are also available with your local CMake
 installation as well using `man cmake`. While it covers all functionality of
