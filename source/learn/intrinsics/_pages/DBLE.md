@@ -61,4 +61,4 @@ FORTRAN 77 and later
 [**float**(3)](#float),
 [**real**(3)](#real)
 
- _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -108,4 +108,4 @@ date and time conversion, formatting and computation
 - [datetime](https://github.com/wavebitscientific/datetime-fortran)
 - [datetime-fortran](https://github.com/wavebitscientific/datetime-fortran)
 
- _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

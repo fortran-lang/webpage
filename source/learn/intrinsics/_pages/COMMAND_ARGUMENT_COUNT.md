@@ -63,4 +63,4 @@ Fortran 2003 and later
 [**get_command**(3)](#get_command),
 [**get_command_argument**(3)](#get_command_argument)
 
- _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

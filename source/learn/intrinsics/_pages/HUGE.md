@@ -109,4 +109,4 @@ Fortran 95 and later
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -231,4 +231,4 @@ Fortran 95 and later
 [**sum**(3)](#sum), note that an element by element multiplication is done
 directly using the star character.
 
- _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

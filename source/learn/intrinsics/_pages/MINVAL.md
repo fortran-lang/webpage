@@ -148,4 +148,4 @@ Fortran 95 and later
 [**min**(3)](#min),
 [**minloc**(3)](#minloc)
 
- _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

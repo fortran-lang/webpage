@@ -170,4 +170,4 @@ FORTRAN 77 and later, with KIND argument Fortran 2003 and later
 - [ANSI escape sequences](https://en.wikipedia.org/wiki/ANSI_escape_code)
 - [M_attr module](https://github.com/urbanjost/M_attr) for controlling ANSI-compatible terminals
 
- _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

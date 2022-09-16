@@ -133,4 +133,4 @@ FORTRAN 77 and later
 [**cos**(3)](#cos),
 [**tan**(3)](#tan)
 
- _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

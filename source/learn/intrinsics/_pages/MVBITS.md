@@ -145,4 +145,4 @@ Fortran 95 and later
 [**ior**(3)](#ior),
 [**ieor**(3)](#ieor)
 
- _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

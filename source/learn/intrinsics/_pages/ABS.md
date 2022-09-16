@@ -119,4 +119,4 @@ end program demo_abs
 
    FORTRAN 77 and later
 
- _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

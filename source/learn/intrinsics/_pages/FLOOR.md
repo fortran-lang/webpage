@@ -90,4 +90,4 @@ Fortran 95 and later
 [**int**(3)](#int),
 [**selected_int_kind**(3)](#selected_int_kind)
 
- _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

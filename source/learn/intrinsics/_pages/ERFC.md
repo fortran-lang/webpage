@@ -75,4 +75,4 @@ Fortran 2008 and later
 
 - [Wikipedia:error function](https://en.wikipedia.org/wiki/Error_function)
 
- _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

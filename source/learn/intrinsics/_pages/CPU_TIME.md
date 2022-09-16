@@ -75,4 +75,4 @@ Fortran 95 and later
 [**system_clock**(3)](#system_clock),
 [**date_and_time**(3)](#date_and_time)
 
- _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
