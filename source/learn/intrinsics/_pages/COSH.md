@@ -58,4 +58,4 @@ FORTRAN 77 and later, for a complex argument - Fortran 2008 or later
 
 Inverse function: [**acosh**(3)](#acosh)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

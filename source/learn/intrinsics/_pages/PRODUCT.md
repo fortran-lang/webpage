@@ -133,14 +133,14 @@ contains
 
    subroutine print_matrix_int(title,arr)
    implicit none
-   
+
    !@(#) print small 2d integer arrays in row-column format
-   
+
    character(len=*),intent(in)  :: title
    integer,intent(in)           :: arr(:,:)
    integer                      :: i
    character(len=:),allocatable :: biggest
-   
+
       print all
       print all, trim(title),':(',shape(arr),')'  ! print title
       biggest='           '  ! make buffer to write integer into
@@ -153,7 +153,7 @@ contains
          write(*,fmt=biggest,advance='no')arr(i,:)
          write(*,'(" ]")')
       enddo
-   
+
    end subroutine print_matrix_int
 
 end program demo_product
@@ -231,4 +231,4 @@ Fortran 95 and later
 [**sum**(3)](#sum), note that an element by element multiplication is done
 directly using the star character.
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+ _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

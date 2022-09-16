@@ -20,15 +20,15 @@
    **mold**.
 
 ### **Arguments**
-   - **x**           
+   - **x**
      : a scalar of type _integer_ or _real_ to be tested for whether
      it can be stored in a variable of the type and kind of **mold**
 
-   - **mold**        
+   - **mold**
      : shall be an _integer_ or _real_ scalar. If it is a variable, it
      need not be defined, as only the type and kind are queried.
 
-   - **round** 
+   - **round**
      : flag whether to round the value of **xx** before validating it as
      an integer value like **mold**.
 
@@ -84,7 +84,7 @@ integer            :: i
 integer(kind=int8) :: i8, j8
 
     ! compilers are not required to produce an error on out of range.
-    ! here storing the default integers into 1-byte integers 
+    ! here storing the default integers into 1-byte integers
     ! incorrectly can have unexpected results
     do i=127,130
        i8=i
@@ -120,4 +120,4 @@ Results:
 
    FORTRAN 2018 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+ _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

@@ -104,4 +104,4 @@ Fortran 95 and later
 [**max**(3)](#max),
 [**maxval**(3)](#maxval)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

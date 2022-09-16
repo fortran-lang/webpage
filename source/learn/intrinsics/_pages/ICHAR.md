@@ -56,7 +56,7 @@ contains
 
    subroutine printme()
    character(len=1) :: letter
-   
+
       letter=char(i)
       select case(i)
       case (:31,127:)
@@ -64,7 +64,7 @@ contains
       case default
          write(*,'(1x,i0.3,1x,a,1x,i0)')i,letter,ichar(letter)
       end select
-   
+
    end subroutine printme
 
 end program demo_ichar
@@ -128,4 +128,4 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

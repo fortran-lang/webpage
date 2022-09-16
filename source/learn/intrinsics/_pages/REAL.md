@@ -73,4 +73,4 @@ FORTRAN 77 and later
 [**dble**(3)](#dble),
 [**float**(3)](#float)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

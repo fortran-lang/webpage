@@ -133,4 +133,4 @@ Fortran 95 and later
 [**ieor**(3)](#ieor),
 [**mvbits**(3)](#mvbits)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+ _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

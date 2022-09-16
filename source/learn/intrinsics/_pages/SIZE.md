@@ -189,4 +189,4 @@ Fortran 95 and later, with **kind** argument - Fortran 2003 and later
 [**shape**(3)](#shape),
 [__reshape__(3)])(RESHAPE)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

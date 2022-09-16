@@ -31,7 +31,7 @@ values from **vector**.
   as many elements as **mask** has **.true.** values.
 
 - **mask**
-  : Shall be an array of type _logical_. 
+  : Shall be an array of type _logical_.
 
 - **field**
   : Shall be of the same type and type parameters as **vector** and
@@ -57,26 +57,26 @@ of **mask** replaced by values from **vector** in array element order.
 ### **Examples**
 Particular values may be "scattered" to particular positions in an array by using
 ```text
-                       1 0 0        
-    If M is the array  0 1 0 
-                       0 0 1  
+                       1 0 0
+    If M is the array  0 1 0
+                       0 0 1
 
     V is the array [1, 2, 3],
-		               . T .
+                               . T .
     and Q is the logical mask  T . .
-  	                       . . T
-    where "T" represents true and "." represents false, then the result of 
+                               . . T
+    where "T" represents true and "." represents false, then the result of
 
     UNPACK (V, MASK = Q, FIELD = M) has the value
-                                       
-      1 2 0 
-      1 1 0  
-      0 0 3 
+
+      1 2 0
+      1 1 0
+      0 0 3
 
     and the result of UNPACK (V, MASK = Q, FIELD = 0) has the value
 
       0 2 0
-      1 0 0 
+      1 0 0
       0 0 3
 ```
 
@@ -115,4 +115,4 @@ Fortran 95 and later
 [**spread**(3)](#spread),
 [**unpack**(3)](#unpack)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

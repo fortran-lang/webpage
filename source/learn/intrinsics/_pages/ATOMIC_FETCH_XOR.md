@@ -65,4 +65,4 @@ TS 18508 or later
 
 [**atomic_fetch_or**(3)](#atomic_fetch_or)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

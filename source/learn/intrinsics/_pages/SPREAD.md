@@ -125,4 +125,4 @@ Fortran 95 and later
 [**pack**(3)](#pack),
 [**unpack**(3)](#unpack)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

@@ -71,4 +71,4 @@ Fortran 95 and later
 [**set_exponent**(3)](#set_exponent),
 [**spacing**(3)](#spacing)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

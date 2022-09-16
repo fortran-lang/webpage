@@ -89,4 +89,4 @@ scalar entities are available in Fortran 2003 and later.
 
 [**move_alloc**(3)](#move_alloc)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

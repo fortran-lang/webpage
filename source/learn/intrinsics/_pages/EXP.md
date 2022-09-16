@@ -96,4 +96,4 @@ FORTRAN 77 and later
 
 - Wikipedia:[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+ _fortran-lang intrinsic descriptions (license: MIT) @urbanjost_

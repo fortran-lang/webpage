@@ -79,4 +79,4 @@ FORTRAN 77 and later
 
 [**modulo**(3)](#modulo)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

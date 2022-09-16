@@ -56,4 +56,4 @@ Fortran 2008 and later
 
 Inverse function: [**tanh**(3)](#tanh)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

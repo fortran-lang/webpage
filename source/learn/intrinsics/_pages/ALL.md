@@ -127,4 +127,4 @@ Case (ii):
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

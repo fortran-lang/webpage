@@ -7,12 +7,12 @@
 ### **Syntax**
 
 ```fortran
-result = this_image() 
+result = this_image()
 ```
 or
 ```
 ```fortran
-result = this_image(distance) 
+result = this_image(distance)
 ```
 or
 ```fortran
@@ -85,5 +85,5 @@ or later
 [**num\_images**(3)](#num_images),
 [**image\_index**(3)](#image_index)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_
 ```
