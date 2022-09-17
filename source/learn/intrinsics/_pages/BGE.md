@@ -104,7 +104,7 @@ integer(kind=int8),allocatable :: arr1(:), arr2(:)
    ! signs have ...
    write(*,*)'Compare some one-byte values to 64.'
    write(*,*)'Notice that the values are tested as bits not as integers'
-   write(*,*)'so the resuls are as if values are unsigned integers.'
+   write(*,*)'so the results are as if values are unsigned integers.'
    do i=-128,127,32
       byte=i
       write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,bge(byte,64_int8),byte
