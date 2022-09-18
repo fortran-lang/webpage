@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-12 10:43+0200\n"
-"PO-Revision-Date: 2022-09-17 08:18+0000\n"
+"PO-Revision-Date: 2022-09-19 01:24+0000\n"
 "Last-Translator: Jinfeng <850512337@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "fortran-lang/webpage/zh_Hans/>\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=1; plural=0;\n"
-"X-Generator: Weblate 4.14.1-dev\n"
+"X-Generator: Weblate 4.14.1\n"
 "Generated-By: Babel 2.10.3\n"
 
 #: ../../source/community.md:10
@@ -15283,12 +15283,12 @@ msgstr "**co_lbound**(3) - \\[COLLECTIVE\\] 数组的下维数边界"
 msgid ""
 "Returns the lower bounds of a coarray, or a single lower cobound along the "
 "**dim** codimension."
-msgstr ""
+msgstr "返回coarray的下界，或沿**dim**单维的单个下界。"
 
 #: ../../source/learn/intrinsics/_pages/CO_LBOUND.md:22
 #: ../../source/learn/intrinsics/_pages/CO_UBOUND.md:22
 msgid "Shall be an coarray, of any type."
-msgstr ""
+msgstr "应为任何类型的coarray。"
 
 #: ../../source/learn/intrinsics/_pages/CO_LBOUND.md:33
 #: ../../source/learn/intrinsics/_pages/CO_UBOUND.md:33
@@ -15299,6 +15299,9 @@ msgid ""
 "present, the result is a scalar corresponding to the lower cobound of the "
 "array along that codimension."
 msgstr ""
+"返回值的类型为_integer_，种类为**kind**。如果没有指定**kind**，则返回值为默认"
+"的整型。如果没有指定**dim**，则结果是**corray**的下限数组。如果指定了**dim**"
+"，则结果是对应于数组沿该维的下限的标量。"
 
 #: ../../source/learn/intrinsics/_pages/CO_LBOUND.md:45
 #, fuzzy
@@ -15311,7 +15314,7 @@ msgstr "co_max"
 
 #: ../../source/learn/intrinsics/_pages/CO_MAX.md:6
 msgid "**co_max**(3) - \\[COLLECTIVE\\] Maximal value on the current set of images"
-msgstr ""
+msgstr "**co_max**(3) - \\[集合\\] 当前镜像集上的最大值"
 
 #: ../../source/learn/intrinsics/_pages/CO_MAX.md:16
 msgid ""
@@ -15324,6 +15327,11 @@ msgid ""
 "gets assigned a nonzero value and, if present, **errmsg** gets assigned a "
 "value describing the occurred error."
 msgstr ""
+"co_max确定当前编队所有镜像的**a**元素的最大值。如果 result_image 存在，则只在"
+"指定的镜像上返回**a**中的最大值，而在其他镜像上的**a**的值变为未定义。如果 "
+"result_image 不存在，则在所有图像上返回值。如果执行成功并且存在**stat**，则将"
+"其赋值为零。如果执行失败，则为**stat**指定一个非零值，如果**errmsg**存在，则"
+"为其分配一个描述发生的错误的值。"
 
 #: ../../source/learn/intrinsics/_pages/CO_MAX.md:28
 #: ../../source/learn/intrinsics/_pages/CO_MIN.md:28
@@ -15371,6 +15379,8 @@ msgid ""
 "[**co_min**(3)](#co_min), [**co_sum**(3)](#co_sum), "
 "[**co_reduce**(3)](#co_reduce), [**co_broadcast**(3)](#co_broadcast)"
 msgstr ""
+"[**co_min**(3)](#co_min), [**co_sum**(3)](#co_sum), "
+"[**co_reduce**(3)](#co_reduce), [**co_broadcast**(3)](#co_broadcast)"
 
 #: ../../source/learn/intrinsics/_pages/CO_MIN.md:2
 msgid "co_min"
@@ -15378,7 +15388,7 @@ msgstr "co_min"
 
 #: ../../source/learn/intrinsics/_pages/CO_MIN.md:6
 msgid "**co_min**(3) - \\[COLLECTIVE\\] Minimal value on the current set of images"
-msgstr ""
+msgstr "**co_min**(3) - \\[集合\\]当前镜像集上的最小值"
 
 #: ../../source/learn/intrinsics/_pages/CO_MIN.md:16
 msgid ""
@@ -15391,12 +15401,19 @@ msgid ""
 "gets assigned a nonzero value and, if present, **errmsg** gets assigned a "
 "value describing the occurred error."
 msgstr ""
+"co_min确定当前编队所有镜像上**a**元素的最小值。如果**result_image**存在，则只"
+"在指定的镜像上返回**a**中的最小值，而在其他镜像上的**a**的值变为未定义。如果*"
+"*result_image**不存在，则在所有图像上返回值。如果执行成功并且存在**stat**，则"
+"将其赋值为零。如果执行失败，则为**stat**指定一个非零值，如果**errmsg**存在，"
+"则为其分配一个描述发生的错误的值。"
 
 #: ../../source/learn/intrinsics/_pages/CO_MIN.md:64
 msgid ""
 "[**co_max**(3)](#co_max), [**co_sum**(3)](#co_sum), "
 "[**co_reduce**(3)](#co_reduce), [**co_broadcast**(3)](#co_broadcast)"
 msgstr ""
+"[**co_max**(3)](#co_max), [**co_sum**(3)](#co_sum), "
+"[**co_reduce**(3)](#co_reduce), [**co_broadcast**(3)](#co_broadcast)"
 
 #: ../../source/learn/intrinsics/_pages/CO_REDUCE.md:2
 msgid "co_reduce"
@@ -15406,7 +15423,7 @@ msgstr "co_reduce"
 msgid ""
 "**co_reduce**(3) - \\[COLLECTIVE\\] Reduction of values on the current set of"
 " images"
-msgstr ""
+msgstr "**co_reduce**(3) - \\[集合\\] 缩减当前镜像集上的值"
 
 #: ../../source/learn/intrinsics/_pages/CO_REDUCE.md:16
 msgid ""
@@ -15422,6 +15439,13 @@ msgid ""
 "execution failed, **stat** gets assigned a nonzero value and, if present, "
 "**errmsg** gets assigned a value describing the occurred error."
 msgstr ""
+"co_reduce确定当前编队所有镜像上**a**的值在元素方面的减少量。作为**operation**"
+"传递的纯函数用于通过传递不同镜像的**a**的值或作为参数传递这种缩减的结果值来成"
+"对地缩减**a**的值。如果**a**是一个数组，则按元素进行缩减。如果**result_image*"
+"*存在，则只在指定的镜像上返回**a**中的结果值，而在其他镜像上的**a**的值变为未"
+"定义。如果**result_image**不存在，则在所有图像上返回值。如果执行成功并且存在*"
+"*stat**，则将其赋值为零。如果执行失败，则为**stat**分配一个非零值，如果**errm"
+"sg**存在，则为其分配一个描述发生的错误的值。"
 
 #: ../../source/learn/intrinsics/_pages/CO_REDUCE.md:32
 msgid ""
@@ -15459,21 +15483,24 @@ msgid ""
 "intrinsics in the standard fulfill the criteria of having a specific "
 "function, which takes two arguments of the same type and returning that type "
 "as a result."
-msgstr ""
+msgstr "虽然规则原则上允许使用内部函数，但标准的内部函数都不满足具有特定函数的标准，"
+"该特定函数接受相同类型的两个参数并返回该类型。"
 
 #: ../../source/learn/intrinsics/_pages/CO_REDUCE.md:98
 msgid ""
 "[**co_min**(3)](#co_min), [**co_max**(3)](#co_max), [**co_sum**(3)](#co_sum),"
 " [**co_broadcast**(3)](#co_broadcast)"
 msgstr ""
+"[**co_min**(3)](#co_min), [**co_max**(3)](#co_max), [**co_sum**(3)](#co_sum)"
+", [**co_broadcast**(3)](#co_broadcast)"
 
 #: ../../source/learn/intrinsics/_pages/CO_SUM.md:2
 msgid "co_sum"
-msgstr ""
+msgstr "co_sum"
 
 #: ../../source/learn/intrinsics/_pages/CO_SUM.md:6
 msgid "**co_sum**(3) - \\[COLLECTIVE\\] Sum of values on the current set of images"
-msgstr ""
+msgstr "**co_sum**(3) - \\[集合\\] 当前镜像集上的值之和"
 
 #: ../../source/learn/intrinsics/_pages/CO_SUM.md:16
 msgid ""
@@ -15486,48 +15513,57 @@ msgid ""
 "gets assigned a nonzero value and, if present, **errmsg** gets assigned a "
 "value describing the occurred error."
 msgstr ""
+"co_sum累加当前团队所有镜像上**a**的每个元素的值。如果**result_image**在，则只"
+"在指定的镜像上返回**a**中的值之和，而在其他镜像上的**a**的值变为未定义。如果*"
+"*result_image**不存在，则在所有图像上返回值。如果执行成功并且存在**stat**，则"
+"将其赋值为零。如果执行失败，则为**stat**分配一个非零值，如果**errmsg**存在，"
+"则为其分配一个描述发生的错误的值。"
 
 #: ../../source/learn/intrinsics/_pages/CO_SUM.md:28
 msgid ""
 "shall be an integer, real or complex variable, which has the same type and "
 "type parameters on all images of the team."
-msgstr ""
+msgstr "应为整数、实数或复数变量，在编队的所有镜像上具有相同的类型和种类参数。"
 
 #: ../../source/learn/intrinsics/_pages/CO_SUM.md:71
 msgid ""
 "[**co_max**(3)](#co_max), [**co_min**(3)](#co_min), "
 "[**co_reduce**(3)](#co_reduce), [**co_broadcast**(3)](#co_broadcast)"
 msgstr ""
+"[**co_max**(3)](#co_max), [**co_min**(3)](#co_min), "
+"[**co_reduce**(3)](#co_reduce), [**co_broadcast**(3)](#co_broadcast)"
 
 #: ../../source/learn/intrinsics/_pages/CO_UBOUND.md:2
 msgid "co_ubound"
-msgstr ""
+msgstr "co_ubound"
 
 #: ../../source/learn/intrinsics/_pages/CO_UBOUND.md:6
 msgid "**co_ubound**(3) - \\[COLLECTIVE\\] Upper codimension bounds of an array"
-msgstr ""
+msgstr "**co_ubound**(3) - \\[集合\\] co_array的上界"
 
 #: ../../source/learn/intrinsics/_pages/CO_UBOUND.md:16
 msgid ""
 "Returns the upper cobounds of a coarray, or a single upper cobound along the "
 "**dim** codimension."
-msgstr ""
+msgstr "返回co_array的上界，或沿**dim**维的单个上界。"
 
 #: ../../source/learn/intrinsics/_pages/CO_UBOUND.md:45
 msgid ""
 "[**co_lbound**(3)](#co_lbound), [**lbound**(3)](#lbound), "
 "[**ubound**(3)](#ubound)"
 msgstr ""
+"[**co_lbound**(3)](#co_lbound), [**lbound**(3)](#lbound), "
+"[**ubound**(3)](#ubound)"
 
 #: ../../source/learn/intrinsics/_pages/EVENT_QUERY.md:2
 msgid "event_query"
-msgstr ""
+msgstr "event_query"
 
 #: ../../source/learn/intrinsics/_pages/EVENT_QUERY.md:6
 msgid ""
 "**event_query**(3) - \\[COLLECTIVE\\] Query whether a coarray event has "
 "occurred"
-msgstr ""
+msgstr "**event_query**(3) - \\[集合\\] 查询是否已发生coarray事件"
 
 #: ../../source/learn/intrinsics/_pages/EVENT_QUERY.md:16
 msgid ""
@@ -15538,98 +15574,102 @@ msgid ""
 "failed, it is assigned a positive value and **count** is assigned the value "
 "**-1**."
 msgstr ""
+"**event_query**通过调用**event_wait**，将已指定给**event**变量但尚未移除的事"
+"件数赋给**count**。当**stat**存在并且调用成功时，它会被赋值**0**。如果**stat*"
+"*存在，并且调用失败，则为其赋值为正值，并为**count**赋值**-1**。"
 
 #: ../../source/learn/intrinsics/_pages/EVENT_QUERY.md:24
 msgid "**event**"
-msgstr ""
+msgstr "**event**"
 
 #: ../../source/learn/intrinsics/_pages/EVENT_QUERY.md:25
 msgid ""
 "(intent(in)) Scalar of type event_type, defined in iso_fortran_env; shall not"
 " be coindexed."
-msgstr ""
+msgstr "(intent(in)) 在iso_fortran_env中定义的 event_type类型的标量不应编入共索引。"
 
 #: ../../source/learn/intrinsics/_pages/COMMAND_ARGUMENT_COUNT.md:28
 #: ../../source/learn/intrinsics/_pages/EVENT_QUERY.md:28
 #: ../../source/learn/intrinsics/_pages/SYSTEM_CLOCK.md:44
 msgid "**count**"
-msgstr ""
+msgstr "**count**"
 
 #: ../../source/learn/intrinsics/_pages/EVENT_QUERY.md:29
 msgid "(intent(out))Scalar integer with at least the precision of default _integer_."
-msgstr ""
+msgstr "(intent(out)) 精度至少为默认 _integer_ 的标量整数。"
 
 #: ../../source/learn/intrinsics/_pages/EVENT_QUERY.md:33
 msgid "(OPTIONAL) Scalar default-kind _integer_ variable."
-msgstr ""
+msgstr "(可选) 默认种类 _integer_ 标量变量."
 
 #: ../../source/learn/intrinsics/_pages/IMAGE_INDEX.md:2
 msgid "image_index"
-msgstr ""
+msgstr "image_index"
 
 #: ../../source/learn/intrinsics/_pages/IMAGE_INDEX.md:6
 msgid "**image_index**(3) - \\[COLLECTIVE\\] Cosubscript to image index conversion"
-msgstr ""
+msgstr "**image_index**(3) - \\[集合\\] 下标到镜像索引的转换"
 
 #: ../../source/learn/intrinsics/_pages/IMAGE_INDEX.md:16
+#, fuzzy
 msgid "Returns the image index belonging to a cosubscript."
-msgstr ""
+msgstr "返回属于下标的镜像索引。"
 
 #: ../../source/learn/intrinsics/_pages/IMAGE_INDEX.md:20
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:33
 msgid "**coarray**"
-msgstr ""
+msgstr "**coarray**"
 
 #: ../../source/learn/intrinsics/_pages/IMAGE_INDEX.md:21
 msgid "Coarray of any type."
-msgstr ""
+msgstr "任意类型的coarray."
 
 #: ../../source/learn/intrinsics/_pages/IMAGE_INDEX.md:23
 msgid "**sub**"
-msgstr ""
+msgstr "**sub**"
 
 #: ../../source/learn/intrinsics/_pages/IMAGE_INDEX.md:24
 msgid "default integer rank-1 array of a size equal to the corank of **coarray**."
-msgstr ""
+msgstr "默认为整数一维数组，大小等于**coarray**的维度。"
 
 #: ../../source/learn/intrinsics/_pages/IMAGE_INDEX.md:29
 msgid ""
 "Scalar default integer with the value of the image index which corresponds to"
 " the cosubscripts. For invalid cosubscripts the result is zero."
-msgstr ""
+msgstr "标量默认整数，其镜像索引值与子下标相对应。对于无效的子下标，结果为零。"
 
 #: ../../source/learn/intrinsics/_pages/IMAGE_INDEX.md:52
 msgid "[**this_image**(3)](#this_image), [**num_images**(3)](#num_images)"
-msgstr ""
+msgstr "[**this_image**(3)](#this_image), [**num_images**(3)](#num_images)"
 
 #: ../../source/learn/intrinsics/_pages/NUM_IMAGES.md:2
 msgid "num_images"
-msgstr ""
+msgstr "num_images"
 
 #: ../../source/learn/intrinsics/_pages/NUM_IMAGES.md:6
 msgid "**num_images**(3) - \\[COLLECTIVE\\] Number of images"
-msgstr ""
+msgstr "**num_images**(3) - \\[集合\\] 镜像的数量"
 
 #: ../../source/learn/intrinsics/_pages/NUM_IMAGES.md:16
 msgid "Returns the number of images."
-msgstr ""
+msgstr "返回镜像的数量。"
 
 #: ../../source/learn/intrinsics/_pages/NUM_IMAGES.md:20
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:29
 msgid "**distance**"
-msgstr ""
+msgstr "**distance**"
 
 #: ../../source/learn/intrinsics/_pages/NUM_IMAGES.md:21
 msgid "(optional, **intent(in)**) Nonnegative scalar integer"
-msgstr ""
+msgstr "(optional, **intent(in)**) 非负标量整数"
 
 #: ../../source/learn/intrinsics/_pages/NUM_IMAGES.md:23
 msgid "**failed**"
-msgstr ""
+msgstr "**failed**"
 
 #: ../../source/learn/intrinsics/_pages/NUM_IMAGES.md:24
 msgid "(optional, **intent(in)**) Scalar logical expression"
-msgstr ""
+msgstr "(optional, **intent(in)**) 标量逻辑表达式"
 
 #: ../../source/learn/intrinsics/_pages/NUM_IMAGES.md:28
 msgid ""
@@ -15643,18 +15683,23 @@ msgid ""
 "the number of failed images is returned, otherwise, the number of images "
 "which do have not the failed status."
 msgstr ""
+"标量默认类型 _integer_。如果**distance**不存在或值为0，则返回当前编队的镜像数"
+"量。对于小于或等于初始编队距离的值，它返回与调用团队的距离为**distance**的起"
+"始编队上的镜像索引数量。如果**distance**大于到初始编队的距离，则返回初始团队"
+"的镜像数量。如果不存在**failed**，则返回镜像总数；如果值为."
+"true.，则返回失败镜像的数量，否则返回没有失败状态的镜像的数量。"
 
 #: ../../source/learn/intrinsics/_pages/NUM_IMAGES.md:61
 msgid "Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later"
-msgstr ""
+msgstr "Fortran 2008 以后. 有 DISTANCE 或 FAILED 参数, TS 18508 or later"
 
 #: ../../source/learn/intrinsics/_pages/NUM_IMAGES.md:65
 msgid "[**this_image**(3)](#this_image), [**image_index**(3)](#this_index)"
-msgstr ""
+msgstr "[**this_image**(3)](#this_image), [**image_index**(3)](#this_index)"
 
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:2
 msgid "this_image"
-msgstr ""
+msgstr "this_image"
 
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:6
 msgid "**this_image**(3) - \\[COLLECTIVE\\] Cosubscript index of this image"
