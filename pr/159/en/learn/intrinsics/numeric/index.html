@@ -2400,55 +2400,49 @@ otherwise it returns zero.</p>
 <h2>dprod<a class="headerlink" href="#dprod" title="Permalink to this heading">#</a></h2>
 <section id="id38">
 <h3><strong>Name</strong><a class="headerlink" href="#id38" title="Permalink to this heading">#</a></h3>
-<p><strong>dprod</strong>(3) - [NUMERIC] Double product function</p>
+<p><strong>dprod</strong>(3) - [NUMERIC] Double precision real product</p>
 </section>
 <section id="id39">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id39" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dprod</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">elemental function </span><span class="nb">dprod</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">y</span><span class="w"></span>
+<span class="w">    </span><span class="n">doubleprecision</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">dprod</span><span class="w"></span>
 </pre></div>
 </div>
 </section>
 <section id="id40">
 <h3><strong>Description</strong><a class="headerlink" href="#id40" title="Permalink to this heading">#</a></h3>
-<p><strong>dprod(x,y)</strong> produces a higher <em>doubleprecision</em> product of default <em>real</em>
-numbers <strong>x</strong> and <strong>y</strong>.</p>
+<p><strong>dprod(x,y)</strong> produces a <em>doubleprecision</em> product of default <em>real</em>
+values <strong>x</strong> and <strong>y</strong>.</p>
 <p>The result has a value equal to a processor-dependent approximation to
-the product of <strong>x</strong> and <strong>y</strong>. It is recommended that the processor compute the
-product in double precision, rather than in single precision and then
-converted to double precision.</p>
-<ul class="simple">
-<li><dl class="simple myst">
-<dt><strong>x</strong></dt><dd><p>shall be default real.</p>
-</dd>
-</dl>
-</li>
-<li><dl class="simple myst">
-<dt><strong>y</strong></dt><dd><p>shall be default real.</p>
-</dd>
-</dl>
-</li>
-</ul>
-<p>The setting of compiler options specifying <em>real</em> size can affect this
-function.</p>
+the product of <strong>x</strong> and <strong>y</strong>. It is recommended that the processor
+compute the product in double precision, rather than in single precision
+then converted to double precision.</p>
 </section>
 <section id="id41">
 <h3><strong>Arguments</strong><a class="headerlink" href="#id41" title="Permalink to this heading">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>x</strong></dt><dd><p>Must be of default <em>real(kind=kind(0.0))</em> type</p>
+<dt><strong>x</strong></dt><dd><p>the multiplier, a <em>real</em> value of default kind</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>y</strong></dt><dd><p>Must have the same type and kind parameters as <strong>x</strong></p>
+<dt><strong>y</strong></dt><dd><p>the multiplicand, a <em>real</em> value of default kind.
+<strong>y</strong> Must have the same type and kind parameters as <strong>x</strong></p>
 </dd>
 </dl>
 </li>
 </ul>
+<p>The setting of compiler options specifying the size of a default <em>real</em>
+can affect this function.</p>
 </section>
 <section id="id42">
 <h3><strong>Returns</strong><a class="headerlink" href="#id42" title="Permalink to this heading">#</a></h3>
-<p>The return value is of type <em>real(kind=kind(0.0d0))</em>.</p>
+<p>The return value is doubleprecision (ie. <em>real(kind=kind(0.0d0))</em>).
+It should have the same value as <strong>dble(x)*dble(y)</strong>.</p>
 </section>
 <section id="id43">
 <h3><strong>Examples</strong><a class="headerlink" href="#id43" title="Permalink to this heading">#</a></h3>
@@ -2461,38 +2455,58 @@ function.</p>
 <span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.2</span><span class="w"></span>
 <span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.3</span><span class="w"></span>
 <span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dd</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">! basic usage</span>
 <span class="w">   </span><span class="n">dd</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dprod</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">dd</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="n">dd</span><span class="p">),</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="nb">dprod</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="n">y</span><span class="p">))</span><span class="w"></span>
-<span class="w">   </span><span class="c">! interesting comparisons</span>
-<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="mi">52</span><span class="o">*</span><span class="mi">23</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;compare dprod(xy)=&#39;</span><span class="p">,</span><span class="n">dd</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">   </span><span class="p">&amp;</span><span class="w"> </span><span class="s1">&#39;to x*y=&#39;</span><span class="p">,</span><span class="n">x</span><span class="o">*</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">   </span><span class="p">&amp;</span><span class="w"> </span><span class="s1">&#39;to dble(x)*dble(y)=&#39;</span><span class="p">,</span><span class="nb">dble</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="o">*</span><span class="nb">dble</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">! elemental</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">dprod</span><span class="p">(</span><span class="w"> </span><span class="p">[</span><span class="mf">2.3</span><span class="p">,</span><span class="mf">3.4</span><span class="p">,</span><span class="mf">4.5</span><span class="p">],</span><span class="w"> </span><span class="mi">1</span><span class="mf">0.0</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">dprod</span><span class="p">(</span><span class="w"> </span><span class="p">[</span><span class="mf">2.3</span><span class="p">,</span><span class="mf">3.4</span><span class="p">,</span><span class="mf">4.5</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mf">9.8</span><span class="p">,</span><span class="mf">7.6</span><span class="p">,</span><span class="mf">5.4</span><span class="p">]</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">! other interesting comparisons</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;integer multiplication of digits=&#39;</span><span class="p">,</span><span class="mi">52</span><span class="o">*</span><span class="mi">23</span><span class="w"></span>
 <span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="mi">52</span><span class="o">*</span><span class="mi">23</span><span class="o">/</span><span class="mi">10</span><span class="mf">0.0</span><span class="w"></span>
 <span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="mi">52</span><span class="o">*</span><span class="mi">23</span><span class="o">/</span><span class="mi">10</span><span class="mf">0.0d0</span><span class="w"></span>
 
-<span class="w">   </span><span class="c">!! common extension is to take doubleprecision arguments</span>
-<span class="w">   </span><span class="c">!! and return higher precision</span>
+<span class="w">   </span><span class="c">!! A common extension is to take doubleprecision arguments</span>
+<span class="w">   </span><span class="c">!! and return higher precision when available</span>
 <span class="w">   </span><span class="n">bigger</span><span class="p">:</span><span class="w"> </span><span class="k">block</span>
-<span class="k">   </span><span class="n">doubleprecision</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">xx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.2d0</span><span class="w"></span>
-<span class="w">   </span><span class="n">doubleprecision</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">yy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.3d0</span><span class="w"></span>
-<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">real128</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ddd</span><span class="w"></span>
-<span class="w">   </span><span class="c">!ddd = dprod(xx,yy)</span>
-<span class="w">   </span><span class="c">!print *, ddd, xx*yy, kind(xx), kind(ddd), kind(dprod(xx,yy))</span>
+<span class="k">   </span><span class="n">doubleprecision</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">xx</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">5.2_dp</span><span class="w"></span>
+<span class="w">   </span><span class="n">doubleprecision</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">yy</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.3_dp</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;dprop==&gt;&#39;</span><span class="p">,</span><span class="nb">dprod</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;multipy==&gt;&#39;</span><span class="p">,</span><span class="n">xx</span><span class="o">*</span><span class="n">yy</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;using dble==&gt;&#39;</span><span class="p">,</span><span class="nb">dble</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span><span class="o">*</span><span class="nb">dble</span><span class="p">(</span><span class="n">yy</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;kind of arguments is&#39;</span><span class="p">,</span><span class="nb">kind</span><span class="p">(</span><span class="n">xx</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;kind of result is&#39;</span><span class="p">,</span><span class="nb">kind</span><span class="p">(</span><span class="nb">dprod</span><span class="p">(</span><span class="n">xx</span><span class="p">,</span><span class="n">yy</span><span class="p">))</span><span class="w"></span>
 <span class="w">   </span><span class="k">endblock </span><span class="n">bigger</span><span class="w"></span>
 
 <span class="k">end program </span><span class="n">demo_dprod</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Results:</p>
-<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>   11.959999313354501 11.9599991 4 8 8
-        1196
-   11.9600000
-   11.960000000000001
+<p>Results:
+(this can vary between programming environments):</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    compare dprod(xy)= 11.9599993133545 to x*y= 11.96000
+    to dble(x)*dble(y)= 11.9599993133545
+      22.9999995231628  34.0000009536743  45.0000000000000
+      22.5399999713898  25.8400004005432  24.3000004291534
+    integer multiplication of digits=        1196
+      11.96000
+      11.9600000000000
+    dprop==&gt;   11.9599999999999994848565165739273
+    multipy==&gt;   11.9600000000000
+    using dble==&gt;   11.9600000000000
+    kind of arguments is           8
+    kind of result is          16
 </pre></div>
 </div>
 </section>
 <section id="id44">
 <h3><strong>Standard</strong><a class="headerlink" href="#id44" title="Permalink to this heading">#</a></h3>
 <p>FORTRAN 77 and later</p>
-<p><em>fortran-lang intrinsic descriptions</em></p>
+<p><em>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost</em></p>
 </section>
 </section>
 <section id="floor">
