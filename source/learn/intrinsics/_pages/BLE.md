@@ -12,9 +12,11 @@
      integer(kind=KIND),intent(in) :: j
      logical :: ble
 ```
-where the _kind_ of **i** and **j** may be of any supported kind.
-An exception is that one value may be a BOZ constant with a
-value valid for the _kind_ of the _integer_ value.
+  where the _kind_ of **i** and **j** may be of any supported _integer_
+  kind, not necessarily the same.  An exception is that values may be a
+  BOZ constant with a value valid for the _integer_ kind available with
+  the most bits on the current platform.
+
 ### **Syntax**
 
 ### **Description**
@@ -49,7 +51,8 @@ integer(kind=int8) :: byte
       write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,ble(byte,64_int8),byte
    enddo
 
-   ! see the BGE() description for an extended example
+   ! see the BGE() description for an extended description 
+   ! of related information
 
 end program demo_ble
 ```
@@ -74,4 +77,4 @@ Fortran 2008 and later
 [**bgt**(3)](#bgt),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

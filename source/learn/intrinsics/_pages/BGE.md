@@ -12,9 +12,10 @@
      integer(kind=KIND),intent(in) :: j
      logical :: bge
 ```
-where the _kind_ of **i** and **j** may be of any supported kind.
-An exception is that one value may be a BOZ constant with a
-value valid for the _kind_ of the _integer_ value.
+  where the _kind_ of **i** and **j** may be of any supported _integer_
+  kind, not necessarily the same.  An exception is that values may be a
+  BOZ constant with a value valid for the _integer_ kind available with
+  the most bits on the current platform.
 
 ### **Description**
 
@@ -27,22 +28,24 @@ value valid for the _kind_ of the _integer_ value.
 
   A BOZ constant (Binary, Octal, Hexadecimal) does not have a _kind_
   or _type_ of its own, so be aware it is subject to truncation when
-  transferred to the _kind_ and _type_ of the other argument.
+  transferred to an _integer_ type. The most bits the constant may
+  contain is limited by the most bits representable by any _integer_
+  kind supported by the compilation.
 
-  Positions of bits in the sequence are numbered from right to left, with
-  the position of the rightmost bit being zero.  The bits are evaluated
-  in this order, not necessarily from MSB to LSB (most significant bit
-  to least significant bit).
 
 #### Bit Sequence Comparison
 
   When bit sequences of unequal length are compared, the shorter sequence
   is padded with zero bits on the left to the same length as the longer
-  sequence.
+  sequence (up to the largest number of bits any available _integer_ kind
+  supports).
 
   Bit sequences are compared from left to right, one bit at a time,
   until unequal bits are found or until all bits have been compared and
   found to be equal.
+
+  The bits are always evaluated in this order, not necessarily from MSB
+  to LSB (most significant bit to least significant bit).
 
   If unequal bits are found the sequence with zero in the unequal
   position is considered to be less than the sequence with one in the
@@ -156,4 +159,4 @@ Fortran 2008 and later
 [**ble**(3)](#ble),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

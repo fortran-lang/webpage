@@ -3,6 +3,7 @@
 ### **Name**
 
 **blt**(3) - \[BIT:COMPARE\] Bitwise less than
+
 ### **Syntax**
 ```fortran
     elemental function blt(i, j)
@@ -11,9 +12,11 @@
      integer(kind=KIND),intent(in) :: j
      logical :: blt
 ```
-where the _kind_ of **i** and **j** may be of any supported kind.
-An exception is that one value may be a BOZ constant with a
-value valid for the _kind_ of the _integer_ value.
+  where the _kind_ of **i** and **j** may be of any supported _integer_
+  kind, not necessarily the same.  An exception is that values may be a
+  BOZ constant with a value valid for the _integer_ kind available with
+  the most bits on the current platform.
+
 ### **Description**
 
 Determines whether an integer is bitwise less than another.
@@ -29,6 +32,7 @@ Determines whether an integer is bitwise less than another.
 ### **Returns**
 
 The return value is of type _logical_ and of the default kind.
+
 ### **Examples**
 
 Sample program:
@@ -46,7 +50,8 @@ integer(kind=int8) :: byte
       write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,blt(byte,64_int8),byte
    enddo
 
-   ! see the BGE() description for an extended example
+   ! see the BGE() description for an extended description 
+   ! of related information
 
 end program demo_blt
 ```
@@ -71,4 +76,4 @@ Fortran 2008 and later
 [**bgt**(3)](#bgt),
 [**ble**(3)](#ble)
 
- _fortran-lang intrinsic descriptions \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

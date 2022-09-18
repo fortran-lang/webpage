@@ -12,14 +12,15 @@
      integer(kind=KIND),intent(in) :: j
      logical :: bgt
 ```
-where the _kind_ of **i** and **j** may be of any supported kind.
-An exception is that one value may be a BOZ constant with a
-value valid for the _kind_ of the _integer_ value.
+  where the _kind_ of **i** and **j** may be of any supported _integer_
+  kind, not necessarily the same.  An exception is that values may be a
+  BOZ constant with a value valid for the _integer_ kind available with
+  the most bits on the current platform.
 
 ### **Description**
 
-Determines whether an integer is bitwise greater than another.
-Bit-level representations of values are platform-dependent.
+  Determines whether an integer is bitwise greater than another.
+  Bit-level representations of values are platform-dependent.
 
 ### **Arguments**
 
@@ -31,9 +32,10 @@ Bit-level representations of values are platform-dependent.
 
 ### **Returns**
 
-The return value is of type _logical_ and of the default kind. The result
-is true if the sequence of bits represented by _i_ is greater than the
-sequence of bits represented by _j_, otherwise the result is false.
+  The return value is of type _logical_ and of the default kind. The
+  result is true if the sequence of bits represented by _i_ is greater
+  than the sequence of bits represented by _j_, otherwise the result
+  is false.
 
 ### **Examples**
 
@@ -52,7 +54,8 @@ integer(kind=int8) :: byte
       write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,bgt(byte,64_int8),byte
    enddo
 
-   ! see the BGE() description for an extended example
+   ! see the BGE() description for an extended description 
+   ! of related information
 
 end program demo_bgt
 ```
@@ -77,4 +80,4 @@ Fortran 2008 and later
 [**ble**(3)](#ble),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions \@urbanjost_
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
