@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Parallel programming using co_arrays and co_indexed arrays &#8212; Fortran Programming Language</title>
+    <title>使用 co_arrays 和 co_indexed 数组进行并行编程 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,7 +45,7 @@
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
     <link rel="next" title="General and miscellaneous intrinsics" href="../state/" />
-    <link rel="prev" title="Manipulation and properties of numeric values" href="../numeric/" /> 
+    <link rel="prev" title="数值的操作和属性" href="../numeric/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -621,17 +621,17 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../model/">
-     Controlling and querying the current numeric model
+     控制和查询当前数值模型
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../numeric/">
-     Manipulation and properties of numeric values
+     数值的操作和属性
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Parallel programming using co_arrays and co_indexed arrays
+     使用 co_arrays 和 co_indexed 数组进行并行编程
     </a>
    </li>
    <li class="toctree-l2">
@@ -2100,12 +2100,12 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="parallel-programming-using-co-arrays-and-co-indexed-arrays">
-<h1>Parallel programming using co_arrays and co_indexed arrays<a class="headerlink" href="#parallel-programming-using-co-arrays-and-co-indexed-arrays" title="此标题的永久链接">#</a></h1>
+<h1>使用 co_arrays 和 co_indexed 数组进行并行编程<a class="headerlink" href="#parallel-programming-using-co-arrays-and-co-indexed-arrays" title="此标题的永久链接">#</a></h1>
 <section id="co-broadcast">
 <h2>co_broadcast<a class="headerlink" href="#co-broadcast" title="此标题的永久链接">#</a></h2>
 <section id="name">
 <h3><strong>名称</strong><a class="headerlink" href="#name" title="此标题的永久链接">#</a></h3>
-<p><strong>co_broadcast</strong>(3) - [COLLECTIVE] Copy a value to all images the current set of images</p>
+<p><strong>co_broadcast</strong>(3) - [COLLECTIVE] 将值从当前镜像复制到所有镜像</p>
 </section>
 <section id="syntax">
 <h3><strong>语法</strong><a class="headerlink" href="#syntax" title="此标题的永久链接">#</a></h3>
@@ -2115,36 +2115,28 @@
 </section>
 <section id="description">
 <h3><strong>说明</strong><a class="headerlink" href="#description" title="此标题的永久链接">#</a></h3>
-<p><strong>co_broadcast(3)</strong> copies the value of argument <strong>a</strong> on the image with image
-index source_image to all images in the current team. <strong>a</strong> becomes defined
-as if by intrinsic assignment. If the execution was successful and <strong>stat</strong>
-is present, it is assigned the value zero. If the execution failed, <strong>stat</strong>
-gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned a
-value describing the occurred error.</p>
+<p><strong>co_broadcast(3)</strong> 将镜像索引为 source_image 的上的参数 <strong>a</strong> 的值复制到当前组中的所有镜像。 <strong>a</strong> 被定义为内部赋值。如果执行成功并且存在 <strong>stat</strong>，则将其赋值为零。如果执行失败，<strong>stat</strong> 被分配一个非零值，如果存在，<strong>errmsg</strong> 被分配一个值来描述发生的错误。</p>
 </section>
 <section id="arguments">
 <h3><strong>参数</strong><a class="headerlink" href="#arguments" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>a</strong></dt><dd><p><strong>intent(inout)</strong> argument; shall have the same dynamic type and
-type parameters on all images of the current team. If it is an
-array, it shall have the same shape on all images.</p>
+<dt><strong>a</strong></dt><dd><p><strong>intent(inout)</strong> 参数；在当前组的所有镜像上应具有相同的动态类型和类型参数。如果它是一个数组，它应该在所有镜像上具有相同的形状。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>source_image</strong></dt><dd><p>a scalar integer expression. It shall have the same the same value
-on all images and refer to an image of the current team.</p>
+<dt><strong>source_image</strong></dt><dd><p>一个标量整数表达式。它在所有镜像上应具有相同的值，并引用当前组的镜像。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) a scalar integer variable</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量整数变量</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>errmsg</strong></dt><dd><p>(optional) a scalar character variable</p>
+<dt><strong>errmsg</strong></dt><dd><p>（可选）一个标量字符变量</p>
 </dd>
 </dl>
 </li>
@@ -2180,7 +2172,7 @@ on all images and refer to an image of the current team.</p>
 <h2>co_lbound<a class="headerlink" href="#co-lbound" title="此标题的永久链接">#</a></h2>
 <section id="id1">
 <h3><strong>名称</strong><a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h3>
-<p><strong>co_lbound</strong>(3) - [COLLECTIVE] Lower codimension bounds of an array</p>
+<p><strong>co_lbound</strong>(3) - [COLLECTIVE] 数组的下维数边界</p>
 </section>
 <section id="id2">
 <h3><strong>语法</strong><a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h3>
@@ -2190,14 +2182,13 @@ on all images and refer to an image of the current team.</p>
 </section>
 <section id="id3">
 <h3><strong>说明</strong><a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
-<p>Returns the lower bounds of a coarray, or a single lower cobound along
-the <strong>dim</strong> codimension.</p>
+<p>返回coarray的下界，或沿<strong>dim</strong>单维的单个下界。</p>
 </section>
 <section id="id4">
 <h3><strong>参数</strong><a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>数组</strong></dt><dd><p>Shall be an coarray, of any type.</p>
+<dt><strong>数组</strong></dt><dd><p>应为任何类型的coarray。</p>
 </dd>
 </dl>
 </li>
@@ -2215,11 +2206,7 @@ the <strong>dim</strong> codimension.</p>
 </section>
 <section id="returns">
 <h3><strong>返回</strong><a class="headerlink" href="#returns" title="此标题的永久链接">#</a></h3>
-<p>The return value is of type <em>integer</em> and of kind <strong>kind</strong>. If <strong>kind</strong> is absent,
-the return value is of default integer kind. If <strong>dim</strong> is absent, the
-result is an array of the lower cobounds of <strong>coarray</strong>. If <strong>dim</strong> is present,
-the result is a scalar corresponding to the lower cobound of the array
-along that codimension.</p>
+<p>返回值的类型为_integer_，种类为<strong>kind</strong>。如果没有指定<strong>kind</strong>，则返回值为默认的整型。如果没有指定<strong>dim</strong>，则结果是<strong>corray</strong>的下限数组。如果指定了<strong>dim</strong>，则结果是对应于数组沿该维的下限的标量。</p>
 </section>
 <section id="standard">
 <h3><strong>标准</strong><a class="headerlink" href="#standard" title="此标题的永久链接">#</a></h3>
@@ -2238,7 +2225,7 @@ along that codimension.</p>
 <h2>co_max<a class="headerlink" href="#co-max" title="此标题的永久链接">#</a></h2>
 <section id="id7">
 <h3><strong>名称</strong><a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
-<p><strong>co_max</strong>(3) - [COLLECTIVE] Maximal value on the current set of images</p>
+<p><strong>co_max</strong>(3) - [集合] 当前镜像集上的最大值</p>
 </section>
 <section id="id8">
 <h3><strong>语法</strong><a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h3>
@@ -2248,38 +2235,28 @@ along that codimension.</p>
 </section>
 <section id="id9">
 <h3><strong>说明</strong><a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h3>
-<p>co_max determines element-wise the maximal value of <strong>a</strong> on all images of
-the current team. If result_image is present, the maximum values are
-returned in <strong>a</strong> on the specified image only and the value of <strong>a</strong> on the
-other images become undefined. If result_image is not present, the
-value is returned on all images. If the execution was successful and
-<strong>stat</strong> is present, it is assigned the value zero. If the execution failed,
-<strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned
-a value describing the occurred error.</p>
+<p>co_max确定当前编队所有镜像的<strong>a</strong>元素的最大值。如果 result_image 存在，则只在指定的镜像上返回<strong>a</strong>中的最大值，而在其他镜像上的<strong>a</strong>的值变为未定义。如果 result_image 不存在，则在所有图像上返回值。如果执行成功并且存在<strong>stat</strong>，则将其赋值为零。如果执行失败，则为<strong>stat</strong>指定一个非零值，如果<strong>errmsg</strong>存在，则为其分配一个描述发生的错误的值。</p>
 </section>
 <section id="id10">
 <h3><strong>参数</strong><a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>a</strong></dt><dd><p>shall be an integer, real or character variable, which has the same
-type and type parameters on all images of the team.</p>
+<dt><strong>a</strong></dt><dd><p>应为整数，实数或字符变量，在并行的所有镜像上具有相同的类型和类型参数。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>result_image</strong></dt><dd><p>(optional) a scalar integer expression; if present, it shall have
-the same the same value on all images and refer to an image of the
-current team.</p>
+<dt><strong>result_image</strong></dt><dd><p>(可选)一个标量整型表达式；如果存在，则在所有镜像上具有相同的值并指为并行中的一个镜像。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) a scalar integer variable</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量整数变量</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>errmsg</strong></dt><dd><p>(optional) a scalar character variable</p>
+<dt><strong>errmsg</strong></dt><dd><p>（可选）一个标量字符变量</p>
 </dd>
 </dl>
 </li>
@@ -2306,7 +2283,7 @@ current team.</p>
 </section>
 <section id="id12">
 <h3><strong>标准</strong><a class="headerlink" href="#id12" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 </section>
 <section id="id13">
 <h3><strong>另见</strong><a class="headerlink" href="#id13" title="此标题的永久链接">#</a></h3>
@@ -2323,7 +2300,7 @@ current team.</p>
 <h2>co_min<a class="headerlink" href="#co-min" title="此标题的永久链接">#</a></h2>
 <section id="id15">
 <h3><strong>名称</strong><a class="headerlink" href="#id15" title="此标题的永久链接">#</a></h3>
-<p><strong>co_min</strong>(3) - [COLLECTIVE] Minimal value on the current set of images</p>
+<p><strong>co_min</strong>(3) - [集合]当前镜像集上的最小值</p>
 </section>
 <section id="id16">
 <h3><strong>语法</strong><a class="headerlink" href="#id16" title="此标题的永久链接">#</a></h3>
@@ -2333,38 +2310,28 @@ current team.</p>
 </section>
 <section id="id17">
 <h3><strong>说明</strong><a class="headerlink" href="#id17" title="此标题的永久链接">#</a></h3>
-<p>co_min determines element-wise the minimal value of <strong>a</strong> on all images of
-the current team. If result_image is present, the minimal values are
-returned in <strong>a</strong> on the specified image only and the value of <strong>a</strong> on the
-other images become undefined. If result_image is not present, the
-value is returned on all images. If the execution was successful and
-<strong>stat</strong> is present, it is assigned the value zero. If the execution failed,
-<strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned
-a value describing the occurred error.</p>
+<p>co_min确定当前编队所有镜像上<strong>a</strong>元素的最小值。如果<strong>result_image</strong>存在，则只在指定的镜像上返回<strong>a</strong>中的最小值，而在其他镜像上的<strong>a</strong>的值变为未定义。如果<strong>result_image</strong>不存在，则在所有图像上返回值。如果执行成功并且存在<strong>stat</strong>，则将其赋值为零。如果执行失败，则为<strong>stat</strong>指定一个非零值，如果<strong>errmsg</strong>存在，则为其分配一个描述发生的错误的值。</p>
 </section>
 <section id="id18">
 <h3><strong>参数</strong><a class="headerlink" href="#id18" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>a</strong></dt><dd><p>shall be an integer, real or character variable, which has the same
-type and type parameters on all images of the team.</p>
+<dt><strong>a</strong></dt><dd><p>应为整数，实数或字符变量，在并行的所有镜像上具有相同的类型和类型参数。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>result_image</strong></dt><dd><p>(optional) a scalar integer expression; if present, it shall have
-the same the same value on all images and refer to an image of the
-current team.</p>
+<dt><strong>result_image</strong></dt><dd><p>(可选)一个标量整型表达式；如果存在，则在所有镜像上具有相同的值并指为并行中的一个镜像。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) a scalar integer variable</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量整数变量</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>errmsg</strong></dt><dd><p>(optional) a scalar character variable</p>
+<dt><strong>errmsg</strong></dt><dd><p>（可选）一个标量字符变量</p>
 </dd>
 </dl>
 </li>
@@ -2387,7 +2354,7 @@ current team.</p>
 </section>
 <section id="id20">
 <h3><strong>标准</strong><a class="headerlink" href="#id20" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 </section>
 <section id="id21">
 <h3><strong>另见</strong><a class="headerlink" href="#id21" title="此标题的永久链接">#</a></h3>
@@ -2404,7 +2371,7 @@ current team.</p>
 <h2>co_reduce<a class="headerlink" href="#co-reduce" title="此标题的永久链接">#</a></h2>
 <section id="id23">
 <h3><strong>名称</strong><a class="headerlink" href="#id23" title="此标题的永久链接">#</a></h3>
-<p><strong>co_reduce</strong>(3) - [COLLECTIVE] Reduction of values on the current set of images</p>
+<p><strong>co_reduce</strong>(3) - [集合] 缩减当前镜像集上的值</p>
 </section>
 <section id="id24">
 <h3><strong>语法</strong><a class="headerlink" href="#id24" title="此标题的永久链接">#</a></h3>
@@ -2414,56 +2381,33 @@ current team.</p>
 </section>
 <section id="id25">
 <h3><strong>说明</strong><a class="headerlink" href="#id25" title="此标题的永久链接">#</a></h3>
-<p>co_reduce determines element-wise the reduction of the value of <strong>a</strong> on
-all images of the current team. The pure function passed as <strong>operation</strong> is
-used to pairwise reduce the values of <strong>a</strong> by passing either the value of <strong>a</strong>
-of different images or the result values of such a reduction as
-argument. If <strong>a</strong> is an array, the reduction is done element wise. If
-result_image is present, the result values are returned in <strong>a</strong> on the
-specified image only and the value of <strong>a</strong> on the other images become
-undefined. If result_image is not present, the value is returned on all
-images. If the execution was successful and <strong>stat</strong> is present, it is
-assigned the value zero. If the execution failed, <strong>stat</strong> gets assigned a
-nonzero value and, if present, <strong>errmsg</strong> gets assigned a value describing
-the occurred error.</p>
+<p>co_reduce确定当前编队所有镜像上<strong>a</strong>的值在元素方面的减少量。作为<strong>operation</strong>传递的纯函数用于通过传递不同镜像的<strong>a</strong>的值或作为参数传递这种缩减的结果值来成对地缩减<strong>a</strong>的值。如果<strong>a</strong>是一个数组，则按元素进行缩减。如果<strong>result_image</strong>存在，则只在指定的镜像上返回<strong>a</strong>中的结果值，而在其他镜像上的<strong>a</strong>的值变为未定义。如果<strong>result_image</strong>不存在，则在所有图像上返回值。如果执行成功并且存在<strong>stat</strong>，则将其赋值为零。如果执行失败，则为<strong>stat</strong>分配一个非零值，如果<strong>errmsg</strong>存在，则为其分配一个描述发生的错误的值。</p>
 </section>
 <section id="id26">
 <h3><strong>参数</strong><a class="headerlink" href="#id26" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>a</strong></dt><dd><p>is an <strong>intent(inout)</strong> argument and shall be nonpolymorphic. If it
-is allocatable, it shall be allocated; if it is a pointer, it shall
-be associated. <strong>a</strong> shall have the same type and type parameters on all
-images of the team; if it is an array, it shall have the same shape
-on all images.</p>
+<dt><strong>a</strong></dt><dd><p>是**intent(inout)**参数，并且应该是非多态的。如果是动态数组，则应该已经分配；如果是指针，则应该已经关联。<strong>a</strong>在并行的所有镜像上应具有相同的类型和类型参数；如果是数组，则在所有镜像上应具有相同的维度。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>operation</strong></dt><dd><p>pure function with two scalar nonallocatable arguments, which shall
-be nonpolymorphic and have the same type and type parameters as <strong>a</strong>.
-The function shall return a nonallocatable scalar of the same type
-and type parameters as <strong>a</strong>. The function shall be the same on all
-images and with regards to the arguments mathematically commutative
-and associative. Note that OPERATION may not be an elemental unless
-it is an intrinsic function.</p>
+<dt><strong>operation</strong></dt><dd><p>具有两个标量不可分配参数的纯函数应该是非多态的并且具有与<strong>a</strong>相同的类型和类型参数。该函数应返回与<strong>a</strong>相同类型和类型参数的不可分配标量。该函数在所有图像上以及在数学上关于自变量的可交换性和关联性方面应相同。请注意，操作可能不是基元的，除非它是内在函数。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>result_image</strong></dt><dd><p>(optional) a scalar integer expression; if present, it shall
-have the same the same value on all images and refer to an image
-of the current team.</p>
+<dt><strong>result_image</strong></dt><dd><p>(可选)一个标量整型表达式；如果存在，则在所有镜像上具有相同的值并指为并行中的一个镜像。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) a scalar integer variable</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量整数变量</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>errmsg</strong></dt><dd><p>(optional) a scalar character variable</p>
+<dt><strong>errmsg</strong></dt><dd><p>（可选）一个标量字符变量</p>
 </dd>
 </dl>
 </li>
@@ -2496,14 +2440,11 @@ of the current team.</p>
 </section>
 <section id="note">
 <h3><strong>Note</strong><a class="headerlink" href="#note" title="此标题的永久链接">#</a></h3>
-<p>While the rules permit in principle an intrinsic function, none of the
-intrinsics in the standard fulfill the criteria of having a specific
-function, which takes two arguments of the same type and returning that
-type as a result.</p>
+<p>虽然规则原则上允许使用内部函数，但标准的内部函数都不满足具有特定函数的标准，该特定函数接受相同类型的两个参数并返回该类型。</p>
 </section>
 <section id="id28">
 <h3><strong>标准</strong><a class="headerlink" href="#id28" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 </section>
 <section id="id29">
 <h3><strong>另见</strong><a class="headerlink" href="#id29" title="此标题的永久链接">#</a></h3>
@@ -2520,7 +2461,7 @@ type as a result.</p>
 <h2>co_sum<a class="headerlink" href="#co-sum" title="此标题的永久链接">#</a></h2>
 <section id="id31">
 <h3><strong>名称</strong><a class="headerlink" href="#id31" title="此标题的永久链接">#</a></h3>
-<p><strong>co_sum</strong>(3) - [COLLECTIVE] Sum of values on the current set of images</p>
+<p><strong>co_sum</strong>(3) - [集合] 当前镜像集上的值之和</p>
 </section>
 <section id="id32">
 <h3><strong>语法</strong><a class="headerlink" href="#id32" title="此标题的永久链接">#</a></h3>
@@ -2530,38 +2471,28 @@ type as a result.</p>
 </section>
 <section id="id33">
 <h3><strong>说明</strong><a class="headerlink" href="#id33" title="此标题的永久链接">#</a></h3>
-<p>co_sum sums up the values of each element of <strong>a</strong> on all images of the
-current team. If result_image is present, the summed-up values are
-returned in <strong>a</strong> on the specified image only and the value of <strong>a</strong> on the
-other images become undefined. If result_image is not present, the
-value is returned on all images. If the execution was successful and
-<strong>stat</strong> is present, it is assigned the value zero. If the execution failed,
-<strong>stat</strong> gets assigned a nonzero value and, if present, <strong>errmsg</strong> gets assigned
-a value describing the occurred error.</p>
+<p>co_sum累加当前团队所有镜像上<strong>a</strong>的每个元素的值。如果<strong>result_image</strong>在，则只在指定的镜像上返回<strong>a</strong>中的值之和，而在其他镜像上的<strong>a</strong>的值变为未定义。如果<strong>result_image</strong>不存在，则在所有图像上返回值。如果执行成功并且存在<strong>stat</strong>，则将其赋值为零。如果执行失败，则为<strong>stat</strong>分配一个非零值，如果<strong>errmsg</strong>存在，则为其分配一个描述发生的错误的值。</p>
 </section>
 <section id="id34">
 <h3><strong>参数</strong><a class="headerlink" href="#id34" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>a</strong></dt><dd><p>shall be an integer, real or complex variable, which has the same
-type and type parameters on all images of the team.</p>
+<dt><strong>a</strong></dt><dd><p>应为整数、实数或复数变量，在编队的所有镜像上具有相同的类型和种类参数。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>result_image</strong></dt><dd><p>(optional) a scalar integer expression; if present, it shall have
-the same the same value on all images and refer to an image of the
-current team.</p>
+<dt><strong>result_image</strong></dt><dd><p>(可选)一个标量整型表达式；如果存在，则在所有镜像上具有相同的值并指为并行中的一个镜像。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) a scalar integer variable</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量整数变量</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>errmsg</strong></dt><dd><p>(optional) a scalar character variable</p>
+<dt><strong>errmsg</strong></dt><dd><p>（可选）一个标量字符变量</p>
 </dd>
 </dl>
 </li>
@@ -2589,7 +2520,7 @@ current team.</p>
 </section>
 <section id="id36">
 <h3><strong>标准</strong><a class="headerlink" href="#id36" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 </section>
 <section id="id37">
 <h3><strong>另见</strong><a class="headerlink" href="#id37" title="此标题的永久链接">#</a></h3>
@@ -2606,7 +2537,7 @@ current team.</p>
 <h2>co_ubound<a class="headerlink" href="#co-ubound" title="此标题的永久链接">#</a></h2>
 <section id="id39">
 <h3><strong>名称</strong><a class="headerlink" href="#id39" title="此标题的永久链接">#</a></h3>
-<p><strong>co_ubound</strong>(3) - [COLLECTIVE] Upper codimension bounds of an array</p>
+<p><strong>co_ubound</strong>(3) - [集合] co_array的上界</p>
 </section>
 <section id="id40">
 <h3><strong>语法</strong><a class="headerlink" href="#id40" title="此标题的永久链接">#</a></h3>
@@ -2616,14 +2547,13 @@ current team.</p>
 </section>
 <section id="id41">
 <h3><strong>说明</strong><a class="headerlink" href="#id41" title="此标题的永久链接">#</a></h3>
-<p>Returns the upper cobounds of a coarray, or a single upper cobound along
-the <strong>dim</strong> codimension.</p>
+<p>返回co_array的上界，或沿<strong>dim</strong>维的单个上界。</p>
 </section>
 <section id="id42">
 <h3><strong>参数</strong><a class="headerlink" href="#id42" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>数组</strong></dt><dd><p>Shall be an coarray, of any type.</p>
+<dt><strong>数组</strong></dt><dd><p>应为任何类型的coarray。</p>
 </dd>
 </dl>
 </li>
@@ -2641,11 +2571,7 @@ the <strong>dim</strong> codimension.</p>
 </section>
 <section id="id43">
 <h3><strong>返回</strong><a class="headerlink" href="#id43" title="此标题的永久链接">#</a></h3>
-<p>The return value is of type <em>integer</em> and of kind <strong>kind</strong>. If <strong>kind</strong> is absent,
-the return value is of default integer kind. If <strong>dim</strong> is absent, the
-result is an array of the lower cobounds of <strong>coarray</strong>. If <strong>dim</strong> is present,
-the result is a scalar corresponding to the lower cobound of the array
-along that codimension.</p>
+<p>返回值的类型为_integer_，种类为<strong>kind</strong>。如果没有指定<strong>kind</strong>，则返回值为默认的整型。如果没有指定<strong>dim</strong>，则结果是<strong>corray</strong>的下限数组。如果指定了<strong>dim</strong>，则结果是对应于数组沿该维的下限的标量。</p>
 </section>
 <section id="id44">
 <h3><strong>标准</strong><a class="headerlink" href="#id44" title="此标题的永久链接">#</a></h3>
@@ -2665,7 +2591,7 @@ along that codimension.</p>
 <h2>event_query<a class="headerlink" href="#event-query" title="此标题的永久链接">#</a></h2>
 <section id="id47">
 <h3><strong>名称</strong><a class="headerlink" href="#id47" title="此标题的永久链接">#</a></h3>
-<p><strong>event_query</strong>(3) - [COLLECTIVE] Query whether a coarray event has occurred</p>
+<p><strong>event_query</strong>(3) - [集合] 查询是否已发生coarray事件</p>
 </section>
 <section id="id48">
 <h3><strong>语法</strong><a class="headerlink" href="#id48" title="此标题的永久链接">#</a></h3>
@@ -2675,29 +2601,23 @@ along that codimension.</p>
 </section>
 <section id="id49">
 <h3><strong>说明</strong><a class="headerlink" href="#id49" title="此标题的永久链接">#</a></h3>
-<p><strong>event_query</strong> assigns the number of events to <strong>count</strong> which have been
-posted to the <strong>event</strong> variable and not yet been removed by calling
-<strong>event_wait</strong>. When <strong>stat</strong> is present and the invocation was successful, it
-is assigned the value <strong>0</strong>. If it is present and the invocation has failed,
-it is assigned a positive value and <strong>count</strong> is assigned the value <strong>-1</strong>.</p>
+<p><strong>event_query</strong>通过调用<strong>event_wait</strong>，将已指定给<strong>event</strong>变量但尚未移除的事件数赋给<strong>count</strong>。当<strong>stat</strong>存在并且调用成功时，它会被赋值<strong>0</strong>。如果<strong>stat</strong>存在，并且调用失败，则为其赋值为正值，并为<strong>count</strong>赋值**-1**。</p>
 </section>
 <section id="id50">
 <h3><strong>参数</strong><a class="headerlink" href="#id50" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>event</strong></dt><dd><p>(intent(in)) Scalar of type event_type, defined in
-iso_fortran_env; shall not be coindexed.</p>
+<dt><strong>event</strong></dt><dd><p>(intent(in)) 在iso_fortran_env中定义的 event_type类型的标量不应编入共索引。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>count</strong></dt><dd><p>(intent(out))Scalar integer with at least the precision of default
-<em>integer</em>.</p>
+<dt><strong>count</strong></dt><dd><p>(intent(out)) 精度至少为默认 <em>integer</em> 的标量整数。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(OPTIONAL) Scalar default-kind <em>integer</em> variable.</p>
+<dt><strong>stat</strong></dt><dd><p>(可选) 默认种类 <em>integer</em> 标量变量.</p>
 </dd>
 </dl>
 </li>
@@ -2723,7 +2643,7 @@ iso_fortran_env; shall not be coindexed.</p>
 </section>
 <section id="id52">
 <h3><strong>标准</strong><a class="headerlink" href="#id52" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 <section id="id53">
 <h4>fortran 语言内在描述<a class="headerlink" href="#id53" title="此标题的永久链接">#</a></h4>
 </section>
@@ -2733,7 +2653,7 @@ iso_fortran_env; shall not be coindexed.</p>
 <h2>image_index<a class="headerlink" href="#image-index" title="此标题的永久链接">#</a></h2>
 <section id="id54">
 <h3><strong>名称</strong><a class="headerlink" href="#id54" title="此标题的永久链接">#</a></h3>
-<p><strong>image_index</strong>(3) - [COLLECTIVE] Cosubscript to image index conversion</p>
+<p><strong>image_index</strong>(3) - [集合] 下标到镜像索引的转换</p>
 </section>
 <section id="id55">
 <h3><strong>语法</strong><a class="headerlink" href="#id55" title="此标题的永久链接">#</a></h3>
@@ -2749,13 +2669,12 @@ iso_fortran_env; shall not be coindexed.</p>
 <h3><strong>参数</strong><a class="headerlink" href="#id57" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>coarray</strong></dt><dd><p>Coarray of any type.</p>
+<dt><strong>coarray</strong></dt><dd><p>任意类型的coarray.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>sub</strong></dt><dd><p>default integer rank-1 array of a size equal to the corank of
-<strong>coarray</strong>.</p>
+<dt><strong>sub</strong></dt><dd><p>默认为整数一维数组，大小等于<strong>coarray</strong>的维度。</p>
 </dd>
 </dl>
 </li>
@@ -2763,9 +2682,7 @@ iso_fortran_env; shall not be coindexed.</p>
 </section>
 <section id="id58">
 <h3><strong>返回</strong><a class="headerlink" href="#id58" title="此标题的永久链接">#</a></h3>
-<p>Scalar default integer with the value of the image index which
-corresponds to the cosubscripts. For invalid cosubscripts the result is
-zero.</p>
+<p>标量默认整数，其镜像索引值与子下标相对应。对于无效的子下标，结果为零。</p>
 </section>
 <section id="id59">
 <h3><strong>示例</strong><a class="headerlink" href="#id59" title="此标题的永久链接">#</a></h3>
@@ -2796,7 +2713,7 @@ zero.</p>
 <h2>num_images<a class="headerlink" href="#num-images" title="此标题的永久链接">#</a></h2>
 <section id="id63">
 <h3><strong>名称</strong><a class="headerlink" href="#id63" title="此标题的永久链接">#</a></h3>
-<p><strong>num_images</strong>(3) - [COLLECTIVE] Number of images</p>
+<p><strong>num_images</strong>(3) - [集合] 镜像的数量</p>
 </section>
 <section id="id64">
 <h3><strong>语法</strong><a class="headerlink" href="#id64" title="此标题的永久链接">#</a></h3>
@@ -2806,18 +2723,18 @@ zero.</p>
 </section>
 <section id="id65">
 <h3><strong>说明</strong><a class="headerlink" href="#id65" title="此标题的永久链接">#</a></h3>
-<p>Returns the number of images.</p>
+<p>返回镜像的数量。</p>
 </section>
 <section id="id66">
 <h3><strong>参数</strong><a class="headerlink" href="#id66" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>distance</strong></dt><dd><p>(optional, <strong>intent(in)</strong>) Nonnegative scalar integer</p>
+<dt><strong>distance</strong></dt><dd><p>(optional, <strong>intent(in)</strong>) 非负标量整数</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>failed</strong></dt><dd><p>(optional, <strong>intent(in)</strong>) Scalar logical expression</p>
+<dt><strong>failed</strong></dt><dd><p>(optional, <strong>intent(in)</strong>) 标量逻辑表达式</p>
 </dd>
 </dl>
 </li>
@@ -2825,15 +2742,7 @@ zero.</p>
 </section>
 <section id="id67">
 <h3><strong>返回</strong><a class="headerlink" href="#id67" title="此标题的永久链接">#</a></h3>
-<p>Scalar default-kind <em>integer</em>. If <strong>distance</strong> is not present or has value 0,
-the number of images in the current team is returned. For values smaller
-or equal distance to the initial team, it returns the number of images
-index on the ancestor team which has a distance of <strong>distance</strong> from the
-invoking team. If <strong>distance</strong> is larger than the distance to the initial
-team, the number of images of the initial team is returned. If <strong>failed</strong> is
-not present the total number of images is returned; if it has the value
-.true., the number of failed images is returned, otherwise, the number
-of images which do have not the failed status.</p>
+<p>标量默认类型 <em>integer</em>。如果<strong>distance</strong>不存在或值为0，则返回当前编队的镜像数量。对于小于或等于初始编队距离的值，它返回与调用团队的距离为<strong>distance</strong>的起始编队上的镜像索引数量。如果<strong>distance</strong>大于到初始编队的距离，则返回初始团队的镜像数量。如果不存在<strong>failed</strong>，则返回镜像总数；如果值为.true.，则返回失败镜像的数量，否则返回没有失败状态的镜像的数量。</p>
 </section>
 <section id="id68">
 <h3><strong>示例</strong><a class="headerlink" href="#id68" title="此标题的永久链接">#</a></h3>
@@ -2857,7 +2766,7 @@ of images which do have not the failed status.</p>
 </section>
 <section id="id69">
 <h3><strong>标准</strong><a class="headerlink" href="#id69" title="此标题的永久链接">#</a></h3>
-<p>Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later</p>
+<p>Fortran 2008 以后. 有 DISTANCE 或 FAILED 参数, TS 18508 or later</p>
 </section>
 <section id="id70">
 <h3><strong>另见</strong><a class="headerlink" href="#id70" title="此标题的永久链接">#</a></h3>
@@ -2872,7 +2781,7 @@ of images which do have not the failed status.</p>
 <h2>this_image<a class="headerlink" href="#this-image" title="此标题的永久链接">#</a></h2>
 <section id="id72">
 <h3><strong>名称</strong><a class="headerlink" href="#id72" title="此标题的永久链接">#</a></h3>
-<p><strong>this_image</strong>(3) - [COLLECTIVE] Cosubscript index of this image</p>
+<p><strong>this_image</strong>(3) - [COLLECTIVE] 此镜像的下标索引</p>
 </section>
 <section id="id73">
 <h3><strong>语法</strong><a class="headerlink" href="#id73" title="此标题的永久链接">#</a></h3>
@@ -3026,7 +2935,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id86">
 <h3><strong>标准</strong><a class="headerlink" href="#id86" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 </section>
 <section id="id87">
 <h3><strong>另见</strong><a class="headerlink" href="#id87" title="此标题的永久链接">#</a></h3>
@@ -3107,7 +3016,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id94">
 <h3><strong>标准</strong><a class="headerlink" href="#id94" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 </section>
 <section id="id95">
 <h3><strong>另见</strong><a class="headerlink" href="#id95" title="此标题的永久链接">#</a></h3>
@@ -3186,7 +3095,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id102">
 <h3><strong>标准</strong><a class="headerlink" href="#id102" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 </section>
 <section id="id103">
 <h3><strong>另见</strong><a class="headerlink" href="#id103" title="此标题的永久链接">#</a></h3>
@@ -3265,7 +3174,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id110">
 <h3><strong>标准</strong><a class="headerlink" href="#id110" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 </section>
 <section id="id111">
 <h3><strong>另见</strong><a class="headerlink" href="#id111" title="此标题的永久链接">#</a></h3>
@@ -3338,7 +3247,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id118">
 <h3><strong>标准</strong><a class="headerlink" href="#id118" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 </section>
 <section id="id119">
 <h3><strong>另见</strong><a class="headerlink" href="#id119" title="此标题的永久链接">#</a></h3>
@@ -3411,7 +3320,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id126">
 <h3><strong>标准</strong><a class="headerlink" href="#id126" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 </section>
 <section id="id127">
 <h3><strong>另见</strong><a class="headerlink" href="#id127" title="此标题的永久链接">#</a></h3>
@@ -3484,7 +3393,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id134">
 <h3><strong>标准</strong><a class="headerlink" href="#id134" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 </section>
 <section id="id135">
 <h3><strong>另见</strong><a class="headerlink" href="#id135" title="此标题的永久链接">#</a></h3>
@@ -3570,7 +3479,7 @@ value is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id142">
 <h3><strong>标准</strong><a class="headerlink" href="#id142" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 </section>
 <section id="id143">
 <h3><strong>另见</strong><a class="headerlink" href="#id143" title="此标题的永久链接">#</a></h3>
@@ -3726,7 +3635,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id158">
 <h3><strong>标准</strong><a class="headerlink" href="#id158" title="此标题的永久链接">#</a></h3>
-<p>TS 18508 or later</p>
+<p>TS 18508 或之后</p>
 </section>
 <section id="id159">
 <h3><strong>另见</strong><a class="headerlink" href="#id159" title="此标题的永久链接">#</a></h3>
