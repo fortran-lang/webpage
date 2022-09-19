@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-12 10:43+0200\n"
-"PO-Revision-Date: 2022-09-19 01:24+0000\n"
+"PO-Revision-Date: 2022-09-25 14:15+0000\n"
 "Last-Translator: 左志华 <zuo.zhihua@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "fortran-lang/webpage/zh_Hans/>\n"
@@ -8451,7 +8451,7 @@ msgstr "[**ubound**(3)](#ubound), [**co_lbound**(3)](#co_lbound)"
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:2
 msgid "rank"
-msgstr "rank"
+msgstr "维度数"
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:6
 msgid "**rank**(3) - \\[ARRAY INQUIRY\\] Rank of a data object"
@@ -15611,7 +15611,6 @@ msgid "**image_index**(3) - \\[COLLECTIVE\\] Cosubscript to image index conversi
 msgstr "**image_index**(3) - \\[集合\\] 下标到镜像索引的转换"
 
 #: ../../source/learn/intrinsics/_pages/IMAGE_INDEX.md:16
-#, fuzzy
 msgid "Returns the image index belonging to a cosubscript."
 msgstr "返回属于下标的镜像索引。"
 
@@ -15707,23 +15706,24 @@ msgstr "**this_image**(3) - \\[COLLECTIVE\\] 此镜像的下标索引"
 
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:25
 msgid "Returns the cosubscript for this image."
-msgstr ""
+msgstr "返回此镜像的下标。"
 
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:30
 msgid ""
 "(optional, **intent(in)**) Nonnegative scalar integer (not permitted together"
 " with **coarray**)."
-msgstr ""
+msgstr "（optional，**intent(in)**）非负标量整数（不允许与 **coarray** 一起使用）。"
 
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:34
 msgid "Coarray of any type (optional; if **dim** present, required)."
-msgstr ""
+msgstr "任何类型的 Coarray（optional；如果 **dim** 存在，则为必需）。"
 
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:37
 msgid ""
 "default integer scalar (optional). If present, **dim** shall be between one "
 "and the corank of **coarray**."
-msgstr ""
+msgstr "默认整数标量（可选）。如果存在，**dim** 应介于 1 和 **coarray** 的 corank "
+"之间。"
 
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:42
 msgid ""
@@ -15739,23 +15739,30 @@ msgid ""
 "present, a scalar is returned, with the value of the **dim** element of "
 "**this_image(coarray)**."
 msgstr ""
+"默认整数。如果 **coarray** 不存在，它是标量；如果 **distance** 不存在或值为 *"
+"*0**，它的值是当前团队调用图像上的镜像索引，对于与初始团队的距离更小或相等的"
+"值，它返回镜像索引与调用团队距离**距离**的祖先团队。如果**距离**大于到初始团"
+"队的距离，则返回初始团队的镜像索引。否则，当 **coarray** 存在时，如果 **dim**"
+" 不存在，则返回具有 corank 元素的 rank-1 数组，其中包含指定调用图像的 "
+"**coarray** 的共同下标。如果存在 **dim**，则返回一个标量，其中包含 "
+"**this_image(coarray)** 的 **dim** 元素的值。"
 
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:81
-#, fuzzy
 msgid "Fortran 2008 and later. With DISTANCE argument, TS 18508 or later"
-msgstr "Fortran 95 及更高版本，带有 **kind** 参数 - Fortran 2003 及更高版本"
+msgstr "Fortran 2008 及更高版本。使用 DISTANCE 参数，TS 18508 或更高版本"
 
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:86
 msgid "[**num\\_images**(3)](#num_images), [**image\\_index**(3)](#image_index)"
 msgstr ""
+"[**num\\_images**(3)](#num_images), [**image\\_index**(3)](#image_index)"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_AND.md:2
 msgid "atomic_and"
-msgstr ""
+msgstr "atomic_and"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_AND.md:6
 msgid "**atomic_and**(3) - \\[ATOMIC:BIT MANIPULATION\\] Atomic bitwise AND operation"
-msgstr ""
+msgstr "**atomic_and**(3) - \\[ATOMIC:BIT MANIPULATION\\] 原子按位与运算"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_AND.md:16
 msgid ""
@@ -15767,6 +15774,11 @@ msgid ""
 " assigned the value of iso_fortran_env's stat_stopped_image and if the remote"
 " image has failed, the value stat_failed_image."
 msgstr ""
+"**atomic_and(atom, value)** 以 **atom** 和 **value** 的值之间的按位 **and** "
+"原子地定义**atom**。当 **stat** 存在且调用成功时，赋值为 0。如果存在且调用失"
+"败，则赋值为正值；特别是，对于一个共索引的**atom**，如果远程映像已停止，"
+"则为其分配 iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像失败，"
+"则为其分配 stat_failed_image 的值。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_ADD.md:26
 #: ../../source/learn/intrinsics/_pages/ATOMIC_AND.md:26
@@ -15780,7 +15792,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/ATOMIC_REF.md:30
 #: ../../source/learn/intrinsics/_pages/ATOMIC_XOR.md:26
 msgid "**atom**"
-msgstr ""
+msgstr "**atom**"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_ADD.md:27
 #: ../../source/learn/intrinsics/_pages/ATOMIC_AND.md:27
@@ -15792,7 +15804,7 @@ msgstr ""
 msgid ""
 "Scalar coarray or coindexed variable of integer type with atomic_int_kind "
 "kind."
-msgstr ""
+msgstr "具有 atomic_int_kind 类型的整数类型的标量 coarray 或 coindexed 变量。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_ADD.md:31
 #: ../../source/learn/intrinsics/_pages/ATOMIC_AND.md:31
@@ -15807,7 +15819,7 @@ msgstr ""
 msgid ""
 "Scalar of the same type as **atom**. If the kind is different, the value is "
 "converted to the kind of **atom**."
-msgstr ""
+msgstr "与**atom** 类型相同的标量。如果种类不同，则将值转换为**原子**的种类。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_ADD.md:35
 #: ../../source/learn/intrinsics/_pages/ATOMIC_AND.md:35
@@ -15821,7 +15833,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/ATOMIC_REF.md:36
 #: ../../source/learn/intrinsics/_pages/ATOMIC_XOR.md:35
 msgid "(optional) Scalar default-kind integer variable."
-msgstr ""
+msgstr "（可选）标量默认类型整数变量。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_AND.md:56
 msgid ""
@@ -15831,16 +15843,21 @@ msgid ""
 "[**atomic_add**(3)](#atomic_add), [**atomic_or**(3)](#atomic_or), "
 "[**atomic_xor**(3)](#atomic_xor)"
 msgstr ""
+"[**atomic_fetch_and**(3)](#atomic_fetch_and)，[**atomic_define**(3)](#atomic_"
+"define)，[**atomic_ref**(3)](#atomic_ref)，[**atomic_cas**(3)](#atomic_cas)，"
+"**iso_fortran_env**(3)，[**atomic_add**(3)](#atomic_add)，[**atomic_or**(3)]("
+"#atomic_or)，[**atomic_xor**(3)](#atomic_xor)"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_AND.md:2
 msgid "atomic_fetch_and"
-msgstr ""
+msgstr "atomic_fetch_and"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_AND.md:6
 msgid ""
 "**atomic_fetch_and**(3) - \\[ATOMIC:BIT MANIPULATION\\] Atomic bitwise AND "
 "operation with prior fetch"
-msgstr ""
+msgstr "**atomic_fetch_and**(3) - \\[ATOMIC:BIT MANIPULATION\\] "
+"原子按位与操作与先前提取"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_AND.md:16
 msgid ""
@@ -15853,6 +15870,12 @@ msgid ""
 " of iso_fortran_env's stat_stopped_image and if the remote image has failed, "
 "the value stat_failed_image."
 msgstr ""
+"**atomic_fetch_and(atom, value, old)** 以原子方式将 **atom** 的值存储在 "
+"**old** 中，并使用 **atom** 和 **值**之间的按位与来定义 **atom**。当 **stat**"
+" 存在且调用成功时，将为其分配值 **0**。如果它存在并且调用失败，则分配一个正值"
+"；特别是，对于一个共索引的**atom**，如果远程镜像已停止，则为其分配 "
+"iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像失败，则为其分配 "
+"stat_failed_image 的值。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_CAS.md:33
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_ADD.md:35
@@ -15896,7 +15919,8 @@ msgstr ""
 msgid ""
 "**atomic_fetch_or**(3) - \\[ATOMIC:BIT MANIPULATION\\] Atomic bitwise OR "
 "operation with prior fetch"
-msgstr ""
+msgstr "**atomic_fetch_or**(3) - \\[ATOMIC:BIT MANIPULATION\\] "
+"原子按位或操作与先前提取"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_OR.md:16
 msgid ""
@@ -15909,12 +15933,20 @@ msgid ""
 " of iso_fortran_env's stat_stopped_image and if the remote image has failed, "
 "the value stat_failed_image."
 msgstr ""
+"**atomic_fetch_or(atom, value, old)** 以原子方式将 **atom** 的值存储在 "
+"**old** 中，并使用 **atom** 和***value**之间的按位 OR 定义 **atom**。当 "
+"**stat** 存在且调用成功时，将为其分配值 **0**。如果它存在并且调用失败，则分配"
+"一个正值；特别是，对于一个共索引的**atom**，如果远程镜像已停止，则为其分配 "
+"iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像已失败，则为其分配 "
+"stat_failed_image 的值。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_OR.md:60
 msgid ""
 "[**atomic_define**(3)](#atomic_define), [**atomic_or**(3)](#atomic_or), "
 "[**iso_fortran_env**(3)](#),"
 msgstr ""
+"[**atomic_define**(3)](#atomic_define)，[**atomic_or**(3)](#atomic_or)，[**is"
+"o_fortran_env**(3)](#)，"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_OR.md:64
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_XOR.md:64
@@ -15931,7 +15963,8 @@ msgstr ""
 msgid ""
 "**atomic_fetch_xor**(3) - \\[ATOMIC:BIT MANIPULATION\\] Atomic bitwise XOR "
 "operation with prior fetch"
-msgstr ""
+msgstr "**atomic_fetch_xor**(3) - \\[ATOMIC:BIT MANIPULATION\\] "
+"原子按位异或运算，先取"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_XOR.md:16
 msgid ""
@@ -15944,16 +15977,24 @@ msgid ""
 "assigned the value of iso_fortran_env's stat_stopped_image and if the remote "
 "image has failed, the value stat_failed_image."
 msgstr ""
+"**atomic_fetch_xor(atom, value, old)** 以原子方式将 **atom** 的值存储在 "
+"**old** 中，并使用 **atom** 和 **value** 之间的按位 **xor** 定义 **atom**。"
+"当 **stat** 存在且调用成功时，将为其分配值 **0**。如果它存在并且调用失败，则"
+"分配一个正值；特别是，对于一个共索引的**atom**，如果远程镜像已停止，"
+"则为其分配 iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像已失败，"
+"则为其分配 stat_failed_image 的值。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_XOR.md:60
 msgid ""
 "[**atomic_define**(3)](#atomic_define), [**atomic_xor**(3)](#atomic_xor), "
 "[**iso_fortran_env**(3)](#),"
 msgstr ""
+"[**atomic_define**(3)](#atomic_define)，[**atomic_xor**(3)](#atomic_xor)，[**"
+"iso_fortran_env**(3)](#)，"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_XOR.md:67
 msgid "[**atomic_fetch_or**(3)](#atomic_fetch_or)"
-msgstr ""
+msgstr "[**atomic_fetch_or**(3)](#atomic_fetch_or)"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_OR.md:2
 msgid "atomic_or"
@@ -15961,7 +16002,7 @@ msgstr ""
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_OR.md:6
 msgid "**atomic_or**(3) - \\[ATOMIC:BIT MANIPULATION\\] Atomic bitwise OR operation"
-msgstr ""
+msgstr "**atomic_or**(3) - \\[ATOMIC:BIT MANIPULATION\\] 原子按位或运算"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_OR.md:16
 msgid ""
@@ -15973,6 +16014,11 @@ msgid ""
 "assigned the value of iso_fortran_env's stat_stopped_image and if the remote "
 "image has failed, the value stat_failed_image."
 msgstr ""
+"**atomic_or(atom, value)** 以 **atom** 和 **value** 之间的按位**or** "
+"原子地定义**atom**。当 **stat** 存在且调用成功时，将为其分配值 **0**。如果它"
+"存在并且调用失败，则分配一个正值；特别是，对于一个共索引的**atom**，如果远程"
+"镜像已停止，则为其分配 iso_fortran_env 的 stat_stopped_image "
+"的值，如果远程镜像已失败，则为其分配 stat_failed_image 的值。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_OR.md:56
 msgid ""
@@ -15996,7 +16042,7 @@ msgstr ""
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_XOR.md:6
 msgid "**atomic_xor**(3) - \\[ATOMIC:BIT MANIPULATION\\] Atomic bitwise OR operation"
-msgstr ""
+msgstr "**atomic_xor**(3) - \\[ATOMIC:BIT MANIPULATION\\] 原子按位或运算"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_XOR.md:16
 msgid ""
@@ -16008,6 +16054,11 @@ msgid ""
 "stopped, it is assigned the value of iso_fortran_env's stat_stopped_image and"
 " if the remote image has failed, the value stat_failed_image."
 msgstr ""
+"**atomic_xor(atom, value)** 以 **atom** 和 **value** 之间的按位 **xor** "
+"原子地定义**atom**。当 **stat** 存在且调用成功时，将为其分配值 **0**。如果它"
+"存在并且调用失败，则分配一个正值；特别是，对于一个共索引的**atom**，如果远程"
+"镜像已停止，则为其分配 iso_fortran_env 的 stat_stopped_image "
+"的值，如果远程镜像已失败，则为其分配 stat_failed_image 的值。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_XOR.md:56
 msgid ""
@@ -16016,6 +16067,9 @@ msgid ""
 "[**atomic_add**(3)](#atomic_add), [**atomic_or**(3)](#atomic_or), "
 "[**atomic_xor**(3)](#atomic_xor)"
 msgstr ""
+"[**atomic_define**(3)](#atomic_define)，[**atomic_fetch_xor**(3)](#atomic_fet"
+"ch)，[**iso_fortran_env**(3)](#)，[**atomic_add**(3)](#atomic_add)，[**atomic"
+"_or**(3)](#atomic_or)，[**atomic_xor**(3)](#atomic_xor)"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_ADD.md:2
 msgid "atomic_add"
@@ -16035,6 +16089,11 @@ msgid ""
 "stat_stopped_image and if the remote image has failed, the value "
 "stat_failed_image."
 msgstr ""
+"**atomic_ad(atom, value)** 以原子方式将 VAR 的值添加到变量 **atom**。当 "
+"**stat** 存在且调用成功时，赋值为 "
+"0。如果存在且调用失败，则赋值为正值；特别是，对于一个共索引的 "
+"ATOM，如果远程镜像已停止，则为其分配 iso_fortran_env 的 stat_stopped_image "
+"的值，如果远程镜像已失败，则分配 stat_failed_image 的值。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_ADD.md:56
 msgid ""
@@ -16043,6 +16102,9 @@ msgid ""
 "[**atomic_or**(3)](#atomic_or), [**atomic_xor**(3)](#atomic_xor) "
 "**iso_fortran_env**(3),"
 msgstr ""
+"[**atomic_define**(3)](#atomic_define)，[**atomic_fetch_add**(3)](#atomic_fet"
+"ch)，[**atomic_and**(3)](#atomic_and)，[**atomic_or**(3)](#atomic_or)，[**ato"
+"mic_xor**(3)](#atomic_xor) **iso_fortran_env**(3)，"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_CAS.md:2
 msgid "atomic_cas"
@@ -16064,6 +16126,12 @@ msgid ""
 "stat_stopped_image and if the remote image has failed, the value "
 "stat_failed_image."
 msgstr ""
+"atomic_cas 将变量 **atom** 与 **compare** "
+"的值进行比较；如果值相同，则**atom** 设置为**new** 的值。此外，**old** "
+"设置为用于比较的 **atom** 的值。当 **stat** 存在且调用成功时，赋值为 0。如果"
+"存在且调用失败，则赋值为正值；特别是，对于一个共索引的**atom**，如果远程镜像"
+"已停止，则为其分配 iso_fortran_env 的 stat_stopped_image "
+"的值，如果远程镜像失败，则为其分配 stat_failed_image 的值。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_CAS.md:29
 #: ../../source/learn/intrinsics/_pages/ATOMIC_DEFINE.md:32
@@ -16072,6 +16140,8 @@ msgid ""
 "Scalar coarray or coindexed variable of either integer type with "
 "atomic_int_kind kind or logical type with atomic_logical_kind kind."
 msgstr ""
+"具有 atomic_int_kind 类型的整数类型或具有 atomic_logical_kind "
+"类型的逻辑类型的标量 coarray 或 coindexed 变量。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_CAS.md:36
 msgid "**compare**"
@@ -16103,7 +16173,7 @@ msgstr ""
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_DEFINE.md:6
 msgid "**atomic_define**(3) - \\[ATOMIC\\] Setting a variable atomically"
-msgstr ""
+msgstr "**atomic_define**(3) - \\[ATOMIC\\] 以原子方式设置变量"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_DEFINE.md:21
 msgid ""
@@ -16115,10 +16185,15 @@ msgid ""
 " of iso_fortran_env's stat_stopped_image and if the remote image has failed, "
 "the value stat_failed_image."
 msgstr ""
+"**atomic_define(atom, value)** 以原子方式定义变量**atom**，其值为**value**。"
+"当 **stat** 存在且调用成功时，将为其分配值 **0**。如果它存在并且调用失败，则"
+"分配一个正值；特别是，对于一个共索引的**atom**，如果远程镜像已停止，"
+"则为其分配 iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像失败，"
+"则为其分配 stat_failed_image 的值。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_DEFINE.md:58
 msgid "Fortran 2008 and later; with **stat**, TS 18508 or later"
-msgstr ""
+msgstr "Fortran 2008 及更高版本；带有 **stat**、TS 18508 或更高版本"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_DEFINE.md:62
 msgid ""
@@ -16127,14 +16202,17 @@ msgid ""
 "[**atomic_and**(3)](#atomic_and), [**atomic_or**(3)](#atomic_or), "
 "[**atomic_xor**(3)](#atomic_xor)"
 msgstr ""
+"[**atomic_ref**(3)](#atomic_ref)，[**atomic_cas**(3)](#atomic_cas)，**iso_for"
+"tran_env**(3)，[**atomic_add**(3)](#atomic_add)，[**atomic_and**(3)](#atomic_"
+"and)，[**atomic_or**(3)](#atomic_or)，[**atomic_xor**(3)](#atomic_xor)"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_ADD.md:2
 msgid "atomic_fetch_add"
-msgstr ""
+msgstr "atomic_fetch_add"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_ADD.md:6
 msgid "**atomic_fetch_add**(3) - \\[ATOMIC\\] Atomic ADD operation with prior fetch"
-msgstr ""
+msgstr "**atomic_fetch_add**(3) - \\[ATOMIC\\] 原子 ADD 操作与先前的 fetch"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_ADD.md:16
 msgid ""
@@ -16147,32 +16225,44 @@ msgid ""
 "stat_stopped_image and if the remote image has failed, the value "
 "stat_failed_image."
 msgstr ""
+"**atomic_fetch_add(atom, value, old)** 以原子方式将**atom** 的值存储在**old**"
+" 中，并将**var** 的值添加到变量**atom** 中。当 **stat** 存在且调用成功时，"
+"将为其分配值 **0**。如果它存在并且调用失败，则分配一个正值；特别是，对于一个"
+"共索引的**atom**，如果远程镜像已停止，则为其分配 iso_fortran_env 的 "
+"stat_stopped_image 的值，如果远程镜像已失败，则为其分配 stat_failed_image "
+"的值。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_ADD.md:28
 msgid ""
 "Scalar coarray or coindexed variable of integer type with atomic_int_kind "
 "kind. atomic_logical_kind kind."
 msgstr ""
+"具有 atomic_int_kind 类型的整数类型的标量 coarray 或 coindexed 变量。 "
+"atomic_logical_kind 种类。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_ADD.md:60
 msgid ""
 "[**atomic_define**(3)](#atomic_define), [**atomic_add**(3)](#atomic_add), "
 "**iso_fortran_env**(3),"
 msgstr ""
+"[**atomic_define**(3)](#atomic_define)，[**atomic_add**(3)](#atomic_add)，**i"
+"so_fortran_env**(3)，"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_FETCH_ADD.md:64
 msgid ""
 "[**atomic_fetch_and**(3)](#atomic_fetch_and), "
 "[**atomic_fetch_or**(3)](#atomic_fetch_or),"
 msgstr ""
+"[**atomic_fetch_and**(3)](#atomic_fetch_and)，[**atomic_fetch_or**(3)](#atomi"
+"c_fetch_or)，"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_REF.md:2
 msgid "atomic_ref"
-msgstr ""
+msgstr "atomic_ref"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_REF.md:6
 msgid "**atomic_ref**(3) - \\[ATOMIC\\] Obtaining the value of a variable atomically"
-msgstr ""
+msgstr "**atomic_ref**(3) - \\[ATOMIC\\] 以原子方式获取变量的值"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_REF.md:16
 msgid ""
@@ -16184,80 +16274,95 @@ msgid ""
 " of iso_fortran_env's **stat_stopped_image** and if the remote image has "
 "failed, the value **stat_failed_image**."
 msgstr ""
+"**atomic_ref(value, atom)** 以原子方式将变量 **atom** 的值分配给 **value**。"
+"当 **stat** 存在且调用成功时，将为其分配值 **0**。如果它存在并且调用失败，则"
+"分配一个正值；特别是，对于一个共索引的**atom**，如果远程镜像已停止，"
+"则为其分配 iso_fortran_env 的 **stat_stopped_image** 的值，如果远程镜像失败，"
+"则为其分配值 **stat_failed_image**。"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_REF.md:59
 msgid "Fortran 2008 and later; with STAT, TS 18508 or later"
-msgstr ""
+msgstr "Fortran 2008 及更高版本；使用 STAT、TS 18508 或更高版本"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_REF.md:63
 msgid ""
 "[**atomic_define**(3)](#atomic_define), [**atomic_cas**(3)](#atomic_cas), "
 "[**iso_fortran_env**(3)](#),"
 msgstr ""
+"[**atomic_define**(3)](#atomic_define)，[**atomic_cas**(3)](#atomic_cas)，[**"
+"iso_fortran_env**(3)](#)，"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_REF.md:67
 msgid ""
 "[**atomic_fetch_add**(3)](#atomic_add), "
 "[**atomic_fetch_and**(3)](#atomic_and),"
 msgstr ""
+"[**atomic_fetch_add**(3)](#atomic_add)，[**atomic_fetch_and**(3)](#atomic_and"
+")，"
 
 #: ../../source/learn/intrinsics/_pages/ATOMIC_REF.md:70
 msgid "[**atomic_fetch_or**(3)](#atomic_or), [**atomic_fetch_xor**(3)](#atomic_xor)"
 msgstr ""
+"[**atomic_fetch_or**(3)](#atomic_or)，[**atomic_fetch_xor**(3)](#atomic_xor)"
 
 #: ../../source/learn/intrinsics/state.md:1
 msgid "General and miscellaneous intrinsics"
-msgstr ""
+msgstr "一般和杂项内置函数"
 
 #: ../../source/learn/intrinsics/_pages/ASSOCIATED.md:2
 msgid "associated"
-msgstr ""
+msgstr "associated"
 
 #: ../../source/learn/intrinsics/_pages/ASSOCIATED.md:6
 msgid "**associated**(3) - \\[STATE\\] Status of a pointer or pointer/target pair"
-msgstr ""
+msgstr "**associated**(3) - \\[STATE\\] 指针或指针/目标对的状态"
 
 #: ../../source/learn/intrinsics/_pages/ASSOCIATED.md:16
 msgid ""
 "**associated(pointer \\[, target\\])** determines the status of the pointer "
 "**pointer** or if **pointer** is associated with the target **target**."
 msgstr ""
+"**associated(pointer \\[, target\\])** 确定指针**pointer** "
+"的状态，或者**pointer** 是否与目标**target** 相关联。"
 
 #: ../../source/learn/intrinsics/_pages/ASSOCIATED.md:21
 msgid "**pointer**"
-msgstr ""
+msgstr "**pointer**"
 
 #: ../../source/learn/intrinsics/_pages/ASSOCIATED.md:22
 msgid "**pointer** shall have the _pointer_ attribute and it can be of any type."
-msgstr ""
+msgstr "**pointer** 应具有 _pointer_ 属性，它可以是任何类型。"
 
 #: ../../source/learn/intrinsics/_pages/ASSOCIATED.md:24
 msgid "**target**"
-msgstr ""
+msgstr "**target**"
 
 #: ../../source/learn/intrinsics/_pages/ASSOCIATED.md:25
 msgid ""
 "(Optional) **target** shall be a pointer or a target. It must have the same "
 "type, kind type parameter, and array rank as **pointer**."
-msgstr ""
+msgstr "（可选）**target** "
+"应为指针或目标。它必须具有与**pointer**相同的类型、种类类型参数和数组维度数。"
 
 #: ../../source/learn/intrinsics/_pages/ASSOCIATED.md:28
 msgid ""
 "The association status of neither **pointer** nor **target** shall be "
 "undefined."
-msgstr ""
+msgstr "**pointer** 和 **target** 的关联状态都不能定义。"
 
 #: ../../source/learn/intrinsics/_pages/ASSOCIATED.md:32
 msgid ""
 "**associated(pointer)** returns a scalar value of type _logical_. There are "
 "several cases:"
-msgstr ""
+msgstr "**associated(pointer)** 返回一个 _logical_ 类型的标量值。有几种情况："
 
 #: ../../source/learn/intrinsics/_pages/ASSOCIATED.md:35
 msgid ""
 "When the optional **target** is not present then **associated(pointer)** is "
 "true if **pointer** is associated with a target; otherwise, it returns false."
 msgstr ""
+"当可选的 **target** 不存在时，如果 **pointer** 与目标相关联，则 "
+"**associated(pointer)** 为真；否则，它返回 false。"
 
 #: ../../source/learn/intrinsics/_pages/ASSOCIATED.md:39
 msgid ""
@@ -18268,7 +18373,7 @@ msgstr ""
 
 #: ../../source/learn/os_setup/index.md:14
 msgid "Setting up your OS"
-msgstr ""
+msgstr "设置操作系统"
 
 #: ../../source/learn/os_setup/index.md:16
 msgid ""
@@ -18283,6 +18388,13 @@ msgid ""
 " OSs. A list of popular text editors and IDEs and information on how to "
 "choose between them is presented as well."
 msgstr ""
+"在这本迷你书中，我们解决了许多新 Fortran 程序员遇到的第一个问题。在一切之前，"
+"你需要选择一个编译器并安装它。然后，你将需要一个文本编辑器，或者可能需要一个 "
+"IDE（集成开发环境）。有很多选项，其中大多数在所有主要操作系统（操作系统）中都"
+"可用。但是，安装和配置它们的过程在 Windows、Linux 和 macOS 之间存在很大差异。"
+"有几个 Fortran 编译器。在这里，我们挑选符合特定标准的那些，并提供有关如何在所"
+"有上述操作系统中安装它们的指南。还提供了流行的文本编辑器和 IDE "
+"列表以及有关如何在它们之间进行选择的信息。"
 
 #: ../../source/learn/os_setup/index.md:19
 msgid ""
@@ -18291,6 +18403,9 @@ msgid ""
 "`Hello World` program or with the Building programs mini-book to understand "
 "how a compiler works."
 msgstr ""
+"如果您已经设置了环境，你可以跳过本教程并继续阅读快速入门 Fortran "
+"教程以开始编写你的第一个 `Hello World` "
+"程序或阅读构建程序迷你书以了解编译器的工作原理。"
 
 #: ../../source/learn/os_setup/index.md:24
 msgid ""
@@ -18300,6 +18415,9 @@ msgid ""
 " push the reader towards one or another direction. We will, however, present "
 "a list of the most popular tools._"
 msgstr ""
+"_文本编辑器和IDE的选择在开发者中一直存在争议。你选择什么是个人品味的问题。每"
+"个解决方案都有自己的优点和缺点。因此，在本指南中，我们不会将读者推向一个或另"
+"一个方向。但是，我们将列出最受欢迎的工具。_"
 
 #: ../../source/learn/os_setup/install_gfortran.md:3
 msgid ""
@@ -18311,22 +18429,29 @@ msgid ""
 "presented in a beginner-friendly format based on the information from "
 "[GFortranBinaries](https://gcc.gnu.org/wiki/GFortranBinaries)."
 msgstr ""
+"GFortran 是 [GNU Fortran 项目](https://gcc.gnu.org/fortran/) 的名称。主 "
+"[wiki](https://gcc.gnu.org/wiki/GFortran) 页面提供了许多关于 GFortran "
+"以及一般 Fortran 的有用链接。在本指南中，基于 [GFortranBinaries](https://gcc."
+"gnu.org/wiki/GFortranBinaries) 中的信息，以适合初学者的格式介绍了 GFortran "
+"在 Windows、Linux、macOS 和 OpenBSD 上的安装过程。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:5
 msgid "Windows"
-msgstr ""
+msgstr "Windows"
 
 #: ../../source/learn/os_setup/install_gfortran.md:7
 msgid ""
 "Three sources provide quick and easy way to install GFortran compiler on "
 "Windows:"
-msgstr ""
+msgstr "三个来源提供了在 Windows 上安装 GFortran 编译器的快捷方式："
 
 #: ../../source/learn/os_setup/install_gfortran.md:9
 msgid ""
 "[http://www.equation.com](http://www.equation.com/servlet/equation.cmd?fa=fortran),"
 " provides 32 and 64-bit x86 executables for GCC version 12.1."
 msgstr ""
+"[http://www.equation.com](http://www.equation.com/servlet/equation."
+"cmd?fa=fortran)，为 GCC 版本 12.1 提供 32 位和 64 位 x86 可执行文件。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:11
 msgid ""
@@ -18334,41 +18459,46 @@ msgid ""
 "gcc/articles/2021-05/10.3.0-release), provides 32 and 64-bit x86 executables "
 "for GCC version 10.3."
 msgstr ""
+"[TDM GCC](https://jmeubank.github.io/tdm-gcc/articles/2021-05/10.3."
+"0-release)，为 GCC 10.3 版提供 32 位和 64 位 x86 可执行文件。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:12
 msgid ""
 "[MinGW-w64](https://www.mingw-w64.org/downloads/#mingw-builds) provides a "
 "64-bit x86 executable for GCC version 12.2."
 msgstr ""
+"[MinGW-w64](https://www.mingw-w64.org/downloads/#mingw-builds) 为 GCC 版本 "
+"12.2 提供了 64 位 x86 可执行文件。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:14
 msgid ""
 "In all the above choices, the process is straightforward—just download the "
 "installer and follow the installation wizard."
-msgstr ""
+msgstr "在上述所有选择中，过程很简单——只需下载安装程序并按照安装向导进行操作即可。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:16
 msgid "Unix-like development on Windows"
-msgstr ""
+msgstr "Windows 上的类 Unix 开发"
 
 #: ../../source/learn/os_setup/install_gfortran.md:18
 msgid ""
 "For those familiar with a unix-like development environment, several "
 "emulation options are available on Windows each of which provide packages for"
 " gfortran:"
-msgstr ""
+msgstr "对于那些熟悉类 unix 开发环境的人，Windows 上提供了几个仿真选项，每个选项都为 "
+"gfortran 提供包："
 
 #: ../../source/learn/os_setup/install_gfortran.md:20
 msgid ""
 "**Cygwin:** A runtime environment that provides POSIX compatibility to "
 "Windows."
-msgstr ""
+msgstr "**Cygwin：** 为 Windows 提供 POSIX 兼容性的运行时环境。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:21
 msgid ""
 "**MSYS2:** A collection of Unix-like development tools, based on modern "
 "Cygwin and MinGW-w64."
-msgstr ""
+msgstr "**MSYS2：** 类 Unix 开发工具的集合，基于现代 Cygwin 和 MinGW-w64。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:22
 msgid ""
@@ -18377,6 +18507,9 @@ msgid ""
 "Linux GUI](https://github.com/microsoft/wslg) one can run text editors and "
 "other graphical programs."
 msgstr ""
+"**适用于 Linux 的 Windows 子系统 (WSL)：** 用于在 Windows 上运行 Linux "
+"二进制可执行文件的官方兼容层。使用 [Linux GUI 的 Windows "
+"子系统](https://github.com/microsoft/wslg) 可以运行文本编辑器和其他图形程序。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:24
 msgid ""
@@ -18384,46 +18517,51 @@ msgid ""
 "development tools including GNU coreutils, Make, CMake, autotools, git, grep,"
 " sed, awk, ssh, etc."
 msgstr ""
+"上述所有方法都提供了对 bash 等常用 shell 和 GNU "
+"coreutils、Make、CMake、autotools、git、grep、sed、awk、ssh "
+"等开发工具的访问。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:26
 msgid ""
 "We recommend the WSL environment for those looking for a Unix-like "
 "development environment on Windows."
-msgstr ""
+msgstr "我们向那些在 Windows 上寻找类 Unix 开发环境的人推荐 WSL 环境。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:28
 msgid "Linux"
-msgstr ""
+msgstr "Linux"
 
 #: ../../source/learn/os_setup/install_gfortran.md:30
 msgid "Debian-based (Debian, Ubuntu, Mint, etc...)"
-msgstr ""
+msgstr "基于 Debian 的发行版（Debian、Ubuntu、Mint 等...）"
 
 #: ../../source/learn/os_setup/install_gfortran.md:32
 msgid "Check whether you have gfortran already installed"
-msgstr ""
+msgstr "检查你是否已经安装了 gfortran"
 
 #: ../../source/learn/os_setup/install_gfortran.md:38
 msgid ""
 "If nothing is returned then gfortran is not installed. To install gfortran "
 "type:"
-msgstr ""
+msgstr "如果没有返回任何内容，则未安装 gfortran。要安装 gfortran 类型："
 
 #: ../../source/learn/os_setup/install_gfortran.md:45
 msgid "to check what version was installed type:"
-msgstr ""
+msgstr "检查安装的版本类型："
 
 #: ../../source/learn/os_setup/install_gfortran.md:51
 msgid ""
 "You can install multiple versions up to version 10 (on Ubuntu 22.04) by "
 "typing the version number immediately after \"gfortran\", e.g.:"
-msgstr ""
+msgstr "你可以通过在“gfortran”之后立即键入版本号来安装版本 10（在 Ubuntu 22.04 "
+"上）的多个版本，例如："
 
 #: ../../source/learn/os_setup/install_gfortran.md:57
 msgid ""
 "To install newer versions on older Ubuntu releases, you will first need to "
 "add the following repository, update, and then install:"
-msgstr ""
+msgstr "要在较旧的 Ubuntu "
+"版本上安装较新版本，你首先需要添加以下存储库，更新，然后安装："
 
 #: ../../source/learn/os_setup/install_gfortran.md:65
 msgid ""
@@ -18436,20 +18574,27 @@ msgid ""
 "-compiler-versions-on-ubuntu-22-04-lts-jammy-jellyfish), you can apply the "
 "same logic by replacing either `gcc` or `g++` with `gfortran`."
 msgstr ""
+"最后，你可以在不同版本之间切换或使用 **update-alternatives** "
+"设置默认版本（[参见手册页](https://manpages.ubuntu.com/manpages/jammy/en/"
+"man1/update-alternatives.1.html)）。有很多关于如何使用此功能的在线教程。"
+"可以在 [here](https://linuxconfig.org/how-to-switch-between-multiple-gcc-"
+"and-g-compiler-versions-on-ubuntu-) 中找到使用 C 和 C++ "
+"作为示例的结构良好的22-04-lts-jammy-jellyfish），你可以通过将 `gcc` 或 `g++` "
+"替换为 `gfortran` 来应用相同的逻辑。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:67
 msgid "RPM-based (Red Hat Enterprise Linux, CentOS, Fedora, openSUSE)"
-msgstr ""
+msgstr "基于 RPM 的发行版（Red Hat Enterprise Linux、CentOS、Fedora、openSUSE）"
 
 #: ../../source/learn/os_setup/install_gfortran.md:73
 msgid ""
 "Since Fedora 22 and Red Hat Enterprise Linux 8, `dnf` is the default package "
 "manager:"
-msgstr ""
+msgstr "从 Fedora 22 和 Red Hat Enterprise Linux 8 开始，`dnf` 是默认的包管理器："
 
 #: ../../source/learn/os_setup/install_gfortran.md:79
 msgid "Arch-based (Arch Linux, EndeavourOS, Manjaro, etc...)"
-msgstr ""
+msgstr "基于 Arch 的发行版（Arch Linux、EndeavourOS、Manjaro 等）"
 
 #: ../../source/learn/os_setup/install_gfortran.md:85
 msgid "macOS"
@@ -18457,11 +18602,11 @@ msgstr "macOS"
 
 #: ../../source/learn/os_setup/install_gfortran.md:87
 msgid "Xcode"
-msgstr ""
+msgstr "Xcode"
 
 #: ../../source/learn/os_setup/install_gfortran.md:89
 msgid "If you have Xcode installed, open a terminal window and type:"
-msgstr ""
+msgstr "如果你安装了 Xcode，请打开终端窗口并输入："
 
 #: ../../source/learn/os_setup/install_gfortran.md:95
 msgid "Binaries"
@@ -18472,10 +18617,12 @@ msgid ""
 "Go to [fxcoudert/gfortran-for-macOS](https://github.com/fxcoudert/gfortran-"
 "for-macOS/releases) to directly install binaries."
 msgstr ""
+"前往 [fxcoudert/gfortran-for-macOS](https://github.com/fxcoudert/"
+"gfortran-for-macOS/releases) 直接安装二进制文件。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:99
 msgid "Homebrew"
-msgstr ""
+msgstr "Homebrew"
 
 #: ../../source/learn/os_setup/install_gfortran.md:105
 msgid "Fink"
@@ -18486,6 +18633,8 @@ msgid ""
 "GNU-gcc Package "
 "[link](https://pdb.finkproject.org/pdb/browse.php?summary=GNU+Compiler+Collection+Version)"
 msgstr ""
+"GNU-gcc 包 [链接](https://pdb.finkproject.org/pdb/browse."
+"php?summary=GNU+Compiler+Collection+Version)"
 
 #: ../../source/learn/os_setup/install_gfortran.md:109
 msgid "MacPorts"
@@ -18493,11 +18642,11 @@ msgstr "MacPorts"
 
 #: ../../source/learn/os_setup/install_gfortran.md:111
 msgid "Search for available gcc versions:"
-msgstr ""
+msgstr "搜索可用的 gcc 版本："
 
 #: ../../source/learn/os_setup/install_gfortran.md:117
 msgid "Install a gcc version:"
-msgstr ""
+msgstr "安装 gcc 版本："
 
 #: ../../source/learn/os_setup/install_gfortran.md:123
 msgid "OpenBSD"
@@ -18505,7 +18654,7 @@ msgstr "OpenBSD"
 
 #: ../../source/learn/os_setup/install_gfortran.md:129
 msgid "On OpenBSD, the GFortran executable is named `egfortran`. To test it, type:"
-msgstr ""
+msgstr "在 OpenBSD 上，GFortran 可执行文件名为 `egfortran`。要对其进行测试，请键入："
 
 #: ../../source/learn/os_setup/install_gfortran.md:137
 msgid "OpenCoarrays"
@@ -18519,6 +18668,10 @@ msgid ""
 " leverage the parallel programming features of Fortran 2018. Since "
 "OpenCoarrays is not a separate compiler, we include it here, under gfortran."
 msgstr ""
+"[OpenCoarrays](http://www.opencoarrays.org/) 是一个开源软件项目，"
+"它生成一个应用程序二进制接口 (ABI)，供 GNU 编译器集合 (GCC) Fortran "
+"前端用于构建利用 Fortran 2018 的并行编程特性。由于 OpenCoarrays "
+"不是一个单独的编译器，我们将其包含在 gfortran 下。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:141
 msgid ""
@@ -18528,18 +18681,22 @@ msgid ""
 "running code in parallel on shared- and distributed-memory machines, similar "
 "to MPI:"
 msgstr ""
+"虽然使用 gfortran 你可以使用 coarrays "
+"编译完全有效的代码，但生成的二进制文件将仅在单个图像中运行（_image_ "
+"是并行进程的 Fortran 术语），即串行模式。 OpenCoarrays "
+"允许在共享和分布式内存机器上并行运行代码，类似于 MPI："
 
 #: ../../source/learn/os_setup/install_gfortran.md:147
 msgid ""
 "The process of installation is provided in a clear and comprehensive manner "
 "on the official site."
-msgstr ""
+msgstr "安装过程在官方网站上以清晰而全面的方式提供。"
 
 #: ../../source/learn/os_setup/install_gfortran.md:149
 msgid ""
 "We emphasize that native installation on Windows is not possible. It is only "
 "possible through WSL."
-msgstr ""
+msgstr "我们强调不能在 Windows 上进行本地安装。只有通过 WSL 才有可能。"
 
 #: ../../source/learn/os_setup/text_editors.md:3
 msgid ""
@@ -18553,53 +18710,61 @@ msgid ""
 "to you to search for them through a package manager and install and configure"
 " them manually."
 msgstr ""
+"安装编译器后，你将需要一个文本编辑器来编写代码。任何文本编辑器都可以达到此目"
+"的，即使是 Windows 上的内置记事本。但是，有专门的编程语言编辑器。这些编辑器具"
+"有许多有用的功能，如自动完成、语法突出显示、自动缩进、大括号匹配等等，其中很"
+"少有预安装的，大多数是外部插件的形式。这意味着默认情况下这些功能不会安装在编"
+"辑器中，但你可以通过包管理器搜索它们并手动安装和配置它们。"
 
 #: ../../source/learn/os_setup/text_editors.md:5
 msgid ""
 "Here's a list of the most popular text editors that support Fortran syntax, "
 "in alphabetical order:"
-msgstr ""
+msgstr "以下是支持 Fortran 语法的最流行的文本编辑器列表，按字母顺序排列："
 
 #: ../../source/learn/os_setup/text_editors.md:7
 msgid "[Atom](https://atom.io/)"
-msgstr ""
+msgstr "[Atom](https://atom.io/)"
 
 #: ../../source/learn/os_setup/text_editors.md:8
 msgid "[Emacs](https://www.gnu.org/software/emacs/)"
-msgstr ""
+msgstr "[Emacs](https://www.gnu.org/software/emacs/)"
 
 #: ../../source/learn/os_setup/text_editors.md:9
 msgid "[NotePad++](https://notepad-plus-plus.org/)"
-msgstr ""
+msgstr "[NotePad++](https://notepad-plus-plus.org/)"
 
 #: ../../source/learn/os_setup/text_editors.md:10
 msgid "[SublimeText](https://www.sublimetext.com/)"
-msgstr ""
+msgstr "[SublimeText](https://www.sublimetext.com/)"
 
 #: ../../source/learn/os_setup/text_editors.md:11
 msgid "[Vim](https://www.vim.org/) and [Neovim](https://neovim.io/)"
-msgstr ""
+msgstr "[Vim](https://www.vim.org/) 和 [Neovim](https://neovim.io/)"
 
 #: ../../source/learn/os_setup/text_editors.md:12
 msgid "[Visual Studio Code](https://code.visualstudio.com/)"
-msgstr ""
+msgstr "[Visual Studio Code](https://code.visualstudio.com/)"
 
 #: ../../source/learn/os_setup/text_editors.md:14
 msgid ""
 "A comprehensive list with more choices is provided in "
 "[fortranwiki.org](http://fortranwiki.org/fortran/show/Source+code+editors)."
 msgstr ""
+"[fortranwiki.org](http://fortranwiki.org/fortran/show/Source+code+editors) "
+"中提供了包含更多选择的综合列表。"
 
 #: ../../source/learn/os_setup/text_editors.md:16
 msgid "Things to consider before choosing a text editor:"
-msgstr ""
+msgstr "选择文本编辑器之前要考虑的事项："
 
 #: ../../source/learn/os_setup/text_editors.md:18
 msgid ""
 "**Ergonomics:** This is purely subjective and concerns how easy, "
 "uninterrupted the UI (User Interface) feels to the developer while using the "
 "editor."
-msgstr ""
+msgstr "**人体工程学：** 这纯粹是主观的，涉及到开发人员在使用编辑器时 "
+"UI（用户界面）感觉如何简单、不间断。"
 
 #: ../../source/learn/os_setup/text_editors.md:19
 msgid ""
@@ -18607,7 +18772,8 @@ msgid ""
 "as external packages. The variety, the installation process, the "
 "documentation, and user-friendliness of the packages all fall under this "
 "category."
-msgstr ""
+msgstr "**可扩展性：** 如上所述，文本编辑器具有许多作为外部包的功能。软件包的种类、安"
+"装过程、文档和用户友好性都属于这一类。"
 
 #: ../../source/learn/os_setup/text_editors.md:20
 msgid ""
@@ -18617,6 +18783,9 @@ msgid ""
 "performance. For example, you can expect Atom and VSCode to run slower than "
 "the lightweight editors like Vim or Emacs."
 msgstr ""
+"**速度：**随着现代硬件的强大，编辑的速度变得不那么重要了。但是，对于功能较弱"
+"的系统，你可能也需要考虑这一点。重量级编辑可能会影响写作性能。例如，"
+"你可以预期 Atom 和 VSCode 比 Vim 或 Emacs 等轻量级编辑器运行得更慢。"
 
 #: ../../source/learn/os_setup/text_editors.md:21
 msgid ""
@@ -18626,10 +18795,14 @@ msgid ""
 "experience than any other editor by forcing you to use the keyboard for all "
 "editing tasks."
 msgstr ""
+"**学习曲线：** "
+"最后但并非最不重要的一点是，新用户应该考虑适应新编辑器的难易程度。 Vim 和 "
+"Emacs 有一个陡峭的学习曲线，而且对于新手来说是出了名的困难。通过强制你使用键"
+"盘完成所有编辑任务，它们提供了与任何其他编辑器截然不同的体验。"
 
 #: ../../source/learn/os_setup/text_editors.md:23
 msgid "Configuring VS Code"
-msgstr ""
+msgstr "配置 VS Code"
 
 #: ../../source/learn/os_setup/text_editors.md:25
 msgid ""
@@ -18640,28 +18813,36 @@ msgid ""
 "gfortran) for syntax highlighting, linting and Language Server support and "
 "formatting."
 msgstr ""
+"打开编辑器后，在主 UI 左侧的按钮列中，有一个 _four-square-shaped_ "
+"图标可以打开扩展市场。安装 [Modern Fortran](https://marketplace.visualstudio."
+"com/items?itemName=krvajalm.linter-gfortran) 以获得语法高亮、linting "
+"和语言服务器支持和格式化。"
 
 #: ../../source/learn/os_setup/text_editors.md:28
 msgid "Additional Tools"
-msgstr ""
+msgstr "附加工具"
 
 #: ../../source/learn/os_setup/text_editors.md:30
 msgid ""
 "The following extensions are not essential but most users might find them "
 "useful:"
-msgstr ""
+msgstr "以下扩展不是必需的，但大多数用户可能会发现它们很有用："
 
 #: ../../source/learn/os_setup/text_editors.md:32
 msgid ""
 "[GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)"
 " for advanced Git visualization and operations."
 msgstr ""
+"[GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio."
+"gitlens) 用于高级 Git 可视化和操作。"
 
 #: ../../source/learn/os_setup/text_editors.md:33
 msgid ""
 "[CMake](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-"
 "tools) for full-featured CMake integration in VS Code."
 msgstr ""
+"[CMake](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-"
+"tools) 用于 VS Code 中的全功能 CMake 集成。"
 
 #: ../../source/learn/os_setup/text_editors.md:34
 msgid ""
@@ -18669,6 +18850,9 @@ msgid ""
 "vscode-remote.vscode-remote-extensionpack) for working with containers, on a "
 "remote machines, or in the Windows Subsystem for Linux (WSL)."
 msgstr ""
+"[远程开发](https://marketplace.visualstudio.com/items?itemName=ms-vscode-"
+"remote.vscode-remote-extensionpack) 用于在远程机器上或在 Linux 的 Windows "
+"子系统 (WSL) 中使用容器。"
 
 #: ../../source/learn/os_setup/text_editors.md:35
 msgid ""
@@ -18678,10 +18862,14 @@ msgid ""
 "[fpm](https://github.com/fortran-lang/fpm) _Fortran Package Manager_, a TOML "
 "language support might come in handy."
 msgstr ""
+"[tamasfe 的更好的 TOML](https://marketplace.visualstudio.com/"
+"items?itemName=tamasfe.even-better-toml)。对于使用新的 [fpm](https://github."
+"com/fortran-lang/fpm)_Fortran 包管理器_的 Fortran 开发人员，TOML "
+"语言支持可能会派上用场。"
 
 #: ../../source/learn/os_setup/text_editors.md:37
 msgid "Configuring SublimeText"
-msgstr ""
+msgstr "配置 SublimeText"
 
 #: ../../source/learn/os_setup/text_editors.md:39
 msgid ""
@@ -18689,10 +18877,13 @@ msgid ""
 "SublimeText for Fortran developement is given "
 "[here](https://gist.github.com/sestelo/6b01e1405c1d0fa7f0ecdc951caaa995)."
 msgstr ""
+"[这里](https://gist.github.com/sestelo/6b01e1405c1d0fa7f0ecdc951caaa995) "
+"给出了一个结构良好的要点，提供了有关如何为 Fortran 开发设置 SublimeText "
+"的说明。"
 
 #: ../../source/learn/os_setup/text_editors.md:41
 msgid "Configuring Atom"
-msgstr ""
+msgstr "配置 Atom"
 
 #: ../../source/learn/os_setup/text_editors.md:43
 msgid ""
@@ -18703,6 +18894,10 @@ msgid ""
 "under _Settings_ opens where you can just start typing the package you want "
 "to install."
 msgstr ""
+"Atom 的配置过程类似于 VSCode 。在主界面，如果_Welcome "
+"Guide_页面已经为你打开，只需点击**Install a "
+"Package**选项，否则你可以通过顶部导航栏点击_Packages_找到相同的选项。"
+"这样做会打开 _Settings_ 下的新页面，你可以在其中开始输入要安装的软件包。"
 
 #: ../../source/learn/os_setup/text_editors.md:45
 msgid ""
@@ -18710,14 +18905,17 @@ msgid ""
 "hansec](https://atom.io/packages/ide-fortran). It needs the following "
 "packages to be installed:"
 msgstr ""
+"一个包含许多 Fortran 特性的包是 [IDE-FORTRAN by hansec](https://atom.io/"
+"packages/ide-fortran)。它需要安装以下软件包："
 
 #: ../../source/learn/os_setup/text_editors.md:47
 msgid "[atom-ide ui by facebook-atom](https://atom.io/packages/atom-ide-ui)"
-msgstr ""
+msgstr "[facebook-atom 的 atom-ide ui](https://atom.io/packages/atom-ide-ui)"
 
 #: ../../source/learn/os_setup/text_editors.md:48
 msgid "[language-fortran by dparkins](https://atom.io/packages/language-fortran)"
 msgstr ""
+"[dparkins 的 language-fortran](https://atom.io/packages/language-fortran)"
 
 #: ../../source/learn/os_setup/text_editors.md:50
 msgid ""
@@ -18725,24 +18923,30 @@ msgid ""
 "and [Fortran Language Server](https://github.com/hansec/fortran-language-"
 "server) to be installed."
 msgstr ""
+"此外，就像在 VSCode 中一样，它需要安装 [Python](https://www.python.org/) 和 ["
+"Fortran Language Server](https://github.com/hansec/fortran-language-server)。"
 
 #: ../../source/learn/os_setup/text_editors.md:52
 msgid ""
 "For version control a very popular package is [Git-Plus by "
 "akonwi](https://atom.io/packages/git-plus)."
 msgstr ""
+"对于版本控制，一个非常流行的包是 [akonwi 的 Git-Plus](https://atom.io/"
+"packages/git-plus)。"
 
 #: ../../source/learn/os_setup/tips.md:3
 msgid ""
 "To conclude, we give a few tips that may help you to choose a compiler and an"
 " editor or an IDE."
-msgstr ""
+msgstr "最后，我们给出一些提示，可以帮助您选择编译器和编辑器或 IDE。"
 
 #: ../../source/learn/os_setup/tips.md:5
 msgid ""
 "Check [this site](https://www.fortran.uk/fortran-compiler-comparisons/) for a"
 " comprehensive comparison of Fortran compilers."
 msgstr ""
+"查看 [此站点](https://www.fortran.uk/fortran-compiler-comparisons/) "
+"以全面比较 Fortran 编译器。"
 
 #: ../../source/learn/os_setup/tips.md:6
 msgid ""
@@ -18754,6 +18958,11 @@ msgid ""
 "GPU's compute capability and cross-check with the latest CUDA SDK that "
 "supports it."
 msgstr ""
+"自 NVFortran 版本 17.1 起，已删除对计算能力 2.0 (Fermi) 及更低版本的支持。这"
+"很重要，因为在任何时候，只有最新的编译器版本可以免费下载。使用较旧 GPU "
+"的用户将无法使用当前 (20.7) 或未来版本运行 CUDA Fortran。阅读 [this "
+"wiki](https://www.wikiwand.com/en/CUDA#/GPUs_supported) 以了解你的 GPU "
+"的计算能力，并与支持它的最新 CUDA SDK 进行交叉检查。"
 
 #: ../../source/learn/os_setup/tips.md:7
 msgid ""
@@ -18764,12 +18973,17 @@ msgid ""
 "source and free [Compiler Explorer](https://godbolt.org/), an amazing tool "
 "with unique features."
 msgstr ""
+"有许多在线 Fortran 编译器。这些网站提供基本的文本编辑器，允许你在远程服务器上"
+"编译和运行代码。它们对于快速原型设计和测试特别有用。尽管我们承诺中立，"
+"但我们建议你查看开源和免费的 [Compiler Explorer](https://godbolt.org/"
+")，这是一个具有独特功能的惊人工具。"
 
 #: ../../source/learn/os_setup/tips.md:8
 msgid ""
 "Arguably the most popular text editor, according to recent online surveys, is"
 " the Visual Studio Code, developed by Microsoft."
-msgstr ""
+msgstr "根据最近的在线调查，可以说最受欢迎的文本编辑器是 Microsoft 开发的 Visual "
+"Studio Code。"
 
 #: ../../source/learn/os_setup/tips.md:9
 msgid ""
@@ -18782,6 +18996,12 @@ msgid ""
 "have offered discount codes to individuals looking for affordable complete "
 "solutions (IDE + compiler)."
 msgstr ""
+"最受欢迎的免费 IDE 是 Code::Blocks 和 Geany。许多商业 IDE 放弃了长达 30 "
+"天的免费试用期。请记住，商业 IDE 的价格可能会有所不同，有些可能相当实惠。最后"
+"，如果你是学生、开源开发人员或……爱好者_Fortraner_，请不要犹豫与这些公司联系并"
+"申请折扣。在某些情况下，例如，在 r/fortran "
+"中，来自至少一家公司的代表向寻求负担得起的完整解决方案（IDE + "
+"编译器）的个人提供折扣代码。"
 
 #: ../../source/learn/os_setup/tips.md:10
 msgid ""
@@ -18789,115 +19009,124 @@ msgid ""
 "lang.discourse.group/) and do not hesitate to post your questions and request"
 " for further information."
 msgstr ""
+"最后，请加入我们的 [Fortran Discourse](https://fortran-lang.discourse.group/)"
+" 并毫不犹豫地发布你的问题并索取更多信息。"
 
 #: ../../source/learn/quickstart/arrays_strings.md:1
 #: ../../source/learn/quickstart/index.md:11
 msgid "Arrays and strings"
-msgstr ""
+msgstr "数组和字符串"
 
 #: ../../source/learn/quickstart/arrays_strings.md:3
 msgid ""
 "More often than not, we need to store and operate on long lists of numbers as"
 " opposed to just the single scalar variables that we have been using so far; "
 "in computer programming such lists are called _arrays_."
-msgstr ""
+msgstr "通常情况下，我们需要存储和操作一长串数字，而不是迄今为止我们一直使用的单个标"
+"量变量；在计算机编程中，此类列表称为_arrays_。"
 
 #: ../../source/learn/quickstart/arrays_strings.md:6
 msgid ""
 "Arrays are _multidimensional_ variables that contain more than one value "
 "where each value is accessed using one or more indices."
-msgstr ""
+msgstr "数组是_多维_变量，包含多个值，其中每个值都使用一个或多个索引访问。"
 
 #: ../../source/learn/quickstart/arrays_strings.md:9
 msgid ""
 "Arrays in Fortran are _one-based_ by default; this means that the first "
 "element along any dimension is at index 1."
-msgstr ""
+msgstr "Fortran 中的数组默认是_one-based_；这意味着沿任何维度的第一个元素位于索引 1 "
+"处。"
 
 #: ../../source/learn/quickstart/arrays_strings.md:12
 msgid "Array declaration"
-msgstr ""
+msgstr "数组声明"
 
 #: ../../source/learn/quickstart/arrays_strings.md:14
 msgid ""
 "We can declare arrays of any type. There are two common notations for "
 "declaring array variables: using the `dimension` attribute or by appending "
 "the array dimensions in parentheses to the variable name."
-msgstr ""
+msgstr "我们可以声明任何类型的数组。声明数组变量有两种常见的表示法：使用 `dimension` "
+"属性或通过将括号中的数组维度附加到变量名称。"
 
 #: ../../source/learn/quickstart/arrays_strings.md:17
 msgid "**Example:** static array declaration"
-msgstr ""
+msgstr "**示例：**静态数组声明"
 
 #: ../../source/learn/quickstart/arrays_strings.md:39
 msgid "Array slicing"
-msgstr ""
+msgstr "数组切片"
 
 #: ../../source/learn/quickstart/arrays_strings.md:41
 msgid ""
 "A powerful feature of the Fortran language is its built-in support for array "
 "operations; we can perform operations on all or part of an array using array "
 "_slicing_ notation:"
-msgstr ""
+msgstr "Fortran 语言的一个强大特性是它对数组操作的内置支持。我们可以使用数组_slicing_"
+"表示法对数组的全部或部分执行操作："
 
 #: ../../source/learn/quickstart/arrays_strings.md:44
 msgid "**Example:** array slicing"
-msgstr ""
+msgstr "**示例：** 数组切片"
 
 #: ../../source/learn/quickstart/arrays_strings.md:67
 msgid ""
 "Fortran arrays are stored in _column-major_ order; the first index varies "
 "fastest."
-msgstr ""
+msgstr "Fortran 数组以 _column-major_ 顺序存储；第一个指数变化最快。"
 
 #: ../../source/learn/quickstart/arrays_strings.md:70
 msgid "Allocatable (dynamic) arrays"
-msgstr ""
+msgstr "可分配（动态）数组"
 
 #: ../../source/learn/quickstart/arrays_strings.md:72
 msgid ""
 "So far we have specified the size of our array in our program code---this "
 "type of array is known as a _static_ array since its size is fixed when we "
 "compile our program."
-msgstr ""
+msgstr "到目前为止，我们已经在程序代码中指定了数组的大小——这种类型的数组被称为_static"
+"_数组，因为它的大小在我们编译程序时是固定的。"
 
 #: ../../source/learn/quickstart/arrays_strings.md:76
 msgid ""
 "Quite often, we do not know how big our array needs to be until we run our "
 "program, for example, if we are reading data from a file of unknown size."
-msgstr ""
+msgstr "很多时候，在我们运行程序之前，我们并不知道数组需要多大，例如，如果我们正在从"
+"一个未知大小的文件中读取数据。"
 
 #: ../../source/learn/quickstart/arrays_strings.md:78
 msgid ""
 "For this problem, we need `allocatable` arrays. These are _allocated_ while "
 "the program is running once we know how big the array needs to be."
-msgstr ""
+msgstr "对于这个问题，我们需要 `allocatable` "
+"数组。一旦我们知道数组需要多大，这些是在程序运行时_allocated_。"
 
 #: ../../source/learn/quickstart/arrays_strings.md:81
 msgid "**Example:** allocatable arrays"
-msgstr ""
+msgstr "**示例：** 可分配数组"
 
 #: ../../source/learn/quickstart/arrays_strings.md:101
 msgid ""
 "Allocatable local arrays are deallocated automatically when they go out of "
 "scope."
-msgstr ""
+msgstr "可分配的本地数组超出范围时会自动释放。"
 
 #: ../../source/learn/quickstart/arrays_strings.md:104
 msgid "Character strings"
-msgstr ""
+msgstr "字符串"
 
 #: ../../source/learn/quickstart/arrays_strings.md:106
 msgid "**Example:** static character string"
-msgstr ""
+msgstr "**示例：**静态字符串"
 
 #: ../../source/learn/quickstart/arrays_strings.md:127
 msgid "**Example:** allocatable character string"
-msgstr ""
+msgstr "**示例：**可分配的字符串"
 
 #: ../../source/learn/quickstart/arrays_strings.md:148
 msgid "Array of strings"
-msgstr ""
+msgstr "字符串数组"
 
 #: ../../source/learn/quickstart/arrays_strings.md:150
 msgid ""
@@ -18909,15 +19138,20 @@ msgid ""
 "of the `character` array. Finally, we use the intrinsic function `trim` to "
 "remove any excess spaces when printing the values to the standard output."
 msgstr ""
+"字符串数组可以在 Fortran 中表示为 `character` 变量数组。 `character` 数组中的"
+"所有元素都具有相等的长度。但是，可以将不同长度的字符串作为输入提供给数组构造"
+"函数，如下例所示。如果它们分别比“字符”数组的声明长度长或短，它们将被截断或用"
+"空格右填充。最后，在将值打印到标准输出时，我们使用内部函数 `trim` "
+"删除任何多余的空格。"
 
 #: ../../source/learn/quickstart/arrays_strings.md:156
 msgid "**Example:** string array"
-msgstr ""
+msgstr "**示例：**字符串数组"
 
 #: ../../source/learn/quickstart/derived_types.md:1
 #: ../../source/learn/quickstart/index.md:11
 msgid "Derived Types"
-msgstr ""
+msgstr "派生类型"
 
 #: ../../source/learn/quickstart/derived_types.md:3
 msgid ""
@@ -18926,55 +19160,59 @@ msgid ""
 "can encapsulate other built-in types as well as other derived types. It could"
 " be considered equivalent to _struct_ in the C and C++ programming languages."
 msgstr ""
+"正如前面在 [Variables](variables) 中所讨论的，Fortran 中有五种内置数据类型。 "
+"_派生类型_是一种特殊形式的数据类型，可以封装其他内置类型以及其他派生类型。"
+"它可以被认为等同于 C 和 C++ 编程语言中的 _struct_。"
 
 #: ../../source/learn/quickstart/derived_types.md:5
 msgid "A quick take on derived types"
-msgstr ""
+msgstr "快速了解派生类型"
 
 #: ../../source/learn/quickstart/derived_types.md:7
 msgid "Here's an example of a basic derived type:"
-msgstr ""
+msgstr "这是一个基本派生类型的示例："
 
 #: ../../source/learn/quickstart/derived_types.md:16
 msgid "The syntax to create a variable of type `t_pair` and access its members is:"
-msgstr ""
+msgstr "创建类型为 `t_pair` 的变量并访问其成员的语法是："
 
 #: ../../source/learn/quickstart/derived_types.md:26
 msgid "The percentage symbol `%` is used to access the members of a derived type."
-msgstr ""
+msgstr "百分比符号 `%` 用于访问派生类型的成员。"
 
 #: ../../source/learn/quickstart/derived_types.md:28
 msgid ""
 "In the above snippet, we declared an instance of a derived type and "
 "initialized its members explicitly. You can also initialize derived type "
 "members by invoking the derived type constructor."
-msgstr ""
+msgstr "在上面的代码片段中，我们声明了一个派生类型的实例并显式初始化了它的成员。你还"
+"可以通过调用派生类型构造函数来初始化派生类型成员。"
 
 #: ../../source/learn/quickstart/derived_types.md:31
 msgid "Example using the derived type constructor:"
-msgstr ""
+msgstr "使用派生类型构造函数的示例："
 
 #: ../../source/learn/quickstart/derived_types.md:39
 msgid "Example with default initialization:"
-msgstr ""
+msgstr "默认初始化示例："
 
 #: ../../source/learn/quickstart/derived_types.md:53
 msgid "Derived types in detail"
-msgstr ""
+msgstr "派生类型详解"
 
 #: ../../source/learn/quickstart/derived_types.md:55
 msgid ""
 "The full syntax of a derived type with all optional properties is presented "
 "below:"
-msgstr ""
+msgstr "具有所有可选属性的派生类型的完整语法如下所示："
 
 #: ../../source/learn/quickstart/derived_types.md:67
 msgid "Options to declare a derived type"
-msgstr ""
+msgstr "声明派生类型的选项"
 
 #: ../../source/learn/quickstart/derived_types.md:69
 msgid "`attribute-list` may refer to the following:"
-msgstr ""
+msgstr "`attribute-list` 可能指的是以下内容："
 
 #: ../../source/learn/quickstart/derived_types.md:71
 msgid "_access-type_ that is either `public` or `private`"
