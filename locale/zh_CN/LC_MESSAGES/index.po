@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-12 10:43+0200\n"
-"PO-Revision-Date: 2022-09-27 04:21+0000\n"
+"PO-Revision-Date: 2022-09-29 13:58+0000\n"
 "Last-Translator: 左志华 <zuo.zhihua@qq.com>\n"
 "Language-Team: Chinese (Simplified) <https://hosted.weblate.org/projects/"
 "fortran-lang/webpage/zh_Hans/>\n"
@@ -19417,23 +19417,23 @@ msgstr "`member-attributes`（可选）："
 
 #: ../../source/learn/quickstart/derived_types.md:225
 msgid "`public` or `private` access attributes"
-msgstr ""
+msgstr "`public` 或 `private` 访问属性"
 
 #: ../../source/learn/quickstart/derived_types.md:226
 msgid "`protected` access attribute"
-msgstr ""
+msgstr "`protected` 访问属性"
 
 #: ../../source/learn/quickstart/derived_types.md:227
 msgid "`allocatable` with or without `dimension` to specify a dynamic array"
-msgstr ""
+msgstr "带有或不带有 `dimension` 的 `allocatable` 以指定动态数组"
 
 #: ../../source/learn/quickstart/derived_types.md:228
 msgid "`pointer`, `codimension`, `contiguous`, `volatile`, `asynchronous`"
-msgstr ""
+msgstr "`pointer`，`codimension`，`contiguous`，`volatile`，`asynchronous`"
 
 #: ../../source/learn/quickstart/derived_types.md:230
 msgid "Examples of common cases:"
-msgstr ""
+msgstr "常见案例示例："
 
 #: ../../source/learn/quickstart/derived_types.md:252
 msgid ""
@@ -19444,10 +19444,14 @@ msgid ""
 "These features will be covered in detail in the upcoming _Advanced "
 "programing_ mini-book."
 msgstr ""
+"以下属性：`pointer`、`codimension`、`contiguous`、`volatile`、`asynchronous` "
+"是_快速入门_教程中不会涉及的高级特性。然而，在这里展示它们，是为了让读者知道"
+"这些特征确实存在并能够识别它们。这些特性将在接下来的《高级编程》迷你书中详细"
+"介绍。"
 
 #: ../../source/learn/quickstart/derived_types.md:254
 msgid "Type-bound procedures"
-msgstr ""
+msgstr "类型绑定过程"
 
 #: ../../source/learn/quickstart/derived_types.md:256
 msgid ""
@@ -19456,21 +19460,24 @@ msgid ""
 "the `contains` statement that, in turn, follows all member variable "
 "declarations."
 msgstr ""
+"派生类型可以包含_绑定_到它的函数或子例程。我们将它们称为_类型绑定过程_。"
+"类型绑定过程遵循 `contains` 语句，而该语句又遵循所有成员变量声明。"
 
 #: ../../source/learn/quickstart/derived_types.md:258
 msgid ""
 "It is impossible to describe type-bound procedures in full without delving "
 "into OOP features of modern Fortran. For now we'll focus on a simple example "
 "to show their basic use."
-msgstr ""
+msgstr "如果不深入研究现代 Fortran 的 OOP 特性，就不可能完整地描述类型绑定过程。现在"
+"我们将专注于一个简单的例子来展示它们的基本用法。"
 
 #: ../../source/learn/quickstart/derived_types.md:260
 msgid "Here's an example of a derived type with a basic type-bound procedure:"
-msgstr ""
+msgstr "这是具有基本类型绑定过程的派生类型的示例："
 
 #: ../../source/learn/quickstart/derived_types.md:304
 msgid "What is new:"
-msgstr ""
+msgstr "什么是新的："
 
 #: ../../source/learn/quickstart/derived_types.md:306
 msgid ""
@@ -19479,6 +19486,8 @@ msgid ""
 "access its members and to automatically pass it as an argument when we invoke"
 " a type-bound procedure."
 msgstr ""
+"`self` 是一个任意名称，我们选择它来表示类型绑定函数内的派生类型 `t_square` "
+"的实例。这允许我们访问其成员并在调用类型绑定过程时自动将其作为参数传递。"
 
 #: ../../source/learn/quickstart/derived_types.md:307
 msgid ""
@@ -19487,6 +19496,9 @@ msgid ""
 "derived type that extends `t_square`. The keyword `class` introduces the OOP "
 "feature polymorphism."
 msgstr ""
+"我们现在在 `area` 函数的接口中使用 `class(t_square)` 而不是 "
+"`type(t_square)`。这允许我们使用扩展 `t_square` 的任何派生类型调用 `area` "
+"函数。关键字 `class` 引入了 OOP 特性多态性。"
 
 #: ../../source/learn/quickstart/derived_types.md:309
 msgid ""
@@ -19495,30 +19507,33 @@ msgid ""
 "sq%area()` or `print *, sq%area()`. If you define it instead as a subroutine,"
 " you can invoke it from its own `call` statement:"
 msgstr ""
+"在上面的例子中，类型绑定过程 `area` "
+"被定义为一个函数，并且只能在表达式中调用，例如 `x = sq%area()` 或 `print *, "
+"sq%area()`。如果将其定义为子例程，则可以从其自己的 `call` 语句中调用它："
 
 #: ../../source/learn/quickstart/derived_types.md:328
 msgid ""
 "In contrast to the example with the type-bound function, we now have two "
 "arguments:"
-msgstr ""
+msgstr "与类型绑定函数的示例相比，我们现在有两个参数："
 
 #: ../../source/learn/quickstart/derived_types.md:330
 msgid ""
 "`class(t_square), intent(in) :: self` -- the instance of the derived type "
 "itself"
-msgstr ""
+msgstr "`class(t_square), intent(in) :: self` —— 派生类型本身的实例"
 
 #: ../../source/learn/quickstart/derived_types.md:331
 msgid ""
 "`real, intent(out) :: x` -- used to store the calculated area and return to "
 "the caller"
-msgstr ""
+msgstr "`real, intent(out) :: x` —— 用于存储计算面积并返回给调用者"
 
 #: ../../source/learn/quickstart/hello_world.md:1
 #: ../../source/learn/quickstart/hello_world.md:38
 #: ../../source/learn/quickstart/index.md:11
 msgid "Hello world"
-msgstr ""
+msgstr "Hello world"
 
 #: ../../source/learn/quickstart/hello_world.md:3
 msgid ""
@@ -19526,23 +19541,26 @@ msgid ""
 "ubiquitous [\"Hello, "
 "World!\"](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) example."
 msgstr ""
+"在本教程的这一部分，我们将编写我们的第一个 Fortran 程序：无处不在的 [\"Hello"
+", World!\"](https://en.wikipedia.org/wiki/%22Hello,_World!%22_program) 示例。"
 
 #: ../../source/learn/quickstart/hello_world.md:6
 msgid ""
 "However, before we can write our program, we need to ensure that we have a "
 "Fortran compiler set up."
-msgstr ""
+msgstr "但是，在我们编写程序之前，我们需要确保我们已经设置了 Fortran 编译器。"
 
 #: ../../source/learn/quickstart/hello_world.md:9
 msgid ""
 "Fortran is a _compiled language_, which means that, once written, the source "
 "code must be passed through a compiler to produce a machine executable that "
 "can be run."
-msgstr ""
+msgstr "Fortran 是一种_编译语言_，这意味着一旦编写，源代码必须通过编译器以生成可以运"
+"行的机器可执行文件。"
 
 #: ../../source/learn/quickstart/hello_world.md:12
 msgid "Compiler setup"
-msgstr ""
+msgstr "编译器设置"
 
 #: ../../source/learn/quickstart/hello_world.md:14
 msgid ""
@@ -19550,6 +19568,9 @@ msgid ""
 "compiler (gfortran)](https://gcc.gnu.org/fortran/), which is part of the [GNU"
 " Compiler Collection (GCC)](https://gcc.gnu.org/)."
 msgstr ""
+"在本教程中，我们将使用免费和开源的 [GNU Fortran 编译器 "
+"(gfortran)](https://gcc.gnu.org/fortran/)，它是 [GNU 编译器集合 "
+"(GCC)](https://gcc.gnu.org/) 的一部分。"
 
 #: ../../source/learn/quickstart/hello_world.md:19
 msgid ""
@@ -19558,81 +19579,88 @@ msgid ""
 "[MacPorts](https://www.macports.org/). On Windows, you can get native "
 "binaries [here](http://www.equation.com/servlet/equation.cmd?fa=fortran)."
 msgstr ""
+"要在 Linux 上安装 gfortran，请使用系统包管理器。在 macOS 上，你可以使用 "
+"[Homebrew](https://brew.sh/) 或 [MacPorts](https://www.macports.org/) 安装 "
+"gfortran。在 Windows 上，你可以在 [此处](http://www.equation.com/servlet/"
+"equation.cmd?fa=fortran) 获取本机二进制文件。"
 
 #: ../../source/learn/quickstart/hello_world.md:23
 msgid ""
 "To check if you have _gfortran_ setup correctly, open a terminal and run the "
 "following command:"
-msgstr ""
+msgstr "要检查你是否正确设置了 _gfortran_，请打开终端并运行以下命令："
 
 #: ../../source/learn/quickstart/hello_world.md:29
 msgid "this should output something like:"
-msgstr ""
+msgstr "这应该输出如下内容："
 
 #: ../../source/learn/quickstart/hello_world.md:40
 msgid ""
 "Once you have set up your compiler, open a new file in your favourite code "
 "editor and enter the following:"
-msgstr ""
+msgstr "设置好编译器后，在你喜欢的代码编辑器中打开一个新文件并输入以下内容："
 
 #: ../../source/learn/quickstart/hello_world.md:49
 msgid "Having saved your program to `hello.f90`, compile at the command line with:"
-msgstr ""
+msgstr "将程序保存到 `hello.f90` 后，在命令行编译："
 
 #: ../../source/learn/quickstart/hello_world.md:55
 msgid ""
 "`.f90` is the standard file extension for modern Fortran source files. The 90"
 " refers to the first modern Fortran standard in 1990."
-msgstr ""
+msgstr "`.f90` 是现代 Fortran 源文件的标准文件扩展名。 90 指的是 1990 年的第一个现代 "
+"Fortran 标准。"
 
 #: ../../source/learn/quickstart/hello_world.md:58
 msgid "To run your compiled program:"
-msgstr ""
+msgstr "要运行你编译的程序："
 
 #: ../../source/learn/quickstart/hello_world.md:65
 msgid ""
 "Congratulations, you've written, compiled and run your first Fortran program!"
 " In the next part of this tutorial, we will introduce variables for storing "
 "data."
-msgstr ""
+msgstr "恭喜，你已经编写、编译并运行了你的第一个 Fortran "
+"程序！在本教程的下一部分中，我们将介绍用于存储数据的变量。"
 
 #: ../../source/learn/quickstart/index.md:11
 #: ../../source/learn/quickstart/variables.md:1
 msgid "Variables"
-msgstr ""
+msgstr "变量"
 
 #: ../../source/learn/quickstart/index.md:11
 #: ../../source/learn/quickstart/operators_control_flow.md:1
 msgid "Operators and flow control"
-msgstr ""
+msgstr "操作符和流程控制"
 
 #: ../../source/learn/quickstart/index.md:11
 #: ../../source/learn/quickstart/organising_code.md:1
 msgid "Organising code structure"
-msgstr ""
+msgstr "组织代码结构"
 
 #: ../../source/learn/quickstart/index.md:1
 msgid "Quickstart tutorial"
-msgstr ""
+msgstr "快速入门教程"
 
 #: ../../source/learn/quickstart/index.md:3
 msgid ""
 "This quickstart tutorial gives an overview of the Fortran programming "
 "language and its syntax for common structured programming concepts including:"
 " types, variables, arrays, control flow and functions."
-msgstr ""
+msgstr "本快速入门教程概述了 Fortran 编程语言及其用于常见结构化编程概念的语法，包括："
+"类型、变量、数组、控制流和函数。"
 
 #: ../../source/learn/quickstart/index.md:7
 msgid ""
 "The contents of this tutorial are shown in the navigation bar on the left "
 "with the current page highlighted bold."
-msgstr ""
+msgstr "本教程的内容显示在左侧的导航栏中，当前页面以粗体突出显示。"
 
 #: ../../source/learn/quickstart/index.md:9
 msgid ""
 "Use the _Next_ button at the bottom to start the tutorial with a _Hello "
 "World_ example."
-msgstr ""
+msgstr "使用底部的 _Next_ 按钮以 _Hello World_ 示例开始本教程。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:3
 msgid ""
@@ -19640,147 +19668,148 @@ msgid ""
 "mathematical formulae, comes in the form of program _branching_ whereby the "
 "program can decide which instructions to execute next based on a logical "
 "condition."
-msgstr ""
+msgstr "与简单的数学公式相比，计算机算法的强大优势之一是程序_分支_的形式，程序可以根"
+"据逻辑条件决定接下来要执行哪些指令。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:7
 msgid "There are two main forms of controlling program flow:"
-msgstr ""
+msgstr "控制程序流有两种主要形式："
 
 #: ../../source/learn/quickstart/operators_control_flow.md:9
 msgid ""
 "_Conditional_ (if): choose program path based on a boolean (true or false) "
 "value"
-msgstr ""
+msgstr "_Conditional_ (if)：根据布尔值（真或假）选择程序路径"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:11
 msgid "_Loop_: repeat a portion of code multiple times"
-msgstr ""
+msgstr "_Loop_：重复一段代码多次"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:13
 msgid "Logical operators"
-msgstr ""
+msgstr "逻辑运算符"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:15
 msgid ""
 "Before we use a conditional branching operator, we need to be able to form a "
 "logical expression."
-msgstr ""
+msgstr "在我们使用条件分支运算符之前，我们需要能够形成一个逻辑表达式。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:18
 msgid ""
 "To form a logical expression, the following set of relational operators are "
 "available:"
-msgstr ""
+msgstr "要形成逻辑表达式，可以使用以下一组关系运算符："
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 #: ../../source/learn/quickstart/variables.md
 msgid "Operator &nbsp;"
-msgstr ""
+msgstr "操作符 &nbsp;"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "Alternative &nbsp;"
-msgstr ""
+msgstr "选择 &nbsp;"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 #: ../../source/learn/quickstart/variables.md
 msgid "Description"
-msgstr "说明"
+msgstr "描述"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`==`"
-msgstr ""
+msgstr "`==`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`.eq.`"
-msgstr ""
+msgstr "`.eq.`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "Tests for equality of two operands"
-msgstr ""
+msgstr "测试两个操作数是否相等"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`/=`"
-msgstr ""
+msgstr "`/=`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`.ne.`"
-msgstr ""
+msgstr "`.ne.`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "Test for inequality of two operands"
-msgstr ""
+msgstr "测试两个操作数是否不相等"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`> `"
-msgstr ""
+msgstr "`> `"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`.gt.`"
-msgstr ""
+msgstr "`.gt.`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "Tests if left operand is strictly greater than right operand"
-msgstr ""
+msgstr "测试左操作数是否严格大于右操作数"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`< `"
-msgstr ""
+msgstr "`< `"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`.lt.`"
-msgstr ""
+msgstr "`.lt.`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "Tests if left operand is strictly less than right operand"
-msgstr ""
+msgstr "测试左操作数是否严格小于右操作数"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`>=`"
-msgstr ""
+msgstr "`>=`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`.ge.`"
-msgstr ""
+msgstr "`.ge.`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "Tests if left operand is greater than or equal to right operand"
-msgstr ""
+msgstr "测试左操作数是否大于或等于右操作数"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`<=`"
-msgstr ""
+msgstr "`<=`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`.le.`"
-msgstr ""
+msgstr "`.le.`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "Tests if left operand is less than or equal to right operand"
-msgstr ""
+msgstr "测试左操作数是否小于或等于右操作数"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:31
 msgid "as well as the following logical operators:"
-msgstr ""
+msgstr "以及以下逻辑运算符："
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`.and.`"
-msgstr ""
+msgstr "`.and.`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "TRUE if both left and right operands are TRUE"
-msgstr ""
+msgstr "如果左右操作数都为 TRUE，则为 TRUE"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`.or.`"
-msgstr ""
+msgstr "`.or.`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "TRUE if either left or right or both operands are TRUE"
-msgstr ""
+msgstr "如果左侧或右侧为 TRUE 或者两个操作数都为 TRUE，则为 TRUE"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`.not.`"
-msgstr ""
+msgstr "`.not.`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "TRUE if right operand is FALSE"
@@ -19788,79 +19817,82 @@ msgstr ""
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`.eqv.`"
-msgstr ""
+msgstr "`.eqv.`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "TRUE if left operand has same logical value as right operand"
-msgstr ""
+msgstr "如果左操作数与右操作数具有相同的逻辑值，则为 TRUE"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "`.neqv.`"
-msgstr ""
+msgstr "`.neqv.`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md
 msgid "TRUE if left operand has the opposite logical value as right operand"
-msgstr ""
+msgstr "如果左操作数与右操作数具有相反的逻辑值，则为 TRUE"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:43
 msgid "Conditional construct (`if`)"
-msgstr ""
+msgstr "条件结构（`if`）"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:45
 msgid ""
 "In the following examples, a conditional `if` construct is used to print out "
 "a message to describe the nature of the `angle` variable:"
-msgstr ""
+msgstr "在以下示例中，使用条件 `if` 结构来打印一条消息以描述 `angle` 变量的性质："
 
 #: ../../source/learn/quickstart/operators_control_flow.md:48
 msgid "**Example:** single branch `if`"
-msgstr ""
+msgstr "**示例：** 单分支 `if`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:56
 msgid ""
 "In this first example, the code within the `if` construct is _only executed "
 "if_ the test expression (`angle < 90.0`) is true."
-msgstr ""
+msgstr "在第一个示例中，`if` 结构中的代码_仅在_测试表达式 (`angle < 90.0`) "
+"为真时执行。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:60
 msgid ""
 "It is good practice to indent code within constructs such as `if` and `do` to"
 " make code more readable."
-msgstr ""
+msgstr "在 `if` 和 `do` 等结构中缩进代码是一种很好的做法，以使代码更具可读性。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:64
 msgid "We can add an alternative branch to the construct using the `else` keyword:"
-msgstr ""
+msgstr "我们可以使用 `else` 关键字向构造中添加替代分支："
 
 #: ../../source/learn/quickstart/operators_control_flow.md:66
 msgid "**Example:** two-branch `if`-`else`"
-msgstr ""
+msgstr "**示例：** 两个分支 `if`-`else`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:76
 msgid ""
 "Now there are two _branches_ in the `if` construct, but _only one branch is "
 "executed_ depending on the logical expression following the `if` keyword."
-msgstr ""
+msgstr "现在 `if` 结构中有两个_分支_，但_只执行一个分支_取决于 `if` "
+"关键字后面的逻辑表达式。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:79
 msgid ""
 "We can actually add any number of branches using `else if` to specify more "
 "conditions:"
-msgstr ""
+msgstr "我们实际上可以使用 `else if` 添加任意数量的分支来指定更多条件："
 
 #: ../../source/learn/quickstart/operators_control_flow.md:81
 msgid "**Example:** multi-branch `if`-`else if`-`else`"
-msgstr ""
+msgstr "**示例：** 多分支 `if`-`else if`-`else`"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:93
 msgid ""
 "When multiple conditional expressions are used, each conditional expression "
 "is tested only if none of the previous expressions have evaluated to true."
-msgstr ""
+msgstr "当使用多个条件表达式时，只有在前面的表达式都没有计算为真时，才会测试每个条件"
+"表达式。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:96
 msgid "Loop constructs (`do`)"
-msgstr ""
+msgstr "循环结构（`do`）"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:98
 msgid ""
@@ -19869,76 +19901,82 @@ msgid ""
 "is used to track which iteration of the loop is currently executing. In this "
 "example we use a common name for this counter variable: `i`."
 msgstr ""
+"在以下示例中，`do` 循环构造用于打印出序列中的数字。 `do` 循环有一个整数 "
+"_counter_ 变量，用于跟踪当前正在执行的循环迭代。在这个例子中，我们为这个计数"
+"器变量使用了一个通用名称：`i`。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:103
 msgid ""
 "When we define the start of the `do` loop, we use our counter variable name "
 "followed by an equals (`=`) sign to specify the start value and final value "
 "of our counting variable."
-msgstr ""
+msgstr "当我们定义 `do` 循环的开始时，我们使用计数器变量名称后跟等号（`=`）来指定计数"
+"变量的开始值和最终值。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:106
 msgid "**Example:** `do` loop"
-msgstr ""
+msgstr "**示例：** `do` 循环"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:116
 msgid "**Example:** `do` loop with skip"
-msgstr ""
+msgstr "**示例：** 带有跳过的`do`循环"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:126
 msgid "Conditional loop (`do while`)"
-msgstr ""
+msgstr "条件循环（`do while`）"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:128
 msgid ""
 "A condition may be added to a `do` loop with the `while` keyword. The loop "
 "will be executed while the condition given in `while()` evaluates to "
 "`.true.`."
-msgstr ""
+msgstr "可以使用 `while` 关键字将条件添加到 `do` 循环中。循环将在 `while()` "
+"中给出的条件评估为 `.true.` 时执行。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:131
 msgid "**Example:** `do while()` loop"
-msgstr ""
+msgstr "**示例：** `do while()` 循环"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:144
 msgid "Loop control statements (`exit` and `cycle`)"
-msgstr ""
+msgstr "循环控制语句（`exit` 和 `cycle`）"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:146
 msgid ""
 "Most often than not, loops need to be stopped if a condition is met. Fortran "
 "provides two executable statements to deal with such cases."
-msgstr ""
+msgstr "大多数情况下，如果满足条件，则需要停止循环。 Fortran "
+"提供了两个可执行语句来处理这种情况。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:149
 msgid ""
 "`exit` is used to quit the loop prematurely. It is usually enclosed inside an"
 " `if`."
-msgstr ""
+msgstr "`exit` 用于提前退出循环。它通常包含在 `if` 中。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:151
 msgid "**Example:** loop with `exit`"
-msgstr ""
+msgstr "**示例：** 带有 `exit` 的循环"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:165
 msgid ""
 "On the other hand, `cycle` skips whatever is left of the loop and goes into "
 "the next cycle."
-msgstr ""
+msgstr "另一方面，`cycle` 会跳过循环的剩余部分并进入下一个循环。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:167
 msgid "**Example:** loop with `cycle`"
-msgstr ""
+msgstr "**示例：** 使用 `cycle` 循环"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:181
 msgid ""
 "When used within nested loops, the `cycle` and `exit` statements operate on "
 "the innermost loop."
-msgstr ""
+msgstr "在嵌套循环中使用时，`cycle` 和 `exit` 语句在最内层循环上运行。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:184
 msgid "Nested loop control: tags"
-msgstr ""
+msgstr "嵌套循环控制：标签"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:186
 msgid ""
@@ -19947,24 +19985,27 @@ msgid ""
 "the programmer to _tag_ or _name_ each loop. If loops are tagged, there are "
 "two potential benefits:"
 msgstr ""
+"在任何编程语言中重复出现的情况是使用嵌套循环。嵌套循环是指存在于另一个循环中"
+"的循环。 Fortran 允许程序员对每个循环进行 _tag_ 或 _name_ "
+"。如果循环被标记，有两个潜在的好处："
 
 #: ../../source/learn/quickstart/operators_control_flow.md:188
 msgid "The readability of the code may be improved (when the naming is meaningful)."
-msgstr ""
+msgstr "代码的可读性可能会提高（当命名有意义时）。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:189
 msgid ""
 "`exit` and `cycle` may be used with tags, which allows for very fine-grained "
 "control of the loops."
-msgstr ""
+msgstr "`exit` 和 `cycle` 可以与标签一起使用，这允许对循环进行非常细粒度的控制。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:191
 msgid "**Example:** tagged nested loops"
-msgstr ""
+msgstr "**示例：** 标记的嵌套循环"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:206
 msgid "Parallelizable loop (`do concurrent`)"
-msgstr ""
+msgstr "可并行化循环（`do concurrent`）"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:208
 msgid ""
@@ -19977,6 +20018,12 @@ msgid ""
 "only happen within each `do concurrent` loop. These requirements place "
 "restrictions on what can be placed within the loop body."
 msgstr ""
+"`do concurrent` "
+"循环用于显式指定循环内部没有相互依赖关系；这通知编译器它可以使用并行化/"
+"_SIMD_ 来加速循环的执行并更清楚地传达程序员的意图。更具体地说，这意味着任何给"
+"定的循环迭代不依赖于其他循环迭代的先前执行。"
+"任何可能发生的状态变化也必须只发生在每个 `do concurrent` "
+"循环中。这些要求限制了可以放置在循环体内的内容。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:212
 msgid ""
@@ -19988,31 +20035,37 @@ msgid ""
 "calculation, like the below example). In general, compiler flags are required"
 " to activate possible parallelization for `do concurrent` loops."
 msgstr ""
+"简单地用 `do concurrent` 替换 `do` 循环并不能保证并行执行。"
+"上面给出的解释并没有详细说明编写正确的 `do concurrent` 循环需要满足的所有要求"
+"。编译器也可以自由地做他们认为合适的事情，这意味着他们可能不会优化循环（例如"
+"，进行简单计算的少量迭代，如下例所示）。通常，需要编译器标志来激活 `do "
+"concurrent` 循环的可能并行化。"
 
 #: ../../source/learn/quickstart/operators_control_flow.md:218
 msgid "**Example:** `do concurrent()` loop"
-msgstr ""
+msgstr "**示例：** `do concurrent()` 循环"
 
 #: ../../source/learn/quickstart/organising_code.md:3
 msgid ""
 "Most programming languages allow you to collect commonly-used code into "
 "_procedures_ that can be reused by _calling_ them from other sections of "
 "code."
-msgstr ""
+msgstr "大多数编程语言允许你将常用代码收集到 _procedures_ 中，"
+"这些代码可以通过从其他代码部分 _calling_ 来重用。"
 
 #: ../../source/learn/quickstart/organising_code.md:6
 msgid "Fortran has two forms of procedure:"
-msgstr ""
+msgstr "Fortran 有两种形式的过程："
 
 #: ../../source/learn/quickstart/organising_code.md:8
 msgid "**Subroutine**: invoked by a `call` statement"
-msgstr ""
+msgstr "**子例程**：由 `call` 语句调用"
 
 #: ../../source/learn/quickstart/organising_code.md:9
 msgid ""
 "**Function**: invoked within an expression or assignment to which it returns "
 "a value"
-msgstr ""
+msgstr "**函数**：在返回值的表达式或赋值中调用"
 
 #: ../../source/learn/quickstart/organising_code.md:11
 msgid ""
@@ -20020,10 +20073,12 @@ msgid ""
 "by _argument association_; unless the `value` attribute is specified, this is"
 " similar to call by reference."
 msgstr ""
+"子程序和函数都可以通过 _argument association_ 访问父范围内的变量；除非指定了 "
+"`value` 属性，否则这类似于按引用调用。"
 
 #: ../../source/learn/quickstart/organising_code.md:14
 msgid "Subroutines"
-msgstr ""
+msgstr "子程序"
 
 #: ../../source/learn/quickstart/organising_code.md:16
 msgid ""
@@ -20032,12 +20087,14 @@ msgid ""
 "attributes are declared within the body of the subroutine just like local "
 "variables."
 msgstr ""
+"子程序输入参数，称为 _dummy arguments_，在子程序名称后面的括号中指定；虚拟参"
+"数类型和属性在子例程的主体中声明，就像局部变量一样。"
 
 #: ../../source/learn/quickstart/organising_code.md:19
 #: ../../source/learn/quickstart/organising_code.md:111
 #: ../../source/learn/quickstart/variables.md:128
 msgid "**Example:**"
-msgstr ""
+msgstr "**例子：**"
 
 #: ../../source/learn/quickstart/organising_code.md:38
 msgid ""
@@ -20047,17 +20104,22 @@ msgid ""
 " (`intent(inout)`) within the procedure. In this example, the subroutine does"
 " not modify its arguments, hence all arguments are `intent(in)`."
 msgstr ""
+"注意声明虚拟参数时附加的 `intent` 属性；这个可选属性向编译器表示参数是“只读”"
+"（`intent(in)`）“只写”（`intent(out)`）还是“读写”（ `intent(inout)`) "
+"在过程中。在这个例子中，子程序不会修改它的参数，因此所有的参数都是 "
+"`intent(in)`。"
 
 #: ../../source/learn/quickstart/organising_code.md:42
 msgid ""
 "It is good practice to always specify the `intent` attribute for dummy "
 "arguments; this allows the compiler to check for unintentional errors and "
 "provides self-documentation."
-msgstr ""
+msgstr "始终为虚拟参数指定 `intent` "
+"属性是一种很好的做法；这允许编译器检查意外错误并提供自文档。"
 
 #: ../../source/learn/quickstart/organising_code.md:45
 msgid "We can call this subroutine from a program using a `call` statement:"
-msgstr ""
+msgstr "我们可以使用 `call` 语句从程序中调用此子例程："
 
 #: ../../source/learn/quickstart/organising_code.md:60
 msgid ""
@@ -20066,18 +20128,21 @@ msgid ""
 " will not be necessary if we place our subroutine in a module as described "
 "later."
 msgstr ""
+"这个例子使用了一个所谓的 _explicit-shape_ 数组参数，"
+"因为我们传递了额外的变量来描述数组 `A` "
+"的维度；如果我们将子例程放在后面描述的模块中，这将不是必需的。"
 
 #: ../../source/learn/quickstart/organising_code.md:63
 msgid "Functions"
-msgstr ""
+msgstr "函数"
 
 #: ../../source/learn/quickstart/organising_code.md:78
 msgid "In production code, the intrinsic function `norm2` should be used."
-msgstr ""
+msgstr "在生产代码中，应使用内部函数 `norm2`。"
 
 #: ../../source/learn/quickstart/organising_code.md:80
 msgid "To execute this function:"
-msgstr ""
+msgstr "要执行此函数："
 
 #: ../../source/learn/quickstart/organising_code.md:96
 msgid ""
@@ -20086,33 +20151,37 @@ msgid ""
 " known as `pure` functions. Use subroutines if your procedure needs to modify"
 " its arguments."
 msgstr ""
+"函数不修改其参数是一种很好的编程习惯 —— 也就是说，所有函数参数都应该是 "
+"`intent(in)`。这样的函数被称为 `pure` "
+"函数。如果您的过程需要修改其参数，请使用子例程。"
 
 #: ../../source/learn/quickstart/organising_code.md:100
 msgid "Modules"
-msgstr ""
+msgstr "模块"
 
 #: ../../source/learn/quickstart/organising_code.md:102
 msgid ""
 "Fortran modules contain definitions that are made accessible to programs, "
 "procedures, and other modules through the `use` statement. They can contain "
 "data objects, type definitions, procedures, and interfaces."
-msgstr ""
+msgstr "Fortran 模块包含程序、过程和其他模块可以通过 `use` "
+"语句访问的定义。它们可以包含数据对象、类型定义、过程和接口。"
 
 #: ../../source/learn/quickstart/organising_code.md:105
 msgid ""
 "Modules allow controlled scoping extension whereby entity access is made "
 "explicit"
-msgstr ""
+msgstr "模块允许受控范围扩展，从而明确实体访问"
 
 #: ../../source/learn/quickstart/organising_code.md:106
 msgid ""
 "Modules automatically generate explicit interfaces required for modern "
 "procedures"
-msgstr ""
+msgstr "模块自动生成现代程序所需的显式接口"
 
 #: ../../source/learn/quickstart/organising_code.md:108
 msgid "It is recommended to always place functions and subroutines within modules."
-msgstr ""
+msgstr "建议始终将函数和子例程放在模块中。"
 
 #: ../../source/learn/quickstart/organising_code.md:140
 msgid ""
@@ -20122,100 +20191,111 @@ msgid ""
 "the required explicit interface for us. This results in a much simpler "
 "subroutine interface."
 msgstr ""
+"将此 `print_matrix` "
+"子例程与在模块外部编写的子例程进行比较，我们不再需要显式传递矩阵维度，"
+"而是可以利用 _assumed-shape_ "
+"参数，因为模块将为我们生成所需的显式接口。这导致了一个更简单的子程序接口。"
 
 #: ../../source/learn/quickstart/organising_code.md:145
 msgid "To `use` the module within a program:"
-msgstr ""
+msgstr "要在程序中 `use` 模块："
 
 #: ../../source/learn/quickstart/organising_code.md:161
 msgid "**Example:** explicit import list"
-msgstr ""
+msgstr "**示例：**显式导入列表"
 
 #: ../../source/learn/quickstart/organising_code.md:167
 msgid "**Example:** aliased import"
-msgstr ""
+msgstr "**示例：** 别名导入"
 
 #: ../../source/learn/quickstart/organising_code.md:173
 msgid ""
 "Each module should be written in a separate `.f90` source file. Modules need "
 "to be compiled prior to any program units that `use` them."
-msgstr ""
+msgstr "每个模块都应该写在一个单独的 `.f90` 源文件中。模块需要在任何 `use` "
+"它们的程序单元之前编译。"
 
 #: ../../source/learn/quickstart/variables.md:3
 msgid ""
 "Variables store information that can be manipulated by the program. Fortran "
 "is a _strongly typed_ language, which means that each variable must have a "
 "type."
-msgstr ""
+msgstr "变量存储可以由程序操作的信息。 Fortran "
+"是一种_强类型_语言，这意味着每个变量都必须有一个类型。"
 
 #: ../../source/learn/quickstart/variables.md:7
 msgid "There are 5 built-in data types in Fortran:"
-msgstr ""
+msgstr "Fortran 中有 5 种内置数据类型："
 
 #: ../../source/learn/quickstart/variables.md:9
 msgid "`integer` -- for data that represent whole numbers, positive or negative"
-msgstr ""
+msgstr "`integer` —— 表示整数的数据，正数或负数"
 
 #: ../../source/learn/quickstart/variables.md:10
 msgid "`real` -- for floating-point data (not a whole number)"
-msgstr ""
+msgstr "`real` —— 用于浮点数据（不是整数）"
 
 #: ../../source/learn/quickstart/variables.md:11
 msgid "`complex` -- pair consisting of a real part and an imaginary part"
-msgstr ""
+msgstr "`complex` —— 由实部和虚部组成的对"
 
 #: ../../source/learn/quickstart/variables.md:12
 msgid "`character` -- for text data"
-msgstr ""
+msgstr "`character` —— 用于文本数据"
 
 #: ../../source/learn/quickstart/variables.md:13
 msgid "`logical` -- for data that represent boolean (true or false) values"
-msgstr ""
+msgstr "`logical` —— 用于表示布尔值（真或假）值的数据"
 
 #: ../../source/learn/quickstart/variables.md:15
 msgid ""
 "Before we can use a variable, we must _declare_ it; this tells the compiler "
 "the variable type and any other variable attributes."
-msgstr ""
+msgstr "在我们可以使用变量之前，我们必须_声明_它；这告诉编译器变量类型和任何其他变量"
+"属性。"
 
 #: ../../source/learn/quickstart/variables.md:18
 msgid ""
 "Fortran is a _statically typed_ language, which means the type of each "
 "variable is fixed when the program is compiled---variable types cannot change"
 " while the program is running."
-msgstr ""
+msgstr "Fortran 是一种_静态类型_语言，这意味着每个变量的类型在程序编译时是固定的 —— "
+"变量类型在程序运行时不能改变。"
 
 #: ../../source/learn/quickstart/variables.md:21
 msgid "Declaring variables"
-msgstr ""
+msgstr "声明变量"
 
 #: ../../source/learn/quickstart/variables.md:23
 msgid "The syntax for declaring variables is:"
-msgstr ""
+msgstr "声明变量的语法是："
 
 #: ../../source/learn/quickstart/variables.md:29
 msgid ""
 "where `<variable_type>` is one of the built-in variable types listed above "
 "and `<variable_name>` is the name that you would like to call your variable."
-msgstr ""
+msgstr "其中 `<variable_type>` 是上面列出的内置变量类型之一，而 `<variable_name>` "
+"是您要调用变量的名称。"
 
 #: ../../source/learn/quickstart/variables.md:32
 msgid ""
 "Variable names must start with a letter and can consist of letters, numbers "
 "and underscores. In the following example we declare a variable for each of "
 "the built-in types."
-msgstr ""
+msgstr "变量名必须以字母开头，可以由字母、数字和下划线组成。在下面的示例中，我们为每"
+"个内置类型声明一个变量。"
 
 #: ../../source/learn/quickstart/variables.md:35
 msgid "**Example:** variable declaration"
-msgstr ""
+msgstr "**示例：**变量声明"
 
 #: ../../source/learn/quickstart/variables.md:50
 msgid ""
 "Fortran code is **case-insensitive**; you don't have to worry about the "
 "capitalisation of your variable names, but it's good practice to keep it "
 "consistent."
-msgstr ""
+msgstr "Fortran "
+"代码**不区分大小写**；你不必担心变量名的大小写，但保持一致是一种很好的做法。"
 
 #: ../../source/learn/quickstart/variables.md:53
 msgid ""
@@ -20224,6 +20304,8 @@ msgid ""
 "explicitly declared; without this statement variables will be implicitly "
 "typed according to the letter they begin with."
 msgstr ""
+"注意程序开头的附加语句：`implicit none`。该语句告诉编译器所有变量都将被显式声"
+"明；如果没有此语句，变量将根据它们开头的字母隐式键入。"
 
 #: ../../source/learn/quickstart/variables.md:57
 msgid ""
@@ -20231,12 +20313,14 @@ msgid ""
 " procedure. Implicit typing is considered bad practice in modern programming "
 "since it hides information leading to more program errors."
 msgstr ""
+"始终在每个程序和过程的开头使用 `implicit none` 语句。隐式类型在现代编程中被认"
+"为是不好的做法，因为它隐藏了导致更多程序错误的信息。"
 
 #: ../../source/learn/quickstart/variables.md:61
 msgid ""
 "Once we have declared a variable, we can assign and reassign values to it "
 "using the assignment operator `=`."
-msgstr ""
+msgstr "一旦我们声明了一个变量，我们就可以使用赋值运算符 `=` 对其进行赋值和重新赋值。"
 
 #: ../../source/learn/quickstart/variables.md:63
 msgid "**Example:** variable assignment"
@@ -20244,11 +20328,11 @@ msgstr ""
 
 #: ../../source/learn/quickstart/variables.md:73
 msgid "Characters are surrounded by either single (`'`) or double quotes (`\"`)."
-msgstr ""
+msgstr "字符由单引号 (`'`) 或双引号 (`\"`) 包围。"
 
 #: ../../source/learn/quickstart/variables.md:75
 msgid "Logical or boolean values can be either `.true.` or `.false.`."
-msgstr ""
+msgstr "逻辑或布尔值可以是 `.true.` 或 `.false.`。"
 
 #: ../../source/learn/quickstart/variables.md:77
 msgid ""
@@ -20257,86 +20341,91 @@ msgid ""
 "which means that the variable retains its value between procedure calls. Good"
 " practice is to initialise your variables separately to their declaration."
 msgstr ""
+"注意 \" content=\" 声明时的赋值：`integer :: amount = 1`。 "
+"**这不是正常的初始化；** 它暗示了 `save` 属性，这意味着变量在过程调用之间保留"
+"其值。好的做法是将变量分别初始化为它们的声明。"
 
 #: ../../source/learn/quickstart/variables.md:81
 msgid "Standard input / output"
-msgstr ""
+msgstr "标准输入/输出"
 
 #: ../../source/learn/quickstart/variables.md:83
 msgid ""
 "In our _Hello World_ example, we printed text to the command window. This is "
 "commonly referred to as writing to `standard output` or `stdout`."
 msgstr ""
+"在我们的 _Hello World_ 示例中，我们将文本打印到命令窗口。这通常被称为写入 `"
+"standard output` 或 `stdout`。"
 
 #: ../../source/learn/quickstart/variables.md:86
 msgid ""
 "We can use the `print` statement introduced earlier to print variable values "
 "to `stdout`:"
-msgstr ""
+msgstr "我们可以使用前面介绍的 `print` 语句将变量值打印到 `stdout`："
 
 #: ../../source/learn/quickstart/variables.md:96
 msgid ""
 "In a similar way, we can read values from the command window using the `read`"
 " statement:"
-msgstr ""
+msgstr "以类似的方式，我们可以使用 `read` 语句从命令窗口读取值："
 
 #: ../../source/learn/quickstart/variables.md:112
 msgid "This input source is commonly referred to as `standard input` or `stdin`."
-msgstr ""
+msgstr "此输入源通常称为 `standard input` 或 `stdin`。"
 
 #: ../../source/learn/quickstart/variables.md:114
 msgid "Expressions"
-msgstr ""
+msgstr "表达式"
 
 #: ../../source/learn/quickstart/variables.md:116
 msgid ""
 "The usual set of arithmetic operators are available, listed in order of "
 "precedence:"
-msgstr ""
+msgstr "常用的算术运算符集可用，按优先顺序列出："
 
 #: ../../source/learn/quickstart/variables.md
 msgid "`**`"
-msgstr ""
+msgstr "`**`"
 
 #: ../../source/learn/quickstart/variables.md
 msgid "Exponent"
-msgstr ""
+msgstr "指数"
 
 #: ../../source/learn/quickstart/variables.md
 msgid "`*`"
-msgstr ""
+msgstr "`*`"
 
 #: ../../source/learn/quickstart/variables.md
 msgid "Multiplication"
-msgstr ""
+msgstr "乘法"
 
 #: ../../source/learn/quickstart/variables.md
 msgid "`/ `"
-msgstr ""
+msgstr "`/ `"
 
 #: ../../source/learn/quickstart/variables.md
 msgid "Division"
-msgstr ""
+msgstr "除法"
 
 #: ../../source/learn/quickstart/variables.md
 msgid "`+`"
-msgstr ""
+msgstr "`+`"
 
 #: ../../source/learn/quickstart/variables.md
 msgid "Addition"
-msgstr ""
+msgstr "加法"
 
 #: ../../source/learn/quickstart/variables.md
 msgid "`-`"
-msgstr ""
+msgstr "`-`"
 
 #: ../../source/learn/quickstart/variables.md
 msgid "Subtraction"
-msgstr ""
+msgstr "减法"
 
 #: ../../source/learn/quickstart/variables.md:159
 msgid "Floating-point precision"
-msgstr ""
+msgstr "浮点精度"
 
 #: ../../source/learn/quickstart/variables.md:161
 msgid ""
@@ -20344,25 +20433,26 @@ msgid ""
 "`kind` parameter. The `iso_fortran_env` intrinsic module provides `kind` "
 "parameters for the common 32-bit and 64-bit floating-point types."
 msgstr ""
+"可以使用 `kind` 参数显式声明所需的浮点精度。 `iso_fortran_env` "
+"内在模块为常见的 32 位和 64 位浮点类型提供了 `kind` 参数。"
 
 #: ../../source/learn/quickstart/variables.md:164
 msgid "**Example:** explicit real `kind`"
-msgstr ""
+msgstr "**示例：** 显式实数`kind`"
 
 #: ../../source/learn/quickstart/variables.md:180
 msgid "Always use a `kind` suffix for floating-point literal constants."
-msgstr ""
+msgstr "始终为浮点文字常量使用 `kind` 后缀。"
 
 #: ../../source/learn/quickstart/variables.md:182
-#, fuzzy
 msgid "**Example:** C-interoperable `kind`"
-msgstr "**示例：** toc for `index.md`"
+msgstr "**示例：** C 互操作的 `kind`"
 
 #: ../../source/learn/quickstart/variables.md:195
 msgid ""
 "In the next part we will learn how to use arrays for storing more than one "
 "value in a variable."
-msgstr ""
+msgstr "在下一部分中，我们将学习如何使用数组在变量中存储多个值。"
 
 #: ../../source/news.md:1
 msgid "News"
@@ -20370,119 +20460,119 @@ msgstr "新闻"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:7
 msgid "J3 February 2020 Meeting"
-msgstr ""
+msgstr "J3 2020 年 2 月会议"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:9
 msgid ""
 "The J3 Fortran Committee meeting took place in Las Vegas, NV, on February "
 "24-28, 2020."
-msgstr ""
+msgstr "J3 Fortran 委员会会议于 2020 年 2 月 24 日至 28 日在内华达州拉斯维加斯举行。"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:11
 msgid "Attendance"
-msgstr ""
+msgstr "出席"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:13
 msgid "The following people / companies attended:"
-msgstr ""
+msgstr "以下人员/公司参加："
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:15
 msgid "Voting members:"
-msgstr ""
+msgstr "投票成员："
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:17
 msgid "Intel: Jon Steidel"
-msgstr ""
+msgstr "英特尔：乔恩·施泰德尔"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:18
 msgid "HPE/Cray: Bill Long"
-msgstr ""
+msgstr "HPE/Cray：比尔·朗"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:19
 msgid "NVIDIA: Peter Klausler, Gary Klimowicz"
-msgstr ""
+msgstr "英伟达：彼得克劳斯勒、加里克里莫维奇"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:20
 msgid "IBM: Daniel Chen"
-msgstr ""
+msgstr "IBM：陈丹尼尔"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:21
 msgid "ARM: Srinath Vadlamani"
-msgstr ""
+msgstr "ARM：斯里纳特·瓦德拉马尼"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:22
 msgid "NCAR: Dan Nagle, Magne Haveraaen"
-msgstr ""
+msgstr "NCAR：丹·纳格尔，马格内·哈维拉恩"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:23
 msgid "NASA: Tom Clune"
-msgstr ""
+msgstr "美国国家航空航天局：汤姆·克鲁恩"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:24
 msgid "JPL: Van Sneider"
-msgstr ""
+msgstr "JPL：范斯奈德"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:25
 msgid "LANL: Zach Jibben, Ondřej Čertík"
-msgstr ""
+msgstr "LANL：扎克·吉本，Ondřej Čertík"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:26
 msgid "ORNL: Reuben Budiardja"
-msgstr ""
+msgstr "ORNL：鲁本·布迪亚贾"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:27
 msgid "LBNL: Brian Friesen"
-msgstr ""
+msgstr "LBNL：布赖恩弗里森"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:28
 msgid "Sandia: Damian Rouson"
-msgstr ""
+msgstr "桑迪亚：达米安·鲁森"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:29
 msgid "Lionel: Steven Lionel, Malcolm Cohen, Vipul Parekh"
-msgstr ""
+msgstr "莱昂内尔：史蒂文·莱昂内尔、马尔科姆·科恩、维普尔·帕瑞克"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:30
 msgid "Corbett: Bob Corbett"
-msgstr ""
+msgstr "科比特：鲍勃·科比特"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:32
 msgid "Others:"
-msgstr ""
+msgstr "其他："
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:34
 msgid "AMD: Richard Bleikamp"
-msgstr ""
+msgstr "AMD：理查德·布莱坎普"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:35
 msgid "WG23: Stephen Michell (convenor), Erhard Ploedereder (member)"
-msgstr ""
+msgstr "WG23：Stephen Michell（召集人）、Erhard Ploedereder（成员）"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:36
 msgid "Structural Integrity: Brad Richardson"
-msgstr ""
+msgstr "结构完整性：布拉德理查森"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:38
 msgid "Proposals Discussed at Plenary"
-msgstr ""
+msgstr "全体会议上讨论的提案"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:40
 msgid "Monday 2/24"
-msgstr ""
+msgstr "星期一 2/24"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:42
 msgid "Tuesday 2/25"
-msgstr ""
+msgstr "星期二 2/25"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:44
 msgid ""
 "[#22] : Default values of optional arguments "
 "(<https://j3-fortran.org/doc/year/20/20-107.txt>)"
-msgstr ""
+msgstr "[#22] : 可选参数的默认值 (<https://j3-fortran.org/doc/year/20/20-107.txt>)"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:46
 msgid "Wednesday 2/26"
-msgstr ""
+msgstr "星期三 2/26"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:48
 msgid ""
@@ -20490,20 +20580,24 @@ msgid ""
 "(<https://j3-fortran.org/doc/year/20/20-113.txt>, "
 "<https://j3-fortran.org/doc/year/20/20-115.txt>)"
 msgstr ""
+"[#157]：与等级无关的数组元素和节表示（<https://j3-fortran.org/doc/year/20/"
+"20-113.txt>、<https://j3-fortran.org/doc /年/20/20-115.txt>)"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:49
 msgid "[#158] : TYPEOF and CLASSOF (<https://j3-fortran.org/doc/year/20/20-114.txt>)"
 msgstr ""
+"[#158] : TYPEOF 和 CLASSOF (<https://j3-fortran.org/doc/year/20/20-114.txt>)"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:50
 msgid "[#1] : Namespace for modules (<https://j3-fortran.org/doc/year/20/20-108.txt>)"
-msgstr ""
+msgstr "[#1] : 模块的命名空间 (<https://j3-fortran.org/doc/year/20/20-108.txt>)"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:51
 msgid ""
 "Interpretation: FORM TEAM and failed images "
 "(<https://j3-fortran.org/doc/year/20/20-102r1.txt>)"
-msgstr ""
+msgstr "解读：FORM TEAM 和失败的镜像（<https://j3-fortran.org/doc/year/20/20-102r1."
+"txt>）"
 
 #: ../../source/news/2020/02-28-J3-february-meeting.md:52
 msgid ""
