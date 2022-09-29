@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Variables &#8212; Fortran Programming Language</title>
+    <title>变量 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -44,7 +44,7 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
-    <link rel="next" title="Arrays and strings" href="../arrays_strings/" />
+    <link rel="next" title="数组和字符串" href="../arrays_strings/" />
     <link rel="prev" title="Hello world" href="../hello_world/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -379,7 +379,7 @@
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../os_setup/">
-   Setting up your OS
+   设置操作系统
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -416,7 +416,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Quickstart tutorial
+   快速入门教程
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -431,27 +431,27 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Variables
+     变量
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays_strings/">
-     Arrays and strings
+     数组和字符串
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../operators_control_flow/">
-     Operators and flow control
+     操作符和流程控制
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../organising_code/">
-     Organising code structure
+     组织代码结构
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../derived_types/">
-     Derived Types
+     派生类型
     </a>
    </li>
   </ul>
@@ -636,7 +636,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/state/">
-     General and miscellaneous intrinsics
+     一般和杂项内置函数
     </a>
    </li>
    <li class="toctree-l2">
@@ -688,27 +688,27 @@
 <nav id="bd-toc-nav" class="page-toc"><ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Variables
+   变量
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#declaring-variables">
-   Declaring variables
+   声明变量
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#standard-input-output">
-     Standard input / output
+     标准输入/输出
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#expressions">
-     Expressions
+     表达式
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#floating-point-precision">
-     Floating-point precision
+     浮点精度
     </a>
    </li>
   </ul>
@@ -727,36 +727,30 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="variables">
-<h1>Variables<a class="headerlink" href="#variables" title="此标题的永久链接">#</a></h1>
-<p>Variables store information that can be manipulated by the program.
-Fortran is a <em>strongly typed</em> language, which means that each variable
-must have a type.</p>
-<p>There are 5 built-in data types in Fortran:</p>
+<h1>变量<a class="headerlink" href="#variables" title="此标题的永久链接">#</a></h1>
+<p>变量存储可以由程序操作的信息。 Fortran 是一种_强类型_语言，这意味着每个变量都必须有一个类型。</p>
+<p>Fortran 中有 5 种内置数据类型：</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">integer</span></code> – for data that represent whole numbers, positive or negative</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">real</span></code> – for floating-point data (not a whole number)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">complex</span></code> – pair consisting of a real part and an imaginary part</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">character</span></code> – for text data</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">logical</span></code> – for data that represent boolean (true or false) values</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">integer</span></code> —— 表示整数的数据，正数或负数</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real</span></code> —— 用于浮点数据（不是整数）</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">complex</span></code> —— 由实部和虚部组成的对</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">character</span></code> —— 用于文本数据</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logical</span></code> —— 用于表示布尔值（真或假）值的数据</p></li>
 </ul>
-<p>Before we can use a variable, we must <em>declare</em> it; this tells the compiler
-the variable type and any other variable attributes.</p>
+<p>在我们可以使用变量之前，我们必须_声明_它；这告诉编译器变量类型和任何其他变量属性。</p>
 <blockquote>
-<div><p>Fortran is a <em>statically typed</em> language, which means the type of each
-variable is fixed when the program is compiled—variable types cannot change while the program is running.</p>
+<div><p>Fortran 是一种_静态类型_语言，这意味着每个变量的类型在程序编译时是固定的 —— 变量类型在程序运行时不能改变。</p>
 </div></blockquote>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="declaring-variables">
-<h1>Declaring variables<a class="headerlink" href="#declaring-variables" title="此标题的永久链接">#</a></h1>
-<p>The syntax for declaring variables is:</p>
+<h1>声明变量<a class="headerlink" href="#declaring-variables" title="此标题的永久链接">#</a></h1>
+<p>声明变量的语法是：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">variable_type</span><span class="o">&gt;</span> <span class="p">::</span> <span class="o">&lt;</span><span class="n">variable_name</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">&lt;variable_type&gt;</span></code> is one of the built-in variable types listed above and
-<code class="docutils literal notranslate"><span class="pre">&lt;variable_name&gt;</span></code> is the name that you would like to call your variable.</p>
-<p>Variable names must start with a letter and can consist of letters, numbers and underscores.
-In the following example we declare a variable for each of the built-in types.</p>
-<p><strong>Example:</strong> variable declaration</p>
+<p>其中 <code class="docutils literal notranslate"><span class="pre">&lt;variable_type&gt;</span></code> 是上面列出的内置变量类型之一，而 <code class="docutils literal notranslate"><span class="pre">&lt;variable_name&gt;</span></code> 是您要调用变量的名称。</p>
+<p>变量名必须以字母开头，可以由字母、数字和下划线组成。在下面的示例中，我们为每个内置类型声明一个变量。</p>
+<p>**示例：**变量声明</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">variables</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -770,18 +764,13 @@ In the following example we declare a variable for each of the built-in types.</
 </pre></div>
 </div>
 <blockquote>
-<div><p>Fortran code is <strong>case-insensitive</strong>; you don’t have to worry about the
-capitalisation of your variable names, but it’s good practice to keep it consistent.</p>
+<div><p>Fortran 代码<strong>不区分大小写</strong>；你不必担心变量名的大小写，但保持一致是一种很好的做法。</p>
 </div></blockquote>
-<p>Note the additional statement at the beginning of the program: <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code>.
-This statement tells the compiler that all variables will be explicitly declared; without
-this statement variables will be implicitly typed according to the letter they begin with.</p>
+<p>注意程序开头的附加语句：<code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code>。该语句告诉编译器所有变量都将被显式声明；如果没有此语句，变量将根据它们开头的字母隐式键入。</p>
 <blockquote>
-<div><p>Always use the <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code> statement at
-the beginning of each program and procedure. Implicit typing is considered bad practice in
-modern programming since it hides information leading to more program errors.</p>
+<div><p>始终在每个程序和过程的开头使用 <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code> 语句。隐式类型在现代编程中被认为是不好的做法，因为它隐藏了导致更多程序错误的信息。</p>
 </div></blockquote>
-<p>Once we have declared a variable, we can assign and reassign values to it using the assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
+<p>一旦我们声明了一个变量，我们就可以使用赋值运算符 <code class="docutils literal notranslate"><span class="pre">=</span></code> 对其进行赋值和重新赋值。</p>
 <p><strong>Example:</strong> variable assignment</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
 <span class="n">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.1415927</span><span class="w"></span>
@@ -790,18 +779,15 @@ modern programming since it hides information leading to more program errors.</p
 <span class="n">isOkay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Characters are surrounded by either single (<code class="docutils literal notranslate"><span class="pre">'</span></code>) or double quotes (<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>).</p>
-<p>Logical or boolean values can be either <code class="docutils literal notranslate"><span class="pre">.true.</span></code> or <code class="docutils literal notranslate"><span class="pre">.false.</span></code>.</p>
+<p>字符由单引号 (<code class="docutils literal notranslate"><span class="pre">'</span></code>) 或双引号 (<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>) 包围。</p>
+<p>逻辑或布尔值可以是 <code class="docutils literal notranslate"><span class="pre">.true.</span></code> 或 <code class="docutils literal notranslate"><span class="pre">.false.</span></code>。</p>
 <blockquote>
-<div><p>Watch out” content=”for assignment at declaration: <code class="docutils literal notranslate"><span class="pre">integer</span> <span class="pre">::</span> <span class="pre">amount</span> <span class="pre">=</span> <span class="pre">1</span></code>.
-<strong>This is NOT a normal initialisation;</strong> it implies the <code class="docutils literal notranslate"><span class="pre">save</span></code> attribute which means that the variable retains
-its value between procedure calls. Good practice is to initialise your variables separately to their declaration.</p>
+<div><p>注意 ” content=” 声明时的赋值：<code class="docutils literal notranslate"><span class="pre">integer</span> <span class="pre">::</span> <span class="pre">amount</span> <span class="pre">=</span> <span class="pre">1</span></code>。 <strong>这不是正常的初始化；</strong> 它暗示了 <code class="docutils literal notranslate"><span class="pre">save</span></code> 属性，这意味着变量在过程调用之间保留其值。好的做法是将变量分别初始化为它们的声明。</p>
 </div></blockquote>
 <section id="standard-input-output">
-<h2>Standard input / output<a class="headerlink" href="#standard-input-output" title="此标题的永久链接">#</a></h2>
-<p>In our <em>Hello World</em> example, we printed text to the command window.
-This is commonly referred to as writing to <code class="docutils literal notranslate"><span class="pre">standard</span> <span class="pre">output</span></code> or <code class="docutils literal notranslate"><span class="pre">stdout</span></code>.</p>
-<p>We can use the <code class="docutils literal notranslate"><span class="pre">print</span></code> statement introduced earlier to print variable values to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>:</p>
+<h2>标准输入/输出<a class="headerlink" href="#standard-input-output" title="此标题的永久链接">#</a></h2>
+<p>在我们的 <em>Hello World</em> 示例中，我们将文本打印到命令窗口。这通常被称为写入 <code class="docutils literal notranslate"><span class="pre">standard</span> <span class="pre">output</span></code> 或 <code class="docutils literal notranslate"><span class="pre">stdout</span></code>。</p>
+<p>我们可以使用前面介绍的 <code class="docutils literal notranslate"><span class="pre">print</span></code> 语句将变量值打印到 <code class="docutils literal notranslate"><span class="pre">stdout</span></code>：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The value of amount (integer) is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The value of pi (real) is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">pi</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The value of frequency (complex) is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">frequency</span><span class="w"></span>
@@ -809,8 +795,7 @@ This is commonly referred to as writing to <code class="docutils literal notrans
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The value of isOkay (logical) is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">isOkay</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In a similar way, we can read values from the command window
-using the <code class="docutils literal notranslate"><span class="pre">read</span></code> statement:</p>
+<p>以类似的方式，我们可以使用 <code class="docutils literal notranslate"><span class="pre">read</span></code> 语句从命令窗口读取值：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">read_value</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 <span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">age</span><span class="w"></span>
@@ -823,37 +808,37 @@ using the <code class="docutils literal notranslate"><span class="pre">read</spa
 <span class="k">end program </span><span class="n">read_value</span><span class="w"></span>
 </pre></div>
 </div>
-<p>This input source is commonly referred to as <code class="docutils literal notranslate"><span class="pre">standard</span> <span class="pre">input</span></code> or <code class="docutils literal notranslate"><span class="pre">stdin</span></code>.</p>
+<p>此输入源通常称为 <code class="docutils literal notranslate"><span class="pre">standard</span> <span class="pre">input</span></code> 或 <code class="docutils literal notranslate"><span class="pre">stdin</span></code>。</p>
 </section>
 <section id="expressions">
-<h2>Expressions<a class="headerlink" href="#expressions" title="此标题的永久链接">#</a></h2>
-<p>The usual set of arithmetic operators are available, listed in order of precedence:</p>
+<h2>表达式<a class="headerlink" href="#expressions" title="此标题的永久链接">#</a></h2>
+<p>常用的算术运算符集可用，按优先顺序列出：</p>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head text-center"><p>Operator  </p></th>
-<th class="head"><p>说明</p></th>
+<tr class="row-odd"><th class="head text-center"><p>操作符  </p></th>
+<th class="head"><p>描述</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
-<td><p>Exponent</p></td>
+<td><p>指数</p></td>
 </tr>
 <tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
-<td><p>Multiplication</p></td>
+<td><p>乘法</p></td>
 </tr>
 <tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">/</span> </code></p></td>
-<td><p>Division</p></td>
+<td><p>除法</p></td>
 </tr>
 <tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
-<td><p>Addition</p></td>
+<td><p>加法</p></td>
 </tr>
 <tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
-<td><p>Subtraction</p></td>
+<td><p>减法</p></td>
 </tr>
 </tbody>
 </table>
 <br>
-<p><strong>Example:</strong></p>
+<p><strong>例子：</strong></p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">arithmetic</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -884,10 +869,9 @@ using the <code class="docutils literal notranslate"><span class="pre">read</spa
 </div>
 </section>
 <section id="floating-point-precision">
-<h2>Floating-point precision<a class="headerlink" href="#floating-point-precision" title="此标题的永久链接">#</a></h2>
-<p>The desired floating-point precision can be explicitly declared using a <code class="docutils literal notranslate"><span class="pre">kind</span></code> parameter.
-The <code class="docutils literal notranslate"><span class="pre">iso_fortran_env</span></code> intrinsic module provides <code class="docutils literal notranslate"><span class="pre">kind</span></code> parameters for the common 32-bit and 64-bit floating-point types.</p>
-<p><strong>Example:</strong> explicit real <code class="docutils literal notranslate"><span class="pre">kind</span></code></p>
+<h2>浮点精度<a class="headerlink" href="#floating-point-precision" title="此标题的永久链接">#</a></h2>
+<p>可以使用 <code class="docutils literal notranslate"><span class="pre">kind</span></code> 参数显式声明所需的浮点精度。 <code class="docutils literal notranslate"><span class="pre">iso_fortran_env</span></code> 内在模块为常见的 32 位和 64 位浮点类型提供了 <code class="docutils literal notranslate"><span class="pre">kind</span></code> 参数。</p>
+<p><strong>示例：</strong> 显式实数<code class="docutils literal notranslate"><span class="pre">kind</span></code></p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="nb">float</span>
 <span class="nb">  </span><span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">sp</span><span class="o">=&gt;</span><span class="n">real32</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -902,9 +886,9 @@ The <code class="docutils literal notranslate"><span class="pre">iso_fortran_env
 </pre></div>
 </div>
 <blockquote>
-<div><p>Always use a <code class="docutils literal notranslate"><span class="pre">kind</span></code> suffix for floating-point literal constants.</p>
+<div><p>始终为浮点文字常量使用 <code class="docutils literal notranslate"><span class="pre">kind</span></code> 后缀。</p>
 </div></blockquote>
-<p><strong>Example:</strong> C-interoperable <code class="docutils literal notranslate"><span class="pre">kind</span></code></p>
+<p><strong>示例：</strong> C 互操作的 <code class="docutils literal notranslate"><span class="pre">kind</span></code></p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="nb">float</span>
 <span class="nb">  </span><span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">sp</span><span class="o">=&gt;</span><span class="kt">c_float</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="kt">c_double</span>
 <span class="kt">  </span><span class="k">implicit none</span>
@@ -915,8 +899,7 @@ The <code class="docutils literal notranslate"><span class="pre">iso_fortran_env
 <span class="k">end program </span><span class="nb">float</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In the next part we will learn how to use arrays for storing more than one
-value in a variable.</p>
+<p>在下一部分中，我们将学习如何使用数组在变量中存储多个值。</p>
 </section>
 </section>
 

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Arrays and strings &#8212; Fortran Programming Language</title>
+    <title>数组和字符串 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -44,8 +44,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
-    <link rel="next" title="Operators and flow control" href="../operators_control_flow/" />
-    <link rel="prev" title="Variables" href="../variables/" /> 
+    <link rel="next" title="操作符和流程控制" href="../operators_control_flow/" />
+    <link rel="prev" title="变量" href="../variables/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -379,7 +379,7 @@
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../os_setup/">
-   Setting up your OS
+   设置操作系统
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -416,7 +416,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Quickstart tutorial
+   快速入门教程
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -431,27 +431,27 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../variables/">
-     Variables
+     变量
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Arrays and strings
+     数组和字符串
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../operators_control_flow/">
-     Operators and flow control
+     操作符和流程控制
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../organising_code/">
-     Organising code structure
+     组织代码结构
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../derived_types/">
-     Derived Types
+     派生类型
     </a>
    </li>
   </ul>
@@ -636,7 +636,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/state/">
-     General and miscellaneous intrinsics
+     一般和杂项内置函数
     </a>
    </li>
    <li class="toctree-l2">
@@ -688,32 +688,32 @@
 <nav id="bd-toc-nav" class="page-toc"><ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Arrays and strings
+   数组和字符串
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#array-declaration">
-   Array declaration
+   数组声明
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#array-slicing">
-     Array slicing
+     数组切片
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#allocatable-dynamic-arrays">
-     Allocatable (dynamic) arrays
+     可分配（动态）数组
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#character-strings">
-     Character strings
+     字符串
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#array-of-strings">
-     Array of strings
+     字符串数组
     </a>
    </li>
   </ul>
@@ -732,21 +732,17 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="arrays-and-strings">
-<h1>Arrays and strings<a class="headerlink" href="#arrays-and-strings" title="此标题的永久链接">#</a></h1>
-<p>More often than not, we need to store and operate on long lists of numbers as opposed to just the single scalar variables
-that we have been using so far; in computer programming such lists are called <em>arrays</em>.</p>
-<p>Arrays are <em>multidimensional</em> variables that contain more than one value
-where each value is accessed using one or more indices.</p>
+<h1>数组和字符串<a class="headerlink" href="#arrays-and-strings" title="此标题的永久链接">#</a></h1>
+<p>通常情况下，我们需要存储和操作一长串数字，而不是迄今为止我们一直使用的单个标量变量；在计算机编程中，此类列表称为_arrays_。</p>
+<p>数组是_多维_变量，包含多个值，其中每个值都使用一个或多个索引访问。</p>
 <blockquote>
-<div><p>Arrays in Fortran are <em>one-based</em> by default; this means
-that the first element along any dimension is at index 1.</p>
+<div><p>Fortran 中的数组默认是_one-based_；这意味着沿任何维度的第一个元素位于索引 1 处。</p>
 </div></blockquote>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="array-declaration">
-<h1>Array declaration<a class="headerlink" href="#array-declaration" title="此标题的永久链接">#</a></h1>
-<p>We can declare arrays of any type. There are two common notations for declaring array variables:
-using the <code class="docutils literal notranslate"><span class="pre">dimension</span></code> attribute or by appending the array dimensions in parentheses to the variable name.</p>
-<p><strong>Example:</strong> static array declaration</p>
+<h1>数组声明<a class="headerlink" href="#array-declaration" title="此标题的永久链接">#</a></h1>
+<p>我们可以声明任何类型的数组。声明数组变量有两种常见的表示法：使用 <code class="docutils literal notranslate"><span class="pre">dimension</span></code> 属性或通过将括号中的数组维度附加到变量名称。</p>
+<p>**示例：**静态数组声明</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">arrays</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span><span class="w"></span>
 
@@ -767,10 +763,9 @@ using the <code class="docutils literal notranslate"><span class="pre">dimension
 </pre></div>
 </div>
 <section id="array-slicing">
-<h2>Array slicing<a class="headerlink" href="#array-slicing" title="此标题的永久链接">#</a></h2>
-<p>A powerful feature of the Fortran language is its built-in support for array operations;
-we can perform operations on all or part of an array using array <em>slicing</em> notation:</p>
-<p><strong>Example:</strong> array slicing</p>
+<h2>数组切片<a class="headerlink" href="#array-slicing" title="此标题的永久链接">#</a></h2>
+<p>Fortran 语言的一个强大特性是它对数组操作的内置支持。我们可以使用数组_slicing_表示法对数组的全部或部分执行操作：</p>
+<p><strong>示例：</strong> 数组切片</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">array_slice</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -792,19 +787,15 @@ we can perform operations on all or part of an array using array <em>slicing</em
 </pre></div>
 </div>
 <blockquote>
-<div><p>Fortran arrays are stored in <em>column-major</em> order; the first
-index varies fastest.</p>
+<div><p>Fortran 数组以 <em>column-major</em> 顺序存储；第一个指数变化最快。</p>
 </div></blockquote>
 </section>
 <section id="allocatable-dynamic-arrays">
-<h2>Allocatable (dynamic) arrays<a class="headerlink" href="#allocatable-dynamic-arrays" title="此标题的永久链接">#</a></h2>
-<p>So far we have specified the size of our array in our program code—this
-type of array is known as a <em>static</em> array since its size is fixed when
-we compile our program.</p>
-<p>Quite often, we do not know how big our array needs to be until we run our program, for example, if we are reading data from a file of unknown size.</p>
-<p>For this problem, we need <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> arrays.
-These are <em>allocated</em> while the program is running once we know how big the array needs to be.</p>
-<p><strong>Example:</strong> allocatable arrays</p>
+<h2>可分配（动态）数组<a class="headerlink" href="#allocatable-dynamic-arrays" title="此标题的永久链接">#</a></h2>
+<p>到目前为止，我们已经在程序代码中指定了数组的大小——这种类型的数组被称为_static_数组，因为它的大小在我们编译程序时是固定的。</p>
+<p>很多时候，在我们运行程序之前，我们并不知道数组需要多大，例如，如果我们正在从一个未知大小的文件中读取数据。</p>
+<p>对于这个问题，我们需要 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 数组。一旦我们知道数组需要多大，这些是在程序运行时_allocated_。</p>
+<p><strong>示例：</strong> 可分配数组</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program allocatable</span>
 <span class="k">  implicit none</span>
 
@@ -822,12 +813,11 @@ These are <em>allocated</em> while the program is running once we know how big t
 <span class="k">end program allocatable</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Allocatable local arrays are deallocated automatically
-when they go out of scope.</p>
+<p>可分配的本地数组超出范围时会自动释放。</p>
 </section>
 <section id="character-strings">
-<h2>Character strings<a class="headerlink" href="#character-strings" title="此标题的永久链接">#</a></h2>
-<p><strong>Example:</strong> static character string</p>
+<h2>字符串<a class="headerlink" href="#character-strings" title="此标题的永久链接">#</a></h2>
+<p>**示例：**静态字符串</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -846,7 +836,7 @@ when they go out of scope.</p>
 <span class="k">end program </span><span class="n">string</span><span class="w"></span>
 </pre></div>
 </div>
-<p><strong>Example:</strong> allocatable character string</p>
+<p>**示例：**可分配的字符串</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">allocatable_string</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -867,13 +857,9 @@ when they go out of scope.</p>
 </div>
 </section>
 <section id="array-of-strings">
-<h2>Array of strings<a class="headerlink" href="#array-of-strings" title="此标题的永久链接">#</a></h2>
-<p>An array of strings can be expressed in Fortran as an array of <code class="docutils literal notranslate"><span class="pre">character</span></code> variables.
-All elements in a <code class="docutils literal notranslate"><span class="pre">character</span></code> array have equal length.
-However, strings of varying lengths can be provided as input to the array constructor, as shown in the example below.
-They will be truncated or right-padded with spaces if they are longer or shorter, respectively, than the declared length of the <code class="docutils literal notranslate"><span class="pre">character</span></code> array.
-Finally, we use the intrinsic function <code class="docutils literal notranslate"><span class="pre">trim</span></code> to remove any excess spaces when printing the values to the standard output.</p>
-<p><strong>Example:</strong> string array</p>
+<h2>字符串数组<a class="headerlink" href="#array-of-strings" title="此标题的永久链接">#</a></h2>
+<p>字符串数组可以在 Fortran 中表示为 <code class="docutils literal notranslate"><span class="pre">character</span></code> 变量数组。 <code class="docutils literal notranslate"><span class="pre">character</span></code> 数组中的所有元素都具有相等的长度。但是，可以将不同长度的字符串作为输入提供给数组构造函数，如下例所示。如果它们分别比“字符”数组的声明长度长或短，它们将被截断或用空格右填充。最后，在将值打印到标准输出时，我们使用内部函数 <code class="docutils literal notranslate"><span class="pre">trim</span></code> 删除任何多余的空格。</p>
+<p>**示例：**字符串数组</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string_array</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 <span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span><span class="w"></span>

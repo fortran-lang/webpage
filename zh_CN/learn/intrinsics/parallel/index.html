@@ -44,7 +44,7 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
-    <link rel="next" title="General and miscellaneous intrinsics" href="../state/" />
+    <link rel="next" title="一般和杂项内置函数" href="../state/" />
     <link rel="prev" title="数值的操作和属性" href="../numeric/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -379,7 +379,7 @@
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../os_setup/">
-   Setting up your OS
+   设置操作系统
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -416,7 +416,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../quickstart/">
-   Quickstart tutorial
+   快速入门教程
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -431,27 +431,27 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../quickstart/variables/">
-     Variables
+     变量
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../quickstart/arrays_strings/">
-     Arrays and strings
+     数组和字符串
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../quickstart/operators_control_flow/">
-     Operators and flow control
+     操作符和流程控制
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../quickstart/organising_code/">
-     Organising code structure
+     组织代码结构
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../quickstart/derived_types/">
-     Derived Types
+     派生类型
     </a>
    </li>
   </ul>
@@ -636,7 +636,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../state/">
-     General and miscellaneous intrinsics
+     一般和杂项内置函数
     </a>
    </li>
    <li class="toctree-l2">
@@ -2663,7 +2663,7 @@
 </section>
 <section id="id56">
 <h3><strong>说明</strong><a class="headerlink" href="#id56" title="此标题的永久链接">#</a></h3>
-<p>Returns the image index belonging to a cosubscript.</p>
+<p>返回属于下标的镜像索引。</p>
 </section>
 <section id="id57">
 <h3><strong>参数</strong><a class="headerlink" href="#id57" title="此标题的永久链接">#</a></h3>
@@ -2800,25 +2800,23 @@ result = this_image(distance)
 </section>
 <section id="id74">
 <h3><strong>说明</strong><a class="headerlink" href="#id74" title="此标题的永久链接">#</a></h3>
-<p>Returns the cosubscript for this image.</p>
+<p>返回此镜像的下标。</p>
 </section>
 <section id="id75">
 <h3><strong>参数</strong><a class="headerlink" href="#id75" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>distance</strong></dt><dd><p>(optional, <strong>intent(in)</strong>) Nonnegative scalar integer (not permitted
-together with <strong>coarray</strong>).</p>
+<dt><strong>distance</strong></dt><dd><p>（optional，<strong>intent(in)</strong>）非负标量整数（不允许与 <strong>coarray</strong> 一起使用）。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>coarray</strong></dt><dd><p>Coarray of any type (optional; if <strong>dim</strong> present, required).</p>
+<dt><strong>coarray</strong></dt><dd><p>任何类型的 Coarray（optional；如果 <strong>dim</strong> 存在，则为必需）。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>暗淡</strong></dt><dd><p>default integer scalar (optional). If present, <strong>dim</strong> shall be between
-one and the corank of <strong>coarray</strong>.</p>
+<dt><strong>暗淡</strong></dt><dd><p>默认整数标量（可选）。如果存在，<strong>dim</strong> 应介于 1 和 <strong>coarray</strong> 的 corank 之间。</p>
 </dd>
 </dl>
 </li>
@@ -2826,17 +2824,7 @@ one and the corank of <strong>coarray</strong>.</p>
 </section>
 <section id="id76">
 <h3><strong>返回</strong><a class="headerlink" href="#id76" title="此标题的永久链接">#</a></h3>
-<p>Default integer. If <strong>coarray</strong> is not present, it is scalar; if <strong>distance</strong> is
-not present or has value <strong>0</strong>, its value is the image index on the invoking
-image for the current team, for values smaller or equal distance to the
-initial team, it returns the image index on the ancestor team which has
-a distance of <strong>distance</strong> from the invoking team. If <strong>distance</strong> is larger
-than the distance to the initial team, the image index of the initial
-team is returned. Otherwise when the <strong>coarray</strong> is present, if <strong>dim</strong> is not
-present, a rank-1 array with corank elements is returned, containing the
-cosubscripts for <strong>coarray</strong> specifying the invoking image. If <strong>dim</strong> is
-present, a scalar is returned, with the value of the <strong>dim</strong> element of
-<strong>this_image(coarray)</strong>.</p>
+<p>默认整数。如果 <strong>coarray</strong> 不存在，它是标量；如果 <strong>distance</strong> 不存在或值为 <strong>0</strong>，它的值是当前团队调用图像上的镜像索引，对于与初始团队的距离更小或相等的值，它返回镜像索引与调用团队距离<strong>距离</strong>的祖先团队。如果<strong>距离</strong>大于到初始团队的距离，则返回初始团队的镜像索引。否则，当 <strong>coarray</strong> 存在时，如果 <strong>dim</strong> 不存在，则返回具有 corank 元素的 rank-1 数组，其中包含指定调用图像的 <strong>coarray</strong> 的共同下标。如果存在 <strong>dim</strong>，则返回一个标量，其中包含 <strong>this_image(coarray)</strong> 的 <strong>dim</strong> 元素的值。</p>
 </section>
 <section id="id77">
 <h3><strong>示例</strong><a class="headerlink" href="#id77" title="此标题的永久链接">#</a></h3>
@@ -2862,8 +2850,7 @@ present, a scalar is returned, with the value of the <strong>dim</strong> elemen
 </section>
 <section id="id78">
 <h3><strong>标准</strong><a class="headerlink" href="#id78" title="此标题的永久链接">#</a></h3>
-<p>Fortran 2008 and later. With DISTANCE argument, TS 18508
-or later</p>
+<p>Fortran 2008 及更高版本。使用 DISTANCE 参数，TS 18508 或更高版本</p>
 </section>
 <section id="id79">
 <h3><strong>另见</strong><a class="headerlink" href="#id79" title="此标题的永久链接">#</a></h3>
@@ -2881,7 +2868,7 @@ or later</p>
 <h2>atomic_and<a class="headerlink" href="#atomic-and" title="此标题的永久链接">#</a></h2>
 <section id="id81">
 <h3><strong>名称</strong><a class="headerlink" href="#id81" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_and</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise AND operation</p>
+<p><strong>atomic_and</strong>(3) - [ATOMIC:BIT MANIPULATION] 原子按位与运算</p>
 </section>
 <section id="id82">
 <h3><strong>语法</strong><a class="headerlink" href="#id82" title="此标题的永久链接">#</a></h3>
@@ -2891,31 +2878,23 @@ or later</p>
 </section>
 <section id="id83">
 <h3><strong>说明</strong><a class="headerlink" href="#id83" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_and(atom, value)</strong> atomically defines <strong>atom</strong> with the bitwise
-<strong>and</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the
-invocation was successful, it is assigned the value 0. If it is present
-and the invocation has failed, it is assigned a positive value; in
-particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is
-assigned the value of iso_fortran_env’s stat_stopped_image and if
-the remote image has failed, the value stat_failed_image.</p>
+<p><strong>atomic_and(atom, value)</strong> 以 <strong>atom</strong> 和 <strong>value</strong> 的值之间的按位 <strong>and</strong> 原子地定义<strong>atom</strong>。当 <strong>stat</strong> 存在且调用成功时，赋值为 0。如果存在且调用失败，则赋值为正值；特别是，对于一个共索引的<strong>atom</strong>，如果远程映像已停止，则为其分配 iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像失败，则为其分配 stat_failed_image 的值。</p>
 </section>
 <section id="id84">
 <h3><strong>参数</strong><a class="headerlink" href="#id84" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
-atomic_int_kind kind.</p>
+<dt><strong>atom</strong></dt><dd><p>具有 atomic_int_kind 类型的整数类型的标量 coarray 或 coindexed 变量。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
-is converted to the kind of <strong>atom</strong>.</p>
+<dt><strong>value</strong></dt><dd><p>与<strong>atom</strong> 类型相同的标量。如果种类不同，则将值转换为<strong>原子</strong>的种类。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量默认类型整数变量。</p>
 </dd>
 </dl>
 </li>
@@ -2939,14 +2918,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id87">
 <h3><strong>另见</strong><a class="headerlink" href="#id87" title="此标题的永久链接">#</a></h3>
-<p><a class="reference internal" href="#atomic-fetch-and"><span class="std std-doc"><strong>atomic_fetch_and</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-ref"><span class="std std-doc"><strong>atomic_ref</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-cas"><span class="std std-doc"><strong>atomic_cas</strong>(3)</span></a>,
-<strong>iso_fortran_env</strong>(3),
-<a class="reference internal" href="#atomic-add"><span class="std std-doc"><strong>atomic_add</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-or"><span class="std std-doc"><strong>atomic_or</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-xor"><span class="std std-doc"><strong>atomic_xor</strong>(3)</span></a></p>
+<p><a class="reference internal" href="#atomic-fetch-and"><span class="std std-doc"><strong>atomic_fetch_and</strong>(3)</span></a>，<a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>，<a class="reference internal" href="#atomic-ref"><span class="std std-doc"><strong>atomic_ref</strong>(3)</span></a>，<a class="reference internal" href="#atomic-cas"><span class="std std-doc"><strong>atomic_cas</strong>(3)</span></a>，<strong>iso_fortran_env</strong>(3)，<a class="reference internal" href="#atomic-add"><span class="std std-doc"><strong>atomic_add</strong>(3)</span></a>，<a class="reference internal" href="#atomic-or"><span class="std std-doc"><strong>atomic_or</strong>(3)</span></a>，<a class="reference internal" href="#atomic-xor"><span class="std std-doc"><strong>atomic_xor</strong>(3)</span></a></p>
 <section id="id88">
 <h4>fortran 语言内在描述<a class="headerlink" href="#id88" title="此标题的永久链接">#</a></h4>
 </section>
@@ -2956,7 +2928,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 <h2>atomic_fetch_and<a class="headerlink" href="#atomic-fetch-and" title="此标题的永久链接">#</a></h2>
 <section id="id89">
 <h3><strong>名称</strong><a class="headerlink" href="#id89" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_fetch_and</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise AND operation with prior fetch</p>
+<p><strong>atomic_fetch_and</strong>(3) - [ATOMIC:BIT MANIPULATION] 原子按位与操作与先前提取</p>
 </section>
 <section id="id90">
 <h3><strong>语法</strong><a class="headerlink" href="#id90" title="此标题的永久链接">#</a></h3>
@@ -2966,37 +2938,28 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id91">
 <h3><strong>说明</strong><a class="headerlink" href="#id91" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_fetch_and(atom, value, old)</strong> atomically stores the value of
-<strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise AND between the values of
-<strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful,
-it is assigned the value <strong>0</strong>. If it is present and the invocation has
-failed, it is assigned a positive value; in particular, for a coindexed
-<strong>atom</strong>, if the remote image has stopped, it is assigned the value of
-iso_fortran_env’s stat_stopped_image and if the remote image has
-failed, the value stat_failed_image.</p>
+<p><strong>atomic_fetch_and(atom, value, old)</strong> 以原子方式将 <strong>atom</strong> 的值存储在 <strong>old</strong> 中，并使用 <strong>atom</strong> 和 <strong>值</strong>之间的按位与来定义 <strong>atom</strong>。当 <strong>stat</strong> 存在且调用成功时，将为其分配值 <strong>0</strong>。如果它存在并且调用失败，则分配一个正值；特别是，对于一个共索引的<strong>atom</strong>，如果远程镜像已停止，则为其分配 iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像失败，则为其分配 stat_failed_image 的值。</p>
 </section>
 <section id="id92">
 <h3><strong>参数</strong><a class="headerlink" href="#id92" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
-atomic_int_kind kind.</p>
+<dt><strong>atom</strong></dt><dd><p>具有 atomic_int_kind 类型的整数类型的标量 coarray 或 coindexed 变量。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
-is converted to the kind of <strong>atom</strong>.</p>
+<dt><strong>value</strong></dt><dd><p>与<strong>atom</strong> 类型相同的标量。如果种类不同，则将值转换为<strong>原子</strong>的种类。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>old</strong></dt><dd><p>Scalar of the same type and kind as <strong>atom</strong>.</p>
+<dt><strong>old</strong></dt><dd><p>与 <strong>atom</strong> 有相同类型和种类的标量.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量默认类型整数变量。</p>
 </dd>
 </dl>
 </li>
@@ -3035,7 +2998,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 <h2>atomic_fetch_or<a class="headerlink" href="#atomic-fetch-or" title="此标题的永久链接">#</a></h2>
 <section id="id97">
 <h3><strong>名称</strong><a class="headerlink" href="#id97" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_fetch_or</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise OR operation with prior fetch</p>
+<p><strong>atomic_fetch_or</strong>(3) - [ATOMIC:BIT MANIPULATION] 原子按位或操作与先前提取</p>
 </section>
 <section id="id98">
 <h3><strong>语法</strong><a class="headerlink" href="#id98" title="此标题的永久链接">#</a></h3>
@@ -3045,37 +3008,28 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id99">
 <h3><strong>说明</strong><a class="headerlink" href="#id99" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_fetch_or(atom, value, old)</strong> atomically stores the value of
-<strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise OR between the values of
-<strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful,
-it is assigned the value <strong>0</strong>. If it is present and the invocation has
-failed, it is assigned a positive value; in particular, for a coindexed
-<strong>atom</strong>, if the remote image has stopped, it is assigned the value of
-iso_fortran_env’s stat_stopped_image and if the remote image has
-failed, the value stat_failed_image.</p>
+<p><strong>atomic_fetch_or(atom, value, old)</strong> 以原子方式将 <strong>atom</strong> 的值存储在 <strong>old</strong> 中，并使用 <strong>atom</strong> 和<em><strong>value</strong>之间的按位 OR 定义 <strong>atom</strong>。当 <strong>stat</strong> 存在且调用成功时，将为其分配值 <strong>0</strong>。如果它存在并且调用失败，则分配一个正值；特别是，对于一个共索引的</em><em>atom</em>*，如果远程镜像已停止，则为其分配 iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像已失败，则为其分配 stat_failed_image 的值。</p>
 </section>
 <section id="id100">
 <h3><strong>参数</strong><a class="headerlink" href="#id100" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
-atomic_int_kind kind.</p>
+<dt><strong>atom</strong></dt><dd><p>具有 atomic_int_kind 类型的整数类型的标量 coarray 或 coindexed 变量。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
-is converted to the kind of <strong>atom</strong>.</p>
+<dt><strong>value</strong></dt><dd><p>与<strong>atom</strong> 类型相同的标量。如果种类不同，则将值转换为<strong>原子</strong>的种类。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>old</strong></dt><dd><p>Scalar of the same type and kind as <strong>atom</strong>.</p>
+<dt><strong>old</strong></dt><dd><p>与 <strong>atom</strong> 有相同类型和种类的标量.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量默认类型整数变量。</p>
 </dd>
 </dl>
 </li>
@@ -3099,9 +3053,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id103">
 <h3><strong>另见</strong><a class="headerlink" href="#id103" title="此标题的永久链接">#</a></h3>
-<p><a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-or"><span class="std std-doc"><strong>atomic_or</strong>(3)</span></a>,
-<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>,</p>
+<p><a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>，<a class="reference internal" href="#atomic-or"><span class="std std-doc"><strong>atomic_or</strong>(3)</span></a>，<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>，</p>
 <p><a class="reference internal" href="#atomic-fetch-add"><span class="std std-doc"><strong>atomic_fetch_add</strong>(3)</span></a>,
 <a class="reference internal" href="#atomic-fetch-and"><span class="std std-doc"><strong>atomic_fetch_and</strong>(3)</span></a>,</p>
 <p><a class="reference internal" href="#atomic-fetch-xor"><span class="std std-doc"><strong>atomic_fetch_xor</strong>(3)</span></a></p>
@@ -3114,7 +3066,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 <h2>atomic_fetch_xor<a class="headerlink" href="#atomic-fetch-xor" title="此标题的永久链接">#</a></h2>
 <section id="id105">
 <h3><strong>名称</strong><a class="headerlink" href="#id105" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_fetch_xor</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise XOR operation with prior fetch</p>
+<p><strong>atomic_fetch_xor</strong>(3) - [ATOMIC:BIT MANIPULATION] 原子按位异或运算，先取</p>
 </section>
 <section id="id106">
 <h3><strong>语法</strong><a class="headerlink" href="#id106" title="此标题的永久链接">#</a></h3>
@@ -3124,37 +3076,28 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id107">
 <h3><strong>说明</strong><a class="headerlink" href="#id107" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_fetch_xor(atom, value, old)</strong> atomically stores the value of
-<strong>atom</strong> in <strong>old</strong> and defines <strong>atom</strong> with the bitwise <strong>xor</strong> between the values of
-<strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the invocation was successful,
-it is assigned the value <strong>0</strong>. If it is present and the invocation has
-failed, it is assigned a positive value; in particular, for a coindexed
-<strong>atom</strong>, if the remote image has stopped, it is assigned the value of
-iso_fortran_env’s stat_stopped_image and if the remote image has
-failed, the value stat_failed_image.</p>
+<p><strong>atomic_fetch_xor(atom, value, old)</strong> 以原子方式将 <strong>atom</strong> 的值存储在 <strong>old</strong> 中，并使用 <strong>atom</strong> 和 <strong>value</strong> 之间的按位 <strong>xor</strong> 定义 <strong>atom</strong>。当 <strong>stat</strong> 存在且调用成功时，将为其分配值 <strong>0</strong>。如果它存在并且调用失败，则分配一个正值；特别是，对于一个共索引的<strong>atom</strong>，如果远程镜像已停止，则为其分配 iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像已失败，则为其分配 stat_failed_image 的值。</p>
 </section>
 <section id="id108">
 <h3><strong>参数</strong><a class="headerlink" href="#id108" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
-atomic_int_kind kind.</p>
+<dt><strong>atom</strong></dt><dd><p>具有 atomic_int_kind 类型的整数类型的标量 coarray 或 coindexed 变量。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
-is converted to the kind of <strong>atom</strong>.</p>
+<dt><strong>value</strong></dt><dd><p>与<strong>atom</strong> 类型相同的标量。如果种类不同，则将值转换为<strong>原子</strong>的种类。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>old</strong></dt><dd><p>Scalar of the same type and kind as <strong>atom</strong>.</p>
+<dt><strong>old</strong></dt><dd><p>与 <strong>atom</strong> 有相同类型和种类的标量.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量默认类型整数变量。</p>
 </dd>
 </dl>
 </li>
@@ -3178,9 +3121,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id111">
 <h3><strong>另见</strong><a class="headerlink" href="#id111" title="此标题的永久链接">#</a></h3>
-<p><a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-xor"><span class="std std-doc"><strong>atomic_xor</strong>(3)</span></a>,
-<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>,</p>
+<p><a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>，<a class="reference internal" href="#atomic-xor"><span class="std std-doc"><strong>atomic_xor</strong>(3)</span></a>，<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>，</p>
 <p><a class="reference internal" href="#atomic-fetch-add"><span class="std std-doc"><strong>atomic_fetch_add</strong>(3)</span></a>,
 <a class="reference internal" href="#atomic-fetch-and"><span class="std std-doc"><strong>atomic_fetch_and</strong>(3)</span></a>,</p>
 <p><a class="reference internal" href="#atomic-fetch-or"><span class="std std-doc"><strong>atomic_fetch_or</strong>(3)</span></a></p>
@@ -3193,7 +3134,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 <h2>atomic_or<a class="headerlink" href="#atomic-or" title="此标题的永久链接">#</a></h2>
 <section id="id113">
 <h3><strong>名称</strong><a class="headerlink" href="#id113" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_or</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise OR operation</p>
+<p><strong>atomic_or</strong>(3) - [ATOMIC:BIT MANIPULATION] 原子按位或运算</p>
 </section>
 <section id="id114">
 <h3><strong>语法</strong><a class="headerlink" href="#id114" title="此标题的永久链接">#</a></h3>
@@ -3203,31 +3144,23 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id115">
 <h3><strong>说明</strong><a class="headerlink" href="#id115" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_or(atom, value)</strong> atomically defines <strong>atom</strong> with the bitwise <strong>or</strong>
-between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the
-invocation was successful, it is assigned the value <strong>0</strong>. If it is present
-and the invocation has failed, it is assigned a positive value; in
-particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is
-assigned the value of iso_fortran_env’s stat_stopped_image and if
-the remote image has failed, the value stat_failed_image.</p>
+<p><strong>atomic_or(atom, value)</strong> 以 <strong>atom</strong> 和 <strong>value</strong> 之间的按位<strong>or</strong> 原子地定义<strong>atom</strong>。当 <strong>stat</strong> 存在且调用成功时，将为其分配值 <strong>0</strong>。如果它存在并且调用失败，则分配一个正值；特别是，对于一个共索引的<strong>atom</strong>，如果远程镜像已停止，则为其分配 iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像已失败，则为其分配 stat_failed_image 的值。</p>
 </section>
 <section id="id116">
 <h3><strong>参数</strong><a class="headerlink" href="#id116" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
-atomic_int_kind kind.</p>
+<dt><strong>atom</strong></dt><dd><p>具有 atomic_int_kind 类型的整数类型的标量 coarray 或 coindexed 变量。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
-is converted to the kind of <strong>atom</strong>.</p>
+<dt><strong>value</strong></dt><dd><p>与<strong>atom</strong> 类型相同的标量。如果种类不同，则将值转换为<strong>原子</strong>的种类。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量默认类型整数变量。</p>
 </dd>
 </dl>
 </li>
@@ -3266,7 +3199,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 <h2>atomic_xor<a class="headerlink" href="#atomic-xor" title="此标题的永久链接">#</a></h2>
 <section id="id121">
 <h3><strong>名称</strong><a class="headerlink" href="#id121" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_xor</strong>(3) - [ATOMIC:BIT MANIPULATION] Atomic bitwise OR operation</p>
+<p><strong>atomic_xor</strong>(3) - [ATOMIC:BIT MANIPULATION] 原子按位或运算</p>
 </section>
 <section id="id122">
 <h3><strong>语法</strong><a class="headerlink" href="#id122" title="此标题的永久链接">#</a></h3>
@@ -3276,31 +3209,23 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id123">
 <h3><strong>说明</strong><a class="headerlink" href="#id123" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_xor(atom, value)</strong> atomically defines <strong>atom</strong> with the bitwise
-<strong>xor</strong> between the values of <strong>atom</strong> and <strong>value</strong>. When <strong>stat</strong> is present and the
-invocation was successful, it is assigned the value <strong>0</strong>. If it is present
-and the invocation has failed, it is assigned a positive value; in
-particular, for a coindexed <strong>atom</strong>, if the remote image has stopped, it is
-assigned the value of iso_fortran_env’s stat_stopped_image and if
-the remote image has failed, the value stat_failed_image.</p>
+<p><strong>atomic_xor(atom, value)</strong> 以 <strong>atom</strong> 和 <strong>value</strong> 之间的按位 <strong>xor</strong> 原子地定义<strong>atom</strong>。当 <strong>stat</strong> 存在且调用成功时，将为其分配值 <strong>0</strong>。如果它存在并且调用失败，则分配一个正值；特别是，对于一个共索引的<strong>atom</strong>，如果远程镜像已停止，则为其分配 iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像已失败，则为其分配 stat_failed_image 的值。</p>
 </section>
 <section id="id124">
 <h3><strong>参数</strong><a class="headerlink" href="#id124" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
-atomic_int_kind kind.</p>
+<dt><strong>atom</strong></dt><dd><p>具有 atomic_int_kind 类型的整数类型的标量 coarray 或 coindexed 变量。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
-is converted to the kind of <strong>atom</strong>.</p>
+<dt><strong>value</strong></dt><dd><p>与<strong>atom</strong> 类型相同的标量。如果种类不同，则将值转换为<strong>原子</strong>的种类。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量默认类型整数变量。</p>
 </dd>
 </dl>
 </li>
@@ -3324,12 +3249,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id127">
 <h3><strong>另见</strong><a class="headerlink" href="#id127" title="此标题的永久链接">#</a></h3>
-<p><a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>,
-<span class="xref myst"><strong>atomic_fetch_xor</strong>(3)</span>,
-<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>,
-<a class="reference internal" href="#atomic-add"><span class="std std-doc"><strong>atomic_add</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-or"><span class="std std-doc"><strong>atomic_or</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-xor"><span class="std std-doc"><strong>atomic_xor</strong>(3)</span></a></p>
+<p><a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>，<span class="xref myst"><strong>atomic_fetch_xor</strong>(3)</span>，<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>，<a class="reference internal" href="#atomic-add"><span class="std std-doc"><strong>atomic_add</strong>(3)</span></a>，<a class="reference internal" href="#atomic-or"><span class="std std-doc"><strong>atomic_or</strong>(3)</span></a>，<a class="reference internal" href="#atomic-xor"><span class="std std-doc"><strong>atomic_xor</strong>(3)</span></a></p>
 <section id="id128">
 <h4>fortran 语言内在描述<a class="headerlink" href="#id128" title="此标题的永久链接">#</a></h4>
 </section>
@@ -3339,7 +3259,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 <h2>atomic_add<a class="headerlink" href="#atomic-add" title="此标题的永久链接">#</a></h2>
 <section id="id129">
 <h3><strong>名称</strong><a class="headerlink" href="#id129" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_add</strong>(3) - [ATOMIC] Atomic ADD operation</p>
+<p><strong>atomic_add</strong>(3) - [ATOMIC] 原子级加操作</p>
 </section>
 <section id="id130">
 <h3><strong>语法</strong><a class="headerlink" href="#id130" title="此标题的永久链接">#</a></h3>
@@ -3349,31 +3269,23 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id131">
 <h3><strong>说明</strong><a class="headerlink" href="#id131" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_ad(atom, value)</strong> atomically adds the value of VAR to the
-variable <strong>atom</strong>. When <strong>stat</strong> is present and the invocation was successful,
-it is assigned the value 0. If it is present and the invocation has
-failed, it is assigned a positive value; in particular, for a coindexed
-ATOM, if the remote image has stopped, it is assigned the value of
-iso_fortran_env’s stat_stopped_image and if the remote image has
-failed, the value stat_failed_image.</p>
+<p><strong>atomic_ad(atom, value)</strong> 以原子方式将 VAR 的值添加到变量 <strong>atom</strong>。当 <strong>stat</strong> 存在且调用成功时，赋值为 0。如果存在且调用失败，则赋值为正值；特别是，对于一个共索引的 ATOM，如果远程镜像已停止，则为其分配 iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像已失败，则分配 stat_failed_image 的值。</p>
 </section>
 <section id="id132">
 <h3><strong>参数</strong><a class="headerlink" href="#id132" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
-atomic_int_kind kind.</p>
+<dt><strong>atom</strong></dt><dd><p>具有 atomic_int_kind 类型的整数类型的标量 coarray 或 coindexed 变量。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
-is converted to the kind of <strong>atom</strong>.</p>
+<dt><strong>value</strong></dt><dd><p>与<strong>atom</strong> 类型相同的标量。如果种类不同，则将值转换为<strong>原子</strong>的种类。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量默认类型整数变量。</p>
 </dd>
 </dl>
 </li>
@@ -3397,12 +3309,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id135">
 <h3><strong>另见</strong><a class="headerlink" href="#id135" title="此标题的永久链接">#</a></h3>
-<p><a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>,
-<span class="xref myst"><strong>atomic_fetch_add</strong>(3)</span>,
-<a class="reference internal" href="#atomic-and"><span class="std std-doc"><strong>atomic_and</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-or"><span class="std std-doc"><strong>atomic_or</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-xor"><span class="std std-doc"><strong>atomic_xor</strong>(3)</span></a>
-<strong>iso_fortran_env</strong>(3),</p>
+<p><a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>，<span class="xref myst"><strong>atomic_fetch_add</strong>(3)</span>，<a class="reference internal" href="#atomic-and"><span class="std std-doc"><strong>atomic_and</strong>(3)</span></a>，<a class="reference internal" href="#atomic-or"><span class="std std-doc"><strong>atomic_or</strong>(3)</span></a>，<a class="reference internal" href="#atomic-xor"><span class="std std-doc"><strong>atomic_xor</strong>(3)</span></a> <strong>iso_fortran_env</strong>(3)，</p>
 <section id="id136">
 <h4>fortran 语言内在描述<a class="headerlink" href="#id136" title="此标题的永久链接">#</a></h4>
 </section>
@@ -3412,7 +3319,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 <h2>atomic_cas<a class="headerlink" href="#atomic-cas" title="此标题的永久链接">#</a></h2>
 <section id="id137">
 <h3><strong>名称</strong><a class="headerlink" href="#id137" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_cas</strong>(3) - [ATOMIC] Atomic compare and swap</p>
+<p><strong>atomic_cas</strong>(3) - [ATOMIC] 原子级比较和交换</p>
 </section>
 <section id="id138">
 <h3><strong>语法</strong><a class="headerlink" href="#id138" title="此标题的永久链接">#</a></h3>
@@ -3422,44 +3329,33 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id139">
 <h3><strong>说明</strong><a class="headerlink" href="#id139" title="此标题的永久链接">#</a></h3>
-<p>atomic_cas compares the variable <strong>atom</strong> with the value of <strong>compare</strong>; if the
-value is the same, <strong>atom</strong> is set to the value of <strong>new</strong>. Additionally, <strong>old</strong> is
-set to the value of <strong>atom</strong> that was used for the comparison. When <strong>stat</strong> is
-present and the invocation was successful, it is assigned the value 0.
-If it is present and the invocation has failed, it is assigned a
-positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image
-has stopped, it is assigned the value of iso_fortran_env’s
-stat_stopped_image and if the remote image has failed, the value
-stat_failed_image.</p>
+<p>atomic_cas 将变量 <strong>atom</strong> 与 <strong>compare</strong> 的值进行比较；如果值相同，则<strong>atom</strong> 设置为<strong>new</strong> 的值。此外，<strong>old</strong> 设置为用于比较的 <strong>atom</strong> 的值。当 <strong>stat</strong> 存在且调用成功时，赋值为 0。如果存在且调用失败，则赋值为正值；特别是，对于一个共索引的<strong>atom</strong>，如果远程镜像已停止，则为其分配 iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像失败，则为其分配 stat_failed_image 的值。</p>
 </section>
 <section id="id140">
 <h3><strong>参数</strong><a class="headerlink" href="#id140" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of either integer type with
-atomic_int_kind kind or logical type with atomic_logical_kind
-kind.</p>
+<dt><strong>atom</strong></dt><dd><p>具有 atomic_int_kind 类型的整数类型或具有 atomic_logical_kind 类型的逻辑类型的标量 coarray 或 coindexed 变量。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>old</strong></dt><dd><p>Scalar of the same type and kind as <strong>atom</strong>.</p>
+<dt><strong>old</strong></dt><dd><p>与 <strong>atom</strong> 有相同类型和种类的标量.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>compare</strong></dt><dd><p>Scalar variable of the same type and kind as <strong>atom</strong>.</p>
+<dt><strong>compare</strong></dt><dd><p>与<strong>atom</strong>有相同类型和种类的标量.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>new</strong></dt><dd><p>Scalar variable of the same type as <strong>atom</strong>. If kind is different, the
-value is converted to the kind of <strong>atom</strong>.</p>
+<dt><strong>new</strong></dt><dd><p>与 <strong>atom</strong>类型相同的标量变量. 如果种类不同, 则转为与 <strong>atom</strong>相同的种类.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量默认类型整数变量。</p>
 </dd>
 </dl>
 </li>
@@ -3495,7 +3391,7 @@ value is converted to the kind of <strong>atom</strong>.</p>
 <h2>atomic_define<a class="headerlink" href="#atomic-define" title="此标题的永久链接">#</a></h2>
 <section id="id145">
 <h3><strong>名称</strong><a class="headerlink" href="#id145" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_define</strong>(3) - [ATOMIC] Setting a variable atomically</p>
+<p><strong>atomic_define</strong>(3) - [ATOMIC] 以原子方式设置变量</p>
 </section>
 <section id="id146">
 <h3><strong>语法</strong><a class="headerlink" href="#id146" title="此标题的永久链接">#</a></h3>
@@ -3510,32 +3406,23 @@ value is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id147">
 <h3><strong>说明</strong><a class="headerlink" href="#id147" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_define(atom, value)</strong> defines the variable <strong>atom</strong> with the value
-<strong>value</strong> atomically. When <strong>stat</strong> is present and the invocation was
-successful, it is assigned the value <strong>0</strong>. If it is present and the
-invocation has failed, it is assigned a positive value; in particular,
-for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned
-the value of iso_fortran_env’s stat_stopped_image and if the remote
-image has failed, the value stat_failed_image.</p>
+<p><strong>atomic_define(atom, value)</strong> 以原子方式定义变量<strong>atom</strong>，其值为<strong>value</strong>。当 <strong>stat</strong> 存在且调用成功时，将为其分配值 <strong>0</strong>。如果它存在并且调用失败，则分配一个正值；特别是，对于一个共索引的<strong>atom</strong>，如果远程镜像已停止，则为其分配 iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像失败，则为其分配 stat_failed_image 的值。</p>
 </section>
 <section id="id148">
 <h3><strong>参数</strong><a class="headerlink" href="#id148" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of either integer type with
-atomic_int_kind kind or logical type with atomic_logical_kind
-kind.</p>
+<dt><strong>atom</strong></dt><dd><p>具有 atomic_int_kind 类型的整数类型或具有 atomic_logical_kind 类型的逻辑类型的标量 coarray 或 coindexed 变量。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
-is converted to the kind of <strong>atom</strong>.</p>
+<dt><strong>value</strong></dt><dd><p>与<strong>atom</strong> 类型相同的标量。如果种类不同，则将值转换为<strong>原子</strong>的种类。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量默认类型整数变量。</p>
 </dd>
 </dl>
 </li>
@@ -3555,17 +3442,11 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id150">
 <h3><strong>标准</strong><a class="headerlink" href="#id150" title="此标题的永久链接">#</a></h3>
-<p>Fortran 2008 and later; with <strong>stat</strong>, TS 18508 or later</p>
+<p>Fortran 2008 及更高版本；带有 <strong>stat</strong>、TS 18508 或更高版本</p>
 </section>
 <section id="id151">
 <h3><strong>另见</strong><a class="headerlink" href="#id151" title="此标题的永久链接">#</a></h3>
-<p><a class="reference internal" href="#atomic-ref"><span class="std std-doc"><strong>atomic_ref</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-cas"><span class="std std-doc"><strong>atomic_cas</strong>(3)</span></a>,
-<strong>iso_fortran_env</strong>(3),
-<a class="reference internal" href="#atomic-add"><span class="std std-doc"><strong>atomic_add</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-and"><span class="std std-doc"><strong>atomic_and</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-or"><span class="std std-doc"><strong>atomic_or</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-xor"><span class="std std-doc"><strong>atomic_xor</strong>(3)</span></a></p>
+<p><a class="reference internal" href="#atomic-ref"><span class="std std-doc"><strong>atomic_ref</strong>(3)</span></a>，<a class="reference internal" href="#atomic-cas"><span class="std std-doc"><strong>atomic_cas</strong>(3)</span></a>，<strong>iso_fortran_env</strong>(3)，<a class="reference internal" href="#atomic-add"><span class="std std-doc"><strong>atomic_add</strong>(3)</span></a>，<a class="reference internal" href="#atomic-and"><span class="std std-doc"><strong>atomic_and</strong>(3)</span></a>，<a class="reference internal" href="#atomic-or"><span class="std std-doc"><strong>atomic_or</strong>(3)</span></a>，<a class="reference internal" href="#atomic-xor"><span class="std std-doc"><strong>atomic_xor</strong>(3)</span></a></p>
 <section id="id152">
 <h4>fortran 语言内在描述<a class="headerlink" href="#id152" title="此标题的永久链接">#</a></h4>
 </section>
@@ -3575,7 +3456,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 <h2>atomic_fetch_add<a class="headerlink" href="#atomic-fetch-add" title="此标题的永久链接">#</a></h2>
 <section id="id153">
 <h3><strong>名称</strong><a class="headerlink" href="#id153" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_fetch_add</strong>(3) - [ATOMIC] Atomic ADD operation with prior fetch</p>
+<p><strong>atomic_fetch_add</strong>(3) - [ATOMIC] 原子 ADD 操作与先前的 fetch</p>
 </section>
 <section id="id154">
 <h3><strong>语法</strong><a class="headerlink" href="#id154" title="此标题的永久链接">#</a></h3>
@@ -3585,37 +3466,28 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id155">
 <h3><strong>说明</strong><a class="headerlink" href="#id155" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_fetch_add(atom, value, old)</strong> atomically stores the value of
-<strong>atom</strong> in <strong>old</strong> and adds the value of <strong>var</strong> to the variable <strong>atom</strong>. When <strong>stat</strong> is
-present and the invocation was successful, it is assigned the value <strong>0</strong>.
-If it is present and the invocation has failed, it is assigned a
-positive value; in particular, for a coindexed <strong>atom</strong>, if the remote image
-has stopped, it is assigned the value of iso_fortran_env’s
-stat_stopped_image and if the remote image has failed, the value
-stat_failed_image.</p>
+<p><strong>atomic_fetch_add(atom, value, old)</strong> 以原子方式将<strong>atom</strong> 的值存储在<strong>old</strong> 中，并将<strong>var</strong> 的值添加到变量<strong>atom</strong> 中。当 <strong>stat</strong> 存在且调用成功时，将为其分配值 <strong>0</strong>。如果它存在并且调用失败，则分配一个正值；特别是，对于一个共索引的<strong>atom</strong>，如果远程镜像已停止，则为其分配 iso_fortran_env 的 stat_stopped_image 的值，如果远程镜像已失败，则为其分配 stat_failed_image 的值。</p>
 </section>
 <section id="id156">
 <h3><strong>参数</strong><a class="headerlink" href="#id156" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of integer type with
-atomic_int_kind kind. atomic_logical_kind kind.</p>
+<dt><strong>atom</strong></dt><dd><p>具有 atomic_int_kind 类型的整数类型的标量 coarray 或 coindexed 变量。 atomic_logical_kind 种类。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
-is converted to the kind of <strong>atom</strong>.</p>
+<dt><strong>value</strong></dt><dd><p>与<strong>atom</strong> 类型相同的标量。如果种类不同，则将值转换为<strong>原子</strong>的种类。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>old</strong></dt><dd><p>Scalar of the same type and kind as <strong>atom</strong>.</p>
+<dt><strong>old</strong></dt><dd><p>与 <strong>atom</strong> 有相同类型和种类的标量.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量默认类型整数变量。</p>
 </dd>
 </dl>
 </li>
@@ -3639,11 +3511,8 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id159">
 <h3><strong>另见</strong><a class="headerlink" href="#id159" title="此标题的永久链接">#</a></h3>
-<p><a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-add"><span class="std std-doc"><strong>atomic_add</strong>(3)</span></a>,
-<strong>iso_fortran_env</strong>(3),</p>
-<p><a class="reference internal" href="#atomic-fetch-and"><span class="std std-doc"><strong>atomic_fetch_and</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-fetch-or"><span class="std std-doc"><strong>atomic_fetch_or</strong>(3)</span></a>,</p>
+<p><a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>，<a class="reference internal" href="#atomic-add"><span class="std std-doc"><strong>atomic_add</strong>(3)</span></a>，<strong>iso_fortran_env</strong>(3)，</p>
+<p><a class="reference internal" href="#atomic-fetch-and"><span class="std std-doc"><strong>atomic_fetch_and</strong>(3)</span></a>，<a class="reference internal" href="#atomic-fetch-or"><span class="std std-doc"><strong>atomic_fetch_or</strong>(3)</span></a>，</p>
 <p><a class="reference internal" href="#atomic-fetch-xor"><span class="std std-doc"><strong>atomic_fetch_xor</strong>(3)</span></a></p>
 <section id="id160">
 <h4>fortran 语言内在描述<a class="headerlink" href="#id160" title="此标题的永久链接">#</a></h4>
@@ -3654,7 +3523,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 <h2>atomic_ref<a class="headerlink" href="#atomic-ref" title="此标题的永久链接">#</a></h2>
 <section id="id161">
 <h3><strong>名称</strong><a class="headerlink" href="#id161" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_ref</strong>(3) - [ATOMIC] Obtaining the value of a variable atomically</p>
+<p><strong>atomic_ref</strong>(3) - [ATOMIC] 以原子方式获取变量的值</p>
 </section>
 <section id="id162">
 <h3><strong>语法</strong><a class="headerlink" href="#id162" title="此标题的永久链接">#</a></h3>
@@ -3664,32 +3533,23 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id163">
 <h3><strong>说明</strong><a class="headerlink" href="#id163" title="此标题的永久链接">#</a></h3>
-<p><strong>atomic_ref(value, atom)</strong> atomically assigns the value of the
-variable <strong>atom</strong> to <strong>value</strong>. When <strong>stat</strong> is present and the invocation was
-successful, it is assigned the value <strong>0</strong>. If it is present and the
-invocation has failed, it is assigned a positive value; in particular,
-for a coindexed <strong>atom</strong>, if the remote image has stopped, it is assigned
-the value of iso_fortran_env’s <strong>stat_stopped_image</strong> and if the remote
-image has failed, the value <strong>stat_failed_image</strong>.</p>
+<p><strong>atomic_ref(value, atom)</strong> 以原子方式将变量 <strong>atom</strong> 的值分配给 <strong>value</strong>。当 <strong>stat</strong> 存在且调用成功时，将为其分配值 <strong>0</strong>。如果它存在并且调用失败，则分配一个正值；特别是，对于一个共索引的<strong>atom</strong>，如果远程镜像已停止，则为其分配 iso_fortran_env 的 <strong>stat_stopped_image</strong> 的值，如果远程镜像失败，则为其分配值 <strong>stat_failed_image</strong>。</p>
 </section>
 <section id="id164">
 <h3><strong>参数</strong><a class="headerlink" href="#id164" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>value</strong></dt><dd><p>Scalar of the same type as <strong>atom</strong>. If the kind is different, the value
-is converted to the kind of <strong>atom</strong>.</p>
+<dt><strong>value</strong></dt><dd><p>与<strong>atom</strong> 类型相同的标量。如果种类不同，则将值转换为<strong>原子</strong>的种类。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>atom</strong></dt><dd><p>Scalar coarray or coindexed variable of either integer type with
-atomic_int_kind kind or logical type with atomic_logical_kind
-kind.</p>
+<dt><strong>atom</strong></dt><dd><p>具有 atomic_int_kind 类型的整数类型或具有 atomic_logical_kind 类型的逻辑类型的标量 coarray 或 coindexed 变量。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>stat</strong></dt><dd><p>(optional) Scalar default-kind integer variable.</p>
+<dt><strong>stat</strong></dt><dd><p>（可选）标量默认类型整数变量。</p>
 </dd>
 </dl>
 </li>
@@ -3715,17 +3575,13 @@ kind.</p>
 </section>
 <section id="id166">
 <h3><strong>标准</strong><a class="headerlink" href="#id166" title="此标题的永久链接">#</a></h3>
-<p>Fortran 2008 and later; with STAT, TS 18508 or later</p>
+<p>Fortran 2008 及更高版本；使用 STAT、TS 18508 或更高版本</p>
 </section>
 <section id="id167">
 <h3><strong>另见</strong><a class="headerlink" href="#id167" title="此标题的永久链接">#</a></h3>
-<p><a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-cas"><span class="std std-doc"><strong>atomic_cas</strong>(3)</span></a>,
-<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>,</p>
-<p><a class="reference internal" href="#atomic-add"><span class="std std-doc"><strong>atomic_fetch_add</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-and"><span class="std std-doc"><strong>atomic_fetch_and</strong>(3)</span></a>,</p>
-<p><a class="reference internal" href="#atomic-or"><span class="std std-doc"><strong>atomic_fetch_or</strong>(3)</span></a>,
-<a class="reference internal" href="#atomic-xor"><span class="std std-doc"><strong>atomic_fetch_xor</strong>(3)</span></a></p>
+<p><a class="reference internal" href="#atomic-define"><span class="std std-doc"><strong>atomic_define</strong>(3)</span></a>，<a class="reference internal" href="#atomic-cas"><span class="std std-doc"><strong>atomic_cas</strong>(3)</span></a>，<span class="xref myst"><strong>iso_fortran_env</strong>(3)</span>，</p>
+<p><a class="reference internal" href="#atomic-add"><span class="std std-doc"><strong>atomic_fetch_add</strong>(3)</span></a>，<a class="reference internal" href="#atomic-and"><span class="std std-doc"><strong>atomic_fetch_and</strong>(3)</span></a>，</p>
+<p><a class="reference internal" href="#atomic-or"><span class="std std-doc"><strong>atomic_fetch_or</strong>(3)</span></a>，<a class="reference internal" href="#atomic-xor"><span class="std std-doc"><strong>atomic_fetch_xor</strong>(3)</span></a></p>
 <section id="id168">
 <h4>fortran 语言内在描述<a class="headerlink" href="#id168" title="此标题的永久链接">#</a></h4>
 </section>
