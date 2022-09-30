@@ -44,8 +44,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="Variables" href="../variables/" />
-    <link rel="prev" title="Quickstart tutorial" href="../" /> 
+    <link rel="next" title="Переменные" href="../variables/" />
+    <link rel="prev" title="Краткое руководство" href="../" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -242,6 +242,11 @@
         url: "../pt/",
       },
       {
+        name: "ru",
+        version: "ru",
+        url: "../ru/",
+      },
+      {
         name: "zh_CN",
         version: "zh_CN",
         url: "../zh_CN/",
@@ -259,7 +264,7 @@
       node.textContent = `${entry.name}`;
       node.setAttribute(
         "href",
-        `${indexFilePath}${entry.url}${currentFilePath}`
+        `${indexFilePath}${entry.url}${currentFilePath}`,
       );
       // on click, AJAX calls will check if the linked page exists before
       // trying to redirect, and if not, will redirect to the homepage
@@ -298,7 +303,7 @@
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="../../">
-  Learn
+  Обучение
  </a>
 </li>
 
@@ -416,7 +421,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Quickstart tutorial
+   Краткое руководство
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -431,27 +436,27 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../variables/">
-     Variables
+     Переменные
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays_strings/">
-     Arrays and strings
+     Массивы и строки
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../operators_control_flow/">
-     Operators and flow control
+     Операторы и поток управления
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../organising_code/">
-     Organising code structure
+     Организация структуры кода
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../derived_types/">
-     Derived Types
+     Производные типы данных
     </a>
    </li>
   </ul>
@@ -693,7 +698,7 @@
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#compiler-setup">
-   Compiler setup
+   Установка компилятора
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
@@ -718,29 +723,21 @@
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="hello-world">
 <h1>Hello world<a class="headerlink" href="#hello-world" title="Permalink to this heading">#</a></h1>
-<p>In this part of the tutorial, we will write our first Fortran program:
-the ubiquitous <a class="reference external" href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">«Hello, World!»</a> example.</p>
-<p>However, before we can write our program, we need to ensure that we have
-a Fortran compiler set up.</p>
+<p>В этой части руководства мы напишем нашу первую программу на Fortran: повсеместно распространённый пример первой программы <a class="reference external" href="https://en.wikipedia.org/wiki/%22Hello,_World!%22_program">«Hello, World!»</a>.</p>
+<p>Однако, прежде чем мы сможем написать нашу программу, нам необходимо убедиться, что у нас установлен компилятор Fortran.</p>
 <blockquote>
-<div><p>Fortran is a <em>compiled language</em>, which means that, once written, the source code must be passed through a
-compiler to produce a machine executable that can be run.</p>
+<div><p>Фортран является <em>компилируемым языком</em>, что означает, что после написания текста исходного кода программы, он должен быть передан компилятору для создания исполняемого файла программы, который можно будет запустить.</p>
 </div></blockquote>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="compiler-setup">
-<h1>Compiler setup<a class="headerlink" href="#compiler-setup" title="Permalink to this heading">#</a></h1>
-<p>In this tutorial, we’ll work with the free and open source
-<a class="reference external" href="https://gcc.gnu.org/fortran/">GNU Fortran compiler (gfortran)</a>,
-which is part of the
-<a class="reference external" href="https://gcc.gnu.org/">GNU Compiler Collection (GCC)</a>.</p>
-<p>To install gfortran on Linux, use your system package manager.
-On macOS, you can install gfortran using <a class="reference external" href="https://brew.sh/">Homebrew</a> or <a class="reference external" href="https://www.macports.org/">MacPorts</a>.
-On Windows, you can get native binaries <a class="reference external" href="http://www.equation.com/servlet/equation.cmd?fa=fortran">here</a>.</p>
-<p>To check if you have <em>gfortran</em> setup correctly, open a terminal and run the following command:</p>
+<h1>Установка компилятора<a class="headerlink" href="#compiler-setup" title="Permalink to this heading">#</a></h1>
+<p>В этом руководстве мы будем работать со свободным и открытым компилятором <a class="reference external" href="https://gcc.gnu.org/fortran/">GNU Fortran compiler (gfortran)</a>, который является частью <a class="reference external" href="https://gcc.gnu.org/">GNU Compiler Collection (GCC)</a>.</p>
+<p>Чтобы установить компилятор gfortran в операционной системе Linux, используйте пакетный менеджер вашей системы. На macOS, вы можете установить gfortran используя <a class="reference external" href="https://brew.sh/">Homebrew</a> или <a class="reference external" href="https://www.macports.org/">MacPorts</a>. Для Windows, вы можете получить установочные файлы <a class="reference external" href="http://www.equation.com/servlet/equation.cmd?fa=fortran">здесь</a>.</p>
+<p>Чтобы проверить, что компилятор <em>gfortran</em> установлен провильно, откройте терминал и выполните команду:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; gfortran --version
 </pre></div>
 </div>
-<p>this should output something like:</p>
+<p>вывод на экран в результате её выполнения должен быть похож на следующий:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">GNU</span> <span class="n">Fortran</span> <span class="mf">7.5.0</span>
 <span class="n">Copyright</span> <span class="p">(</span><span class="n">C</span><span class="p">)</span> <span class="mi">2017</span> <span class="n">Free</span> <span class="n">Software</span> <span class="n">Foundation</span><span class="p">,</span> <span class="n">Inc</span><span class="o">.</span>
 <span class="n">This</span> <span class="ow">is</span> <span class="n">free</span> <span class="n">software</span><span class="p">;</span> <span class="n">see</span> <span class="n">the</span> <span class="n">source</span> <span class="k">for</span> <span class="n">copying</span> <span class="n">conditions</span><span class="o">.</span>  <span class="n">There</span> <span class="ow">is</span> <span class="n">NO</span>
@@ -749,28 +746,26 @@ On Windows, you can get native binaries <a class="reference external" href="http
 </div>
 <section id="id1">
 <h2>Hello world<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
-<p>Once you have set up your compiler, open a new file in your favourite code editor and enter the following:</p>
+<p>После установки компилятора, создайте новый файл в вашем любимом редакторе кода и наберите в нём следующий пример:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">hello</span><span class="w"></span>
 <span class="w">  </span><span class="c">! This is a comment line; it is ignored by the compiler</span>
 <span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Hello, World!&#39;</span><span class="w"></span>
 <span class="k">end program </span><span class="n">hello</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Having saved your program to <code class="docutils literal notranslate"><span class="pre">hello.f90</span></code>, compile at the command line with:</p>
+<p>Сохраните файл вашей программы в файл <code class="docutils literal notranslate"><span class="pre">hello.f90</span></code> и соберите её, набрав и выполнив в командной строке:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; gfortran hello.f90 -o hello
 </pre></div>
 </div>
 <blockquote>
-<div><p><code class="docutils literal notranslate"><span class="pre">.f90</span></code> is the standard file extension for modern Fortran source files.
-The 90 refers to the first modern Fortran standard in 1990.</p>
+<div><p><code class="docutils literal notranslate"><span class="pre">.f90</span></code> – стандартное расширение файла для исходного текста современного Fortran. Число 90 является отсылкой к первому современному стандарту Fortran 1990 года.</p>
 </div></blockquote>
-<p>To run your compiled program:</p>
+<p>Для запуска вашей скомпилированной программы выполните команду:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$&gt; ./hello
 Hello, World!
 </pre></div>
 </div>
-<p>Congratulations, you’ve written, compiled and run your first Fortran program!
-In the next part of this tutorial, we will introduce variables for storing data.</p>
+<p>Поздравляем, вы написали, скомпилировали и запустили свою первую программу на Fortran! В следующей части этого руководства мы расскажем о переменных для хранения данных.</p>
 </section>
 </section>
 

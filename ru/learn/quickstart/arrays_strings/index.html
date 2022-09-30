@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Arrays and strings &#8212; Fortran Programming Language</title>
+    <title>Массивы и строки &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -44,8 +44,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="Operators and flow control" href="../operators_control_flow/" />
-    <link rel="prev" title="Variables" href="../variables/" /> 
+    <link rel="next" title="Операторы и поток управления" href="../operators_control_flow/" />
+    <link rel="prev" title="Переменные" href="../variables/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -242,6 +242,11 @@
         url: "../pt/",
       },
       {
+        name: "ru",
+        version: "ru",
+        url: "../ru/",
+      },
+      {
         name: "zh_CN",
         version: "zh_CN",
         url: "../zh_CN/",
@@ -259,7 +264,7 @@
       node.textContent = `${entry.name}`;
       node.setAttribute(
         "href",
-        `${indexFilePath}${entry.url}${currentFilePath}`
+        `${indexFilePath}${entry.url}${currentFilePath}`,
       );
       // on click, AJAX calls will check if the linked page exists before
       // trying to redirect, and if not, will redirect to the homepage
@@ -298,7 +303,7 @@
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="../../">
-  Learn
+  Обучение
  </a>
 </li>
 
@@ -416,7 +421,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Quickstart tutorial
+   Краткое руководство
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -431,27 +436,27 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../variables/">
-     Variables
+     Переменные
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Arrays and strings
+     Массивы и строки
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../operators_control_flow/">
-     Operators and flow control
+     Операторы и поток управления
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../organising_code/">
-     Organising code structure
+     Организация структуры кода
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../derived_types/">
-     Derived Types
+     Производные типы данных
     </a>
    </li>
   </ul>
@@ -688,32 +693,32 @@
 <nav id="bd-toc-nav" class="page-toc"><ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Arrays and strings
+   Массивы и строки
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#array-declaration">
-   Array declaration
+   Объявление массива
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#array-slicing">
-     Array slicing
+     Срез массива
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#allocatable-dynamic-arrays">
-     Allocatable (dynamic) arrays
+     Выделяемые (динамические) массивы
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#character-strings">
-     Character strings
+     Символьные строки
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#array-of-strings">
-     Array of strings
+     Массив строк
     </a>
    </li>
   </ul>
@@ -732,21 +737,17 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="arrays-and-strings">
-<h1>Arrays and strings<a class="headerlink" href="#arrays-and-strings" title="Permalink to this heading">#</a></h1>
-<p>More often than not, we need to store and operate on long lists of numbers as opposed to just the single scalar variables
-that we have been using so far; in computer programming such lists are called <em>arrays</em>.</p>
-<p>Arrays are <em>multidimensional</em> variables that contain more than one value
-where each value is accessed using one or more indices.</p>
+<h1>Массивы и строки<a class="headerlink" href="#arrays-and-strings" title="Permalink to this heading">#</a></h1>
+<p>Чаще всего нам нужно хранить и использовать длинные списки чисел, а не отдельные скалярные переменные, которые мы использовали ранее; в языках программирования такие списки называют <em>arrays</em> (массивы).</p>
+<p>Массивы – <em>многомерные</em> переменные, содержащие более одного значения, при этом доступ к каждому значению осуществляется с помощью одного или нескольких индексов.</p>
 <blockquote>
-<div><p>Arrays in Fortran are <em>one-based</em> by default; this means
-that the first element along any dimension is at index 1.</p>
+<div><p>Массивы в Fortran используют <em>нумерацию с отчётом от 1</em> по умолчанию; это означает, что первый элемент вдоль любого измерения будет иметь индекс 1.</p>
 </div></blockquote>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="array-declaration">
-<h1>Array declaration<a class="headerlink" href="#array-declaration" title="Permalink to this heading">#</a></h1>
-<p>We can declare arrays of any type. There are two common notations for declaring array variables:
-using the <code class="docutils literal notranslate"><span class="pre">dimension</span></code> attribute or by appending the array dimensions in parentheses to the variable name.</p>
-<p><strong>Example:</strong> static array declaration</p>
+<h1>Объявление массива<a class="headerlink" href="#array-declaration" title="Permalink to this heading">#</a></h1>
+<p>Мы можем объявить массивы любого типа. Существуют два распространённых способа (нотации) для объявления массива: использование атрибута <code class="docutils literal notranslate"><span class="pre">dimension</span></code> или указание размерности массива в круглых скобках после имени переменной обозначающей массив.</p>
+<p><strong>Пример:</strong> объявление статического массива</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">arrays</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span><span class="w"></span>
 
@@ -767,10 +768,9 @@ using the <code class="docutils literal notranslate"><span class="pre">dimension
 </pre></div>
 </div>
 <section id="array-slicing">
-<h2>Array slicing<a class="headerlink" href="#array-slicing" title="Permalink to this heading">#</a></h2>
-<p>A powerful feature of the Fortran language is its built-in support for array operations;
-we can perform operations on all or part of an array using array <em>slicing</em> notation:</p>
-<p><strong>Example:</strong> array slicing</p>
+<h2>Срез массива<a class="headerlink" href="#array-slicing" title="Permalink to this heading">#</a></h2>
+<p>Мощной особенностью языка Fortran является встроенная поддержка операций над массивами; мы можем выполнять операции над всем массивом или его частью, используя операцию получения среза <em>slicing</em>, указав в скобках после имени массива диапазон индексов, и, если необходимо, шаг, разделив начальный, конечный индексы и шаг двоеточием (<code class="docutils literal notranslate"><span class="pre">:</span></code>):</p>
+<p><strong>Пример:</strong> срез массива</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">array_slice</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -792,19 +792,15 @@ we can perform operations on all or part of an array using array <em>slicing</em
 </pre></div>
 </div>
 <blockquote>
-<div><p>Fortran arrays are stored in <em>column-major</em> order; the first
-index varies fastest.</p>
+<div><p>Массивы в Fortran хранятся в памяти <em>по столбцам</em>; первый индекс меняется быстрее.</p>
 </div></blockquote>
 </section>
 <section id="allocatable-dynamic-arrays">
-<h2>Allocatable (dynamic) arrays<a class="headerlink" href="#allocatable-dynamic-arrays" title="Permalink to this heading">#</a></h2>
-<p>So far we have specified the size of our array in our program code—this
-type of array is known as a <em>static</em> array since its size is fixed when
-we compile our program.</p>
-<p>Quite often, we do not know how big our array needs to be until we run our program, for example, if we are reading data from a file of unknown size.</p>
-<p>For this problem, we need <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> arrays.
-These are <em>allocated</em> while the program is running once we know how big the array needs to be.</p>
-<p><strong>Example:</strong> allocatable arrays</p>
+<h2>Выделяемые (динамические) массивы<a class="headerlink" href="#allocatable-dynamic-arrays" title="Permalink to this heading">#</a></h2>
+<p>До сих пор мы указывали размер массива в коде программы — такой массив называется <em>статическим</em> массивом, так как его размер фиксирован при компиляции нашей программы.</p>
+<p>Достаточно часто нам неизвестно какого размера должен быть массив, до запуска программы, например, если мы читаем данные из файла неизвестного размера.</p>
+<p>Для решения этой проблемы нам нужны <code class="docutils literal notranslate"><span class="pre">выделяемые</span></code> (динамические) массивы. Память под них <em>выделяется</em> во время выполнения программы, когда мы узнаём какого размера должен быть массив.</p>
+<p><strong>Пример:</strong> выделяемые (динамические) массивы</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program allocatable</span>
 <span class="k">  implicit none</span>
 
@@ -822,12 +818,11 @@ These are <em>allocated</em> while the program is running once we know how big t
 <span class="k">end program allocatable</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Allocatable local arrays are deallocated automatically
-when they go out of scope.</p>
+<p>Память выделенная под локальные динамические массивы высвобождается автоматически когда происходит выход из области их видимости.</p>
 </section>
 <section id="character-strings">
-<h2>Character strings<a class="headerlink" href="#character-strings" title="Permalink to this heading">#</a></h2>
-<p><strong>Example:</strong> static character string</p>
+<h2>Символьные строки<a class="headerlink" href="#character-strings" title="Permalink to this heading">#</a></h2>
+<p><strong>Пример:</strong> статические символьные строки</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -846,7 +841,7 @@ when they go out of scope.</p>
 <span class="k">end program </span><span class="n">string</span><span class="w"></span>
 </pre></div>
 </div>
-<p><strong>Example:</strong> allocatable character string</p>
+<p><strong>Пример:</strong> выделяемые (динамические) символьные строки</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">allocatable_string</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -867,13 +862,9 @@ when they go out of scope.</p>
 </div>
 </section>
 <section id="array-of-strings">
-<h2>Array of strings<a class="headerlink" href="#array-of-strings" title="Permalink to this heading">#</a></h2>
-<p>An array of strings can be expressed in Fortran as an array of <code class="docutils literal notranslate"><span class="pre">character</span></code> variables.
-All elements in a <code class="docutils literal notranslate"><span class="pre">character</span></code> array have equal length.
-However, strings of varying lengths can be provided as input to the array constructor, as shown in the example below.
-They will be truncated or right-padded with spaces if they are longer or shorter, respectively, than the declared length of the <code class="docutils literal notranslate"><span class="pre">character</span></code> array.
-Finally, we use the intrinsic function <code class="docutils literal notranslate"><span class="pre">trim</span></code> to remove any excess spaces when printing the values to the standard output.</p>
-<p><strong>Example:</strong> string array</p>
+<h2>Массив строк<a class="headerlink" href="#array-of-strings" title="Permalink to this heading">#</a></h2>
+<p>Массив строк в Fortran может быть представлен как массив переменных символьного типа <code class="docutils literal notranslate"><span class="pre">character</span></code>. Все элементы в массиве типа <code class="docutils literal notranslate"><span class="pre">character</span></code> имеют одинаковую длину. Однако в конструктор массива можно ввести строки разной длины, как показано в примере ниже. Они будут усечены или дополнены пробелами справа, если они длиннее или короче, соответственно, чем объявленная длина <code class="docutils literal notranslate"><span class="pre">character</span></code> (символьного) массива. Наконец, мы используем встроенную функцию <code class="docutils literal notranslate"><span class="pre">trim</span></code>, для удаления лишних пробелов при печати значений в стандартный вывод.</p>
+<p><strong>Пример:</strong> массив строк</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string_array</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 <span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span><span class="w"></span>

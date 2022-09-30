@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Variables &#8212; Fortran Programming Language</title>
+    <title>Переменные &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -44,7 +44,7 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="Arrays and strings" href="../arrays_strings/" />
+    <link rel="next" title="Массивы и строки" href="../arrays_strings/" />
     <link rel="prev" title="Hello world" href="../hello_world/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -242,6 +242,11 @@
         url: "../pt/",
       },
       {
+        name: "ru",
+        version: "ru",
+        url: "../ru/",
+      },
+      {
         name: "zh_CN",
         version: "zh_CN",
         url: "../zh_CN/",
@@ -259,7 +264,7 @@
       node.textContent = `${entry.name}`;
       node.setAttribute(
         "href",
-        `${indexFilePath}${entry.url}${currentFilePath}`
+        `${indexFilePath}${entry.url}${currentFilePath}`,
       );
       // on click, AJAX calls will check if the linked page exists before
       // trying to redirect, and if not, will redirect to the homepage
@@ -298,7 +303,7 @@
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="../../">
-  Learn
+  Обучение
  </a>
 </li>
 
@@ -416,7 +421,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Quickstart tutorial
+   Краткое руководство
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -431,27 +436,27 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Variables
+     Переменные
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays_strings/">
-     Arrays and strings
+     Массивы и строки
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../operators_control_flow/">
-     Operators and flow control
+     Операторы и поток управления
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../organising_code/">
-     Organising code structure
+     Организация структуры кода
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../derived_types/">
-     Derived Types
+     Производные типы данных
     </a>
    </li>
   </ul>
@@ -688,27 +693,27 @@
 <nav id="bd-toc-nav" class="page-toc"><ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Variables
+   Переменные
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#declaring-variables">
-   Declaring variables
+   Объявление переменных
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#standard-input-output">
-     Standard input / output
+     Стандартный ввод / вывод
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#expressions">
-     Expressions
+     Выражения
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#floating-point-precision">
-     Floating-point precision
+     Точность чисел с плавающей точкой
     </a>
    </li>
   </ul>
@@ -727,36 +732,30 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="variables">
-<h1>Variables<a class="headerlink" href="#variables" title="Permalink to this heading">#</a></h1>
-<p>Variables store information that can be manipulated by the program.
-Fortran is a <em>strongly typed</em> language, which means that each variable
-must have a type.</p>
-<p>There are 5 built-in data types in Fortran:</p>
+<h1>Переменные<a class="headerlink" href="#variables" title="Permalink to this heading">#</a></h1>
+<p>Переменные хранят информацию, которая может быть использована программой. Fortran – <em>строго типизированный</em> язык программирования, то есть каждая переменная должна быть определённого типа.</p>
+<p>В Fortran существует 5 встроенных типов данных:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">integer</span></code> – for data that represent whole numbers, positive or negative</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">real</span></code> – for floating-point data (not a whole number)</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">complex</span></code> – pair consisting of a real part and an imaginary part</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">character</span></code> – for text data</p></li>
-<li><p><code class="docutils literal notranslate"><span class="pre">logical</span></code> – for data that represent boolean (true or false) values</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">integer</span></code> – (целый) для данных, которые представляют собой целые числа, положительные или отрицательные</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real</span></code> – (вещественный) для данных в виде чисел с плавающей точкой (но не целых чисел)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">complex</span></code> – (комплексный) пара чисел, определяющих вещественную и мнимую часть</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">character</span></code> – (символьный) для текстовых данных</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logical</span></code> – (логический) для данных, которые представляют логические величины (true или false, т.е. истина или ложь)</p></li>
 </ul>
-<p>Before we can use a variable, we must <em>declare</em> it; this tells the compiler
-the variable type and any other variable attributes.</p>
+<p>Прежде чем использовать переменную, мы должны <em>объявить</em> её; объявление переменной сообщит компилятору тип переменной и её другие атрибуты.</p>
 <blockquote>
-<div><p>Fortran is a <em>statically typed</em> language, which means the type of each
-variable is fixed when the program is compiled—variable types cannot change while the program is running.</p>
+<div><p>Fortran – <em>статически типизированный</em> язык программирования, что означает, что тип каждой переменной фиксируется в момент компиляции программы — тип переменной не может быть изменён во время выполнения программы.</p>
 </div></blockquote>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="declaring-variables">
-<h1>Declaring variables<a class="headerlink" href="#declaring-variables" title="Permalink to this heading">#</a></h1>
-<p>The syntax for declaring variables is:</p>
+<h1>Объявление переменных<a class="headerlink" href="#declaring-variables" title="Permalink to this heading">#</a></h1>
+<p>Синтаксис объявления переменных:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">variable_type</span><span class="o">&gt;</span> <span class="p">::</span> <span class="o">&lt;</span><span class="n">variable_name</span><span class="o">&gt;</span>
 </pre></div>
 </div>
-<p>where <code class="docutils literal notranslate"><span class="pre">&lt;variable_type&gt;</span></code> is one of the built-in variable types listed above and
-<code class="docutils literal notranslate"><span class="pre">&lt;variable_name&gt;</span></code> is the name that you would like to call your variable.</p>
-<p>Variable names must start with a letter and can consist of letters, numbers and underscores.
-In the following example we declare a variable for each of the built-in types.</p>
-<p><strong>Example:</strong> variable declaration</p>
+<p>где <code class="docutils literal notranslate"><span class="pre">&lt;variable_type&gt;</span></code> – один из встроенных типов данных, описанных выше и <code class="docutils literal notranslate"><span class="pre">&lt;variable_name&gt;</span></code> – имя переменной, которым вы хотите обозначить переменную.</p>
+<p>Имена переменных должны начинаться с буквы и могут состоять из букв, цифр и символа нижнего подчёркивания. В следующем примере мы объявим переменную для каждого из встроенного типа данных.</p>
+<p><strong>Пример:</strong> объявление переменной</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">variables</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -770,19 +769,14 @@ In the following example we declare a variable for each of the built-in types.</
 </pre></div>
 </div>
 <blockquote>
-<div><p>Fortran code is <strong>case-insensitive</strong>; you don’t have to worry about the
-capitalisation of your variable names, but it’s good practice to keep it consistent.</p>
+<div><p>Fortran – <strong>нечувствителен к регистру</strong>; вы можете не беспокоиться о том, названы переменные с использованием заглавных букв или нет, но хорошей практикой будет сохранение постоянства их написания внутри текста программы.</p>
 </div></blockquote>
-<p>Note the additional statement at the beginning of the program: <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code>.
-This statement tells the compiler that all variables will be explicitly declared; without
-this statement variables will be implicitly typed according to the letter they begin with.</p>
+<p>Обратите внимание на дополнительный оператор в начале программы: <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code>. Этот оператор сообщает компилятору, что все переменные будут объявлены явно; без этого оператора переменным будет неявно присвоен тип в зависимости от буквы с которой начинается их имя.</p>
 <blockquote>
-<div><p>Always use the <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code> statement at
-the beginning of each program and procedure. Implicit typing is considered bad practice in
-modern programming since it hides information leading to more program errors.</p>
+<div><p>Всегда используйте оператор <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code> в начале каждой программы и подпрограммы (процедуры или функции). Неявное присвоение типа считается плохой практикой в современном программировании, так как скрывает информацию, что в итоге приводит к большему числу программных ошибок.</p>
 </div></blockquote>
-<p>Once we have declared a variable, we can assign and reassign values to it using the assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
-<p><strong>Example:</strong> variable assignment</p>
+<p>После объявления переменной, мы можем присваивать ей значения и переприсваивать значение, используя оператор присваивания <code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
+<p><strong>Пример:</strong> присваивание значения переменной</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
 <span class="n">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.1415927</span><span class="w"></span>
 <span class="n">frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span><span class="w"></span>
@@ -790,18 +784,15 @@ modern programming since it hides information leading to more program errors.</p
 <span class="n">isOkay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Characters are surrounded by either single (<code class="docutils literal notranslate"><span class="pre">'</span></code>) or double quotes (<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>).</p>
-<p>Logical or boolean values can be either <code class="docutils literal notranslate"><span class="pre">.true.</span></code> or <code class="docutils literal notranslate"><span class="pre">.false.</span></code>.</p>
+<p>Символьные значения обрамляются одиночными (<code class="docutils literal notranslate"><span class="pre">'</span></code>) или двойными кавычками (<code class="docutils literal notranslate"><span class="pre">\&quot;</span></code>).</p>
+<p>Логические или булевы величины могут быть равны <code class="docutils literal notranslate"><span class="pre">.true.</span></code> (истина) или <code class="docutils literal notranslate"><span class="pre">.false.</span></code> (ложь).</p>
 <blockquote>
-<div><p>Watch out» content=»for assignment at declaration: <code class="docutils literal notranslate"><span class="pre">integer</span> <span class="pre">::</span> <span class="pre">amount</span> <span class="pre">=</span> <span class="pre">1</span></code>.
-<strong>This is NOT a normal initialisation;</strong> it implies the <code class="docutils literal notranslate"><span class="pre">save</span></code> attribute which means that the variable retains
-its value between procedure calls. Good practice is to initialise your variables separately to their declaration.</p>
+<div><p>Осторожно используйте присваивание при объявлении: <code class="docutils literal notranslate"><span class="pre">integer</span> <span class="pre">::</span> <span class="pre">amount</span> <span class="pre">=</span> <span class="pre">1</span></code>. <strong>Это НЕ ЯВЛЯЕТСЯ нормальным способом инициализации;</strong> в этом случае неявно применяется атрибут <code class="docutils literal notranslate"><span class="pre">save</span></code>, который означает, что переменная сохраняет своё значение между вызовами подпрограммы (процедуры или функции). Хорошей практикой является инициализация ваших переменных отдельно от их объявления.</p>
 </div></blockquote>
 <section id="standard-input-output">
-<h2>Standard input / output<a class="headerlink" href="#standard-input-output" title="Permalink to this heading">#</a></h2>
-<p>In our <em>Hello World</em> example, we printed text to the command window.
-This is commonly referred to as writing to <code class="docutils literal notranslate"><span class="pre">standard</span> <span class="pre">output</span></code> or <code class="docutils literal notranslate"><span class="pre">stdout</span></code>.</p>
-<p>We can use the <code class="docutils literal notranslate"><span class="pre">print</span></code> statement introduced earlier to print variable values to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>:</p>
+<h2>Стандартный ввод / вывод<a class="headerlink" href="#standard-input-output" title="Permalink to this heading">#</a></h2>
+<p>В нашем примере программы <em>Hello World</em>, мы вывели текст в окно команд. Обычно такой вывод называется <code class="docutils literal notranslate"><span class="pre">standard</span> <span class="pre">output</span></code> (стандартным выводом) или <code class="docutils literal notranslate"><span class="pre">stdout</span></code>.</p>
+<p>Мы можем использовать оператор <code class="docutils literal notranslate"><span class="pre">print</span></code>, представленный ранее, для печати значений переменных в <code class="docutils literal notranslate"><span class="pre">stdout</span></code>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The value of amount (integer) is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The value of pi (real) is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">pi</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The value of frequency (complex) is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">frequency</span><span class="w"></span>
@@ -809,8 +800,7 @@ This is commonly referred to as writing to <code class="docutils literal notrans
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The value of isOkay (logical) is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">isOkay</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In a similar way, we can read values from the command window
-using the <code class="docutils literal notranslate"><span class="pre">read</span></code> statement:</p>
+<p>Аналогичным образом мы можем считывать значения из окна команд, используя оператор <code class="docutils literal notranslate"><span class="pre">read</span></code>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">read_value</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 <span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">age</span><span class="w"></span>
@@ -823,37 +813,37 @@ using the <code class="docutils literal notranslate"><span class="pre">read</spa
 <span class="k">end program </span><span class="n">read_value</span><span class="w"></span>
 </pre></div>
 </div>
-<p>This input source is commonly referred to as <code class="docutils literal notranslate"><span class="pre">standard</span> <span class="pre">input</span></code> or <code class="docutils literal notranslate"><span class="pre">stdin</span></code>.</p>
+<p>Такой ввод обычно называется <code class="docutils literal notranslate"><span class="pre">standard</span> <span class="pre">input</span></code> (стандартный ввод) или <code class="docutils literal notranslate"><span class="pre">stdin</span></code>.</p>
 </section>
 <section id="expressions">
-<h2>Expressions<a class="headerlink" href="#expressions" title="Permalink to this heading">#</a></h2>
-<p>The usual set of arithmetic operators are available, listed in order of precedence:</p>
+<h2>Выражения<a class="headerlink" href="#expressions" title="Permalink to this heading">#</a></h2>
+<p>В языке Fortran доступен обычный набор арифметических операторов, перечисленный ниже в порядке приоритета:</p>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head text-center"><p>Operator  </p></th>
-<th class="head"><p>Description</p></th>
+<tr class="row-odd"><th class="head text-center"><p>Оператор  </p></th>
+<th class="head"><p>Описание</p></th>
 </tr>
 </thead>
 <tbody>
 <tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
-<td><p>Exponent</p></td>
+<td><p>Возведение в степень</p></td>
 </tr>
 <tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
-<td><p>Multiplication</p></td>
+<td><p>Умножение</p></td>
 </tr>
 <tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">/</span> </code></p></td>
-<td><p>Division</p></td>
+<td><p>Деление</p></td>
 </tr>
 <tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
-<td><p>Addition</p></td>
+<td><p>Сложение</p></td>
 </tr>
 <tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
-<td><p>Subtraction</p></td>
+<td><p>Вычитание</p></td>
 </tr>
 </tbody>
 </table>
 <br>
-<p><strong>Example:</strong></p>
+<p><strong>Пример:</strong></p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">arithmetic</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -884,10 +874,9 @@ using the <code class="docutils literal notranslate"><span class="pre">read</spa
 </div>
 </section>
 <section id="floating-point-precision">
-<h2>Floating-point precision<a class="headerlink" href="#floating-point-precision" title="Permalink to this heading">#</a></h2>
-<p>The desired floating-point precision can be explicitly declared using a <code class="docutils literal notranslate"><span class="pre">kind</span></code> parameter.
-The <code class="docutils literal notranslate"><span class="pre">iso_fortran_env</span></code> intrinsic module provides <code class="docutils literal notranslate"><span class="pre">kind</span></code> parameters for the common 32-bit and 64-bit floating-point types.</p>
-<p><strong>Example:</strong> explicit real <code class="docutils literal notranslate"><span class="pre">kind</span></code></p>
+<h2>Точность чисел с плавающей точкой<a class="headerlink" href="#floating-point-precision" title="Permalink to this heading">#</a></h2>
+<p>Желаемая точность (вещественных) чисел с плавающей точкой может быть явно указана с помощью параметра <code class="docutils literal notranslate"><span class="pre">kind</span></code>. Встроенный модуль <code class="docutils literal notranslate"><span class="pre">iso_fortran_env</span></code> предоставляет параметры <code class="docutils literal notranslate"><span class="pre">kind</span></code> для распространённых 32-битных (одинарная точность) и 64-битных (двойная точность) типов чисел с плавающей точкой.</p>
+<p><strong>Пример:</strong> явное указание вещественного типа с помощью параметра <code class="docutils literal notranslate"><span class="pre">kind</span></code></p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="nb">float</span>
 <span class="nb">  </span><span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">sp</span><span class="o">=&gt;</span><span class="n">real32</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -902,9 +891,9 @@ The <code class="docutils literal notranslate"><span class="pre">iso_fortran_env
 </pre></div>
 </div>
 <blockquote>
-<div><p>Always use a <code class="docutils literal notranslate"><span class="pre">kind</span></code> suffix for floating-point literal constants.</p>
+<div><p>Всегда используйте суффикс (в примере выше: <code class="docutils literal notranslate"><span class="pre">_sp</span></code> – для одинарной, <code class="docutils literal notranslate"><span class="pre">_dp</span></code> – для двойной точности) параметра <code class="docutils literal notranslate"><span class="pre">kind</span></code> для литеральных констант представленных в виде числа с плавающей точкой.</p>
 </div></blockquote>
-<p><strong>Example:</strong> C-interoperable <code class="docutils literal notranslate"><span class="pre">kind</span></code></p>
+<p><strong>Пример:</strong> C-интерпорабельный параметр <code class="docutils literal notranslate"><span class="pre">kind</span></code> (функционально совместимый с типом языка C)</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="nb">float</span>
 <span class="nb">  </span><span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">sp</span><span class="o">=&gt;</span><span class="kt">c_float</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="kt">c_double</span>
 <span class="kt">  </span><span class="k">implicit none</span>
@@ -915,8 +904,7 @@ The <code class="docutils literal notranslate"><span class="pre">iso_fortran_env
 <span class="k">end program </span><span class="nb">float</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In the next part we will learn how to use arrays for storing more than one
-value in a variable.</p>
+<p>В следующей части мы узнаем как использовать массивы для хранения более одного значения в переменной.</p>
 </section>
 </section>
 

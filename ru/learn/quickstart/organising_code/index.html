@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
 
-    <title>Organising code structure &#8212; Fortran Programming Language</title>
+    <title>Организация структуры кода &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -44,8 +44,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="Derived Types" href="../derived_types/" />
-    <link rel="prev" title="Operators and flow control" href="../operators_control_flow/" /> 
+    <link rel="next" title="Производные типы данных" href="../derived_types/" />
+    <link rel="prev" title="Операторы и поток управления" href="../operators_control_flow/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -242,6 +242,11 @@
         url: "../pt/",
       },
       {
+        name: "ru",
+        version: "ru",
+        url: "../ru/",
+      },
+      {
         name: "zh_CN",
         version: "zh_CN",
         url: "../zh_CN/",
@@ -259,7 +264,7 @@
       node.textContent = `${entry.name}`;
       node.setAttribute(
         "href",
-        `${indexFilePath}${entry.url}${currentFilePath}`
+        `${indexFilePath}${entry.url}${currentFilePath}`,
       );
       // on click, AJAX calls will check if the linked page exists before
       // trying to redirect, and if not, will redirect to the homepage
@@ -298,7 +303,7 @@
         <ul id="navbar-main-elements" class="navbar-nav">
     <li class="toctree-l1 current active nav-item">
  <a class="reference internal nav-link" href="../../">
-  Learn
+  Обучение
  </a>
 </li>
 
@@ -416,7 +421,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Quickstart tutorial
+   Краткое руководство
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
   <label for="toctree-checkbox-2">
@@ -431,27 +436,27 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../variables/">
-     Variables
+     Переменные
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays_strings/">
-     Arrays and strings
+     Массивы и строки
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../operators_control_flow/">
-     Operators and flow control
+     Операторы и поток управления
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Organising code structure
+     Организация структуры кода
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../derived_types/">
-     Derived Types
+     Производные типы данных
     </a>
    </li>
   </ul>
@@ -688,22 +693,22 @@
 <nav id="bd-toc-nav" class="page-toc"><ul class="visible nav section-nav flex-column">
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#">
-   Organising code structure
+   Организация структуры кода
   </a>
  </li>
  <li class="toc-h1 nav-item toc-entry">
   <a class="reference internal nav-link" href="#subroutines">
-   Subroutines
+   Процедуры
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#functions">
-     Functions
+     Функции
     </a>
    </li>
    <li class="toc-h2 nav-item toc-entry">
     <a class="reference internal nav-link" href="#modules">
-     Modules
+     Модули
     </a>
    </li>
   </ul>
@@ -722,22 +727,19 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="organising-code-structure">
-<h1>Organising code structure<a class="headerlink" href="#organising-code-structure" title="Permalink to this heading">#</a></h1>
-<p>Most programming languages allow you to collect commonly-used code into
-<em>procedures</em> that can be reused by <em>calling</em> them from other sections of code.</p>
-<p>Fortran has two forms of procedure:</p>
+<h1>Организация структуры кода<a class="headerlink" href="#organising-code-structure" title="Permalink to this heading">#</a></h1>
+<p>Большинство языков программирования позволяют объединять часто используемый код в <em>подпрограммы</em>, которые можно повторно использовать, <em>вызывая</em> их из других частей кода.</p>
+<p>В языке Fortran доступно два вида подпрограмм:</p>
 <ul class="simple">
-<li><p><strong>Subroutine</strong>: invoked by a <code class="docutils literal notranslate"><span class="pre">call</span></code> statement</p></li>
-<li><p><strong>Function</strong>: invoked within an expression or assignment to which it returns a value</p></li>
+<li><p><strong>Процедура</strong>: вызывается оператором <code class="docutils literal notranslate"><span class="pre">call</span></code></p></li>
+<li><p><strong>Функция</strong>: вызывается внутри выражения или присваивания, которому она возвращает значение</p></li>
 </ul>
-<p>Both subroutines and functions have access to variables in the parent scope by <em>argument association</em>;
-unless the <code class="docutils literal notranslate"><span class="pre">value</span></code> attribute is specified, this is similar to call by reference.</p>
+<p>И процедуры, и функции имеют доступ к переменным в родительской области видимости по <em>ассоциации имён аргументов</em>; если не указан атрибут <code class="docutils literal notranslate"><span class="pre">value</span></code>, то это похоже на вызов по ссылке.</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="subroutines">
-<h1>Subroutines<a class="headerlink" href="#subroutines" title="Permalink to this heading">#</a></h1>
-<p>The subroutine input arguments, known as <em>dummy arguments</em>, are specified in parentheses after the subroutine name;
-the dummy argument types and attributes are declared within the body of the subroutine just like local variables.</p>
-<p><strong>Example:</strong></p>
+<h1>Процедуры<a class="headerlink" href="#subroutines" title="Permalink to this heading">#</a></h1>
+<p>Входные аргументы процедур, известные как <em>фиктивные (пустые) аргументы</em>, указываются внутри круглых скобок после имени процедуры; типы и атрибуты фиктивных аргументов объявляются в теле процедуры так же, как и её локальные переменные.</p>
+<p><strong>Пример:</strong></p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! Print matrix A to screen</span>
 <span class="k">subroutine </span><span class="n">print_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">A</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -754,14 +756,11 @@ the dummy argument types and attributes are declared within the body of the subr
 <span class="k">end subroutine </span><span class="n">print_matrix</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Note the additional <code class="docutils literal notranslate"><span class="pre">intent</span></code> attribute when declaring the dummy arguments; this optional attribute signifies to the compiler whether the argument
-is „“read-only““ (<code class="docutils literal notranslate"><span class="pre">intent(in)</span></code>) „“write-only““ (<code class="docutils literal notranslate"><span class="pre">intent(out)</span></code>) or „“read-write““ (<code class="docutils literal notranslate"><span class="pre">intent(inout)</span></code>) within the procedure.
-In this example, the subroutine does not modify its arguments, hence all arguments are <code class="docutils literal notranslate"><span class="pre">intent(in)</span></code>.</p>
+<p>Обратите внимание на дополнительный атрибут <code class="docutils literal notranslate"><span class="pre">intent</span></code> при объявлении фиктивных аргументов; этот необязательный атрибут указывает компилятору, доступен ли аргумент „только для чтения“ (<code class="docutils literal notranslate"><span class="pre">intent(in)</span></code>), „только для записи“ (<code class="docutils literal notranslate"><span class="pre">intent(out)</span></code>) или „для чтения и записи“ (<code class="docutils literal notranslate"><span class="pre">intent(inout)</span></code>) внутри процедуры. В этом примере процедура не изменяет свои аргументы, поэтому все аргументы имеют атрибут <code class="docutils literal notranslate"><span class="pre">intent(in)</span></code>.</p>
 <blockquote>
-<div><p>It is good practice to always specify the <code class="docutils literal notranslate"><span class="pre">intent</span></code> attribute for
-dummy arguments; this allows the compiler to check for unintentional errors and provides self-documentation.</p>
+<div><p>Хорошей практикой является всегда указывать атрибут <code class="docutils literal notranslate"><span class="pre">intent</span></code> для фиктивных аргументов; это позволяет компилятору найти непреднамеренные ошибки и обеспечивает самодокументирование кода.</p>
 </div></blockquote>
-<p>We can call this subroutine from a program using a <code class="docutils literal notranslate"><span class="pre">call</span></code> statement:</p>
+<p>Мы можем вызвать процедуру из программы с помощью оператора <code class="docutils literal notranslate"><span class="pre">call</span></code>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">call_sub</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -775,11 +774,10 @@ dummy arguments; this allows the compiler to check for unintentional errors and 
 </pre></div>
 </div>
 <blockquote>
-<div><p>This example uses a so-called <em>explicit-shape</em> array argument since we have passed additional variables to describe
-the dimensions of the array <code class="docutils literal notranslate"><span class="pre">A</span></code>; this will not be necessary if we place our subroutine in a module as described later.</p>
+<div><p>Этот пример использует так называемый аргумент <em>с явным указанием образа</em> массива, так как мы передали дополнительные переменные для описания размеров массива <code class="docutils literal notranslate"><span class="pre">A</span></code>; это не потребуется, если мы поместим нашу процедуру в модуль, как описано ниже.</p>
 </div></blockquote>
 <section id="functions">
-<h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
+<h2>Функции<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! L2 Norm of a vector</span>
 <span class="k">function </span><span class="n">vector_norm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -793,9 +791,9 @@ the dimensions of the array <code class="docutils literal notranslate"><span cla
 </pre></div>
 </div>
 <blockquote>
-<div><p>In production code, the intrinsic function <code class="docutils literal notranslate"><span class="pre">norm2</span></code> should be used.</p>
+<div><p>В коде программного продукта следует, вместо приведённой в примере, использовать встроенную функцию <code class="docutils literal notranslate"><span class="pre">norm2</span></code>.</p>
 </div></blockquote>
-<p>To execute this function:</p>
+<p>Чтобы вызвать эту функцию:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">run_fcn</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -810,24 +808,20 @@ the dimensions of the array <code class="docutils literal notranslate"><span cla
 </pre></div>
 </div>
 <blockquote>
-<div><p>It is good programming practice for functions not to modify their arguments—that is, all function arguments should be <code class="docutils literal notranslate"><span class="pre">intent(in)</span></code>.
-Such functions are known as <code class="docutils literal notranslate"><span class="pre">pure</span></code> functions.
-Use subroutines if your procedure needs to modify its arguments.</p>
+<div><p>Хорошей практикой программирования является когда функция не изменяет свои аргументы — то есть, все аргументы функции должны иметь атрибут <code class="docutils literal notranslate"><span class="pre">intent(in)</span></code>. Такие функции называют <code class="docutils literal notranslate"><span class="pre">pure</span></code> (чистыми) функциями. Используйте процедуры, если ваша подпрограмма должна изменять свои аргументы.</p>
 </div></blockquote>
 </section>
 <section id="modules">
-<h2>Modules<a class="headerlink" href="#modules" title="Permalink to this heading">#</a></h2>
-<p>Fortran modules contain definitions that are made accessible to programs, procedures, and other modules through the <code class="docutils literal notranslate"><span class="pre">use</span></code> statement.
-They can contain data objects, type definitions, procedures, and interfaces.</p>
+<h2>Модули<a class="headerlink" href="#modules" title="Permalink to this heading">#</a></h2>
+<p>Модули языка Fortran содержат определения, которые становятся доступными для программ, подпрограмм и других модулей с помощью оператора <code class="docutils literal notranslate"><span class="pre">use</span></code>. Они могут содержать объекты данных, определения типов, подпрограммы и интерфейсы.</p>
 <ul class="simple">
-<li><p>Modules allow controlled scoping extension whereby entity access is made explicit</p></li>
-<li><p>Modules automatically generate explicit interfaces required for modern procedures</p></li>
+<li><p>Модули позволяют управлять областью видимости, когда доступ к объектам организуют явно</p></li>
+<li><p>Модули автоматически генерируют явные интерфейсы, необходимые для современных подпрограмм</p></li>
 </ul>
 <blockquote>
-<div><p>It is recommended to always place functions and subroutines
-within modules.</p>
+<div><p>Рекомендуется всегда размещать функции и процедуры внутри модулей.</p>
 </div></blockquote>
-<p><strong>Example:</strong></p>
+<p><strong>Пример:</strong></p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">my_mod</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -855,12 +849,9 @@ within modules.</p>
 </pre></div>
 </div>
 <blockquote>
-<div><p>Compare this <code class="docutils literal notranslate"><span class="pre">print_matrix</span></code> subroutine with that written outside of a module
-we no longer have to explicitly pass the matrix dimensions and can instead take
-advantage of <em>assumed-shape</em> arguments since the module will generate the required
-explicit interface for us. This results in a much simpler subroutine interface.</p>
+<div><p>Сравните эту процедуру <code class="docutils literal notranslate"><span class="pre">print_matrix</span></code> с написанной вне модуля. Нам больше не нужно явно передавать размеры матрицы, и вместо этого мы можем воспользоваться аргументами с <em>неявным заданием образа</em>, поскольку модуль сгенерирует для нас необходимый явный интерфейс. Это приводит к значительному упрощению интерфейса процедуры.</p>
 </div></blockquote>
-<p>To <code class="docutils literal notranslate"><span class="pre">use</span></code> the module within a program:</p>
+<p>Чтобы подключить модуль внутри программы, используется оператор <code class="docutils literal notranslate"><span class="pre">use</span></code>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">use_mod</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">my_mod</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -874,16 +865,16 @@ explicit interface for us. This results in a much simpler subroutine interface.<
 <span class="k">end program </span><span class="n">use_mod</span><span class="w"></span>
 </pre></div>
 </div>
-<p><strong>Example:</strong> explicit import list</p>
+<p><strong>Пример:</strong> явный список импорта</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use </span><span class="n">my_mod</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">public_var</span><span class="w"></span>
 </pre></div>
 </div>
-<p><strong>Example:</strong> aliased import</p>
+<p><strong>Пример:</strong> импорт по псевдониму</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use </span><span class="n">my_mod</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">printMat</span><span class="o">=&gt;</span><span class="n">print_matrix</span><span class="w"></span>
 </pre></div>
 </div>
 <blockquote>
-<div><p>Each module should be written in a separate <code class="docutils literal notranslate"><span class="pre">.f90</span></code> source file. Modules need to be compiled prior to any program units that <code class="docutils literal notranslate"><span class="pre">use</span></code> them.</p>
+<div><p>Каждый модуль должен быть написан в отдельном файле исходного кода <code class="docutils literal notranslate"><span class="pre">.f90</span></code>. Модули должны быть скомпилированы до компиляции любых программных блоков, которые их подключают оператором <code class="docutils literal notranslate"><span class="pre">use</span></code>.</p>
 </div></blockquote>
 </section>
 </section>
