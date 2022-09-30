@@ -1,0 +1,1555 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>绑定到 C 接口的过程 &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../../../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <link rel="index" title="索引" href="../../../genindex/" />
+    <link rel="search" title="搜索" href="../../../search/" />
+    <link rel="next" title="一般数学函数" href="../math/" />
+    <link rel="prev" title="有关用于构建的编译器和编译器选项的信息" href="../compiler/" /> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+    
+    <div class="dropdown" id="version_switcher">
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    zh_CN
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables learn/intrinsics/cfi and {'json_url': 'https://fortran-lang.org/', 'version_match': 'zh_CN'}.
+-->
+
+<script type="text/javascript">
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "learn/intrinsics/cfi",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
+
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "learn/intrinsics/cfi";
+    const indexFilePath = "../../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "ru",
+        version: "ru",
+        url: "../ru/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`,
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
+
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "zh_CN") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
+</script>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../">
+  学习
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../compilers/">
+  编译器
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../community/">
+  社区
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../packages/">
+  Packages
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../news/">
+  新闻
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/en/news/atom.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="搜索" aria-label="Search" autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../os_setup/">
+   设置操作系统
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/choose_compiler/">
+     Choosing a compiler
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/install_gfortran/">
+     Installing GFortran
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/text_editors/">
+     Text Editors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/ides/">
+     IDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/tips/">
+     Smart Tips
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../quickstart/">
+   快速入门教程
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/hello_world/">
+     Hello world
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/variables/">
+     变量
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/arrays_strings/">
+     数组和字符串
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/operators_control_flow/">
+     操作符和流程控制
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/organising_code/">
+     组织代码结构
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/derived_types/">
+     派生类型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../building_programs/">
+   构建程序
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/compiling_source/">
+     编译源代码
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/linking_pieces/">
+     链接对象
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/runtime_libraries/">
+     运行时库
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/include_files/">
+     包含文件和模块
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/managing_libraries/">
+     管理库（静态和动态库）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/build_tools/">
+     构建工具
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/project_make/">
+     一个make的介绍
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/distributing/">
+     分发您的程序
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../best_practices/">
+   Fortran最佳实践
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/style_guide/">
+     Fortran风格指南
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/floating_point/">
+     浮点数
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/integer_division/">
+     整数除法
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/modules_programs/">
+     模块和程序
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/arrays/">
+     数组
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/multidim_arrays/">
+     多维数组
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/element_operations/">
+     数组的逐元操作
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/allocatable_arrays/">
+     可分配数组
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/file_io/">
+     文件输入/输出
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/callbacks/">
+     回调
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/type_casting/">
+     回调中的类型转换
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../">
+   Fortran 内置函数
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../array/">
+     数组的属性和属性
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bit/">
+     位级别查询和操作
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../character/">
+     操作
+     <em>
+      character
+     </em>
+     变量的基本过程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../compiler/">
+     有关用于构建的编译器和编译器选项的信息
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     绑定到 C 接口的过程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../math/">
+     一般数学函数
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../model/">
+     控制和查询当前数值模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numeric/">
+     数值的操作和属性
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../parallel/">
+     使用 co_arrays 和 co_indexed 数组进行并行编程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../state/">
+     一般和杂项内置函数
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system/">
+     Accessing external system information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transform/">
+     Matrix multiplication, dot product, and array shifts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../type/">
+     Types and kinds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
+     GNU 自由文档许可证
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+        
+<br />
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-associated">
+   c_associated
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#name">
+     <strong>
+      名称
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#syntax">
+     <strong>
+      语法
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#description">
+     <strong>
+      说明
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arguments">
+     <strong>
+      参数
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#returns">
+     <strong>
+      返回
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     <strong>
+      示例
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard">
+     <strong>
+      标准
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#see-also">
+     <strong>
+      另见
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fortran-lang-intrinsic-descriptions">
+       fortran 语言内在描述
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-f-pointer">
+   c_f_pointer
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <strong>
+      名称
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <strong>
+      语法
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     <strong>
+      说明
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     <strong>
+      参数
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     <strong>
+      示例
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     <strong>
+      标准
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     <strong>
+      另见
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id8">
+       fortran 语言内在描述
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-f-procpointer">
+   c_f_procpointer
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     <strong>
+      名称
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     <strong>
+      语法
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     <strong>
+      说明
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     <strong>
+      参数
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     <strong>
+      示例
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     <strong>
+      标准
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     <strong>
+      另见
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id16">
+       fortran 语言内在描述
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-funloc">
+   c_funloc
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     <strong>
+      名称
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     <strong>
+      语法
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     <strong>
+      说明
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     <strong>
+      参数
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     <strong>
+      返回
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id22">
+     <strong>
+      示例
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
+     <strong>
+      标准
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id24">
+     <strong>
+      另见
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id25">
+       fortran 语言内在描述
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-loc">
+   c_loc
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id26">
+     <strong>
+      名称
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id27">
+     <strong>
+      语法
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id28">
+     <strong>
+      说明
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id29">
+     <strong>
+      参数
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id30">
+     <strong>
+      返回
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id31">
+     <strong>
+      示例
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id32">
+     <strong>
+      标准
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id33">
+     <strong>
+      另见
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id34">
+       fortran 语言内在描述
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#c-sizeof">
+   c_sizeof
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id35">
+     <strong>
+      名称
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id36">
+     <strong>
+      语法
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id37">
+     <strong>
+      说明
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id38">
+     <strong>
+      参数
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id39">
+     <strong>
+      返回
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id40">
+     <strong>
+      示例
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id41">
+     <strong>
+      标准
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id42">
+     <strong>
+      另见
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id43">
+       fortran 语言内在描述
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</nav> 
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                 <section class="tex2jax_ignore mathjax_ignore" id="procedures-for-binding-to-c-interfaces">
+<h1>绑定到 C 接口的过程<a class="headerlink" href="#procedures-for-binding-to-c-interfaces" title="此标题的永久链接">#</a></h1>
+<section id="c-associated">
+<h2>c_associated<a class="headerlink" href="#c-associated" title="此标题的永久链接">#</a></h2>
+<section id="name">
+<h3><strong>名称</strong><a class="headerlink" href="#name" title="此标题的永久链接">#</a></h3>
+<p><strong>c_associated</strong>(3) - [ISO_C_BINDING] C 指针的状态</p>
+</section>
+<section id="syntax">
+<h3><strong>语法</strong><a class="headerlink" href="#syntax" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">(</span><span class="n">c_prt_1</span><span class="p">,</span><span class="w"> </span><span class="n">c_ptr_2</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="description">
+<h3><strong>说明</strong><a class="headerlink" href="#description" title="此标题的永久链接">#</a></h3>
+<p><strong>c_associated(c_prt_1[, c_ptr_2])</strong> 确定 C 指针 c_ptr_1 的状态或 c_ptr_1 是否与目标 c_ptr_2 相关联。</p>
+</section>
+<section id="arguments">
+<h3><strong>参数</strong><a class="headerlink" href="#arguments" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>c_ptr_1</strong></dt><dd><p>c_ptr 或 c_funptr 类型的标量。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>c_ptr_2</strong></dt><dd><p>（可选）与 c_ptr_1 类型相同的标量。</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="returns">
+<h3><strong>返回</strong><a class="headerlink" href="#returns" title="此标题的永久链接">#</a></h3>
+<p>返回值的类型为 <em>logical</em>; 如果 c_ptr_1 是 C NULL 指针或者 c_ptr1 和 c_ptr_2 指向不同的地址则返回 .false.。</p>
+</section>
+<section id="examples">
+<h3><strong>示例</strong><a class="headerlink" href="#examples" title="此标题的永久链接">#</a></h3>
+<p>示例程序：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_associated</span><span class="w"></span>
+
+<span class="k">contains</span>
+
+<span class="k">subroutine </span><span class="n">association_test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">,</span><span class="w"> </span><span class="kt">c_ptr</span>
+<span class="k">implicit none</span>
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">      </span><span class="k">stop</span><span class="w"> </span><span class="s1">&#39;b and a do not point to same target&#39;</span><span class="w"></span>
+<span class="k">end subroutine </span><span class="n">association_test</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">demo_c_associated</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="standard">
+<h3><strong>标准</strong><a class="headerlink" href="#standard" title="此标题的永久链接">#</a></h3>
+<p>Fortran 2003 及以后</p>
+</section>
+<section id="see-also">
+<h3><strong>另见</strong><a class="headerlink" href="#see-also" title="此标题的永久链接">#</a></h3>
+<p><a class="reference internal" href="#c-loc"><span class="std std-doc"><strong>c_loc</strong>(3)</span></a>,
+<a class="reference internal" href="#c-funloc"><span class="std std-doc"><strong>c_funloc</strong>(3)</span></a>,
+<strong>iso_c_binding</strong>(3)</p>
+<section id="fortran-lang-intrinsic-descriptions">
+<h4>fortran 语言内在描述<a class="headerlink" href="#fortran-lang-intrinsic-descriptions" title="此标题的永久链接">#</a></h4>
+</section>
+</section>
+</section>
+<section id="c-f-pointer">
+<h2>c_f_pointer<a class="headerlink" href="#c-f-pointer" title="此标题的永久链接">#</a></h2>
+<section id="id1">
+<h3><strong>名称</strong><a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h3>
+<p><strong>c_f_pointer</strong>(3) - [ISO_C_BINDING] 将 C 指针转换为 Fortran 指针</p>
+</section>
+<section id="id2">
+<h3><strong>语法</strong><a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="p">,</span><span class="w"> </span><span class="nb">shape</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3><strong>说明</strong><a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
+<p><strong>c_f_pointer(cptr, fptr[, shape])</strong> 将目标C 指针 <strong>cptr</strong> 分配给 Fortran 指针 <strong>fptr</strong> 并指定其形状。</p>
+</section>
+<section id="id4">
+<h3><strong>参数</strong><a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>cptr</strong></dt><dd><p>c_ptr 类型的标量。它是 <strong>intent(in)</strong> 的。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>fptr</strong></dt><dd><p>可与 <strong>cptr</strong> 互操作的指针。它是 <strong>intent(out)</strong> 的。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>shape</strong></dt><dd><p>（可选）具有 <strong>intent(in)</strong> 类型的 <em>integer</em> 一维数组。当且仅当 <strong>fptr</strong> 是一个数组时，它才会出现。大小必须等于 <strong>fptr</strong> 的维度。</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id5">
+<h3><strong>示例</strong><a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
+<p>示例程序：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_f_pointer</span><span class="w"></span>
+<span class="k">use </span><span class="nb">iso_c_binding</span>
+<span class="k">implicit none</span>
+<span class="k">interface</span>
+<span class="k">   subroutine </span><span class="n">my_routine</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myC_func&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="kt">c_ptr</span>
+<span class="kt">      </span><span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="w">   </span><span class="k">end subroutine</span>
+<span class="k">end interface</span>
+<span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cptr</span><span class="w"></span>
+<span class="kt">real</span><span class="p">,</span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="n">my_routine</span><span class="p">(</span><span class="n">cptr</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">12</span><span class="p">])</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_c_f_pointer</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id6">
+<h3><strong>标准</strong><a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
+<p>Fortran 2003 及以后</p>
+</section>
+<section id="id7">
+<h3><strong>另见</strong><a class="headerlink" href="#id7" title="此标题的永久链接">#</a></h3>
+<p><a class="reference internal" href="#c-loc"><span class="std std-doc"><strong>c_loc</strong>(3)</span></a>,
+<a class="reference internal" href="#c-f-procpointer"><span class="std std-doc"><strong>c_f_procpointer</strong>(3)</span></a>,
+<strong>iso_c_binding</strong>(3)</p>
+<section id="id8">
+<h4>fortran 语言内在描述<a class="headerlink" href="#id8" title="此标题的永久链接">#</a></h4>
+</section>
+</section>
+</section>
+<section id="c-f-procpointer">
+<h2>c_f_procpointer<a class="headerlink" href="#c-f-procpointer" title="此标题的永久链接">#</a></h2>
+<section id="id9">
+<h3><strong>名称</strong><a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h3>
+<p><strong>c_f_procpointer</strong>(3) - [ISO_C_BINDING] 将 C 函数指针转换为 Fortran 过程指针</p>
+</section>
+<section id="id10">
+<h3><strong>语法</strong><a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">c_f_procpointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id11">
+<h3><strong>说明</strong><a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h3>
+<p><strong>c_f_procpointer(cptr, fptr)</strong> 将 C 函数指针 <strong>cptr</strong> 的目标分配给 Fortran 过程指针 <strong>fptr</strong>。</p>
+</section>
+<section id="id12">
+<h3><strong>参数</strong><a class="headerlink" href="#id12" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>cptr</strong></dt><dd><p>c_funptr 类型的标量。它是**intent(in)**的。</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>fptr</strong></dt><dd><p>可与 <strong>cptr</strong> 互操作的过程指针。它是 <strong>intent(out)</strong>。</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id13">
+<h3><strong>示例</strong><a class="headerlink" href="#id13" title="此标题的永久链接">#</a></h3>
+<p>示例程序：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_f_procpointer</span><span class="w"></span>
+<span class="k">use </span><span class="nb">iso_c_binding</span>
+<span class="k">implicit none</span>
+<span class="k">abstract interface</span>
+<span class="k">   function </span><span class="n">func</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">import</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="kt">c_float</span>
+<span class="kt">   real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">func</span><span class="w"></span>
+<span class="w">   </span><span class="k">end function</span>
+<span class="k">end interface</span>
+<span class="k">interface</span>
+<span class="k">   function </span><span class="n">getIterFunc</span><span class="p">()</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;getIterFunc&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">import</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="kt">c_funptr</span>
+<span class="kt">   </span><span class="k">type</span><span class="p">(</span><span class="kt">c_funptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">getIterFunc</span><span class="w"></span>
+<span class="w">   </span><span class="k">end function</span>
+<span class="k">end interface</span>
+<span class="k">type</span><span class="p">(</span><span class="kt">c_funptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cfunptr</span><span class="w"></span>
+<span class="k">procedure</span><span class="p">(</span><span class="n">func</span><span class="p">),</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">myFunc</span><span class="w"></span>
+<span class="w">   </span><span class="n">cfunptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getIterFunc</span><span class="p">()</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">c_f_procpointer</span><span class="p">(</span><span class="n">cfunptr</span><span class="p">,</span><span class="w"> </span><span class="n">myFunc</span><span class="p">)</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_c_f_procpointer</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id14">
+<h3><strong>标准</strong><a class="headerlink" href="#id14" title="此标题的永久链接">#</a></h3>
+<p>Fortran 2003 及以后</p>
+</section>
+<section id="id15">
+<h3><strong>另见</strong><a class="headerlink" href="#id15" title="此标题的永久链接">#</a></h3>
+<p><a class="reference internal" href="#c-loc"><span class="std std-doc"><strong>c_loc</strong>(3)</span></a>,
+<a class="reference internal" href="#c-f-pointer"><span class="std std-doc"><strong>c_f_pointer</strong>(3)</span></a>,
+<strong>iso_c_binding</strong>(3)</p>
+<section id="id16">
+<h4>fortran 语言内在描述<a class="headerlink" href="#id16" title="此标题的永久链接">#</a></h4>
+</section>
+</section>
+</section>
+<section id="c-funloc">
+<h2>c_funloc<a class="headerlink" href="#c-funloc" title="此标题的永久链接">#</a></h2>
+<section id="id17">
+<h3><strong>名称</strong><a class="headerlink" href="#id17" title="此标题的永久链接">#</a></h3>
+<p><strong>c_funloc</strong>(3) - [ISO_C_BINDING] 获取一个过程的C地址</p>
+</section>
+<section id="id18">
+<h3><strong>语法</strong><a class="headerlink" href="#id18" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_funloc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id19">
+<h3><strong>说明</strong><a class="headerlink" href="#id19" title="此标题的永久链接">#</a></h3>
+<p><strong>c_funloc(x)</strong> 确定参数的 C 地址。</p>
+</section>
+<section id="id20">
+<h3><strong>参数</strong><a class="headerlink" href="#id20" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>x</strong></dt><dd><p>可互操作的函数或指向此类函数的指针。</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id21">
+<h3><strong>返回</strong><a class="headerlink" href="#id21" title="此标题的永久链接">#</a></h3>
+<p>返回值是 c_funptr 类型，包含参数的 C 地址。</p>
+</section>
+<section id="id22">
+<h3><strong>示例</strong><a class="headerlink" href="#id22" title="此标题的永久链接">#</a></h3>
+<p>示例程序：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! program demo_c_funloc and module</span>
+<span class="k">module </span><span class="n">x</span><span class="w"></span>
+<span class="k">use </span><span class="nb">iso_c_binding</span>
+<span class="k">implicit none</span>
+<span class="k">contains</span>
+<span class="k">subroutine </span><span class="n">sub</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
+<span class="kt">real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">   </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="mf">5.0</span><span class="w"></span>
+<span class="k">end subroutine </span><span class="n">sub</span><span class="w"></span>
+<span class="k">end module </span><span class="n">x</span><span class="w"></span>
+<span class="c">!</span>
+<span class="k">program </span><span class="n">demo_c_funloc</span><span class="w"></span>
+<span class="k">use </span><span class="nb">iso_c_binding</span>
+<span class="k">use </span><span class="n">x</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="k">interface</span>
+<span class="k">   subroutine </span><span class="n">my_routine</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myC_func&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">     </span><span class="k">import</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="kt">c_funptr</span>
+<span class="kt">     </span><span class="k">type</span><span class="p">(</span><span class="kt">c_funptr</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="w">   </span><span class="k">end subroutine</span>
+<span class="k">end interface</span>
+<span class="k">   call </span><span class="n">my_routine</span><span class="p">(</span><span class="nb">c_funloc</span><span class="p">(</span><span class="n">sub</span><span class="p">))</span><span class="w"></span>
+<span class="c">!</span>
+<span class="k">end program </span><span class="n">demo_c_funloc</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id23">
+<h3><strong>标准</strong><a class="headerlink" href="#id23" title="此标题的永久链接">#</a></h3>
+<p>Fortran 2003 及以后</p>
+</section>
+<section id="id24">
+<h3><strong>另见</strong><a class="headerlink" href="#id24" title="此标题的永久链接">#</a></h3>
+<p><a class="reference internal" href="#c-associated"><span class="std std-doc"><strong>c_associated</strong>(3)</span></a>,
+<a class="reference internal" href="#c-loc"><span class="std std-doc"><strong>c_loc</strong>(3)</span></a>,
+<a class="reference internal" href="#c-f-pointer"><span class="std std-doc"><strong>c_f_pointer</strong>(3)</span></a>,</p>
+<p><a class="reference internal" href="#c-f-procpointer"><span class="std std-doc"><strong>c_f_procpointer</strong>(3)</span></a>,
+<strong>iso_c_binding</strong>(3)</p>
+<section id="id25">
+<h4>fortran 语言内在描述<a class="headerlink" href="#id25" title="此标题的永久链接">#</a></h4>
+</section>
+</section>
+</section>
+<section id="c-loc">
+<h2>c_loc<a class="headerlink" href="#c-loc" title="此标题的永久链接">#</a></h2>
+<section id="id26">
+<h3><strong>名称</strong><a class="headerlink" href="#id26" title="此标题的永久链接">#</a></h3>
+<p><strong>c_loc</strong>(3) - [ISO_C_BINDING] 获取对象的C地址</p>
+</section>
+<section id="id27">
+<h3><strong>语法</strong><a class="headerlink" href="#id27" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id28">
+<h3><strong>说明</strong><a class="headerlink" href="#id28" title="此标题的永久链接">#</a></h3>
+<p><strong>c_loc(x)</strong> 确定参数的 C 地址。</p>
+</section>
+<section id="id29">
+<h3><strong>参数</strong><a class="headerlink" href="#id29" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>x</strong></dt><dd><p>Shall have either the <em>pointer</em> or <em>target</em> attribute. It shall not be a
+coindexed object. It shall either be a variable with interoperable
+type and kind type parameters, or be a scalar, nonpolymorphic
+variable with no length type parameters.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id30">
+<h3><strong>返回</strong><a class="headerlink" href="#id30" title="此标题的永久链接">#</a></h3>
+<p>返回值是 c_ptr 类型，包含参数的 C 地址。</p>
+</section>
+<section id="id31">
+<h3><strong>示例</strong><a class="headerlink" href="#id31" title="此标题的永久链接">#</a></h3>
+<p>示例程序：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">subroutine </span><span class="n">association_test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">,</span><span class="w"> </span><span class="kt">c_ptr</span>
+<span class="kt">   </span><span class="k">implicit none</span>
+<span class="k">   </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<span class="w">     </span><span class="k">if</span><span class="p">(</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">        </span><span class="k">stop</span><span class="w"> </span><span class="s1">&#39;b and a do not point to same target&#39;</span><span class="w"></span>
+<span class="w">   </span><span class="k">end subroutine </span><span class="n">association_test</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id32">
+<h3><strong>标准</strong><a class="headerlink" href="#id32" title="此标题的永久链接">#</a></h3>
+<p>Fortran 2003 及以后</p>
+</section>
+<section id="id33">
+<h3><strong>另见</strong><a class="headerlink" href="#id33" title="此标题的永久链接">#</a></h3>
+<p><a class="reference internal" href="#c-associated"><span class="std std-doc"><strong>c_associated</strong>(3)</span></a>,
+<a class="reference internal" href="#c-funloc"><span class="std std-doc"><strong>c_funloc</strong>(3)</span></a>,
+<a class="reference internal" href="#c-f-pointer"><span class="std std-doc"><strong>c_f_pointer</strong>(3)</span></a>,</p>
+<p><a class="reference internal" href="#c-f-procpointer"><span class="std std-doc"><strong>c_f_procpointer</strong>(3)</span></a>,
+<strong>iso_c_binding</strong>(3)</p>
+<section id="id34">
+<h4>fortran 语言内在描述<a class="headerlink" href="#id34" title="此标题的永久链接">#</a></h4>
+</section>
+</section>
+</section>
+<section id="c-sizeof">
+<h2>c_sizeof<a class="headerlink" href="#c-sizeof" title="此标题的永久链接">#</a></h2>
+<section id="id35">
+<h3><strong>名称</strong><a class="headerlink" href="#id35" title="此标题的永久链接">#</a></h3>
+<p><strong>c_sizeof</strong>(3) - [ISO_C_BINDING] 表达式的字节大小</p>
+</section>
+<section id="id36">
+<h3><strong>语法</strong><a class="headerlink" href="#id36" title="此标题的永久链接">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_sizeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id37">
+<h3><strong>说明</strong><a class="headerlink" href="#id37" title="此标题的永久链接">#</a></h3>
+<p><strong>c_sizeof(x)</strong> 计算表达式 <strong>x</strong> 占用的存储字节数。</p>
+</section>
+<section id="id38">
+<h3><strong>参数</strong><a class="headerlink" href="#id38" title="此标题的永久链接">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>x</strong></dt><dd><p>参数应该是一个可互操作的数据实体。</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id39">
+<h3><strong>返回</strong><a class="headerlink" href="#id39" title="此标题的永久链接">#</a></h3>
+<p>返回值是整数类型和系统相关类型 c<em>size_t（来自 _iso_c_binding</em> 模块）。它的值是参数占用的字节数。如果参数有 <em>pointer</em> 属性，则返回指向的存储区域的字节数。如果参数是具有 <em>pointer</em> 或 <em>allocatable</em> 成员的派生类型，则返回值不考虑这些成员指向的数据的大小。</p>
+</section>
+<section id="id40">
+<h3><strong>示例</strong><a class="headerlink" href="#id40" title="此标题的永久链接">#</a></h3>
+<p>示例程序：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_sizeof</span><span class="w"></span>
+<span class="k">use </span><span class="nb">iso_c_binding</span>
+<span class="k">implicit none</span>
+<span class="kt">real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nb">c_sizeof</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="nb">c_sizeof</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_c_sizeof</span><span class="w"></span>
+</pre></div>
+</div>
+<p>结果：</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    T
+</pre></div>
+</div>
+<p>该示例将打印 .true。除非您使用的平台默认 <em>real</em> 变量被异常填充。</p>
+</section>
+<section id="id41">
+<h3><strong>标准</strong><a class="headerlink" href="#id41" title="此标题的永久链接">#</a></h3>
+<p>Fortran 2008</p>
+</section>
+<section id="id42">
+<h3><strong>另见</strong><a class="headerlink" href="#id42" title="此标题的永久链接">#</a></h3>
+<p><span class="xref myst"><strong>storage_size</strong>(3)</span></p>
+<section id="id43">
+<h4>fortran 语言内在描述<a class="headerlink" href="#id43" title="此标题的永久链接">#</a></h4>
+</section>
+</section>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2020-2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

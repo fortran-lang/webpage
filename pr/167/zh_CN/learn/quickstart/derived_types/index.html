@@ -1,0 +1,1070 @@
+
+<!DOCTYPE html>
+
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>派生类型 &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../../../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/translations.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <link rel="index" title="索引" href="../../../genindex/" />
+    <link rel="search" title="搜索" href="../../../search/" />
+    <link rel="next" title="构建程序" href="../../building_programs/" />
+    <link rel="prev" title="组织代码结构" href="../organising_code/" /> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+    
+    <div class="dropdown" id="version_switcher">
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    zh_CN
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables learn/quickstart/derived_types and {'json_url': 'https://fortran-lang.org/', 'version_match': 'zh_CN'}.
+-->
+
+<script type="text/javascript">
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "learn/quickstart/derived_types",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
+
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "learn/quickstart/derived_types";
+    const indexFilePath = "../../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "ru",
+        version: "ru",
+        url: "../ru/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`,
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
+
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "zh_CN") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
+</script>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../">
+  学习
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../compilers/">
+  编译器
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../community/">
+  社区
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../packages/">
+  Packages
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../news/">
+  新闻
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/en/news/atom.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="搜索" aria-label="Search" autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../os_setup/">
+   设置操作系统
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/choose_compiler/">
+     Choosing a compiler
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/install_gfortran/">
+     Installing GFortran
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/text_editors/">
+     Text Editors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/ides/">
+     IDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/tips/">
+     Smart Tips
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../">
+   快速入门教程
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../hello_world/">
+     Hello world
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../variables/">
+     变量
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../arrays_strings/">
+     数组和字符串
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../operators_control_flow/">
+     操作符和流程控制
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../organising_code/">
+     组织代码结构
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     派生类型
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../building_programs/">
+   构建程序
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/compiling_source/">
+     编译源代码
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/linking_pieces/">
+     链接对象
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/runtime_libraries/">
+     运行时库
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/include_files/">
+     包含文件和模块
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/managing_libraries/">
+     管理库（静态和动态库）
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/build_tools/">
+     构建工具
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/project_make/">
+     一个make的介绍
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/distributing/">
+     分发您的程序
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../best_practices/">
+   Fortran最佳实践
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/style_guide/">
+     Fortran风格指南
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/floating_point/">
+     浮点数
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/integer_division/">
+     整数除法
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/modules_programs/">
+     模块和程序
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/arrays/">
+     数组
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/multidim_arrays/">
+     多维数组
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/element_operations/">
+     数组的逐元操作
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/allocatable_arrays/">
+     可分配数组
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/file_io/">
+     文件输入/输出
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/callbacks/">
+     回调
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/type_casting/">
+     回调中的类型转换
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../intrinsics/">
+   Fortran 内置函数
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../intrinsics/array/">
+     数组的属性和属性
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../intrinsics/bit/">
+     位级别查询和操作
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../intrinsics/character/">
+     操作
+     <em>
+      character
+     </em>
+     变量的基本过程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../intrinsics/compiler/">
+     有关用于构建的编译器和编译器选项的信息
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../intrinsics/cfi/">
+     绑定到 C 接口的过程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../intrinsics/math/">
+     一般数学函数
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../intrinsics/model/">
+     控制和查询当前数值模型
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../intrinsics/numeric/">
+     数值的操作和属性
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../intrinsics/parallel/">
+     使用 co_arrays 和 co_indexed 数组进行并行编程
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../intrinsics/state/">
+     一般和杂项内置函数
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../intrinsics/system/">
+     Accessing external system information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../intrinsics/transform/">
+     Matrix multiplication, dot product, and array shifts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../intrinsics/type/">
+     Types and kinds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
+     GNU 自由文档许可证
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+        
+<br />
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#a-quick-take-on-derived-types">
+   快速了解派生类型
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#derived-types-in-detail">
+   派生类型详解
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#options-to-declare-a-derived-type">
+   声明派生类型的选项
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#options-to-declare-members-of-a-derived-type">
+   用于声明派生类型成员的选项
+  </a>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#type-bound-procedures">
+   类型绑定过程
+  </a>
+ </li>
+</ul>
+</nav> 
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                 <section class="tex2jax_ignore mathjax_ignore" id="derived-types">
+<h1>派生类型<a class="headerlink" href="#derived-types" title="此标题的永久链接">#</a></h1>
+<p>正如前面在 <a class="reference internal" href="../variables/"><span class="doc std std-doc">Variables</span></a> 中所讨论的，Fortran 中有五种内置数据类型。 _派生类型_是一种特殊形式的数据类型，可以封装其他内置类型以及其他派生类型。它可以被认为等同于 C 和 C++ 编程语言中的 <em>struct</em>。</p>
+<section id="a-quick-take-on-derived-types">
+<h2>快速了解派生类型<a class="headerlink" href="#a-quick-take-on-derived-types" title="此标题的永久链接">#</a></h2>
+<p>这是一个基本派生类型的示例：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_pair</span><span class="w"></span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="k">end type</span><span class="w"></span>
+</pre></div>
+</div>
+<p>创建类型为 <code class="docutils literal notranslate"><span class="pre">t_pair</span></code> 的变量并访问其成员的语法是：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! Declare</span>
+<span class="k">type</span><span class="p">(</span><span class="n">t_pair</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pair</span><span class="w"></span>
+<span class="c">! Initialize</span>
+<span class="n">pair</span><span class="p">%</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="n">pair</span><span class="p">%</span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"></span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>百分比符号 <code class="docutils literal notranslate"><span class="pre">%</span></code> 用于访问派生类型的成员。</p>
+</div></blockquote>
+<p>在上面的代码片段中，我们声明了一个派生类型的实例并显式初始化了它的成员。你还可以通过调用派生类型构造函数来初始化派生类型成员。</p>
+<p>使用派生类型构造函数的示例：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_pair</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="w">      </span><span class="c">! Initialize with positional arguments</span>
+<span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_pair</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">)</span><span class="w">  </span><span class="c">! Initialize with keyword arguments</span>
+<span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_pair</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">0.5</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="c">! Keyword arguments can go in any order</span>
+</pre></div>
+</div>
+<p>默认初始化示例：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_pair</span><span class="w"></span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"></span>
+<span class="k">end type</span>
+
+<span class="k">type</span><span class="p">(</span><span class="n">t_pair</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pair</span><span class="w"></span>
+<span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_pair</span><span class="p">()</span><span class="w">       </span><span class="c">! pair%i is 1, pair%x is 0.5</span>
+<span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_pair</span><span class="p">(</span><span class="n">i</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w">    </span><span class="c">! pair%i is 2, pair%x is 0.5</span>
+<span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_pair</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">2.7</span><span class="p">)</span><span class="w">  </span><span class="c">! pair%i is 1, pair%x is 2.7</span>
+</pre></div>
+</div>
+</section>
+<section id="derived-types-in-detail">
+<h2>派生类型详解<a class="headerlink" href="#derived-types-in-detail" title="此标题的永久链接">#</a></h2>
+<p>具有所有可选属性的派生类型的完整语法如下所示：</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="p">[,</span><span class="n">attribute</span><span class="o">-</span><span class="nb">list</span><span class="p">]</span> <span class="p">::</span> <span class="n">name</span> <span class="p">[(</span><span class="n">parameterized</span><span class="o">-</span><span class="n">declaration</span><span class="o">-</span><span class="nb">list</span><span class="p">)]</span>
+  <span class="p">[</span><span class="n">parameterized</span><span class="o">-</span><span class="n">definition</span><span class="o">-</span><span class="n">statements</span><span class="p">]</span>
+  <span class="p">[</span><span class="n">private</span> <span class="n">statement</span> <span class="ow">or</span> <span class="n">sequence</span> <span class="n">statement</span><span class="p">]</span>
+  <span class="p">[</span><span class="n">member</span><span class="o">-</span><span class="n">variables</span><span class="p">]</span>
+<span class="n">contains</span>
+  <span class="p">[</span><span class="nb">type</span><span class="o">-</span><span class="n">bound</span><span class="o">-</span><span class="n">procedures</span><span class="p">]</span>
+<span class="n">end</span> <span class="nb">type</span>
+</pre></div>
+</div>
+</section>
+<section id="options-to-declare-a-derived-type">
+<h2>声明派生类型的选项<a class="headerlink" href="#options-to-declare-a-derived-type" title="此标题的永久链接">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">attribute-list</span></code> 可能指的是以下内容：</p>
+<ul class="simple">
+<li><p>_访问类型_是 <code class="docutils literal notranslate"><span class="pre">公共</span></code> 或 <code class="docutils literal notranslate"><span class="pre">私有</span></code> 的</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">bind(c)</span></code> 提供与 C 编程语言的互操作性</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">extends(</span></code><em>parent</em><code class="docutils literal notranslate"><span class="pre">)</span></code>，其中_parent_是先前声明的派生类型的名称，当前派生类型将继承其所有成员和功能</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">abstract</span></code> —— 一个面向对象的特征，在高级编程教程中涉及到</p></li>
+</ul>
+<blockquote>
+<div><p>如果使用属性 <code class="docutils literal notranslate"><span class="pre">bind(c)</span></code> 或语句 <code class="docutils literal notranslate"><span class="pre">sequence</span></code>，那么派生类型不能有属性 <code class="docutils literal notranslate"><span class="pre">extends</span></code>，反之亦然。</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">sequence</span></code> 属性仅可用于声明以下成员应按照它们在派生类型中定义的相同顺序被访问。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">sequence</span></code> 的例子：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_pair</span><span class="w"></span>
+<span class="w">  </span><span class="k">sequence</span>
+<span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="k">end type</span><span class="w"></span>
+<span class="c">! Initialize</span>
+<span class="k">type</span><span class="p">(</span><span class="n">t_pair</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pair</span><span class="w"></span>
+<span class="n">pair</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_pair</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mf">0.5</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>使用语句 <code class="docutils literal notranslate"><span class="pre">sequence</span></code> 的前提是下面定义的数据类型既不是 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 也不是 <code class="docutils literal notranslate"><span class="pre">pointer</span></code> 类型。 此外，它并不意味着这些数据类型将以任何特定的形式存储在内存中，也就是说，与 <code class="docutils literal notranslate"><span class="pre">contiguous</span></code> 属性没有关系。</p>
+</div></blockquote>
+<p>如果使用_访问类型_属性 <code class="docutils literal notranslate"><span class="pre">public</span></code> 和 <code class="docutils literal notranslate"><span class="pre">private</span></code>，则声明所有在下面声明的成员变量将被自动分配相应的属性。</p>
+<p>属性<code class="docutils literal notranslate"><span class="pre">bind(c)</span></code>是用来实现 Fortran 的派生类型和 C 的结构体之间的兼容性。</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">bind(c)</span></code> 的例子：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">f_to_c</span><span class="w"></span>
+<span class="w">  </span><span class="k">use </span><span class="n">iso_c_bindings</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="kt">c_int</span>
+<span class="kt">  </span><span class="k">implicit none</span>
+
+<span class="k">  type</span><span class="p">,</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">f_type</span><span class="w"></span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">(</span><span class="kt">c_int</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">  </span><span class="k">end type</span>
+
+<span class="k">end module </span><span class="n">f_to_c</span><span class="w"></span>
+</pre></div>
+</div>
+<p>匹配以下 C 结构体类型：</p>
+<div class="highlight-c notranslate"><div class="highlight"><pre><span></span><span class="k">struct</span><span class="w"> </span><span class="nc">c_struct</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="p">};</span><span class="w"></span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>一个具有 <code class="docutils literal notranslate"><span class="pre">bind(c)</span></code> 属性的 Fortran 派生类型不能具有 <code class="docutils literal notranslate"><span class="pre">sequence</span></code> 和 <code class="docutils literal notranslate"><span class="pre">extends</span></code> 属性。 此外，它不能包含任何 Fortran <code class="docutils literal notranslate"><span class="pre">pointer</span></code> 或 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 类型。</p>
+</div></blockquote>
+<p><code class="docutils literal notranslate"><span class="pre">parameterized-declaration-list</span></code> 是一个可选的特性。 如果使用，那么参数必须列在 <code class="docutils literal notranslate"><span class="pre">[parameterized-definition-statements]</span></code> 的位置上，并且必须是 <code class="docutils literal notranslate"><span class="pre">len</span></code> 或 <code class="docutils literal notranslate"><span class="pre">kind</span></code> 参数，或者两者都是。</p>
+<p>具有 <code class="docutils literal notranslate"><span class="pre">parameterized-declaration-list</span></code> 和 <code class="docutils literal notranslate"><span class="pre">public</span></code> 属性的派生类型的例子：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">m_matrix</span><span class="w"></span>
+<span class="w"> </span><span class="k">implicit none</span>
+<span class="k"> private</span>
+
+<span class="k"> type</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_matrix</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">cols</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">k</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">cols</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">values</span><span class="w"></span>
+<span class="w"> </span><span class="k">end type</span>
+
+<span class="k">end module </span><span class="n">m_matrix</span><span class="w"></span>
+
+<span class="k">program </span><span class="n">test_matrix</span><span class="w"></span>
+<span class="w"> </span><span class="k">use </span><span class="n">m_matrix</span><span class="w"></span>
+<span class="w"> </span><span class="k">implicit none</span>
+
+<span class="k"> type</span><span class="p">(</span><span class="n">t_matrix</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">cols</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">m</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">test_matrix</span><span class="w"></span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>在这个例子中，参数 <code class="docutils literal notranslate"><span class="pre">k</span></code> 已经被分配了一个默认值 <code class="docutils literal notranslate"><span class="pre">kind(0.0)</span></code>（单精度浮点）。 因此，它可以被省略，就像这里的主程序内部声明一样。</p>
+</div></blockquote>
+<blockquote>
+<div><p>默认情况下，派生类型和它们的成员是公共的。 然而，在这个例子中，属性 <code class="docutils literal notranslate"><span class="pre">private</span></code> 被用在模块的开头。 因此，除非明确声明为 <code class="docutils literal notranslate"><span class="pre">public</span></code>，否则模块内的一切都将默认为 <code class="docutils literal notranslate"><span class="pre">private</span></code>。 如果在上面的例子中，<code class="docutils literal notranslate"><span class="pre">t_matrix</span></code> 类型没有被赋予 <code class="docutils literal notranslate"><span class="pre">public</span></code> 属性，那么编译器会在 <code class="docutils literal notranslate"><span class="pre">program</span> <span class="pre">test</span></code> 中抛出一个错误。</p>
+</div></blockquote>
+<p>F2003 标准中增加了 <code class="docutils literal notranslate"><span class="pre">extends</span></code> 属性，它引入了面向对象范式（OOP）的一个重要特征，即继承。 它通过让子类型从可扩展的父类型派生出来，实现了代码的可重用性。 <code class="docutils literal notranslate"><span class="pre">type,</span> <span class="pre">extends(parent)</span> <span class="pre">::</span> <span class="pre">child</span></code>。 这里，<code class="docutils literal notranslate"><span class="pre">child</span></code> 继承了 <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">::</span> <span class="pre">parent</span></code> 的所有成员和功能。</p>
+<p>有属性 <code class="docutils literal notranslate"><span class="pre">extends</span></code> 的例子：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">m_employee</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  private</span>
+<span class="k">  public </span><span class="n">t_date</span><span class="p">,</span><span class="w"> </span><span class="n">t_address</span><span class="p">,</span><span class="w"> </span><span class="n">t_person</span><span class="p">,</span><span class="w"> </span><span class="n">t_employee</span><span class="w"></span>
+<span class="w">  </span><span class="c">! Note another way of using the public attribute:</span>
+<span class="w">  </span><span class="c">! gathering all public data types in one place.</span>
+
+<span class="w">  </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_date</span><span class="w"></span>
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="w"></span>
+<span class="w">  </span><span class="k">end type</span>
+
+<span class="k">  type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_address</span><span class="w"></span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="n">road_name</span><span class="w"></span>
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">house_number</span><span class="w"></span>
+<span class="w">  </span><span class="k">end type</span>
+
+<span class="k">  type</span><span class="p">,</span><span class="w"> </span><span class="k">extends</span><span class="p">(</span><span class="n">t_address</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_person</span><span class="w"></span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">e_mail</span><span class="w"></span>
+<span class="w">  </span><span class="k">end type</span>
+
+<span class="k">  type</span><span class="p">,</span><span class="w"> </span><span class="k">extends</span><span class="p">(</span><span class="n">t_person</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">t_employee</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">t_date</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">hired_date</span><span class="w"></span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">position</span><span class="w"></span>
+<span class="w">    </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">monthly_salary</span><span class="w"></span>
+<span class="w">  </span><span class="k">end type</span>
+
+<span class="k">end module </span><span class="n">m_employee</span><span class="w"></span>
+
+<span class="k">program </span><span class="n">test_employee</span><span class="w"></span>
+<span class="w">  </span><span class="k">use </span><span class="n">m_employee</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  type</span><span class="p">(</span><span class="n">t_employee</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">employee</span><span class="w"></span>
+
+<span class="w">  </span><span class="c">! Initialization</span>
+
+<span class="w">  </span><span class="c">! t_employee has access to type(t_date) members not because of extends</span>
+<span class="w">  </span><span class="c">! but because a type(t_date) was declared within t_employee.</span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">hired_date</span><span class="p">%</span><span class="n">year</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">2020</span><span class="w"></span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">hired_date</span><span class="p">%</span><span class="n">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">hired_date</span><span class="p">%</span><span class="n">day</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w"></span>
+
+<span class="w">  </span><span class="c">! t_employee has access to t_person, and inherits its members due to extends.</span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">last_name</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Doe&#39;</span><span class="w"></span>
+
+<span class="w">  </span><span class="c">! t_employee has access to t_address, because it inherits from t_person,</span>
+<span class="w">  </span><span class="c">! which in return inherits from t_address.</span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">city</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;London&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">road_name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BigBen&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">house_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+
+<span class="w">  </span><span class="c">! t_employee has access to its defined members.</span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">position</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Intern&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">monthly_salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">test_employee</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="options-to-declare-members-of-a-derived-type">
+<h2>用于声明派生类型成员的选项<a class="headerlink" href="#options-to-declare-members-of-a-derived-type" title="此标题的永久链接">#</a></h2>
+<p><code class="docutils literal notranslate"><span class="pre">[member-variables]</span></code> 指的是所有成员数据类型的声明。 这些数据类型可以是任何内置的数据类型，和/或其他派生类型，正如在上述例子中已经展示的。 然而，成员变量可以有自己广泛的语法，其形式为：<code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">[,member-attributes]</span> <span class="pre">::</span> <span class="pre">name[attr-dependent-spec][init]</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">type</span></code>：任何内置类型或其他派生类型</p>
+<p><code class="docutils literal notranslate"><span class="pre">member-attributes</span></code>（可选）：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">public</span></code> 或 <code class="docutils literal notranslate"><span class="pre">private</span></code> 访问属性</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">protected</span></code> 访问属性</p></li>
+<li><p>带有或不带有 <code class="docutils literal notranslate"><span class="pre">dimension</span></code> 的 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 以指定动态数组</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">pointer</span></code>，<code class="docutils literal notranslate"><span class="pre">codimension</span></code>，<code class="docutils literal notranslate"><span class="pre">contiguous</span></code>，<code class="docutils literal notranslate"><span class="pre">volatile</span></code>，<code class="docutils literal notranslate"><span class="pre">asynchronous</span></code></p></li>
+</ul>
+<p>常见案例示例：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_example</span><span class="w"></span>
+<span class="w">  </span><span class="c">! 1st case: simple built-in type with access attribute and [init]</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">private</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w"></span>
+<span class="w">  </span><span class="c">! private hides it from use outside of the t_example&#39;s scope.</span>
+<span class="w">  </span><span class="c">! The default initialization [=0] is the [init] part.</span>
+
+<span class="w">  </span><span class="c">! 2nd case: protected</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">protected</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">  </span><span class="c">! In contrary to private, protected allows access to i assigned value outside of t_example</span>
+<span class="w">  </span><span class="c">! but is not definable, i.e. a value may be assigned to i only within t_example.</span>
+
+<span class="w">  </span><span class="c">! 3rd case: dynamic 1-D array</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="w">  </span><span class="c">! the same as</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">  </span><span class="c">! This parentheses&#39; usage implies dimension(:) and is one of the possible [attr-dependent-spec].</span>
+<span class="k">end type</span><span class="w"></span>
+</pre></div>
+</div>
+<blockquote>
+<div><p>以下属性：<code class="docutils literal notranslate"><span class="pre">pointer</span></code>、<code class="docutils literal notranslate"><span class="pre">codimension</span></code>、<code class="docutils literal notranslate"><span class="pre">contiguous</span></code>、<code class="docutils literal notranslate"><span class="pre">volatile</span></code>、<code class="docutils literal notranslate"><span class="pre">asynchronous</span></code> 是_快速入门_教程中不会涉及的高级特性。然而，在这里展示它们，是为了让读者知道这些特征确实存在并能够识别它们。这些特性将在接下来的《高级编程》迷你书中详细介绍。</p>
+</div></blockquote>
+</section>
+<section id="type-bound-procedures">
+<h2>类型绑定过程<a class="headerlink" href="#type-bound-procedures" title="此标题的永久链接">#</a></h2>
+<p>派生类型可以包含_绑定_到它的函数或子例程。我们将它们称为_类型绑定过程_。类型绑定过程遵循 <code class="docutils literal notranslate"><span class="pre">contains</span></code> 语句，而该语句又遵循所有成员变量声明。</p>
+<blockquote>
+<div><p>如果不深入研究现代 Fortran 的 OOP 特性，就不可能完整地描述类型绑定过程。现在我们将专注于一个简单的例子来展示它们的基本用法。</p>
+</div></blockquote>
+<p>这是具有基本类型绑定过程的派生类型的示例：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">m_shapes</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  private</span>
+<span class="k">  public </span><span class="n">t_square</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_square</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">side</span><span class="w"></span>
+<span class="w">  </span><span class="k">contains</span>
+<span class="k">    procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">area</span><span class="w">  </span><span class="c">! procedure declaration</span>
+<span class="w">  </span><span class="k">end type</span>
+
+<span class="k">contains</span><span class="w"></span>
+
+<span class="w">  </span><span class="c">! Procedure definition</span>
+<span class="w">  </span><span class="kt">real </span><span class="k">function </span><span class="n">area</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="p">(</span><span class="n">t_square</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">self</span><span class="w"></span>
+<span class="w">    </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">%</span><span class="n">side</span><span class="o">**</span><span class="mi">2</span><span class="w"></span>
+<span class="w">  </span><span class="k">end function</span>
+
+<span class="k">end module </span><span class="n">m_shapes</span><span class="w"></span>
+
+<span class="k">program </span><span class="n">main</span><span class="w"></span>
+<span class="w">  </span><span class="k">use </span><span class="n">m_shapes</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span><span class="w"></span>
+
+<span class="w">  </span><span class="c">! Variables&#39; declaration</span>
+<span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">t_square</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sq</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">side</span><span class="w"></span>
+
+<span class="w">  </span><span class="c">! Variables&#39; initialization</span>
+<span class="w">  </span><span class="n">side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"></span>
+<span class="w">  </span><span class="n">sq</span><span class="p">%</span><span class="n">side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">side</span><span class="w"></span>
+
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sq</span><span class="p">%</span><span class="n">area</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="c">! self does not appear here, it has been passed implicitly</span>
+
+<span class="w">  </span><span class="c">! Do stuff with x...</span>
+
+<span class="k">end program </span><span class="n">main</span><span class="w"></span>
+</pre></div>
+</div>
+<p>什么是新的：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">self</span></code> 是一个任意名称，我们选择它来表示类型绑定函数内的派生类型 <code class="docutils literal notranslate"><span class="pre">t_square</span></code> 的实例。这允许我们访问其成员并在调用类型绑定过程时自动将其作为参数传递。</p></li>
+<li><p>我们现在在 <code class="docutils literal notranslate"><span class="pre">area</span></code> 函数的接口中使用 <code class="docutils literal notranslate"><span class="pre">class(t_square)</span></code> 而不是 <code class="docutils literal notranslate"><span class="pre">type(t_square)</span></code>。这允许我们使用扩展 <code class="docutils literal notranslate"><span class="pre">t_square</span></code> 的任何派生类型调用 <code class="docutils literal notranslate"><span class="pre">area</span></code> 函数。关键字 <code class="docutils literal notranslate"><span class="pre">class</span></code> 引入了 OOP 特性多态性。</p></li>
+</ul>
+<p>在上面的例子中，类型绑定过程 <code class="docutils literal notranslate"><span class="pre">area</span></code> 被定义为一个函数，并且只能在表达式中调用，例如 <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">sq%area()</span></code> 或 <code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">*,</span> <span class="pre">sq%area()</span></code>。如果将其定义为子例程，则可以从其自己的 <code class="docutils literal notranslate"><span class="pre">call</span></code> 语句中调用它：</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! Change within module</span>
+<span class="k">contains</span>
+<span class="k">  subroutine </span><span class="n">area</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="p">(</span><span class="n">t_square</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">self</span><span class="w"></span>
+<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">%</span><span class="n">side</span><span class="o">**</span><span class="mi">2</span><span class="w"></span>
+<span class="w">  </span><span class="k">end subroutine</span><span class="w"></span>
+
+<span class="c">! ...</span>
+
+<span class="c">! Change within main program</span>
+<span class="k">call </span><span class="n">sq</span><span class="p">%</span><span class="n">area</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+
+<span class="c">! Do stuff with x...</span>
+</pre></div>
+</div>
+<p>与类型绑定函数的示例相比，我们现在有两个参数：</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">class(t_square),</span> <span class="pre">intent(in)</span> <span class="pre">::</span> <span class="pre">self</span></code> —— 派生类型本身的实例</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real,</span> <span class="pre">intent(out)</span> <span class="pre">::</span> <span class="pre">x</span></code> —— 用于存储计算面积并返回给调用者</p></li>
+</ul>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2020-2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

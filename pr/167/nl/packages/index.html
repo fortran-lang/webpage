@@ -1,0 +1,568 @@
+
+<!DOCTYPE html>
+
+<html lang="nl">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Packages &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Zoeken" href="../search/" />
+    <link rel="next" title="Libraries for advanced data types and container classes" href="data-types/" />
+    <link rel="prev" title="Fortran-lang.org package index" href="../community/packages/" /> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../">
+  
+  
+  
+  
+    <img src="../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+    
+    <div class="dropdown" id="version_switcher">
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    nl
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables packages and {'json_url': 'https://fortran-lang.org/', 'version_match': 'nl'}.
+-->
+
+<script type="text/javascript">
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "packages",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
+
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "packages";
+    const indexFilePath = "../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "ru",
+        version: "ru",
+        url: "../ru/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`,
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
+
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "nl") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
+</script>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../learn/">
+  Learn
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../compilers/">
+  Compilers
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../community/">
+  Community
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  Packages
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../news/">
+  News
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/en/news/atom.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Zoeken" aria-label="Search" autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<div class="sidebar-primary col-12 col-md-1 col-xl-2 bd-sidebar no-sidebar"></div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-md-block col-md-2 bd-toc">
+  
+    
+    <div class="toc-item">
+         
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-8">
+              
+              <article class="bd-article" role="main">
+                 <section class="tex2jax_ignore mathjax_ignore" id="packages">
+<h1 class="sd-d-none">Packages<a class="headerlink" href="#packages" title="Permalink to this heading">#</a></h1>
+<div class="sd-text-center sd-fs-2 sd-font-weight-bold sd-text-primary docutils">
+<p>Fortran Packages</p>
+</div>
+<div class="sd-text-center sd-fs-3 docutils">
+<p>A rich ecosystem of high-performance code</p>
+</div>
+<div class="sd-fs-3 sd-font-weight-bold sd-text-primary docutils">
+<p>Find a Package</p>
+</div>
+<form class="bd-search d-flex align-items-center" align="center" action="../search/index.html" method="get">  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search for a package" aria-label="Search" autocomplete="off" style='margin: auto;text-align: center;width:40em;'> </form>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-none docutils">
+<div class="sd-card-body docutils">
+<div class="sd-fs-3 docutils">
+<p class="sd-card-text">Package index</p>
+</div>
+<div class="sd-fs-6 docutils">
+<p class="sd-card-text">The fortran-lang package index is community-maintained and lists open source Fortran-related projects.This includes large-scale scientific applications,function libraries, Fortran interfaces, and developer tools.<br>
+See <a class="reference internal" href="../community/packages/"><span class="doc std std-doc">here</span></a> for how to get your project listed. <br>
+Use the box above to search the package index by keyword, package name, or author username.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-none docutils">
+<div class="sd-card-body docutils">
+<div class="sd-fs-3 docutils">
+<p class="sd-card-text">Featured topics</p>
+</div>
+<p class="sd-card-text"><a href='../search/index.html?q=mpi'>mpi,</a>
+<a href='../search/index.html?q=electronic-structure'>electronic-structure,</a>
+<a href='../search/index.html?q=molecular-dynamics'>molecular-dynamics,</a>
+<a href='../search/index.html?q=quantum-chemistry'>quantum-chemistry,</a>
+<a href='../search/index.html?q=linear-algebra'>linear-algebra,</a>
+<a href='../search/index.html?q=openmp'>openmp,</a>
+<a href='../search/index.html?q=hpc'>hpc,</a>
+<a href='../search/index.html?q=ode'>ode,</a>
+<a href='../search/index.html?q=density-functional-theory'>density-functional-theory,</a>
+<a href='../search/index.html?q=python'>python,</a>
+<a href='../search/index.html?q=gpu'>gpu,</a>
+<a href='../search/index.html?q=interpolation'>interpolation,</a>
+<a href='../search/index.html?q=parallel'>parallel,</a>
+<a href='../search/index.html?q=runge'>runge,</a>
+<a href='../search/index.html?q=kutta'>kutta,</a>
+<a href='../search/index.html?q=physics'>physics,</a>
+<a href='../search/index.html?q=cfd'>cfd,</a>
+<a href='../search/index.html?q=computational-fluid-dynamics'>computational-fluid-dynamics,</a>
+<a href='../search/index.html?q=computational-chemistry'>computational-chemistry,</a>
+<a href='../search/index.html?q=parser'>parser,</a>
+<a href='../search/index.html?q=testing'>testing,</a>
+<a href='../search/index.html?q=lua'>lua,</a>
+<a href='../search/index.html?q=integral'>integral,</a>
+<a href='../search/index.html?q=integration'>integration,</a>
+<a href='../search/index.html?q=finite'>finite,</a>
+<a href='../search/index.html?q=fft'>fft,</a>
+<a href='../search/index.html?q=spline'>spline,</a>
+<a href='../search/index.html?q=hdf5'>hdf5,</a>
+<a href='../search/index.html?q=array'>array,</a>
+<a href='../search/index.html?q=errors'>errors,</a>
+<a href='../search/index.html?q=random'>random,</a>
+<a href='../search/index.html?q=unit'>unit,</a>
+<a href='../search/index.html?q=list'>list,</a>
+<a href='../search/index.html?q=posix'>posix,</a>
+<a href='../search/index.html?q=cpp'>cpp,</a>
+<a href='../search/index.html?q=formatter'>formatter,</a>
+<a href='../search/index.html?q=interface-generator'>interface-generator,</a>
+<a href='../search/index.html?q=container'>container,</a>
+<a href='../search/index.html?q=hash'>hash,</a>
+<a href='../search/index.html?q=table'>table,</a>
+<a href='../search/index.html?q=split'>split,</a>
+<a href='../search/index.html?q=json'>json,</a>
+<a href='../search/index.html?q=interface'>interface,</a>
+<a href='../search/index.html?q=contour'>contour,</a>
+<a href='../search/index.html?q=pde'>pde,</a>
+<a href='../search/index.html?q=coarray'>coarray,</a>
+<a href='../search/index.html?q=acm-toms'>acm-toms,</a>
+<a href='../search/index.html?q=element'>element,</a>
+<a href='../search/index.html?q=turbulence'>turbulence,</a>
+<a href='../search/index.html?q=fluid-dynamics'>fluid-dynamics,</a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-fs-3 sd-font-weight-bold sd-text-primary docutils">
+<p>Browse Packages by Category</p>
+</div>
+<section id="data-types-and-containers">
+<h2><a class="reference internal" href="data-types/"><span class="doc std std-doc">Data types and containers</span></a><a class="headerlink" href="#data-types-and-containers" title="Permalink to this heading">#</a></h2>
+<p>Libraries for advanced data types and container classes</p>
+</section>
+<section id="interface-libraries">
+<h2><a class="reference internal" href="interfaces/"><span class="doc std std-doc">Interface libraries</span></a><a class="headerlink" href="#interface-libraries" title="Permalink to this heading">#</a></h2>
+<p>Libraries that interface with other systems, languages, or devices</p>
+</section>
+<section id="libraries">
+<h2><a class="reference internal" href="libraries/"><span class="doc std std-doc">Libraries</span></a><a class="headerlink" href="#libraries" title="Permalink to this heading">#</a></h2>
+<p>Fortran libraries for general programming tasks</p>
+</section>
+<section id="input-output-and-parsing">
+<h2><a class="reference internal" href="io/"><span class="doc std std-doc">Input, output and parsing</span></a><a class="headerlink" href="#input-output-and-parsing" title="Permalink to this heading">#</a></h2>
+<p>Libraries for reading, writing and parsing files and inputs</p>
+</section>
+<section id="graphics-plotting-and-user-interfaces">
+<h2><a class="reference internal" href="graphics/"><span class="doc std std-doc">Graphics, plotting and user interfaces</span></a><a class="headerlink" href="#graphics-plotting-and-user-interfaces" title="Permalink to this heading">#</a></h2>
+<p>Libraries for plotting data, handling images and generating user interfaces</p>
+</section>
+<section id="examples-and-templates">
+<h2><a class="reference internal" href="examples/"><span class="doc std std-doc">Examples and templates</span></a><a class="headerlink" href="#examples-and-templates" title="Permalink to this heading">#</a></h2>
+<p>Demonstration codes and templates for Fortran</p>
+</section>
+<section id="numerical-projects">
+<h2><a class="reference internal" href="numerical/"><span class="doc std std-doc">Numerical projects</span></a><a class="headerlink" href="#numerical-projects" title="Permalink to this heading">#</a></h2>
+<p>Fortran libraries for linear algebra, optimization, root-finding etc.</p>
+</section>
+<section id="programming-utilities">
+<h2><a class="reference internal" href="programming/"><span class="doc std std-doc">Programming utilities</span></a><a class="headerlink" href="#programming-utilities" title="Permalink to this heading">#</a></h2>
+<p>Error handling, logging, documentation and testing</p>
+</section>
+<section id="characters-and-strings">
+<h2><a class="reference internal" href="strings/"><span class="doc std std-doc">Characters and strings</span></a><a class="headerlink" href="#characters-and-strings" title="Permalink to this heading">#</a></h2>
+<p>Libraries for manipulating characters and strings</p>
+</section>
+<section id="scientific-codes">
+<h2><a class="reference internal" href="scientific/"><span class="doc std std-doc">Scientific Codes</span></a><a class="headerlink" href="#scientific-codes" title="Permalink to this heading">#</a></h2>
+<p>Applications and libraries for applied mathematical and scientific problems</p>
+<p>See <a class="reference internal" href="../community/packages/"><span class="doc std std-doc">package index guidelines</span></a> for how to get your project listed.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2020-2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

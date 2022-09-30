@@ -1,0 +1,504 @@
+
+<!DOCTYPE html>
+
+<html lang="fr">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+
+    <title>Compilateurs &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../" id="documentation_options" src="../_static/documentation_options.js"></script>
+    <script src="../_static/jquery.js"></script>
+    <script src="../_static/underscore.js"></script>
+    <script src="../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../_static/doctools.js"></script>
+    <script src="../_static/clipboard.min.js"></script>
+    <script src="../_static/copybutton.js"></script>
+    <script src="../_static/translations.js"></script>
+    <script src="../_static/design-tabs.js"></script>
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Recherche" href="../search/" />
+    <link rel="next" title="Communauté" href="../community/" />
+    <link rel="prev" title="Types and kinds" href="../learn/intrinsics/type/" /> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../">
+  
+  
+  
+  
+    <img src="../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+    
+    <div class="dropdown" id="version_switcher">
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    fr
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables compilers and {'json_url': 'https://fortran-lang.org/', 'version_match': 'fr'}.
+-->
+
+<script type="text/javascript">
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "compilers",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
+
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "compilers";
+    const indexFilePath = "../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "en",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "de",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "es",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "fr",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "nl",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pt",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "ru",
+        version: "ru",
+        url: "../ru/",
+      },
+      {
+        name: "zh_CN",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`,
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
+
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "fr") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
+</script>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../learn/">
+  Apprendre
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="current reference internal nav-link" href="#">
+  Compilateurs
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../community/">
+  Communauté
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../packages/">
+  Paquets
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../news/">
+  Actualités
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/en/news/atom.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Recherche" aria-label="Search" autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<div class="sidebar-primary col-12 col-md-1 col-xl-2 bd-sidebar no-sidebar"></div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-md-block col-md-2 bd-toc">
+  
+    
+    <div class="toc-item">
+         
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-8">
+              
+              <article class="bd-article" role="main">
+                 <p style="text-align: center;font-size:36px;color:#734f96;"><b>Fortran Compilers</b></p>
+<p style="text-align: center;font-size:24px;">Fortran has over a dozen open source and commercial compilers.</p>
+<section id="compilers">
+<h1 class="sd-d-none">Compilateurs<a class="headerlink" href="#compilers" title="Lien permanent vers cette rubrique">#</a></h1>
+<p style="font-size:24px;color:#734f96;"><b>Open source compilers</b></p>
+<h4> <b> GNU Fortran Compiler</b></h4>
+<p>Le <a class="reference external" href="https://gcc.gnu.org/fortran/">compilateur GNU Fortran (gfortran)</a> est un compilateur mature, libre et open source, faisant partie de la collection de compilateurs GNU GCC.</p>
+<p>La bibliothèque <a class="reference external" href="http://www.opencoarrays.org/">OpenCoarrays</a> permet à gfortran d’implémenter les fonctionnalités de programmation parallèle du Fortran 2018, en offrant une couche d’abstraction vers différents systèmes de programmation parallèle.</p>
+<h4> <b> LLVM Flang</b></h4>
+<p><a class="reference external" href="https://github.com/llvm/llvm-project/tree/main/flang">Flang</a> est un nouveau frontal Fortran 2018 qui a été récemment ajouté à LLVM. Il est implémenté en C++ moderne et utilise un dialecte MLIR orienté Fortran pour passer à la représentation intermédiaire LLVM IR. Ce projet est en phase de développement actif.</p>
+<h4> <b> Current Flang</b></h4>
+<p><a class="reference external" href="https://github.com/flang-compiler/flang">Flang</a> est un compilateur à code source ouvert basé sur le compilateur commercial NVIDIA/PGI.</p>
+<h4> <b> LFortran </b></h4>
+<p><a class="reference external" href="https://lfortran.org">LFortran</a> is a modern, interactive, LLVM-based Fortran
+compiler.
+Also available online at <a class="reference external" href="https://dev.lfortran.org/">dev.lfortran.org</a> using a statically served, WASM based LFortran Compiler for running code in web browsers.</p>
+<p style="font-size:24px;color:#734f96;"><b>Commercial compilers</b></p>
+<h4> <b> Intel</b></h4>
+<p><a class="reference external" href="https://software.intel.com/content/www/us/en/develop/tools/oneapi/all-toolkits.html">Intel oneAPI</a> est la suite Intel de compilateurs, d’outils et de bibliothèques pour les langages Fortran, C, C++ et Python. Le Toolkit Intel oneAPI HPC fournit <a class="reference external" href="https://software.intel.com/content/www/us/en/develop/articles/intel-oneapi-fortran-compiler-release-notes.html">deux compilateurs Fortran</a> :</p>
+<ul class="simple">
+<li><p>Intel Fortran Compiler Classic (<code class="docutils literal notranslate"><span class="pre">ifort</span></code>), un compilateur mature implémentant intégralement la norme Fortran 2018,</p></li>
+<li><p>Intel Fortran Compiler Beta (<code class="docutils literal notranslate"><span class="pre">ifx</span></code>), un nouveau compilateur basé sur LLVM qui prend en charge Fortran 95 et de façon partielle les normes plus récentes.</p></li>
+</ul>
+<p>Intel oneAPI est disponible gratuitement. Actuellement, le compilateur est disponible pour Linux, macOS, les plates-formes Windows et les architectures x86_64. Un support communautaire est assuré pour la version libre sur le <a class="reference external" href="https://community.intel.com/t5/Intel-Fortran-Compiler/bd-p/fortran-compiler">forum des développeurs Intel</a>.</p>
+<h4> <b> NAG </b></h4>
+<p>Le dernier <a class="reference external" href="https://www.nag.com/nag-compiler">compilateur Fortran NAG 7.0</a> offre une prise en charge étendue des fonctionnalités Fortran anciennes et modernes, y compris la programmation parallèle avec les co-tableaux, ainsi qu’une prise en charge étendue d’OpenMP.</p>
+<p>Le compilateur implémente également une partie significative de la norme Fortran 2018 (opérations atomiques, événements et tâches, ainsi que d’autres éléments moins importants), presque toute la norme Fortran 2008, et intégralement la norme Fortran 2003 ainsi qu’OpenMP 3.1. Des outils de développement logiciel sont disponibles pour toutes les plates-formes : polisseurs de fichier source, générateur de dépendances pour les modules et les fichiers inclus, générateur de graphes d’appels, constructeur d’interfaces et unificateur de précision.</p>
+<h4> <b> NVIDIA</b></h4>
+<p>Les compilateurs C, C++ et Fortran du <a class="reference external" href="https://developer.nvidia.com/hpc-sdk">NVIDIA HPC SDK</a>, anciennement appelés <a class="reference external" href="https://www.pgroup.com/products/index.htm">compilateurs PGI</a>, prennent en charge l’accélération GPU des applications de modélisation et de simulation HPC codés en C++ et Fortran standards, ainsi que les directives OpenACC® et CUDA®. Des bibliothèques mathématiques accélérées par GPU maximisent les performances des algorithmes HPC courants, et des bibliothèques de communication optimisées permettent une programmation multi-GPU et sur systèmes évolutifs conforme aux standards.</p>
+<p>Les compilateurs NVHPC sont disponibles gratuitement. Actuellement, le compilateur est disponible pour les plates-formes Linux et pour les architectures x86_64, ppc64le et aarch64. Un support communautaire est assuré sur le <a class="reference external" href="https://forums.developer.nvidia.com/c/accelerated-computing/hpc-compilers/nvc-nvc-and-nvfortran/313">forum du compilateur HPC</a>.</p>
+<h4> <b> HPE / Cray</b></h4>
+<p>L”<a class="reference external" href="https://www.cray.com/sites/default/files/SB-Cray-Programming-Environment.pdf">Environnement de Compilation Cray (CCE)</a> est la pierre angulaire du paradigme de calcul adaptatif de Cray. Le processus de compilation du CCE se base sur une technologie Cray éprouvée qui identifie les régions du code qui sont de type scalaire séquentielle, vectoriel parallèle, ou utilisant de nombreux fils d’exécution (multithread). Le CCE inclut des compilateurs qui exploitent automatiquement les capacités scalaires, vectorielles et multithreading du matériel Cray. Il prend en charge les langages Fortran, C et C++.</p>
+<h4> <b> IBM </b></h4>
+<p><a class="reference external" href="https://www.ibm.com/us-en/marketplace/xl-fortran-linux-compiler-power">IBM® XL Fortran</a> pour Linux est un outil de programmation conforme aux standards industriels, utilisé pour développer des applications complexes en langage Fortran. Il génère du code qui exploite au mieux les capacités de la nouvelle architecture de processeur POWER9 et maximise l’utilisation de votre matériel. IBM XL Fortran pour Linux optimise votre infrastructure IBM Power Systems™ pour les grandes modélisations numériques et le calcul haute performance.</p>
+<p>Une version communautaire des compilateurs IBM XL est disponible gratuitement. Les compilateurs sont disponibles pour Linux, les plates-formes AIX et les architectures ppc64le.</p>
+<h4> <b> AMD </b></h4>
+<p>Le système de compilation <a class="reference external" href="https://developer.amd.com/amd-aocc/">AMD Optimizing C/C++ Compiler (AOCC)</a> permet de générer du code haute performance de qualité. L’environnement AOCC offre de nombreuses options aux développeurs pour compiler et optimiser des applications C, C++ et Fortran pour plates-formes Linux® 32 bits et 64 bits. Le système de compilation AOCC offre des optimisations poussées, le support du multi-threading et des processeurs avec optimisation globale, vectorisation, analyses inter-procédurales, transformations de boucle, et génération de code. AMD fournit également des bibliothèques hautement optimisées, qui exploitent au mieux chaque cœur de processeur x86. La suite de compilateurs AOCC simplifie et accélère le développement et la mise au point de vos applications x86.</p>
+<p>Les compilateurs AOCC sont disponibles gratuitement, pour les plates-formes Linux et les architectures x86_64.</p>
+<h4> <b> ARM </b></h4>
+<p><a class="reference external" href="https://developer.arm.com/tools-and-software/server-and-hpc/compile/arm-compiler-for-linux/arm-fortran-compiler">Compilateur Fortran en espace utilisateur Linux</a>. Conçu pour le calcul haute-performance et les codes scientifiques, avec support des normes Fortran et OpenMP les plus populaires, adapté aux principales plates-formes Arm de classe serveur. Construit sur le frontal open-source Flang, et l’infrastructure d’optimisation et de génération de code LLVM. Fait partie de la collection de compilateurs Arm pour Linux.</p>
+<h4> <b> Absoft </b></h4>
+<p><a class="reference external" href="https://www.absoft.com/products/">Nos compilateurs</a> fournissent un code plus rapide de manière plus efficace que jamais. Pro Fortran fournit les exclusivités Absoft : équilibrage de charge AP (augmentation des performances allant jusqu’à 20 % !), AVX, OpenMP 3.1, un compilateur Fortran 95 étendu à de nombreuses fonctionnalités de F2003 et F2008, le débogueur graphique FX3, une suite d’outils natifs, la bibliothèque scientifique AMDAL HPC, et bien plus encore. De plus, Pro Fortran est le seul compilateur avec un système de visualisation rapide des données, une technologie exclusive d’Absoft pour le rendu graphique et l’affichage des données.</p>
+<h4> <b> Oracle / Sun </b></h4>
+<p>Le <a class="reference external" href="https://www.oracle.com/application-development/technologies/developerstudio-features.html">compilateur Oracle C, C++, Fortran</a> est hautement optimisé pour les systèmes Oracle, sur site et dans le cloud</p>
+<ul class="simple">
+<li><p>Technologie avancée de génération de code pour les derniers systèmes Oracle basés sur SPARC et x86</p></li>
+<li><p>Prise en charge des dernières normes et standards industriels, notamment C++14, C++11, C11 et OpenMP 4.0, ainsi qu’un support étendu des fonctionnalités GCC</p></li>
+<li><p>Analyse automatique du code pendant la compilation et protection automatique contre le débordement de la pile au moment de l’exécution</p></li>
+</ul>
+<h4> <b> Lahey / Fujitsu </b></h4>
+<p>Combinaison du compilateur 32/64 bits LGF Rainier et du compilateur classique <a class="reference external" href="https://lahey.com/">Lahey/Fujitsu LF95</a>, LF Professional v7.8 tient ses promesses ! Il implémente complètement Fortran 95/90/77 et une bonne partie de Fortran 2003 et Fortran 2008. Lahey/Fujitsu LF95 est l’un des meilleurs en terme de diagnostics de compilation. Il comprend le compilateur GFortran avec ses fonctionnalités de parallélisation automatique, le compilateur Lahey/Fujitsu Fortran 95, la prise en charge de Visual Studio, la bibliothèque Winteracter WiSK Graphics, et plus encore !</p>
+<h4> <b> Silverfrost FTN95 </b></h4>
+<p><a class="reference external" href="https://www.silverfrost.com/">Silverfrost FTN95</a> est un compilateur implémentant intégralement les normes Fortran 95, capable de produire des exécutables rapides pour les plates-formes Win32 et Microsoft .NET. FTN95 possède le meilleur système de vérifications en cours d’exécution et est livré avec de nombreux outils de développement. Sont prises en charge toutes les fonctionnalités de la norme ainsi que de nombreuses fonctionnalités non standards mais classiques, de sorte que vos projets Fortran peuvent combiner à souhait Fortran 77, Fortran 90 et Fortran 95. Certaines fonctionnalités de Fortran 2003 et 2008 ont été <a class="reference external" href="https://www.silverfrost.com/19/ftn95/support/ftn95_revision_history.aspx">ajoutées</a>. Silverfrost Fortran fonctionne sur Windows / x86_64. Pour un usage personnel, il est disponible en version gratuite.</p>
+<h4> <b> NEC </b></h4>
+<p>Le <a class="reference external" href="https://www.nec.com/en/global/solutions/hpc/sx/tools.html">compilateur Fortran</a> implémente la norme Fortran 2003 (ISO/IEC 1539-1:2004) ainsi que de nombreuses fonctionnalités de la norme Fortran 2008 (ISO/IEC 1539-1:2010).</p>
+<h4> <b> LCC </b></h4>
+<p><a class="reference external" href="http://mcst.ru/lcc">Compilateur MCST C, C++, Fortran</a> avec une prise en charge complète de Fortran-95 (ISO/IEC 1539:1997) et partielle de Fortran-2003 (ISO/IEC 1539:2004), Fortran-2008 (ISO/IEC 1539:2010) et Fortran-2018 (ISO/IEC 1539:2018). Utilisé pour les architectures de processeurs russes Elbrus (e2k) et SPARC (MCST-R). Un compilateur croisé pour l’architecture x86_64 est également disponible.</p>
+<h3> Discontinued </h3>
+<p>Voici une liste de compilateurs Fortran qui semblent avoir été abandonnés, et que nous n’avons donc pas répertoriés ci-dessus :</p>
+<ul class="simple">
+<li><p>Apogee</p></li>
+<li><p>Edinburgh Portable Compilers</p></li>
+<li><p>Hewlett Packard</p></li>
+<li><p>Watcom</p></li>
+<li><p>PathScale</p></li>
+<li><p>G95</p></li>
+<li><p>Open64</p></li>
+<li><p>Unisys</p></li>
+</ul>
+<h3> Note </h3>
+<p>Veuillez nous faire savoir si vous connaissez un compilateur qui n’est pas répertorié, ou si nous avons répertorié un compilateur dans la section <em>Compilateurs abandonnés</em> alors qu’il est bien activement maintenu.</p>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2020-2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>
