@@ -66,6 +66,30 @@ Ask a question in the Fortran-lang discourse - a forum for friendly discussion o
 :::
 ::::
 :::::
+
+:::::{grid-item}
+
+::::{grid} 1 1 1 1
+:gutter: 1
+
+:::{grid-item-card} {octicon}`play;1em;sd-text-info` Play with Fortran
+:shadow: none
+
+Get a taste of Fortran in an interactive playground in the browser.
+
+```{card}
+:link-type: url
+:link: https://play.fortran-lang.org/
+:class-card: sd-btn
+:class-body: sd-p-1 sd-text-center sd-font-weight-bold sd-text-info sd-btn-primary sd-text-light sd-btn
+:shadow: none
+
+{octicon}``play;1em;sd-text-info`` Fortran Playground
+```
+
+:::
+::::
+:::::
 ::::::
 
 :::{div} sd-fs-3 sd-font-weight-bold sd-text-primary
