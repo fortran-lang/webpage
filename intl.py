@@ -56,7 +56,7 @@ def intl_gettext() -> None:
     """
 
     subprocess.run(
-        ["sphinx-build", "-b", "gettext", "-t", "gettext", srcdir, outdir],
+        ["sphinx-build", "-b", "gettext", srcdir, outdir],
         cwd=root,
         check=True,
     )

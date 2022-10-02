@@ -120,10 +120,6 @@ html_theme = "pydata_sphinx_theme"
 html_static_path = ["_static"]
 html_css_files = ["custom.css"]
 
-exclude_patterns = ["_build", "Thumbs.db", ".DS_Store"]
-if tags.has("gettext"):
-    exclude_patterns.append("news/**")
-
 html_theme_options = {
     "favicons": [
         {
