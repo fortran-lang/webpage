@@ -4,7 +4,7 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>编译源代码 &#8212; Fortran Programming Language</title>
 <script>
@@ -203,7 +203,7 @@
     // create links to the corresponding page in the other docs versions
     data = [
       {
-        name: "en",
+        name: "English",
         version: "en",
         url: "../en/",
       },
@@ -218,17 +218,17 @@
         url: "../cs/",
       },
       {
-        name: "de",
+        name: "Deutsch",
         version: "de",
         url: "../de/",
       },
       {
-        name: "es",
+        name: "Español",
         version: "es",
         url: "../es/",
       },
       {
-        name: "fr",
+        name: "Français",
         version: "fr",
         url: "../fr/",
       },
@@ -238,7 +238,7 @@
         url: "../ja/",
       },
       {
-        name: "nl",
+        name: "Nederlands",
         version: "nl",
         url: "../nl/",
       },
@@ -248,17 +248,17 @@
         url: "../pl/",
       },
       {
-        name: "pt",
+        name: "Português",
         version: "pt",
         url: "../pt/",
       },
       {
-        name: "ru",
+        name: "Русский",
         version: "ru",
         url: "../ru/",
       },
       {
-        name: "zh_CN",
+        name: "简体中文",
         version: "zh_CN",
         url: "../zh_CN/",
       },
@@ -338,7 +338,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../packages/">
-  Packages
+  源码包
  </a>
 </li>
 
@@ -411,27 +411,27 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/choose_compiler/">
-     Choosing a compiler
+     选择编译器
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/install_gfortran/">
-     Installing GFortran
+     安装 GFortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/text_editors/">
-     Text Editors
+     文本编辑器
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/ides/">
-     IDEs
+     集成开发环境（IDE）
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/tips/">
-     Smart Tips
+     智能提示
     </a>
    </li>
   </ul>
@@ -525,7 +525,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../distributing/">
-     分发您的程序
+     分发你的程序
     </a>
    </li>
   </ul>
@@ -668,12 +668,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/transform/">
-     Matrix multiplication, dot product, and array shifts
+     矩阵乘法、点积和数组移位
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/type/">
-     Types and kinds
+     类型和种类
     </a>
    </li>
    <li class="toctree-l2">
@@ -721,7 +721,7 @@
 <p>构建过程的第一步是编译源代码。此步骤的输出通常称为目标代码——一组由人类可读的源代码生成的计算机指令。不同的编译器会从相同的源代码生成不同的目标代码，命名约定也不同。</p>
 <p>结果：</p>
 <ul class="simple">
-<li><p>如果您对一个源文件使用特定的编译器，则需要对所有其他部分使用相同的编译器（或兼容的编译器）。毕竟，一个程序可能由许多不同的源文件构建而成，编译后的部分必须相互配合。</p></li>
+<li><p>如果你对一个源文件使用特定的编译器，则需要对所有其他部分使用相同的编译器（或兼容的编译器）。毕竟，一个程序可能由许多不同的源文件构建而成，编译后的部分必须相互配合。</p></li>
 <li><p>每个源文件都将被编译并将结果存储在扩展名为 <code class="docutils literal notranslate"><span class="pre">.o</span></code> 或 <code class="docutils literal notranslate"><span class="pre">.obj</span></code> 的文件中。这些目标文件是下一步的输入：链接过程。</p></li>
 </ul>
 <p>编译器是复杂的软件：它们必须比普通程序员更详细、更深入地理解语言。它们还需要了解计算机的内部工作原理。然后，多年来，它们已经扩展了许多选项来自定义编译过程和将要构建的最终程序。</p>
@@ -730,14 +730,14 @@
 </pre></div>
 </div>
 <p>这会产生一个文件 <code class="docutils literal notranslate"><span class="pre">hello.o</span></code>（因为 gfortran 编译器使用 <code class="docutils literal notranslate"><span class="pre">.o</span></code> 作为目标文件的扩展名）。</p>
-<p>选项 <code class="docutils literal notranslate"><span class="pre">-c</span></code> 表示：只编译源文件。如果您不考虑它，那么编译器的默认操作是编译源文件并启动链接器以构建实际的可执行程序。命令：</p>
+<p>选项 <code class="docutils literal notranslate"><span class="pre">-c</span></code> 表示：只编译源文件。如果你不考虑它，那么编译器的默认操作是编译源文件并启动链接器以构建实际的可执行程序。命令：</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran hello.f90
 </pre></div>
 </div>
 <p>生成一个可执行文件，Linux 上的 <code class="docutils literal notranslate"><span class="pre">a.out</span></code> 或 Windows 上的 <code class="docutils literal notranslate"><span class="pre">a.exe</span></code>。</p>
 <p>一些备注：</p>
 <ul class="simple">
-<li><p>编译器可能会报错源文件的内容，如果它发现有问题——例如错字或未知关键字。在这种情况下，编译过程会中断，您将无法获得目标文件或可执行程序。例如，如果 <code class="docutils literal notranslate"><span class="pre">program</span></code> 这个词被无意中输入为 <code class="docutils literal notranslate"><span class="pre">prgoram</span></code>：</p></li>
+<li><p>编译器可能会报错源文件的内容，如果它发现有问题 —— 例如错字或未知关键字。在这种情况下，编译过程会中断，你将无法获得目标文件或可执行程序。例如，如果 <code class="docutils literal notranslate"><span class="pre">program</span></code> 这个词被无意中输入为 <code class="docutils literal notranslate"><span class="pre">prgoram</span></code>：</p></li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran hello3.f90
 hello.f90:1:0:
@@ -753,7 +753,7 @@ Error: Syntax error <span class="k">in</span> END PROGRAM statement at <span cla
 f951: Error: Unexpected end of file <span class="k">in</span> <span class="s1">&#39;hello.f90&#39;</span>
 </pre></div>
 </div>
-<p>使用此编译报告，您可以更正源代码并重试。</p>
+<p>使用此编译报告，你可以更正源代码并重试。</p>
 <ul class="simple">
 <li><p>没有 <code class="docutils literal notranslate"><span class="pre">-c</span></code> 的步骤只有在源文件包含主程序时才能成功——以 Fortran 中的 <code class="docutils literal notranslate"><span class="pre">program</span></code> 语句为特征。否则，链接步骤将抱怨缺少 <code class="docutils literal notranslate"><span class="pre">symbol</span></code>，类似于以下内容：</p></li>
 </ul>

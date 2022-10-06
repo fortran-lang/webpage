@@ -4,7 +4,7 @@
 <html lang="zh-CN">
   <head>
     <meta charset="utf-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.18.1: http://docutils.sourceforge.net/" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
     <title>一个make的介绍 &#8212; Fortran Programming Language</title>
 <script>
@@ -45,7 +45,7 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
-    <link rel="next" title="分发您的程序" href="../distributing/" />
+    <link rel="next" title="分发你的程序" href="../distributing/" />
     <link rel="prev" title="构建工具" href="../build_tools/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -203,7 +203,7 @@
     // create links to the corresponding page in the other docs versions
     data = [
       {
-        name: "en",
+        name: "English",
         version: "en",
         url: "../en/",
       },
@@ -218,17 +218,17 @@
         url: "../cs/",
       },
       {
-        name: "de",
+        name: "Deutsch",
         version: "de",
         url: "../de/",
       },
       {
-        name: "es",
+        name: "Español",
         version: "es",
         url: "../es/",
       },
       {
-        name: "fr",
+        name: "Français",
         version: "fr",
         url: "../fr/",
       },
@@ -238,7 +238,7 @@
         url: "../ja/",
       },
       {
-        name: "nl",
+        name: "Nederlands",
         version: "nl",
         url: "../nl/",
       },
@@ -248,17 +248,17 @@
         url: "../pl/",
       },
       {
-        name: "pt",
+        name: "Português",
         version: "pt",
         url: "../pt/",
       },
       {
-        name: "ru",
+        name: "Русский",
         version: "ru",
         url: "../ru/",
       },
       {
-        name: "zh_CN",
+        name: "简体中文",
         version: "zh_CN",
         url: "../zh_CN/",
       },
@@ -338,7 +338,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../packages/">
-  Packages
+  源码包
  </a>
 </li>
 
@@ -411,27 +411,27 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/choose_compiler/">
-     Choosing a compiler
+     选择编译器
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/install_gfortran/">
-     Installing GFortran
+     安装 GFortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/text_editors/">
-     Text Editors
+     文本编辑器
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/ides/">
-     IDEs
+     集成开发环境（IDE）
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/tips/">
-     Smart Tips
+     智能提示
     </a>
    </li>
   </ul>
@@ -525,7 +525,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../distributing/">
-     分发您的程序
+     分发你的程序
     </a>
    </li>
   </ul>
@@ -668,12 +668,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/transform/">
-     Matrix multiplication, dot product, and array shifts
+     矩阵乘法、点积和数组移位
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/type/">
-     Types and kinds
+     类型和种类
     </a>
    </li>
    <li class="toctree-l2">
@@ -736,7 +736,7 @@
 <p>我们简要讨论了 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的基础知识。本章给出了为大型项目扩展 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的想法和策略。</p>
 <p>在详细讨论<code class="docutils literal notranslate"><span class="pre">make</span></code>之前，请考虑以下几点:</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code> 是一个 Unix 工具，在移植到非 Unix 平台时可能会给你带来困难。也就是说，还有不同风格的 <code class="docutils literal notranslate"><span class="pre">make</span></code> 可用，并非所有都支持您想要使用的功能。</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code> 是一个 Unix 工具，在移植到非 Unix 平台时可能会给你带来困难。也就是说，还有不同风格的 <code class="docutils literal notranslate"><span class="pre">make</span></code> 可用，并非所有都支持你想要使用的功能。</p></li>
 <li><p>虽然 <code class="docutils literal notranslate"><span class="pre">make</span></code> 让你可以完全控制构建过程，但这也意味着你对整个构建过程负责，并且你必须为项目的每个细节指定规则。你可能会发现自己花费大量时间编写和维护 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>，而不是开发源代码。</p></li>
 <li><p>你可以使用你的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>，但请考虑你项目中可能不熟悉 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的其他开发人员。你希望他们花多少时间学习你的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>，他们是否能够调试或添加功能？</p></li>
 <li><p>纯 <code class="docutils literal notranslate"><span class="pre">make</span></code> 不会扩展。你将很快添加辅助程序来动态或静态生成你的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>。这些引入了依赖关系和可能的错误来源。不应低估测试和记录这些工具所需的工作量。</p></li>
@@ -950,7 +950,7 @@ gfortran -o src/tests/csv_write_test.exe src/tests/csv_write_test.f90.o libcsv.a
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>使用awk</p>
-<p>上面的脚本使用了 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 语言，该语言是为文本流处理而设计的，使用了类似 C 的语法。在 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 中，您可以定义在某些事件上评估的组，_ 例如当行匹配特定模式时的 _，通常由 <a href="https://en.wikipedia.org/wiki/Regular_expression" target="_blank" rel="noopener"> 正则表达式 </a> 表示。</p>
+<p>上面的脚本使用了 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 语言，该语言是为文本流处理而设计的，使用了类似 C 的语法。在 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 中，你可以定义在某些事件上评估的组，_ 例如当行匹配特定模式时的 _，通常由 <a href="https://en.wikipedia.org/wiki/Regular_expression" target="_blank" rel="noopener"> 正则表达式 </a> 表示。</p>
 <p>这个 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 脚本定义了五个组，其中两个使用特殊模式 <code class="docutils literal notranslate"><span class="pre">BEGIN</span></code> 和 <code class="docutils literal notranslate"><span class="pre">END</span></code> 分别在脚本开始之前和脚本结束之后运行。在脚本开始之前，我们使脚本不区分大小写，因为我们在这里处理 Fortran 源代码。我们还使用特殊变量 <code class="docutils literal notranslate"><span class="pre">FILENAME</span></code> 来确定我们当前正在解析哪个文件，并允许一次处理多个文件。</p>
 <p>定义了三种模式后，我们正在寻找 <code class="docutils literal notranslate"><span class="pre">module</span></code>、<code class="docutils literal notranslate"><span class="pre">use</span></code> 和 <code class="docutils literal notranslate"><span class="pre">include</span></code> 语句作为第一个以空格分隔的条目。使用使用的模式，并非所有有效的 Fortran 代码都会被正确解析。一个失败的例子是：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="kd">::</span><span class="n">my_module</span><span class="p">,</span><span class="k">only</span><span class="p">:</span><span class="n">proc</span><span class="w"></span>
@@ -962,7 +962,7 @@ gfortran -o src/tests/csv_write_test.exe src/tests/csv_write_test.f90.o libcsv.a
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>理论上，您需要一个完整的 Fortran 解析器来处理续行和其他困难。这可能可以在 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 中实现，但最终需要一个巨大的脚本。</p>
+<p>理论上，你需要一个完整的 Fortran 解析器来处理续行和其他困难。这可能可以在 <code class="docutils literal notranslate"><span class="pre">awk</span></code> 中实现，但最终需要一个巨大的脚本。</p>
 <p>另外，请记住，生成依赖项应该很快，在为大型代码库生成依赖项时，昂贵的解析器会产生很大的开销。做出合理的假设可以简化和加快这一步，但也会在构建工具中引入错误源。</p>
 </div>
 <p>使脚本可执行 (<code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">gen-deps.awk</span></code>) 并使用 `./gen-deps.awk $(find src -name ‘*.[fF]90’)[ X114X]。你应该看到这样的输出：</p>
@@ -986,7 +986,7 @@ $(src/csv_module.F90) += $(csv_parameters.mod)
 $(src/csv_module.F90) += $(iso_fortran_env.mod)
 </pre></div>
 </div>
-<p>请注意，脚本输出将使用递归扩展变量并且尚未定义任何依赖项，因为可能需要无序声明变量，并且我们不想意外创建任何目标。您可以验证是否存在与上述手写片段中相同的信息。唯一的例外是对 <code class="docutils literal notranslate"><span class="pre">iso_fortran_env.mod</span></code> 的额外依赖，因为它是一个未定义的变量，它只会扩展为一个空字符串并且不会引入任何进一步的依赖。</p>
+<p>请注意，脚本输出将使用递归扩展变量并且尚未定义任何依赖项，因为可能需要无序声明变量，并且我们不想意外创建任何目标。你可以验证是否存在与上述手写片段中相同的信息。唯一的例外是对 <code class="docutils literal notranslate"><span class="pre">iso_fortran_env.mod</span></code> 的额外依赖，因为它是一个未定义的变量，它只会扩展为一个空字符串并且不会引入任何进一步的依赖。</p>
 <p>现在，你终于可以在你的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 中包含这个片段来自动生成依赖了：</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable the default rules</span>
 <span class="nv">MAKEFLAGS</span> <span class="o">+=</span> --no-builtin-rules --no-builtin-variables
@@ -1081,7 +1081,7 @@ gfortran -o src/tests/csv_write_test.exe src/tests/csv_write_test.f90.o libcsv.a
 <p>一旦生成了依赖文件，<code class="docutils literal notranslate"><span class="pre">make</span></code> 只会在源代码更改时更新它们，并且不需要为每次调用再次重建它们。</p>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
-<p>通过正确的依赖关系，您可以利用 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 的并行执行，只需使用 <code class="docutils literal notranslate"><span class="pre">-j</span></code> 标志来创建多个 <code class="docutils literal notranslate"><span class="pre">make</span></code> 进程。</p>
+<p>通过正确的依赖关系，你可以利用 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 的并行执行，只需使用 <code class="docutils literal notranslate"><span class="pre">-j</span></code> 标志来创建多个 <code class="docutils literal notranslate"><span class="pre">make</span></code> 进程。</p>
 </div>
 <p>由于现在可以自动生成依赖项，因此无需显式指定源文件，可以使用 <code class="docutils literal notranslate"><span class="pre">wildcard</span></code> 函数动态确定它们：</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># List of all source files</span>
