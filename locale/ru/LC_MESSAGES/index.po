@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-29 16:02+0200\n"
-"PO-Revision-Date: 2022-09-29 21:37+0000\n"
+"PO-Revision-Date: 2022-10-06 22:26+0000\n"
 "Last-Translator: Sergey Torokhov <torokhov-s-a@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/ru/>\n"
@@ -3964,7 +3964,7 @@ msgstr ""
 #: ../../source/learn/building_programs/compiling_source.md:1
 #: ../../source/learn/building_programs/index.md:47
 msgid "Compiling the source code"
-msgstr ""
+msgstr "Компиляция исходного кода"
 
 #: ../../source/learn/building_programs/compiling_source.md:3
 msgid ""
@@ -3974,10 +3974,15 @@ msgid ""
 "compilers will produce different object codes from the same source code and "
 "the naming conventions are different."
 msgstr ""
+"Первым шагом в процессе сборки является компиляция исходного кода. "
+"Результатом этого действия обычно является получение объектного кода -- "
+"набора инструкций для компьютера, сгенерированных из человекочитаемого "
+"исходного кода. Разные компиляторы создают разный объектный код из одного и "
+"того же исходного кода и соглашения об именовании у них отличаются."
 
 #: ../../source/learn/building_programs/compiling_source.md:9
 msgid "The consequences:"
-msgstr ""
+msgstr "Последствия:"
 
 #: ../../source/learn/building_programs/compiling_source.md:11
 msgid ""
@@ -3986,6 +3991,11 @@ msgid ""
 "program may be built from many different source files and the compiled pieces"
 " have to cooperate."
 msgstr ""
+"Если вы используете определённый компилятор для компиляции одного файла "
+"исходного кода программы, то вам необходимо использовать тот же компилятор ("
+"или совместимый) для компиляции всех остальных файлов исходного кода этой "
+"программы. В конце концов, программа может быть собрана из множества файлов, "
+"при это скомпилированные части должны взаимодействовать."
 
 #: ../../source/learn/building_programs/compiling_source.md:15
 msgid ""
@@ -3993,6 +4003,9 @@ msgid ""
 "extension like \".o\" or \".obj\". It is these object files that are the "
 "input for the next step: the link process."
 msgstr ""
+"Каждый файл исходного кода будет скомпилирован и результат будет сохранён в "
+"файл с расширением \\\".o\\\" или \\\".obj\\\". Именно эти файлы объектного "
+"кода являются входными данными для следующего этапа: процесса компоновки."
 
 #: ../../source/learn/building_programs/compiling_source.md:19
 msgid ""
@@ -4002,6 +4015,11 @@ msgid ""
 "years they have been extended with numerous options to customise the "
 "compilation process and the final program that will be built."
 msgstr ""
+"Компиляторы являются сложными программами: они должны понимать язык "
+"программирования гораздо детальнее и глубже, чем средний программист. Кроме "
+"того, они должны понимать внутреннюю организацию работы компьютера. В итоге, "
+"с годами они были дополнены многочисленными опциями для настройки процесса "
+"компиляции и конечной программы, которая будет собрана."
 
 #: ../../source/learn/building_programs/compiling_source.md:26
 msgid ""
@@ -4010,12 +4028,20 @@ msgid ""
 "consists of one source file, you run the following command, assuming the "
 "source code is stored in the file \"hello.f90\":"
 msgstr ""
+"Но основы достаточно просты. Возьмём компилятор gfortran, входящий в состав "
+"GNU compiler collection (набор компиляторов GNU). Чтобы скомпилировать "
+"простую программу, как приведённая выше, состоящую из одного файла исходного "
+"кода, вы выполняете следующую команду, предполагая, что исходный код "
+"сохранён в файле \\\"hello.f90\\\":"
 
 #: ../../source/learn/building_programs/compiling_source.md:35
 msgid ""
 "This results in a file \"hello.o\" (as the gfortran compiler uses \".o\" as "
 "the extension for the object files)."
 msgstr ""
+"Выполнение этой команды приведёт к созданию файла \\\"hello.o\\\" (так как "
+"компилятор gfortran использует расширение \\\".o\\ в качестве расширения для "
+"объектных файлов)."
 
 #: ../../source/learn/building_programs/compiling_source.md:38
 msgid ""
@@ -4023,14 +4049,20 @@ msgid ""
 "it out, then the default action of the compiler is to compile the source file"
 " and start the linker to build the actual executable program. The command:"
 msgstr ""
+"Опция компилятора \\\"-c\\\" означает: только компилировать файлы исходного "
+"кода. Если её не указать, то по умолчанию компилятор будет компилировать "
+"файлы исходного кода и запускать компоновщик для создания исполняемого файла "
+"программы. Выполнение команды:"
 
 #: ../../source/learn/building_programs/compiling_source.md:47
 msgid "results in an executable file, \"a.out\" on Linux or \"a.exe\" on Windows."
 msgstr ""
+"приведёт к созданию исполняемого файла \\\"a.out\\\" в системах Linux или \\"
+"\"a.exe\\\" в системе Windows."
 
 #: ../../source/learn/building_programs/compiling_source.md:50
 msgid "Some remarks:"
-msgstr ""
+msgstr "Некоторые замечания:"
 
 #: ../../source/learn/building_programs/compiling_source.md:52
 msgid ""
@@ -4040,10 +4072,18 @@ msgid ""
 "file or an executable program. For instance, if the word \"program\" was "
 "inadvertently typed as \"prgoram\":"
 msgstr ""
+"Компилятор может пожаловаться на содержимое файла исходного кода, если "
+"обнаружит в нём что-то неправильное, например, опечатку или неизвестное "
+"ключевое слово. В этом случае процесс компиляции прерывается и вы не "
+"получите ни объектного файла, ни исполняемого файла программы. Например, "
+"если слово \\\"program\\\" по ошибке было набрано как \\\"prgoram\\\", то "
+"компилятор сообщит об ошибках:"
 
 #: ../../source/learn/building_programs/compiling_source.md:73
 msgid "Using this compilation report you can correct the source code and try again."
 msgstr ""
+"Используя этот отчёт компилятора об ошибках, вы можете исправить текст "
+"исходного кода программы и повторить попытку компиляции."
 
 #: ../../source/learn/building_programs/compiling_source.md:76
 msgid ""
@@ -4052,12 +4092,20 @@ msgid ""
 "link step will complain about a missing \"symbol\", something along these "
 "lines:"
 msgstr ""
+"Выполнение шага сборки без опции \\\"-c\\\" может быть успешным, только если "
+"файл исходного кода содержит основную программу, обозначаемую в тексте "
+"программы оператором `program` языка Fortran. В противном случае компоновщик "
+"пожалуется на отсутствующий \\\"символ\\\" (\\\"symbol\\\") сообщением "
+"примерно следующего содержания:"
 
 #: ../../source/learn/building_programs/compiling_source.md:88
 msgid ""
 "The file \"hello2.f90\" is almost the same as the file \"hello.f90\", except "
 "that the keyword `program` has been replaced by the keyword `subroutine`."
 msgstr ""
+"Файл \\\"hello2.f90\\\" почти такой же как и файл \\\"hello.f90\\\", за "
+"исключением того, что ключевое слово `program` было заменено на ключевое "
+"слово `subroutine`."
 
 #: ../../source/learn/building_programs/compiling_source.md:91
 msgid ""
@@ -4065,16 +4113,24 @@ msgid ""
 "platform on which it runs. These examples come from the gfortran compiler "
 "running in a Cygwin environment on Windows."
 msgstr ""
+"Приведённые выше примеры вывода сообщений компилятора будут отличаться в "
+"зависимости от используемых компилятора и платформы, на которых он работает. "
+"Рассмотренные примеры взяты для компилятора gfortran, работающего в среде "
+"Cygwin в Windows."
 
 #: ../../source/learn/building_programs/compiling_source.md:95
 msgid "Compilers also differ in the options they support, but in general:"
 msgstr ""
+"Компиляторы также отличаются по поддерживаемым ими опциям, но в целом они "
+"все имеют:"
 
 #: ../../source/learn/building_programs/compiling_source.md:97
 msgid ""
 "Options for optimising the code — resulting in faster programs or smaller "
 "memory footprints;"
 msgstr ""
+"Опции для оптимизации кода -- в результате их использования программы "
+"работают быстрее или занимают меньше памяти;"
 
 #: ../../source/learn/building_programs/compiling_source.md:99
 msgid ""
@@ -4082,14 +4138,19 @@ msgid ""
 "before it has been given a value, for instance or checks if some extension to"
 " the language is used;"
 msgstr ""
+"Опции для проверки исходного кода -- например, проверяется, не используется "
+"ли переменная до присвоения ей значения, или проверяется, не используется ли "
+"какое-либо расширение языка программирования;"
 
 #: ../../source/learn/building_programs/compiling_source.md:102
 msgid "Options for the location of include or module files, see below;"
 msgstr ""
+"Опции для указания места расположения подключаемых файлов или файлов "
+"модулей, см. далее;"
 
 #: ../../source/learn/building_programs/compiling_source.md:103
 msgid "Options for debugging."
-msgstr ""
+msgstr "Опции для отладки."
 
 #: ../../source/learn/building_programs/distributing.md:1
 #: ../../source/learn/building_programs/index.md:47
@@ -4242,7 +4303,7 @@ msgstr ""
 #: ../../source/learn/building_programs/include_files.md:1
 #: ../../source/learn/building_programs/index.md:47
 msgid "Include files and modules"
-msgstr ""
+msgstr "Подключаемые файлы и модули"
 
 #: ../../source/learn/building_programs/include_files.md:3
 msgid ""
@@ -4253,6 +4314,13 @@ msgid ""
 "directory structure is, you will encounter a situation where the compiler "
 "needs assistance in order to compile a particular source file:"
 msgstr ""
+"Ваша программа может содержаться в различных файлах исходного кода, "
+"хранящихся в одном каталоге или размещённых внутри удобного дерева "
+"каталогов. Детали организации размещения зависят от личного вкуса, "
+"договорённости группы разработчиков, к которой вы принадлежите, или просто "
+"от истории разработки программы. Какой бы ни была структура каталогов, вы "
+"столкнётесь с ситуацией, когда компилятору потребуется помощь для компиляции "
+"определённого файла исходного кода:"
 
 #: ../../source/learn/building_programs/include_files.md:11
 msgid ""
@@ -4263,6 +4331,12 @@ msgid ""
 "files, because they are used in several locations. Quite often the name of "
 "that directory is \"include\"."
 msgstr ""
+"В Fortran (и других языках программирования) имеется возможность подключить "
+"внешний файл. Хотя эта возможность стала немного менее полезной с появлением "
+"модулей, она всё ещё имеет своё применение. Довольно часто такие \\"
+"\"подключаемые файлы\\\" хранятся в каталоге, отдельном от каталогов с "
+"файлами исходных кодов программы, поскольку они используются в нескольких "
+"местах. Чаще всего этот каталог называется \\\"include\\\"."
 
 #: ../../source/learn/building_programs/include_files.md:17
 msgid ""
@@ -4272,6 +4346,12 @@ msgid ""
 " able to read the interfaces and variables and what not, and based on this "
 "information, actually compile the source code that uses the various modules."
 msgstr ""
+"Как мы видели, компиляция исходного кода, определяющего один или несколько "
+"модулей, приводит к тому, что компилятор создаёт так \\\"промежуточные файлы "
+"модулей\\\" (с расширением файла \\\".mod\\\"). Компилятору необходим доступ "
+"к этим файлам, чтобы иметь возможность прочитать информацию об интерфейсах, "
+"переменных и т.д., и на основе этой информации компилировать исходный код, "
+"использующий различные модули."
 
 #: ../../source/learn/building_programs/include_files.md:23
 msgid ""
@@ -4279,28 +4359,35 @@ msgid ""
 " module intermediate files are to be found. Suppose we store the two files of"
 " our `tabulate` program in the following directory structure:"
 msgstr ""
+"Компиляторы поддерживают опции, наподобие `-I`, чтобы можно было указать, "
+"где искать эти подключаемые файлы и промежуточные файлы модулей. "
+"Предположим, что мы храним два файла нашей программы `tabulate` в следующей "
+"структуре каталогов:"
 
 #: ../../source/learn/building_programs/include_files.md:36
 msgid "Compiling the file \"functions.f90\" with the commands"
 msgstr ""
+"Компиляция файла \\\"functions.f90\\\" с помощью последовательности команд"
 
 #: ../../source/learn/building_programs/include_files.md:43
 msgid "leads to this structure:"
-msgstr ""
+msgstr "приведёт к созданию следующей структуры файлов:"
 
 #: ../../source/learn/building_programs/include_files.md:55
 msgid ""
 "To successfully compile and subsequently build the program we need to tell "
 "the compiler where it can find the file \"user_functions.mod\":"
 msgstr ""
+"Для успешной компиляции и последующей сборки программы нам необходимо "
+"указать компилятору, где он может найти файл \\\"user_functions.mod\\\":"
 
 #: ../../source/learn/building_programs/include_files.md:64
 msgid "The result:"
-msgstr ""
+msgstr "В результате получим:"
 
 #: ../../source/learn/building_programs/include_files.md:78
 msgid "Notes:"
-msgstr ""
+msgstr "Примечания:"
 
 #: ../../source/learn/building_programs/include_files.md:80
 msgid ""
@@ -4308,6 +4395,9 @@ msgid ""
 " by a space and then the name of the directory, sometimes the directory "
 "should come consecutively."
 msgstr ""
+"Детали отличаются в зависимости от компилятора. Иногда после опции `-I` "
+"должен следовать пробел, а затем указывается имя каталога; иногда имя "
+"каталога указывается сразу за опцией, без отделения пробелом."
 
 #: ../../source/learn/building_programs/include_files.md:83
 msgid ""
@@ -4319,27 +4409,36 @@ msgid ""
 "`-J../include` (so that the .mod files could all appear in the same "
 "directory)"
 msgstr ""
+"По умолчанию промежуточные файлы модулей (.mod) помещаются в тот же каталог, "
+"что и объектные файлы. Когда файлы исходного кода вашей программы "
+"расположены в разных подкаталогах, они будут разбросаны по дереву каталогов, "
+"усложняя процесс компиляции. К счастью, многие компиляторы позволяют указать "
+"место сохранения этих файлов. Для компилятора gfortran это делается с "
+"помощью опции `-J`, например: `-J../include` (чтобы все файлы с расширением ."
+"mod находилось в одном каталоге)"
 
 #: ../../source/learn/building_programs/include_files.md:91
 msgid ""
 "For large programs, consisting of many source files, it is important to think"
 " through what organisation to use."
 msgstr ""
+"Для больших программ, состоящих из множества файлов исходного кода, важно "
+"продумать, какую организационную структуру использовать."
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/linking_pieces.md:1
 msgid "Linking the objects"
-msgstr ""
+msgstr "Компоновка объектов"
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/runtime_libraries.md:1
 msgid "Run-time libraries"
-msgstr ""
+msgstr "Библиотеки времени выполнения"
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/managing_libraries.md:1
 msgid "Managing libraries (static and dynamic libraries)"
-msgstr ""
+msgstr "Управление библиотеками (статические и динамические библиотеки)"
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/project_make.md:1
@@ -4348,7 +4447,7 @@ msgstr ""
 
 #: ../../source/learn/building_programs/index.md:1
 msgid "Building programs"
-msgstr ""
+msgstr "Сборка программ"
 
 #: ../../source/learn/building_programs/index.md:3
 msgid ""
@@ -4359,6 +4458,14 @@ msgid ""
 "direct instructions. Two very simple examples of that type of language: "
 "Windows batch files and Linux shell scripts."
 msgstr ""
+"Языки программирования, такие как Fortran, C, C++, Java и некоторые другие, "
+"имеют общие особенности: вы пишите код программы на выбранном вами языке, но "
+"затем вам нужно преобразовать этот исходный код в исполняемый файл "
+"программы. Для других языков, которые называются интерпретируемыми — "
+"исходный код анализируется специальной программой и выполняется в виде "
+"непосредственных инструкций. Два очень простых примера такой разновидности "
+"языков: пакетные (batch) файлы в Windows и сценарии оболочки (shell scripts) "
+"в Linux."
 
 #: ../../source/learn/building_programs/index.md:11
 msgid ""
@@ -4368,20 +4475,29 @@ msgid ""
 "the human-readable source code into an efficient program that can be run on "
 "the computer."
 msgstr ""
+"В этом руководстве мы сосредоточимся на первом типе языков программирования, "
+"взяв в качестве основного примера язык Fortran. Одним из преимуществ "
+"компилируемых языков программирования является то, что процесс сборки, "
+"необходимый для создания исполняемого файла программы, используется для "
+"преобразования человекочитаемого исходного кода в эффективную программу, "
+"которая может быть запущена на компьютере."
 
 #: ../../source/learn/building_programs/index.md:17
 msgid ""
 "Remark: this tutorial gives examples for the Windows and Linux operating "
 "systems, however the workflow and general principles still apply to macOS."
 msgstr ""
+"Примечание: в данном руководстве приведены примеры для операционных систем "
+"Windows и Linux, однако рабочий процесс и общие принципы применимы и в "
+"случае использования операционной системы macOS."
 
 #: ../../source/learn/building_programs/index.md:20
 msgid "Compiled languages"
-msgstr ""
+msgstr "Компилируемые языки программирования"
 
 #: ../../source/learn/building_programs/index.md:22
 msgid "Let us have a look at a simple example:"
-msgstr ""
+msgstr "Давайте рассмотрим простой пример программы:"
 
 #: ../../source/learn/building_programs/index.md:30
 msgid ""
@@ -4390,6 +4506,11 @@ msgid ""
 "simple to express in source code, a lot of things actually happen when the "
 "executable that is built from this code runs:"
 msgstr ""
+"Это практически самая простая программа, которую можно написать на языке "
+"Fortran, и она, конечно, является вариацией одной из самых известных "
+"программ. Несмотря на простоту записи текста исходного кода, при запуске "
+"исполняемого файла, созданного на основе этого исходного кода, происходит "
+"много вещей:"
 
 #: ../../source/learn/building_programs/index.md:35
 msgid ""
@@ -4397,18 +4518,25 @@ msgid ""
 "console — the window (DOS-box, xterm, ...) at which you type the program's "
 "name."
 msgstr ""
+"На компьютере запускается процесс таким образом, что он может выводить "
+"сообщения в консоль -- окно команд (DOS-box, xterm, ...), в котором вы "
+"набираете имя программы для её запуска."
 
 #: ../../source/learn/building_programs/index.md:38
 msgid ""
 "It writes the text \"Hello!\" to the console. To do so it must properly "
 "interact with the console."
 msgstr ""
+"Программа выводит в консоль текст \\\"Hello!\\\". Для этого она должна "
+"правильно взаимодействовать с консолью."
 
 #: ../../source/learn/building_programs/index.md:40
 msgid ""
 "When done, it finishes, cleaning up all the resources (memory, connection to "
 "the console etc.) it took."
 msgstr ""
+"Выполнив все действия, программа завершает работу, освобождая все ресурсы ("
+"память, соединение с консолью и др.), которые она использовала."
 
 #: ../../source/learn/building_programs/index.md:43
 msgid ""
@@ -4416,22 +4544,29 @@ msgid ""
 "consider all these details. In fact, this is the sort of things that is taken"
 " care of by the build process: the compiler and the linker."
 msgstr ""
+"К счастью, как программисту на языке высокого уровня, вам не нужно учитывать "
+"все эти детали. На самом деле о таких вещах позаботились в процессе сборки: "
+"компилятор и компоновщик."
 
 #: ../../source/learn/building_programs/linking_pieces.md:3
 msgid ""
 "Almost all programs, except for the simplest, are built up from different "
 "pieces. We are going to examine such a situation in more detail."
 msgstr ""
+"Почти все программы, за исключением самых простых, собираются из различных "
+"частей. Мы рассмотрим такую ситуацию более подробно."
 
 #: ../../source/learn/building_programs/linking_pieces.md:7
 msgid ""
 "Here is a general program for tabulating a function (source code in "
 "\"tabulate.f90\"):"
 msgstr ""
+"Вот пример основной программы табулирования значений функции (исходный код в "
+"файле \"\\\"tabulate.f90\\\"):"
 
 #: ../../source/learn/building_programs/linking_pieces.md:28
 msgid "Note the `use` statement — this will be where we define the function `f`."
-msgstr ""
+msgstr "Обратите внимание на оператор `use` -- здесь мы определим функцию `f`."
 
 #: ../../source/learn/building_programs/linking_pieces.md:30
 msgid ""
@@ -4441,12 +4576,19 @@ msgid ""
 "source file. We can give the general program to a user and they provide a "
 "specific source code."
 msgstr ""
+"Мы хотим сделать программу основной, поэтому разместим определённый код -- "
+"реализацию функции `f` -- отдельно от основного исходного кода. Есть "
+"несколько способов сделать это, и один из них -- поместить этот код в другой "
+"файл. Мы можем дать основную программу пользователю, а он добавит "
+"необходимый исходный код для функции."
 
 #: ../../source/learn/building_programs/linking_pieces.md:36
 msgid ""
 "Assume for the sake of the example that the function is implemented in a "
 "source file \"functions.f90\" as:"
 msgstr ""
+"Предположим для примера, что функция реализована в файле исходного кода \\"
+"\"functions.f90\\\" в виде:"
 
 #: ../../source/learn/building_programs/linking_pieces.md:52
 msgid ""
@@ -4456,6 +4598,12 @@ msgid ""
 "to compile the source file containing our module first. A sequence of "
 "commands to do this is:"
 msgstr ""
+"Чтобы собрать программу с этой определённой функцией нам нужно "
+"скомпилировать два файла исходного кода и объединить их с помощью компоновки "
+"в один исполняемый файл программы. Поскольку программа \\\"tabulate\\\" "
+"зависит от модуля \\\"function\\\", то сначала нам нужно скомпилировать "
+"исходный файл, содержащий наш модуль. Последовательность команд для сборки "
+"программы такова:"
 
 #: ../../source/learn/building_programs/linking_pieces.md:63
 msgid ""
@@ -4468,14 +4616,22 @@ msgid ""
 " function with two arguments instead of one. If the compiler does not know "
 "anything about the function's interface, then it cannot check anything."
 msgstr ""
+"На первом этапе компилируется модуль, в результате чего создаётся объектный "
+"\\\"functions.o\\\" и промежуточный файл модуля \\\"user_functions.mod\\\". "
+"Этот файл модуля содержит всю информацию, необходимую компилятору, чтобы "
+"определить, что функция `f` определена в этом модуле и какой у неё "
+"интерфейс. Эта информация важна: она позволяет компилятору проверить, что вы "
+"вызываете функцию правильным образом. Может оказаться, что вы допустили "
+"ошибку и вызвали функцию с двумя аргументами вместо одного. Если компилятор "
+"ничего не знает об интерфейсе функции, то он не сможет ничего проверить."
 
 #: ../../source/learn/building_programs/linking_pieces.md:73
 msgid "The second step invokes the compiler in such a way that:"
-msgstr ""
+msgstr "На втором этапе компилятор вызывается таким образом, чтобы:"
 
 #: ../../source/learn/building_programs/linking_pieces.md:75
 msgid "it compiles the file \"tabulate.f90\" (using the module file);"
-msgstr ""
+msgstr "скомпилировать файл \\\"tabulate.f90\\\" (используя файл модуля);"
 
 #: ../../source/learn/building_programs/linking_pieces.md:76
 msgid ""
@@ -4483,6 +4639,10 @@ msgid ""
 "into an executable program — with the default name \"a.out\" or \"a.exe\" (if"
 " you want a different name, use the option \"-o\")."
 msgstr ""
+"вызвать компоновщик для объединения объектных файлов tabulate.o и "
+"functions.o в исполняемый файл программы — с именем по умолчанию \\\"a.out\\"
+"\" или \\\"a.exe\\\" (если вы хотите другое имя, используйте опцию "
+"компилятора \\\"-o\\\")."
 
 #: ../../source/learn/building_programs/linking_pieces.md:80
 msgid ""
@@ -4491,12 +4651,21 @@ msgid ""
 "contain all the \"standard\" stuff — low-level routines that do the input and"
 " output to screen, the `sin` function and much more."
 msgstr ""
+"Что вы обычно не видите, так это то, что компоновщик также добавляет "
+"несколько дополнительных файлов на этом шаге компоновки -- библиотеки "
+"времени выполнения (run-time libraries). Эти библиотеки содержат все \\"
+"\"стандартные\\\" вещи — например, низкоуровневые процедуры, которые "
+"выполняют ввод и вывод на экран, математическую функцию `sin` и многое "
+"другое."
 
 #: ../../source/learn/building_programs/linking_pieces.md:85
 msgid ""
 "If you want to see the gory details, add the option \"-v\". This instructs "
 "the compiler to report all the steps that are in detail."
 msgstr ""
+"Если вы хотите увидеть все детали компоновки, добавьте опцию компилятора \\\""
+"-v\\\". Она даст указание компилятору, сообщать обо всех этапах сборки, "
+"которые могут быть описаны подробнее."
 
 #: ../../source/learn/building_programs/linking_pieces.md:88
 msgid ""
@@ -4506,6 +4675,12 @@ msgid ""
 "objects or shared libraries). Without these run-time libraries the program "
 "will not start."
 msgstr ""
+"В конечном итоге, исполняемый файл программы содержит скомпилированный "
+"исходный код и различные вспомогательные процедуры, обеспечивающие работу "
+"программы. Она также содержит ссылки на так называемые динамические "
+"библиотеки времени выполнения (dynamic run-time libraries) -- в Windows: "
+"DLL, в Linux: shared objects или shared libraries. Без этих библиотек "
+"программа не запустится."
 
 #: ../../source/learn/building_programs/managing_libraries.md:3
 msgid ""
@@ -4514,12 +4689,19 @@ msgid ""
 "be very long indeed. This soon becomes tedious or even impossible to "
 "maintain. So a different solution is called for: create your own libraries."
 msgstr ""
+"Если вам нужно управлять программой, собранной из десятков файлов исходного "
+"кода (а это не редкость!), то командная строка, необходимая для указания "
+"всех объектных файлов будет очень длинной. Очень скоро поддержка такого "
+"списка станет утомительной или даже невозможной. Поэтому необходимо другое "
+"решение: создание собственных библиотек."
 
 #: ../../source/learn/building_programs/managing_libraries.md:9
 msgid ""
 "Libraries contain any number of object files in a compact form, so that the "
 "command-line becomes far shorter:"
 msgstr ""
+"Библиотеки содержат любое количество объектных файлов в компактной форме, "
+"так что командная строка для сборки программы становится короче:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:16
 msgid ""
@@ -4527,20 +4709,27 @@ msgid ""
 "compiled and then put into a library. The extension \".a\" is used by Linux "
 "and Linux-like platforms. On Windows the extension \".lib\" is used."
 msgstr ""
+"где \\\"supportlib.a\\\" -- набор из одного, двух или нескольких объектных "
+"файлов, скомпилированных, а затем помещённых в библиотеку. Расширение файла "
+"\\\".a\\\" используется в операционных системах Linux и Linux-подобных "
+"платформах. В операционной системе Windows используется расширение \\\".lib\\"
+"\"."
 
 #: ../../source/learn/building_programs/managing_libraries.md:20
 msgid ""
 "Creating your own libraries is not that complicated: on Linux, you can "
 "achieve this using a utility like `ar`:"
 msgstr ""
+"Создание собственных библиотек не так уж сложно: в Linux это можно сделать, "
+"например, с помощью утилиты `ar`:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:30
 msgid "or on Windows using the `lib` utility:"
-msgstr ""
+msgstr "а в Windows с помощью утилиты `lib`:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:39
 msgid "Note:"
-msgstr ""
+msgstr "Примечание:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:41
 msgid ""
@@ -4548,6 +4737,9 @@ msgid ""
 "appears after the option) or adds new object files to the library (or "
 "replaces any existing ones)."
 msgstr ""
+"Команда `ar` с опцией `r` либо создаёт библиотеку (имя указывается после "
+"опции), либо добавляет в библиотеку новые объектные файлы (или заменяет все "
+"существующие)."
 
 #: ../../source/learn/building_programs/managing_libraries.md:44
 msgid ""
@@ -4555,6 +4747,9 @@ msgid ""
 "`/out:` with the name of the new library next to it. To add object files to "
 "an existing library, leave out the `/out:` bit."
 msgstr ""
+"Команда `lib` создаёт новую библиотеку, если указать опцию `/out:` с именем "
+"новой библиотеки следом за ней. Чтобы добавить объектные файлы к "
+"существующей библиотеке, опустите опцию `/out:`."
 
 #: ../../source/learn/building_programs/managing_libraries.md:47
 msgid ""
@@ -4562,6 +4757,10 @@ msgid ""
 "If you name your library like \"libname.a\" (note the \"lib\" prefix), then "
 "you can refer to it as `-lname` in the link step."
 msgstr ""
+"На таких платформах как Linux, существует определённое соглашение об "
+"именовании библиотек. Если вы назовёте свою библиотеку как \\\"libname.a\\\" "
+"(обратите внимание на префикс \\\"lib\\\"), тогда на этапе компоновки вы "
+"сможете ссылаться на неё как на `-lname`."
 
 #: ../../source/learn/building_programs/managing_libraries.md:50
 msgid ""
@@ -4569,16 +4768,22 @@ msgid ""
 "`/LIBPATH`. This saves you from having to specify the exact path for every "
 "library."
 msgstr ""
+"Библиотеки часто ищутся в каталогах, указанных с помощью опции компилятора "
+"`-L` или `/LIBPATH`. Это избавляет вас от необходимости указывать точный "
+"путь для каждой библиотеки."
 
 #: ../../source/learn/building_programs/managing_libraries.md:54
 msgid ""
 "Using libraries you can build very large programs without having to resort to"
 " extremely long command lines."
 msgstr ""
+"Используя библиотеки, вы можете создавать очень большие программы, не "
+"прибегая к чрезвычайно длинным командным строкам для описания процесса "
+"сборки."
 
 #: ../../source/learn/building_programs/managing_libraries.md:57
 msgid "Static versus dynamic libraries"
-msgstr ""
+msgstr "Статические библиотеки в сравнении с динамическими"
 
 #: ../../source/learn/building_programs/managing_libraries.md:59
 msgid ""
@@ -4588,6 +4793,11 @@ msgid ""
 " routines incorporated in the program is by rebuilding the program with a new"
 " version of the library."
 msgstr ""
+"Приведённые выше рассуждения негласно предполагают, что вы используете так "
+"называемые статические библиотеки. Статические библиотеки (или, по крайней "
+"мере, часть их содержимого) становятся неотъемлемой частью исполняемого "
+"файла программы. Единственный способ изменить встроенные в программу "
+"подпрограммы -- это пересобрать программу с новой версией библиотеки."
 
 #: ../../source/learn/building_programs/managing_libraries.md:65
 msgid ""
@@ -4598,30 +4808,42 @@ msgid ""
 "consider dynamic libraries as a sort of executable programs that need a bit "
 "of help to be run."
 msgstr ""
+"Гибкой альтернативой является использование так называемых динамических "
+"библиотек. Эти библиотеки остаются снаружи исполняемого файла программы и, "
+"как следствие, могут быть заменены без пересборки всей программы. "
+"Компиляторы и сама операционная система в значительной степени полагаются на "
+"такие динамические библиотеки. Можно рассматривать динамические библиотеки "
+"как своего рода исполняемые программы, которым для запуска требуется "
+"небольшая помощь."
 
 #: ../../source/learn/building_programs/managing_libraries.md:72
 msgid ""
 "Building dynamic libraries works slightly differently from building static "
 "libraries: you use the compiler/linker instead of a tool like `ar` or `lib`."
 msgstr ""
+"Создание динамических библиотек происходит немного иначе, чем создание "
+"статических: вы используете компилятор/компоновщик вместо таких инструментов "
+"как `ar` или `lib`."
 
 #: ../../source/learn/building_programs/managing_libraries.md:76
 msgid "On Linux:"
-msgstr ""
+msgstr "В Linux:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:84
 msgid "On Windows, with the Intel Fortran compiler:"
-msgstr ""
+msgstr "В Windows с компилятором Intel Fortran:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:92
 msgid "The differences are that:"
-msgstr ""
+msgstr "Различия заключаются в следующем:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:94
 msgid ""
 "You need to specify a compile option on Linux, for gfortran that is `-fpic`, "
 "because the object code is slightly different."
 msgstr ""
+"В Linux вам необходимо указать опцию компиляции, для gfortran это `-fpic`, "
+"поскольку объектный код немного отличается."
 
 #: ../../source/learn/building_programs/managing_libraries.md:96
 msgid ""
@@ -4629,6 +4851,9 @@ msgid ""
 "a shared object/library, hence the extension \".so\"; on Windows: a dynamic "
 "link library)"
 msgstr ""
+"На этапе компоновки нужно указать, что вам нужна динамическая библиотека (в "
+"Linux: shared object/library, отсюда расширение \\\".so\\\"; в Windows: "
+"dynamic link library)"
 
 #: ../../source/learn/building_programs/managing_libraries.md:100
 msgid ""
@@ -4637,14 +4862,21 @@ msgid ""
 "library. There are several ways — depending on the compiler you use — to "
 "achieve this. One method is via a so-called compiler directive:"
 msgstr ""
+"Есть ещё один момент, о котором следует знать: в Windows вы должны явно "
+"указать, что процедура должна быть _экспортирована_, т.е. видна в "
+"динамической библиотеке. Существует несколько способов, в зависимости от "
+"используемого компилятора, добиться этого. Один из них -- с помощью так "
+"называемой директивы компилятора:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:111
 msgid "Or, with the Intel Fortran compiler:"
-msgstr ""
+msgstr "Или, при использовании компилятора Intel Fortran:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:118
 msgid "Besides a dynamic library (DLL), a so-called import library may be generated."
 msgstr ""
+"Кроме динамической библиотеки (DLL), может быть сгенерирована так называемая "
+"импортируемая библиотека (import library)."
 
 #: ../../source/learn/building_programs/managing_libraries.md:121
 msgid ""
@@ -4652,10 +4884,13 @@ msgid ""
 "Cygwin and Intel Fortran on Windows. In both cases we look at the `tabulate` "
 "program in the file \"tabulate.f90\"."
 msgstr ""
+"Поскольку детали отличаются в зависимости от компилятора, приведём два "
+"примера: gfortran в оболочке Cygwin и Intel Fortran в Windows. В обоих "
+"случаях мы рассматриваем программу `tabulate` из файла \\\"tabulate.f90\\\"."
 
 #: ../../source/learn/building_programs/managing_libraries.md:125
 msgid "GNU/Linux and gfortran"
-msgstr ""
+msgstr "GNU/Linux и gfortran"
 
 #: ../../source/learn/building_programs/managing_libraries.md:127
 msgid ""
@@ -4664,6 +4899,10 @@ msgid ""
 " implementation of the function by putting another dynamic library in the "
 "directory. No need to rebuild the program as such."
 msgstr ""
+"Для программы `tabulate` требуется пользовательская подпрограмма `f`. Если "
+"мы поместим её в динамическую библиотеку, например, \\\"functions.dll\\\", "
+"мы можем просто заменить реализацию функции, поместив в каталог другую "
+"динамическую библиотеку. Пересобирать саму программу при этом не нужно."
 
 #: ../../source/learn/building_programs/managing_libraries.md:132
 msgid ""
@@ -4671,28 +4910,37 @@ msgid ""
 "publically visible routines are exported when you build a dynamic library. "
 "Also, no import library is generated."
 msgstr ""
+"В оболочке Cygwin нет необходимости явно экспортировать подпрограмму -- все "
+"публично видимые подпрограммы экспортируются при создании динамической "
+"библиотеки. При этом не создаётся импортируемая библиотека."
 
 #: ../../source/learn/building_programs/managing_libraries.md:136
 msgid ""
 "Since our dynamic library can be built from a single source file, we can take"
 " a shortcut:"
 msgstr ""
+"Так как наша динамическая библиотека может быть собрана из одного файла "
+"исходного кода, мы можем использовать простой способ её создания:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:143
 msgid ""
 "This produces the files \"functions.dll\" and \"user_functions.mod\". The "
 "utility `nm` tells us the exact name of the function `f`:"
 msgstr ""
+"В результате будут созданы файлы \\\"functions.dll\\\" и \\\"user_functions."
+"mod\\\". Утилита `nm` сообщает нам точное имя функции `f`:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:158
 msgid ""
 "It has received a prefix `__function_MOD_` to distinguish it from any other "
 "routine \"f\" that might be defined in another module."
 msgstr ""
+"Она получила префикс `__function_MOD_`, чтобы можно было отличить её от "
+"функции \\\"f\\\", которая может быть определена в другом модуле."
 
 #: ../../source/learn/building_programs/managing_libraries.md:161
 msgid "The next step is to build the program:"
-msgstr ""
+msgstr "Следующим шагом будет сборка программы:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:167
 msgid ""
@@ -4700,6 +4948,9 @@ msgid ""
 "checks on the function's interface, the right name and the reference to \"a\""
 " DLL, called \"functions.dll\"."
 msgstr ""
+"DLL и файл .mod используются для сборки исполняемого файла программы с "
+"проверкой интерфейса функции, правильного имени и ссылки на DLL, названой \\"
+"\"functions.dll\\\"."
 
 #: ../../source/learn/building_programs/managing_libraries.md:171
 msgid ""
@@ -4708,10 +4959,14 @@ msgid ""
 " use the correct interface for this function. The compiler/linker are not "
 "invoked anymore, so they can do no checking."
 msgstr ""
+"Вы можете заменить разделяемую библиотеку \\\"functions.dll\\\" на другую, "
+"реализующую другую функцию \\\"f\\\". Конечно, нужно быть осторожным, чтобы "
+"использовать правильный интерфейс для этой функции. Компилятор и компоновщик "
+"не вызываются повторно, поэтому они не могут сделать никаких проверок."
 
 #: ../../source/learn/building_programs/managing_libraries.md:176
 msgid "Windows and Intel Fortran"
-msgstr ""
+msgstr "Windows и Intel Fortran"
 
 #: ../../source/learn/building_programs/managing_libraries.md:178
 msgid ""
@@ -4719,16 +4974,22 @@ msgid ""
 "explicitly export the routines. And an import library is generated — this is "
 "the library that should be used in the link step."
 msgstr ""
+"Настройка в этом случае такая же, как и в случае с Linux, но в Windows "
+"необходимо явно экспортировать подпрограммы. При этом создаётся "
+"импортируемая библиотека (import library) -- именно эта библиотека должна "
+"использоваться на этапе компоновки."
 
 #: ../../source/learn/building_programs/managing_libraries.md:182
 msgid ""
 "The source file must contain the compiler directive, otherwise the function "
 "`f` is not exported:"
 msgstr ""
+"Файл исходного кода должен содержать директиву компилятора, иначе функция `f`"
+" не будет экспортирована:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:190
 msgid "Again we take a shortcut:"
-msgstr ""
+msgstr "И снова мы используем простой способ сборки библиотеки:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:196
 msgid ""
@@ -4738,16 +4999,27 @@ msgid ""
 "\"f\" is `FUNCTION_mp_F`. It is also exported, so that it can be found by the"
 " linker in the next step:"
 msgstr ""
+"В результате также будет созданы файлы \\\"functions.dll\\\", \\"
+"\"user_functions.mod\\\", а также \\\"functions.lib\\\" (и ещё два файла, не "
+"имеющие в данном случае значения). Программа \\\"dependency walker\\\" "
+"сообщит нам, что точное имя функции \\\"f\\\" -- `FUNCTION_mp_F`. Она также "
+"экспортирована, чтобы компоновщик смог найти её на следующем этапе сборки "
+"программы:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:205
 msgid "Note that we need to specify the name of the export library, not the DLL!"
 msgstr ""
+"Обратите внимание, что нам нужно указать имя экспортируемой библиотеки, а не "
+"DLL!"
 
 #: ../../source/learn/building_programs/managing_libraries.md:207
 msgid ""
 "(Note also: the Intel Fortran compiler uses the name of the first source file"
 " as the name for the executable — here we do without the `-exe` option.)"
 msgstr ""
+"(Отметим также: компилятор Intel Fortran использует имя первого файла "
+"исходного файла в качестве имени исполняемого файла программы -- здесь мы "
+"обходимся без использования опции `-exe`.)"
 
 #: ../../source/learn/building_programs/managing_libraries.md:210
 msgid ""
@@ -4755,6 +5027,9 @@ msgid ""
 "executable program with checks on the function's interface, the right name "
 "and the reference to \"a\" DLL, called \"functions.dll\"."
 msgstr ""
+"Как и в оболочке Cygwin, файлы DLL и .mod используются для сборки "
+"исполняемого файла программы с проверкой интерфейса функции, правильного "
+"имени и ссылки на DLL, названную \\\"functions.dll\\\"."
 
 #: ../../source/learn/building_programs/managing_libraries.md:214
 msgid ""
@@ -4762,6 +5037,9 @@ msgid ""
 "same caution is required: while the implementation can be quite different, "
 "the function's interface must be the same."
 msgstr ""
+"Вы можете заменить разделяемую библиотеку \\\"functions.dll\\\" другой, но "
+"при этом необходимо соблюдать ту же осторожность: хотя реализация может быть "
+"совершенно другой, интерфейс функции должен быть тем же самым."
 
 #: ../../source/learn/building_programs/project_make.md:3
 msgid ""
@@ -5058,6 +5336,9 @@ msgid ""
 "libraries, here is the output from the `ldd` utility that reports such "
 "dependencies:"
 msgstr ""
+"Чтобы продемонстрировать, что даже простая программа зависит от внешних "
+"библиотек времени выполнения (run-time libraries), ниже представлен "
+"результат вывода утилиты `ldd`, которая сообщает о таких зависимостях:"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:18
 msgid ""
@@ -5067,6 +5348,11 @@ msgid ""
 " no problem. However, when such a library cannot be found, you will get "
 "(hopefully) an error message and the program stops immediately."
 msgstr ""
+"Другие компиляторы или другие версии одного и того же компилятора, возможно, "
+"потребуют другие динамические библиотеки. Пока вы запускаете программу на "
+"одном и том же компьютере -- или, точнее, в одной и той же среде, -- проблем "
+"быть не должно. Однако, если такая библиотека не найдена, вы получите (будем "
+"надеяться) сообщение об ошибке и программа немедленно завершится."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:25
 msgid ""
@@ -5076,6 +5362,12 @@ msgid ""
 "nicely with Windows 10, is found here: "
 "<https://github.com/lucasg/Dependencies>)"
 msgstr ""
+"Поэтому необходимо знать, какие библиотеки требуются. В операционных "
+"системах Linux и Linux-подобных рабочих окружениях большую помощь в этом "
+"окажет утилита `ldd`. В операционной системе Windows вы можете "
+"воспользоваться программой `dependency walker` (последняя версия, которая "
+"работает в Windows 10, находится здесь: <https://github.com/lucasg/"
+"Dependencies>)"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:30
 msgid ""
@@ -5083,10 +5375,13 @@ msgid ""
 "libraries. That is a vast subject in its own right and full of complications "
 "and history. Here we merely scratch the surface:"
 msgstr ""
+"Ещё одна вещь, которую вы должны знать, это то, где программа пытается найти "
+"эти библиотеки. Это обширная тема сама по себе, полная сложностей и "
+"предыстории. Здесь мы лишь поверхностно рассмотрим этот вопрос:"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:34
 msgid "_On Linux:_"
-msgstr ""
+msgstr "_В Linux:_"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:36
 msgid ""
@@ -5094,36 +5389,49 @@ msgid ""
 "directories to be searched, each directory separated via colons (:) from the "
 "others. For instance: `/usr/lib:/usr/local/lib` — typical system directories."
 msgstr ""
+"Используется переменная окружения `LD_LIBRARY_PATH`. Она представляет собой "
+"список каталогов для поиска, каждый из которых отделяется от другого "
+"двоеточием (:). Например: `/usr/lib:/usr/local/lib` -- типичные системные "
+"каталоги."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:40
 msgid ""
 "At the link step you can also use an option to set `RPATH`, a list of "
 "directories that is put into the executable file itself."
 msgstr ""
+"На этапе компоновки вы также можете использовать опцию для задания "
+"переменной `RPATH` -- списка каталогов, который помещается непосредственно в "
+"сам исполняемый файл программы."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:42
 msgid "Then there are several system directories that are searched."
 msgstr ""
+"В этом случае поиск библиотек ведётся по нескольким системным каталогам."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:44
 msgid "_On Windows:_"
-msgstr ""
+msgstr "_В Windows:_"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:46
 msgid ""
 "The directory containing the executable program may also contain dynamic "
 "libraries."
 msgstr ""
+"Каталог, содержащий исполняемую программу, может также содержать "
+"динамические библиотеки."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:48
 msgid ""
 "The environment variable \"PATH\" is used. Again a list of directories to be "
 "searched, but now the separating character is the semicolon (;)."
 msgstr ""
+"Используется переменная окружения \\\"PATH\\\". Это тоже список каталогов "
+"для поиска, но теперь разделителем элементов в списке является точка с "
+"запятой (;)."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:50
 msgid "A set of system directories is searched."
-msgstr ""
+msgstr "Выполняется поиск в наборе системных каталогов."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:52
 msgid ""
@@ -5132,6 +5440,10 @@ msgid ""
 "\"ldd\" or \"dependency walker\" to find out what libraries are loaded and "
 "where they are found."
 msgstr ""
+"К сожалению, детали могут меняться от одной версии операционной системы к "
+"другой. Приведённые выше сведения являются лишь указанием -- используйте "
+"такие инструменты как \\\"ldd\\\" или \\\"dependency walker\\\", чтобы "
+"узнать, какие библиотеки загружены и где они находятся."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:57
 msgid ""
@@ -5140,6 +5452,11 @@ msgid ""
 " also distribute the libraries it depends on. For more information: see "
 "below."
 msgstr ""
+"Если вы хотите поделиться своей программой с коллегами, клиентами или просто "
+"пользователями по всему миру, вам придётся позаботиться о том, чтобы помимо "
+"самой программы, распространить и библиотеки, от которых она зависит. "
+"Дополнительные сведения о распространении программы и библиотек приведены в "
+"одном из следующих разделов."
 
 #: ../../source/learn/intrinsics/array.md:1
 msgid "Properties and attributes of arrays"
@@ -16944,7 +17261,7 @@ msgstr ""
 
 #: ../../source/learn/os_setup/ides.md:1 ../../source/learn/os_setup/index.md:26
 msgid "IDEs"
-msgstr ""
+msgstr "IDE (Интегрированная среда разработки)"
 
 #: ../../source/learn/os_setup/ides.md:3
 msgid ""
@@ -16961,18 +17278,36 @@ msgid ""
 "an IDE for large projects because of some unique features that they may offer"
 " over a Text-Editor."
 msgstr ""
+"IDE (Интегрированная среда разработки) -- полная среда разработки "
+"программного обеспечения, в которой все те возможности, которые поставляются "
+"в текстовых редакторах в виде внешних дополнений, уже встроены. IDE обычно "
+"оптимизирована под определённый набор языков программирования. Например, "
+"обычным для IDE является позиционирование себя как продукта предназначенного "
+"для компилируемых или интерпретируемых языков, или даже для одного языка, "
+"или в зависимости от направления разработки -- предназначенного для научной "
+"или web разработки. IDE рекомендуются для начинающих программистов, так как "
+"в них можно сразу начать писать код, затратив минимальные усилия по "
+"настройке после установки. Однако в профессиональной среде, как отдельные "
+"разработчики, так и команды разработчиков, довольно часто выбирают IDE для "
+"больших проектов из-за некоторых уникальных возможностей, которые они могут "
+"предложить по сравнению с текстовым редактором."
 
 #: ../../source/learn/os_setup/ides.md:6
 msgid ""
 "A list of popular IDEs that provide good Fortran support is provided in "
 "alphabetical order:"
 msgstr ""
+"Список популярных IDE, которые обеспечивают хорошую поддержку языка Fortran, "
+"приведённый в алфавитном порядке:"
 
 #: ../../source/learn/os_setup/ides.md:8
 msgid ""
 "[AbsoftTools](https://www.absoft.com/technology/absofttools-fortran-ide/): "
 "commercial product, cross-platform, comes with Absoft's own Fortran compiler."
 msgstr ""
+"[AbsoftTools](https://www.absoft.com/technology/absofttools-fortran-ide/): "
+"коммерческий кросс-платформенный продукт, поставляется с собственным "
+"компилятором языка Fortran от Absoft."
 
 #: ../../source/learn/os_setup/ides.md:9
 msgid ""
@@ -16983,6 +17318,14 @@ msgid ""
 " its capabilities and future prospects at the International Fortran "
 "Conference 2020 by its main developer."
 msgstr ""
+"[Code::Blocks](http://www.codeblocks.org/): бесплатный кросс-платформенный "
+"продукт, поддерживает множество компиляторов. В интернете можно можно найти "
+"множество руководств по его установке и добавлению компилятора Fortran. "
+"Также [здесь](https://www.youtube.com/"
+"watch?v=M1RwVGGSAgE&ab_channel=FortranCon) доступна недавняя презентация его "
+"возможностей по поддержке языка Fortran и планов по их расширению, "
+"представленная на Международной конференции по Фортрану 2020 (International "
+"Fortran Conference 2020) одним из его основных разработчиков."
 
 #: ../../source/learn/os_setup/ides.md:10
 msgid ""
@@ -16991,12 +17334,18 @@ msgid ""
 "Eclipse and the C/C++ Development Tools_. A free product, cross-platform and "
 "supports multiple compilers."
 msgstr ""
+"[Eclipse-Photran](https://marketplace.eclipse.org/content/photran-fortran-"
+"ide-eclipse) _Photran -- IDE и инструмент для рефакторинга для языка Fortran "
+"на основе Eclipse и C/C++ Development Tools_. Бесплатный кросс-платформенный "
+"продукт с поддержкой множества компиляторов."
 
 #: ../../source/learn/os_setup/ides.md:11
 msgid ""
 "[Geany](https://www.geany.org/): a free product, cross platform and supports "
 "multiple compilers."
 msgstr ""
+"[Geany](https://www.geany.org/): бесплатный кросс-платформенный продукт с "
+"поддержкой множества компиляторов."
 
 #: ../../source/learn/os_setup/ides.md:12
 msgid ""
@@ -17004,6 +17353,9 @@ msgid ""
 " commercial product, available in Windows and MacOS and supports NAG's own "
 "Fortran Compiler."
 msgstr ""
+"[NAG Fortran Builder](https://www.nag.com/content/nag-fortran-builder-0) -- "
+"коммерческий продукт, доступный для Windows и MacOS, поддерживает "
+"собственный Fortran компилятор NAG."
 
 #: ../../source/learn/os_setup/ides.md:13
 msgid ""
@@ -17011,12 +17363,17 @@ msgid ""
 "product, cross-platform, comes with Silverfrost's Fortran FTN95 own Fortran "
 "compiler."
 msgstr ""
+"[Plato](https://www.silverfrost.com/16/ftn95/plato.aspx) -- коммерческий "
+"кроссплатформенный продукт, поставляется с собственным Fortran компилятором "
+"FTN95 от Silverfrost."
 
 #: ../../source/learn/os_setup/ides.md:14
 msgid ""
 "[SimplyFortran](https://simplyfortran.com/) is a commercial product, cross-"
 "platform with support of the GNU Fortran compiler."
 msgstr ""
+"[SimplyFortran](https://simplyfortran.com/) -- коммерческий кросс-"
+"платформенный продукт с поддержкой компилятора GNU Fortran (gfortran)."
 
 #: ../../source/learn/os_setup/ides.md:15
 msgid ""
@@ -17025,20 +17382,25 @@ msgid ""
 "Intel's Fortran compiler, now bundled with many other free-to-use HPC tools "
 "under _Intel oneAPI_."
 msgstr ""
+"[Visual Studio](https://visualstudio.microsoft.com/) -- его бесплатная "
+"версия _Community Edition 2019_ доступна для Windows и macOS и поддерживает "
+"только компилятор Intel's Fortran, который теперь поставляется со многими "
+"другими инструментами для высокопроизводительных вычислений (HPC) в рамках "
+"продукта _Intel oneAPI_."
 
 #: ../../source/learn/os_setup/index.md:26
 #: ../../source/learn/os_setup/install_gfortran.md:1
 msgid "Installing GFortran"
-msgstr ""
+msgstr "Установка GFortran"
 
 #: ../../source/learn/os_setup/index.md:26
 #: ../../source/learn/os_setup/text_editors.md:1
 msgid "Text Editors"
-msgstr ""
+msgstr "Текстовые редакторы"
 
 #: ../../source/learn/os_setup/index.md:26 ../../source/learn/os_setup/tips.md:1
 msgid "Smart Tips"
-msgstr ""
+msgstr "Полезные советы"
 
 #: ../../source/learn/os_setup/index.md:1
 msgid "<br/><br/>"
@@ -17056,7 +17418,7 @@ msgstr ""
 
 #: ../../source/learn/os_setup/index.md:14
 msgid "Setting up your OS"
-msgstr ""
+msgstr "Настройка вашей ОС"
 
 #: ../../source/learn/os_setup/index.md:16
 msgid ""
@@ -17071,6 +17433,17 @@ msgid ""
 " OSs. A list of popular text editors and IDEs and information on how to "
 "choose between them is presented as well."
 msgstr ""
+"В этом кратком руководстве мы рассмотрим самую первую проблему, с которой "
+"сталкиваются многие начинающие Fortran-программисты. Прежде всего, вам нужно "
+"будет выбрать компилятор и установить его. Затем вам понадобится текстовый "
+"редактор или, возможно, IDE (интегрированную среду разработки). Существует "
+"множество вариантов, большинство из них доступны во всех основных ОС ("
+"операционных системах). Однако процесс их установки и настройки значительно "
+"отличается в Windows, Linux и macOS. Существует несколько компиляторов "
+"Fortran. Здесь мы выбираем те, которые отвечают определенным критериям, и "
+"предоставляем руководство по их установке во всех вышеупомянутых ОС. Также "
+"здесь представлен список популярных текстовых редакторов и IDE и информация "
+"о том, какой из них выбрать."
 
 #: ../../source/learn/os_setup/index.md:19
 msgid ""
@@ -17079,6 +17452,10 @@ msgid ""
 "`Hello World` program or with the Building programs mini-book to understand "
 "how a compiler works."
 msgstr ""
+"Если вы уже настроили ваше рабочее окружение, вы можете пропустить данное "
+"руководство и перейти к Краткому Руководству по языку Fortran, чтобы начать "
+"писать свою первую программу `Hello World` или к краткому руководству Сборка "
+"программ, чтобы узнать, как работает компилятор."
 
 #: ../../source/learn/os_setup/index.md:24
 msgid ""
@@ -17088,6 +17465,11 @@ msgid ""
 " push the reader towards one or another direction. We will, however, present "
 "a list of the most popular tools._"
 msgstr ""
+"_Выбор текстового редактора или IDE вызывает споры среди разработчиков. То "
+"что вы выберете -- дело личного вкуса. Каждое решение имеет свои плюсы и "
+"минусы. По этой причине мы не будем подталкивать читателя в пользу одного "
+"или другого решения. Однако предоставим список наиболее популярных "
+"инструментов._"
 
 #: ../../source/learn/os_setup/install_gfortran.md:3
 msgid ""
@@ -17099,6 +17481,13 @@ msgid ""
 "presented in a beginner-friendly format based on the information from "
 "[GFortranBinaries](https://gcc.gnu.org/wiki/GFortranBinaries)."
 msgstr ""
+"GFortran -- название проекта [GNU Fortran project](https://gcc.gnu.org/"
+"fortran/). Главная [wiki-страница](https://gcc.gnu.org/wiki/GFortran) "
+"предлагает множество полезных ссылок на статьи о GFortran, а также о Fortran "
+"в целом. В данном руководстве процесс установки GFortran в Windows, Linux, "
+"macOS и OpenBSD представлен в удобном для новичков формате на основе "
+"информации с сайта [GFortranBinaries](https://gcc.gnu.org/wiki/"
+"GFortranBinaries)."
 
 #: ../../source/learn/os_setup/install_gfortran.md:5
 msgid "Windows"
@@ -17109,12 +17498,17 @@ msgid ""
 "Three sources provide quick and easy way to install GFortran compiler on "
 "Windows:"
 msgstr ""
+"Три источника предлагают быстрый и простой способ установки компилятора "
+"GFortran в Windows:"
 
 #: ../../source/learn/os_setup/install_gfortran.md:9
 msgid ""
 "[http://www.equation.com](http://www.equation.com/servlet/equation.cmd?fa=fortran),"
 " provides 32 and 64-bit x86 executables for GCC version 12.1."
 msgstr ""
+"[http://www.equation.com](http://www.equation.com/servlet/equation."
+"cmd?fa=fortran) предоставляет 32 и 64-битные x86-совместимые исполняемые "
+"файлы для компилятора GCC версии 12.1."
 
 #: ../../source/learn/os_setup/install_gfortran.md:11
 msgid ""
@@ -17122,22 +17516,29 @@ msgid ""
 "gcc/articles/2021-05/10.3.0-release), provides 32 and 64-bit x86 executables "
 "for GCC version 10.3."
 msgstr ""
+"[TDM GCC](https://jmeubank.github.io/tdm-gcc/articles/2021-05/10.3.0-release)"
+" предоставляет 32 и 64-битные x86-совместимые исполняемые файлы для "
+"компилятора GCC версии 10.3."
 
 #: ../../source/learn/os_setup/install_gfortran.md:12
 msgid ""
 "[MinGW-w64](https://www.mingw-w64.org/downloads/#mingw-builds) provides a "
 "64-bit x86 executable for GCC version 12.2."
 msgstr ""
+"[MinGW-w64](https://www.mingw-w64.org/downloads/#mingw-builds) предоставляет "
+"64-битный x86-совместимый исполняемый файл для GCC версии 12.2."
 
 #: ../../source/learn/os_setup/install_gfortran.md:14
 msgid ""
 "In all the above choices, the process is straightforward—just download the "
 "installer and follow the installation wizard."
 msgstr ""
+"Во всех вышеперечисленных вариантах процесс установки прост -- просто "
+"скачайте программу установки и следуйте указаниям мастера установки."
 
 #: ../../source/learn/os_setup/install_gfortran.md:16
 msgid "Unix-like development on Windows"
-msgstr ""
+msgstr "Unix-подобная разработка в Windows"
 
 #: ../../source/learn/os_setup/install_gfortran.md:18
 msgid ""
@@ -17145,18 +17546,25 @@ msgid ""
 "emulation options are available on Windows each of which provide packages for"
 " gfortran:"
 msgstr ""
+"Для тех кто знаком с unix-подобной средой разработки, в Windows доступно "
+"несколько вариантов эмуляции, каждый из которых предоставляет пакеты для "
+"компилятора gfortran:"
 
 #: ../../source/learn/os_setup/install_gfortran.md:20
 msgid ""
 "**Cygwin:** A runtime environment that provides POSIX compatibility to "
 "Windows."
 msgstr ""
+"**Cygwin:** среда выполнения, которая предоставляет POSIX-совместимое "
+"окружение в Windows."
 
 #: ../../source/learn/os_setup/install_gfortran.md:21
 msgid ""
 "**MSYS2:** A collection of Unix-like development tools, based on modern "
 "Cygwin and MinGW-w64."
 msgstr ""
+"**MSYS2:** набор Unix-подобных средств разработки, основанных на современных "
+"версиях Cygwin и MinGW-w64."
 
 #: ../../source/learn/os_setup/install_gfortran.md:22
 msgid ""
@@ -17165,6 +17573,10 @@ msgid ""
 "Linux GUI](https://github.com/microsoft/wslg) one can run text editors and "
 "other graphical programs."
 msgstr ""
+"**Windows Subsystem for Linux (WSL):** официальный уровень совместимости для "
+"запуска бинарных исполняемых файлов Linux в Windows. С помощью [Windows "
+"Subsystem for Linux GUI](https://github.com/microsoft/wslg) можно запускать "
+"текстовые редакторы и другие графические программы."
 
 #: ../../source/learn/os_setup/install_gfortran.md:24
 msgid ""
@@ -17172,12 +17584,16 @@ msgid ""
 "development tools including GNU coreutils, Make, CMake, autotools, git, grep,"
 " sed, awk, ssh, etc."
 msgstr ""
+"Всё вышеперечисленные варианты предоставляют доступ к распространённым "
+"командным оболочкам, таким как bash, и инструментам разработки, включая GNU "
+"coreutils, Make, CMake, autotools, git, grep, sed, awk, ssh и др."
 
 #: ../../source/learn/os_setup/install_gfortran.md:26
 msgid ""
 "We recommend the WSL environment for those looking for a Unix-like "
 "development environment on Windows."
 msgstr ""
+"Мы рекомендуем окружение WSL тем, кто ищет Unix-подобную среду разработки."
 
 #: ../../source/learn/os_setup/install_gfortran.md:28
 msgid "Linux"
@@ -17185,33 +17601,43 @@ msgstr ""
 
 #: ../../source/learn/os_setup/install_gfortran.md:30
 msgid "Debian-based (Debian, Ubuntu, Mint, etc...)"
-msgstr ""
+msgstr "Дистрибутивы на основе Debian (Debian, Ubuntu, Mint и др.)"
 
 #: ../../source/learn/os_setup/install_gfortran.md:32
 msgid "Check whether you have gfortran already installed"
 msgstr ""
+"Проверьте, установлен ли у вас компилятор gfortran, выполнив в командной "
+"строке"
 
 #: ../../source/learn/os_setup/install_gfortran.md:38
 msgid ""
 "If nothing is returned then gfortran is not installed. To install gfortran "
 "type:"
 msgstr ""
+"Если в результате выполнения команды в окне ввода команд ничего не "
+"отобразилось, тогда компилятор gfortran не установлен. Для его установки "
+"наберите команду:"
 
 #: ../../source/learn/os_setup/install_gfortran.md:45
 msgid "to check what version was installed type:"
-msgstr ""
+msgstr "чтобы проверить, какая версия была установлены, наберите команду:"
 
 #: ../../source/learn/os_setup/install_gfortran.md:51
 msgid ""
 "You can install multiple versions up to version 10 (on Ubuntu 22.04) by "
 "typing the version number immediately after \"gfortran\", e.g.:"
 msgstr ""
+"Вы можете установить несколько версий вплоть до версии 10 (в дистрибутиве "
+"Ubuntu 22.04), указав номер версии после \\\"gfortran\\\", например:"
 
 #: ../../source/learn/os_setup/install_gfortran.md:57
 msgid ""
 "To install newer versions on older Ubuntu releases, you will first need to "
 "add the following repository, update, and then install:"
 msgstr ""
+"Чтобы установить новые версии на старые версии выпусков дистрибутива Ubuntu, "
+"вам сначала нужно добавить следующий репозиторий, обновить список пакетов, а "
+"затем установить компилятор:"
 
 #: ../../source/learn/os_setup/install_gfortran.md:65
 msgid ""
@@ -17224,20 +17650,32 @@ msgid ""
 "-compiler-versions-on-ubuntu-22-04-lts-jammy-jellyfish), you can apply the "
 "same logic by replacing either `gcc` or `g++` with `gfortran`."
 msgstr ""
+"Наконец, вы можете переключаться между различными версиями компилятора или "
+"установить версию по умолчанию с помощью команды **update-alternatives** (["
+"см. manpage](https://manpages.ubuntu.com/manpages/jammy/en/man1/update-"
+"alternatives.1.html)). Существует множество онлайн-уроков по использованию "
+"этой команды. Хорошо структурированное руководство на примере языков C и C++ "
+"можно найти [здесь](https://linuxconfig.org/how-to-switch-between-multiple-"
+"gcc-and-g-compiler-versions-on-ubuntu-22-04-lts-jammy-jellyfish). Вы можете "
+"применить ту же логику, заменив названия `gcc` и `g++` на `gfortran`."
 
 #: ../../source/learn/os_setup/install_gfortran.md:67
 msgid "RPM-based (Red Hat Enterprise Linux, CentOS, Fedora, openSUSE)"
 msgstr ""
+"Дистрибутивы на основе RPM (Red Hat Enterprise Linux, CentOS, Fedora, "
+"openSUSE)"
 
 #: ../../source/learn/os_setup/install_gfortran.md:73
 msgid ""
 "Since Fedora 22 and Red Hat Enterprise Linux 8, `dnf` is the default package "
 "manager:"
 msgstr ""
+"Начиная с Fedora 22 и Red Hat Enterprise Linux 8, `dnf` -- менеджер пакетов "
+"по умолчанию:"
 
 #: ../../source/learn/os_setup/install_gfortran.md:79
 msgid "Arch-based (Arch Linux, EndeavourOS, Manjaro, etc...)"
-msgstr ""
+msgstr "Дистрибутивы на основе Arch (Arch Linux, EndeavourOS, Manjaro и др.)"
 
 #: ../../source/learn/os_setup/install_gfortran.md:85
 msgid "macOS"
@@ -17249,17 +17687,20 @@ msgstr ""
 
 #: ../../source/learn/os_setup/install_gfortran.md:89
 msgid "If you have Xcode installed, open a terminal window and type:"
-msgstr ""
+msgstr "Если у вас установлен Xcode, то откройте окно ввода команд и наберите:"
 
 #: ../../source/learn/os_setup/install_gfortran.md:95
 msgid "Binaries"
-msgstr ""
+msgstr "Готовые бинарные сборки"
 
 #: ../../source/learn/os_setup/install_gfortran.md:97
 msgid ""
 "Go to [fxcoudert/gfortran-for-macOS](https://github.com/fxcoudert/gfortran-"
 "for-macOS/releases) to directly install binaries."
 msgstr ""
+"Посетите [fxcoudert/gfortran-for-macOS](https://github.com/fxcoudert/"
+"gfortran-for-macOS/releases) для установки готовых бинарных сборок ("
+"исполняемых файлов)."
 
 #: ../../source/learn/os_setup/install_gfortran.md:99
 msgid "Homebrew"
@@ -17274,6 +17715,8 @@ msgid ""
 "GNU-gcc Package "
 "[link](https://pdb.finkproject.org/pdb/browse.php?summary=GNU+Compiler+Collection+Version)"
 msgstr ""
+"[Ссылка](https://pdb.finkproject.org/pdb/browse."
+"php?summary=GNU+Compiler+Collection+Version) на пакет GNU-gcc"
 
 #: ../../source/learn/os_setup/install_gfortran.md:109
 msgid "MacPorts"
@@ -17281,11 +17724,11 @@ msgstr ""
 
 #: ../../source/learn/os_setup/install_gfortran.md:111
 msgid "Search for available gcc versions:"
-msgstr ""
+msgstr "Поиск доступных версий gcc:"
 
 #: ../../source/learn/os_setup/install_gfortran.md:117
 msgid "Install a gcc version:"
-msgstr ""
+msgstr "Установка gcc определённой версии:"
 
 #: ../../source/learn/os_setup/install_gfortran.md:123
 msgid "OpenBSD"
@@ -17294,6 +17737,8 @@ msgstr ""
 #: ../../source/learn/os_setup/install_gfortran.md:129
 msgid "On OpenBSD, the GFortran executable is named `egfortran`. To test it, type:"
 msgstr ""
+"В OpenBSD исполняемый файл компилятора GFortran называется `egfortran`. "
+"Чтобы проверить установлен ли он, выполните команду:"
 
 #: ../../source/learn/os_setup/install_gfortran.md:137
 msgid "OpenCoarrays"
@@ -17307,6 +17752,13 @@ msgid ""
 " leverage the parallel programming features of Fortran 2018. Since "
 "OpenCoarrays is not a separate compiler, we include it here, under gfortran."
 msgstr ""
+"[OpenCoarrays](http://www.opencoarrays.org/) -- проект программного "
+"обеспечения с открытым исходным кодом, который предоставляет бинарный "
+"интерфейс приложения (ABI), используемый внешним интерфейсом GNU Compiler "
+"Collection (GCC) Fortran для сборки исполняемых приложений, которые "
+"используют возможности параллельного программирования стандарта Fortran "
+"2018. Поскольку OpenCoarrays не является отдельным компилятором, мы "
+"упоминаем его здесь, в разделе о gfortran."
 
 #: ../../source/learn/os_setup/install_gfortran.md:141
 msgid ""
@@ -17316,18 +17768,28 @@ msgid ""
 "running code in parallel on shared- and distributed-memory machines, similar "
 "to MPI:"
 msgstr ""
+"Хотя вы можете скомпилировать в gfortran совершенно корректный код с "
+"использованием комассивов (coarrays), но сгенерированные исполняемые файлы "
+"будут работать только в одном образе -- image (_image_ -- термин языка "
+"Fortran для параллельного процесса), то есть, в последовательном режиме "
+"выполнения. OpenCoarrays позволяет выполнять код параллельно на машинах с "
+"общей и распределённой памятью, подобно интерфейсу MPI:"
 
 #: ../../source/learn/os_setup/install_gfortran.md:147
 msgid ""
 "The process of installation is provided in a clear and comprehensive manner "
 "on the official site."
 msgstr ""
+"Процесс его установки описан на официальном сайте в понятной и исчерпывающей "
+"форме."
 
 #: ../../source/learn/os_setup/install_gfortran.md:149
 msgid ""
 "We emphasize that native installation on Windows is not possible. It is only "
 "possible through WSL."
 msgstr ""
+"Подчеркнём, что его установка напрямую в Windows невозможна. Она возможна "
+"только через WSL."
 
 #: ../../source/learn/os_setup/text_editors.md:3
 msgid ""
@@ -17341,12 +17803,25 @@ msgid ""
 "to you to search for them through a package manager and install and configure"
 " them manually."
 msgstr ""
+"После установки компилятора вам потребуется текстовый редактор для написания "
+"кода программ. Для этого подойдёт любой текстовый редактор, даже "
+"поставляемое в Windows приложение 'Блокнот'. Однако существуют "
+"специализированные редакторы для языков программирования. Эти редакторы "
+"имеют множество полезных функций, таких как автодополнение, подсветка "
+"синтаксиса, автоматическая расстановка отступов, контроль парности скобок и "
+"многих других. Причём многие из этих дополнительных функций являются "
+"предустановленными, а большинство можно установить в виде внешних "
+"дополнений. Последнее означает, что по умолчанию эти функции не установлены "
+"в редакторе и вам придётся искать их через менеджер дополнений редактора, "
+"устанавливать и настраивать вручную."
 
 #: ../../source/learn/os_setup/text_editors.md:5
 msgid ""
 "Here's a list of the most popular text editors that support Fortran syntax, "
 "in alphabetical order:"
 msgstr ""
+"Вот список наиболее популярных текстовых редакторов, поддерживающих "
+"синтаксис языка Fortran, приведённый в алфавитном порядке:"
 
 #: ../../source/learn/os_setup/text_editors.md:7
 msgid "[Atom](https://atom.io/)"
@@ -17377,10 +17852,12 @@ msgid ""
 "A comprehensive list with more choices is provided in "
 "[fortranwiki.org](http://fortranwiki.org/fortran/show/Source+code+editors)."
 msgstr ""
+"Полный список с большим количеством вариантов представлен на сайте "
+"[fortranwiki.org](http://fortranwiki.org/fortran/show/Source+code+editors)."
 
 #: ../../source/learn/os_setup/text_editors.md:16
 msgid "Things to consider before choosing a text editor:"
-msgstr ""
+msgstr "Вещи, которые следует учитывать при выборе текстового редактора:"
 
 #: ../../source/learn/os_setup/text_editors.md:18
 msgid ""
@@ -17388,6 +17865,9 @@ msgid ""
 "uninterrupted the UI (User Interface) feels to the developer while using the "
 "editor."
 msgstr ""
+"**Эргономика:** Это чисто субъективный фактор, который касается того, "
+"насколько простым и бесшовным разработчику кажется пользовательский "
+"интерфейс в процессе использования редактора."
 
 #: ../../source/learn/os_setup/text_editors.md:19
 msgid ""
@@ -17396,6 +17876,10 @@ msgid ""
 "documentation, and user-friendliness of the packages all fall under this "
 "category."
 msgstr ""
+"**Расширяемость:** Как упоминалось выше, текстовые редакторы поставляются с "
+"множеством функций в виде внешних дополнений. Их разнообразие, процесс "
+"установки, документация и удобство использования -- всё это относится к "
+"данной категории."
 
 #: ../../source/learn/os_setup/text_editors.md:20
 msgid ""
@@ -17405,6 +17889,12 @@ msgid ""
 "performance. For example, you can expect Atom and VSCode to run slower than "
 "the lightweight editors like Vim or Emacs."
 msgstr ""
+"**Скорость:** С учётом того, насколько мощным может быть современное "
+"оборудование, скорость работы редакторов становится второстепенной. Однако "
+"для менее мощных систем, возможно, стоит обратить внимание и на этот фактор. "
+"Тяжёлые редакторы могут повлиять на скорость печати. Например, вы можете "
+"ожидать, что редакторы Atom и VSCode будут работать медленнее, чем лёгкие "
+"редакторы, такие как Vim или Emacs."
 
 #: ../../source/learn/os_setup/text_editors.md:21
 msgid ""
@@ -17414,10 +17904,16 @@ msgid ""
 "experience than any other editor by forcing you to use the keyboard for all "
 "editing tasks."
 msgstr ""
+"**Кривая обучения:** Последний, но не менее важный фактор. Новые "
+"пользователи должны учитывать, насколько легко привыкнуть к новому "
+"редактору. Vim и Emacs имеют крутую кривую обучения и, как известно, сложны "
+"для новичков. Они предлагают уникальный опыт, отличный от других текстовых "
+"редакторов, поскольку заставляют вас использовать клавиатуру для всех задач "
+"редактирования."
 
 #: ../../source/learn/os_setup/text_editors.md:23
 msgid "Configuring VS Code"
-msgstr ""
+msgstr "Настройка VS Code"
 
 #: ../../source/learn/os_setup/text_editors.md:25
 msgid ""
@@ -17428,28 +17924,40 @@ msgid ""
 "gfortran) for syntax highlighting, linting and Language Server support and "
 "formatting."
 msgstr ""
+"Когда редактор запущен, в главном окне, в колонке с кнопками слева, есть "
+"значок _в форме четырёх квадратов_ для открытия 'магазина дополнений' ("
+"Marketplace for extensions). Установите дополнение [Modern "
+"Fortran](https://marketplace.visualstudio.com/items?itemName=krvajalm.linter-"
+"gfortran) для добавления поддержки подстветки синтаксиса, линтинга, Language "
+"Server и форматирования для языка Fortran."
 
 #: ../../source/learn/os_setup/text_editors.md:28
 msgid "Additional Tools"
-msgstr ""
+msgstr "Дополнительные инструменты"
 
 #: ../../source/learn/os_setup/text_editors.md:30
 msgid ""
 "The following extensions are not essential but most users might find them "
 "useful:"
 msgstr ""
+"Следующие дополнения не являются обязательными, но большинство пользователей "
+"могут найти их полезными:"
 
 #: ../../source/learn/os_setup/text_editors.md:32
 msgid ""
 "[GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio.gitlens)"
 " for advanced Git visualization and operations."
 msgstr ""
+"[GitLens](https://marketplace.visualstudio.com/items?itemName=eamodio."
+"gitlens) -- для расширенной визуализации Git и операций с ним."
 
 #: ../../source/learn/os_setup/text_editors.md:33
 msgid ""
 "[CMake](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-"
 "tools) for full-featured CMake integration in VS Code."
 msgstr ""
+"[CMake](https://marketplace.visualstudio.com/items?itemName=ms-vscode.cmake-"
+"tools) -- для полнофункциональной интеграции CMake в VS Code."
 
 #: ../../source/learn/os_setup/text_editors.md:34
 msgid ""
@@ -17457,6 +17965,9 @@ msgid ""
 "vscode-remote.vscode-remote-extensionpack) for working with containers, on a "
 "remote machines, or in the Windows Subsystem for Linux (WSL)."
 msgstr ""
+"[Remote Development](https://marketplace.visualstudio.com/items?itemName=ms-"
+"vscode-remote.vscode-remote-extensionpack) -- для работы с контейнерами на "
+"удалённых машинах или в подсистеме Windows Subsystem for Linux (WSL)."
 
 #: ../../source/learn/os_setup/text_editors.md:35
 msgid ""
@@ -17466,10 +17977,14 @@ msgid ""
 "[fpm](https://github.com/fortran-lang/fpm) _Fortran Package Manager_, a TOML "
 "language support might come in handy."
 msgstr ""
+"[Even Better TOML by tamasfe](https://marketplace.visualstudio.com/"
+"items?itemName=tamasfe.even-better-toml). Для разработчиков на Fortran, "
+"использующих новый менеджер пакетов [fpm](https://github.com/fortran-lang/"
+"fpm) _Fortran Package Manager_, может пригодиться поддержка языка TOML."
 
 #: ../../source/learn/os_setup/text_editors.md:37
 msgid "Configuring SublimeText"
-msgstr ""
+msgstr "Настройка SublimeText"
 
 #: ../../source/learn/os_setup/text_editors.md:39
 msgid ""
@@ -17477,10 +17992,13 @@ msgid ""
 "SublimeText for Fortran developement is given "
 "[here](https://gist.github.com/sestelo/6b01e1405c1d0fa7f0ecdc951caaa995)."
 msgstr ""
+"Хорошо структурированная заметка gist, содержащая инструкции по настройке "
+"редактора SublimeText для разработки на языке Fortran приведена "
+"[здесь](https://gist.github.com/sestelo/6b01e1405c1d0fa7f0ecdc951caaa995)."
 
 #: ../../source/learn/os_setup/text_editors.md:41
 msgid "Configuring Atom"
-msgstr ""
+msgstr "Настройка Atom"
 
 #: ../../source/learn/os_setup/text_editors.md:43
 msgid ""
@@ -17491,6 +18009,12 @@ msgid ""
 "under _Settings_ opens where you can just start typing the package you want "
 "to install."
 msgstr ""
+"Процесс настройки редактора Atom аналогичен процессу настройки VS Code. В "
+"главом окне, если страница _Welcome Guide_ уже открыта, просто выберите "
+"опцию **Install a Package**, в противном случае вы можете найти ту же опцию "
+"через навигационную панель, нажав _Packages_. При этом откроется новая "
+"страница в разделе _Settings_, где вы можете просто начать вводить название "
+"дополнения, которое вы хотите установить."
 
 #: ../../source/learn/os_setup/text_editors.md:45
 msgid ""
@@ -17498,6 +18022,10 @@ msgid ""
 "hansec](https://atom.io/packages/ide-fortran). It needs the following "
 "packages to be installed:"
 msgstr ""
+"Одним из дополнений, которое включает в себя множество функций для "
+"разработки на языке Fortran, является [IDE-FORTRAN by hansec](https://atom."
+"io/packages/ide-fortran). Для его установки требуется, чтобы были "
+"установлены следующие дополнения:"
 
 #: ../../source/learn/os_setup/text_editors.md:47
 msgid "[atom-ide ui by facebook-atom](https://atom.io/packages/atom-ide-ui)"
@@ -17513,24 +18041,33 @@ msgid ""
 "and [Fortran Language Server](https://github.com/hansec/fortran-language-"
 "server) to be installed."
 msgstr ""
+"Дополнительно, как и в случае с VS Code, необходимо установить "
+"[Python](https://www.python.org/) и [Fortran Language Server](https://github."
+"com/hansec/fortran-language-server)."
 
 #: ../../source/learn/os_setup/text_editors.md:52
 msgid ""
 "For version control a very popular package is [Git-Plus by "
 "akonwi](https://atom.io/packages/git-plus)."
 msgstr ""
+"Для поддержки системы контроля версий популярным дополнением является [Git-"
+"Plus by akonwi](https://atom.io/packages/git-plus)."
 
 #: ../../source/learn/os_setup/tips.md:3
 msgid ""
 "To conclude, we give a few tips that may help you to choose a compiler and an"
 " editor or an IDE."
 msgstr ""
+"В заключение мы дадим несколько советов, которые могут помочь вам в выборе "
+"компилятора, текстового редактора или IDE."
 
 #: ../../source/learn/os_setup/tips.md:5
 msgid ""
 "Check [this site](https://www.fortran.uk/fortran-compiler-comparisons/) for a"
 " comprehensive comparison of Fortran compilers."
 msgstr ""
+"Посетите [этот сайт](https://www.fortran.uk/fortran-compiler-comparisons/) "
+"для всестороннего сравнения компиляторов."
 
 #: ../../source/learn/os_setup/tips.md:6
 msgid ""
@@ -17542,6 +18079,14 @@ msgid ""
 "GPU's compute capability and cross-check with the latest CUDA SDK that "
 "supports it."
 msgstr ""
+"Начиная с версии NVFortran 17.1, поддержка вычислительных возможностей "
+"видеокарт (GPU) серии Fermi 2.0 и более старых была удалена. Это важно, "
+"поскольку в любое время можно бесплатно загрузить только последнюю версию "
+"этого компилятора. Пользователи со старыми GPU не смогут запускать CUDA "
+"Fortran с текущей версией (20.7) или новее. Прочитайте [эту "
+"wiki-статью](https://www.wikiwand.com/en/CUDA#/GPUs_supported), чтобы узнать "
+"о вычислительных возможностях вашего GPU и свериться с последней версией "
+"CUDA SDK, которая его поддерживает."
 
 #: ../../source/learn/os_setup/tips.md:7
 msgid ""
@@ -17552,12 +18097,21 @@ msgid ""
 "source and free [Compiler Explorer](https://godbolt.org/), an amazing tool "
 "with unique features."
 msgstr ""
+"Существует множество онлайн-компиляторов для Fortran. Это веб-сайты, которые "
+"предлагают базовый тектовый редактор и позволяют компилировать и запускать "
+"ваш код на удалённом сервере. Они особенно полезны для быстрого создания "
+"прототипов и тестирования. Хотя мы обещали нейтральность, мы рекомендуем вам "
+"ознакомиться с бесплатным ресурсом с открытым исходным кодом [Compiler "
+"Explorer](https://godbolt.org/) -- удивительным инструментом с уникальными "
+"возможностями."
 
 #: ../../source/learn/os_setup/tips.md:8
 msgid ""
 "Arguably the most popular text editor, according to recent online surveys, is"
 " the Visual Studio Code, developed by Microsoft."
 msgstr ""
+"Пожалуй, самым популярным текстовым редактором, согласно недавним онлайн-"
+"опросам, является Visual Studio Code, разработанный компанией Microsoft."
 
 #: ../../source/learn/os_setup/tips.md:9
 msgid ""
@@ -17570,6 +18124,15 @@ msgid ""
 "have offered discount codes to individuals looking for affordable complete "
 "solutions (IDE + compiler)."
 msgstr ""
+"Наиболее популярными бесплатными IDE являются Code::Blocks и Geany. Многие "
+"коммерческие IDE предоставляют до 30 дней бесплатной пробной версии. Имейте "
+"ввиду, что цены на коммерческие IDE могут варьироваться, и некоторые из них "
+"могут быть вполне доступными. Наконец, если вы студент, разработчик "
+"программного обеспечения с открытым исходным кодом или любитель разработки "
+"на языке _Fortran_, не стесняйтесь связаться с этими компаниями, чтобы "
+"попросить скидку. Были случаи, например, на ресурсе 'r/fortran', где "
+"представители, по крайней мере, одной из компаний предлагали коды для скидок "
+"тем, кто ищет доступные комплексные решения (IDE + компилятор)."
 
 #: ../../source/learn/os_setup/tips.md:10
 msgid ""
@@ -17577,6 +18140,9 @@ msgid ""
 "lang.discourse.group/) and do not hesitate to post your questions and request"
 " for further information."
 msgstr ""
+"Наконец, пожалуйста, присоединяйтесь в нам на [Fortran Discourse](https"
+"://fortran-lang.discourse.group/) и не стесняйтесь задавать свои вопросы и "
+"запрашивать дополнительную информацию."
 
 #: ../../source/learn/quickstart/arrays_strings.md:1
 #: ../../source/learn/quickstart/index.md:11
