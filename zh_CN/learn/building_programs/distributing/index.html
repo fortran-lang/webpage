@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>分发你的程序 &#8212; Fortran Programming Language</title>
+    <title>分发您的程序 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -338,7 +338,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../packages/">
-  源码包
+  Packages
  </a>
 </li>
 
@@ -411,27 +411,27 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/choose_compiler/">
-     选择编译器
+     Choosing a compiler
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/install_gfortran/">
-     安装 GFortran
+     Installing GFortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/text_editors/">
-     文本编辑器
+     Text Editors
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/ides/">
-     集成开发环境（IDE）
+     IDEs
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/tips/">
-     智能提示
+     Smart Tips
     </a>
    </li>
   </ul>
@@ -525,7 +525,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     分发你的程序
+     分发您的程序
     </a>
    </li>
   </ul>
@@ -668,12 +668,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/transform/">
-     矩阵乘法、点积和数组移位
+     Matrix multiplication, dot product, and array shifts
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/type/">
-     类型和种类
+     Types and kinds
     </a>
    </li>
    <li class="toctree-l2">
@@ -727,28 +727,28 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="distributing-your-programs">
-<h1>分发你的程序<a class="headerlink" href="#distributing-your-programs" title="此标题的永久链接">#</a></h1>
-<p>分发程序时，你可以选择多种选项：</p>
+<h1>分发您的程序<a class="headerlink" href="#distributing-your-programs" title="此标题的永久链接">#</a></h1>
+<p>分发程序时，您可以选择多种选项：</p>
 <ol class="arabic simple">
 <li><p>分发整个源代码</p></li>
 <li><p>分发预构建的可执行程序</p></li>
 <li><p>分发人们可以使用的静态或动态库</p></li>
 </ol>
 <p><strong>选项 1：分发整个源代码</strong></p>
-<p>到目前为止，最简单的 —— 对于作为程序员的你来说 —— 就是这个：你把它留给用户在他们自己的机器上构建它。不幸的是，这意味着你必须有一个用户友好的构建系统，并且用户必须能够访问合适的编译器。对于构建系统：请参阅上一节。</p>
+<p>到目前为止，最简单的——对于作为程序员的你来说——就是这个：你把它留给用户在他们自己的机器上构建它。不幸的是，这意味着您必须有一个用户友好的构建系统，并且用户必须能够访问合适的编译器。对于构建系统：请参阅上一节。</p>
 <p><strong>选项 2：分发预构建的可执行程序</strong></p>
 <p>除了通过其输入之外，不需要定制的预构建程序仍然需要附带各种运行时库，并且将特定于为其构建的操作系统/环境。</p>
 <p>运行时库集因操作系统和编译器版本而异。对于像 gfortran 这样的免费编译器，最简单的方法是要求用户在他们的系统上安装该编译器。在 Windows 的情况下：可能需要 Cygwin 环境。</p>
-<p>或者，你可以将运行时库的副本与你的程序一起提供。将它们放在运行时可以找到的目录中。</p>
+<p>或者，您可以将运行时库的副本与您的程序一起提供。将它们放在运行时可以找到的目录中。</p>
 <p>注意：在 Windows 上，英特尔 Fortran 附带一组 <em>redistributable</em> 库。这些将需要提供。</p>
 <p>一般来说：使用 <code class="docutils literal notranslate"><span class="pre">ldd</span></code>或 <code class="docutils literal notranslate"><span class="pre">dependency</span> <span class="pre">walker</span></code> 之类的工具来找出需要哪些库并查阅编译器的文档。</p>
-<p>如果你的程序确实允许自定义，请考虑为此使用动态库。下面将对此进行更多说明。</p>
+<p>如果您的程序确实允许自定义，请考虑为此使用动态库。下面将对此进行更多说明。</p>
 <p><strong>选项 3：分发人们可以使用的静态或动态库</strong></p>
-<p>此选项是前两个选项的组合。它确实给用户带来了一些负担，因为他们必须创建一个以正确方式调用你的例程的主程序，但他们不需要对你使用的构建系统有太多了解。不过，你将不得不处理运行时库。</p>
-<p>如果选择此选项，除了编译的库之外，你还需要提供模块中间文件。这些文件是特定于编译器的，但你构建的静态库也是如此。</p>
+<p>此选项是前两个选项的组合。它确实给用户带来了一些负担，因为他们必须创建一个以正确方式调用您的例程的主程序，但他们不需要对您使用的构建系统有太多了解。不过，您将不得不处理运行时库。</p>
+<p>如果选择此选项，除了编译的库之外，您还需要提供模块中间文件。这些文件是特定于编译器的，但您构建的静态库也是如此。</p>
 <section id="distributing-the-tabulation-program">
 <h2>分发制表程序<a class="headerlink" href="#distributing-the-tabulation-program" title="此标题的永久链接">#</a></h2>
-<p>如上所示，可以使用动态库中的用户定义函数来构建制表程序。这使你能够：</p>
+<p>如上所示，可以使用动态库中的用户定义函数来构建制表程序。这使您能够：</p>
 <ul class="simple">
 <li><p>运送可执行文件（使用适当的运行时库）</p></li>
 <li><p>提供模块的骨架版本，例如：</p></li>
@@ -778,7 +778,7 @@
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ifort -exe:functions.dll functions.f90 -dll
 </pre></div>
 </div>
-<p>如前所述，你无法控制用户是否做了正确的事情 —— 任何带有函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 的 DLL <code class="docutils literal notranslate"><span class="pre">functions.dll</span></code> 都会被接受，但不一定会导致成功运行。</p>
+<p>如前所述，您无法控制用户是否做了正确的事情——任何带有函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 的 DLL <code class="docutils literal notranslate"><span class="pre">functions.dll</span></code> 都会被接受，但不一定会导致成功运行。</p>
 <p>另一种设置是将主程序更改为子程序并将函数作为参数：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">tabulation</span><span class="w"></span>
 <span class="w">    </span><span class="k">implicit none</span>
@@ -816,7 +816,7 @@
 <span class="k">end program </span><span class="n">tabulate_f</span><span class="w"></span>
 </pre></div>
 </div>
-<p>优点是编译器可以检查传递的函数的接口，并且用户可以更自由地使用你的库提供的功能。</p>
+<p>优点是编译器可以检查传递的函数的接口，并且用户可以更自由地使用您的库提供的功能。</p>
 </section>
 </section>
 

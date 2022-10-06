@@ -338,7 +338,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../packages/">
-  源码包
+  Packages
  </a>
 </li>
 
@@ -411,27 +411,27 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/choose_compiler/">
-     选择编译器
+     Choosing a compiler
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/install_gfortran/">
-     安装 GFortran
+     Installing GFortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/text_editors/">
-     文本编辑器
+     Text Editors
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/ides/">
-     集成开发环境（IDE）
+     IDEs
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/tips/">
-     智能提示
+     Smart Tips
     </a>
    </li>
   </ul>
@@ -525,7 +525,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../distributing/">
-     分发你的程序
+     分发您的程序
     </a>
    </li>
   </ul>
@@ -668,12 +668,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/transform/">
-     矩阵乘法、点积和数组移位
+     Matrix multiplication, dot product, and array shifts
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/type/">
-     类型和种类
+     Types and kinds
     </a>
    </li>
    <li class="toctree-l2">
@@ -738,13 +738,13 @@
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="managing-libraries-static-and-dynamic-libraries">
 <h1>管理库（静态和动态库）<a class="headerlink" href="#managing-libraries-static-and-dynamic-libraries" title="此标题的永久链接">#</a></h1>
-<p>如果你需要管理一个由几十个源文件构建的程序（这并不少见！），指定所有目标文件所需的命令行将会非常长。这很快就变得乏味，甚至不可能维护。因此有一个不同的解决方案：创建自己的库。</p>
+<p>如果您需要管理一个由几十个源文件构建的程序（这并不少见！），指定所有目标文件所需的命令行将会非常长。这很快就变得乏味，甚至不可能维护。因此有一个不同的解决方案：创建自己的库。</p>
 <p>库以紧凑的形式包含任意数量的目标文件，因此命令行变得更短：</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -o tabulate tabulate.f90 functions.o supportlib.a
 </pre></div>
 </div>
 <p>其中 “supportlib.a “是一个，两个或多个对象文件的集合，所有这些文件都经过编译，然后放入一个库中。扩展名”.a “被Linux和类Linux平台使用。在Windows上使用扩展名”.lib”。</p>
-<p>创建自己的库并不复杂：在 Linux 上，你可以使用像 <code class="docutils literal notranslate"><span class="pre">ar</span></code> 这样的程序来实现这一点：</p>
+<p>创建自己的库并不复杂：在Linux上，您可以使用像<code class="docutils literal notranslate"><span class="pre">ar</span></code>这样的程序来实现这一点：</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -c file1.f90 file2.f90
 $ gfortran -c file3.f90 ...
 $ ar r supportlib.a file1.o file2.o
@@ -761,15 +761,15 @@ c:<span class="se">\.</span>..&gt; lib supportlib.lib file3.obj ...
 <p>注意：</p>
 <ul class="simple">
 <li><p>带有选项 <code class="docutils literal notranslate"><span class="pre">r</span></code> 的 <code class="docutils literal notranslate"><span class="pre">ar</span></code>命令要么创建库（名称出现在选项之后），要么将新的目标文件添加到库中（或替换任何现有的）。</p></li>
-<li><p>如果你使用选项 <code class="docutils literal notranslate"><span class="pre">/out：</span></code> 并在其旁边指定新库的名称，命令 <code class="docutils literal notranslate"><span class="pre">lib</span></code> 将创建一个新库。要将对象文件添加到现有库中，请省略 <code class="docutils literal notranslate"><span class="pre">/out：</span></code> 。</p></li>
-<li><p>在像 Linux 这样的平台上，命名库有一个特定的约定。如果你将库命名为 “libname.a”（注意 “lib” 前缀），那么你可以在链接步骤中将其称为 <code class="docutils literal notranslate"><span class="pre">-lname</span></code>。</p></li>
+<li><p>如果您使用选项 <code class="docutils literal notranslate"><span class="pre">/out：</span></code> 并在其旁边指定新库的名称，命令 <code class="docutils literal notranslate"><span class="pre">lib</span></code> 将创建一个新库。要将对象文件添加到现有库中，请省略 <code class="docutils literal notranslate"><span class="pre">/out：</span></code> 。</p></li>
+<li><p>在像 Linux 这样的平台上，命名库有一个特定的约定。如果您将库命名为“libname.a”（注意“lib”前缀），那么你可以在链接步骤中将其称为 <code class="docutils literal notranslate"><span class="pre">-lname</span></code>。</p></li>
 <li><p>库通常在由选项 <code class="docutils literal notranslate"><span class="pre">-L</span></code> 或 <code class="docutils literal notranslate"><span class="pre">/LIBPATH</span></code> 指示的目录中查找。这使你不必为每个库指定确切的路径。</p></li>
 </ul>
 <p>使用库，你可以构建非常大的程序，而无需求助于极长的命令行。</p>
 <section id="static-versus-dynamic-libraries">
 <h2>静态库与动态库<a class="headerlink" href="#static-versus-dynamic-libraries" title="此标题的永久链接">#</a></h2>
 <p>上面的讨论默认你使用的是所谓的静态库。静态库（或至少部分内容）成为可执行程序的组成部分。更改程序中包含的例程的唯一方法是使用新版本的库重新构建程序。</p>
-<p>一种灵活的替代方法是使用所谓的动态库。这些库保留在可执行程序之外，因此可以在不重建整个程序的情况下进行替换。编译器甚至操作系统本身都严重依赖于这样的动态库。你可以将动态库视为一种需要一些帮助才能运行的可执行程序。</p>
+<p>一种灵活的替代方法是使用所谓的动态库。这些库保留在可执行程序之外，因此可以在不重建整个程序的情况下进行替换。编译器甚至操作系统本身都严重依赖于这样的动态库。您可以将动态库视为一种需要一些帮助才能运行的可执行程序。</p>
 <p>构建动态库与构建静态库的工作方式略有不同：你使用编译器/链接器而不是像 <code class="docutils literal notranslate"><span class="pre">ar</span></code> 或 <code class="docutils literal notranslate"><span class="pre">lib</span></code> 这样的工具。</p>
 <p>在 Linux 上：</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -fpic -c file1.f90 file2.f90
@@ -827,7 +827,7 @@ $ ifort -dll -exe:supportlib.dll file1.obj file2.obj file3.obj ...
 </pre></div>
 </div>
 <p>DLL 和 .mod 文件用于构建可执行程序，检查函数的接口、正确的名称和对“a”DLL（称为“functions.dll”）的引用。</p>
-<p>你可以用另一个替换共享库 “functions.dll”，实现不同的函数 “f”。当然，你需要小心为该功能使用正确的接口。编译器/链接器不再被调用，因此它们无法进行检查。</p>
+<p>您可以用另一个替换共享库“functions.dll”，实现不同的函数“f”。当然，您需要小心为该功能使用正确的接口。编译器/链接器不再被调用，因此它们无法进行检查。</p>
 </section>
 <section id="windows-and-intel-fortran">
 <h2>Windows和Intel Fortran<a class="headerlink" href="#windows-and-intel-fortran" title="此标题的永久链接">#</a></h2>

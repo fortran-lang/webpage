@@ -338,7 +338,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../packages/">
-  源码包
+  Packages
  </a>
 </li>
 
@@ -411,27 +411,27 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/choose_compiler/">
-     选择编译器
+     Choosing a compiler
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/install_gfortran/">
-     安装 GFortran
+     Installing GFortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/text_editors/">
-     文本编辑器
+     Text Editors
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/ides/">
-     集成开发环境（IDE）
+     IDEs
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/tips/">
-     智能提示
+     Smart Tips
     </a>
    </li>
   </ul>
@@ -525,7 +525,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../distributing/">
-     分发你的程序
+     分发您的程序
     </a>
    </li>
   </ul>
@@ -668,12 +668,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/transform/">
-     矩阵乘法、点积和数组移位
+     Matrix multiplication, dot product, and array shifts
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../intrinsics/type/">
-     类型和种类
+     Types and kinds
     </a>
    </li>
    <li class="toctree-l2">
@@ -752,24 +752,24 @@
 <h1>构建工具<a class="headerlink" href="#build-tools" title="此标题的永久链接">#</a></h1>
 <p>根据源文件的数量和模块之间的相互依赖性，手动编译 Fortran 项目可能会变得相当复杂。除非使用正确的工具来自动执行这些任务，否则支持不同的编译器和链接器或不同的平台会变得越来越复杂。</p>
 <p>根据项目的大小和项目的目的，可以使用不同的构建自动化选项。</p>
-<p>首先，你的集成开发环境可能提供了一种构建程序的方法。一个流行的跨平台工具是 Microsoft 的 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a>，但也有其他工具，例如 <a href="https://atom.io/" target="_blank" rel="noopener">Atom</a>、<a href="https://www.eclipse.org/photran/" target="_blank" rel="noopener">Eclipse Photran</a> 和 <a href="http://www.codeblocks.org/" target="_blank" rel="noopener">Code::Blocks[ X508X]。它们提供了一个图形用户界面，但通常是针对编译器和平台的。</p>
-<p>对于较小的项目，基于规则的构建系统 <code class="docutils literal notranslate"><span class="pre">make</span></code> 是一种常见的选择。根据定义的规则，它可以执行从更新的源文件（重新）编译目标文件、创建库和链接可执行文件等任务。要为你的项目使用 <code class="docutils literal notranslate"><span class="pre">make</span></code>，你必须在 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 中编码这些规则，它定义了所有最终程序、中间目标文件或库以及实际源文件的相互依赖关系。有关简短介绍，请参阅 <a class="reference internal" href="#using-make-as-build-tool"><span class="std std-doc">关于 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的指南</span></a>。</p>
+<p>首先，您的集成开发环境可能提供了一种构建程序的方法。一个流行的跨平台工具是 Microsoft 的 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a>，但也有其他工具，例如 <a href="https://atom.io/" target="_blank" rel="noopener">Atom</a>、<a href="https://www.eclipse.org/photran/" target="_blank" rel="noopener">Eclipse Photran</a> 和 <a href="http://www.codeblocks.org/" target="_blank" rel="noopener">Code::Blocks[ X508X]。它们提供了一个图形用户界面，但通常是针对编译器和平台的。</p>
+<p>对于较小的项目，基于规则的构建系统 <code class="docutils literal notranslate"><span class="pre">make</span></code> 是一种常见的选择。根据定义的规则，它可以执行从更新的源文件（重新）编译目标文件、创建库和链接可执行文件等任务。要为您的项目使用 <code class="docutils literal notranslate"><span class="pre">make</span></code>，您必须在 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 中编码这些规则，它定义了所有最终程序、中间目标文件或库以及实际源文件的相互依赖关系。有关简短介绍，请参阅 <a class="reference internal" href="#using-make-as-build-tool"><span class="std std-doc">关于 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的指南</span></a>。</p>
 <p>autotools 和 CMake 等维护工具可以通过高级描述生成 Makefile 或 Visual Studio 项目文件。它们从编译器和平台细节中抽象出来。</p>
-<p>哪些工具是你项目的最佳选择取决于许多因素。选择一个你喜欢使用的构建工具，它不应该在开发时妨碍你。花更多的时间在构建工具上而不是实际的开发工作上会很快变得令人沮丧。</p>
-<p>此外，请考虑构建工具的可访问性。如果仅限于特定的集成开发环境，你项目中的所有开发人员都可以访问吗？如果你使用的是特定的构建系统，它是否适用于你正在开发的所有平台？你的构建工具的进入壁垒有多大？考虑构建工具的学习曲线，如果你必须先学习一门复杂的编程语言才能添加新的源文件，那么完美的构建工具将毫无用处。最后，考虑其他项目正在使用什么，你依赖的项目以及使用（或将使用）你的项目作为依赖项的项目。</p>
+<p>哪些工具是您项目的最佳选择取决于许多因素。选择一个您喜欢使用的构建工具，它不应该在开发时妨碍您。花更多的时间在构建工具上而不是实际的开发工作上会很快变得令人沮丧。</p>
+<p>此外，请考虑构建工具的可访问性。如果仅限于特定的集成开发环境，你项目中的所有开发人员都可以访问吗？如果您使用的是特定的构建系统，它是否适用于您正在开发的所有平台？您的构建工具的进入壁垒有多大？考虑构建工具的学习曲线，如果您必须先学习一门复杂的编程语言才能添加新的源文件，那么完美的构建工具将毫无用处。最后，考虑其他项目正在使用什么，您依赖的项目以及使用（或将使用）您的项目作为依赖项的项目。</p>
 <section id="using-make-as-build-tool">
 <h2>使用 make 作为构建工具<a class="headerlink" href="#using-make-as-build-tool" title="此标题的永久链接">#</a></h2>
 <p>最著名和最常用的构建系统称为 <code class="docutils literal notranslate"><span class="pre">make</span></code>。它按照名为 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 或 <code class="docutils literal notranslate"><span class="pre">makefile</span></code> 的配置文件中定义的规则执行操作，这通常会导致从提供的源代码编译程序。</p>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
-<p>如需深入的 <code class="docutils literal notranslate"><span class="pre">make</span></code> 教程，请查看其信息页面。这个<a href="https://www.gnu.org/software/make/manual/make.html" target="_blank" rel="noopener">信息页面</a>有一个在线版本，可用。</p>
+<p>For an in-depth <code class="docutils literal notranslate"><span class="pre">make</span></code> tutorial lookup its info page. There is an online version of this <a href="https://www.gnu.org/software/make/manual/make.html" target="_blank" rel="noopener">info page</a>, available.</p>
 </div>
 <p>我们将从干净的源目录中的基础知识开始。创建并打开文件 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>，我们从一个名为 <em>all</em> 的简单规则开始：</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span>
 	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
-<p>保存 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 后，通过在同一目录中执行 <code class="docutils literal notranslate"><span class="pre">make</span></code> 运行它。你应该看到以下输出：</p>
+<p>保存 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 后，通过在同一目录中执行 <code class="docutils literal notranslate"><span class="pre">make</span></code> 运行它。您应该看到以下输出：</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>echo &quot;all&quot;
 all
 </pre></div>
@@ -777,11 +777,11 @@ all
 <p>首先，我们注意到 <code class="docutils literal notranslate"><span class="pre">make</span></code> 用 <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code> 替换了规则的名称，第二个需要注意的是 <code class="docutils literal notranslate"><span class="pre">make</span></code> 总是打印它正在运行的命令，最后，我们看到运行 <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;all&quot;</span></code>。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p>按照惯例，我们总是将 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 的入口点称为 <em>all</em>，但你可以选择任何你喜欢的名称。</p>
+<p>按照惯例，我们总是将 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 的入口点称为 <em>all</em>，但您可以选择任何您喜欢的名称。</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p>如果你的编辑器工作正常，你应该不会注意到它，但是你必须使用制表符缩进规则的内容。如果你在运行上述 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 时遇到问题并看到类似的错误</p>
+<p>如果您的编辑器工作正常，您应该不会注意到它，但是您必须使用制表符缩进规则的内容。如果您在运行上述 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 时遇到问题并看到类似的错误</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Makefile:2: *** missing separator.  Stop.
 </pre></div>
 </div>
@@ -847,7 +847,7 @@ gfortran -c -o tabulate.o tabulate.f90
 gfortran -o my_prog tabulate.o functions.o
 </pre></div>
 </div>
-<p>你现在应该在目录中找到 <em>four</em> 个新文件。运行 <code class="docutils literal notranslate"><span class="pre">my_prog</span></code> 以确保一切按预期工作。让我们再次运行<code class="docutils literal notranslate"><span class="pre">make</span></code>：</p>
+<p>您现在应该在目录中找到 <em>four</em> 个新文件。运行 <code class="docutils literal notranslate"><span class="pre">my_prog</span></code> 以确保一切按预期工作。让我们再次运行<code class="docutils literal notranslate"><span class="pre">make</span></code>：</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make: Nothing to be done for &#39;all&#39;.
 </pre></div>
 </div>
@@ -884,14 +884,14 @@ gfortran -o my_prog tabulate.o functions.o
 	<span class="k">$(</span>RM<span class="k">)</span> <span class="k">$(</span>filter %.o, <span class="k">$(</span>OBJS<span class="k">))</span> <span class="k">$(</span>wildcard *.mod<span class="k">)</span> <span class="k">$(</span>PROG<span class="k">)</span>
 </pre></div>
 </div>
-<p>由于你从 <code class="docutils literal notranslate"><span class="pre">make</span></code> 开始，我们强烈建议始终包含第一行，就像 Fortran 的 <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code> 一样，我们不希望隐式规则以令人惊讶和有害的方式弄乱我们的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>。</p>
-<p>接下来，我们有一个配置部分，我们在其中定义变量，如果你想切换编译器，可以在这里轻松完成。我们还引入了 <code class="docutils literal notranslate"><span class="pre">SRCS</span></code> 变量来保存所有源文件，这比指定目标文件更直观。我们可以通过使用函数 <code class="docutils literal notranslate"><span class="pre">addsuffix</span></code> 附加 <code class="docutils literal notranslate"><span class="pre">.o</span></code> 后缀来轻松创建目标文件。 <code class="docutils literal notranslate"><span class="pre">.PHONY</span></code> 是一个特殊规则，它应该用于你的<code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 的所有入口点，这里我们定义了两个入口点，我们已经知道_all_，新的_clean_ 规则再次删除所有构建工件，这样我们确实从一个干净的目录开始。</p>
-<p>此外，我们稍微更改了目标文件的构建规则，以考虑附加 <code class="docutils literal notranslate"><span class="pre">.o</span></code> 后缀而不是替换它。请注意，我们仍然需要在 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>中明确定义相互依赖关系。我们还添加了对 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 本身的目标文件的依赖，以防你更改编译器，这将允许你安全地重新构建。</p>
-<p>现在你已经对 <code class="docutils literal notranslate"><span class="pre">make</span></code> 有了足够的了解，可以用它来构建小型项目了。如果你打算更广泛地使用 <code class="docutils literal notranslate"><span class="pre">make</span></code>，我们也为你编译了一些提示。</p>
+<p>由于您从 <code class="docutils literal notranslate"><span class="pre">make</span></code> 开始，我们强烈建议始终包含第一行，就像 Fortran 的 <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code> 一样，我们不希望隐式规则以令人惊讶和有害的方式弄乱我们的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>。</p>
+<p>接下来，我们有一个配置部分，我们在其中定义变量，如果您想切换编译器，可以在这里轻松完成。我们还引入了 <code class="docutils literal notranslate"><span class="pre">SRCS</span></code> 变量来保存所有源文件，这比指定目标文件更直观。我们可以通过使用函数 <code class="docutils literal notranslate"><span class="pre">addsuffix</span></code> 附加 <code class="docutils literal notranslate"><span class="pre">.o</span></code> 后缀来轻松创建目标文件。 <code class="docutils literal notranslate"><span class="pre">.PHONY</span></code> 是一个特殊规则，它应该用于你的<code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 的所有入口点，这里我们定义了两个入口点，我们已经知道_all_，新的_clean_ 规则再次删除所有构建工件，这样我们确实从一个干净的目录开始。</p>
+<p>此外，我们稍微更改了目标文件的构建规则，以考虑附加 <code class="docutils literal notranslate"><span class="pre">.o</span></code> 后缀而不是替换它。请注意，我们仍然需要在 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>中明确定义相互依赖关系。我们还添加了对 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 本身的目标文件的依赖，以防您更改编译器，这将允许您安全地重新构建。</p>
+<p>现在你已经对 <code class="docutils literal notranslate"><span class="pre">make</span></code> 有了足够的了解，可以用它来构建小型项目了。如果您打算更广泛地使用 <code class="docutils literal notranslate"><span class="pre">make</span></code>，我们也为您编译了一些提示。</p>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
-<p>在本指南中，我们避免并禁用了许多常用的 <code class="docutils literal notranslate"><span class="pre">make</span></code> 功能，如果使用不当，这些功能可能会特别麻烦，如果你对使用 <code class="docutils literal notranslate"><span class="pre">make</span></code> 没有信心，我们强烈建议你远离内置规则和变量，但显式声明所有变量和规则。</p>
-<p>你会发现 <code class="docutils literal notranslate"><span class="pre">make</span></code> 是一种强大的工具，可以自动化简短的相互依赖的工作流程并构建小型项目。但是对于较大的项目，你可能很快就会遇到一些限制。通常，<code class="docutils literal notranslate"><span class="pre">make</span></code> 不会单独使用，而是与其他工具结合使用以完全或部分生成 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>。</p>
+<p>在本指南中，我们避免并禁用了许多常用的 <code class="docutils literal notranslate"><span class="pre">make</span></code> 功能，如果使用不当，这些功能可能会特别麻烦，如果您对使用 <code class="docutils literal notranslate"><span class="pre">make</span></code> 没有信心，我们强烈建议您远离内置规则和变量, 但显式声明所有变量和规则。</p>
+<p>您会发现 <code class="docutils literal notranslate"><span class="pre">make</span></code> 是一种强大的工具，可以自动化简短的相互依赖的工作流程并构建小型项目。但是对于较大的项目，您可能很快就会遇到一些限制。通常，<code class="docutils literal notranslate"><span class="pre">make</span></code> 不会单独使用，而是与其他工具结合使用以完全或部分生成 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>。</p>
 </div>
 <section id="recursively-expanded-variables">
 <h3>递归扩展变量<a class="headerlink" href="#recursively-expanded-variables" title="此标题的永久链接">#</a></h3>
@@ -905,7 +905,7 @@ gfortran -o my_prog tabulate.o functions.o
 <span class="nv">include_dirs</span> <span class="o">+=</span> -I/opt/some_dep/include
 </pre></div>
 </div>
-<p>运行 <code class="docutils literal notranslate"><span class="pre">make</span></code> 后，你应该会找到预期的（或可能是意外的）打印输出</p>
+<p>运行 <code class="docutils literal notranslate"><span class="pre">make</span></code> 后，您应该会找到预期的（或可能是意外的）打印输出</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>echo -I./include -I/opt/some_dep/include -O
 -I./include -I/opt/some_dep/include -O
 </pre></div>
@@ -928,7 +928,7 @@ gfortran -o my_prog tabulate.o functions.o
 <p class="admonition-title">重要</p>
 <p>总是将 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 视为一整套规则，在评估任何规则之前必须对其进行完全解析。</p>
 </div>
-<p>你可以使用你最喜欢的任何类型的变量，当然应该小心混合它们。重要的是要了解这两种类型之间的差异及其各自的含义。</p>
+<p>您可以使用您最喜欢的任何类型的变量，当然应该小心混合它们。重要的是要了解这两种类型之间的差异及其各自的含义。</p>
 </section>
 <section id="comments-and-whitespace">
 <h3>注释和空格<a class="headerlink" href="#comments-and-whitespace" title="此标题的永久链接">#</a></h3>
@@ -945,19 +945,19 @@ gfortran -o my_prog tabulate.o functions.o
 <span class="o">/</span><span class="n">usr</span>  <span class="o">/</span><span class="n">lib</span>
 </pre></div>
 </div>
-<p>要解决此问题，你可以移动注释，或者使用 <code class="docutils literal notranslate"><span class="pre">strip</span></code> 函数去除空白。或者，你可以尝试 <code class="docutils literal notranslate"><span class="pre">join</span></code> 字符串。</p>
+<p>要解决此问题，您可以移动注释，或者使用 <code class="docutils literal notranslate"><span class="pre">strip</span></code> 函数去除空白。或者，您可以尝试 <code class="docutils literal notranslate"><span class="pre">join</span></code> 字符串。</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span> <span class="o">:=</span> /usr  <span class="c1"># path to install location</span>
 <span class="nf">install</span><span class="o">:</span>
 	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span>strip <span class="k">$(</span>prefix<span class="k">))</span><span class="s2">/lib&quot;</span>
 	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span>join <span class="k">$(</span>join <span class="k">$(</span>prefix<span class="k">)</span>, /<span class="k">)</span>, lib<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
-<p>总而言之，这些解决方案都不会使你的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 更具可读性，因此，在编写和使用 <code class="docutils literal notranslate"><span class="pre">make</span></code> 时要特别注意空格和注释。</p>
+<p>总而言之，这些解决方案都不会使您的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 更具可读性，因此，在编写和使用 <code class="docutils literal notranslate"><span class="pre">make</span></code> 时要特别注意空格和注释。</p>
 </section>
 </section>
 <section id="the-meson-build-system">
 <h2>Meson 构建系统<a class="headerlink" href="#the-meson-build-system" title="此标题的永久链接">#</a></h2>
-<p>在你了解了 <code class="docutils literal notranslate"><span class="pre">make</span></code>（我们称之为低级构建系统）的基础知识之后，我们将介绍 <code class="docutils literal notranslate"><span class="pre">meson</span></code>，一个高级构建系统。当你在低级构建系统中指定如何构建程序时，你可以使用高级构建系统来指定要构建的内容。高级构建系统将为你处理如何为低级构建系统生成构建文件。</p>
+<p>在您了解了 <code class="docutils literal notranslate"><span class="pre">make</span></code>（我们称之为低级构建系统）的基础知识之后，我们将介绍 <code class="docutils literal notranslate"><span class="pre">meson</span></code>，一个高级构建系统。当您在低级构建系统中指定如何构建程序时，您可以使用高级构建系统来指定要构建的内容。高级构建系统将为您处理如何为低级构建系统生成构建文件。</p>
 <p>有很多可用的高级构建系统，但我们将专注于 <code class="docutils literal notranslate"><span class="pre">meson</span></code>，因为它的构建是特别用户友好的。 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 的默认低级构建系统称为 <code class="docutils literal notranslate"><span class="pre">ninja</span></code>。</p>
 <p>让我们看一个完整的 <code class="docutils literal notranslate"><span class="pre">meson.build</span></code> 文件：</p>
 <!-- meson is unknown by the highlighter, python looks okayish -->
@@ -965,7 +965,7 @@ gfortran -o my_prog tabulate.o functions.o
 <span class="n">executable</span><span class="p">(</span><span class="s1">&#39;my_prog&#39;</span><span class="p">,</span> <span class="n">files</span><span class="p">(</span><span class="s1">&#39;tabulate.f90&#39;</span><span class="p">,</span> <span class="s1">&#39;functions.f90&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>我们已经完成了，下一步是使用 <code class="docutils literal notranslate"><span class="pre">meson</span> <span class="pre">setup</span> <span class="pre">build</span></code> 配置我们的低级构建系统，你应该会看到类似于此的输出</p>
+<p>我们已经完成了，下一步是使用 <code class="docutils literal notranslate"><span class="pre">meson</span> <span class="pre">setup</span> <span class="pre">build</span></code> 配置我们的低级构建系统，您应该会看到类似于此的输出</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The Meson build system
 Version: 0.53.2
 Source dir: /home/awvwgk/Examples
@@ -989,7 +989,7 @@ Found ninja-1.10.0 at /usr/bin/ninja
 [4/4] Linking target my_prog.
 </pre></div>
 </div>
-<p>在 <code class="docutils literal notranslate"><span class="pre">build/my_prog</span></code> 中查找并测试你的程序，以确保其正常工作。我们注意到 <code class="docutils literal notranslate"><span class="pre">ninja</span></code> 执行的步骤与我们在 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>（包括依赖项）中编码的步骤相同，但我们不必指定它们，再次查看你的 <code class="docutils literal notranslate"><span class="pre">meson.build</span></code> 文件：</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">build/my_prog</span></code> 中查找并测试您的程序，以确保其正常工作。我们注意到 <code class="docutils literal notranslate"><span class="pre">ninja</span></code> 执行的步骤与我们在 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>（包括依赖项）中编码的步骤相同，但我们不必指定它们，再次查看您的 <code class="docutils literal notranslate"><span class="pre">meson.build</span></code> 文件：</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">project</span><span class="p">(</span><span class="s1">&#39;my_proj&#39;</span><span class="p">,</span> <span class="s1">&#39;fortran&#39;</span><span class="p">,</span> <span class="n">meson_version</span><span class="p">:</span> <span class="s1">&#39;&gt;=0.49&#39;</span><span class="p">)</span>
 <span class="n">executable</span><span class="p">(</span><span class="s1">&#39;my_prog&#39;</span><span class="p">,</span> <span class="n">files</span><span class="p">(</span><span class="s1">&#39;tabulate.f90&#39;</span><span class="p">,</span> <span class="s1">&#39;functions.f90&#39;</span><span class="p">))</span>
 </pre></div>
@@ -997,7 +997,7 @@ Found ninja-1.10.0 at /usr/bin/ninja
 <p>我们只指定我们有一个 Fortran 项目（恰好需要特定版本的 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 来支持 Fortran）并告诉 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 从文件 <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code> 和 <code class="docutils literal notranslate"><span class="pre">functions.f90</span></code> 构建一个可执行的 <code class="docutils literal notranslate"><span class="pre">my_prog</span></code>。我们不必告诉 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 如何构建项目，它自己解决了这个问题。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p><code class="docutils literal notranslate"><span class="pre">meson</span></code> 是一个跨平台的构建系统，你刚刚为你的程序指定的项目可用于为你的本地操作系统编译二进制文件或为其他平台交叉编译您的项目。同样，<code class="docutils literal notranslate"><span class="pre">meson.build</span></code> 文件是可移植的，也可以在不同的平台上工作。</p>
+<p><code class="docutils literal notranslate"><span class="pre">meson</span></code> 是一个跨平台的构建系统，您刚刚为您的程序指定的项目可用于为您的本地操作系统编译二进制文件或为其他平台交叉编译您的项目。同样，<code class="docutils literal notranslate"><span class="pre">meson.build</span></code> 文件是可移植的，也可以在不同的平台上工作。</p>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">meson</span></code> 的文档可以在 <a href="https://mesonbuild.com/" target="_blank" rel="noopener">meson-build 网页</a>中找到。</p>
 </section>
@@ -1006,7 +1006,7 @@ Found ninja-1.10.0 at /usr/bin/ninja
 <p>与<code class="docutils literal notranslate"><span class="pre">meson</span></code>类似，CMake 也是一个高级构建系统，通常用于构建 Fortran 项目。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p>CMake 遵循稍微不同的策略，并为你提供完整的编程语言来创建构建文件。这样做的好处是你几乎可以使用 CMake 完成所有操作，但你的 CMake 构建文件也可能变得与你正在构建的程序一样复杂。</p>
+<p>CMake 遵循稍微不同的策略，并为您提供完整的编程语言来创建构建文件。这样做的好处是您几乎可以使用 CMake 完成所有操作，但您的 CMake 构建文件也可能变得与您正在构建的程序一样复杂。</p>
 </div>
 <p>首先创建包含内容的文件 <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code></p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.7</span><span class="p">)</span>
@@ -1014,7 +1014,7 @@ Found ninja-1.10.0 at /usr/bin/ninja
 <span class="nb">add_executable</span><span class="p">(</span><span class="s2">&quot;my_prog&quot;</span><span class="w"> </span><span class="s2">&quot;tabulate.f90&quot;</span><span class="w"> </span><span class="s2">&quot;functions.f90&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>与 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 类似，我们已经完成了 CMake 构建文件。我们使用 <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-B</span> <span class="pre">build</span> <span class="pre">-G</span> <span class="pre">Ninja</span></code> 配置我们的低级构建文件，你应该会看到类似于此的输出</p>
+<p>与 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 类似，我们已经完成了 CMake 构建文件。我们使用 <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-B</span> <span class="pre">build</span> <span class="pre">-G</span> <span class="pre">Ninja</span></code> 配置我们的低级构建文件，您应该会看到类似于此的输出</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-- The Fortran compiler identification is GNU 10.2.0
 -- Detecting Fortran compiler ABI info
 -- Detecting Fortran compiler ABI info - done
@@ -1026,7 +1026,7 @@ Found ninja-1.10.0 at /usr/bin/ninja
 -- Build files have been written to: /home/awvwgk/Examples/build
 </pre></div>
 </div>
-<p>你可能会对 CMake 尝试使用编译器 <code class="docutils literal notranslate"><span class="pre">f95</span></code> 感到惊讶，幸运的是，这只是大多数系统上的 <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> 的符号链接，而不是实际的 <code class="docutils literal notranslate"><span class="pre">f95</span></code> 编译器。为了给 CMake 一个更好的提示，你可以导出环境变量 <code class="docutils literal notranslate"><span class="pre">FC=gfortran</span></code> 重新运行现在应该显示正确的编译器名称</p>
+<p>你可能会对 CMake 尝试使用编译器 <code class="docutils literal notranslate"><span class="pre">f95</span></code> 感到惊讶，幸运的是，这只是大多数系统上的 <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> 的符号链接，而不是实际的 <code class="docutils literal notranslate"><span class="pre">f95</span></code> 编译器。为了给 CMake 一个更好的提示，您可以导出环境变量 <code class="docutils literal notranslate"><span class="pre">FC=gfortran</span></code> 重新运行现在应该显示正确的编译器名称</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-- The Fortran compiler identification is GNU 10.2.0
 -- Detecting Fortran compiler ABI info
 -- Detecting Fortran compiler ABI info - done
@@ -1038,8 +1038,8 @@ Found ninja-1.10.0 at /usr/bin/ninja
 -- Build files have been written to: /home/awvwgk/Example/build
 </pre></div>
 </div>
-<p>以类似的方式，您可以使用你的英特尔 Fortran 编译器来构建你的项目（设置 <code class="docutils literal notranslate"><span class="pre">FC=ifort</span></code>）。</p>
-<p>CMake 提供了对几个低级构建文件的支持，因为默认是特定于平台的，我们将只使用 <code class="docutils literal notranslate"><span class="pre">ninja</span></code>，因为我们已经将它与 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 一起使用。和以前一样，使用 <code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">-C</span> <span class="pre">build</span></code> 构建你的项目：</p>
+<p>以类似的方式，您可以使用您的英特尔 Fortran 编译器来构建您的项目（设置 <code class="docutils literal notranslate"><span class="pre">FC=ifort</span></code>）。</p>
+<p>CMake 提供了对几个低级构建文件的支持，因为默认是特定于平台的，我们将只使用 <code class="docutils literal notranslate"><span class="pre">ninja</span></code>，因为我们已经将它与 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 一起使用。和以前一样，使用 <code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">-C</span> <span class="pre">build</span></code> 构建您的项目：</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[1/6] Building Fortran preprocessed CMakeFiles/my_prog.dir/functions.f90-pp.f90
 [2/6] Building Fortran preprocessed CMakeFiles/my_prog.dir/tabulate.f90-pp.f90
 [3/6] Generating Fortran dyndep file CMakeFiles/my_prog.dir/Fortran.dd
@@ -1048,7 +1048,7 @@ Found ninja-1.10.0 at /usr/bin/ninja
 [6/6] Linking Fortran executable my_prog
 </pre></div>
 </div>
-<p>在 <code class="docutils literal notranslate"><span class="pre">build/my_prog</span></code> 中查找并测试你的程序，以确保其正常工作。 <code class="docutils literal notranslate"><span class="pre">ninja</span></code> 执行的步骤有些不同，因为通常有不止一种方法可以编写低级构建文件来完成构建项目的任务。幸运的是，我们不必关心自己，而是让我们的构建系统为我们处理这些细节。</p>
+<p>在 <code class="docutils literal notranslate"><span class="pre">build/my_prog</span></code> 中查找并测试您的程序，以确保其正常工作。 <code class="docutils literal notranslate"><span class="pre">ninja</span></code> 执行的步骤有些不同，因为通常有不止一种方法可以编写低级构建文件来完成构建项目的任务。幸运的是，我们不必关心自己，而是让我们的构建系统为我们处理这些细节。</p>
 <p>最后，我们将简要回顾一下完整的 <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> 以指定我们的项目：</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.7</span><span class="p">)</span>
 <span class="nb">project</span><span class="p">(</span><span class="s2">&quot;my_proj&quot;</span><span class="w"> </span><span class="s">LANGUAGES</span><span class="w"> </span><span class="s2">&quot;Fortran&quot;</span><span class="p">)</span>
