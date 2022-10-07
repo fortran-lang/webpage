@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Types and kinds &#8212; Fortran Programming Language</title>
+    <title>类型和种类 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -46,7 +46,7 @@
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
     <link rel="next" title="编译器" href="../../../compilers/" />
-    <link rel="prev" title="Matrix multiplication, dot product, and array shifts" href="../transform/" /> 
+    <link rel="prev" title="矩阵乘法、点积和数组移位" href="../transform/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -338,7 +338,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../packages/">
-  Packages
+  源码包
  </a>
 </li>
 
@@ -411,27 +411,27 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/choose_compiler/">
-     Choosing a compiler
+     选择编译器
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/install_gfortran/">
-     Installing GFortran
+     安装 GFortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/text_editors/">
-     Text Editors
+     文本编辑器
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/ides/">
-     IDEs
+     集成开发环境（IDE）
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/tips/">
-     Smart Tips
+     智能提示
     </a>
    </li>
   </ul>
@@ -525,7 +525,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/distributing/">
-     分发您的程序
+     分发你的程序
     </a>
    </li>
   </ul>
@@ -668,12 +668,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../transform/">
-     Matrix multiplication, dot product, and array shifts
+     矩阵乘法、点积和数组移位
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Types and kinds
+     类型和种类
     </a>
    </li>
    <li class="toctree-l2">
@@ -710,12 +710,12 @@
 <nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#fortran-data-types">
-   Fortran Data Types
+   Fortran 数据类型
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#implicit-typing">
-   Implicit Typing
+   隐式类型
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -810,7 +810,7 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#cmplx-3-and-double-precision">
      <strong>
-      cmplx(3) and double precision
+      cmplx(3) 和双精度
      </strong>
     </a>
    </li>
@@ -1140,7 +1140,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#transfer">
-   transfer
+   转换
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -1188,7 +1188,7 @@
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#comments">
      <strong>
-      Comments
+      评论
      </strong>
     </a>
    </li>
@@ -1280,7 +1280,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#kind">
-   kind
+   种类
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -1343,7 +1343,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#out-of-range">
-   out_of_range
+   超出范围
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
@@ -1607,74 +1607,59 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="types-and-kinds">
-<h1>Types and kinds<a class="headerlink" href="#types-and-kinds" title="此标题的永久链接">#</a></h1>
-<p>These intrinsics allow for explicitly casting one type of variable to
-another or can be used to conditionally execute code blocks based on
-variable types when working with polymorphic variables.</p>
+<h1>类型和种类<a class="headerlink" href="#types-and-kinds" title="此标题的永久链接">#</a></h1>
+<p>这些内置函数允许将一种类型的变量显式转换为另一种类型，或者在使用多态变量时可用于基于变量类型有条件地执行代码块。</p>
 <section id="fortran-data-types">
-<h2>Fortran Data Types<a class="headerlink" href="#fortran-data-types" title="此标题的永久链接">#</a></h2>
-<p>Fortran provides five basic intrinsic data types:</p>
+<h2>Fortran 数据类型<a class="headerlink" href="#fortran-data-types" title="此标题的永久链接">#</a></h2>
+<p>Fortran 提供了五种基本的内置数据类型：</p>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt>Integer type</dt><dd><p>The integer types can hold only whole number values.</p>
+<dt>整数类型</dt><dd><p>整数类型只能保存整数值。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt>Real type</dt><dd><p>Stores floating point numbers, such as 2.0, 3.1415, -100.876, etc.</p>
+<dt>实数类型</dt><dd><p>存储浮点数，例如 2.0、3.1415、-100.876 等。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt>Complex type</dt><dd><p>A complex number has two parts,
-the real part and the imaginary part. Two consecutive floating
-point storage units store the two parts.</p>
+<dt>复数类型</dt><dd><p>复数有两个部分，实部和虚部。两个连续的浮点存储单元存储这两个部分。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt>Logical type</dt><dd><p>There are only two logical values: .true. and .false.</p>
+<dt>逻辑类型</dt><dd><p>只有两个逻辑值：.true. 和 .false.</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt>Character type</dt><dd><p>The character type stores strings. The length of the string
-can be specified by the <strong>len</strong> specifier. If no length is specified, it is 1.</p>
+<dt>字符类型</dt><dd><p>字符类型存储字符串。字符串的长度可以由 <strong>len</strong> 说明符指定。如果没有指定长度，则为 1。</p>
 </dd>
 </dl>
 </li>
 </ul>
-<p>These “types” can be of many “kinds”. Often different numeric kinds
-take up different storage sizes and therefore can represent
-different ranges; but a different kind can have other meanings.
-A <em>character</em> variable might represent ASCII characters or UTF-8 or
-Unicode characters, for example.</p>
-<p>You can derive your own data types from these fundamental types as well.</p>
+<p>这些“类型”可以是许多“种类”。通常不同的数字类型占用不同的存储大小，因此可以表示不同的范围；但不同的种类可以有其他的含义。例如，<em>character</em> 变量可能表示 ASCII 字符或 UTF-8 或 Unicode 字符。</p>
+<p>你也可以从这些基本类型派生出你自己的数据类型。</p>
 </section>
 <section id="implicit-typing">
-<h2>Implicit Typing<a class="headerlink" href="#implicit-typing" title="此标题的永久链接">#</a></h2>
-<p>Fortran allows a feature called implicit typing, i.e., you do not have
-to declare some variables before use. By default if a variable is not declared,
-then the first letter of its name will determine its type:</p>
+<h2>隐式类型<a class="headerlink" href="#implicit-typing" title="此标题的永久链接">#</a></h2>
+<p>Fortran 允许一种称为隐式类型的功能，即，你不必在使用前声明某些变量。默认情况下，如果未声明变量，则其名称的第一个字母将确定其类型：</p>
 <ol class="arabic simple">
-<li><p>Variable names starting with <strong>i-n</strong> (the first two letters of
-“integer”) specify <em>integer</em> variables.</p></li>
-<li><p>All other variable names default to <em>real</em>.</p></li>
+<li><p>以 <strong>i-n</strong> （“整数”的前两个字母）开头的变量名称指定 <em>integer</em> 变量。</p></li>
+<li><p>所有其他变量名默认为 <em>real</em>。</p></li>
 </ol>
-<p>However, in most circles it is considered good programming practice to declare all the
-variables. For that to be enforced, you start your variable declaration section with
-a statement that turns off implicit typing:
-the statement</p>
+<p>但是，在大多数圈子中，声明所有变量被认为是良好的编程习惯。为了强制执行，你可以使用关闭隐式类型的语句开始变量声明部分：语句</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">implicit none</span><span class="w"></span>
 </pre></div>
 </div>
-<p>For more information refer to the <strong>implicit</strong> statement.</p>
+<p>有关详细信息，请参阅 <strong>隐式</strong> 声明。</p>
 </section>
 <section id="aimag">
 <h2>aimag<a class="headerlink" href="#aimag" title="此标题的永久链接">#</a></h2>
 <section id="name">
 <h3><strong>名称</strong><a class="headerlink" href="#name" title="此标题的永久链接">#</a></h3>
-<p><strong>aimag</strong>(3) - [TYPE:NUMERIC] Imaginary part of complex number</p>
+<p><strong>aimag</strong>(3) - [TYPE:NUMERIC] 复数的虚部</p>
 </section>
 <section id="syntax">
 <h3><strong>语法</strong><a class="headerlink" href="#syntax" title="此标题的永久链接">#</a></h3>
@@ -1688,13 +1673,13 @@ the statement</p>
 </section>
 <section id="description">
 <h3><strong>说明</strong><a class="headerlink" href="#description" title="此标题的永久链接">#</a></h3>
-<p><strong>aimag(z)</strong> yields the imaginary part of complex argument <strong>z</strong>.</p>
+<p><strong>aimag(z)</strong> 产生复数参数 <strong>z</strong> 的虚部。</p>
 </section>
 <section id="arguments">
 <h3><strong>参数</strong><a class="headerlink" href="#arguments" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>z</strong></dt><dd><p>The type of the argument shall be <em>complex</em>.</p>
+<dt><strong>z</strong></dt><dd><p>参数的类型应为_complex_。</p>
 </dd>
 </dl>
 </li>
@@ -1702,8 +1687,7 @@ the statement</p>
 </section>
 <section id="returns">
 <h3><strong>返回</strong><a class="headerlink" href="#returns" title="此标题的永久链接">#</a></h3>
-<p>The return value is of type <em>real</em> with the kind type parameter of the
-argument.</p>
+<p>返回值是 <em>real</em> 类型，带有参数的 kind 类型参数。</p>
 </section>
 <section id="examples">
 <h3><strong>示例</strong><a class="headerlink" href="#examples" title="此标题的永久链接">#</a></h3>
@@ -1747,7 +1731,7 @@ argument.</p>
 <h2>cmplx<a class="headerlink" href="#cmplx" title="此标题的永久链接">#</a></h2>
 <section id="id1">
 <h3><strong>名称</strong><a class="headerlink" href="#id1" title="此标题的永久链接">#</a></h3>
-<p><strong>cmplx</strong>(3) - [TYPE:NUMERIC] Complex conversion function</p>
+<p><strong>cmplx</strong>(3) - [TYPE:NUMERIC] 复数转换函数</p>
 </section>
 <section id="id2">
 <h3><strong>语法</strong><a class="headerlink" href="#id2" title="此标题的永久链接">#</a></h3>
@@ -1762,32 +1746,23 @@ argument.</p>
 </section>
 <section id="id3">
 <h3><strong>说明</strong><a class="headerlink" href="#id3" title="此标题的永久链接">#</a></h3>
-<p>To convert numeric variables to complex, use the <strong>cmplx</strong>(3) function.
-Constants can be used to define a complex variable using the syntax</p>
+<p>要将数值变量转换为复数，请使用 <strong>cmplx</strong>(3) 函数。常量可用于使用语法定义复数变量</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>      <span class="n">z8</span> <span class="o">=</span> <span class="p">(</span><span class="mf">1.2345678901234567</span><span class="n">d0</span><span class="p">,</span> <span class="mf">1.2345678901234567</span><span class="n">d0</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>but this will not work for variables. You must use the <strong>cmplx</strong>(3) function.</p>
-<p><strong>cmplx(x [, y [, kind]])</strong> returns a complex number where <strong>x</strong> is
-converted to the <em>real</em> component. If <strong>x</strong> is <em>complex</em> then <strong>y</strong> must not be
-present. If <strong>y</strong> is present it is converted to the imaginary component. If
-<strong>y</strong> is not present then the imaginary component is set to <strong>0.0</strong>.</p>
+<p>但这不适用于变量。你必须使用 <strong>cmplx</strong>(3) 函数。</p>
+<p><strong>cmplx(x [, y [, kind]])</strong> 返回一个复数，其中 <strong>x</strong> 转换为 <em>real</em> 分量。如果 <strong>x</strong> 是 <em>complex</em>，则 <strong>y</strong> 不得存在。如果 <strong>y</strong> 存在，则将其转换为虚部。如果 <strong>y</strong> 不存在，则虚部设置为 <strong>0.0</strong>。</p>
 </section>
 <section id="cmplx-3-and-double-precision">
-<h3><strong>cmplx(3) and double precision</strong><a class="headerlink" href="#cmplx-3-and-double-precision" title="此标题的永久链接">#</a></h3>
-<p>The Fortran 90 language defines <strong>cmplx</strong>(3) as always returning a result
-that is type <strong>complex(kind=KIND(0.0))</strong>.</p>
-<p>This means <strong>cmplx(d1,d2)</strong>, where <strong>d1</strong> and <strong>d2</strong> are
-<em>doubleprecision</em>, is treated as:</p>
+<h3><strong>cmplx(3) 和双精度</strong><a class="headerlink" href="#cmplx-3-and-double-precision" title="此标题的永久链接">#</a></h3>
+<p>Fortran 90 语言将 <strong>cmplx</strong>(3) 定义为始终返回类型为 <strong>complex(kind=KIND(0.0))</strong> 的结果。</p>
+<p>这意味着 <strong>cmplx(d1,d2)</strong>，其中 <strong>d1</strong> 和 <strong>d2</strong> 是 <em>doubleprecision</em>，被视为：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="nb">cmplx</span><span class="p">(</span><span class="nb">sngl</span><span class="p">(</span><span class="n">d1</span><span class="p">),</span><span class="w"> </span><span class="nb">sngl</span><span class="p">(</span><span class="n">d2</span><span class="p">))</span><span class="w"></span>
 </pre></div>
 </div>
-<p><em>doubleprecision complex</em> numbers require specifying a precision.</p>
-<p>It was necessary for Fortran 90 to specify this behavior for
-<em>doubleprecision</em> arguments, since that is the behavior mandated by
-FORTRAN 77.</p>
-<p>So Fortran 90 extends the <strong>cmplx</strong>(3) intrinsic by adding an extra
-argument used to specify the desired kind of complex result.</p>
+<p><em>doubleprecision complex</em> numbers 需要指定精度。</p>
+<p>Fortran 90 有必要为 <em>doubleprecision</em> 参数指定此行为，因为这是 FORTRAN 77 规定的行为。</p>
+<p>因此，Fortran 90 通过添加一个额外的参数来扩展 <strong>cmplx</strong>(3) 内在函数，该参数用于指定所需类型的复数结果。</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="kt">integer</span><span class="p">,</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="o">=</span><span class="nb">kind</span><span class="p">(</span><span class="mf">0.0d0</span><span class="p">)</span><span class="w"></span>
 <span class="w">      </span><span class="kt">complex</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">z8</span><span class="w"></span>
 <span class="w">      </span><span class="c">!</span>
@@ -1808,20 +1783,16 @@ argument used to specify the desired kind of complex result.</p>
 <span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;YES, Z8=&#39;</span><span class="p">,</span><span class="n">z8</span><span class="p">,</span><span class="kt">real</span><span class="p">(</span><span class="n">z8</span><span class="p">),</span><span class="nb">aimag</span><span class="p">(</span><span class="n">z8</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>F2018 COMPONENT SYNTAX The real and imaginary parts of a complex entity
-can be accessed independently with a component-like syntax in f2018:</p>
-<p>A complex-part-designator is</p>
+<p>F2018 组件语法复数实体的实部和虚部可以在 f2018 中使用类似组件的语法独立访问：</p>
+<p>复数部分代号是</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">designator</span><span class="w"> </span><span class="p">%</span><span class="w"> </span><span class="n">RE</span><span class="w"></span>
 <span class="nb">or</span>
 <span class="n">designator</span><span class="w"> </span><span class="p">%</span><span class="w"> </span><span class="n">IM</span><span class="p">.</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Where the designator is of complex type.</p>
-<p>So designator%RE designates the real part of a complex value,
-designator%IM designates the imaginary part of complex value. The type
-of a complex-part-designator is <em>real</em>, and its kind and shape are those
-of the designator.</p>
-<p>The following are examples of complex part designators:</p>
+<p>代号是复数类型的。</p>
+<p>所以指定符 %RE 指定复数值的实部，指定符 %IM 指定复数值的虚部。 complex-part-designator 的类型是 <em>real</em>，它的种类和形状是那些代号。</p>
+<p>以下是复数部分代号的示例：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">       </span><span class="n">impedance</span><span class="p">%</span><span class="n">re</span><span class="w">           </span><span class="c">!-- Same value as _real_(impedance)</span>
 <span class="w">       </span><span class="n">fft</span><span class="p">%</span><span class="n">im</span><span class="w">                 </span><span class="c">!-- Same value as AIMAG(fft)</span>
 <span class="w">       </span><span class="n">x</span><span class="p">%</span><span class="n">im</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="w">             </span><span class="c">!-- Sets the imaginary part of x to zero</span>
@@ -1831,21 +1802,14 @@ of the designator.</p>
 <section id="id4">
 <h3><strong>参数</strong><a class="headerlink" href="#id4" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
-<li><p><strong>x</strong>
-The type may be <em>integer</em>, <em>real</em>, or <em>complex</em>.</p></li>
-<li><p><strong>y</strong>
-(Optional; only allowed if <strong>x</strong> is not <em>complex</em>.). May be <em>integer</em> or
-<em>real</em>.</p></li>
-<li><p><strong>kind</strong>
-(Optional) An <em>integer</em> initialization expression indicating the kind
-parameter of the result.</p></li>
+<li><p><strong>x</strong> 类型可能是 <em>integer</em>、<em>real</em> 或 <em>complex</em>。</p></li>
+<li><p><strong>y</strong>（可选；仅当 <strong>x</strong> 不是 <em>complex</em> 时才允许）。可能是 <em>integer</em> 或 <em>real</em>。</p></li>
+<li><p><strong>kind</strong> （可选）一个 <em>integer</em> 的初始化表达式，指示结果的 kind 参数。</p></li>
 </ul>
 </section>
 <section id="id5">
 <h3><strong>返回</strong><a class="headerlink" href="#id5" title="此标题的永久链接">#</a></h3>
-<p>The return value is of <em>complex</em> type, with a kind equal to <strong>kind</strong> if it is
-specified. If <strong>kind</strong> is not specified, the result is of the default
-<em>complex</em> kind, regardless of the kinds of <strong>x</strong> and <strong>y</strong>.</p>
+<p>返回值为 <em>complex</em> 类型，如果指定，则其种类等于 <strong>kind</strong>。如果未指定 <strong>kind</strong>，则无论 <strong>x</strong> 和 <strong>y</strong> 的种类如何，结果都是默认的 <em>complex</em> 种类。</p>
 </section>
 <section id="id6">
 <h3><strong>示例</strong><a class="headerlink" href="#id6" title="此标题的永久链接">#</a></h3>
@@ -1878,10 +1842,10 @@ specified. If <strong>kind</strong> is not specified, the result is of the defau
 <section id="see-also">
 <h3><strong>另见</strong><a class="headerlink" href="#see-also" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
-<li><p><a class="reference internal" href="#aimag"><span class="std std-doc"><strong>aimag</strong>(3)</span></a> - Imaginary part of complex number</p></li>
-<li><p><a class="reference internal" href="#cmplx"><span class="std std-doc"><strong>cmplx</strong>(3)</span></a> - Complex conversion function</p></li>
-<li><p><span class="xref myst"><strong>conjg</strong>(3)</span> - Complex conjugate function</p></li>
-<li><p><a class="reference internal" href="#real"><span class="std std-doc"><strong>real</strong>(3)</span></a> - Convert to real type</p></li>
+<li><p><a class="reference internal" href="#aimag"><span class="std std-doc"><strong>aimag</strong>(3)</span></a>- 复数的虚部</p></li>
+<li><p><a class="reference internal" href="#cmplx"><span class="std std-doc"><strong>cmplx</strong>(3)</span></a> —— 复数转换函数</p></li>
+<li><p><span class="xref myst"><strong>conjg</strong>(3)</span> - 复共轭函数</p></li>
+<li><p><a class="reference internal" href="#real"><span class="std std-doc"><strong>real</strong>(3)</span></a> - 转换为实型</p></li>
 </ul>
 </section>
 <section id="id7">
@@ -1896,7 +1860,7 @@ specified. If <strong>kind</strong> is not specified, the result is of the defau
 <h2>int<a class="headerlink" href="#int" title="此标题的永久链接">#</a></h2>
 <section id="id9">
 <h3><strong>名称</strong><a class="headerlink" href="#id9" title="此标题的永久链接">#</a></h3>
-<p><strong>int</strong>(3) - [TYPE:NUMERIC] Convert to integer type by truncating towards zero</p>
+<p><strong>int</strong>(3) - [TYPE:NUMERIC] 通过向零截断转换为整数类型</p>
 </section>
 <section id="id10">
 <h3><strong>语法</strong><a class="headerlink" href="#id10" title="此标题的永久链接">#</a></h3>
@@ -1910,13 +1874,13 @@ specified. If <strong>kind</strong> is not specified, the result is of the defau
 </section>
 <section id="id11">
 <h3><strong>说明</strong><a class="headerlink" href="#id11" title="此标题的永久链接">#</a></h3>
-<p>Convert to integer type by truncating towards zero.</p>
+<p>通过向零截断转换为整数类型。</p>
 </section>
 <section id="id12">
 <h3><strong>参数</strong><a class="headerlink" href="#id12" title="此标题的永久链接">#</a></h3>
 <ul>
 <li><dl class="simple myst">
-<dt><strong>a</strong></dt><dd><p>Shall be of type <em>integer</em>, <em>real</em>, or <em>complex</em> or a BOZ-literal-constant.</p>
+<dt><strong>a</strong></dt><dd><p>应为 <em>integer</em>、<em>real</em> 或 <em>complex</em> 或 BOZ-literal-constant 类型。</p>
 </dd>
 </dl>
 </li>
@@ -1924,24 +1888,20 @@ specified. If <strong>kind</strong> is not specified, the result is of the defau
 <dt><strong>种类</strong></dt><dd><p>一个 <em>integer</em> 初始化表达式，指示结果的种类参数。</p>
 </dd>
 </dl>
-<p>If not present the returned type is that of default integer type.</p>
+<p>如果不存在，则返回的类型是默认整数类型。</p>
 </li>
 </ul>
 </section>
 <section id="id13">
 <h3><strong>返回</strong><a class="headerlink" href="#id13" title="此标题的永久链接">#</a></h3>
-<p>returns an <em>integer</em> variable or array applying the following rules:</p>
-<p><strong>Case</strong>:</p>
+<p>返回应用以下规则的 <em>integer</em> 变量或数组：</p>
+<p><strong>情况</strong>:</p>
 <ol class="arabic">
-<li><p>If <strong>a</strong> is of type <em>integer</em>, <strong>int</strong>(a) = a</p></li>
-<li><p>If <strong>a</strong> is of type <em>real</em> and <strong>|a| &lt; 1, int(a)</strong> equals <strong>0</strong>. If <strong>|a| &gt;=
-1</strong>, then <strong>int(a)</strong> equals the integer whose magnitude does not exceed
-<strong>a</strong> and whose sign is the same as the sign of <strong>a</strong>.</p></li>
-<li><p>If <strong>a</strong> is of type <em>complex</em>, rule 2 is applied to the <em>real</em> part of <strong>a</strong>.</p></li>
-<li><p>If <em>a</em> is a boz-literal constant, it is treated as an <em>integer</em>
-with the <em>kind</em> specified.</p>
-<p>The interpretation of a bit sequence whose most significant bit is
-<strong>1</strong> is processor dependent.</p>
+<li><p>如果 <strong>a</strong> 是 <em>integer</em> 类型，则 <strong>int</strong>(a) = a</p></li>
+<li><p>如果 <strong>a</strong> 的类型是 <em>real</em> 且 <strong>|a| &lt; 1，int(a)</strong> 等于 <strong>0</strong>。如果 <strong>|a| &gt;= 1</strong>，则<strong>int(a)<strong>等于大小不超过</strong>a</strong>且符号与<strong>a</strong>符号相同的整数。</p></li>
+<li><p>如果 <strong>a</strong> 是 <em>complex</em> 类型，则规则 2 应用于 <strong>a</strong> 的 <em>real</em> 部分。</p></li>
+<li><p>如果 <em>a</em> 是 boz-literal 常量，则将其视为指定 <em>kind</em> 的 <em>integer</em>。</p>
+<p>最高有效位为 <strong>1</strong> 的位序列的解释取决于处理器。</p>
 </li>
 </ol>
 <p>如果无法以指定的整数类型表示，则结果未定义。</p>
@@ -2028,7 +1988,7 @@ with the <em>kind</em> specified.</p>
 <h2>nint<a class="headerlink" href="#nint" title="此标题的永久链接">#</a></h2>
 <section id="id17">
 <h3><strong>名称</strong><a class="headerlink" href="#id17" title="此标题的永久链接">#</a></h3>
-<p><strong>nint</strong>(3) - [TYPE:NUMERIC] Nearest whole number</p>
+<p><strong>nint</strong>(3) - [TYPE:NUMERIC] 最近的整数</p>
 </section>
 <section id="id18">
 <h3><strong>语法</strong><a class="headerlink" href="#id18" title="此标题的永久链接">#</a></h3>
@@ -2040,27 +2000,21 @@ with the <em>kind</em> specified.</p>
 </section>
 <section id="id19">
 <h3><strong>说明</strong><a class="headerlink" href="#id19" title="此标题的永久链接">#</a></h3>
-<p><strong>nint(x)</strong> rounds its argument to the nearest whole number with its
-sign preserved.</p>
-<p>The user must ensure the value is a valid value for the range of the
-<strong>kind</strong> returned. If the processor cannot represent the result in the kind
-specified, the result is undefined.</p>
-<p>If <strong>x</strong> is greater than zero, <strong>nint(x)</strong> has the value <strong>int(x+0.5)</strong>.</p>
-<p>If <strong>x</strong> is less than or equal to zero, <strong>nint(x)</strong> has the value
-<strong>int(a-0.5)</strong>.</p>
+<p><strong>nint(x)</strong> 将其参数四舍五入为最接近的整数，并保留其符号。</p>
+<p>用户必须确保该值是返回的 <strong>kind</strong> 范围内的有效值。如果处理器不能以指定的种类表示结果，则结果是未定义的。</p>
+<p>如果 <strong>x</strong> 大于零，则 <strong>nint(x)</strong> 具有值 <strong>int(x+0.5)</strong> 。</p>
+<p>如果 <strong>x</strong> 小于或等于 0，则 <strong>nint(x)</strong> 的值为 <strong>int(a-0.5)</strong>。</p>
 </section>
 <section id="id20">
 <h3><strong>参数</strong><a class="headerlink" href="#id20" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>x</strong></dt><dd><p>The type of the argument shall be <em>real</em>.</p>
+<dt><strong>x</strong></dt><dd><p>参数的类型应为 <em>real</em>。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>种类</strong></dt><dd><p>(Optional) A constant <em>integer</em> expression indicating the kind
-parameter of the result. Otherwise, the kind type parameter is that
-of default <em>integer</em> type.</p>
+<dt><strong>种类</strong></dt><dd><p>（可选）一个常量 <em>integer</em> 表达式，指示结果的种类参数。否则，kind 类型参数为默认的 <em>integer</em> 类型。</p>
 </dd>
 </dl>
 </li>
@@ -2070,9 +2024,7 @@ of default <em>integer</em> type.</p>
 <h3><strong>返回</strong><a class="headerlink" href="#id21" title="此标题的永久链接">#</a></h3>
 <ul>
 <li><dl class="simple myst">
-<dt><strong>answer</strong></dt><dd><p>The result is the integer nearest <strong>x</strong>, or if there are two integers
-equally near <strong>x</strong>, the result is whichever such <em>integer</em> has the greater
-magnitude.</p>
+<dt><strong>回答</strong></dt><dd><p>结果是最接近 <strong>x</strong> 的整数，或者如果在 <strong>x</strong> 附近有两个相等的整数，则结果是使得 <em>integer</em> 具有更大的量级的数。</p>
 </dd>
 </dl>
 <p>如果无法以指定的整数类型表示，则结果未定义。</p>
@@ -2143,7 +2095,7 @@ magnitude.</p>
 </section>
 <section id="id23">
 <h3><strong>标准</strong><a class="headerlink" href="#id23" title="此标题的永久链接">#</a></h3>
-<p>FORTRAN 77 and later, with KIND argument - Fortran 90 and later</p>
+<p>FORTRAN 77 及更高版本，带 KIND 参数 - Fortran 90 及更高版本</p>
 </section>
 <section id="id24">
 <h3><strong>另见</strong><a class="headerlink" href="#id24" title="此标题的永久链接">#</a></h3>
@@ -2162,7 +2114,7 @@ magnitude.</p>
 <h2>real<a class="headerlink" href="#real" title="此标题的永久链接">#</a></h2>
 <section id="id26">
 <h3><strong>名称</strong><a class="headerlink" href="#id26" title="此标题的永久链接">#</a></h3>
-<p><strong>real</strong>(3) - [TYPE:NUMERIC] Convert to real type</p>
+<p><strong>real</strong>(3) - [TYPE:NUMERIC] 转换为实型</p>
 </section>
 <section id="id27">
 <h3><strong>语法</strong><a class="headerlink" href="#id27" title="此标题的永久链接">#</a></h3>
@@ -2172,13 +2124,13 @@ magnitude.</p>
 </section>
 <section id="id28">
 <h3><strong>说明</strong><a class="headerlink" href="#id28" title="此标题的永久链接">#</a></h3>
-<p><strong>real(x, kind)</strong> converts its argument <strong>x</strong> to a real type.</p>
+<p><strong>real(x, kind)</strong> 将其参数 <strong>x</strong> 转换为实数类型。</p>
 </section>
 <section id="id29">
 <h3><strong>参数</strong><a class="headerlink" href="#id29" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>x</strong></dt><dd><p>Shall be <em>integer</em>, <em>real</em>, or <em>complex</em>.</p>
+<dt><strong>x</strong></dt><dd><p>应为 <em>integer</em>、<em>real</em> 或 <em>complex</em>。</p>
 </dd>
 </dl>
 </li>
@@ -2191,15 +2143,11 @@ magnitude.</p>
 </section>
 <section id="id30">
 <h3><strong>返回</strong><a class="headerlink" href="#id30" title="此标题的永久链接">#</a></h3>
-<p>These functions return a <em>real</em> variable or array under the following
-rules:</p>
+<p>这些函数根据以下规则返回 <em>real</em> 变量或数组：</p>
 <ol class="arabic simple">
-<li><p><strong>real</strong>(x) is converted to a default <em>real</em> type if <strong>x</strong> is an <em>integer</em>
-or <em>real</em> variable.</p></li>
-<li><p><strong>real</strong>(x) is converted to a real type with the kind type parameter
-of <strong>x</strong> if <strong>x</strong> is a <em>complex</em> variable.</p></li>
-<li><p><strong>real(x, kind)</strong> is converted to a <em>real</em> type with kind type
-parameter <strong>kind</strong> if <strong>x</strong> is a <em>complex</em>, <em>integer</em>, or <em>real</em> variable.</p></li>
+<li><p>如果 <strong>x</strong> 是 <em>integer</em> 或 <em>real</em> 变量，则 <strong>real</strong>(x) 将转换为默认的 <em>real</em> 类型。</p></li>
+<li><p>如果 <strong>x</strong> 是 <em>complex</em> 变量，则 <strong>real</strong>(x) 将转换为具有种类类型参数 <strong>x</strong> 的实数类型。</p></li>
+<li><p>如果 <strong>x</strong> 是 <em>complex</em>、<em>integer</em> <em>real</em> 变量, <strong>real(x, kind)</strong> 转换为 <em>real</em> 类型并附带种类参数。</p></li>
 </ol>
 </section>
 <section id="id31">
@@ -2232,8 +2180,7 @@ parameter <strong>kind</strong> if <strong>x</strong> is a <em>complex</em>, <em
 </section>
 <section id="id33">
 <h3><strong>另见</strong><a class="headerlink" href="#id33" title="此标题的永久链接">#</a></h3>
-<p><a class="reference internal" href="#dble"><span class="std std-doc"><strong>dble</strong>(3)</span></a>,
-<span class="xref myst"><strong>float</strong>(3)</span></p>
+<p><a class="reference internal" href="#dble"><span class="std std-doc"><strong>dble</strong>(3)</span></a>，<span class="xref myst"><strong>float</strong>(3)</span></p>
 <section id="id34">
 <h4>fortran 语言内在描述<a class="headerlink" href="#id34" title="此标题的永久链接">#</a></h4>
 </section>
@@ -2243,7 +2190,7 @@ parameter <strong>kind</strong> if <strong>x</strong> is a <em>complex</em>, <em
 <h2>dble<a class="headerlink" href="#dble" title="此标题的永久链接">#</a></h2>
 <section id="id35">
 <h3><strong>名称</strong><a class="headerlink" href="#id35" title="此标题的永久链接">#</a></h3>
-<p><strong>dble</strong>(3) - [TYPE:NUMERIC] Double conversion function</p>
+<p><strong>dble</strong>(3) - [TYPE:NUMERIC] 双精度转换函数</p>
 </section>
 <section id="id36">
 <h3><strong>语法</strong><a class="headerlink" href="#id36" title="此标题的永久链接">#</a></h3>
@@ -2254,18 +2201,17 @@ parameter <strong>kind</strong> if <strong>x</strong> is a <em>complex</em>, <em
 <span class="nb">    </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
 </pre></div>
 </div>
-<p>where TYPE may be <em>integer</em>, <em>real</em>, or <em>complex</em> and KIND any kind
-supported by the TYPE.</p>
+<p>其中 TYPE 可以是 <em>integer</em>、<em>real</em> 或 <em>complex</em> 和 KIND 类型支持的任何类型。</p>
 </section>
 <section id="id37">
 <h3><strong>说明</strong><a class="headerlink" href="#id37" title="此标题的永久链接">#</a></h3>
-<p><strong>dble(a)</strong> Converts <strong>a</strong> to double precision <em>real</em> type.</p>
+<p><strong>dble(a)</strong> 将 <strong>a</strong> 转换为双精度 <em>real</em> 类型。</p>
 </section>
 <section id="id38">
 <h3><strong>参数</strong><a class="headerlink" href="#id38" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>a</strong></dt><dd><p>The type shall be <em>integer</em>, <em>real</em>, or <em>complex</em>.</p>
+<dt><strong>a</strong></dt><dd><p>类型应为 <em>integer</em>、<em>real</em> 或 <em>complex</em>。</p>
 </dd>
 </dl>
 </li>
@@ -2273,9 +2219,7 @@ supported by the TYPE.</p>
 </section>
 <section id="id39">
 <h3><strong>返回</strong><a class="headerlink" href="#id39" title="此标题的永久链接">#</a></h3>
-<p>The return value is of type <em>doubleprecision</em>. For <em>complex</em> input,
-the returned value has the magnitude and sign of the real component
-of the input value.</p>
+<p>返回值的类型为 <em>doubleprecision</em>。对于 <em>complex</em> 输入，返回值具有输入值实部的大小和符号。</p>
 </section>
 <section id="id40">
 <h3><strong>示例</strong><a class="headerlink" href="#id40" title="此标题的永久链接">#</a></h3>
@@ -2300,18 +2244,17 @@ of the input value.</p>
 </section>
 <section id="id42">
 <h3><strong>另见</strong><a class="headerlink" href="#id42" title="此标题的永久链接">#</a></h3>
-<p><span class="xref myst"><strong>float</strong>(3)</span>,
-<a class="reference internal" href="#real"><span class="std std-doc"><strong>real</strong>(3)</span></a></p>
+<p><span class="xref myst"><strong>float</strong>(3)</span>，<a class="reference internal" href="#real"><span class="std std-doc"><strong>real</strong>(3)</span></a></p>
 <section id="id43">
 <h4>Fortran内置过程描述（许可证：MIT）&#64;urbanjost<a class="headerlink" href="#id43" title="此标题的永久链接">#</a></h4>
 </section>
 </section>
 </section>
 <section id="transfer">
-<h2>transfer<a class="headerlink" href="#transfer" title="此标题的永久链接">#</a></h2>
+<h2>转换<a class="headerlink" href="#transfer" title="此标题的永久链接">#</a></h2>
 <section id="id44">
 <h3><strong>名称</strong><a class="headerlink" href="#id44" title="此标题的永久链接">#</a></h3>
-<p><strong>transfer</strong>(3) - [TYPE:MOLD] Transfer bit patterns</p>
+<p><strong>transfer</strong>(3) - [TYPE:MOLD] 传输位模式</p>
 </section>
 <section id="id45">
 <h3><strong>语法</strong><a class="headerlink" href="#id45" title="此标题的永久链接">#</a></h3>
@@ -2321,27 +2264,24 @@ of the input value.</p>
 </section>
 <section id="id46">
 <h3><strong>说明</strong><a class="headerlink" href="#id46" title="此标题的永久链接">#</a></h3>
-<p>Interprets the bitwise representation of <strong>source</strong> in memory as if it
-is the representation of a variable or array of the same type and type
-parameters as <strong>mold</strong>.</p>
-<p>This is approximately equivalent to the C concept of “casting” one
-type to another.</p>
+<p>解释 <strong>source</strong> 在内存中的按位表示，就好像它是与 <strong>mold</strong> 具有相同类型和类型参数的变量或数组的表示。</p>
+<p>这大致相当于 C 概念中将一种类型“转换”为另一种类型。</p>
 </section>
 <section id="id47">
 <h3><strong>参数</strong><a class="headerlink" href="#id47" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>资源</strong></dt><dd><p>Shall be a scalar or an array of any type.</p>
+<dt><strong>资源</strong></dt><dd><p>应为标量或任何类型的数组。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>mold</strong></dt><dd><p>Shall be a scalar or an array of any type.</p>
+<dt><strong>mold</strong></dt><dd><p>应为标量或任何类型的数组。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>size</strong></dt><dd><p>(Optional) shall be a scalar of type <em>integer</em>.</p>
+<dt><strong>size</strong></dt><dd><p>（可选）应为 <em>integer</em> 类型的标量。</p>
 </dd>
 </dl>
 </li>
@@ -2349,20 +2289,9 @@ type to another.</p>
 </section>
 <section id="id48">
 <h3><strong>返回</strong><a class="headerlink" href="#id48" title="此标题的永久链接">#</a></h3>
-<p>The result has the same type as <strong>mold</strong>, with the bit level representation
-of <strong>source</strong>. If <strong>size</strong> is present, the result is a one-dimensional array of
-length <strong>size</strong>. If <strong>size</strong> is absent but <strong>mold</strong> is an array (of any size or
-shape), the result is a one-dimensional array of the minimum length
-needed to contain the entirety of the bitwise representation of <strong>source</strong>.
-If <strong>size</strong> is absent and <strong>mold</strong> is a scalar, the result is a scalar.</p>
-<p>If the bitwise representation of the result is longer than that of
-<strong>source</strong>, then the leading bits of the result correspond to those of
-<strong>source</strong> and any trailing bits are filled arbitrarily.</p>
-<p>When the resulting bit representation does not correspond to a valid
-representation of a variable of the same type as <strong>mold</strong>, the results are
-undefined, and subsequent operations on the result cannot be guaranteed
-to produce sensible behavior. For example, it is possible to create
-<em>logical</em> variables for which <strong>var</strong> and .not. var both appear to be true.</p>
+<p>结果的类型与 <strong>mold</strong> 相同，位级表示为 <strong>source</strong>。如果存在 <strong>size</strong>，则结果是长度 <strong>size</strong> 的一维数组。如果 <strong>size</strong> 不存在，但 ** mold** 是一个数组（任何大小或形状），则结果是包含 <strong>source</strong> 的全部按位表示形式所需的最小长度的一维数组。如果 <strong>size</strong> 不存在，并且 <strong>mold</strong> 是标量，则结果为标量。</p>
+<p>如果结果的按位表示比 <strong>source</strong> 的长，则结果的前导位对应于 <strong>source</strong> 的前导位，并且任何尾随位被任意填充。</p>
+<p>当生成的位表示不对应于与 <strong>mold</strong> 相同类型的变量的有效表示时，结果是未定义的，并且不能保证对结果的后续操作产生合理的行为。例如，可以为 <strong>var</strong> 和 .not 创建 <em>logical</em> 变量。 var 似乎都是真的。</p>
 </section>
 <section id="id49">
 <h3><strong>示例</strong><a class="headerlink" href="#id49" title="此标题的永久链接">#</a></h3>
@@ -2395,25 +2324,16 @@ to produce sensible behavior. For example, it is possible to create
 </div>
 </section>
 <section id="comments">
-<h3><strong>Comments</strong><a class="headerlink" href="#comments" title="此标题的永久链接">#</a></h3>
-<p><em>Joe Krahn</em>: Fortran uses <strong>molding</strong> rather than <strong>casting</strong>.</p>
-<p>Casting, as in C, is an in-place reinterpretation. A cast is a device
-that is built around an object to change its shape.</p>
-<p>Fortran TRANSFER reinterprets data out-of-place. It can be considered
-<strong>molding</strong> rather than casting. A <strong>mold</strong> is a device that
-confers a shape onto an object placed into it.</p>
-<p>The advantage of molding is that data is always valid in the context
-of the variable that holds it. For many cases, a decent compiler should
-optimize TRANSFER into a simple assignment.</p>
-<p>There are disadvantages of this approach. It is problematic to define a
-union of data types because you must know the largest data object, which
-can vary by compiler or compile options. In many cases, an EQUIVALENCE
-would be far more effective, but Fortran Standards committees seem
-oblivious to the benefits of EQUIVALENCEs when used sparingly.</p>
+<h3><strong>评论</strong><a class="headerlink" href="#comments" title="此标题的永久链接">#</a></h3>
+<p><em>Joe Krahn</em>：Fortran 使用 <strong>molding</strong> 而不是 <strong>casting</strong>。</p>
+<p>与 C 语言一样，铸造是一种就地重新解释。铸件是一种围绕物体构建以改变其形状的装置。</p>
+<p>Fortran TRANSFER 重新解释异地数据。可以认为是<strong>成型</strong>而不是铸造。 <strong>mold</strong> 是一种将形状赋予放入其中的对象的设备。</p>
+<p>成型的优点是数据在保存它的变量的上下文中总是有效的。在许多情况下，一个体面的编译器应该将 TRANSFER 优化为一个简单的赋值。</p>
+<p>这种方法有缺点。定义数据类型的联合体(union)是有问题的，因为您必须知道最大的数据对象，该对象可能因编译器或编译选项而异。在许多情况下，EQUIVALENCE要有效得多，但是Fortran标准委员会似乎忽略了EQUIVALENCE在少量使用时的好处。</p>
 </section>
 <section id="id50">
 <h3><strong>标准</strong><a class="headerlink" href="#id50" title="此标题的永久链接">#</a></h3>
-<p>Fortran 90 and later</p>
+<p>Fortran 90 及更高版本</p>
 <section id="id51">
 <h4>fortran 语言内在描述<a class="headerlink" href="#id51" title="此标题的永久链接">#</a></h4>
 </section>
@@ -2423,7 +2343,7 @@ oblivious to the benefits of EQUIVALENCEs when used sparingly.</p>
 <h2>logical<a class="headerlink" href="#logical" title="此标题的永久链接">#</a></h2>
 <section id="id52">
 <h3><strong>名称</strong><a class="headerlink" href="#id52" title="此标题的永久链接">#</a></h3>
-<p><strong>logical</strong>(3) - [TYPE:LOGICAL] Converts one kind of <em>logical</em> variable to another</p>
+<p><strong>logical</strong>(3) - [TYPE:LOGICAL] 将一种 <em>logical</em> 变量转换为另一种</p>
 </section>
 <section id="id53">
 <h3><strong>语法</strong><a class="headerlink" href="#id53" title="此标题的永久链接">#</a></h3>
@@ -2437,7 +2357,7 @@ oblivious to the benefits of EQUIVALENCEs when used sparingly.</p>
 </section>
 <section id="id54">
 <h3><strong>说明</strong><a class="headerlink" href="#id54" title="此标题的永久链接">#</a></h3>
-<p>Converts one kind of <em>logical</em> variable to another.</p>
+<p>将一种 <em>logical</em> 变量转换为另一种。</p>
 </section>
 <section id="id55">
 <h3><strong>参数</strong><a class="headerlink" href="#id55" title="此标题的永久链接">#</a></h3>
@@ -2456,9 +2376,7 @@ oblivious to the benefits of EQUIVALENCEs when used sparingly.</p>
 </section>
 <section id="id56">
 <h3><strong>返回</strong><a class="headerlink" href="#id56" title="此标题的永久链接">#</a></h3>
-<p>The return value is a <em>logical</em> value equal to <strong>l</strong>, with a kind
-corresponding to <strong>kind</strong>, or of the default logical kind if <strong>kind</strong> is not
-given.</p>
+<p>返回值是一个 <em>logical</em> 值，等于 <strong>l</strong>，其种类对应于 <strong>kind</strong>，或者如果逻辑种类没有给出， <strong>kind</strong> 则为默认。</p>
 </section>
 <section id="id57">
 <h3><strong>示例</strong><a class="headerlink" href="#id57" title="此标题的永久链接">#</a></h3>
@@ -2488,23 +2406,21 @@ given.</p>
 </section>
 <section id="id58">
 <h3><strong>标准</strong><a class="headerlink" href="#id58" title="此标题的永久链接">#</a></h3>
-<p>Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009</p>
+<p>Fortran 95 及更高版本，相关 ISO_FORTRAN_ENV 模块 - fortran 2008</p>
 </section>
 <section id="id59">
 <h3><strong>另见</strong><a class="headerlink" href="#id59" title="此标题的永久链接">#</a></h3>
-<p><a class="reference internal" href="#int"><span class="std std-doc"><strong>int</strong>(3)</span></a>,
-<a class="reference internal" href="#real"><span class="std std-doc"><strong>real</strong>(3)</span></a>,
-<a class="reference internal" href="#cmplx"><span class="std std-doc"><strong>cmplx</strong>(3)</span></a></p>
+<p><a class="reference internal" href="#int"><span class="std std-doc"><strong>int</strong>(3)</span></a>，<a class="reference internal" href="#real"><span class="std std-doc"><strong>real</strong>(3)</span></a>，<a class="reference internal" href="#cmplx"><span class="std std-doc"><strong>cmplx</strong>(3)</span></a></p>
 <section id="id60">
 <h4>fortran 语言内在描述<a class="headerlink" href="#id60" title="此标题的永久链接">#</a></h4>
 </section>
 </section>
 </section>
 <section id="kind">
-<h2>kind<a class="headerlink" href="#kind" title="此标题的永久链接">#</a></h2>
+<h2>种类<a class="headerlink" href="#kind" title="此标题的永久链接">#</a></h2>
 <section id="id61">
 <h3><strong>名称</strong><a class="headerlink" href="#id61" title="此标题的永久链接">#</a></h3>
-<p><strong>kind</strong>(3) - [KIND INQUIRY] Kind of an entity</p>
+<p><strong>kind</strong>(3) - [KIND INQUIRY] 实体的种类</p>
 </section>
 <section id="id62">
 <h3><strong>语法</strong><a class="headerlink" href="#id62" title="此标题的永久链接">#</a></h3>
@@ -2514,13 +2430,13 @@ given.</p>
 </section>
 <section id="id63">
 <h3><strong>说明</strong><a class="headerlink" href="#id63" title="此标题的永久链接">#</a></h3>
-<p><strong>kind(x)</strong> returns the kind value of the entity <strong>x</strong>.</p>
+<p><strong>kind(x)</strong> 返回实体 <strong>x</strong> 的种类值。</p>
 </section>
 <section id="id64">
 <h3><strong>参数</strong><a class="headerlink" href="#id64" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>x</strong></dt><dd><p>Shall be of type <em>logical</em>, <em>integer</em>, <em>real</em>, <em>complex</em> or <em>character</em>.</p>
+<dt><strong>x</strong></dt><dd><p>应为 <em>logical</em>、<em>integer</em>、<em>real</em>、<em>complex</em> 或 <em>character</em> 类型。</p>
 </dd>
 </dl>
 </li>
@@ -2559,10 +2475,10 @@ given.</p>
 </section>
 </section>
 <section id="out-of-range">
-<h2>out_of_range<a class="headerlink" href="#out-of-range" title="此标题的永久链接">#</a></h2>
+<h2>超出范围<a class="headerlink" href="#out-of-range" title="此标题的永久链接">#</a></h2>
 <section id="id69">
 <h3><strong>名称</strong><a class="headerlink" href="#id69" title="此标题的永久链接">#</a></h3>
-<p><strong>out_of_range</strong>(3) - [TYPE:NUMERIC] Whether a value cannot be converted safely.</p>
+<p><strong>out_of_range</strong>(3) - [TYPE:NUMERIC] 值是否不能安全转换。</p>
 </section>
 <section id="id70">
 <h3><strong>语法</strong><a class="headerlink" href="#id70" title="此标题的永久链接">#</a></h3>
@@ -2579,65 +2495,37 @@ given.</p>
 </section>
 <section id="id71">
 <h3><strong>说明</strong><a class="headerlink" href="#id71" title="此标题的永久链接">#</a></h3>
-<p><strong>out_of_range</strong>(3) determines whether a value <strong>x</strong> can be converted
-safely to a <em>real</em> or <em>integer</em> variable the same type and kind as
-<strong>mold</strong>.</p>
+<p><strong>out_of_range</strong>(3) 确定值 <strong>x</strong> 是否可以安全地转换为 <em>real</em> 或 <em>integer</em> 变量，其类型和种类与 <strong>mold</strong>相同。</p>
 </section>
 <section id="id72">
 <h3><strong>参数</strong><a class="headerlink" href="#id72" title="此标题的永久链接">#</a></h3>
 <ul>
 <li><dl class="simple myst">
-<dt><strong>x</strong></dt><dd><p>a scalar of type <em>integer</em> or <em>real</em> to be tested for whether
-it can be stored in a variable of the type and kind of <strong>mold</strong></p>
+<dt><strong>x</strong></dt><dd><p><em>integer</em> 或 <em>real</em> 类型的标量，用于测试它是否可以存储在 <strong>mold</strong> 类型和种类的变量中</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>mold</strong></dt><dd><p>shall be an <em>integer</em> or <em>real</em> scalar. If it is a variable, it
-need not be defined, as only the type and kind are queried.</p>
+<dt><strong>mold</strong></dt><dd><p>应为 <em>integer</em> 或 <em>real</em> 标量。如果是变量，则不需要定义，只查询类型和种类。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>round</strong></dt><dd><p>flag whether to round the value of <strong>xx</strong> before validating it as
-an integer value like <strong>mold</strong>.</p>
+<dt><strong>round</strong></dt><dd><p>标记是否在将 <strong>xx</strong> 的值验证为和<strong>mold</strong>一样的整数值之前对其进行舍入。</p>
 </dd>
 </dl>
-<p><strong>round</strong> can only be present if <strong>x</strong> is of type
-<em>real</em> and <strong>mold</strong> is of type <em>integer</em>.</p>
+<p>仅当 <strong>x</strong> 的类型为 <em>real</em> 且 <strong>mold</strong> 的类型为 <em>integer</em> 时，<strong>round</strong> 才能存在。</p>
 </li>
 </ul>
 </section>
 <section id="id73">
 <h3><strong>返回</strong><a class="headerlink" href="#id73" title="此标题的永久链接">#</a></h3>
-<p>From the standard:</p>
-<p>Case (i):     If MOLD is of type integer, and ROUND is absent or
-present with the value false, the result is true
-if and only if the value of X is an IEEE infinity or
-NaN, or if the integer with largest magnitude that lies
-between zero and X inclusive is not representable by
-objects with the type and kind of MOLD.</p>
-<p>Case (ii):    If MOLD is of type integer, and ROUND is present with
-the value true, the result is true if and only
-if the value of X is an IEEE in   nity or NaN, or
-if the integer nearest X, or the integer of greater
-magnitude if two integers are equally near to X, is not
-representable by objects with the type and kind of MOLD.</p>
-<p>Case (iii):   Otherwise, the result is true if and only if the value
-of X is an IEEE in   nity or NaN that is not
-supported by objects of the type and kind of MOLD,
-or if X is a finite number and the result of rounding
-the value of X (according to the IEEE rounding mode if
-appropriate) to the extended model for the kind of MOLD
-has magnitude larger than that of the largest finite
-number with the same sign as X that is representable
-by objects with the type and kind of MOLD.</p>
-<p>NOTE</p>
-<p>MOLD is required to be a scalar because the only information
-taken from it is its type and kind. Allowing an array MOLD would
-require that it be conformable with X. ROUND is scalar because
-allowing an array rounding mode would have severe performance
-di   culties on many processors.</p>
+<p>标准:</p>
+<p>情况 (i)：如果 MOLD 是整数类型，并且 ROUND 不存在或存在值 false，则结果为真当且仅当 X 的值是 IEEE 无穷大或 NaN，或者如果具有最大值的整数介于 0 和 X 之间（含）不能由具有 MOLD 类型和种类的对象表示。</p>
+<p>情况 (ii)：如果 MOLD 是整数类型，并且 ROUND 存在且值为真，则结果为真当且仅当 X 的值是 nity 或 NaN 的 IEEE，或者最接近 X 的整数，或如果两个整数同样接近 X，则更大的整数不能由具有 MOLD 类型和种类的对象表示。</p>
+<p>情况 (iii)：否则，当且仅当 X 的值是不为 MOLD 类型和种类的对象支持的 IEEE inity 或 NaN，或者如果 X 是有限数且结果为真将 X 的值四舍五入（如果合适，根据 IEEE 舍入模式）到 MOLD 类型的扩展模型的量级大于与 X 具有相同符号的最大有限数的量级，并且可由MOLD类型和种类的对象表示。</p>
+<p>注意</p>
+<p>MOLD 必须是标量，因为从中获取的唯一信息是它的类型和种类。允许数组 MOLD 要求它与 X 一致。ROUND 是标量的，因为允许数组舍入模式在许多处理器上会产生严重的性能问题。</p>
 </section>
 <section id="id74">
 <h3><strong>示例</strong><a class="headerlink" href="#id74" title="此标题的永久链接">#</a></h3>
@@ -2693,7 +2581,7 @@ di   culties on many processors.</p>
 <h2>selected_char_kind<a class="headerlink" href="#selected-char-kind" title="此标题的永久链接">#</a></h2>
 <section id="id77">
 <h3><strong>名称</strong><a class="headerlink" href="#id77" title="此标题的永久链接">#</a></h3>
-<p><strong>selected_char_kind</strong>(3) - [KIND] Choose character kind such as “Unicode”</p>
+<p><strong>selected_char_kind</strong>(3) - [KIND] 选择字符种类，例如“Unicode”</p>
 </section>
 <section id="id78">
 <h3><strong>语法</strong><a class="headerlink" href="#id78" title="此标题的永久链接">#</a></h3>
@@ -2703,17 +2591,13 @@ di   culties on many processors.</p>
 </section>
 <section id="id79">
 <h3><strong>说明</strong><a class="headerlink" href="#id79" title="此标题的永久链接">#</a></h3>
-<p><strong>selected_char_kind(name)</strong> returns the kind value for the character
-set named NAME, if a character set with such a name is supported, or
-<strong>-1</strong> otherwise. Currently, supported character sets include “ASCII”
-and “DEFAULT” (iwhich are equivalent), and “ISO_10646” (Universal
-Character Set, UCS-4) which is commonly known as “Unicode”.</p>
+<p><strong>selected_char_kind(name)</strong> 返回名为 NAME 的字符集的种类值，如果支持具有这样名称的字符集，否则返回 <strong>-1</strong>。目前，支持的字符集包括“ASCII”和“DEFAULT”（它们是等价的），以及“ISO_10646”（通用字符集，UCS-4），也就是俗称的“Unicode”。</p>
 </section>
 <section id="id80">
 <h3><strong>参数</strong><a class="headerlink" href="#id80" title="此标题的永久链接">#</a></h3>
 <ul class="simple">
 <li><dl class="simple myst">
-<dt><strong>name</strong></dt><dd><p>Shall be a scalar and of the default character type.</p>
+<dt><strong>name</strong></dt><dd><p>应为标量且为默认字符类型。</p>
 </dd>
 </dl>
 </li>

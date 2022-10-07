@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Matrix multiplication, dot product, and array shifts &#8212; Fortran Programming Language</title>
+    <title>矩阵乘法、点积和数组移位 &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,7 +45,7 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
-    <link rel="next" title="Types and kinds" href="../type/" />
+    <link rel="next" title="类型和种类" href="../type/" />
     <link rel="prev" title="访问外部系统信息" href="../system/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -338,7 +338,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../packages/">
-  Packages
+  源码包
  </a>
 </li>
 
@@ -411,27 +411,27 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/choose_compiler/">
-     Choosing a compiler
+     选择编译器
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/install_gfortran/">
-     Installing GFortran
+     安装 GFortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/text_editors/">
-     Text Editors
+     文本编辑器
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/ides/">
-     IDEs
+     集成开发环境（IDE）
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/tips/">
-     Smart Tips
+     智能提示
     </a>
    </li>
   </ul>
@@ -525,7 +525,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/distributing/">
-     分发您的程序
+     分发你的程序
     </a>
    </li>
   </ul>
@@ -668,12 +668,12 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Matrix multiplication, dot product, and array shifts
+     矩阵乘法、点积和数组移位
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type/">
-     Types and kinds
+     类型和种类
     </a>
    </li>
    <li class="toctree-l2">
@@ -1170,7 +1170,7 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="matrix-multiplication-dot-product-and-array-shifts">
-<h1>Matrix multiplication, dot product, and array shifts<a class="headerlink" href="#matrix-multiplication-dot-product-and-array-shifts" title="此标题的永久链接">#</a></h1>
+<h1>矩阵乘法、点积和数组移位<a class="headerlink" href="#matrix-multiplication-dot-product-and-array-shifts" title="此标题的永久链接">#</a></h1>
 <section id="cshift">
 <h2>cshift<a class="headerlink" href="#cshift" title="此标题的永久链接">#</a></h2>
 <section id="name">
@@ -1643,11 +1643,11 @@ range from <strong>1 to n</strong>, where <strong>n</strong> equals the rank of 
 <h2>reduce<a class="headerlink" href="#reduce" title="此标题的永久链接">#</a></h2>
 <section id="id40">
 <h3><strong>名称</strong><a class="headerlink" href="#id40" title="此标题的永久链接">#</a></h3>
-<p><strong>reduce</strong>(3) - [TRANSFORMATIONAL] general reduction of an array</p>
+<p><strong>reduce</strong>(3) - [TRANSFORMATIONAL] 数组的一般缩减</p>
 </section>
 <section id="id41">
 <h3><strong>语法</strong><a class="headerlink" href="#id41" title="此标题的永久链接">#</a></h3>
-<p>There are two forms to this function:</p>
+<p>这个函数有两种形式：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="n">reduce</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">identity</span><span class="p">,</span><span class="w"> </span><span class="n">ordered</span><span class="p">)</span><span class="w"></span>
 <span class="w">   </span><span class="n">reduce</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">identity</span><span class="p">,</span><span class="w"> </span><span class="n">ordered</span><span class="p">)</span><span class="w"></span>
 </pre></div>
@@ -1660,24 +1660,14 @@ range from <strong>1 to n</strong>, where <strong>n</strong> equals the rank of 
 <span class="w">      </span><span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="n">ordered</span><span class="w"></span>
 </pre></div>
 </div>
-<p>where TYPE may be of any type. TYPE must be the same for <strong>array</strong>
-and <strong>identity</strong>.</p>
+<p>其中 TYPE 可以是任何类型。 <strong>array</strong> 和 <strong>identity</strong> 的 TYPE 必须相同。</p>
 </section>
 <section id="id42">
 <h3><strong>description</strong><a class="headerlink" href="#id42" title="此标题的永久链接">#</a></h3>
-<p>Reduce a list of conditionally selected values from an array to a
-single value by iteratively applying a binary function.</p>
-<p>Common in functional programming, a <strong>reduce</strong> function applies a
-binary operator (a pure function with two arguments) to all elements
-cumulatively.</p>
-<p><strong>reduce</strong> is a “higher-order” function; ie. it is a function that
-receives other functions as arguments.</p>
-<p>The <strong>reduce</strong> function receives a binary operator (a function with
-two arguments, just like the basic arithmetic operators). It is first
-applied to two unused values in the list to generate an accumulator
-value which is subsequently used as the first argument to the function
-as the function is recursively applied to all the remaining selected
-values in the input array.</p>
+<p>通过迭代地应用二元函数，将数组中的条件选择值列表减少为单个值。</p>
+<p>在函数式编程中很常见，<strong>reduce</strong> 函数将二元运算符（具有两个参数的纯函数）累积应用于所有元素。</p>
+<p><strong>reduce</strong> 是一个“高阶”函数；即它是一个接收其他函数作为参数的函数。</p>
+<p><strong>reduce</strong> 函数接收一个二元运算符（一个有两个参数的函数，就像基本的算术运算符一样）。它首先应用于列表中的两个未使用的值以生成一个累加器值，该累加器值随后用作函数的第一个参数，因为该函数递归地应用于输入数组中所有剩余的选定值。</p>
 </section>
 <section id="options">
 <h3><strong>options</strong><a class="headerlink" href="#options" title="此标题的永久链接">#</a></h3>
@@ -1688,26 +1678,12 @@ values in the input array.</p>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>operation</strong></dt><dd><p>shall be a pure function with exactly two arguments;
-each argument shall be a scalar, nonallocatable,
-nonpointer, nonpolymorphic, nonoptional dummy data object
-with the same type and type parameters as <strong>array</strong>. If
-one argument has the ASYNCHRONOUS, TARGET, or VALUE
-attribute, the other shall have that attribute. Its result
-shall be a nonpolymorphic scalar and have the same type
-and type parameters as <strong>array</strong>. <strong>operation</strong> should
-implement a mathematically associative operation. It
-need not be commutative.</p>
+<dt><strong>operation</strong></dt><dd><p>应该是一个只有两个参数的纯函数；每个参数应该是一个标量、不可分配、非指针、非多态、非可选的虚拟数据对象，其类型和类型参数与<strong>数组</strong>相同。如果一个参数具有 ASYNCHRONOUS、TARGET 或 VALUE 属性，则另一个应具有该属性。它的结果应该是一个非多态标量，并且具有与<strong>array</strong>相同的类型和类型参数。 <strong>操作</strong> 应实现数学关联操作。它不必是可交换的。</p>
 </dd>
 </dl>
-<p>NOTE</p>
-<p>If <strong>operation</strong> is not computationally associative, REDUCE
-without ORDERED=.TRUE. with the same argument values
-might not always produce the same result, as the processor
-can apply the associative law to the evaluation.</p>
-<p>Many operations that mathematically are associative are
-not when applied to floating-point numbers. The order
-you sum values in may affect the result, for example.</p>
+<p>注意</p>
+<p>如果 <strong>operation</strong> 不是计算关联的，则 REDUCE 不带 ORDERED=.TRUE。使用相同的参数值可能并不总是产生相同的结果，因为处理器可以将关联法则应用于评估。</p>
+<p>许多在数学上具有关联性的运算在应用于浮点数时并不适用。例如，你对值求和的顺序可能会影响结果。</p>
 </li>
 <li><dl class="simple myst">
 <dt><strong>暗淡</strong></dt><dd><p>An integer scalar with a value in the range
@@ -1719,26 +1695,15 @@ you sum values in may affect the result, for example.</p>
 <dt><strong>mask</strong></dt><dd><p>（可选）应为逻辑类型并且应符合<strong>array</strong>。</p>
 </dd>
 </dl>
-<p>When present only those elements of <strong>array</strong> are passed
-to <strong>operation</strong> for which the corresponding elements
-of <strong>mask</strong> are true, as if *<em>array</em> was filtered with
-<strong>pack(3)</strong>.</p>
+<p>当存在时，只有 <strong>array</strong> 的那些元素被传递给 <strong>operation</strong> <strong>mask</strong> 的相应元素为真，就像 *<em>array</em> 使用 <strong>pack(3)</strong> 过滤一样.</p>
 </li>
 <li><dl class="simple myst">
-<dt><strong>identity</strong></dt><dd><p>shall be scalar with the same type and type parameters as <strong>array</strong>.
-If the initial sequence is empty, the result has the value <strong>identify</strong>
-if <strong>identify</strong> is present, and otherwise, error termination is
-initiated.</p>
+<dt><strong>identity</strong></dt><dd><p>应该是标量，具有与 <strong>array</strong> 相同的类型和类型参数。如果初始序列为空，则如果存在 <strong>identify</strong>，则结果具有值 <strong>identify</strong>，否则将启动错误终止。</p>
 </dd>
 </dl>
 </li>
 <li><dl class="simple myst">
-<dt><strong>ordered</strong></dt><dd><p>shall be a logical scalar. If <strong>ordered</strong> is present with the value
-<em>.true.</em>, the calls to the <strong>operator</strong> function begins with the first
-two elements of <strong>array</strong> and the process continues in row-column
-order until the sequence has only one element which is the value of the
-reduction. Otherwise, the compiler is free to assume that the operation
-is commutative and may evaluate the reduction in the most optimal way.</p>
+<dt><strong>ordered</strong></dt><dd><p>应为逻辑标量。如果 <strong>ordered</strong> 存在值 <em>.true.</em>，则对 <strong>operator</strong> 函数的调用从 <strong>array</strong> 的前两个元素开始，并且该过程按行列顺序继续，直到序列只有一个元素，即归约值。否则，编译器可以自由地假设该操作是可交换的，并且可以以最佳方式评估减少。</p>
 </dd>
 </dl>
 </li>
@@ -1748,14 +1713,11 @@ is commutative and may evaluate the reduction in the most optimal way.</p>
 <h3><strong>结果</strong><a class="headerlink" href="#result" title="此标题的永久链接">#</a></h3>
 <p>The result is of the same type and type parameters as <strong>array</strong>. It is
 scalar if <strong>dim</strong> does not appear.</p>
-<p>If <strong>dim</strong> is present, it indicates the one dimension along which to
-perform the reduction, and the resultant array has a rank reduced by
-one relative to the input array.</p>
+<p>如果 <strong>dim</strong> 存在，它指示执行归约的一维，并且结果数组的秩相对于输入数组减一。</p>
 </section>
 <section id="id43">
 <h3><strong>examples</strong><a class="headerlink" href="#id43" title="此标题的永久链接">#</a></h3>
-<p>The following examples all use the function MY_MULT, which returns
-the product of its two real arguments.</p>
+<p>以下示例都使用函数 MY_MULT，它返回两个实参的乘积。</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">program </span><span class="n">demo_reduce</span><span class="w"></span>
 <span class="w">   </span><span class="k">implicit none</span>
 <span class="k">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">f</span><span class="o">=</span><span class="s1">&#39;(&quot;[&quot;,*(g0,&quot;,&quot;,1x),&quot;]&quot;)&#39;</span><span class="w"></span>

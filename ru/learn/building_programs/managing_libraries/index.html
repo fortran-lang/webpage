@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Managing libraries (static and dynamic libraries) &#8212; Fortran Programming Language</title>
+    <title>Управление библиотеками (статические и динамические библиотеки) &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -46,7 +46,7 @@
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
     <link rel="next" title="Build tools" href="../build_tools/" />
-    <link rel="prev" title="Include files and modules" href="../include_files/" /> 
+    <link rel="prev" title="Подключаемые файлы и модули" href="../include_files/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -401,7 +401,7 @@
     <ul class="current nav bd-sidenav">
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../os_setup/">
-   Setting up your OS
+   Настройка вашей ОС
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
   <label for="toctree-checkbox-1">
@@ -411,27 +411,27 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/choose_compiler/">
-     Choosing a compiler
+     Выбор компилятора
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/install_gfortran/">
-     Installing GFortran
+     Установка GFortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/text_editors/">
-     Text Editors
+     Текстовые редакторы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/ides/">
-     IDEs
+     IDE (Интегрированная среда разработки)
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/tips/">
-     Smart Tips
+     Полезные советы
     </a>
    </li>
   </ul>
@@ -480,7 +480,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Building programs
+   Сборка программ
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
   <label for="toctree-checkbox-3">
@@ -490,27 +490,27 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../compiling_source/">
-     Compiling the source code
+     Компиляция исходного кода
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../linking_pieces/">
-     Linking the objects
+     Компоновка объектов
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../runtime_libraries/">
-     Run-time libraries
+     Библиотеки времени выполнения
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../include_files/">
-     Include files and modules
+     Подключаемые файлы и модули
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Managing libraries (static and dynamic libraries)
+     Управление библиотеками (статические и динамические библиотеки)
     </a>
    </li>
    <li class="toctree-l2">
@@ -710,17 +710,17 @@
 <nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#static-versus-dynamic-libraries">
-   Static versus dynamic libraries
+   Статические библиотеки в сравнении с динамическими
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#gnu-linux-and-gfortran">
-   GNU/Linux and gfortran
+   GNU/Linux и gfortran
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#windows-and-intel-fortran">
-   Windows and Intel Fortran
+   Windows и Intel Fortran
   </a>
  </li>
 </ul>
@@ -737,124 +737,79 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="managing-libraries-static-and-dynamic-libraries">
-<h1>Managing libraries (static and dynamic libraries)<a class="headerlink" href="#managing-libraries-static-and-dynamic-libraries" title="Permalink to this heading">#</a></h1>
-<p>If you need to manage a program built of dozens of source files (and
-that is not uncommon!), the command-line needed to specify all the
-object files will be very long indeed. This soon becomes tedious or
-even impossible to maintain. So a different solution is called for:
-create your own libraries.</p>
-<p>Libraries contain any number of object files in a compact form, so that
-the command-line becomes far shorter:</p>
+<h1>Управление библиотеками (статические и динамические библиотеки)<a class="headerlink" href="#managing-libraries-static-and-dynamic-libraries" title="Permalink to this heading">#</a></h1>
+<p>Если вам нужно управлять программой, собранной из десятков файлов исходного кода (а это не редкость!), то командная строка, необходимая для указания всех объектных файлов будет очень длинной. Очень скоро поддержка такого списка станет утомительной или даже невозможной. Поэтому необходимо другое решение: создание собственных библиотек.</p>
+<p>Библиотеки содержат любое количество объектных файлов в компактной форме, так что командная строка для сборки программы становится короче:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -o tabulate tabulate.f90 functions.o supportlib.a
 </pre></div>
 </div>
-<p>where «supportlib.a» is a collection of one, two or many object files,
-all compiled and then put into a library. The extension «.a» is used by
-Linux and Linux-like platforms. On Windows the extension «.lib» is used.</p>
-<p>Creating your own libraries is not that complicated:
-on Linux, you can achieve this using a utility like <code class="docutils literal notranslate"><span class="pre">ar</span></code>:</p>
+<p>где «supportlib.a» – набор из одного, двух или нескольких объектных файлов, скомпилированных, а затем помещённых в библиотеку. Расширение файла «.a» используется в операционных системах Linux и Linux-подобных платформах. В операционной системе Windows используется расширение «.lib».</p>
+<p>Создание собственных библиотек не так уж сложно: в Linux это можно сделать, например, с помощью утилиты <code class="docutils literal notranslate"><span class="pre">ar</span></code>:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -c file1.f90 file2.f90
 $ gfortran -c file3.f90 ...
 $ ar r supportlib.a file1.o file2.o
 $ ar r supportlib.a file3.o ...
 </pre></div>
 </div>
-<p>or on Windows using the <code class="docutils literal notranslate"><span class="pre">lib</span></code> utility:</p>
+<p>а в Windows с помощью утилиты <code class="docutils literal notranslate"><span class="pre">lib</span></code>:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>c:<span class="se">\.</span>..&gt; ifort -c file1.f90 file2.f90
 c:<span class="se">\.</span>..&gt; ifort -c file3.f90 ...
 c:<span class="se">\.</span>..&gt; lib /out:supportlib.lib file1.obj file2.obj
 c:<span class="se">\.</span>..&gt; lib supportlib.lib file3.obj ...
 </pre></div>
 </div>
-<p>Note:</p>
+<p>Примечание:</p>
 <ul class="simple">
-<li><p>The command <code class="docutils literal notranslate"><span class="pre">ar</span></code> with the option <code class="docutils literal notranslate"><span class="pre">r</span></code> either creates the library (the
-name appears after the option) or adds new object files to the library
-(or replaces any existing ones).</p></li>
-<li><p>The command <code class="docutils literal notranslate"><span class="pre">lib</span></code> will create a new library if you use specify the
-option <code class="docutils literal notranslate"><span class="pre">/out:</span></code> with the name of the new library next to it. To add
-object files to an existing library, leave out the <code class="docutils literal notranslate"><span class="pre">/out:</span></code> bit.</p></li>
-<li><p>On platforms like Linux there is a particular convention to name
-libraries. If you name your library like «libname.a» (note the «lib»
-prefix), then you can refer to it as <code class="docutils literal notranslate"><span class="pre">-lname</span></code> in the link step.</p></li>
-<li><p>Libraries are often sought in directories indicated by an option <code class="docutils literal notranslate"><span class="pre">-L</span></code>
-or <code class="docutils literal notranslate"><span class="pre">/LIBPATH</span></code>. This saves you from having to specify the exact path for
-every library.</p></li>
+<li><p>Команда <code class="docutils literal notranslate"><span class="pre">ar</span></code> с опцией <code class="docutils literal notranslate"><span class="pre">r</span></code> либо создаёт библиотеку (имя указывается после опции), либо добавляет в библиотеку новые объектные файлы (или заменяет все существующие).</p></li>
+<li><p>Команда <code class="docutils literal notranslate"><span class="pre">lib</span></code> создаёт новую библиотеку, если указать опцию <code class="docutils literal notranslate"><span class="pre">/out:</span></code> с именем новой библиотеки следом за ней. Чтобы добавить объектные файлы к существующей библиотеке, опустите опцию <code class="docutils literal notranslate"><span class="pre">/out:</span></code>.</p></li>
+<li><p>На таких платформах как Linux, существует определённое соглашение об именовании библиотек. Если вы назовёте свою библиотеку как «libname.a» (обратите внимание на префикс «lib»), тогда на этапе компоновки вы сможете ссылаться на неё как на <code class="docutils literal notranslate"><span class="pre">-lname</span></code>.</p></li>
+<li><p>Библиотеки часто ищутся в каталогах, указанных с помощью опции компилятора <code class="docutils literal notranslate"><span class="pre">-L</span></code> или <code class="docutils literal notranslate"><span class="pre">/LIBPATH</span></code>. Это избавляет вас от необходимости указывать точный путь для каждой библиотеки.</p></li>
 </ul>
-<p>Using libraries you can build very large programs without
-having to resort to extremely long command lines.</p>
+<p>Используя библиотеки, вы можете создавать очень большие программы, не прибегая к чрезвычайно длинным командным строкам для описания процесса сборки.</p>
 <section id="static-versus-dynamic-libraries">
-<h2>Static versus dynamic libraries<a class="headerlink" href="#static-versus-dynamic-libraries" title="Permalink to this heading">#</a></h2>
-<p>The above discussion is tacitly assuming that you are using the so-called
-static libraries. Static libraries (or at least parts of their
-contents) become an integral part of the executable program. The only
-way to change the routines incorporated in the program is by rebuilding
-the program with a new version of the library.</p>
-<p>A flexible alternative is to use the so-called dynamic libraries. These
-libraries remain outside the executable program and as a consequence
-can be replaced without rebuilding the entire program. Compilers and
-indeed the operating system itself rely heavily on such dynamic
-libraries. You could consider dynamic libraries as a sort of executable
-programs that need a bit of help to be run.</p>
-<p>Building dynamic libraries works slightly differently from building
-static libraries: you use the compiler/linker instead of a tool
-like <code class="docutils literal notranslate"><span class="pre">ar</span></code> or <code class="docutils literal notranslate"><span class="pre">lib</span></code>.</p>
-<p>On Linux:</p>
+<h2>Статические библиотеки в сравнении с динамическими<a class="headerlink" href="#static-versus-dynamic-libraries" title="Permalink to this heading">#</a></h2>
+<p>Приведённые выше рассуждения негласно предполагают, что вы используете так называемые статические библиотеки. Статические библиотеки (или, по крайней мере, часть их содержимого) становятся неотъемлемой частью исполняемого файла программы. Единственный способ изменить встроенные в программу подпрограммы – это пересобрать программу с новой версией библиотеки.</p>
+<p>Гибкой альтернативой является использование так называемых динамических библиотек. Эти библиотеки остаются снаружи исполняемого файла программы и, как следствие, могут быть заменены без пересборки всей программы. Компиляторы и сама операционная система в значительной степени полагаются на такие динамические библиотеки. Можно рассматривать динамические библиотеки как своего рода исполняемые программы, которым для запуска требуется небольшая помощь.</p>
+<p>Создание динамических библиотек происходит немного иначе, чем создание статических: вы используете компилятор/компоновщик вместо таких инструментов как <code class="docutils literal notranslate"><span class="pre">ar</span></code> или <code class="docutils literal notranslate"><span class="pre">lib</span></code>.</p>
+<p>В Linux:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -fpic -c file1.f90 file2.f90
 $ gfortran -fpic -c file3.f90 ...
 $ gfortran -shared -o supportlib.so file1.o file2.o file3.o ...
 </pre></div>
 </div>
-<p>On Windows, with the Intel Fortran compiler:</p>
+<p>В Windows с компилятором Intel Fortran:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ifort -c file1.f90 file2.f90
 $ ifort -c file3.f90 ...
 $ ifort -dll -exe:supportlib.dll file1.obj file2.obj file3.obj ...
 </pre></div>
 </div>
-<p>The differences are that:</p>
+<p>Различия заключаются в следующем:</p>
 <ul class="simple">
-<li><p>You need to specify a compile option on Linux, for gfortran that is <code class="docutils literal notranslate"><span class="pre">-fpic</span></code>,
-because the object code is slightly different.</p></li>
-<li><p>You need to tell in the link step that you want a dynamic library (on
-Linux: a shared object/library, hence the extension «.so»; on Windows:
-a dynamic link library)</p></li>
+<li><p>В Linux вам необходимо указать опцию компиляции, для gfortran это <code class="docutils literal notranslate"><span class="pre">-fpic</span></code>, поскольку объектный код немного отличается.</p></li>
+<li><p>На этапе компоновки нужно указать, что вам нужна динамическая библиотека (в Linux: shared object/library, отсюда расширение «.so»; в Windows: dynamic link library)</p></li>
 </ul>
-<p>There is one more thing to be aware of: On Windows you must
-explicitly specify that a procedure is to be <em>exported</em>, i.e. is visible
-in the dynamic library. There are several ways — depending on the
-compiler you use — to achieve this. One method is via a so-called
-compiler directive:</p>
+<p>Есть ещё один момент, о котором следует знать: в Windows вы должны явно указать, что процедура должна быть <em>экспортирована</em>, т.е. видна в динамической библиотеке. Существует несколько способов, в зависимости от используемого компилятора, добиться этого. Один из них – с помощью так называемой директивы компилятора:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 <span class="c">!GCC$ ATTRIBUTES DLLEXPORT:: myroutine</span>
 </pre></div>
 </div>
-<p>Or, with the Intel Fortran compiler:</p>
+<p>Или, при использовании компилятора Intel Fortran:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 <span class="c">!DEC$ ATTRIBUTES DLLEXPORT:: myroutine</span>
 </pre></div>
 </div>
-<p>Besides a dynamic library (DLL), a so-called import library may be
-generated.</p>
-<p>Because the details differ per compiler, here are two examples:
-gfortran on Cygwin and Intel Fortran on Windows. In both cases
-we look at the <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> program in the file «tabulate.f90».</p>
+<p>Кроме динамической библиотеки (DLL), может быть сгенерирована так называемая импортируемая библиотека (import library).</p>
+<p>Поскольку детали отличаются в зависимости от компилятора, приведём два примера: gfortran в оболочке Cygwin и Intel Fortran в Windows. В обоих случаях мы рассматриваем программу <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> из файла «tabulate.f90».</p>
 </section>
 <section id="gnu-linux-and-gfortran">
-<h2>GNU/Linux and gfortran<a class="headerlink" href="#gnu-linux-and-gfortran" title="Permalink to this heading">#</a></h2>
-<p>The <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> program requires a user-defined routine <code class="docutils literal notranslate"><span class="pre">f</span></code>. If we
-let it reside in a dynamic library, say «functions.dll», we can simply
-replace the implementation of the function by putting another dynamic
-library in the directory. No need to rebuild the program as such.</p>
-<p>On Cygwin it is not necessary to explicitly export a procedure — all
-publically visible routines are exported when you build a dynamic library.
-Also, no import library is generated.</p>
-<p>Since our dynamic library can be built from a single source file, we
-can take a shortcut:</p>
+<h2>GNU/Linux и gfortran<a class="headerlink" href="#gnu-linux-and-gfortran" title="Permalink to this heading">#</a></h2>
+<p>Для программы <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> требуется пользовательская подпрограмма <code class="docutils literal notranslate"><span class="pre">f</span></code>. Если мы поместим её в динамическую библиотеку, например, «functions.dll», мы можем просто заменить реализацию функции, поместив в каталог другую динамическую библиотеку. Пересобирать саму программу при этом не нужно.</p>
+<p>В оболочке Cygwin нет необходимости явно экспортировать подпрограмму – все публично видимые подпрограммы экспортируются при создании динамической библиотеки. При этом не создаётся импортируемая библиотека.</p>
+<p>Так как наша динамическая библиотека может быть собрана из одного файла исходного кода, мы можем использовать простой способ её создания:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -shared -o functions.dll functions.f90
 </pre></div>
 </div>
-<p>This produces the files «functions.dll» and «user_functions.mod». The
-utility <code class="docutils literal notranslate"><span class="pre">nm</span></code> tells us the exact name of the function <code class="docutils literal notranslate"><span class="pre">f</span></code>:</p>
+<p>В результате будут созданы файлы «functions.dll» и «user_functions.mod». Утилита <code class="docutils literal notranslate"><span class="pre">nm</span></code> сообщает нам точное имя функции <code class="docutils literal notranslate"><span class="pre">f</span></code>:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ nm functions.dll
 ...
 000000054f9d7000 B __dynamically_loaded
@@ -866,51 +821,34 @@ utility <code class="docutils literal notranslate"><span class="pre">nm</span></
 ...
 </pre></div>
 </div>
-<p>It has received a prefix <code class="docutils literal notranslate"><span class="pre">__function_MOD_</span></code> to distinguish it from any
-other routine «f» that might be defined in another module.</p>
-<p>The next step is to build the program:</p>
+<p>Она получила префикс <code class="docutils literal notranslate"><span class="pre">__function_MOD_</span></code>, чтобы можно было отличить её от функции «f», которая может быть определена в другом модуле.</p>
+<p>Следующим шагом будет сборка программы:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -o tabulate tabulate.f90 functions.dll
 </pre></div>
 </div>
-<p>The DLL and the .mod file are used to build the executable program
-with checks on the function’s interface, the right name and the reference
-to «a» DLL, called «functions.dll».</p>
-<p>You can replace the shared library «functions.dll» by another one, implementing
-a different function «f». Of course, you need to be careful to use the correct
-interface for this function. The compiler/linker are not invoked anymore, so they
-can do no checking.</p>
+<p>DLL и файл .mod используются для сборки исполняемого файла программы с проверкой интерфейса функции, правильного имени и ссылки на DLL, названой «functions.dll».</p>
+<p>Вы можете заменить разделяемую библиотеку «functions.dll» на другую, реализующую другую функцию «f». Конечно, нужно быть осторожным, чтобы использовать правильный интерфейс для этой функции. Компилятор и компоновщик не вызываются повторно, поэтому они не могут сделать никаких проверок.</p>
 </section>
 <section id="windows-and-intel-fortran">
-<h2>Windows and Intel Fortran<a class="headerlink" href="#windows-and-intel-fortran" title="Permalink to this heading">#</a></h2>
-<p>The setup is the same as with Linux, but on Windows it is necessary
-to explicitly export the routines. And an import library is generated —
-this is the library that should be used in the link step.</p>
-<p>The source file must contain the compiler directive, otherwise the function <code class="docutils literal notranslate"><span class="pre">f</span></code>
-is not exported:</p>
+<h2>Windows и Intel Fortran<a class="headerlink" href="#windows-and-intel-fortran" title="Permalink to this heading">#</a></h2>
+<p>Настройка в этом случае такая же, как и в случае с Linux, но в Windows необходимо явно экспортировать подпрограммы. При этом создаётся импортируемая библиотека (import library) – именно эта библиотека должна использоваться на этапе компоновки.</p>
+<p>Файл исходного кода должен содержать директиву компилятора, иначе функция <code class="docutils literal notranslate"><span class="pre">f</span></code> не будет экспортирована:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
 <span class="c">!DEC$ ATTRIBUTES DLLEXPORT :: f</span>
 </pre></div>
 </div>
-<p>Again we take a shortcut:</p>
+<p>И снова мы используем простой способ сборки библиотеки:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ifort -exe:functions.dll functions.f90 -dll
 </pre></div>
 </div>
-<p>This produces the files «functions.dll», «user_functions.mod» as well as «functions.lib» (and two
-other files of no importance here). The «dependency walker» program tells us
-that the exact name of the function «f» is <code class="docutils literal notranslate"><span class="pre">FUNCTION_mp_F</span></code>. It is also exported, so that
-it can be found by the linker in the next step:</p>
+<p>В результате также будет созданы файлы «functions.dll», «user_functions.mod», а также «functions.lib» (и ещё два файла, не имеющие в данном случае значения). Программа «dependency walker» сообщит нам, что точное имя функции «f» – <code class="docutils literal notranslate"><span class="pre">FUNCTION_mp_F</span></code>. Она также экспортирована, чтобы компоновщик смог найти её на следующем этапе сборки программы:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>$ ifort tabulate.f90 functions.lib
 </pre></div>
 </div>
-<p>Note that we need to specify the name of the export library, not the DLL!</p>
-<p>(Note also: the Intel Fortran compiler uses the name of the first source file as the
-name for the executable — here we do without the <code class="docutils literal notranslate"><span class="pre">-exe</span></code> option.)</p>
-<p>Just as under Cygwin, the DLL and the .mod file are used to build the executable program
-with checks on the function’s interface, the right name and the reference
-to «a» DLL, called «functions.dll».</p>
-<p>You can replace the shared library «functions.dll» by another one, but the same
-caution is required: while the implementation can be quite different, the
-function’s interface must be the same.</p>
+<p>Обратите внимание, что нам нужно указать имя экспортируемой библиотеки, а не DLL!</p>
+<p>(Отметим также: компилятор Intel Fortran использует имя первого файла исходного файла в качестве имени исполняемого файла программы – здесь мы обходимся без использования опции <code class="docutils literal notranslate"><span class="pre">-exe</span></code>.)</p>
+<p>Как и в оболочке Cygwin, файлы DLL и .mod используются для сборки исполняемого файла программы с проверкой интерфейса функции, правильного имени и ссылки на DLL, названную «functions.dll».</p>
+<p>Вы можете заменить разделяемую библиотеку «functions.dll» другой, но при этом необходимо соблюдать ту же осторожность: хотя реализация может быть совершенно другой, интерфейс функции должен быть тем же самым.</p>
 </section>
 </section>
 

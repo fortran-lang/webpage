@@ -45,7 +45,7 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="索引" href="../../../genindex/" />
     <link rel="search" title="搜索" href="../../../search/" />
-    <link rel="next" title="Matrix multiplication, dot product, and array shifts" href="../transform/" />
+    <link rel="next" title="矩阵乘法、点积和数组移位" href="../transform/" />
     <link rel="prev" title="一般和杂项内置函数" href="../state/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -338,7 +338,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../packages/">
-  Packages
+  源码包
  </a>
 </li>
 
@@ -411,27 +411,27 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/choose_compiler/">
-     Choosing a compiler
+     选择编译器
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/install_gfortran/">
-     Installing GFortran
+     安装 GFortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/text_editors/">
-     Text Editors
+     文本编辑器
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/ides/">
-     IDEs
+     集成开发环境（IDE）
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/tips/">
-     Smart Tips
+     智能提示
     </a>
    </li>
   </ul>
@@ -525,7 +525,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../building_programs/distributing/">
-     分发您的程序
+     分发你的程序
     </a>
    </li>
   </ul>
@@ -668,12 +668,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../transform/">
-     Matrix multiplication, dot product, and array shifts
+     矩阵乘法、点积和数组移位
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type/">
-     Types and kinds
+     类型和种类
     </a>
    </li>
    <li class="toctree-l2">
@@ -1913,17 +1913,15 @@
 </section>
 <section id="id49">
 <h3><strong>说明</strong><a class="headerlink" href="#id49" title="此标题的永久链接">#</a></h3>
-<p>Get the <strong>value</strong> of the environmental variable <strong>name</strong>.</p>
-<p>Note that <strong>get_environment_variable</strong>(3) need not be thread-safe. It
-is the responsibility of the user to ensure that the environment is not
-being updated concurrently.</p>
+<p>获取环境变量<strong>name</strong>的<strong>value</strong>。</p>
+<p>请注意，<strong>get_environment_variable</strong>(3) 不必是线程安全的。用户有责任确保环境不会同时更新。</p>
 </section>
 <section id="id50">
 <h3><strong>选项</strong><a class="headerlink" href="#id50" title="此标题的永久链接">#</a></h3>
 <ul>
 <li><dl class="simple myst">
-<dt><strong>name</strong></dt><dd><p>The name of the environment variable to query.</p>
-<p>Shall be a scalar of type <em>character</em> and of default kind.</p>
+<dt><strong>name</strong></dt><dd><p>要查询的环境变量的名称。</p>
+<p>应为 <em>character</em> 类型和默认类型的标量。</p>
 </dd>
 </dl>
 </li>
@@ -1933,37 +1931,28 @@ being updated concurrently.</p>
 <h3><strong>返回</strong><a class="headerlink" href="#id51" title="此标题的永久链接">#</a></h3>
 <ul>
 <li><dl class="simple myst">
-<dt><strong>value</strong></dt><dd><p>The value of the environment variable being queried.</p>
+<dt><strong>value</strong></dt><dd><p>被查询的环境变量的值。</p>
 </dd>
 </dl>
-<p>Shall be a scalar of type <em>character</em> and of default kind.
-The value of <strong>name</strong> is stored in <strong>value</strong>. If <strong>value</strong> is not
-large enough to hold the data, it is truncated. If <strong>name</strong> is not
-set, <strong>value</strong> will be filled with blanks.</p>
+<p>应为 <em>character</em> 类型和默认类型的标量。 <strong>name</strong> 的值存储在 <strong>value</strong> 中。如果 <strong>value</strong> 不足以容纳数据，则将其截断。如果 <strong>name</strong> 没有设置，<strong>value</strong> 将用空格填充。</p>
 </li>
 <li><dl class="simple myst">
-<dt><strong>length</strong></dt><dd><p>Argument <strong>length</strong> contains the length needed for storing the
-environment variable <strong>name</strong> or zero if it is not present.</p>
+<dt><strong>length</strong></dt><dd><p>参数 <strong>length</strong> 包含存储环境变量 <strong>name</strong> 所需的长度，如果不存在，则为零。</p>
 </dd>
 </dl>
-<p>Shall be a scalar of type <em>integer</em> and of default kind.</p>
+<p>应为 <em>integer</em> 类型和默认类型的标量。</p>
 </li>
 <li><dl class="simple myst">
-<dt><strong>status</strong></dt><dd><p><strong>status</strong> is <strong>-1</strong> if <strong>value</strong> is present but too short for the
-environment variable; it is <strong>1</strong> if the environment variable does
-not exist and <strong>2</strong> if the processor does not support environment
-variables; in all other cases <strong>status</strong> is zero.</p>
+<dt><strong>status</strong></dt><dd><p><strong>status</strong> 是 <strong>-1</strong> 如果 <strong>value</strong> 存在但对于环境变量来说太短了；如果环境变量不存在，则为<strong>1</strong>，如果处理器不支持环境变量，则为<strong>2</strong>；在所有其他情况下，<strong>status</strong> 为零。</p>
 </dd>
 </dl>
-<p>Shall be a scalar of type <em>integer</em> and of default kind.</p>
+<p>应为 <em>integer</em> 类型和默认类型的标量。</p>
 </li>
 <li><dl class="simple myst">
-<dt><strong>trim_name</strong></dt><dd><p>If <strong>trim_name</strong> is present with the value <strong>.false.</strong>, the trailing
-blanks in <strong>name</strong> are significant; otherwise they are not part of the
-environment variable name.</p>
+<dt><strong>trim_name</strong></dt><dd><p>如果 <strong>trim_name</strong> 存在且值为 <strong>.false.</strong>，则 <strong>name</strong> 中的尾随空格很重要；否则它们不是环境变量名称的一部分。</p>
 </dd>
 </dl>
-<p>Shall be a scalar of type <em>logical</em> and of default kind.</p>
+<p>应为 <em>logical</em> 类型和默认类型的标量。</p>
 </li>
 </ul>
 </section>
