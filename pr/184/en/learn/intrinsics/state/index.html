@@ -1,0 +1,1687 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+
+    <title>General and miscellaneous intrinsics &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="icon" sizes="256x256" type="image/ico" href="../../../_static/images/favicon.ico" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="Accessing external system information" href="../system/" />
+    <link rel="prev" title="Parallel programming using co_arrays and co_indexed arrays" href="../parallel/" /> 
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+
+<style type="text/css">
+  ul.ablog-archive {
+    list-style: none;
+    overflow: auto;
+    margin-left: 0px;
+  }
+  ul.ablog-archive li {
+    float: left;
+    margin-right: 5px;
+    font-size: 80%;
+  }
+  ul.postlist a {
+    font-style: italic;
+  }
+  ul.postlist-style-disc {
+    list-style-type: disc;
+  }
+  ul.postlist-style-none {
+    list-style-type: none;
+  }
+  ul.postlist-style-circle {
+    list-style-type: circle;
+  }
+</style>
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+    
+    <div class="dropdown" id="version_switcher">
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    en
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables learn/intrinsics/state and {'json_url': 'https://fortran-lang.org/', 'version_match': 'en'}.
+-->
+
+<script type="text/javascript">
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "learn/intrinsics/state",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
+
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "learn/intrinsics/state";
+    const indexFilePath = "../../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "English",
+        version: "en",
+        url: "../en/",
+      },
+      {
+        name: "bn",
+        version: "bn",
+        url: "../bn/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "../cs/",
+      },
+      {
+        name: "Deutsch",
+        version: "de",
+        url: "../de/",
+      },
+      {
+        name: "Español",
+        version: "es",
+        url: "../es/",
+      },
+      {
+        name: "Français",
+        version: "fr",
+        url: "../fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "../ja/",
+      },
+      {
+        name: "Nederlands",
+        version: "nl",
+        url: "../nl/",
+      },
+      {
+        name: "pl",
+        version: "pl",
+        url: "../pl/",
+      },
+      {
+        name: "Português",
+        version: "pt",
+        url: "../pt/",
+      },
+      {
+        name: "Русский",
+        version: "ru",
+        url: "../ru/",
+      },
+      {
+        name: "简体中文",
+        version: "zh_CN",
+        url: "../zh_CN/",
+      },
+    ];
+    console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+      node.setAttribute(
+        "href",
+        `${indexFilePath}${entry.url}${currentFilePath}`,
+      );
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
+
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "en") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
+</script>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference external nav-link" href="https://play.fortran-lang.org/">
+  Play
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../">
+  Learn
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../compilers/">
+  Compilers
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../community/">
+  Community
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../packages/">
+  Packages
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../news/">
+  News
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/en/news/atom.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search" aria-label="Search" autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../os_setup/">
+   Setting up your OS
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/choose_compiler/">
+     Choosing a compiler
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/install_gfortran/">
+     Installing GFortran
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/text_editors/">
+     Text Editors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/ides/">
+     IDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/tips/">
+     Smart Tips
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../quickstart/">
+   Quickstart tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/hello_world/">
+     Hello world
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/variables/">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/arrays_strings/">
+     Arrays and strings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/operators_control_flow/">
+     Operators and flow control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/organising_code/">
+     Organising code structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/derived_types/">
+     Derived Types
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../building_programs/">
+   Building programs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/compiling_source/">
+     Compiling the source code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/linking_pieces/">
+     Linking the objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/runtime_libraries/">
+     Run-time libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/include_files/">
+     Include files and modules
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/managing_libraries/">
+     Managing libraries (static and dynamic libraries)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/build_tools/">
+     Build tools
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/project_make/">
+     An introduction to make
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/distributing/">
+     Distributing your programs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../best_practices/">
+   Fortran Best Practices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/style_guide/">
+     Fortran Style Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/floating_point/">
+     Floating Point Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/integer_division/">
+     Integer Division
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/modules_programs/">
+     Modules and Programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/arrays/">
+     Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/multidim_arrays/">
+     Multidimensional Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/element_operations/">
+     Element-wise Operations on Array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/allocatable_arrays/">
+     Allocatable Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/file_io/">
+     File Input/Output
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/callbacks/">
+     Callbacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/type_casting/">
+     Type Casting in Callbacks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../">
+   Fortran Intrinsics
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../array/">
+     Properties and attributes of arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bit/">
+     Bit-level inquiry and manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../character/">
+     Basic procedures for manipulating
+     <em>
+      character
+     </em>
+     variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../compiler/">
+     Information about compiler and compiler options used for building
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cfi/">
+     Procedures for binding to C interfaces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../math/">
+     General mathematical functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../model/">
+     Controlling and querying the current numeric model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numeric/">
+     Manipulation and properties of numeric values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../parallel/">
+     Parallel programming using co_arrays and co_indexed arrays
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     General and miscellaneous intrinsics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system/">
+     Accessing external system information
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../transform/">
+     Matrix multiplication, dot product, and array shifts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../type/">
+     Types and kinds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
+     GNU Free Documentation License
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+        
+<br />
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#associated">
+   associated
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#name">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#syntax">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#description">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#arguments">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#returns">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#see-also">
+     <strong>
+      See Also
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fortran-lang-intrinsic-descriptions">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#extends-type-of">
+   extends_type_of
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id1">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#options">
+     <strong>
+      Options
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     <strong>
+      Examples
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id6">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#is-iostat-end">
+   is_iostat_end
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     <strong>
+      Standard
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#fortran-lang-intrinsic-descriptions-license-mit-urbanjost">
+       fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#is-iostat-eor">
+   is_iostat_eor
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     <strong>
+      Standard
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id21">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#move-alloc">
+   move_alloc
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id22">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id24">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id25">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id26">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id27">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id28">
+     <strong>
+      See Also
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id29">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#present">
+   present
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id30">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id31">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id32">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id33">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id34">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id35">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id36">
+     <strong>
+      Standard
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id37">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#same-type-as">
+   same_type_as
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id38">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id39">
+     <strong>
+      Syntax
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id40">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id41">
+     <strong>
+      Arguments
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id42">
+     <strong>
+      Returns
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id43">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id44">
+     <strong>
+      See Also
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#id45">
+       fortran-lang intrinsic descriptions
+      </a>
+     </li>
+    </ul>
+   </li>
+  </ul>
+ </li>
+</ul>
+</nav> 
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                 <section class="tex2jax_ignore mathjax_ignore" id="general-and-miscellaneous-intrinsics">
+<h1>General and miscellaneous intrinsics<a class="headerlink" href="#general-and-miscellaneous-intrinsics" title="Permalink to this heading">#</a></h1>
+<section id="associated">
+<h2>associated<a class="headerlink" href="#associated" title="Permalink to this heading">#</a></h2>
+<section id="name">
+<h3><strong>Name</strong><a class="headerlink" href="#name" title="Permalink to this heading">#</a></h3>
+<p><strong>associated</strong>(3) - [STATE] Status of a pointer or pointer/target pair</p>
+</section>
+<section id="syntax">
+<h3><strong>Syntax</strong><a class="headerlink" href="#syntax" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">associated</span><span class="p">(</span><span class="k">pointer</span><span class="p">,</span><span class="w"> </span><span class="k">target</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="description">
+<h3><strong>Description</strong><a class="headerlink" href="#description" title="Permalink to this heading">#</a></h3>
+<p><strong>associated(pointer [, target])</strong> determines the status of the
+pointer <strong>pointer</strong> or if <strong>pointer</strong> is associated with the target <strong>target</strong>.</p>
+</section>
+<section id="arguments">
+<h3><strong>Arguments</strong><a class="headerlink" href="#arguments" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>pointer</strong></dt><dd><p><strong>pointer</strong> shall have the <em>pointer</em> attribute and it can be of any type.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>target</strong></dt><dd><p>(Optional) <strong>target</strong> shall be a pointer or a target. It must have the
+same type, kind type parameter, and array rank as <strong>pointer</strong>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<p>The association status of neither <strong>pointer</strong> nor <strong>target</strong> shall be undefined.</p>
+</section>
+<section id="returns">
+<h3><strong>Returns</strong><a class="headerlink" href="#returns" title="Permalink to this heading">#</a></h3>
+<p><strong>associated(pointer)</strong> returns a scalar value of type <em>logical</em>.
+There are several cases:</p>
+<ol class="arabic">
+<li><p>When the optional <strong>target</strong> is not present then <strong>associated(pointer)</strong>
+is true if <strong>pointer</strong> is associated with a target; otherwise, it
+returns false.</p></li>
+<li><p>If <strong>target</strong> is present and a scalar target, the result is true if
+<strong>target</strong> is not a zero-sized storage sequence and the target
+associated with <strong>pointer</strong> occupies the same storage units. If <strong>pointer</strong>
+is disassociated, the result is false.</p></li>
+<li><p>If <strong>target</strong> is present and an array target, the result is true if
+<strong>target</strong> and <strong>pointer</strong> have the same shape, are not zero-sized arrays,
+are arrays whose elements are not zero-sized storage sequences, and
+<strong>target</strong> and <strong>pointer</strong> occupy the same storage units in array element
+order.</p>
+<p>As in case 2, the result is false, if <strong>pointer</strong> is disassociated.</p>
+</li>
+<li><p>If <strong>target</strong> is present and an scalar pointer, the result is true if
+<strong>target</strong> is associated with <strong>pointer</strong>, the target associated with <strong>target</strong>
+are not zero-sized storage sequences and occupy the same storage
+units.</p>
+<p>The result is <strong>.false.</strong>, if either <strong>target</strong> or <strong>pointer</strong> is disassociated.</p>
+</li>
+<li><p>If <strong>target</strong> is present and an array pointer, the result is true if
+target associated with <strong>pointer</strong> and the target associated with <strong>target</strong>
+have the same shape, are not zero-sized arrays, are arrays whose
+elements are not zero-sized storage sequences, and <strong>target</strong> and
+<strong>pointer</strong> occupy the same storage units in array element order. The
+result is false, if either <strong>target</strong> or <strong>pointer</strong> is disassociated.</p></li>
+</ol>
+</section>
+<section id="examples">
+<h3><strong>Examples</strong><a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_associated</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">target</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">tgt</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mf">1.</span><span class="p">,</span><span class="w"> </span><span class="mf">2.</span><span class="p">]</span><span class="w"></span>
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">ptr</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">   </span><span class="n">ptr</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">tgt</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">ptr</span><span class="p">)</span><span class="w">     </span><span class="p">.</span><span class="n">eqv</span><span class="p">.</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.)</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">   </span><span class="p">&amp;</span><span class="w"> </span><span class="k">stop</span><span class="w"> </span><span class="s1">&#39;POINTER NOT ASSOCIATED&#39;</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="n">tgt</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="n">eqv</span><span class="p">.</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.)</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
+<span class="w">   </span><span class="p">&amp;</span><span class="w"> </span><span class="k">stop</span><span class="w"> </span><span class="s1">&#39;POINTER NOT ASSOCIATED TO TARGET&#39;</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_associated</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="standard">
+<h3><strong>Standard</strong><a class="headerlink" href="#standard" title="Permalink to this heading">#</a></h3>
+<p>Fortran 95 and later</p>
+</section>
+<section id="see-also">
+<h3><strong>See Also</strong><a class="headerlink" href="#see-also" title="Permalink to this heading">#</a></h3>
+<p><span class="xref myst"><strong>null</strong>(3)</span></p>
+<section id="fortran-lang-intrinsic-descriptions">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#fortran-lang-intrinsic-descriptions" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="extends-type-of">
+<h2>extends_type_of<a class="headerlink" href="#extends-type-of" title="Permalink to this heading">#</a></h2>
+<section id="id1">
+<h3><strong>Name</strong><a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h3>
+<p><strong>extends_type_of</strong>(3) - [STATE] determine if the dynamic type of <strong>a</strong> is an extension of the dynamic type of <strong>mold</strong>.</p>
+</section>
+<section id="id2">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="o">=</span><span class="nb">extends_type_of</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">mold</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id3">
+<h3><strong>Description</strong><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<p><strong>extends_type_of</strong>(3) is <strong>.true.</strong> if and only if the dynamic type of <strong>a</strong>
+is an extension of the dynamic type of <strong>mold</strong>.</p>
+</section>
+<section id="options">
+<h3><strong>Options</strong><a class="headerlink" href="#options" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>a</strong></dt><dd><p>shall be an object of extensible type. If it is a pointer, it
+shall not have an undefined association status.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>mold</strong></dt><dd><p>shall be an object of extensible type. If it is a pointer, it
+shall not have an undefined association status.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id4">
+<h3><strong>Returns</strong><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<ul>
+<li><dl class="simple myst">
+<dt><strong>result</strong></dt><dd><p>Default logical scalar.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>value</strong></dt><dd><p>If <strong>mold</strong> is unlimited polymorphic and is either a disassociated
+pointer or unallocated allocatable variable, the result is
+true; otherwise if <strong>a</strong> is unlimited polymorphic and is either a
+disassociated pointer or unallocated allocatable variable, the result
+is false; otherwise the result is true if and only if the dynamic
+type of <strong>a</strong> is an extension type of the dynamic type of <strong>mold</strong>.</p>
+</dd>
+</dl>
+<p>The dynamic type of a disassociated pointer or unallocated
+allocatable variable is its declared type.</p>
+</li>
+</ul>
+</section>
+<section id="id5">
+<h3><strong>Examples</strong><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<section id="id6">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="is-iostat-end">
+<h2>is_iostat_end<a class="headerlink" href="#is-iostat-end" title="Permalink to this heading">#</a></h2>
+<section id="id7">
+<h3><strong>Name</strong><a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<p><strong>is_iostat_end</strong>(3) - [STATE] Test for end-of-file value</p>
+</section>
+<section id="id8">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">function </span><span class="nb">is_iostat_end</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">    </span><span class="kt">logical </span><span class="k">function</span><span class="w">   </span><span class="kd">::</span><span class="w"> </span><span class="nb">is_iostat_end</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">yesno</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3><strong>Description</strong><a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<p>is_iostat_end(3) tests whether a variable (assumed returned as a status
+from an I/O statement) has the “end of file” I/O status value.</p>
+<p>The function is equivalent to comparing the variable with the
+<strong>iostat_end</strong> parameter of the intrinsic module <strong>iso_fortran_env</strong>.</p>
+</section>
+<section id="id10">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>i</strong></dt><dd><p>An <em>integer</em> status value to test if indicating end of file.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id11">
+<h3><strong>Returns</strong><a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<p>Returns a <em>logical</em> of the default kind, <strong>.true.</strong> if <strong>i</strong> has the value
+which indicates an end of file condition for <strong>iostat=</strong> specifiers, and is
+<strong>.false.</strong> otherwise.</p>
+</section>
+<section id="id12">
+<h3><strong>Examples</strong><a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_iostat</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">real</span><span class="w">               </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span>
+<span class="kt">integer</span><span class="w">            </span><span class="kd">::</span><span class="w"> </span><span class="n">ios</span><span class="w"></span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">256</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">message</span><span class="w"></span>
+<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;Begin entering numeric values, one per line&#39;</span><span class="w"></span>
+<span class="w">   </span><span class="k">do</span>
+<span class="k">      read</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">,</span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">,</span><span class="n">iomsg</span><span class="o">=</span><span class="n">message</span><span class="p">)</span><span class="k">value</span>
+<span class="k">      if</span><span class="p">(</span><span class="n">ios</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">then</span>
+<span class="k">         write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;VALUE=&#39;</span><span class="p">,</span><span class="k">value</span>
+<span class="k">      </span><span class="n">elseif</span><span class="p">(</span><span class="w"> </span><span class="nb">is_iostat_end</span><span class="p">(</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">         stop</span><span class="w"> </span><span class="s1">&#39;end of file. Goodbye!&#39;</span><span class="w"></span>
+<span class="w">      </span><span class="k">else</span>
+<span class="k">         write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;ERROR:&#39;</span><span class="p">,</span><span class="n">ios</span><span class="p">,</span><span class="nb">trim</span><span class="p">(</span><span class="n">message</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">endif</span><span class="w"></span>
+<span class="w">      </span><span class="c">!</span>
+<span class="w">   </span><span class="k">enddo</span>
+<span class="k">end program </span><span class="n">demo_iostat</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id13">
+<h3><strong>Standard</strong><a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
+<p>Fortran 2003 and later</p>
+<section id="fortran-lang-intrinsic-descriptions-license-mit-urbanjost">
+<h4>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost<a class="headerlink" href="#fortran-lang-intrinsic-descriptions-license-mit-urbanjost" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="is-iostat-eor">
+<h2>is_iostat_eor<a class="headerlink" href="#is-iostat-eor" title="Permalink to this heading">#</a></h2>
+<section id="id14">
+<h3><strong>Name</strong><a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
+<p><strong>is_iostat_eor</strong>(3) - [STATE] Test for end-of-record value</p>
+</section>
+<section id="id15">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">is_iostat_eor</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id16">
+<h3><strong>Description</strong><a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h3>
+<p>is_iostat_eor tests whether an variable has the value of the I/O
+status “end of record”. The function is equivalent to comparing the
+variable with the iostat_eor parameter of the intrinsic module
+<strong>iso_fortran_env</strong>.</p>
+</section>
+<section id="id17">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>i</strong></dt><dd><p>Shall be of the type <em>integer</em>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id18">
+<h3><strong>Returns</strong><a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h3>
+<p>Returns a <em>logical</em> of the default kind, which .true. if <strong>i</strong> has the value
+which indicates an end of file condition for iostat= specifiers, and is
+.false. otherwise.</p>
+</section>
+<section id="id19">
+<h3><strong>Examples</strong><a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_is_iostat_eor</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">(</span><span class="mi">50</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">open</span><span class="p">(</span><span class="mi">88</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="s1">&#39;test.dat&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">form</span><span class="o">=</span><span class="s1">&#39;unformatted&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">read</span><span class="p">(</span><span class="mi">88</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+
+<span class="w">  </span><span class="k">if</span><span class="p">(</span><span class="nb">is_iostat_eor</span><span class="p">(</span><span class="nb">stat</span><span class="p">))</span><span class="w"> </span><span class="k">stop</span><span class="w"> </span><span class="s1">&#39;end of record&#39;</span><span class="w"></span>
+
+<span class="k">end program </span><span class="n">demo_is_iostat_eor</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id20">
+<h3><strong>Standard</strong><a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
+<p>Fortran 2003 and later</p>
+<section id="id21">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="move-alloc">
+<h2>move_alloc<a class="headerlink" href="#move-alloc" title="Permalink to this heading">#</a></h2>
+<section id="id22">
+<h3><strong>Name</strong><a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h3>
+<p><strong>move_alloc</strong>(3) - [] Move allocation from one object to another</p>
+</section>
+<section id="id23">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">src</span><span class="p">,</span><span class="w"> </span><span class="n">dest</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id24">
+<h3><strong>Description</strong><a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
+<p><strong>move_alloc(src, dest)</strong> moves the allocation from *<em>src</em>( to
+*<em>dest</em>. <strong>src</strong> will become deallocated in the process.</p>
+</section>
+<section id="id25">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>src</strong></dt><dd><p>allocatable, <strong>intent(inout)</strong>, may be of any type and kind.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>dest</strong></dt><dd><p>allocatable, <strong>intent(out)</strong>, shall be of the same type, kind and
+rank as *<em>src</em>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id26">
+<h3><strong>Examples</strong><a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h3>
+<p>Basic Sample program to allocate a bigger grid</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_move_alloc</span><span class="w"></span>
+<span class="k">implicit none</span><span class="w"></span>
+<span class="c">! Example to allocate a bigger GRID</span>
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">grid</span><span class="p">(:),</span><span class="w"> </span><span class="n">tempgrid</span><span class="p">(:)</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">! initialize small GRID</span>
+<span class="w">   </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
+<span class="w">   </span><span class="k">allocate</span><span class="w"> </span><span class="p">(</span><span class="n">grid</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">))</span><span class="w"></span>
+<span class="w">   </span><span class="n">grid</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="p">(</span><span class="kt">real</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="w"> </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">n</span><span class="p">)</span><span class="w"> </span><span class="p">]</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">! initialize TEMPGRID which will be used to replace GRID</span>
+<span class="w">   </span><span class="k">allocate</span><span class="w"> </span><span class="p">(</span><span class="n">tempgrid</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="p">))</span><span class="w">    </span><span class="c">! Allocate bigger grid</span>
+<span class="w">   </span><span class="n">tempgrid</span><span class="p">(</span><span class="kd">::</span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="n">grid</span><span class="w">         </span><span class="c">! Distribute values to new locations</span>
+<span class="w">   </span><span class="n">tempgrid</span><span class="p">(</span><span class="mi">2</span><span class="kd">::</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">grid</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">0.5</span><span class="w">   </span><span class="c">! initialize other values</span>
+
+<span class="w">   </span><span class="c">! move TEMPGRID to GRID</span>
+<span class="w">   </span><span class="k">call </span><span class="nb">MOVE_ALLOC</span><span class="w"> </span><span class="p">(</span><span class="n">from</span><span class="o">=</span><span class="n">tempgrid</span><span class="p">,</span><span class="w"> </span><span class="n">to</span><span class="o">=</span><span class="n">grid</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="c">! TEMPGRID should no longer be allocated</span>
+<span class="w">   </span><span class="c">! and GRID should be the size TEMPGRID was</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">size</span><span class="w"> </span><span class="p">(</span><span class="n">grid</span><span class="p">)</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">n</span><span class="w"> </span><span class="p">.</span><span class="nb">or</span><span class="p">.</span><span class="w"> </span><span class="nb">allocated</span><span class="w"> </span><span class="p">(</span><span class="n">tempgrid</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Failure in move_alloc!&quot;</span><span class="w"></span>
+<span class="w">   </span><span class="k">endif</span>
+<span class="k">   print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">allocated</span><span class="p">(</span><span class="n">grid</span><span class="p">),</span><span class="w"> </span><span class="nb">allocated</span><span class="p">(</span><span class="n">tempgrid</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(99f8.3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">grid</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_move_alloc</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    T F
+      1.000   1.500   2.000   2.500   3.000   3.500
+</pre></div>
+</div>
+</section>
+<section id="id27">
+<h3><strong>Standard</strong><a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h3>
+<p>Fortran 2003 and later</p>
+</section>
+<section id="id28">
+<h3><strong>See Also</strong><a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h3>
+<p><span class="xref myst"><strong>allocated</strong>(3)</span></p>
+<section id="id29">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="present">
+<h2>present<a class="headerlink" href="#present" title="Permalink to this heading">#</a></h2>
+<section id="id30">
+<h3><strong>Name</strong><a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h3>
+<p><strong>present</strong>(3) - [STATE] Determine whether an optional dummy argument
+is specified</p>
+</section>
+<section id="id31">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">present</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"></span>
+
+<span class="w">   </span><span class="k">function </span><span class="nb">present</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">present</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id32">
+<h3><strong>Description</strong><a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h3>
+<p>Determines whether an optional dummy argument is present.</p>
+</section>
+<section id="id33">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>a</strong></dt><dd><p>May be of any type and may be a pointer, scalar or array value,
+or a dummy procedure. It shall be the name of an optional dummy
+argument accessible within the current subroutine or function.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id34">
+<h3><strong>Returns</strong><a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h3>
+<p>Returns either <strong>.true.</strong> if the optional argument <strong>a</strong> is present,
+or <strong>.false.</strong> otherwise.</p>
+</section>
+<section id="id35">
+<h3><strong>Examples</strong><a class="headerlink" href="#id35" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_present</span><span class="w"></span>
+<span class="k">implicit none</span>
+<span class="k">   write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">func</span><span class="p">(),</span><span class="w"> </span><span class="n">func</span><span class="p">(</span><span class="mi">42</span><span class="p">)</span><span class="w"></span>
+<span class="k">contains</span>
+
+<span class="kt">integer </span><span class="k">function </span><span class="n">func</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">x</span><span class="p">))</span><span class="k">then</span>
+<span class="k">     </span><span class="n">func</span><span class="o">=</span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="w"></span>
+<span class="w">   </span><span class="k">else</span>
+<span class="k">     </span><span class="n">func</span><span class="o">=</span><span class="mi">0</span><span class="w"></span>
+<span class="w">   </span><span class="k">endif</span>
+<span class="k">end function</span>
+
+<span class="k">end program </span><span class="n">demo_present</span><span class="w"></span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     0        1764
+</pre></div>
+</div>
+</section>
+<section id="id36">
+<h3><strong>Standard</strong><a class="headerlink" href="#id36" title="Permalink to this heading">#</a></h3>
+<p>Fortran 95 and later</p>
+<section id="id37">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id37" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+<section id="same-type-as">
+<h2>same_type_as<a class="headerlink" href="#same-type-as" title="Permalink to this heading">#</a></h2>
+<section id="id38">
+<h3><strong>Name</strong><a class="headerlink" href="#id38" title="Permalink to this heading">#</a></h3>
+<p><strong>same_type_as</strong>(3) - [STATE] Query dynamic types for equality</p>
+</section>
+<section id="id39">
+<h3><strong>Syntax</strong><a class="headerlink" href="#id39" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">same_type_as</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+</pre></div>
+</div>
+</section>
+<section id="id40">
+<h3><strong>Description</strong><a class="headerlink" href="#id40" title="Permalink to this heading">#</a></h3>
+<p>Query dynamic types for equality.</p>
+</section>
+<section id="id41">
+<h3><strong>Arguments</strong><a class="headerlink" href="#id41" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>a</strong></dt><dd><p>Shall be an object of extensible declared type or unlimited
+polymorphic.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>b</strong></dt><dd><p>Shall be an object of extensible declared type or unlimited
+polymorphic.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id42">
+<h3><strong>Returns</strong><a class="headerlink" href="#id42" title="Permalink to this heading">#</a></h3>
+<p>The return value is a scalar of type default logical. It is true if and
+only if the dynamic type of <strong>a</strong> is the same as the dynamic type of <strong>b</strong>.</p>
+</section>
+<section id="id43">
+<h3><strong>Standard</strong><a class="headerlink" href="#id43" title="Permalink to this heading">#</a></h3>
+<p>Fortran 2003 and later</p>
+</section>
+<section id="id44">
+<h3><strong>See Also</strong><a class="headerlink" href="#id44" title="Permalink to this heading">#</a></h3>
+<p><a class="reference internal" href="#extends-type-of"><span class="std std-doc"><strong>extends_type_of</strong>(3)</span></a></p>
+<section id="id45">
+<h4>fortran-lang intrinsic descriptions<a class="headerlink" href="#id45" title="Permalink to this heading">#</a></h4>
+</section>
+</section>
+</section>
+</section>
+
+<div class="section">
+   
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2020-2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>
