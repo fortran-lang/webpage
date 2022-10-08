@@ -790,50 +790,55 @@ u(2:nx-1,2:ny-1) = ((u(3:,2:ny-1)+u(:ny-2,2:ny-1))*dy2 + &
 
 Comparison of Fortran and Python import statements:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>from A import foo
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from A import foo
 from A import foo as Afoo
-from A import *</code></pre></td>
-<td><pre class="fortran"><code>use A, only: foo
-use A, only: Afoo =&gt; foo
-use A</code></pre></td>
-</tr>
-</tbody>
-</table>
+from A import *
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+use A, only: foo
+use A, only: Afoo => foo
+use A
+
+```
+:::::
+::::::
 
 The following Python statements have no equivalent in Fortran:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>import A
-import ALongName as A</code></pre></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+import A
+import ALongName as A
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+
+```
+:::::
+::::::
 
 Fortran modules work just like Python modules. Differences:
 
@@ -860,29 +865,29 @@ Identical features:
 
 One creates the module:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><p>File <code>a.py</code>:</p>
-<pre><code>i = 5
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python a.py
+
+i = 5
 
 def f(x):
     return x + 5
 
 def g(x):
-    return x - 5</code></pre></td>
-<td><p>File <code>a.f90</code>:</p>
-<pre class="fortran"><code>module a
+    return x - 5
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran a.f90
+
+module a
 implicit none
 
 integer :: i = 5
@@ -899,47 +904,67 @@ integer, intent(in) :: x
 r = x - 5
 end function
 
-end module</code></pre></td>
-</tr>
-</tbody>
-</table>
+end module
+
+```
+:::::
+::::::
 
 And uses it from the main program as follows:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><p>File <code>main.py</code>:</p>
-<pre><code>from a import f, i
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python main.py
+
+from a import f, i
 
 print f(3)
-print i</code></pre>
-<p>Output:</p>
-<pre><code>8
-5</code></pre></td>
-<td><p>File <code>main.f90</code>:</p>
-<pre class="fortran"><code>program main
+print i
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran main.f90
+
+program main
 use a, only: f, i
 implicit none
 print *, f(3)
 print *, i
-end program</code></pre>
-<p>Output:</p>
-<pre><code>8
-5</code></pre></td>
-</tr>
-</tbody>
-</table>
+end program
+
+```
+:::::
+::::::
+
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python 
+
+8
+5
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran 
+
+8
+5
+
+```
+:::::
+::::::
 
 In Fortran, one can ommit the line `program main`, also one can just end
 the file with `end` instead of `end program`. That way one can test any
@@ -947,21 +972,14 @@ code snippet just by appending `end` at the end.
 
 In order to specify which symbols are public and private, one would use:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><p>File <code>a.py</code>:</p>
-<pre><code>__all__ = [&quot;i&quot;, &quot;f&quot;]
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+__all__ = ["i", "f"]
 
 i = 5
 
@@ -969,9 +987,16 @@ def f(x):
     return x + 5
 
 def g(x):
-    return x - 5</code></pre></td>
-<td><p>File <code>a.f90</code>:</p>
-<pre><code>module a
+    return x - 5
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+module a
 implicit none
 private
 public i, f
@@ -990,10 +1015,11 @@ integer, intent(in) :: x
 r = x - 5
 end function
 
-end module</code></pre></td>
-</tr>
-</tbody>
-</table>
+end module
+
+```
+:::::
+::::::
 
 There is a difference though. In Fortran, the symbol `g` will be private
 (not possible to import from other modules no matter if we use explicit
@@ -1012,44 +1038,60 @@ Fortran it is single precision. See also the relevant
 [NumPy](http://docs.scipy.org/doc/numpy/user/basics.types.html)
 documentation.
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python 2.x</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><p>Single precision:</p>
-<pre><code>from numpy import float32
-f = float32(1.1)</code></pre></td>
-<td><p>Single precision:</p>
-<pre><code>real :: f
-f = 1.1</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Double precision:</p>
-<pre><code>f = 1.1            # 1.1
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from numpy import float32
+f = float32(1.1)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+real :: f
+f = 1.1
+
+```
+:::::
+::::::
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+f = 1.1            # 1.1
 f = 1e8            # 100000000.0
 f = float(1) / 2   # 0.5
 f = float(1 / 2)   # 0.0
-f = float(5)       # 5.0</code></pre></td>
-<td><p>Double precision:</p>
-<pre><code>integer, parameter :: dp=kind(0.d0)
+f = float(5)       # 5.0
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+integer, parameter :: dp=kind(0.d0)
 real(dp) :: f
 f = 1.1_dp             ! 1.1
 f = 1e8_dp             ! 100000000.0
 f = real(1, dp) / 2    ! 0.5
 f = 1 / 2              ! 0.0
-f = 5                  ! 5.0</code></pre></td>
-</tr>
-</tbody>
-</table>
+f = 5                  ! 5.0
+
+```
+:::::
+::::::
 
 In Fortran the habit is to always specify the precision using the `_dp`
 suffix, where `dp` is defined in the `types.f90` module below as
@@ -1061,13 +1103,17 @@ corruption), so one *always* needs to specify the precision.
 In all Fortran code snippets below, it is assumed, that you did
 `use types, only: dp`. The `types.f90` module is:
 
-    module types
-    implicit none
-    private
-    public dp, hp
-    integer, parameter :: dp=kind(0.d0), &          ! double precision
-                          hp=selected_real_kind(15) ! high precision
-    end module
+```{code-block} Fortran
+:caption: Fortran
+
+module types
+implicit none
+private
+public dp, hp
+integer, parameter :: dp=kind(0.d0), &          ! double precision
+                        hp=selected_real_kind(15) ! high precision
+end module
+```
 
 ## Math and Complex Numbers
 
