@@ -1124,58 +1124,83 @@ the `constants.f90` module (included below).
 
 Otherwise the usage is identical.
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>from math import cos, pi, e
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from math import cos, pi, e
 I = 1j
 print e**(I*pi) + 1
 print cos(pi)
 print 4 + 5j
-print 4 + 5*I</code></pre>
-<p>Output:</p>
-<pre><code>1.22460635382e-16j
--1.0
-(4+5j)
-(4+5j)</code></pre></td>
-<td><pre><code>use constants, only: pi, e
+print 4 + 5*I
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+use constants, only: pi, e
 complex(dp) :: I = (0, 1)
 print *, e**(I*pi) + 1
 print *, cos(pi)
 print *, (4, 5)
-print *, 4 + 5*I</code></pre>
-<p>Output:</p>
-<pre><code>(  0.0000000000000000     , 1.22460635382237726E-016)
+print *, 4 + 5*I
+
+```
+:::::
+::::::
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+1.22460635382e-16j
+-1.0
+(4+5j)
+(4+5j)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+(  0.0000000000000000     , 1.22460635382237726E-016)
  -1.0000000000000000
 (  4.0000000    ,  5.0000000    )
-(  4.0000000000000000     ,  5.0000000000000000     )</code></pre></td>
-</tr>
-</tbody>
-</table>
+(  4.0000000000000000     ,  5.0000000000000000     )
+
+```
+:::::
+::::::
 
 Fortran module `constants.f90`:
 
-    module constants
-    use types, only: dp
-    implicit none
-    private
-    public pi, e, I
-    ! Constants contain more digits than double precision, so that
-    ! they are rounded correctly:
-    real(dp), parameter :: pi   = 3.1415926535897932384626433832795_dp
-    real(dp), parameter :: e    = 2.7182818284590452353602874713527_dp
-    complex(dp), parameter :: I = (0, 1)
-    end module
+```{code-block} Fortran
+:caption: Fortran
+
+module constants
+use types, only: dp
+implicit none
+private
+public pi, e, I
+! Constants contain more digits than double precision, so that
+! they are rounded correctly:
+real(dp), parameter :: pi   = 3.1415926535897932384626433832795_dp
+real(dp), parameter :: e    = 2.7182818284590452353602874713527_dp
+complex(dp), parameter :: I = (0, 1)
+end module
+
+```
 
 ## Strings and Formatting
 
@@ -1187,102 +1212,146 @@ In both Python and Fortran, strings can be delimited by either `"` or
 
 There are three general ways to print formatted strings:
 
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 54%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>print &quot;Integer&quot;, 5, &quot;and float&quot;, 5.5, &quot;works fine.&quot;
-print &quot;Integer &quot; + str(5) + &quot; and float &quot; + str(5.5) + &quot;.&quot;
-print &quot;Integer %d and float %f.&quot; % (5, 5.5)</code></pre>
-<p>Output:</p>
-<pre><code>Integer 5 and float 5.5 works fine.
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+print "Integer", 5, "and float", 5.5, "works fine."
+print "Integer " + str(5) + " and float " + str(5.5) + "."
+print "Integer %d and float %f." % (5, 5.5)
+
+```
+:::::
+
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+use utils, only: str
+print *, "Integer", 5, "and float", 5.5, "works fine."
+print *, "Integer " // str(5) // " and float " // str(5.5_dp) // "."
+print '("Integer ", i0, " and float ", f0.6, ".")', 5, 5.5
+
+```
+:::::
+::::::
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+Integer 5 and float 5.5 works fine.
 Integer 5 and float 5.5.
-Integer 5 and float 5.500000.</code></pre></td>
-<td><pre><code>use utils, only: str
-print *, &quot;Integer&quot;, 5, &quot;and float&quot;, 5.5, &quot;works fine.&quot;
-print *, &quot;Integer &quot; // str(5) // &quot; and float &quot; // str(5.5_dp) // &quot;.&quot;
-print &#39;(&quot;Integer &quot;, i0, &quot; and float &quot;, f0.6, &quot;.&quot;)&#39;, 5, 5.5</code></pre>
-<p>Output:</p>
-<pre><code>Integer           5 and float   5.5000000     works fine.
 Integer 5 and float 5.500000.
-Integer 5 and float 5.500000.</code></pre></td>
-</tr>
-</tbody>
-</table>
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+Integer           5 and float   5.5000000     works fine.
+ Integer 5 and float 5.500000.
+Integer 5 and float 5.500000.
+
+```
+:::::
+::::::
 
 And here are some of the frequently used formats:
 
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 54%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>print &quot;%3d&quot; % 5
-print &quot;%03d&quot; % 5
-print &quot;%s&quot; % &quot;text&quot;
-print &quot;%15.7f&quot; % 5.5
-print &quot;%23.16e&quot; % -5.5</code></pre>
-<p>Output:</p>
-<pre><code>5
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+print "%3d" % 5
+print "%03d" % 5
+print "%s" % "text"
+print "%15.7f" % 5.5
+print "%23.16e" % -5.5
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+print '(i3)', 5
+print '(i3.3)', 5
+print '(a)', "text"
+print '(f15.7)', 5.5_dp
+print '(es23.16)', -5.5_dp
+
+```
+:::::
+::::::
+
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+  5
 005
 text
-    5.5000000
--5.5000000000000000e+00</code></pre></td>
-<td><pre><code>print &#39;(i3)&#39;, 5
-print &#39;(i3.3)&#39;, 5
-print &#39;(a)&#39;, &quot;text&quot;
-print &#39;(f15.7)&#39;, 5.5_dp
-print &#39;(es23.16)&#39;, -5.5_dp</code></pre>
-<p>Output:</p>
-<pre><code>5
+      5.5000000
+-5.5000000000000000e+00
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+ 5
 005
 text
-    5.5000000
--5.5000000000000000E+00</code></pre></td>
-</tr>
-</tbody>
-</table>
+      5.5000000
+-5.5000000000000000E+00
+
+```
+:::::
+::::::
 
 ## Nested Functions
 
 Both Python and Fortran allow nested functions that can access the outer
 function's namespace:
 
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 54%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>def foo(a, b, c):
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+def foo(a, b, c):
     def f(x):
         return a*x**2 + b*x + c
-    print f(1), f(2), f(3)</code></pre></td>
-<td><pre><code>subroutine foo(a, b, c)
+    print f(1), f(2), f(3)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+subroutine foo(a, b, c)
 real(dp) :: a, b, c
 print *, f(1._dp), f(2._dp), f(3._dp)
 
@@ -1293,64 +1362,89 @@ real(dp), intent(in) :: x
 y = a*x**2 + b*x + c
 end function f
 
-end subroutine foo</code></pre></td>
-</tr>
-</tbody>
-</table>
+end subroutine foo
+
+```
+:::::
+::::::
 
 Use it like:
 
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 54%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>foo(1, 2, 1)
-foo(2, 2, 1)</code></pre>
-<p>Output:</p>
-<pre><code>4 9 16
-5 13 25</code></pre></td>
-<td><pre><code>call foo(1._dp, 2._dp, 1._dp)
-call foo(2._dp, 2._dp, 1._dp)</code></pre>
-<p>Output:</p>
-<pre><code>4.0000000000000000        9.0000000000000000        16.000000000000000
-5.0000000000000000        13.000000000000000        25.000000000000000</code></pre></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+foo(1, 2, 1)
+foo(2, 2, 1)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+call foo(1._dp, 2._dp, 1._dp)
+call foo(2._dp, 2._dp, 1._dp)
+
+```
+:::::
+::::::
+
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+4 9 16
+5 13 25
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+4.0000000000000000        9.0000000000000000        16.000000000000000
+5.0000000000000000        13.000000000000000        25.000000000000000
+
+
+```
+:::::
+::::::
 
 You can use the nested functions in callbacks to pass context:
 
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 54%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>def simpson(f, a, b):
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+def simpson(f, a, b):
     return (b-a) / 6 * (f(a) + 4*f((a+b)/2) + f(b))
 
 def foo(a, k):
     def f(x):
         return a*sin(k*x)
     print simpson(f, 0., pi)
-    print simpson(f, 0., 2*pi)</code></pre></td>
-<td><pre><code>real(dp) function simpson(f, a, b) result(s)
+    print simpson(f, 0., 2*pi)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+real(dp) function simpson(f, a, b) result(s)
 real(dp), intent(in) :: a, b
 interface
     real(dp) function f(x)
@@ -1375,10 +1469,12 @@ real(dp), intent(in) :: x
 y = a*sin(k*x)
 end function f
 
-end subroutine foo</code></pre></td>
-</tr>
-</tbody>
-</table>
+end subroutine foo
+
+```
+:::::
+::::::
+
 
 And use it like:
 
