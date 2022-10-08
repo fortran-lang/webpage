@@ -12,7 +12,7 @@ Consider for example the following code snippets:
 
 :::::{grid-item}
 ```{code-block} python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, size, shape, min, max, sum
 a = array([1, 2, 3])
@@ -26,8 +26,8 @@ print(sum(a))
 :::::
 
 :::::{grid-item}
-```{code-block} fortran
-:caption: fortran
+```{code-block} Fortran
+:caption: Fortran
 
 integer :: a(3)
 a = [1, 2, 3]
@@ -44,8 +44,8 @@ print *, sum(a)
 In Python, just save the code to a file `example.py` and execute using
 `python example.py`. In Fortran, save it to a file `example.f90` and append the line
 `end` at the end of the file (see the section [Modules](#modules) for more info
-how this works). Compile using `gfortran example.f90` and execute using
-`./a.out` (you can of course add compilation options to gfortran, for
+how this works). Compile using `gFortran example.f90` and execute using
+`./a.out` (you can of course add compilation options to gFortran, for
 example to produce the executable with a different name).
 
 ## Arrays
@@ -93,7 +93,7 @@ Everything else is the same, in particular:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, size, shape, min, max, sum
 a = array([1, 2, 3])
@@ -123,7 +123,7 @@ print *, sum(a)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import reshape
 a = reshape([1, 2, 3, 4, 5, 6], (2, 3))
@@ -155,7 +155,7 @@ print *, b(2, :)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 [1 2 3]
 [4 5 6]
@@ -181,7 +181,7 @@ print *, b(2, :)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, size, shape, max, min
 a = array([[1, 2, 3], [4, 5, 6]])
@@ -217,7 +217,7 @@ print "(3i5)", transpose(a)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 (2, 3)
 2
@@ -251,7 +251,7 @@ print "(3i5)", transpose(a)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, all, any
 i = array([1, 2, 3])
@@ -275,7 +275,7 @@ any(i == [2, 2, 3])
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, empty
 a = array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -306,7 +306,7 @@ end where
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, empty
 a = array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -341,7 +341,7 @@ end where
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, sum, ones, size
 a = array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -368,7 +368,7 @@ print *, count(a > 2 .and. a < 6)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, dot
 a = array([[1, 2], [3, 4]])
@@ -395,7 +395,7 @@ print *, matmul(a, b)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 [[ 2  6]
  [12 20]]
@@ -417,7 +417,7 @@ print *, matmul(a, b)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, pi
 a = array([i for i in range(1, 7)])
@@ -452,7 +452,7 @@ c = [ ((i, j = 1, 3), i = 1, 6) ]
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array
 a = array([1, 2, 3])
@@ -490,7 +490,7 @@ print *, b(:0)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 [1 2 3]
 [1 2 3]
@@ -521,7 +521,7 @@ First <span class="title-ref">n</span> elements:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 a[:n]
 
@@ -546,7 +546,7 @@ Last <span class="title-ref">n</span> elements:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 a[-n:] # equivalent to a[size(a)-n:]
 
@@ -571,7 +571,7 @@ class="title-ref">j</span> (inclusive):
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 a[i:j+1]
 
@@ -596,7 +596,7 @@ Select <span class="title-ref">n</span> elements starting with index
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 a[i:i+n]
 
@@ -622,7 +622,7 @@ Select elements between <span class="title-ref">-n, ..., n</span>
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 # Not possible (arrays start at 0 index)
 
@@ -646,7 +646,7 @@ Loop over the whole array:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 r = 1
 for i in range(len(a)):
@@ -676,7 +676,7 @@ class="title-ref">7</span> (inclusive):
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 r = 1
 for i in range(3, 8):
@@ -706,7 +706,7 @@ class="title-ref">7</span>-th elements (inclusive):
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 r = 1
 for i in range(3, 8):
@@ -737,7 +737,7 @@ parts are:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 a[ :i]
 a[i:j]
@@ -765,7 +765,7 @@ Laplace update:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 u[1:-1,1:-1] = ((u[2:,1:-1]+u[:-2,1:-1])*dy2 +
     (u[1:-1,2:] + u[1:-1,:-2])*dx2) / (2*(dx2+dy2))
@@ -795,7 +795,7 @@ Comparison of Fortran and Python import statements:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from A import foo
 from A import foo as Afoo
@@ -823,7 +823,7 @@ The following Python statements have no equivalent in Fortran:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 import A
 import ALongName as A
@@ -870,7 +870,7 @@ One creates the module:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python a.py
+:caption: NumPy Python a.py
 
 i = 5
 
@@ -917,7 +917,7 @@ And uses it from the main program as follows:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python main.py
+:caption: NumPy Python main.py
 
 from a import f, i
 
@@ -947,7 +947,7 @@ end program
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python 
+:caption: NumPy Python 
 
 8
 5
@@ -977,7 +977,7 @@ In order to specify which symbols are public and private, one would use:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 __all__ = ["i", "f"]
 
@@ -1043,7 +1043,7 @@ documentation.
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import float32
 f = float32(1.1)
@@ -1066,7 +1066,7 @@ f = 1.1
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 f = 1.1            # 1.1
 f = 1e8            # 100000000.0
@@ -1129,7 +1129,7 @@ Otherwise the usage is identical.
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from math import cos, pi, e
 I = 1j
@@ -1160,7 +1160,7 @@ print *, 4 + 5*I
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 1.22460635382e-16j
 -1.0
@@ -1217,7 +1217,7 @@ There are three general ways to print formatted strings:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 print "Integer", 5, "and float", 5.5, "works fine."
 print "Integer " + str(5) + " and float " + str(5.5) + "."
@@ -1244,7 +1244,7 @@ print '("Integer ", i0, " and float ", f0.6, ".")', 5, 5.5
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 Integer 5 and float 5.5 works fine.
 Integer 5 and float 5.5.
@@ -1272,7 +1272,7 @@ And here are some of the frequently used formats:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 print "%3d" % 5
 print "%03d" % 5
@@ -1302,7 +1302,7 @@ print '(es23.16)', -5.5_dp
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
   5
 005
@@ -1337,7 +1337,7 @@ function's namespace:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 def foo(a, b, c):
     def f(x):
@@ -1375,7 +1375,7 @@ Use it like:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 foo(1, 2, 1)
 foo(2, 2, 1)
@@ -1399,7 +1399,7 @@ call foo(2._dp, 2._dp, 1._dp)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 4 9 16
 5 13 25
@@ -1426,7 +1426,7 @@ You can use the nested functions in callbacks to pass context:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 def simpson(f, a, b):
     return (b-a) / 6 * (f(a) + 4*f((a+b)/2) + f(b))
@@ -1483,7 +1483,7 @@ And use it like:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 foo(0.5, 1.)
 foo(0.5, 2.)
@@ -1507,7 +1507,7 @@ call foo(0.5_dp, 2._dp)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 1.0471975512
 1.28244712915e-16
@@ -1553,7 +1553,7 @@ interactive session.
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 for i in range(1, 9):
     if i>2:
@@ -1589,7 +1589,7 @@ affected by appending its name to the `cycle` statement.
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 for i in range(1, 9):
     if i%2 == 0:
@@ -1623,7 +1623,7 @@ Here is a real world program written in NumPy and translated to Fortran.
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 import numpy as np
 
@@ -1698,13 +1698,13 @@ end program
 
 To run the Python version, you need Python and NumPy. To run the Fortran
 version, you need `types.f90`, `constants.f90` and `utils.f90` from the
-[fortran-utils](https://github.com/certik/fortran-utils) package. Both
+[Fortran-utils](https://github.com/certik/Fortran-utils) package. Both
 versions generate equivalent `fractal.dat` and `coord.dat` files.
 
 The generated fractal can be viewed by (you need matplotlib):
 
-```{code-block} Numpy Python
-:caption: Numpy Python
+```{code-block} NumPy Python
+:caption: NumPy Python
 
 from numpy import loadtxt
 import matplotlib.pyplot as plt
@@ -1721,9 +1721,9 @@ plt.savefig("mandelbrot.png")
 
 ```
 
-![image](https://www.fortran90.org/_images/mandelbrot.png)
+![image](https://www.Fortran90.org/_images/mandelbrot.png)
 
-Timings on Acer 1830T with gfortran 4.6.1 are:
+Timings on Acer 1830T with gFortran 4.6.1 are:
 
 <table style="width:54%;">
 <colgroup>
@@ -1775,7 +1775,7 @@ create a module `find_fit_module` with a function `find_fit`:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array
 from scipy.optimize import leastsq
@@ -1857,7 +1857,7 @@ a list of primes:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import size, log
 from find_fit_module import find_fit
