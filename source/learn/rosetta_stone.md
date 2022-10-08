@@ -1478,36 +1478,57 @@ end subroutine foo
 
 And use it like:
 
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 54%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>foo(0.5, 1.)
-foo(0.5, 2.)</code></pre>
-<p>Output:</p>
-<pre><code>1.0471975512
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+foo(0.5, 1.)
+foo(0.5, 2.)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+call foo(0.5_dp, 1._dp)
+call foo(0.5_dp, 2._dp)
+
+```
+:::::
+::::::
+
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+1.0471975512
 1.28244712915e-16
 6.41223564574e-17
--7.69468277489e-16</code></pre></td>
-<td><pre><code>call foo(0.5_dp, 1._dp)
-call foo(0.5_dp, 2._dp)</code></pre>
-<p>Output:</p>
-<pre><code>1.0471975511965976
-1.28244712914785977E-016
-6.41223564573929883E-017
--7.69468277488715811E-016</code></pre></td>
-</tr>
-</tbody>
-</table>
+-7.69468277489e-16
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+ 1.0471975511965976
+ 1.28244712914785977E-016
+ 6.41223564573929883E-017
+-7.69468277488715811E-016
+
+```
+:::::
+::::::
 
 ## Control flow in loops
 
