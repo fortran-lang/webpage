@@ -770,23 +770,23 @@ using the <code class="docutils literal notranslate"><span class="pre">dimension
 <p><strong>Example:</strong> static array declaration</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20arrays%0A%20%20implicit%20none%0A%0A%20%20%21%201D%20integer%20array%0A%20%20integer%2C%20dimension%2810%29%20%3A%3A%20array1%0A%0A%20%20%21%20An%20equivalent%20array%20declaration%0A%20%20integer%20%3A%3A%20array2%2810%29%0A%0A%20%20%21%202D%20real%20array%0A%20%20real%2C%20dimension%2810%2C%2010%29%20%3A%3A%20array3%0A%0A%20%20%21%20Custom%20lower%20and%20upper%20index%20bounds%0A%20%20real%20%3A%3A%20array4%280%3A9%29%0A%20%20real%20%3A%3A%20array5%28-5%3A5%29%0A%0Aend%20program%20arrays' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>program arrays
-  implicit none
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">arrays</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span><span class="w"></span>
 
-  ! 1D integer array
-  integer, dimension(10) :: array1
+<span class="w">  </span><span class="c">! 1D integer array</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="w"></span>
 
-  ! An equivalent array declaration
-  integer :: array2(10)
+<span class="w">  </span><span class="c">! An equivalent array declaration</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"></span>
 
-  ! 2D real array
-  real, dimension(10, 10) :: array3
+<span class="w">  </span><span class="c">! 2D real array</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array3</span><span class="w"></span>
 
-  ! Custom lower and upper index bounds
-  real :: array4(0:9)
-  real :: array5(-5:5)
+<span class="w">  </span><span class="c">! Custom lower and upper index bounds</span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array4</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array5</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
 
-end program arrays
+<span class="k">end program </span><span class="n">arrays</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -797,24 +797,24 @@ we can perform operations on all or part of an array using array <em>slicing</em
 <p><strong>Example:</strong> array slicing</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20array_slice%0A%20%20implicit%20none%0A%0A%20%20integer%20%3A%3A%20i%0A%20%20integer%20%3A%3A%20array1%2810%29%20%20%21%201D%20integer%20array%20of%2010%20elements%0A%20%20integer%20%3A%3A%20array2%2810%2C%2010%29%20%20%21%202D%20integer%20array%20of%20100%20elements%0A%0A%20%20array1%20%3D%20%5B1%2C%202%2C%203%2C%204%2C%205%2C%206%2C%207%2C%208%2C%209%2C%2010%5D%20%20%21%20Array%20constructor%0A%20%20array1%20%3D%20%5B%28i%2C%20i%20%3D%201%2C%2010%29%5D%20%20%21%20Implied%20do%20loop%20constructor%0A%20%20array1%28%3A%29%20%3D%200%20%20%21%20Set%20all%20elements%20to%20zero%0A%20%20array1%281%3A5%29%20%3D%201%20%20%21%20Set%20first%20five%20elements%20to%20one%0A%20%20array1%286%3A%29%20%3D%201%20%20%21%20Set%20all%20elements%20after%20five%20to%20one%0A%0A%20%20print%20%2A%2C%20array1%281%3A10%3A2%29%20%20%21%20Print%20out%20elements%20at%20odd%20indices%0A%20%20print%20%2A%2C%20array2%28%3A%2C1%29%20%20%21%20Print%20out%20the%20first%20column%20in%20a%202D%20array%0A%20%20print%20%2A%2C%20array1%2810%3A1%3A-1%29%20%20%21%20Print%20an%20array%20in%20reverse%0A%0Aend%20program%20array_slice' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>program array_slice
-  implicit none
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">array_slice</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
 
-  integer :: i
-  integer :: array1(10)  ! 1D integer array of 10 elements
-  integer :: array2(10, 10)  ! 2D integer array of 100 elements
+<span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w">  </span><span class="c">! 1D integer array of 10 elements</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w">  </span><span class="c">! 2D integer array of 100 elements</span>
 
-  array1 = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]  ! Array constructor
-  array1 = [(i, i = 1, 10)]  ! Implied do loop constructor
-  array1(:) = 0  ! Set all elements to zero
-  array1(1:5) = 1  ! Set first five elements to one
-  array1(6:) = 1  ! Set all elements after five to one
+<span class="w">  </span><span class="n">array1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">]</span><span class="w">  </span><span class="c">! Array constructor</span>
+<span class="w">  </span><span class="n">array1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)]</span><span class="w">  </span><span class="c">! Implied do loop constructor</span>
+<span class="w">  </span><span class="n">array1</span><span class="p">(:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">  </span><span class="c">! Set all elements to zero</span>
+<span class="w">  </span><span class="n">array1</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="c">! Set first five elements to one</span>
+<span class="w">  </span><span class="n">array1</span><span class="p">(</span><span class="mi">6</span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="c">! Set all elements after five to one</span>
 
-  print *, array1(1:10:2)  ! Print out elements at odd indices
-  print *, array2(:,1)  ! Print out the first column in a 2D array
-  print *, array1(10:1:-1)  ! Print an array in reverse
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="c">! Print out elements at odd indices</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array2</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="c">! Print out the first column in a 2D array</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="c">! Print an array in reverse</span>
 
-end program array_slice
+<span class="k">end program </span><span class="n">array_slice</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -834,21 +834,21 @@ These are <em>allocated</em> while the program is running once we know how big t
 <p><strong>Example:</strong> allocatable arrays</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20allocatable%0A%20%20implicit%20none%0A%0A%20%20integer%2C%20allocatable%20%3A%3A%20array1%28%3A%29%0A%20%20integer%2C%20allocatable%20%3A%3A%20array2%28%3A%2C%3A%29%0A%0A%20%20allocate%28array1%2810%29%29%0A%20%20allocate%28array2%2810%2C10%29%29%0A%0A%20%20%21%20...%0A%0A%20%20deallocate%28array1%29%0A%20%20deallocate%28array2%29%0A%0Aend%20program%20allocatable' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>program allocatable
-  implicit none
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program allocatable</span>
+<span class="k">  implicit none</span>
 
-  integer, allocatable :: array1(:)
-  integer, allocatable :: array2(:,:)
+<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="p">(:)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(:,:)</span><span class="w"></span>
 
-  allocate(array1(10))
-  allocate(array2(10,10))
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
 
-  ! ...
+<span class="w">  </span><span class="c">! ...</span>
 
-  deallocate(array1)
-  deallocate(array2)
+<span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">array1</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">array2</span><span class="p">)</span><span class="w"></span>
 
-end program allocatable
+<span class="k">end program allocatable</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -860,44 +860,44 @@ when they go out of scope.</p>
 <p><strong>Example:</strong> static character string</p>
 <div class="literal-block-wrapper docutils container" id="id4">
 <div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20string%0A%20%20implicit%20none%0A%0A%20%20character%28len%3D4%29%20%3A%3A%20first_name%0A%20%20character%28len%3D5%29%20%3A%3A%20last_name%0A%20%20character%2810%29%20%3A%3A%20full_name%0A%0A%20%20first_name%20%3D%20%27John%27%0A%20%20last_name%20%3D%20%27Smith%27%0A%0A%20%20%21%20String%20concatenation%0A%20%20full_name%20%3D%20first_name//%27%20%27//last_name%0A%0A%20%20print%20%2A%2C%20full_name%0A%0Aend%20program%20string' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id4" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>program string
-  implicit none
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
 
-  character(len=4) :: first_name
-  character(len=5) :: last_name
-  character(10) :: full_name
+<span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="w"></span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">last_name</span><span class="w"></span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">full_name</span><span class="w"></span>
 
-  first_name = &#39;John&#39;
-  last_name = &#39;Smith&#39;
+<span class="w">  </span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span><span class="w"></span>
 
-  ! String concatenation
-  full_name = first_name//&#39; &#39;//last_name
+<span class="w">  </span><span class="c">! String concatenation</span>
+<span class="w">  </span><span class="n">full_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_name</span><span class="o">//</span><span class="s1">&#39; &#39;</span><span class="o">//</span><span class="n">last_name</span><span class="w"></span>
 
-  print *, full_name
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">full_name</span><span class="w"></span>
 
-end program string
+<span class="k">end program </span><span class="n">string</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
 <p><strong>Example:</strong> allocatable character string</p>
 <div class="literal-block-wrapper docutils container" id="id5">
 <div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20allocatable_string%0A%20%20implicit%20none%0A%0A%20%20character%28%3A%29%2C%20allocatable%20%3A%3A%20first_name%0A%20%20character%28%3A%29%2C%20allocatable%20%3A%3A%20last_name%0A%0A%20%20%21%20Explicit%20allocation%20statement%0A%20%20allocate%28character%284%29%20%3A%3A%20first_name%29%0A%20%20first_name%20%3D%20%27John%27%0A%0A%20%20%21%20Allocation%20on%20assignment%0A%20%20last_name%20%3D%20%27Smith%27%0A%0A%20%20print%20%2A%2C%20first_name//%27%20%27//last_name%0A%0Aend%20program%20allocatable_string' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id5" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>program allocatable_string
-  implicit none
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">allocatable_string</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
 
-  character(:), allocatable :: first_name
-  character(:), allocatable :: last_name
+<span class="k">  </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="w"></span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">last_name</span><span class="w"></span>
 
-  ! Explicit allocation statement
-  allocate(character(4) :: first_name)
-  first_name = &#39;John&#39;
+<span class="w">  </span><span class="c">! Explicit allocation statement</span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="w"></span>
 
-  ! Allocation on assignment
-  last_name = &#39;Smith&#39;
+<span class="w">  </span><span class="c">! Allocation on assignment</span>
+<span class="w">  </span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span><span class="w"></span>
 
-  print *, first_name//&#39; &#39;//last_name
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="o">//</span><span class="s1">&#39; &#39;</span><span class="o">//</span><span class="n">last_name</span><span class="w"></span>
 
-end program allocatable_string
+<span class="k">end program </span><span class="n">allocatable_string</span><span class="w"></span>
 </pre></div>
 </div>
 </div>

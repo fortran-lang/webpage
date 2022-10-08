@@ -856,25 +856,25 @@ You can also initialize derived type members by invoking the derived type constr
 <p>Example of a derived type with <code class="docutils literal notranslate"><span class="pre">parameterized-declaration-list</span></code> and with the attribute <code class="docutils literal notranslate"><span class="pre">public</span></code>:</p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20m_matrix%0A%20implicit%20none%0A%20private%0A%0A%20type%2C%20public%20%3A%3A%20t_matrix%28rows%2C%20cols%2C%20k%29%0A%20%20%20integer%2C%20len%20%3A%3A%20rows%2C%20cols%0A%20%20%20integer%2C%20kind%20%3A%3A%20k%20%3D%20kind%280.0%29%0A%20%20%20real%28kind%3Dk%29%2C%20dimension%28rows%2C%20cols%29%20%3A%3A%20values%0A%20end%20type%0A%0Aend%20module%20m_matrix%0A%0Aprogram%20test_matrix%0A%20use%20m_matrix%0A%20implicit%20none%0A%0A%20type%28t_matrix%28rows%3D5%2C%20cols%3D5%29%29%20%3A%3A%20m%0A%0Aend%20program%20test_matrix' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">module</span> <span class="n">m_matrix</span>
- <span class="n">implicit</span> <span class="n">none</span>
- <span class="n">private</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">m_matrix</span><span class="w"></span>
+<span class="w"> </span><span class="k">implicit none</span>
+<span class="k"> private</span>
 
- <span class="nb">type</span><span class="p">,</span> <span class="n">public</span> <span class="p">::</span> <span class="n">t_matrix</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">,</span> <span class="n">k</span><span class="p">)</span>
-   <span class="n">integer</span><span class="p">,</span> <span class="nb">len</span> <span class="p">::</span> <span class="n">rows</span><span class="p">,</span> <span class="n">cols</span>
-   <span class="n">integer</span><span class="p">,</span> <span class="n">kind</span> <span class="p">::</span> <span class="n">k</span> <span class="o">=</span> <span class="n">kind</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span>
-   <span class="n">real</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="n">k</span><span class="p">),</span> <span class="n">dimension</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span> <span class="n">cols</span><span class="p">)</span> <span class="p">::</span> <span class="n">values</span>
- <span class="n">end</span> <span class="nb">type</span>
+<span class="k"> type</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_matrix</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">cols</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="nb">len</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">cols</span><span class="w"></span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="mf">0.0</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">k</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">rows</span><span class="p">,</span><span class="w"> </span><span class="n">cols</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">values</span><span class="w"></span>
+<span class="w"> </span><span class="k">end type</span>
 
-<span class="n">end</span> <span class="n">module</span> <span class="n">m_matrix</span>
+<span class="k">end module </span><span class="n">m_matrix</span><span class="w"></span>
 
-<span class="n">program</span> <span class="n">test_matrix</span>
- <span class="n">use</span> <span class="n">m_matrix</span>
- <span class="n">implicit</span> <span class="n">none</span>
+<span class="k">program </span><span class="n">test_matrix</span><span class="w"></span>
+<span class="w"> </span><span class="k">use </span><span class="n">m_matrix</span><span class="w"></span>
+<span class="w"> </span><span class="k">implicit none</span>
 
- <span class="nb">type</span><span class="p">(</span><span class="n">t_matrix</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">cols</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span> <span class="p">::</span> <span class="n">m</span>
+<span class="k"> type</span><span class="p">(</span><span class="n">t_matrix</span><span class="p">(</span><span class="n">rows</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="n">cols</span><span class="o">=</span><span class="mi">5</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">m</span><span class="w"></span>
 
-<span class="n">end</span> <span class="n">program</span> <span class="n">test_matrix</span>
+<span class="k">end program </span><span class="n">test_matrix</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -888,62 +888,62 @@ You can also initialize derived type members by invoking the derived type constr
 <p>Example with the attribute <code class="docutils literal notranslate"><span class="pre">extends</span></code>:</p>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20m_employee%0A%20%20implicit%20none%0A%20%20private%0A%20%20public%20t_date%2C%20t_address%2C%20t_person%2C%20t_employee%0A%20%20%21%20Note%20another%20way%20of%20using%20the%20public%20attribute%3A%0A%20%20%21%20gathering%20all%20public%20data%20types%20in%20one%20place.%0A%0A%20%20type%20%3A%3A%20t_date%0A%20%20%20%20integer%20%3A%3A%20year%2C%20month%2C%20day%0A%20%20end%20type%0A%0A%20%20type%20%3A%3A%20t_address%0A%20%20%20%20character%28len%3D%3A%29%2C%20allocatable%20%3A%3A%20city%2C%20road_name%0A%20%20%20%20integer%20%3A%3A%20house_number%0A%20%20end%20type%0A%0A%20%20type%2C%20extends%28t_address%29%20%3A%3A%20t_person%0A%20%20%20%20character%28len%3D%3A%29%2C%20allocatable%20%3A%3A%20first_name%2C%20last_name%2C%20e_mail%0A%20%20end%20type%0A%0A%20%20type%2C%20extends%28t_person%29%20%20%3A%3A%20t_employee%0A%20%20%20%20type%28t_date%29%20%3A%3A%20hired_date%0A%20%20%20%20character%28len%3D%3A%29%2C%20allocatable%20%3A%3A%20position%0A%20%20%20%20real%20%3A%3A%20monthly_salary%0A%20%20end%20type%0A%0Aend%20module%20m_employee%0A%0Aprogram%20test_employee%0A%20%20use%20m_employee%0A%20%20implicit%20none%0A%20%20type%28t_employee%29%20%3A%3A%20employee%0A%0A%20%20%21%20Initialization%0A%0A%20%20%21%20t_employee%20has%20access%20to%20type%28t_date%29%20members%20not%20because%20of%20extends%0A%20%20%21%20but%20because%20a%20type%28t_date%29%20was%20declared%20within%20t_employee.%0A%20%20employee%25hired_date%25year%20%20%3D%202020%0A%20%20employee%25hired_date%25month%20%3D%201%0A%20%20employee%25hired_date%25day%20%20%20%3D%2020%0A%0A%20%20%21%20t_employee%20has%20access%20to%20t_person%2C%20and%20inherits%20its%20members%20due%20to%20extends.%0A%20%20employee%25first_name%20%3D%20%27John%27%0A%20%20employee%25last_name%20%20%3D%20%27Doe%27%0A%0A%20%20%21%20t_employee%20has%20access%20to%20t_address%2C%20because%20it%20inherits%20from%20t_person%2C%0A%20%20%21%20which%20in%20return%20inherits%20from%20t_address.%0A%20%20employee%25city%20%20%20%20%20%20%20%20%20%3D%20%27London%27%0A%20%20employee%25road_name%20%20%20%20%3D%20%27BigBen%27%0A%20%20employee%25house_number%20%3D%201%0A%0A%20%20%21%20t_employee%20has%20access%20to%20its%20defined%20members.%0A%20%20employee%25position%20%20%20%20%20%20%20%3D%20%27Intern%27%0A%20%20employee%25monthly_salary%20%3D%200.0%0A%0Aend%20program%20test_employee' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>module m_employee
-  implicit none
-  private
-  public t_date, t_address, t_person, t_employee
-  ! Note another way of using the public attribute:
-  ! gathering all public data types in one place.
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">m_employee</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  private</span>
+<span class="k">  public </span><span class="n">t_date</span><span class="p">,</span><span class="w"> </span><span class="n">t_address</span><span class="p">,</span><span class="w"> </span><span class="n">t_person</span><span class="p">,</span><span class="w"> </span><span class="n">t_employee</span><span class="w"></span>
+<span class="w">  </span><span class="c">! Note another way of using the public attribute:</span>
+<span class="w">  </span><span class="c">! gathering all public data types in one place.</span>
 
-  type :: t_date
-    integer :: year, month, day
-  end type
+<span class="w">  </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_date</span><span class="w"></span>
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">year</span><span class="p">,</span><span class="w"> </span><span class="n">month</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="w"></span>
+<span class="w">  </span><span class="k">end type</span>
 
-  type :: t_address
-    character(len=:), allocatable :: city, road_name
-    integer :: house_number
-  end type
+<span class="k">  type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_address</span><span class="w"></span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">city</span><span class="p">,</span><span class="w"> </span><span class="n">road_name</span><span class="w"></span>
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">house_number</span><span class="w"></span>
+<span class="w">  </span><span class="k">end type</span>
 
-  type, extends(t_address) :: t_person
-    character(len=:), allocatable :: first_name, last_name, e_mail
-  end type
+<span class="k">  type</span><span class="p">,</span><span class="w"> </span><span class="k">extends</span><span class="p">(</span><span class="n">t_address</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_person</span><span class="w"></span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="p">,</span><span class="w"> </span><span class="n">last_name</span><span class="p">,</span><span class="w"> </span><span class="n">e_mail</span><span class="w"></span>
+<span class="w">  </span><span class="k">end type</span>
 
-  type, extends(t_person)  :: t_employee
-    type(t_date) :: hired_date
-    character(len=:), allocatable :: position
-    real :: monthly_salary
-  end type
+<span class="k">  type</span><span class="p">,</span><span class="w"> </span><span class="k">extends</span><span class="p">(</span><span class="n">t_person</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">t_employee</span><span class="w"></span>
+<span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">t_date</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">hired_date</span><span class="w"></span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">position</span><span class="w"></span>
+<span class="w">    </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">monthly_salary</span><span class="w"></span>
+<span class="w">  </span><span class="k">end type</span>
 
-end module m_employee
+<span class="k">end module </span><span class="n">m_employee</span><span class="w"></span>
 
-program test_employee
-  use m_employee
-  implicit none
-  type(t_employee) :: employee
+<span class="k">program </span><span class="n">test_employee</span><span class="w"></span>
+<span class="w">  </span><span class="k">use </span><span class="n">m_employee</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  type</span><span class="p">(</span><span class="n">t_employee</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">employee</span><span class="w"></span>
 
-  ! Initialization
+<span class="w">  </span><span class="c">! Initialization</span>
 
-  ! t_employee has access to type(t_date) members not because of extends
-  ! but because a type(t_date) was declared within t_employee.
-  employee%hired_date%year  = 2020
-  employee%hired_date%month = 1
-  employee%hired_date%day   = 20
+<span class="w">  </span><span class="c">! t_employee has access to type(t_date) members not because of extends</span>
+<span class="w">  </span><span class="c">! but because a type(t_date) was declared within t_employee.</span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">hired_date</span><span class="p">%</span><span class="n">year</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="mi">2020</span><span class="w"></span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">hired_date</span><span class="p">%</span><span class="n">month</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">hired_date</span><span class="p">%</span><span class="n">day</span><span class="w">   </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="w"></span>
 
-  ! t_employee has access to t_person, and inherits its members due to extends.
-  employee%first_name = &#39;John&#39;
-  employee%last_name  = &#39;Doe&#39;
+<span class="w">  </span><span class="c">! t_employee has access to t_person, and inherits its members due to extends.</span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">last_name</span><span class="w">  </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Doe&#39;</span><span class="w"></span>
 
-  ! t_employee has access to t_address, because it inherits from t_person,
-  ! which in return inherits from t_address.
-  employee%city         = &#39;London&#39;
-  employee%road_name    = &#39;BigBen&#39;
-  employee%house_number = 1
+<span class="w">  </span><span class="c">! t_employee has access to t_address, because it inherits from t_person,</span>
+<span class="w">  </span><span class="c">! which in return inherits from t_address.</span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">city</span><span class="w">         </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;London&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">road_name</span><span class="w">    </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;BigBen&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">house_number</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
 
-  ! t_employee has access to its defined members.
-  employee%position       = &#39;Intern&#39;
-  employee%monthly_salary = 0.0
+<span class="w">  </span><span class="c">! t_employee has access to its defined members.</span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">position</span><span class="w">       </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Intern&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="n">employee</span><span class="p">%</span><span class="n">monthly_salary</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="w"></span>
 
-end program test_employee
+<span class="k">end program </span><span class="n">test_employee</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -993,45 +993,45 @@ end program test_employee
 <p>Here’s an example of a derived type with a basic type-bound procedure:</p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20m_shapes%0A%20%20implicit%20none%0A%20%20private%0A%20%20public%20t_square%0A%0A%20%20type%20%3A%3A%20t_square%0A%20%20real%20%3A%3A%20side%0A%20%20contains%0A%20%20%20%20procedure%20%3A%3A%20area%20%20%21%20procedure%20declaration%0A%20%20end%20type%0A%0Acontains%0A%0A%20%20%21%20Procedure%20definition%0A%20%20real%20function%20area%28self%29%20result%28res%29%0A%20%20%20%20class%28t_square%29%2C%20intent%28in%29%20%3A%3A%20self%0A%20%20%20%20res%20%3D%20self%25side%2A%2A2%0A%20%20end%20function%0A%0Aend%20module%20m_shapes%0A%0Aprogram%20main%0A%20%20use%20m_shapes%0A%20%20implicit%20none%0A%0A%20%20%21%20Variables%27%20declaration%0A%20%20type%28t_square%29%20%3A%3A%20sq%0A%20%20real%20%3A%3A%20x%2C%20side%0A%0A%20%20%21%20Variables%27%20initialization%0A%20%20side%20%3D%200.5%0A%20%20sq%25side%20%3D%20side%0A%0A%20%20x%20%3D%20sq%25area%28%29%0A%20%20%21%20self%20does%20not%20appear%20here%2C%20it%20has%20been%20passed%20implicitly%0A%0A%20%20%21%20Do%20stuff%20with%20x...%0A%0Aend%20program%20main' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>module m_shapes
-  implicit none
-  private
-  public t_square
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">m_shapes</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  private</span>
+<span class="k">  public </span><span class="n">t_square</span><span class="w"></span>
 
-  type :: t_square
-  real :: side
-  contains
-    procedure :: area  ! procedure declaration
-  end type
+<span class="w">  </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_square</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">side</span><span class="w"></span>
+<span class="w">  </span><span class="k">contains</span>
+<span class="k">    procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">area</span><span class="w">  </span><span class="c">! procedure declaration</span>
+<span class="w">  </span><span class="k">end type</span>
 
-contains
+<span class="k">contains</span><span class="w"></span>
 
-  ! Procedure definition
-  real function area(self) result(res)
-    class(t_square), intent(in) :: self
-    res = self%side**2
-  end function
+<span class="w">  </span><span class="c">! Procedure definition</span>
+<span class="w">  </span><span class="kt">real </span><span class="k">function </span><span class="n">area</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">res</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">class</span><span class="p">(</span><span class="n">t_square</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">self</span><span class="w"></span>
+<span class="w">    </span><span class="n">res</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">self</span><span class="p">%</span><span class="n">side</span><span class="o">**</span><span class="mi">2</span><span class="w"></span>
+<span class="w">  </span><span class="k">end function</span>
 
-end module m_shapes
+<span class="k">end module </span><span class="n">m_shapes</span><span class="w"></span>
 
-program main
-  use m_shapes
-  implicit none
+<span class="k">program </span><span class="n">main</span><span class="w"></span>
+<span class="w">  </span><span class="k">use </span><span class="n">m_shapes</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span><span class="w"></span>
 
-  ! Variables&#39; declaration
-  type(t_square) :: sq
-  real :: x, side
+<span class="w">  </span><span class="c">! Variables&#39; declaration</span>
+<span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">t_square</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sq</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">side</span><span class="w"></span>
 
-  ! Variables&#39; initialization
-  side = 0.5
-  sq%side = side
+<span class="w">  </span><span class="c">! Variables&#39; initialization</span>
+<span class="w">  </span><span class="n">side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span><span class="w"></span>
+<span class="w">  </span><span class="n">sq</span><span class="p">%</span><span class="n">side</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">side</span><span class="w"></span>
 
-  x = sq%area()
-  ! self does not appear here, it has been passed implicitly
+<span class="w">  </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sq</span><span class="p">%</span><span class="n">area</span><span class="p">()</span><span class="w"></span>
+<span class="w">  </span><span class="c">! self does not appear here, it has been passed implicitly</span>
 
-  ! Do stuff with x...
+<span class="w">  </span><span class="c">! Do stuff with x...</span>
 
-end program main
+<span class="k">end program </span><span class="n">main</span><span class="w"></span>
 </pre></div>
 </div>
 </div>

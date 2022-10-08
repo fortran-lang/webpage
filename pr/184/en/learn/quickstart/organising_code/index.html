@@ -761,20 +761,20 @@ the dummy argument types and attributes are declared within the body of the subr
 <p><strong>Example:</strong></p>
 <div class="literal-block-wrapper docutils container" id="id1">
 <div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=%21%20Print%20matrix%20A%20to%20screen%0Asubroutine%20print_matrix%28n%2Cm%2CA%29%0A%20%20implicit%20none%0A%20%20integer%2C%20intent%28in%29%20%3A%3A%20n%0A%20%20integer%2C%20intent%28in%29%20%3A%3A%20m%0A%20%20real%2C%20intent%28in%29%20%3A%3A%20A%28n%2C%20m%29%0A%0A%20%20integer%20%3A%3A%20i%0A%0A%20%20do%20i%20%3D%201%2C%20n%0A%20%20%20%20print%20%2A%2C%20A%28i%2C%201%3Am%29%0A%20%20end%20do%0A%0Aend%20subroutine%20print_matrix' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! Print matrix A to screen
-subroutine print_matrix(n,m,A)
-  implicit none
-  integer, intent(in) :: n
-  integer, intent(in) :: m
-  real, intent(in) :: A(n, m)
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! Print matrix A to screen</span>
+<span class="k">subroutine </span><span class="n">print_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">A</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">m</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"></span>
 
-  integer :: i
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
 
-  do i = 1, n
-    print *, A(i, 1:m)
-  end do
+<span class="w">  </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">m</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">end do</span>
 
-end subroutine print_matrix
+<span class="k">end subroutine </span><span class="n">print_matrix</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -806,16 +806,16 @@ the dimensions of the array <code class="docutils literal notranslate"><span cla
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
 <div class="literal-block-wrapper docutils container" id="id2">
 <div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=%21%20L2%20Norm%20of%20a%20vector%0Afunction%20vector_norm%28n%2Cvec%29%20result%28norm%29%0A%20%20implicit%20none%0A%20%20integer%2C%20intent%28in%29%20%3A%3A%20n%0A%20%20real%2C%20intent%28in%29%20%3A%3A%20vec%28n%29%0A%20%20real%20%3A%3A%20norm%0A%0A%20%20norm%20%3D%20sqrt%28sum%28vec%2A%2A2%29%29%0A%0Aend%20function%20vector_norm' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! L2 Norm of a vector
-function vector_norm(n,vec) result(norm)
-  implicit none
-  integer, intent(in) :: n
-  real, intent(in) :: vec(n)
-  real :: norm
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! L2 Norm of a vector</span>
+<span class="k">function </span><span class="n">vector_norm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vec</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">norm</span><span class="w"></span>
 
-  norm = sqrt(sum(vec**2))
+<span class="w">  </span><span class="n">norm</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="nb">sum</span><span class="p">(</span><span class="n">vec</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span><span class="w"></span>
 
-end function vector_norm
+<span class="k">end function </span><span class="n">vector_norm</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
@@ -857,30 +857,30 @@ within modules.</p>
 <p><strong>Example:</strong></p>
 <div class="literal-block-wrapper docutils container" id="id3">
 <div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20my_mod%0A%20%20implicit%20none%0A%0A%20%20private%20%20%21%20All%20entities%20are%20now%20module-private%20by%20default%0A%20%20public%20public_var%2C%20print_matrix%20%20%21%20Explicitly%20export%20public%20entities%0A%0A%20%20real%2C%20parameter%20%3A%3A%20public_var%20%3D%202%0A%20%20integer%20%3A%3A%20private_var%0A%0Acontains%0A%0A%20%20%21%20Print%20matrix%20A%20to%20screen%0A%20%20subroutine%20print_matrix%28A%29%0A%20%20%20%20real%2C%20intent%28in%29%20%3A%3A%20A%28%3A%2C%3A%29%20%20%21%20An%20assumed-shape%20dummy%20argument%0A%0A%20%20%20%20integer%20%3A%3A%20i%0A%0A%20%20%20%20do%20i%20%3D%201%2C%20size%28A%2C1%29%0A%20%20%20%20%20%20print%20%2A%2C%20A%28i%2C%3A%29%0A%20%20%20%20end%20do%0A%0A%20%20end%20subroutine%20print_matrix%0A%0Aend%20module%20my_mod' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>module my_mod
-  implicit none
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">my_mod</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
 
-  private  ! All entities are now module-private by default
-  public public_var, print_matrix  ! Explicitly export public entities
+<span class="k">  private</span><span class="w">  </span><span class="c">! All entities are now module-private by default</span>
+<span class="w">  </span><span class="k">public </span><span class="n">public_var</span><span class="p">,</span><span class="w"> </span><span class="n">print_matrix</span><span class="w">  </span><span class="c">! Explicitly export public entities</span>
 
-  real, parameter :: public_var = 2
-  integer :: private_var
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">public_var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">private_var</span><span class="w"></span>
 
-contains
+<span class="k">contains</span><span class="w"></span>
 
-  ! Print matrix A to screen
-  subroutine print_matrix(A)
-    real, intent(in) :: A(:,:)  ! An assumed-shape dummy argument
+<span class="w">  </span><span class="c">! Print matrix A to screen</span>
+<span class="w">  </span><span class="k">subroutine </span><span class="n">print_matrix</span><span class="p">(</span><span class="n">A</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">A</span><span class="p">(:,:)</span><span class="w">  </span><span class="c">! An assumed-shape dummy argument</span>
 
-    integer :: i
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
 
-    do i = 1, size(A,1)
-      print *, A(i,:)
-    end do
+<span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">A</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">A</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span><span class="w"></span>
+<span class="w">    </span><span class="k">end do</span>
 
-  end subroutine print_matrix
+<span class="k">  end subroutine </span><span class="n">print_matrix</span><span class="w"></span>
 
-end module my_mod
+<span class="k">end module </span><span class="n">my_mod</span><span class="w"></span>
 </pre></div>
 </div>
 </div>
