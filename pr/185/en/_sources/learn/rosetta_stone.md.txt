@@ -88,66 +88,102 @@ Everything else is the same, in particular:
 > -   Arrays can be of any integer, real or complex type
 > -   ...
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>from numpy import array, size, shape, min, max, sum
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from numpy import array, size, shape, min, max, sum
 a = array([1, 2, 3])
 print shape(a)
 print size(a)
 print max(a)
 print min(a)
-print sum(a)</code></pre></td>
-<td><pre><code>integer :: a(3)
+print sum(a)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+integer :: a(3)
 a = [1, 2, 3]
 print *, shape(a)
 print *, size(a)
 print *, maxval(a)
 print *, minval(a)
-print *, sum(a)</code></pre></td>
-</tr>
-<tr class="odd">
-<td><pre><code>from numpy import reshape
+print *, sum(a)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from numpy import reshape
 a = reshape([1, 2, 3, 4, 5, 6], (2, 3))
-b = reshape([1, 2, 3, 4, 5, 6], (2, 3), order=&quot;F&quot;)
+b = reshape([1, 2, 3, 4, 5, 6], (2, 3), order="F")
 print a[0, :]
 print a[1, :]
 print
 print b[0, :]
-print b[1, :]</code></pre>
-<p>Output:</p>
-<pre><code>[1 2 3]
-[4 5 6]
+print b[1, :]
 
-[1 3 5]
-[2 4 6]</code></pre></td>
-<td><pre><code>integer :: a(2, 3), b(2, 3)
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+integer :: a(2, 3), b(2, 3)
 a = reshape([1, 2, 3, 4, 5, 6], [2, 3], order=[2, 1])
 b = reshape([1, 2, 3, 4, 5, 6], [2, 3])
 print *, a(1, :)
 print *, a(2, :)
 print *
 print *, b(1, :)
-print *, b(2, :)</code></pre>
-<p>Output:</p>
-<pre><code>1           2           3
+print *, b(2, :)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+[1 2 3]
+[4 5 6]
+
+[1 3 5]
+[2 4 6]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+1           2           3
 4           5           6
 
 1           3           5
-2           4           6</code></pre></td>
-</tr>
-<tr class="even">
-<td><pre><code>from numpy import array, size, shape, max, min
+2           4           6
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from numpy import array, size, shape, max, min
 a = array([[1, 2, 3], [4, 5, 6]])
 print shape(a)
 print size(a, 0)
@@ -156,18 +192,16 @@ print max(a)
 print min(a)
 print a[0, 0], a[0, 1], a[0, 2]
 print a[1, 0], a[1, 1], a[1, 2]
-print a</code></pre>
-<p>Output:</p>
-<pre><code>(2, 3)
-2
-3
-6
-1
-1 2 3
-4 5 6
-[[1 2 3]
- [4 5 6]]</code></pre></td>
-<td><pre><code>integer :: a(2, 3)
+print a
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+integer :: a(2, 3)
 a = reshape([1, 2, 3, 4, 5, 6], [2, 3], order=[2, 1])
 print *, shape(a)
 print *, size(a, 1)
@@ -176,9 +210,33 @@ print *, maxval(a)
 print *, minval(a)
 print *, a(1, 1), a(1, 2), a(1, 3)
 print *, a(2, 1), a(2, 2), a(2, 3)
-print &quot;(3i5)&quot;, transpose(a)</code></pre>
-<p>Output (whitespace trimmed):</p>
-<pre><code>2 3
+print "(3i5)", transpose(a)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+(2, 3)
+2
+3
+6
+1
+1 2 3
+4 5 6
+[[1 2 3]
+ [4 5 6]]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+2 3
 2
 3
 6
@@ -186,106 +244,206 @@ print &quot;(3i5)&quot;, transpose(a)</code></pre>
 1 2 3
 4 5 6
 1 2 3
-4 5 6</code></pre></td>
-</tr>
-<tr class="odd">
-<td><pre><code>from numpy import array, all, any
+4 5 6
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from numpy import array, all, any
 i = array([1, 2, 3])
 all(i == [1, 2, 3])
-any(i == [2, 2, 3])</code></pre></td>
-<td><pre class="fortran"><code>integer :: i(3)
+any(i == [2, 2, 3])
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+integer :: i(3)
 i = [1, 2, 3]
 all(i == [1, 2, 3])
-any(i == [2, 2, 3])</code></pre></td>
-</tr>
-<tr class="even">
-<td><pre><code>from numpy import array, empty
+any(i == [2, 2, 3])
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from numpy import array, empty
 a = array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 b = empty(10)
 b[:] = 0
-b[a &gt; 2] = 1
-b[a &gt; 5] = a[a &gt; 5] - 3</code></pre></td>
-<td><pre><code>integer :: a(10), b(10)
+b[a > 2] = 1
+b[a > 5] = a[a > 5] - 3
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+integer :: a(10), b(10)
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-where (a &gt; 5)
+where (a > 5)
     b = a - 3
-elsewhere (a &gt; 2)
+elsewhere (a > 2)
     b = 1
 elsewhere
     b = 0
-end where</code></pre></td>
-</tr>
-<tr class="odd">
-<td><pre><code>from numpy import array, empty
+end where
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from numpy import array, empty
 a = array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 b = empty(10)
 for i in range(len(a)):
-    if a[i] &gt; 5:
+    if a[i] > 5:
         b[i] = a[i] - 3
-    elif a[i] &gt; 2:
+    elif a[i] > 2:
         b[i] = 1
     else:
-        b[i] = 0</code></pre></td>
-<td><pre><code>integer :: a(10), b(10)
+        b[i] = 0
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+integer :: a(10), b(10)
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
-where (a &gt; 5)
+where (a > 5)
     b = a - 3
-elsewhere (a &gt; 2)
+elsewhere (a > 2)
     b = 1
 elsewhere
     b = 0
-end where</code></pre></td>
-</tr>
-<tr class="even">
-<td><pre><code>from numpy import array, sum, ones, size
+end where
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from numpy import array, sum, ones, size
 a = array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
 print sum(a)
-print sum(a[(a &gt; 2) &amp; (a &lt; 6)])
-o = ones(size(a), dtype=&quot;int&quot;)
-print sum(o[(a &gt; 2) &amp; (a &lt; 6)])</code></pre></td>
-<td><pre><code>integer :: a(10)
+print sum(a[(a > 2) & (a < 6)])
+o = ones(size(a), dtype="int")
+print sum(o[(a > 2) & (a < 6)])
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+integer :: a(10)
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 print *, sum(a)
-print *, sum(a, mask=a &gt; 2 .and. a &lt; 6)
-print *, count(a &gt; 2 .and. a &lt; 6)</code></pre></td>
-</tr>
-<tr class="odd">
-<td><pre><code>from numpy import array, dot
+print *, sum(a, mask=a > 2 .and. a < 6)
+print *, count(a > 2 .and. a < 6)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from numpy import array, dot
 a = array([[1, 2], [3, 4]])
 b = array([[2, 3], [4, 5]])
 print a * b
-print dot(a, b)</code></pre>
-<p>Output:</p>
-<pre><code>[[ 2  6]
- [12 20]]
-[[10 13]
- [22 29]]</code></pre></td>
-<td><pre><code>integer :: a(2, 2), b(2, 2)
+print dot(a, b)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+integer :: a(2, 2), b(2, 2)
 a = reshape([1, 2, 3, 4], [2, 2], order=[2, 1])
 b = reshape([2, 3, 4, 5], [2, 2], order=[2, 1])
 print *, a * b
-print *, matmul(a, b)</code></pre>
-<p>Output:</p>
-<pre><code>2          12           6          20
-10          22          13          29</code></pre></td>
-</tr>
-<tr class="even">
-<td><pre><code>from numpy import array, pi
+print *, matmul(a, b)
+/
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+[[ 2  6]
+ [12 20]]
+[[10 13]
+ [22 29]]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+2          12           6          20
+10          22          13          29
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from numpy import array, pi
 a = array([i for i in range(1, 7)])
 b = array([(2*i*pi+1)/2 for i in range(1, 7)])
-c = array([i for i in range(1, 7) \
-    for j in range(1, 4)])</code></pre></td>
-<td><pre><code>use types, only: dp
+c = array([i for i in range(1, 7) 
+    for j in range(1, 4)])
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+use types, only: dp
 use constants, only: pi
 integer :: a(6), c(18)
 real(dp) :: b(6)
 integer :: i, j
 a = [ (i, i = 1, 6) ]
 b = [ ((2*i*pi+1)/2, i = 1, 6) ]
-c = [ ((i, j = 1, 3), i = 1, 6) ]</code></pre></td>
-</tr>
-</tbody>
-</table>
+c = [ ((i, j = 1, 3), i = 1, 6) ]
+
+```
+:::::
+::::::
 
 ### Some indexing examples
 
