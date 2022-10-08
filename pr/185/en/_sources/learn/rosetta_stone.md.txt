@@ -464,10 +464,6 @@ print(b[:2])
 
 ```
 :::::
-::::::
-
-::::::{grid} 1 1 2 2
-:gutter: 1
 
 :::::{grid-item}
 ```{code-block} Fortran
