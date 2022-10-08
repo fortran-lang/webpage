@@ -1770,20 +1770,14 @@ In Python we use Minpack via [SciPy](http://www.scipy.org/), in Fortran
 we use [Minpack](https://github.com/certik/minpack) directly. We first
 create a module `find_fit_module` with a function `find_fit`:
 
-<table>
-<colgroup>
-<col style="width: 44%" />
-<col style="width: 55%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>from numpy import array
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from numpy import array
 from scipy.optimize import leastsq
 
 def find_fit(data_x, data_y, expr, pars):
@@ -1793,9 +1787,17 @@ def find_fit(data_x, data_y, expr, pars):
         return data_y - expr(data_x, x)
     x, ier = leastsq(fcn, pars)
     if (ier != 1):
-        raise Exception(&quot;Failed to converge.&quot;)
-    return x</code></pre></td>
-<td><pre><code>module find_fit_module
+        raise Exception("Failed to converge.")
+    return x
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+module find_fit_module
 use minpack, only: lmdif1
 use types, only: dp
 implicit none
@@ -1825,7 +1827,7 @@ m = size(fvec)
 n = size(pars)
 allocate(wa(m*n + 5*n + m))
 call lmdif1(fcn, m, n, pars, fvec, tol, info, iwa, wa, size(wa))
-if (info /= 1) stop &quot;failed to converge&quot;
+if (info /= 1) stop "failed to converge"
 
 contains
 
@@ -1840,28 +1842,24 @@ end subroutine
 
 end subroutine
 
-end module</code></pre></td>
-</tr>
-</tbody>
-</table>
+end module
+
+```
+:::::
+::::::
+
 
 Then we use it to find a nonlinear fit of the form `a*x*log(b + c*x)` to
 a list of primes:
 
-<table>
-<colgroup>
-<col style="width: 44%" />
-<col style="width: 55%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>from numpy import size, log
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from numpy import size, log
 from find_fit_module import find_fit
 
 def expression(x, pars):
@@ -1872,14 +1870,22 @@ y = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31,
     37, 41, 43, 47, 53, 59, 61, 67, 71]
 pars = [1., 1., 1.]
 pars = find_fit(range(1, size(y)+1), y, expression, pars)
-print pars</code></pre></td>
-<td><pre><code>program example_primes
+print pars
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+program example_primes
 use find_fit_module, only: find_fit
 use types, only: dp
 implicit none
 
 real(dp) :: pars(3)
-real(dp), parameter :: y(*) = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, &amp;
+real(dp), parameter :: y(*) = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, &
     37, 41, 43, 47, 53, 59, 61, 67, 71]
 integer :: i
 pars = [1._dp, 1._dp, 1._dp]
@@ -1898,11 +1904,16 @@ c = pars(3)
 y = a*x*log(b + c*x)
 end function
 
-end program</code></pre></td>
-</tr>
-</tbody>
-</table>
+end program
+
+```
+:::::
+::::::
 
 This prints:
 
-    1.4207732655565537        1.6556111085593115       0.53462502018670921
+```{code-block} shell
+
+1.4207732655565537        1.6556111085593115       0.53462502018670921
+
+```
