@@ -61,7 +61,7 @@ class PlayCodeBlock(CodeBlock):
         if 'lineno-start' in self.options:
             extra_args['linenostart'] = self.options['lineno-start']
         self.set_source_info(literal)
-        caption = "<a href='https://play.fortran-lang.org/?code="+urllib.parse.quote(text)+"' target='_blank'>Fortran Playground</a>"
+        caption = "<a href='https://play.fortran-lang.org/?code="+urllib.parse.quote(code)+"' target='_blank'>Fortran Playground</a>"
         if caption:
             try:
                 literal = container_wrapper(self, literal, caption)
