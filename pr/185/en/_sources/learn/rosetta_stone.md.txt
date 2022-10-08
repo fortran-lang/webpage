@@ -12,7 +12,7 @@ Consider for example the following code snippets:
 
 :::::{grid-item}
 ```{code-block} python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, size, shape, min, max, sum
 a = array([1, 2, 3])
@@ -26,8 +26,8 @@ print(sum(a))
 :::::
 
 :::::{grid-item}
-```{code-block} fortran
-:caption: fortran
+```{code-block} Fortran
+:caption: Fortran
 
 integer :: a(3)
 a = [1, 2, 3]
@@ -44,8 +44,8 @@ print *, sum(a)
 In Python, just save the code to a file `example.py` and execute using
 `python example.py`. In Fortran, save it to a file `example.f90` and append the line
 `end` at the end of the file (see the section [Modules](#modules) for more info
-how this works). Compile using `gfortran example.f90` and execute using
-`./a.out` (you can of course add compilation options to gfortran, for
+how this works). Compile using `gFortran example.f90` and execute using
+`./a.out` (you can of course add compilation options to gFortran, for
 example to produce the executable with a different name).
 
 ## Arrays
@@ -93,7 +93,7 @@ Everything else is the same, in particular:
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, size, shape, min, max, sum
 a = array([1, 2, 3])
@@ -123,7 +123,7 @@ print *, sum(a)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import reshape
 a = reshape([1, 2, 3, 4, 5, 6], (2, 3))
@@ -155,7 +155,7 @@ print *, b(2, :)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 [1 2 3]
 [4 5 6]
@@ -181,7 +181,7 @@ print *, b(2, :)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, size, shape, max, min
 a = array([[1, 2, 3], [4, 5, 6]])
@@ -217,7 +217,7 @@ print "(3i5)", transpose(a)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 (2, 3)
 2
@@ -251,7 +251,7 @@ print "(3i5)", transpose(a)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, all, any
 i = array([1, 2, 3])
@@ -275,7 +275,7 @@ any(i == [2, 2, 3])
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, empty
 a = array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -306,7 +306,7 @@ end where
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, empty
 a = array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -341,7 +341,7 @@ end where
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, sum, ones, size
 a = array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
@@ -368,7 +368,7 @@ print *, count(a > 2 .and. a < 6)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, dot
 a = array([[1, 2], [3, 4]])
@@ -395,7 +395,7 @@ print *, matmul(a, b)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 [[ 2  6]
  [12 20]]
@@ -417,7 +417,7 @@ print *, matmul(a, b)
 
 :::::{grid-item}
 ```{code-block} Python
-:caption: Numpy Python
+:caption: NumPy Python
 
 from numpy import array, pi
 a = array([i for i in range(1, 7)])
@@ -447,336 +447,398 @@ c = [ ((i, j = 1, 3), i = 1, 6) ]
 
 ### Some indexing examples
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>from numpy import array
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+from numpy import array
 a = array([1, 2, 3])
 b = a
 print a[:]
 print b[:]
 print a[:2]
-print b[:2]</code></pre>
-<p>Output:</p>
-<pre><code>[1 2 3]
-[1 2 3]
-[1 2]
-[1 2]</code></pre></td>
-<td><pre class="fortran"><code>integer :: a(3), b(-1:1)
+print b[:2]
+
+```
+:::::
+::::::
+
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+integer :: a(3), b(-1:1)
 a = [1, 2, 3]
 b = a
 print *, a(:)
 print *, b(:)
 print *, a(:2)
-print *, b(:0)</code></pre>
-<p>Output:</p>
-<pre><code>1           2           3
+print *, b(:0)
+
+```
+:::::
+::::::
+
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+[1 2 3]
+[1 2 3]
+[1 2]
+[1 2]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+1           2           3
 1           2           3
 1           2
-1           2</code></pre></td>
-</tr>
-</tbody>
-</table>
+1           2
+
+```
+:::::
+::::::
+
 
 First <span class="title-ref">n</span> elements:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>a[:n]</code></pre></td>
-<td><pre class="fortran"><code>a(:n)     ! assuming starting index 1 (default)
-a(:n+m-1) ! assuming starting index m</code></pre></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+a[:n]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+a(:n)     ! assuming starting index 1 (default)
+a(:n+m-1) ! assuming starting index m
+
+```
+:::::
+::::::
 
 Last <span class="title-ref">n</span> elements:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>a[-n:] # equivalent to a[size(a)-n:]</code></pre></td>
-<td><pre class="fortran"><code>a(size(a)-n+1:)</code></pre></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+a[-n:] # equivalent to a[size(a)-n:]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+a(size(a)-n+1:)
+
+```
+:::::
+::::::
 
 Select elements between <span class="title-ref">i</span> and <span
 class="title-ref">j</span> (inclusive):
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>a[i:j+1]</code></pre></td>
-<td><pre class="fortran"><code>a(i:j)</code></pre></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+a[i:j+1]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+a(i:j)
+
+```
+:::::
+::::::
 
 Select <span class="title-ref">n</span> elements starting with index
 \`i\`:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>a[i:i+n]</code></pre></td>
-<td><pre class="fortran"><code>a(i:i+n-1)</code></pre></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+a[i:i+n]
+
+```
+:::::
+
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+a(i:i+n-1)
+
+```
+:::::
+::::::
 
 Select elements between <span class="title-ref">-n, ..., n</span>
 (inclusive):
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code># Not possible (arrays start at 0 index)</code></pre></td>
-<td><pre class="fortran"><code>a(-n:n)</code></pre></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+# Not possible (arrays start at 0 index)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+a(-n:n)
+
+```
+:::::
+::::::
 
 Loop over the whole array:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>r = 1
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+r = 1
 for i in range(len(a)):
-    r *= a[i]</code></pre></td>
-<td><pre class="fortran"><code>r = 1
+    r *= a[i]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+r = 1
 do i = 1, size(a)
     r = r*a(i)
-end do</code></pre></td>
-</tr>
-</tbody>
-</table>
+end do
+
+```
+:::::
+::::::
 
 Loop between index <span class="title-ref">3</span> and <span
 class="title-ref">7</span> (inclusive):
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>r = 1
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+r = 1
 for i in range(3, 8):
-    r *= a[i]</code></pre></td>
-<td><pre class="fortran"><code>r = 1
+    r *= a[i]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+r = 1
 do i = 3, 7
     r = r*a(i)
-end do</code></pre></td>
-</tr>
-</tbody>
-</table>
+end do.
+
+```
+:::::
+::::::
 
 Loop between <span class="title-ref">3</span>-th and <span
 class="title-ref">7</span>-th elements (inclusive):
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>r = 1
-for i in range(2, 7):
-    r *= a[i]</code></pre></td>
-<td><pre class="fortran"><code>r = 1
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+r = 1
+for i in range(3, 8):
+    r *= a[i]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+r = 1
 do i = 3, 7
     r = r*a(i)
-end do</code></pre></td>
-</tr>
-</tbody>
-</table>
+end do.
+
+```
+:::::
+::::::
 
 Split a string into three parts at indices <span
 class="title-ref">i</span> and <span class="title-ref">j</span>, the
 parts are:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>a[ :i]
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+a[ :i]
 a[i:j]
-a[j: ]</code></pre></td>
-<td><pre class="fortran"><code>a( :i-1)
+a[j: ]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+a( :i-1)
 a(i:j-1)
-a(j:   )</code></pre></td>
-</tr>
-</tbody>
-</table>
+a(j:   )
+
+```
+:::::
+::::::
 
 Laplace update:
 
-<table>
-<colgroup>
-<col style="width: 47%" />
-<col style="width: 52%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>u[1:-1,1:-1] = ((u[2:,1:-1]+u[:-2,1:-1])*dy2 +
-    (u[1:-1,2:] + u[1:-1,:-2])*dx2) / (2*(dx2+dy2))</code></pre></td>
-<td><pre class="fortran"><code>nx = size(u, 1)
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+u[1:-1,1:-1] = ((u[2:,1:-1]+u[:-2,1:-1])*dy2 +
+    (u[1:-1,2:] + u[1:-1,:-2])*dx2) / (2*(dx2+dy2))
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+nx = size(u, 1)
 ny = size(u, 2)
-u(2:nx-1,2:ny-1) = ((u(3:,2:ny-1)+u(:ny-2,2:ny-1))*dy2 + &amp;
-    (u(2:nx-1,3:) + u(2:nx-1,:ny-2))*dx2) / (2*(dx2+dy2))</code></pre></td>
-</tr>
-</tbody>
-</table>
+u(2:nx-1,2:ny-1) = ((u(3:,2:ny-1)+u(:ny-2,2:ny-1))*dy2 + &
+    (u(2:nx-1,3:) + u(2:nx-1,:ny-2))*dx2) / (2*(dx2+dy2))
+
+```
+:::::
+::::::
 
 ## Modules
 
 Comparison of Fortran and Python import statements:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>from A import foo
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+from A import foo
 from A import foo as Afoo
-from A import *</code></pre></td>
-<td><pre class="fortran"><code>use A, only: foo
-use A, only: Afoo =&gt; foo
-use A</code></pre></td>
-</tr>
-</tbody>
-</table>
+from A import *
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+use A, only: foo
+use A, only: Afoo => foo
+use A
+
+```
+:::::
+::::::
 
 The following Python statements have no equivalent in Fortran:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>import A
-import ALongName as A</code></pre></td>
-<td></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+import A
+import ALongName as A
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+
+```
+:::::
+::::::
 
 Fortran modules work just like Python modules. Differences:
 
@@ -803,29 +865,29 @@ Identical features:
 
 One creates the module:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><p>File <code>a.py</code>:</p>
-<pre><code>i = 5
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python a.py
+
+i = 5
 
 def f(x):
     return x + 5
 
 def g(x):
-    return x - 5</code></pre></td>
-<td><p>File <code>a.f90</code>:</p>
-<pre class="fortran"><code>module a
+    return x - 5
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran a.f90
+
+module a
 implicit none
 
 integer :: i = 5
@@ -842,47 +904,67 @@ integer, intent(in) :: x
 r = x - 5
 end function
 
-end module</code></pre></td>
-</tr>
-</tbody>
-</table>
+end module
+
+```
+:::::
+::::::
 
 And uses it from the main program as follows:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><p>File <code>main.py</code>:</p>
-<pre><code>from a import f, i
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python main.py
+
+from a import f, i
 
 print f(3)
-print i</code></pre>
-<p>Output:</p>
-<pre><code>8
-5</code></pre></td>
-<td><p>File <code>main.f90</code>:</p>
-<pre class="fortran"><code>program main
+print i
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran main.f90
+
+program main
 use a, only: f, i
 implicit none
 print *, f(3)
 print *, i
-end program</code></pre>
-<p>Output:</p>
-<pre><code>8
-5</code></pre></td>
-</tr>
-</tbody>
-</table>
+end program
+
+```
+:::::
+::::::
+
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python 
+
+8
+5
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran 
+
+8
+5
+
+```
+:::::
+::::::
 
 In Fortran, one can ommit the line `program main`, also one can just end
 the file with `end` instead of `end program`. That way one can test any
@@ -890,21 +972,14 @@ code snippet just by appending `end` at the end.
 
 In order to specify which symbols are public and private, one would use:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><p>File <code>a.py</code>:</p>
-<pre><code>__all__ = [&quot;i&quot;, &quot;f&quot;]
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+__all__ = ["i", "f"]
 
 i = 5
 
@@ -912,9 +987,16 @@ def f(x):
     return x + 5
 
 def g(x):
-    return x - 5</code></pre></td>
-<td><p>File <code>a.f90</code>:</p>
-<pre><code>module a
+    return x - 5
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+module a
 implicit none
 private
 public i, f
@@ -933,10 +1015,11 @@ integer, intent(in) :: x
 r = x - 5
 end function
 
-end module</code></pre></td>
-</tr>
-</tbody>
-</table>
+end module
+
+```
+:::::
+::::::
 
 There is a difference though. In Fortran, the symbol `g` will be private
 (not possible to import from other modules no matter if we use explicit
@@ -955,44 +1038,60 @@ Fortran it is single precision. See also the relevant
 [NumPy](http://docs.scipy.org/doc/numpy/user/basics.types.html)
 documentation.
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python 2.x</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><p>Single precision:</p>
-<pre><code>from numpy import float32
-f = float32(1.1)</code></pre></td>
-<td><p>Single precision:</p>
-<pre><code>real :: f
-f = 1.1</code></pre></td>
-</tr>
-<tr class="odd">
-<td><p>Double precision:</p>
-<pre><code>f = 1.1            # 1.1
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+from numpy import float32
+f = float32(1.1)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+real :: f
+f = 1.1
+
+```
+:::::
+::::::
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+f = 1.1            # 1.1
 f = 1e8            # 100000000.0
 f = float(1) / 2   # 0.5
 f = float(1 / 2)   # 0.0
-f = float(5)       # 5.0</code></pre></td>
-<td><p>Double precision:</p>
-<pre><code>integer, parameter :: dp=kind(0.d0)
+f = float(5)       # 5.0
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+integer, parameter :: dp=kind(0.d0)
 real(dp) :: f
 f = 1.1_dp             ! 1.1
 f = 1e8_dp             ! 100000000.0
 f = real(1, dp) / 2    ! 0.5
 f = 1 / 2              ! 0.0
-f = 5                  ! 5.0</code></pre></td>
-</tr>
-</tbody>
-</table>
+f = 5                  ! 5.0
+
+```
+:::::
+::::::
 
 In Fortran the habit is to always specify the precision using the `_dp`
 suffix, where `dp` is defined in the `types.f90` module below as
@@ -1004,13 +1103,17 @@ corruption), so one *always* needs to specify the precision.
 In all Fortran code snippets below, it is assumed, that you did
 `use types, only: dp`. The `types.f90` module is:
 
-    module types
-    implicit none
-    private
-    public dp, hp
-    integer, parameter :: dp=kind(0.d0), &          ! double precision
-                          hp=selected_real_kind(15) ! high precision
-    end module
+```{code-block} Fortran
+:caption: Fortran
+
+module types
+implicit none
+private
+public dp, hp
+integer, parameter :: dp=kind(0.d0), &          ! double precision
+                        hp=selected_real_kind(15) ! high precision
+end module
+```
 
 ## Math and Complex Numbers
 
@@ -1021,58 +1124,83 @@ the `constants.f90` module (included below).
 
 Otherwise the usage is identical.
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>from math import cos, pi, e
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+from math import cos, pi, e
 I = 1j
 print e**(I*pi) + 1
 print cos(pi)
 print 4 + 5j
-print 4 + 5*I</code></pre>
-<p>Output:</p>
-<pre><code>1.22460635382e-16j
--1.0
-(4+5j)
-(4+5j)</code></pre></td>
-<td><pre><code>use constants, only: pi, e
+print 4 + 5*I
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+use constants, only: pi, e
 complex(dp) :: I = (0, 1)
 print *, e**(I*pi) + 1
 print *, cos(pi)
 print *, (4, 5)
-print *, 4 + 5*I</code></pre>
-<p>Output:</p>
-<pre><code>(  0.0000000000000000     , 1.22460635382237726E-016)
+print *, 4 + 5*I
+
+```
+:::::
+::::::
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+1.22460635382e-16j
+-1.0
+(4+5j)
+(4+5j)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+(  0.0000000000000000     , 1.22460635382237726E-016)
  -1.0000000000000000
 (  4.0000000    ,  5.0000000    )
-(  4.0000000000000000     ,  5.0000000000000000     )</code></pre></td>
-</tr>
-</tbody>
-</table>
+(  4.0000000000000000     ,  5.0000000000000000     )
+
+```
+:::::
+::::::
 
 Fortran module `constants.f90`:
 
-    module constants
-    use types, only: dp
-    implicit none
-    private
-    public pi, e, I
-    ! Constants contain more digits than double precision, so that
-    ! they are rounded correctly:
-    real(dp), parameter :: pi   = 3.1415926535897932384626433832795_dp
-    real(dp), parameter :: e    = 2.7182818284590452353602874713527_dp
-    complex(dp), parameter :: I = (0, 1)
-    end module
+```{code-block} Fortran
+:caption: Fortran
+
+module constants
+use types, only: dp
+implicit none
+private
+public pi, e, I
+! Constants contain more digits than double precision, so that
+! they are rounded correctly:
+real(dp), parameter :: pi   = 3.1415926535897932384626433832795_dp
+real(dp), parameter :: e    = 2.7182818284590452353602874713527_dp
+complex(dp), parameter :: I = (0, 1)
+end module
+
+```
 
 ## Strings and Formatting
 
@@ -1084,102 +1212,146 @@ In both Python and Fortran, strings can be delimited by either `"` or
 
 There are three general ways to print formatted strings:
 
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 54%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>print &quot;Integer&quot;, 5, &quot;and float&quot;, 5.5, &quot;works fine.&quot;
-print &quot;Integer &quot; + str(5) + &quot; and float &quot; + str(5.5) + &quot;.&quot;
-print &quot;Integer %d and float %f.&quot; % (5, 5.5)</code></pre>
-<p>Output:</p>
-<pre><code>Integer 5 and float 5.5 works fine.
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+print "Integer", 5, "and float", 5.5, "works fine."
+print "Integer " + str(5) + " and float " + str(5.5) + "."
+print "Integer %d and float %f." % (5, 5.5)
+
+```
+:::::
+
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+use utils, only: str
+print *, "Integer", 5, "and float", 5.5, "works fine."
+print *, "Integer " // str(5) // " and float " // str(5.5_dp) // "."
+print '("Integer ", i0, " and float ", f0.6, ".")', 5, 5.5
+
+```
+:::::
+::::::
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+Integer 5 and float 5.5 works fine.
 Integer 5 and float 5.5.
-Integer 5 and float 5.500000.</code></pre></td>
-<td><pre><code>use utils, only: str
-print *, &quot;Integer&quot;, 5, &quot;and float&quot;, 5.5, &quot;works fine.&quot;
-print *, &quot;Integer &quot; // str(5) // &quot; and float &quot; // str(5.5_dp) // &quot;.&quot;
-print &#39;(&quot;Integer &quot;, i0, &quot; and float &quot;, f0.6, &quot;.&quot;)&#39;, 5, 5.5</code></pre>
-<p>Output:</p>
-<pre><code>Integer           5 and float   5.5000000     works fine.
 Integer 5 and float 5.500000.
-Integer 5 and float 5.500000.</code></pre></td>
-</tr>
-</tbody>
-</table>
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+Integer           5 and float   5.5000000     works fine.
+ Integer 5 and float 5.500000.
+Integer 5 and float 5.500000.
+
+```
+:::::
+::::::
 
 And here are some of the frequently used formats:
 
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 54%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>print &quot;%3d&quot; % 5
-print &quot;%03d&quot; % 5
-print &quot;%s&quot; % &quot;text&quot;
-print &quot;%15.7f&quot; % 5.5
-print &quot;%23.16e&quot; % -5.5</code></pre>
-<p>Output:</p>
-<pre><code>5
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+print "%3d" % 5
+print "%03d" % 5
+print "%s" % "text"
+print "%15.7f" % 5.5
+print "%23.16e" % -5.5
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+print '(i3)', 5
+print '(i3.3)', 5
+print '(a)', "text"
+print '(f15.7)', 5.5_dp
+print '(es23.16)', -5.5_dp
+
+```
+:::::
+::::::
+
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+  5
 005
 text
-    5.5000000
--5.5000000000000000e+00</code></pre></td>
-<td><pre><code>print &#39;(i3)&#39;, 5
-print &#39;(i3.3)&#39;, 5
-print &#39;(a)&#39;, &quot;text&quot;
-print &#39;(f15.7)&#39;, 5.5_dp
-print &#39;(es23.16)&#39;, -5.5_dp</code></pre>
-<p>Output:</p>
-<pre><code>5
+      5.5000000
+-5.5000000000000000e+00
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+ 5
 005
 text
-    5.5000000
--5.5000000000000000E+00</code></pre></td>
-</tr>
-</tbody>
-</table>
+      5.5000000
+-5.5000000000000000E+00
+
+```
+:::::
+::::::
 
 ## Nested Functions
 
 Both Python and Fortran allow nested functions that can access the outer
 function's namespace:
 
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 54%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>def foo(a, b, c):
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+def foo(a, b, c):
     def f(x):
         return a*x**2 + b*x + c
-    print f(1), f(2), f(3)</code></pre></td>
-<td><pre><code>subroutine foo(a, b, c)
+    print f(1), f(2), f(3)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+subroutine foo(a, b, c)
 real(dp) :: a, b, c
 print *, f(1._dp), f(2._dp), f(3._dp)
 
@@ -1190,64 +1362,89 @@ real(dp), intent(in) :: x
 y = a*x**2 + b*x + c
 end function f
 
-end subroutine foo</code></pre></td>
-</tr>
-</tbody>
-</table>
+end subroutine foo
+
+```
+:::::
+::::::
 
 Use it like:
 
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 54%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>foo(1, 2, 1)
-foo(2, 2, 1)</code></pre>
-<p>Output:</p>
-<pre><code>4 9 16
-5 13 25</code></pre></td>
-<td><pre><code>call foo(1._dp, 2._dp, 1._dp)
-call foo(2._dp, 2._dp, 1._dp)</code></pre>
-<p>Output:</p>
-<pre><code>4.0000000000000000        9.0000000000000000        16.000000000000000
-5.0000000000000000        13.000000000000000        25.000000000000000</code></pre></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+foo(1, 2, 1)
+foo(2, 2, 1)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+call foo(1._dp, 2._dp, 1._dp)
+call foo(2._dp, 2._dp, 1._dp)
+
+```
+:::::
+::::::
+
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+4 9 16
+5 13 25
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+4.0000000000000000        9.0000000000000000        16.000000000000000
+5.0000000000000000        13.000000000000000        25.000000000000000
+
+
+```
+:::::
+::::::
 
 You can use the nested functions in callbacks to pass context:
 
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 54%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>def simpson(f, a, b):
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+def simpson(f, a, b):
     return (b-a) / 6 * (f(a) + 4*f((a+b)/2) + f(b))
 
 def foo(a, k):
     def f(x):
         return a*sin(k*x)
     print simpson(f, 0., pi)
-    print simpson(f, 0., 2*pi)</code></pre></td>
-<td><pre><code>real(dp) function simpson(f, a, b) result(s)
+    print simpson(f, 0., 2*pi)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+real(dp) function simpson(f, a, b) result(s)
 real(dp), intent(in) :: a, b
 interface
     real(dp) function f(x)
@@ -1272,43 +1469,67 @@ real(dp), intent(in) :: x
 y = a*sin(k*x)
 end function f
 
-end subroutine foo</code></pre></td>
-</tr>
-</tbody>
-</table>
+end subroutine foo
+
+```
+:::::
+::::::
+
 
 And use it like:
 
-<table>
-<colgroup>
-<col style="width: 45%" />
-<col style="width: 54%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>foo(0.5, 1.)
-foo(0.5, 2.)</code></pre>
-<p>Output:</p>
-<pre><code>1.0471975512
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+foo(0.5, 1.)
+foo(0.5, 2.)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+call foo(0.5_dp, 1._dp)
+call foo(0.5_dp, 2._dp)
+
+```
+:::::
+::::::
+
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+1.0471975512
 1.28244712915e-16
 6.41223564574e-17
--7.69468277489e-16</code></pre></td>
-<td><pre><code>call foo(0.5_dp, 1._dp)
-call foo(0.5_dp, 2._dp)</code></pre>
-<p>Output:</p>
-<pre><code>1.0471975511965976
-1.28244712914785977E-016
-6.41223564573929883E-017
--7.69468277488715811E-016</code></pre></td>
-</tr>
-</tbody>
-</table>
+-7.69468277489e-16
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+ 1.0471975511965976
+ 1.28244712914785977E-016
+ 6.41223564573929883E-017
+-7.69468277488715811E-016
+
+```
+:::::
+::::::
+
 
 ## Control flow in loops
 
@@ -1327,30 +1548,33 @@ name to the `exit` statement. Else, the innermost loop is interrupted.
 Python's `exit()` interrupts the execution of program or of an
 interactive session.
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>for i in range(1, 9):
-    if i&gt;2:
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+for i in range(1, 9):
+    if i>2:
         break
-    print i</code></pre></td>
-<td><pre class="fortran"><code>loop_name: do i = 1, 8
-    if (i&gt;2) exit loop_name
+    print i
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+loop_name: do i = 1, 8
+    if (i>2) exit loop_name
     print *, i
-end do loop_name</code></pre></td>
-</tr>
-</tbody>
-</table>
+end do loop_name
+
+```
+:::::
+::::::
 
 ### continue and cycle statements
 
@@ -1360,30 +1584,33 @@ The loop then continues at its next iteration cycle. Fortran's
 instead. For named loops, it is possible to speficy which loop is
 affected by appending its name to the `cycle` statement.
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>for i in range(1, 9):
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+for i in range(1, 9):
     if i%2 == 0:
         continue
-    print i</code></pre></td>
-<td><pre class="fortran"><code>loop_name: do i = 1, 8
+    print i
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+loop_name: do i = 1, 8
     if (modulo(i, 2) == 0) cycle loop_name
     print *, i
-end do loop_name</code></pre></td>
-</tr>
-</tbody>
-</table>
+end do loop_name
+
+```
+:::::
+::::::
 
 ## Examples
 
@@ -1391,21 +1618,14 @@ end do loop_name</code></pre></td>
 
 Here is a real world program written in NumPy and translated to Fortran.
 
-<table>
-<colgroup>
-<col style="width: 44%" />
-<col style="width: 55%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><p>:</p>
-<pre><code>import numpy as np
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+import numpy as np
 
 ITERATIONS = 100
 DENSITY = 1000
@@ -1419,16 +1639,24 @@ z = c.copy()
 fractal = np.zeros(z.shape, dtype=np.uint8) + 255
 
 for n in range(ITERATIONS):
-    print &quot;Iteration %d&quot; % n
-    mask = abs(z) &lt;= 10
+    print "Iteration %d" % n
+    mask = abs(z) <= 10
     z[mask] *= z[mask]
     z[mask] += c[mask]
-    fractal[(fractal == 255) &amp; (-mask)] = 254. * n / ITERATIONS
+    fractal[(fractal == 255) & (-mask)] = 254. * n / ITERATIONS
 
-print &quot;Saving...&quot;
-np.savetxt(&quot;fractal.dat&quot;, np.log(fractal))
-np.savetxt(&quot;coord.dat&quot;, [x_min, x_max, y_min, y_max])</code></pre></td>
-<td><pre class="fortran"><code>program Mandelbrot
+print "Saving..."
+np.savetxt("fractal.dat", np.log(fractal))
+np.savetxt("coord.dat", [x_min, x_max, y_min, y_max])
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+program Mandelbrot
 use types, only: dp
 use constants, only: I
 use utils, only: savetxt, linspace, meshgrid
@@ -1446,49 +1674,56 @@ x_max = 1.32_dp
 y_min = -1.5_dp
 y_max = 1.5_dp
 
-call meshgrid(linspace(x_min, x_max, DENSITY), &amp;
+call meshgrid(linspace(x_min, x_max, DENSITY), &
     linspace(y_min, y_max, DENSITY), x, y)
 c = x + I*y
 z = c
 fractal = 255
 
 do n = 1, ITERATIONS
-    print &quot;(&#39;Iteration &#39;, i0)&quot;, n
-    where (abs(z) &lt;= 10) z = z**2 + c
-    where (fractal == 255 .and. abs(z) &gt; 10) fractal = 254 * (n-1) / ITERATIONS
+    print "('Iteration ', i0)", n
+    where (abs(z) <= 10) z = z**2 + c
+    where (fractal == 255 .and. abs(z) > 10) fractal = 254 * (n-1) / ITERATIONS
 end do
 
-print *, &quot;Saving...&quot;
-call savetxt(&quot;fractal.dat&quot;, log(real(fractal, dp)))
-call savetxt(&quot;coord.dat&quot;, reshape([x_min, x_max, y_min, y_max], [4, 1]))
-end program</code></pre></td>
-</tr>
-</tbody>
-</table>
+print *, "Saving..."
+call savetxt("fractal.dat", log(real(fractal, dp)))
+call savetxt("coord.dat", reshape([x_min, x_max, y_min, y_max], [4, 1]))
+end program
+
+```
+:::::
+::::::
+
 
 To run the Python version, you need Python and NumPy. To run the Fortran
 version, you need `types.f90`, `constants.f90` and `utils.f90` from the
-[fortran-utils](https://github.com/certik/fortran-utils) package. Both
+[Fortran-utils](https://github.com/certik/Fortran-utils) package. Both
 versions generate equivalent `fractal.dat` and `coord.dat` files.
 
 The generated fractal can be viewed by (you need matplotlib):
 
-    from numpy import loadtxt
-    import matplotlib.pyplot as plt
+```{code-block} NumPy Python
+:caption: NumPy Python
 
-    fractal = loadtxt("fractal.dat")
-    x_min, x_max, y_min, y_max = loadtxt("coord.dat")
+from numpy import loadtxt
+import matplotlib.pyplot as plt
 
-    plt.imshow(fractal, cmap=plt.cm.hot,
-               extent=(x_min, x_max, y_min, y_max))
-    plt.title('Mandelbrot Set')
-    plt.xlabel('Re(z)')
-    plt.ylabel('Im(z)')
-    plt.savefig("mandelbrot.png")
+fractal = loadtxt("fractal.dat")
+x_min, x_max, y_min, y_max = loadtxt("coord.dat")
 
-![image](https://www.fortran90.org/_images/mandelbrot.png)
+plt.imshow(fractal, cmap=plt.cm.hot,
+            extent=(x_min, x_max, y_min, y_max))
+plt.title('Mandelbrot Set')
+plt.xlabel('Re(z)')
+plt.ylabel('Im(z)')
+plt.savefig("mandelbrot.png")
 
-Timings on Acer 1830T with gfortran 4.6.1 are:
+```
+
+![image](https://www.Fortran90.org/_images/mandelbrot.png)
+
+Timings on Acer 1830T with gFortran 4.6.1 are:
 
 <table style="width:54%;">
 <colgroup>
@@ -1535,20 +1770,14 @@ In Python we use Minpack via [SciPy](http://www.scipy.org/), in Fortran
 we use [Minpack](https://github.com/certik/minpack) directly. We first
 create a module `find_fit_module` with a function `find_fit`:
 
-<table>
-<colgroup>
-<col style="width: 44%" />
-<col style="width: 55%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>from numpy import array
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+from numpy import array
 from scipy.optimize import leastsq
 
 def find_fit(data_x, data_y, expr, pars):
@@ -1558,9 +1787,17 @@ def find_fit(data_x, data_y, expr, pars):
         return data_y - expr(data_x, x)
     x, ier = leastsq(fcn, pars)
     if (ier != 1):
-        raise Exception(&quot;Failed to converge.&quot;)
-    return x</code></pre></td>
-<td><pre><code>module find_fit_module
+        raise Exception("Failed to converge.")
+    return x
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+module find_fit_module
 use minpack, only: lmdif1
 use types, only: dp
 implicit none
@@ -1590,7 +1827,7 @@ m = size(fvec)
 n = size(pars)
 allocate(wa(m*n + 5*n + m))
 call lmdif1(fcn, m, n, pars, fvec, tol, info, iwa, wa, size(wa))
-if (info /= 1) stop &quot;failed to converge&quot;
+if (info /= 1) stop "failed to converge"
 
 contains
 
@@ -1605,28 +1842,24 @@ end subroutine
 
 end subroutine
 
-end module</code></pre></td>
-</tr>
-</tbody>
-</table>
+end module
+
+```
+:::::
+::::::
+
 
 Then we use it to find a nonlinear fit of the form `a*x*log(b + c*x)` to
 a list of primes:
 
-<table>
-<colgroup>
-<col style="width: 44%" />
-<col style="width: 55%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>from numpy import size, log
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: NumPy Python
+
+from numpy import size, log
 from find_fit_module import find_fit
 
 def expression(x, pars):
@@ -1637,14 +1870,22 @@ y = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31,
     37, 41, 43, 47, 53, 59, 61, 67, 71]
 pars = [1., 1., 1.]
 pars = find_fit(range(1, size(y)+1), y, expression, pars)
-print pars</code></pre></td>
-<td><pre><code>program example_primes
+print pars
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+program example_primes
 use find_fit_module, only: find_fit
 use types, only: dp
 implicit none
 
 real(dp) :: pars(3)
-real(dp), parameter :: y(*) = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, &amp;
+real(dp), parameter :: y(*) = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31, &
     37, 41, 43, 47, 53, 59, 61, 67, 71]
 integer :: i
 pars = [1._dp, 1._dp, 1._dp]
@@ -1663,11 +1904,16 @@ c = pars(3)
 y = a*x*log(b + c*x)
 end function
 
-end program</code></pre></td>
-</tr>
-</tbody>
-</table>
+end program
+
+```
+:::::
+::::::
 
 This prints:
 
-    1.4207732655565537        1.6556111085593115       0.53462502018670921
+```{code-block} shell
+
+1.4207732655565537        1.6556111085593115       0.53462502018670921
+
+```
