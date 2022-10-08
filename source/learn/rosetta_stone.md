@@ -447,287 +447,344 @@ c = [ ((i, j = 1, 3), i = 1, 6) ]
 
 ### Some indexing examples
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>from numpy import array
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+from numpy import array
 a = array([1, 2, 3])
 b = a
 print a[:]
 print b[:]
 print a[:2]
-print b[:2]</code></pre>
-<p>Output:</p>
-<pre><code>[1 2 3]
-[1 2 3]
-[1 2]
-[1 2]</code></pre></td>
-<td><pre class="fortran"><code>integer :: a(3), b(-1:1)
+print b[:2]
+
+```
+:::::
+::::::
+
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+integer :: a(3), b(-1:1)
 a = [1, 2, 3]
 b = a
 print *, a(:)
 print *, b(:)
 print *, a(:2)
-print *, b(:0)</code></pre>
-<p>Output:</p>
-<pre><code>1           2           3
+print *, b(:0)
+
+```
+:::::
+::::::
+
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+[1 2 3]
+[1 2 3]
+[1 2]
+[1 2]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+1           2           3
 1           2           3
 1           2
-1           2</code></pre></td>
-</tr>
-</tbody>
-</table>
+1           2
+
+```
+:::::
+::::::
+
 
 First <span class="title-ref">n</span> elements:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>a[:n]</code></pre></td>
-<td><pre class="fortran"><code>a(:n)     ! assuming starting index 1 (default)
-a(:n+m-1) ! assuming starting index m</code></pre></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+a[:n]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+a(:n)     ! assuming starting index 1 (default)
+a(:n+m-1) ! assuming starting index m
+
+```
+:::::
+::::::
 
 Last <span class="title-ref">n</span> elements:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>a[-n:] # equivalent to a[size(a)-n:]</code></pre></td>
-<td><pre class="fortran"><code>a(size(a)-n+1:)</code></pre></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+a[-n:] # equivalent to a[size(a)-n:]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+a(size(a)-n+1:)
+
+```
+:::::
+::::::
 
 Select elements between <span class="title-ref">i</span> and <span
 class="title-ref">j</span> (inclusive):
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>a[i:j+1]</code></pre></td>
-<td><pre class="fortran"><code>a(i:j)</code></pre></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+a[i:j+1]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+a(i:j)
+
+```
+:::::
+::::::
 
 Select <span class="title-ref">n</span> elements starting with index
 \`i\`:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>a[i:i+n]</code></pre></td>
-<td><pre class="fortran"><code>a(i:i+n-1)</code></pre></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+a[i:i+n]
+
+```
+:::::
+
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+a(i:i+n-1)
+
+```
+:::::
+::::::
 
 Select elements between <span class="title-ref">-n, ..., n</span>
 (inclusive):
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code># Not possible (arrays start at 0 index)</code></pre></td>
-<td><pre class="fortran"><code>a(-n:n)</code></pre></td>
-</tr>
-</tbody>
-</table>
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+# Not possible (arrays start at 0 index)
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+a(-n:n)
+
+```
+:::::
+::::::
 
 Loop over the whole array:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>r = 1
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+r = 1
 for i in range(len(a)):
-    r *= a[i]</code></pre></td>
-<td><pre class="fortran"><code>r = 1
+    r *= a[i]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+r = 1
 do i = 1, size(a)
     r = r*a(i)
-end do</code></pre></td>
-</tr>
-</tbody>
-</table>
+end do
+
+```
+:::::
+::::::
 
 Loop between index <span class="title-ref">3</span> and <span
 class="title-ref">7</span> (inclusive):
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>r = 1
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+r = 1
 for i in range(3, 8):
-    r *= a[i]</code></pre></td>
-<td><pre class="fortran"><code>r = 1
+    r *= a[i]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+r = 1
 do i = 3, 7
     r = r*a(i)
-end do</code></pre></td>
-</tr>
-</tbody>
-</table>
+end do.
+
+```
+:::::
+::::::
 
 Loop between <span class="title-ref">3</span>-th and <span
 class="title-ref">7</span>-th elements (inclusive):
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>r = 1
-for i in range(2, 7):
-    r *= a[i]</code></pre></td>
-<td><pre class="fortran"><code>r = 1
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+r = 1
+for i in range(3, 8):
+    r *= a[i]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+r = 1
 do i = 3, 7
     r = r*a(i)
-end do</code></pre></td>
-</tr>
-</tbody>
-</table>
+end do.
+
+```
+:::::
+::::::
 
 Split a string into three parts at indices <span
 class="title-ref">i</span> and <span class="title-ref">j</span>, the
 parts are:
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>a[ :i]
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+a[ :i]
 a[i:j]
-a[j: ]</code></pre></td>
-<td><pre class="fortran"><code>a( :i-1)
+a[j: ]
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+a( :i-1)
 a(i:j-1)
-a(j:   )</code></pre></td>
-</tr>
-</tbody>
-</table>
+a(j:   )
+
+```
+:::::
+::::::
 
 Laplace update:
 
-<table>
-<colgroup>
-<col style="width: 47%" />
-<col style="width: 52%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>u[1:-1,1:-1] = ((u[2:,1:-1]+u[:-2,1:-1])*dy2 +
-    (u[1:-1,2:] + u[1:-1,:-2])*dx2) / (2*(dx2+dy2))</code></pre></td>
-<td><pre class="fortran"><code>nx = size(u, 1)
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+u[1:-1,1:-1] = ((u[2:,1:-1]+u[:-2,1:-1])*dy2 +
+    (u[1:-1,2:] + u[1:-1,:-2])*dx2) / (2*(dx2+dy2))
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+nx = size(u, 1)
 ny = size(u, 2)
-u(2:nx-1,2:ny-1) = ((u(3:,2:ny-1)+u(:ny-2,2:ny-1))*dy2 + &amp;
-    (u(2:nx-1,3:) + u(2:nx-1,:ny-2))*dx2) / (2*(dx2+dy2))</code></pre></td>
-</tr>
-</tbody>
-</table>
+u(2:nx-1,2:ny-1) = ((u(3:,2:ny-1)+u(:ny-2,2:ny-1))*dy2 + &
+    (u(2:nx-1,3:) + u(2:nx-1,:ny-2))*dx2) / (2*(dx2+dy2))
+
+```
+:::::
+::::::
 
 ## Modules
 
