@@ -1548,30 +1548,33 @@ name to the `exit` statement. Else, the innermost loop is interrupted.
 Python's `exit()` interrupts the execution of program or of an
 interactive session.
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>for i in range(1, 9):
-    if i&gt;2:
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+for i in range(1, 9):
+    if i>2:
         break
-    print i</code></pre></td>
-<td><pre class="fortran"><code>loop_name: do i = 1, 8
-    if (i&gt;2) exit loop_name
+    print i
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+loop_name: do i = 1, 8
+    if (i>2) exit loop_name
     print *, i
-end do loop_name</code></pre></td>
-</tr>
-</tbody>
-</table>
+end do loop_name
+
+```
+:::::
+::::::
 
 ### continue and cycle statements
 
@@ -1581,30 +1584,33 @@ The loop then continues at its next iteration cycle. Fortran's
 instead. For named loops, it is possible to speficy which loop is
 affected by appending its name to the `cycle` statement.
 
-<table>
-<colgroup>
-<col style="width: 49%" />
-<col style="width: 50%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>NumPy</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><pre><code>for i in range(1, 9):
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+for i in range(1, 9):
     if i%2 == 0:
         continue
-    print i</code></pre></td>
-<td><pre class="fortran"><code>loop_name: do i = 1, 8
+    print i
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+loop_name: do i = 1, 8
     if (modulo(i, 2) == 0) cycle loop_name
     print *, i
-end do loop_name</code></pre></td>
-</tr>
-</tbody>
-</table>
+end do loop_name
+
+```
+:::::
+::::::
 
 ## Examples
 
@@ -1612,21 +1618,14 @@ end do loop_name</code></pre></td>
 
 Here is a real world program written in NumPy and translated to Fortran.
 
-<table>
-<colgroup>
-<col style="width: 44%" />
-<col style="width: 55%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td>Python</td>
-<td><blockquote>
-<p>Fortran</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td><p>:</p>
-<pre><code>import numpy as np
+::::::{grid} 1 1 2 2
+:gutter: 1
+
+:::::{grid-item}
+```{code-block} Python
+:caption: Numpy Python
+
+import numpy as np
 
 ITERATIONS = 100
 DENSITY = 1000
@@ -1640,16 +1639,24 @@ z = c.copy()
 fractal = np.zeros(z.shape, dtype=np.uint8) + 255
 
 for n in range(ITERATIONS):
-    print &quot;Iteration %d&quot; % n
-    mask = abs(z) &lt;= 10
+    print "Iteration %d" % n
+    mask = abs(z) <= 10
     z[mask] *= z[mask]
     z[mask] += c[mask]
-    fractal[(fractal == 255) &amp; (-mask)] = 254. * n / ITERATIONS
+    fractal[(fractal == 255) & (-mask)] = 254. * n / ITERATIONS
 
-print &quot;Saving...&quot;
-np.savetxt(&quot;fractal.dat&quot;, np.log(fractal))
-np.savetxt(&quot;coord.dat&quot;, [x_min, x_max, y_min, y_max])</code></pre></td>
-<td><pre class="fortran"><code>program Mandelbrot
+print "Saving..."
+np.savetxt("fractal.dat", np.log(fractal))
+np.savetxt("coord.dat", [x_min, x_max, y_min, y_max])
+
+```
+:::::
+
+:::::{grid-item}
+```{code-block} Fortran
+:caption: Fortran
+
+program Mandelbrot
 use types, only: dp
 use constants, only: I
 use utils, only: savetxt, linspace, meshgrid
@@ -1667,25 +1674,27 @@ x_max = 1.32_dp
 y_min = -1.5_dp
 y_max = 1.5_dp
 
-call meshgrid(linspace(x_min, x_max, DENSITY), &amp;
+call meshgrid(linspace(x_min, x_max, DENSITY), &
     linspace(y_min, y_max, DENSITY), x, y)
 c = x + I*y
 z = c
 fractal = 255
 
 do n = 1, ITERATIONS
-    print &quot;(&#39;Iteration &#39;, i0)&quot;, n
-    where (abs(z) &lt;= 10) z = z**2 + c
-    where (fractal == 255 .and. abs(z) &gt; 10) fractal = 254 * (n-1) / ITERATIONS
+    print "('Iteration ', i0)", n
+    where (abs(z) <= 10) z = z**2 + c
+    where (fractal == 255 .and. abs(z) > 10) fractal = 254 * (n-1) / ITERATIONS
 end do
 
-print *, &quot;Saving...&quot;
-call savetxt(&quot;fractal.dat&quot;, log(real(fractal, dp)))
-call savetxt(&quot;coord.dat&quot;, reshape([x_min, x_max, y_min, y_max], [4, 1]))
-end program</code></pre></td>
-</tr>
-</tbody>
-</table>
+print *, "Saving..."
+call savetxt("fractal.dat", log(real(fractal, dp)))
+call savetxt("coord.dat", reshape([x_min, x_max, y_min, y_max], [4, 1]))
+end program
+
+```
+:::::
+::::::
+
 
 To run the Python version, you need Python and NumPy. To run the Fortran
 version, you need `types.f90`, `constants.f90` and `utils.f90` from the
@@ -1694,18 +1703,23 @@ versions generate equivalent `fractal.dat` and `coord.dat` files.
 
 The generated fractal can be viewed by (you need matplotlib):
 
-    from numpy import loadtxt
-    import matplotlib.pyplot as plt
+```{code-block} Numpy Python
+:caption: Numpy Python
 
-    fractal = loadtxt("fractal.dat")
-    x_min, x_max, y_min, y_max = loadtxt("coord.dat")
+from numpy import loadtxt
+import matplotlib.pyplot as plt
 
-    plt.imshow(fractal, cmap=plt.cm.hot,
-               extent=(x_min, x_max, y_min, y_max))
-    plt.title('Mandelbrot Set')
-    plt.xlabel('Re(z)')
-    plt.ylabel('Im(z)')
-    plt.savefig("mandelbrot.png")
+fractal = loadtxt("fractal.dat")
+x_min, x_max, y_min, y_max = loadtxt("coord.dat")
+
+plt.imshow(fractal, cmap=plt.cm.hot,
+            extent=(x_min, x_max, y_min, y_max))
+plt.title('Mandelbrot Set')
+plt.xlabel('Re(z)')
+plt.ylabel('Im(z)')
+plt.savefig("mandelbrot.png")
+
+```
 
 ![image](https://www.fortran90.org/_images/mandelbrot.png)
 
