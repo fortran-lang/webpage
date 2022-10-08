@@ -11,7 +11,7 @@ Consider for example the following code snippets:
 :gutter: 1
 
 :::::{grid-item}
-```{code-block} python
+```{code-block} Python
 :caption: NumPy Python
 
 from numpy import array, size, shape, min, max, sum
@@ -97,11 +97,11 @@ Everything else is the same, in particular:
 
 from numpy import array, size, shape, min, max, sum
 a = array([1, 2, 3])
-print shape(a)
-print size(a)
-print max(a)
-print min(a)
-print sum(a)
+print(shape(a))
+print(size(a))
+print(max(a))
+print(min(a))
+print(sum(a))
 
 ```
 :::::
@@ -128,11 +128,11 @@ print *, sum(a)
 from numpy import reshape
 a = reshape([1, 2, 3, 4, 5, 6], (2, 3))
 b = reshape([1, 2, 3, 4, 5, 6], (2, 3), order="F")
-print a[0, :]
-print a[1, :]
-print
-print b[0, :]
-print b[1, :]
+print(a[0, :])
+print(a[1, :])
+print()
+print(b[0, :])
+print(b[1, :])
 
 ```
 :::::
@@ -185,14 +185,14 @@ print *, b(2, :)
 
 from numpy import array, size, shape, max, min
 a = array([[1, 2, 3], [4, 5, 6]])
-print shape(a)
-print size(a, 0)
-print size(a, 1)
-print max(a)
-print min(a)
-print a[0, 0], a[0, 1], a[0, 2]
-print a[1, 0], a[1, 1], a[1, 2]
-print a
+print(shape(a))
+print(size(a, 0))
+print(size(a, 1))
+print(max(a))
+print(min(a))
+print(a[0, 0], a[0, 1], a[0, 2])
+print(a[1, 0], a[1, 1], a[1, 2])
+print(a)
 
 ```
 :::::
@@ -227,7 +227,7 @@ print "(3i5)", transpose(a)
 1 2 3
 4 5 6
 [[1 2 3]
- [4 5 6]]
+[4 5 6]]
 
 ```
 :::::
@@ -345,10 +345,10 @@ end where
 
 from numpy import array, sum, ones, size
 a = array([1, 2, 3, 4, 5, 6, 7, 8, 9, 10])
-print sum(a)
-print sum(a[(a > 2) & (a < 6)])
+print(sum(a))
+print(sum(a[(a > 2) & (a < 6)]))
 o = ones(size(a), dtype="int")
-print sum(o[(a > 2) & (a < 6)])
+print(sum(o[(a > 2) & (a < 6)]))
 
 ```
 :::::
@@ -373,8 +373,8 @@ print *, count(a > 2 .and. a < 6)
 from numpy import array, dot
 a = array([[1, 2], [3, 4]])
 b = array([[2, 3], [4, 5]])
-print a * b
-print dot(a, b)
+print(a * b)
+print(dot(a, b))
 
 ```
 :::::
@@ -457,10 +457,10 @@ c = [ ((i, j = 1, 3), i = 1, 6) ]
 from numpy import array
 a = array([1, 2, 3])
 b = a
-print a[:]
-print b[:]
-print a[:2]
-print b[:2]
+print(a[:])
+print(b[:])
+print(a[:2])
+print(b[:2])
 
 ```
 :::::
@@ -921,8 +921,8 @@ And uses it from the main program as follows:
 
 from a import f, i
 
-print f(3)
-print i
+print(f(3))
+print(i)
 
 ```
 :::::
@@ -1133,10 +1133,10 @@ Otherwise the usage is identical.
 
 from math import cos, pi, e
 I = 1j
-print e**(I*pi) + 1
-print cos(pi)
-print 4 + 5j
-print 4 + 5*I
+print(e**(I*pi) + 1)
+print(cos(pi))
+print(4 + 5j)
+print(4 + 5*I)
 
 ```
 :::::
@@ -1219,9 +1219,9 @@ There are three general ways to print formatted strings:
 ```{code-block} Python
 :caption: NumPy Python
 
-print "Integer", 5, "and float", 5.5, "works fine."
-print "Integer " + str(5) + " and float " + str(5.5) + "."
-print "Integer %d and float %f." % (5, 5.5)
+print("Integer", 5, "and float", 5.5, "works fine.")
+print("Integer " + str(5) + " and float " + str(5.5) + ".")
+print("Integer %d and float %f." % (5, 5.5))
 
 ```
 :::::
@@ -1274,11 +1274,11 @@ And here are some of the frequently used formats:
 ```{code-block} Python
 :caption: NumPy Python
 
-print "%3d" % 5
-print "%03d" % 5
-print "%s" % "text"
-print "%15.7f" % 5.5
-print "%23.16e" % -5.5
+print("%3d" % 5)
+print("%03d" % 5)
+print("%s" % "text")
+print("%15.7f" % 5.5)
+print("%23.16e" % -5.5)
 
 ```
 :::::
@@ -1342,7 +1342,7 @@ function's namespace:
 def foo(a, b, c):
     def f(x):
         return a*x**2 + b*x + c
-    print f(1), f(2), f(3)
+    print(f(1), f(2), f(3))
 
 ```
 :::::
@@ -1434,8 +1434,8 @@ def simpson(f, a, b):
 def foo(a, k):
     def f(x):
         return a*sin(k*x)
-    print simpson(f, 0., pi)
-    print simpson(f, 0., 2*pi)
+    print(simpson(f, 0., pi))
+    print(simpson(f, 0., 2*pi))
 
 ```
 :::::
@@ -1558,7 +1558,7 @@ interactive session.
 for i in range(1, 9):
     if i>2:
         break
-    print i
+    print(i)
 
 ```
 :::::
@@ -1594,7 +1594,7 @@ affected by appending its name to the `cycle` statement.
 for i in range(1, 9):
     if i%2 == 0:
         continue
-    print i
+    print(i)
 
 ```
 :::::
@@ -1645,7 +1645,7 @@ for n in range(ITERATIONS):
     z[mask] += c[mask]
     fractal[(fractal == 255) & (-mask)] = 254. * n / ITERATIONS
 
-print "Saving..."
+print("Saving...")
 np.savetxt("fractal.dat", np.log(fractal))
 np.savetxt("coord.dat", [x_min, x_max, y_min, y_max])
 
@@ -1870,7 +1870,7 @@ y = [2, 3, 5, 7, 11, 13, 17, 19, 23, 29, 31,
     37, 41, 43, 47, 53, 59, 61, 67, 71]
 pars = [1., 1., 1.]
 pars = find_fit(range(1, size(y)+1), y, expression, pars)
-print pars
+print(pars)
 
 ```
 :::::
