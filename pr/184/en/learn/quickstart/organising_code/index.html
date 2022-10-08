@@ -786,20 +786,17 @@ In this example, the subroutine does not modify its arguments, hence all argumen
 dummy arguments; this allows the compiler to check for unintentional errors and provides self-documentation.</p>
 </div></blockquote>
 <p>We can call this subroutine from a program using a <code class="docutils literal notranslate"><span class="pre">call</span></code> statement:</p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20call_sub%0A%20%20implicit%20none%0A%0A%20%20real%20%3A%3A%20mat%2810%2C%2020%29%0A%0A%20%20mat%28%3A%2C%3A%29%20%3D%200.0%0A%0A%20%20call%20print_matrix%2810%2C%2020%2C%20mat%29%0A%0Aend%20program%20call_sub' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">program</span> <span class="n">call_sub</span>
-  <span class="n">implicit</span> <span class="n">none</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">call_sub</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
 
-  <span class="n">real</span> <span class="p">::</span> <span class="n">mat</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">)</span>
+<span class="k">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mat</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">)</span><span class="w"></span>
 
-  <span class="n">mat</span><span class="p">(:,:)</span> <span class="o">=</span> <span class="mf">0.0</span>
+<span class="w">  </span><span class="n">mat</span><span class="p">(:,:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.0</span><span class="w"></span>
 
-  <span class="n">call</span> <span class="n">print_matrix</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">20</span><span class="p">,</span> <span class="n">mat</span><span class="p">)</span>
+<span class="w">  </span><span class="k">call </span><span class="n">print_matrix</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="n">mat</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">end</span> <span class="n">program</span> <span class="n">call_sub</span>
+<span class="k">end program </span><span class="n">call_sub</span><span class="w"></span>
 </pre></div>
-</div>
 </div>
 <blockquote>
 <div><p>This example uses a so-called <em>explicit-shape</em> array argument since we have passed additional variables to describe
@@ -807,8 +804,8 @@ the dimensions of the array <code class="docutils literal notranslate"><span cla
 </div></blockquote>
 <section id="functions">
 <h2>Functions<a class="headerlink" href="#functions" title="Permalink to this heading">#</a></h2>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=%21%20L2%20Norm%20of%20a%20vector%0Afunction%20vector_norm%28n%2Cvec%29%20result%28norm%29%0A%20%20implicit%20none%0A%20%20integer%2C%20intent%28in%29%20%3A%3A%20n%0A%20%20real%2C%20intent%28in%29%20%3A%3A%20vec%28n%29%0A%20%20real%20%3A%3A%20norm%0A%0A%20%20norm%20%3D%20sqrt%28sum%28vec%2A%2A2%29%29%0A%0Aend%20function%20vector_norm' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=%21%20L2%20Norm%20of%20a%20vector%0Afunction%20vector_norm%28n%2Cvec%29%20result%28norm%29%0A%20%20implicit%20none%0A%20%20integer%2C%20intent%28in%29%20%3A%3A%20n%0A%20%20real%2C%20intent%28in%29%20%3A%3A%20vec%28n%29%0A%20%20real%20%3A%3A%20norm%0A%0A%20%20norm%20%3D%20sqrt%28sum%28vec%2A%2A2%29%29%0A%0Aend%20function%20vector_norm' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>! L2 Norm of a vector
 function vector_norm(n,vec) result(norm)
   implicit none
@@ -826,21 +823,18 @@ end function vector_norm
 <div><p>In production code, the intrinsic function <code class="docutils literal notranslate"><span class="pre">norm2</span></code> should be used.</p>
 </div></blockquote>
 <p>To execute this function:</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20run_fcn%0A%20%20implicit%20none%0A%0A%20%20real%20%3A%3A%20v%289%29%0A%20%20real%20%3A%3A%20vector_norm%0A%0A%20%20v%28%3A%29%20%3D%209%0A%0A%20%20print%20%2A%2C%20%27Vector%20norm%20%3D%20%27%2C%20vector_norm%289%2Cv%29%0A%0Aend%20program%20run_fcn' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id4" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">program</span> <span class="n">run_fcn</span>
-  <span class="n">implicit</span> <span class="n">none</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">run_fcn</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
 
-  <span class="n">real</span> <span class="p">::</span> <span class="n">v</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span>
-  <span class="n">real</span> <span class="p">::</span> <span class="n">vector_norm</span>
+<span class="k">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">v</span><span class="p">(</span><span class="mi">9</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vector_norm</span><span class="w"></span>
 
-  <span class="n">v</span><span class="p">(:)</span> <span class="o">=</span> <span class="mi">9</span>
+<span class="w">  </span><span class="n">v</span><span class="p">(:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">9</span><span class="w"></span>
 
-  <span class="nb">print</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;Vector norm = &#39;</span><span class="p">,</span> <span class="n">vector_norm</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="n">v</span><span class="p">)</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Vector norm = &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">vector_norm</span><span class="p">(</span><span class="mi">9</span><span class="p">,</span><span class="n">v</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">end</span> <span class="n">program</span> <span class="n">run_fcn</span>
+<span class="k">end program </span><span class="n">run_fcn</span><span class="w"></span>
 </pre></div>
-</div>
 </div>
 <blockquote>
 <div><p>It is good programming practice for functions not to modify their arguments—that is, all function arguments should be <code class="docutils literal notranslate"><span class="pre">intent(in)</span></code>.
@@ -861,8 +855,8 @@ They can contain data objects, type definitions, procedures, and interfaces.</p>
 within modules.</p>
 </div></blockquote>
 <p><strong>Example:</strong></p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20my_mod%0A%20%20implicit%20none%0A%0A%20%20private%20%20%21%20All%20entities%20are%20now%20module-private%20by%20default%0A%20%20public%20public_var%2C%20print_matrix%20%20%21%20Explicitly%20export%20public%20entities%0A%0A%20%20real%2C%20parameter%20%3A%3A%20public_var%20%3D%202%0A%20%20integer%20%3A%3A%20private_var%0A%0Acontains%0A%0A%20%20%21%20Print%20matrix%20A%20to%20screen%0A%20%20subroutine%20print_matrix%28A%29%0A%20%20%20%20real%2C%20intent%28in%29%20%3A%3A%20A%28%3A%2C%3A%29%20%20%21%20An%20assumed-shape%20dummy%20argument%0A%0A%20%20%20%20integer%20%3A%3A%20i%0A%0A%20%20%20%20do%20i%20%3D%201%2C%20size%28A%2C1%29%0A%20%20%20%20%20%20print%20%2A%2C%20A%28i%2C%3A%29%0A%20%20%20%20end%20do%0A%0A%20%20end%20subroutine%20print_matrix%0A%0Aend%20module%20my_mod' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id5" title="Permalink to this code">#</a></div>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20my_mod%0A%20%20implicit%20none%0A%0A%20%20private%20%20%21%20All%20entities%20are%20now%20module-private%20by%20default%0A%20%20public%20public_var%2C%20print_matrix%20%20%21%20Explicitly%20export%20public%20entities%0A%0A%20%20real%2C%20parameter%20%3A%3A%20public_var%20%3D%202%0A%20%20integer%20%3A%3A%20private_var%0A%0Acontains%0A%0A%20%20%21%20Print%20matrix%20A%20to%20screen%0A%20%20subroutine%20print_matrix%28A%29%0A%20%20%20%20real%2C%20intent%28in%29%20%3A%3A%20A%28%3A%2C%3A%29%20%20%21%20An%20assumed-shape%20dummy%20argument%0A%0A%20%20%20%20integer%20%3A%3A%20i%0A%0A%20%20%20%20do%20i%20%3D%201%2C%20size%28A%2C1%29%0A%20%20%20%20%20%20print%20%2A%2C%20A%28i%2C%3A%29%0A%20%20%20%20end%20do%0A%0A%20%20end%20subroutine%20print_matrix%0A%0Aend%20module%20my_mod' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>module my_mod
   implicit none
 
@@ -897,35 +891,26 @@ advantage of <em>assumed-shape</em> arguments since the module will generate the
 explicit interface for us. This results in a much simpler subroutine interface.</p>
 </div></blockquote>
 <p>To <code class="docutils literal notranslate"><span class="pre">use</span></code> the module within a program:</p>
-<div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20use_mod%0A%20%20use%20my_mod%0A%20%20implicit%20none%0A%0A%20%20real%20%3A%3A%20mat%2810%2C%2010%29%0A%0A%20%20mat%28%3A%2C%3A%29%20%3D%20public_var%0A%0A%20%20call%20print_matrix%28mat%29%0A%0Aend%20program%20use_mod' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id6" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">program</span> <span class="n">use_mod</span>
-  <span class="n">use</span> <span class="n">my_mod</span>
-  <span class="n">implicit</span> <span class="n">none</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">use_mod</span><span class="w"></span>
+<span class="w">  </span><span class="k">use </span><span class="n">my_mod</span><span class="w"></span>
+<span class="w">  </span><span class="k">implicit none</span>
 
-  <span class="n">real</span> <span class="p">::</span> <span class="n">mat</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span> <span class="mi">10</span><span class="p">)</span>
+<span class="k">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mat</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"></span>
 
-  <span class="n">mat</span><span class="p">(:,:)</span> <span class="o">=</span> <span class="n">public_var</span>
+<span class="w">  </span><span class="n">mat</span><span class="p">(:,:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">public_var</span><span class="w"></span>
 
-  <span class="n">call</span> <span class="n">print_matrix</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span>
+<span class="w">  </span><span class="k">call </span><span class="n">print_matrix</span><span class="p">(</span><span class="n">mat</span><span class="p">)</span><span class="w"></span>
 
-<span class="n">end</span> <span class="n">program</span> <span class="n">use_mod</span>
+<span class="k">end program </span><span class="n">use_mod</span><span class="w"></span>
 </pre></div>
-</div>
 </div>
 <p><strong>Example:</strong> explicit import list</p>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=use%20my_mod%2C%20only%3A%20public_var' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id7" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">use</span> <span class="n">my_mod</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">public_var</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use </span><span class="n">my_mod</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">public_var</span><span class="w"></span>
 </pre></div>
-</div>
 </div>
 <p><strong>Example:</strong> aliased import</p>
-<div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=use%20my_mod%2C%20only%3A%20printMat%3D%3Eprint_matrix' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id8" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">use</span> <span class="n">my_mod</span><span class="p">,</span> <span class="n">only</span><span class="p">:</span> <span class="n">printMat</span><span class="o">=&gt;</span><span class="n">print_matrix</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use </span><span class="n">my_mod</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">printMat</span><span class="o">=&gt;</span><span class="n">print_matrix</span><span class="w"></span>
 </pre></div>
-</div>
 </div>
 <blockquote>
 <div><p>Each module should be written in a separate <code class="docutils literal notranslate"><span class="pre">.f90</span></code> source file. Modules need to be compiled prior to any program units that <code class="docutils literal notranslate"><span class="pre">use</span></code> them.</p>

@@ -888,13 +888,10 @@ a logical expression.</p>
 <p>In the following examples, a conditional <code class="docutils literal notranslate"><span class="pre">if</span></code> construct is used to print out a
 message to describe the nature of the <code class="docutils literal notranslate"><span class="pre">angle</span></code> variable:</p>
 <p><strong>Example:</strong> single branch <code class="docutils literal notranslate"><span class="pre">if</span></code></p>
-<div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=if%20%28angle%20%3C%2090.0%29%20then%0A%20%20print%20%2A%2C%20%27Angle%20is%20acute%27%0Aend%20if' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id1" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">angle</span> <span class="o">&lt;</span> <span class="mf">90.0</span><span class="p">)</span> <span class="n">then</span>
-  <span class="nb">print</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;Angle is acute&#39;</span>
-<span class="n">end</span> <span class="k">if</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">9</span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">  print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Angle is acute&#39;</span><span class="w"></span>
+<span class="k">end if</span><span class="w"></span>
 </pre></div>
-</div>
 </div>
 <p>In this first example, the code within the <code class="docutils literal notranslate"><span class="pre">if</span></code> construct is <em>only executed if</em> the
 test expression (<code class="docutils literal notranslate"><span class="pre">angle</span> <span class="pre">&lt;</span> <span class="pre">90.0</span></code>) is true.</p>
@@ -905,31 +902,25 @@ to make code more readable.</p>
 </div>
 <p>We can add an alternative branch to the construct using the <code class="docutils literal notranslate"><span class="pre">else</span></code> keyword:</p>
 <p><strong>Example:</strong> two-branch <code class="docutils literal notranslate"><span class="pre">if</span></code>-<code class="docutils literal notranslate"><span class="pre">else</span></code></p>
-<div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=if%20%28angle%20%3C%2090.0%29%20then%0A%20%20print%20%2A%2C%20%27Angle%20is%20acute%27%0Aelse%0A%20%20print%20%2A%2C%20%27Angle%20is%20obtuse%27%0Aend%20if' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">angle</span> <span class="o">&lt;</span> <span class="mf">90.0</span><span class="p">)</span> <span class="n">then</span>
-  <span class="nb">print</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;Angle is acute&#39;</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">9</span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">  print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Angle is acute&#39;</span><span class="w"></span>
 <span class="k">else</span>
-  <span class="nb">print</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;Angle is obtuse&#39;</span>
-<span class="n">end</span> <span class="k">if</span>
+<span class="k">  print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Angle is obtuse&#39;</span><span class="w"></span>
+<span class="k">end if</span><span class="w"></span>
 </pre></div>
-</div>
 </div>
 <p>Now there are two <em>branches</em> in the <code class="docutils literal notranslate"><span class="pre">if</span></code> construct, but <em>only one branch is executed</em> depending
 on the logical expression following the <code class="docutils literal notranslate"><span class="pre">if</span></code> keyword.</p>
 <p>We can actually add any number of branches using <code class="docutils literal notranslate"><span class="pre">else</span> <span class="pre">if</span></code> to specify more conditions:</p>
 <p><strong>Example:</strong> multi-branch <code class="docutils literal notranslate"><span class="pre">if</span></code>-<code class="docutils literal notranslate"><span class="pre">else</span> <span class="pre">if</span></code>-<code class="docutils literal notranslate"><span class="pre">else</span></code></p>
-<div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=if%20%28angle%20%3C%2090.0%29%20then%0A%20%20print%20%2A%2C%20%27Angle%20is%20acute%27%0Aelse%20if%20%28angle%20%3C%20180.0%29%20then%0A%20%20print%20%2A%2C%20%27Angle%20is%20obtuse%27%0Aelse%0A%20%20print%20%2A%2C%20%27Angle%20is%20reflex%27%0Aend%20if' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="k">if</span> <span class="p">(</span><span class="n">angle</span> <span class="o">&lt;</span> <span class="mf">90.0</span><span class="p">)</span> <span class="n">then</span>
-  <span class="nb">print</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;Angle is acute&#39;</span>
-<span class="k">else</span> <span class="k">if</span> <span class="p">(</span><span class="n">angle</span> <span class="o">&lt;</span> <span class="mf">180.0</span><span class="p">)</span> <span class="n">then</span>
-  <span class="nb">print</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;Angle is obtuse&#39;</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">9</span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">  print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Angle is acute&#39;</span><span class="w"></span>
+<span class="k">else if</span><span class="w"> </span><span class="p">(</span><span class="n">angle</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">18</span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">  print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Angle is obtuse&#39;</span><span class="w"></span>
 <span class="k">else</span>
-  <span class="nb">print</span> <span class="o">*</span><span class="p">,</span> <span class="s1">&#39;Angle is reflex&#39;</span>
-<span class="n">end</span> <span class="k">if</span>
+<span class="k">  print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Angle is reflex&#39;</span><span class="w"></span>
+<span class="k">end if</span><span class="w"></span>
 </pre></div>
-</div>
 </div>
 <p>When multiple conditional expressions are used, each conditional expression is tested only if none of the previous
 expressions have evaluated to true.</p>
@@ -943,44 +934,35 @@ is currently executing. In this example we use a common name for this counter va
 <p>When we define the start of the <code class="docutils literal notranslate"><span class="pre">do</span></code> loop, we use our counter variable name followed by an equals (<code class="docutils literal notranslate"><span class="pre">=</span></code>) sign
 to specify the start value and final value of our counting variable.</p>
 <p><strong>Example:</strong> <code class="docutils literal notranslate"><span class="pre">do</span></code> loop</p>
-<div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=integer%20%3A%3A%20i%0A%0Ado%20i%20%3D%201%2C%2010%0A%20%20print%20%2A%2C%20i%0Aend%20do' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id4" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">integer</span> <span class="p">::</span> <span class="n">i</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
 
-<span class="n">do</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">10</span>
-  <span class="nb">print</span> <span class="o">*</span><span class="p">,</span> <span class="n">i</span>
-<span class="n">end</span> <span class="n">do</span>
+<span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="k">end do</span><span class="w"></span>
 </pre></div>
-</div>
 </div>
 <p><strong>Example:</strong> <code class="docutils literal notranslate"><span class="pre">do</span></code> loop with skip</p>
-<div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=integer%20%3A%3A%20i%0A%0Ado%20i%20%3D%201%2C%2010%2C%202%0A%20%20print%20%2A%2C%20i%20%20%21%20Print%20odd%20numbers%0Aend%20do' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id5" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>integer :: i
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
 
-do i = 1, 10, 2
-  print *, i  ! Print odd numbers
-end do
+<span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w">  </span><span class="c">! Print odd numbers</span>
+<span class="k">end do</span><span class="w"></span>
 </pre></div>
-</div>
 </div>
 <section id="conditional-loop-do-while">
 <h3>Conditional loop (<code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">while</span></code>)<a class="headerlink" href="#conditional-loop-do-while" title="Permalink to this heading">#</a></h3>
 <p>A condition may be added to a <code class="docutils literal notranslate"><span class="pre">do</span></code> loop with the <code class="docutils literal notranslate"><span class="pre">while</span></code> keyword. The loop will be executed while the condition given
 in <code class="docutils literal notranslate"><span class="pre">while()</span></code> evaluates to <code class="docutils literal notranslate"><span class="pre">.true.</span></code>.</p>
 <p><strong>Example:</strong> <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">while()</span></code> loop</p>
-<div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=integer%20%3A%3A%20i%0A%0Ai%20%3D%201%0Ado%20while%20%28i%20%3C%2011%29%0A%20%20print%20%2A%2C%20i%0A%20%20i%20%3D%20i%20%2B%201%0Aend%20do%0A%21%20Here%20i%20%3D%2011' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id6" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>integer :: i
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
 
-i = 1
-do while (i &lt; 11)
-  print *, i
-  i = i + 1
-end do
-! Here i = 11
+<span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="k">do while</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&lt;</span><span class="w"> </span><span class="mi">11</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">  </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="k">end do</span><span class="w"></span>
+<span class="c">! Here i = 11</span>
 </pre></div>
-</div>
 </div>
 </section>
 <section id="loop-control-statements-exit-and-cycle">
@@ -989,34 +971,28 @@ end do
 with such cases.</p>
 <p><code class="docutils literal notranslate"><span class="pre">exit</span></code> is used to quit the loop prematurely. It is usually enclosed inside an <code class="docutils literal notranslate"><span class="pre">if</span></code>.</p>
 <p><strong>Example:</strong> loop with <code class="docutils literal notranslate"><span class="pre">exit</span></code></p>
-<div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=integer%20%3A%3A%20i%0A%0Ado%20i%20%3D%201%2C%20100%0A%20%20if%20%28i%20%3E%2010%29%20then%0A%20%20%20%20exit%20%20%21%20Stop%20printing%20numbers%0A%20%20end%20if%0A%20%20print%20%2A%2C%20i%0Aend%20do%0A%21%20Here%20i%20%3D%2011' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id7" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>integer :: i
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
 
-do i = 1, 100
-  if (i &gt; 10) then
-    exit  ! Stop printing numbers
-  end if
-  print *, i
-end do
-! Here i = 11
+<span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">    exit</span><span class="w">  </span><span class="c">! Stop printing numbers</span>
+<span class="w">  </span><span class="k">end if</span>
+<span class="k">  print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="k">end do</span><span class="w"></span>
+<span class="c">! Here i = 11</span>
 </pre></div>
-</div>
 </div>
 <p>On the other hand, <code class="docutils literal notranslate"><span class="pre">cycle</span></code> skips whatever is left of the loop and goes into the next cycle.</p>
 <p><strong>Example:</strong> loop with <code class="docutils literal notranslate"><span class="pre">cycle</span></code></p>
-<div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=integer%20%3A%3A%20i%0A%0Ado%20i%20%3D%201%2C%2010%0A%20%20if%20%28mod%28i%2C%202%29%20%3D%3D%200%29%20then%0A%20%20%20%20%20%20cycle%20%20%21%20Don%27t%20print%20even%20numbers%0A%20%20end%20if%0A%20%20print%20%2A%2C%20i%0Aend%20do' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id8" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>integer :: i
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
 
-do i = 1, 10
-  if (mod(i, 2) == 0) then
-      cycle  ! Don&#39;t print even numbers
-  end if
-  print *, i
-end do
+<span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">mod</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      cycle</span><span class="w">  </span><span class="c">! Don&#39;t print even numbers</span>
+<span class="w">  </span><span class="k">end if</span>
+<span class="k">  print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="k">end do</span><span class="w"></span>
 </pre></div>
-</div>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Note</p>
@@ -1031,20 +1007,17 @@ end do
 <li><p><code class="docutils literal notranslate"><span class="pre">exit</span></code> and <code class="docutils literal notranslate"><span class="pre">cycle</span></code> may be used with tags, which allows for very fine-grained control of the loops.</p></li>
 </ol>
 <p><strong>Example:</strong> tagged nested loops</p>
-<div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=integer%20%3A%3A%20i%2C%20j%0A%0Aouter_loop%3A%20do%20i%20%3D%201%2C%2010%0A%20%20inner_loop%3A%20do%20j%20%3D%201%2C%2010%0A%20%20%20%20if%20%28%28j%20%2B%20i%29%20%3E%2010%29%20then%20%20%21%20Print%20only%20pairs%20of%20i%20and%20j%20that%20add%20up%20to%2010%0A%20%20%20%20%20%20cycle%20outer_loop%20%20%21%20Go%20to%20the%20next%20iteration%20of%20the%20outer%20loop%0A%20%20%20%20end%20if%0A%20%20%20%20print%20%2A%2C%20%27I%3D%27%2C%20i%2C%20%27%20J%3D%27%2C%20j%2C%20%27%20Sum%3D%27%2C%20j%20%2B%20i%0A%20%20end%20do%20inner_loop%0Aend%20do%20outer_loop' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id9" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>integer :: i, j
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"></span>
 
-outer_loop: do i = 1, 10
-  inner_loop: do j = 1, 10
-    if ((j + i) &gt; 10) then  ! Print only pairs of i and j that add up to 10
-      cycle outer_loop  ! Go to the next iteration of the outer loop
-    end if
-    print *, &#39;I=&#39;, i, &#39; J=&#39;, j, &#39; Sum=&#39;, j + i
-  end do inner_loop
-end do outer_loop
+<span class="n">outer_loop</span><span class="p">:</span><span class="w"> </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="w">  </span><span class="n">inner_loop</span><span class="p">:</span><span class="w"> </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">((</span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w">  </span><span class="c">! Print only pairs of i and j that add up to 10</span>
+<span class="w">      </span><span class="k">cycle </span><span class="n">outer_loop</span><span class="w">  </span><span class="c">! Go to the next iteration of the outer loop</span>
+<span class="w">    </span><span class="k">end if</span>
+<span class="k">    print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;I=&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; J=&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; Sum=&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">  </span><span class="k">end do </span><span class="n">inner_loop</span><span class="w"></span>
+<span class="k">end do </span><span class="n">outer_loop</span><span class="w"></span>
 </pre></div>
-</div>
 </div>
 </section>
 <section id="parallelizable-loop-do-concurrent">
@@ -1060,20 +1033,17 @@ below example).
 In general, compiler flags are required to activate possible parallelization for <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">concurrent</span></code> loops.</p>
 </div></blockquote>
 <p><strong>Example:</strong> <code class="docutils literal notranslate"><span class="pre">do</span> <span class="pre">concurrent()</span></code> loop</p>
-<div class="literal-block-wrapper docutils container" id="id10">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=real%2C%20parameter%20%3A%3A%20pi%20%3D%203.14159265%0Ainteger%2C%20parameter%20%3A%3A%20n%20%3D%2010%0Areal%20%3A%3A%20result_sin%28n%29%0Ainteger%20%3A%3A%20i%0A%0Ado%20concurrent%20%28i%20%3D%201%3An%29%20%20%21%20Careful%2C%20the%20syntax%20is%20slightly%20different%0A%20%20result_sin%28i%29%20%3D%20sin%28i%20%2A%20pi/4.%29%0Aend%20do%0A%0Aprint%20%2A%2C%20result_sin' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id10" title="Permalink to this code">#</a></div>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>real, parameter :: pi = 3.14159265
-integer, parameter :: n = 10
-real :: result_sin(n)
-integer :: i
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.14159265</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">result_sin</span><span class="p">(</span><span class="n">n</span><span class="p">)</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
 
-do concurrent (i = 1:n)  ! Careful, the syntax is slightly different
-  result_sin(i) = sin(i * pi/4.)
-end do
+<span class="k">do</span><span class="w"> </span><span class="k">concurrent</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="n">n</span><span class="p">)</span><span class="w">  </span><span class="c">! Careful, the syntax is slightly different</span>
+<span class="w">  </span><span class="n">result_sin</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">pi</span><span class="o">/</span><span class="mf">4.</span><span class="p">)</span><span class="w"></span>
+<span class="k">end do</span>
 
-print *, result_sin
+<span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">result_sin</span><span class="w"></span>
 </pre></div>
-</div>
 </div>
 </section>
 </section>
