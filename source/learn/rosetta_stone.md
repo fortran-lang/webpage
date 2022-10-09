@@ -1721,44 +1721,11 @@ plt.savefig("mandelbrot.png")
 
 Timings on Acer 1830T with gFortran 4.6.1 are:
 
-<table style="width:54%;">
-<colgroup>
-<col style="width: 17%" />
-<col style="width: 11%" />
-<col style="width: 12%" />
-<col style="width: 12%" />
-</colgroup>
-<tbody>
-<tr class="odd">
-<td></td>
-<td>Python</td>
-<td>Fortran</td>
-<td>Speedup</td>
-</tr>
-<tr class="even">
-<td>Calculation</td>
-<td>12.749</td>
-<td>00.784</td>
-<td>16.3x</td>
-</tr>
-<tr class="odd">
-<td>Saving</td>
-<td>01.904</td>
-<td>01.456</td>
-<td><blockquote>
-<p>1.3x</p>
-</blockquote></td>
-</tr>
-<tr class="even">
-<td>Total</td>
-<td>14.653</td>
-<td>02.240</td>
-<td><blockquote>
-<p>6.5x</p>
-</blockquote></td>
-</tr>
-</tbody>
-</table>
+|             	| Python 	| Fortran 	| Speedup 	|
+|-------------	|--------	|---------	|---------	|
+| Calculation 	| 12.749 	| 00.784  	| 16.3x   	|
+| Saving      	| 01.904 	| 01.456  	| 1.3x    	|
+| Total       	| 14.653 	| 02.240  	| 6.5x    	|
 
 ### Least Squares Fitting
 
