@@ -686,7 +686,7 @@ for i in range(3, 8):
 r = 1
 do i = 3, 7
     r = r*a(i)
-end do.
+end do
 
 ```
 :::::
@@ -715,7 +715,7 @@ for i in range(3, 8):
 r = 1
 do i = 3, 7
     r = r*a(i)
-end do.
+end do
 
 ```
 :::::
