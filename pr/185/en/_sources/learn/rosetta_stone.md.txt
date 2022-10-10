@@ -7,8 +7,8 @@ many common idioms in both languages side by side.
 ## How to Execute Code Snippets
 
 Consider for example the following code snippets:
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -88,8 +88,8 @@ Everything else is the same, in particular:
 > -   Arrays can be of any integer, real or complex type
 > -   ...
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -447,8 +447,8 @@ c = [ ((i, j = 1, 3), i = 1, 6) ]
 
 ### Some indexing examples
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -481,8 +481,8 @@ print *, b(:0)
 :::::
 ::::::
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -512,8 +512,8 @@ print *, b(:0)
 
 First  n   elements:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -537,8 +537,8 @@ a(:n+m-1) ! assuming starting index m
 
 Last  n   elements:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -561,8 +561,8 @@ a(size(a)-n+1:)
 
 Select elements between  i   and    j   (inclusive):
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -586,8 +586,8 @@ a(i:j)
 Select  n   elements starting with index
 \`i\`:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -612,8 +612,8 @@ a(i:i+n-1)
 Select elements between  -n, ..., n  
 (inclusive):
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -636,8 +636,8 @@ a(-n:n)
 
 Loop over the whole array:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -665,8 +665,8 @@ end do
 
 Loop between index  3   and    7   (inclusive):
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -694,8 +694,8 @@ end do.
 
 Loop between  3  -th and    7  -th elements (inclusive):
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -724,8 +724,8 @@ end do.
 Split a string into three parts at indices    i   and  j  , the
 parts are:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -752,8 +752,8 @@ a(j:   )
 
 Laplace update:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -782,8 +782,8 @@ u(2:nx-1,2:ny-1) = ((u(3:,2:ny-1)+u(:ny-2,2:ny-1))*dy2 + &
 
 Comparison of Fortran and Python import statements:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -810,8 +810,8 @@ use A
 
 The following Python statements have no equivalent in Fortran:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -857,8 +857,8 @@ Identical features:
 
 One creates the module:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -904,8 +904,8 @@ end module
 
 And uses it from the main program as follows:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -934,8 +934,8 @@ end program
 :::::
 ::::::
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -964,8 +964,8 @@ code snippet just by appending `end` at the end.
 
 In order to specify which symbols are public and private, one would use:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1030,8 +1030,8 @@ Fortran it is single precision. See also the relevant
 [NumPy](http://docs.scipy.org/doc/numpy/user/basics.types.html)
 documentation.
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1053,8 +1053,8 @@ f = 1.1
 ```
 :::::
 ::::::
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1116,8 +1116,8 @@ the `constants.f90` module (included below).
 
 Otherwise the usage is identical.
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1147,8 +1147,8 @@ print *, 4 + 5*I
 ```
 :::::
 ::::::
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1204,8 +1204,8 @@ In both Python and Fortran, strings can be delimited by either `"` or
 
 There are three general ways to print formatted strings:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1231,8 +1231,8 @@ print '("Integer ", i0, " and float ", f0.6, ".")', 5, 5.5
 ```
 :::::
 ::::::
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1259,8 +1259,8 @@ Integer 5 and float 5.500000.
 
 And here are some of the frequently used formats:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1289,8 +1289,8 @@ print '(es23.16)', -5.5_dp
 :::::
 ::::::
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1324,8 +1324,8 @@ text
 Both Python and Fortran allow nested functions that can access the outer
 function's namespace:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1362,8 +1362,8 @@ end subroutine foo
 
 Use it like:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1386,8 +1386,8 @@ call foo(2._dp, 2._dp, 1._dp)
 :::::
 ::::::
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1413,8 +1413,8 @@ call foo(2._dp, 2._dp, 1._dp)
 
 You can use the nested functions in callbacks to pass context:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1470,8 +1470,8 @@ end subroutine foo
 
 And use it like:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1494,8 +1494,8 @@ call foo(0.5_dp, 2._dp)
 :::::
 ::::::
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1540,8 +1540,8 @@ name to the `exit` statement. Else, the innermost loop is interrupted.
 Python's `exit()` interrupts the execution of program or of an
 interactive session.
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1576,8 +1576,8 @@ The loop then continues at its next iteration cycle. Fortran's
 instead. For named loops, it is possible to specify which loop is
 affected by appending its name to the `cycle` statement.
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1610,8 +1610,8 @@ end do loop_name
 
 Here is a real world program written in NumPy and translated to Fortran.
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1729,8 +1729,8 @@ In Python we use Minpack via [SciPy](http://www.scipy.org/), in Fortran
 we use [Minpack](https://github.com/fortran-lang/minpack) directly. We first
 create a module `find_fit_module` with a function `find_fit`:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
@@ -1811,8 +1811,8 @@ end module
 Then we use it to find a nonlinear fit of the form `a*x*log(b + c*x)` to
 a list of primes:
 
-::::::{grid} 1 1 1 1
-:gutter: 1
+::::::{grid} 1 1 2 2
+:gutter: 0
 
 :::::{grid-item}
    ```{code-block} text
