@@ -1,4 +1,4 @@
-from sphinx.directives.code import *
+from sphinx.directives.code import CodeBlock, parselinenos, dedent_lines, container_wrapper, logger
 import urllib.parse
 import requests
 from requests.structures import CaseInsensitiveDict
@@ -62,13 +62,12 @@ class PlayCodeBlock(CodeBlock):
             extra_args['linenostart'] = self.options['lineno-start']
         self.set_source_info(literal)
         caption = f"<a href='https://play.fortran-lang.org/?code={urllib.parse.quote(code)}' target='_blank'>Fortran Playground</a>"
-        if caption:
-            try:
-                literal = container_wrapper(self, literal, caption)
-            except ValueError as exc:
-                return [document.reporter.warning(exc, line=self.lineno)]
+        try:
+            literal = container_wrapper(self, literal, caption)
+        except ValueError as exc:
+            return [document.reporter.warning(exc, line=self.lineno)]
         resp = requests.post(url, headers=headers, data=data%clean(code))
-        #print(resp.content)
+        print(resp.content)
         #print([i in resp.content  for i in comp_error])
         if any(i in resp.content  for i in comp_error):
             #print("original")
