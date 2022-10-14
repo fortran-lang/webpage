@@ -160,7 +160,7 @@ The aim of this project is to create and maintain an open source Fortran compile
 There are three open source compilers under development:
 
 * LFortran: https://lfortran.org/
-* Flang: https://releases.llvm.org/15.0.0/tools/flang/docs/index.html
+* Flang: https://flang.llvm.org/docs/
 * GFortran: https://gcc.gnu.org/wiki/GFortran
 
 ## [Modern Fortran for Visual Studio Code](https://github.com/fortran-lang/vscode-fortran-support)
