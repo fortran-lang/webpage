@@ -155,6 +155,7 @@ The aim of this project is to create and maintain an open source Fortran compile
 * work interactively (Jupyter notebooks)
 * in the browser
 * works as the foundation for linters, VSCode language integration and documentation generators
+* runs well on modern hardware (CPU, GPU, ...)
 
 There are three open source compilers under development:
 
