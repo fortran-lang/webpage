@@ -9,7 +9,7 @@ url = "https://play-api.fortran-lang.org/run"
 headers = CaseInsensitiveDict()
 headers["Accept"] = "application/json"
 headers["Content-Type"] = "application/json"
-data = """{"code":"%s","programInput":"","libs":[]}"""
+data_dict = {"code":"","programInput":"","libs":[]}
 comp_error = [b"<ERROR>",b"Error",b"app/main.f90",b"<h1>Bad Request</h1>"]
 
 
@@ -66,10 +66,11 @@ class PlayCodeBlock(CodeBlock):
             literal = container_wrapper(self, literal, caption)
         except ValueError as exc:
             return [document.reporter.warning(exc, line=self.lineno)]
-        resp = requests.post(url, headers=headers, data=data%clean(code))
+        data_dict['code'] = code
+        resp = requests.post(url, headers=headers, json=data_dict)
         print(resp.content)
         #print([i in resp.content  for i in comp_error])
-        if any(i in resp.content  for i in comp_error):
+        if any(i in resp.content for i in comp_error):
             #print("original")
             return [*super().run()]
         else:
@@ -87,7 +88,3 @@ def setup(app):
         'parallel_write_safe': True,
     }
 
-def clean(s):
-    s = s.replace("\t", "\\t")
-    s = s.replace("\n", "\\n")
-    return s
