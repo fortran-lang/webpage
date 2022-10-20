@@ -294,11 +294,11 @@ b[a > 5] = a[a > 5] - 3
 integer :: a(10), b(10)
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 where (a > 5)
-    b = a - 3
+       b = a - 3
 elsewhere (a > 2)
-    b = 1
+       b = 1
 elsewhere
-    b = 0
+       b = 0
 end where
 
 ```
