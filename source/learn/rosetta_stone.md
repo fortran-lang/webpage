@@ -388,7 +388,6 @@ a = reshape([1, 2, 3, 4], [2, 2], order=[2, 1])
 b = reshape([2, 3, 4, 5], [2, 2], order=[2, 1])
 print *, a * b
 print *, matmul(a, b)
-/
 
 ```
 :::::
@@ -834,26 +833,26 @@ import ALongName as A
 
 Fortran modules work just like Python modules. Differences:
 
-  -   Fortran modules cannot be nested (i.e. they are all top level,
-      while in Python one can nest the module arbitrarily using the
-      `__init__.py` files)
-  -   There is no Fortran equivalent of Python's `import A`
-  -   One can specify private module symbols in Fortran
+>-   Fortran modules cannot be nested (i.e. they are all top level,
+>     while in Python one can nest the module arbitrarily using the
+>     `__init__.py` files)
+> -   There is no Fortran equivalent of Python's `import A`
+> -   One can specify private module symbols in Fortran
 
 Identical features:
 
-  -   A module contains variables, types and functions/subroutines
-  -   By default all variables/types/functions can be accessed from
-      other modules, but one can change this by explicitly specifying
-      which symbols are private or public (in Python this only works for
-      implicit imports)
-  -   Symbols that are public don't pollute the global namespace, but
-      need to be explicitly imported from the module in order to use
-      them
-  -   Importing a symbol into a module becomes part of that module and
-      can then be imported from other modules
-  -   One can use explicit or implicit imports (explicit imports are
-      recommended)
+> -   A module contains variables, types and functions/subroutines
+> -   By default all variables/types/functions can be accessed from
+>     other modules, but one can change this by explicitly specifying
+>     which symbols are private or public (in Python this only works for
+>     implicit imports)
+> -   Symbols that are public don't pollute the global namespace, but
+>     need to be explicitly imported from the module in order to use
+>     them
+> -   Importing a symbol into a module becomes part of that module and
+>     can then be imported from other modules
+> -   One can use explicit or implicit imports (explicit imports are
+>     recommended)
 
 One creates the module:
 
