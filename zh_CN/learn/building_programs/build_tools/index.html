@@ -438,7 +438,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/tips/">
-     智能提示
+     提示语
     </a>
    </li>
   </ul>
@@ -455,7 +455,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../quickstart/hello_world/">
-     Hello world
+     Hello World
     </a>
    </li>
    <li class="toctree-l2">
@@ -759,11 +759,11 @@
 <h1>构建工具<a class="headerlink" href="#build-tools" title="此标题的永久链接">#</a></h1>
 <p>根据源文件的数量和模块之间的相互依赖性，手动编译 Fortran 项目可能会变得相当复杂。除非使用正确的工具来自动执行这些任务，否则支持不同的编译器和链接器或不同的平台会变得越来越复杂。</p>
 <p>根据项目的大小和项目的目的，可以使用不同的构建自动化选项。</p>
-<p>首先，你的集成开发环境可能提供了一种构建程序的方法。一个流行的跨平台工具是 Microsoft 的 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a>，但也有其他工具，例如 <a href="https://atom.io/" target="_blank" rel="noopener">Atom</a>、<a href="https://www.eclipse.org/photran/" target="_blank" rel="noopener">Eclipse Photran</a> 和 <a href="http://www.codeblocks.org/" target="_blank" rel="noopener">Code::Blocks[ X508X]。它们提供了一个图形用户界面，但通常是针对编译器和平台的。</p>
+<p>首先，你的集成开发环境可能提供了一种构建程序的方法。一个流行的跨平台工具是 Microsoft 的 <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a>，但也有其它工具，例如 <a href="https://atom.io/" target="_blank" rel="noopener">Atom</a>、<a href="https://www.eclipse.org/photran/" target="_blank" rel="noopener">Eclipse Photran</a> 和 <a href="http://www.codeblocks.org/" target="_blank" rel="noopener">Code::Blocks</a>。它们提供了一个图形用户界面，但通常是针对编译器和平台的。</p>
 <p>对于较小的项目，基于规则的构建系统 <code class="docutils literal notranslate"><span class="pre">make</span></code> 是一种常见的选择。根据定义的规则，它可以执行从更新的源文件（重新）编译目标文件、创建库和链接可执行文件等任务。要为你的项目使用 <code class="docutils literal notranslate"><span class="pre">make</span></code>，你必须在 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 中编码这些规则，它定义了所有最终程序、中间目标文件或库以及实际源文件的相互依赖关系。有关简短介绍，请参阅 <a class="reference internal" href="#using-make-as-build-tool"><span class="std std-doc">关于 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的指南</span></a>。</p>
 <p>autotools 和 CMake 等维护工具可以通过高级描述生成 Makefile 或 Visual Studio 项目文件。它们从编译器和平台细节中抽象出来。</p>
 <p>哪些工具是你项目的最佳选择取决于许多因素。选择一个你喜欢使用的构建工具，它不应该在开发时妨碍你。花更多的时间在构建工具上而不是实际的开发工作上会很快变得令人沮丧。</p>
-<p>此外，请考虑构建工具的可访问性。如果仅限于特定的集成开发环境，你项目中的所有开发人员都可以访问吗？如果你使用的是特定的构建系统，它是否适用于你正在开发的所有平台？你的构建工具的进入壁垒有多大？考虑构建工具的学习曲线，如果你必须先学习一门复杂的编程语言才能添加新的源文件，那么完美的构建工具将毫无用处。最后，考虑其他项目正在使用什么，你依赖的项目以及使用（或将使用）你的项目作为依赖项的项目。</p>
+<p>此外，请考虑构建工具的可访问性。如果仅限于特定的集成开发环境，你项目中的所有开发人员都可以访问吗？如果你使用的是特定的构建系统，它是否适用于你正在开发的所有平台？你的构建工具的进入壁垒有多大？考虑构建工具的学习曲线，如果你必须先学习一门复杂的编程语言才能添加新的源文件，那么完美的构建工具将毫无用处。最后，考虑其它项目正在使用什么，你依赖的项目以及使用（或将使用）你的项目作为依赖项的项目。</p>
 <section id="using-make-as-build-tool">
 <h2>使用 make 作为构建工具<a class="headerlink" href="#using-make-as-build-tool" title="此标题的永久链接">#</a></h2>
 <p>最著名和最常用的构建系统称为 <code class="docutils literal notranslate"><span class="pre">make</span></code>。它按照名为 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 或 <code class="docutils literal notranslate"><span class="pre">makefile</span></code> 的配置文件中定义的规则执行操作，这通常会导致从提供的源代码编译程序。</p>
@@ -898,11 +898,11 @@ gfortran -o my_prog tabulate.o functions.o
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
 <p>在本指南中，我们避免并禁用了许多常用的 <code class="docutils literal notranslate"><span class="pre">make</span></code> 功能，如果使用不当，这些功能可能会特别麻烦，如果你对使用 <code class="docutils literal notranslate"><span class="pre">make</span></code> 没有信心，我们强烈建议你远离内置规则和变量，但显式声明所有变量和规则。</p>
-<p>你会发现 <code class="docutils literal notranslate"><span class="pre">make</span></code> 是一种强大的工具，可以自动化简短的相互依赖的工作流程并构建小型项目。但是对于较大的项目，你可能很快就会遇到一些限制。通常，<code class="docutils literal notranslate"><span class="pre">make</span></code> 不会单独使用，而是与其他工具结合使用以完全或部分生成 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>。</p>
+<p>你会发现 <code class="docutils literal notranslate"><span class="pre">make</span></code> 是一种强大的工具，可以自动化简短的相互依赖的工作流程并构建小型项目。但是对于较大的项目，你可能很快就会遇到一些限制。通常，<code class="docutils literal notranslate"><span class="pre">make</span></code> 不会单独使用，而是与其它工具结合使用以完全或部分生成 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>。</p>
 </div>
 <section id="recursively-expanded-variables">
 <h3>递归扩展变量<a class="headerlink" href="#recursively-expanded-variables" title="此标题的永久链接">#</a></h3>
-<p>在许多项目中常见的是递归扩展变量（用 <code class="docutils literal notranslate"><span class="pre">=</span></code> 而不是 <code class="docutils literal notranslate"><span class="pre">:=</span></code> 声明）。变量的递归扩展允许乱序声明和其他使用“make”的巧妙技巧，因为它们被定义为在运行时扩展的规则，而不是在解析时定义。</p>
+<p>在许多项目中常见的是递归扩展变量（用 <code class="docutils literal notranslate"><span class="pre">=</span></code> 而不是 <code class="docutils literal notranslate"><span class="pre">:=</span></code> 声明）。变量的递归扩展允许乱序声明和其它使用 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的巧妙技巧，因为它们被定义为在运行时扩展的规则，而不是在解析时定义。</p>
 <p>例如，使用此代码段声明和使用 Fortran 标志（flag）将完全正常：</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span>
 	<span class="nb">echo</span> <span class="k">$(</span>FFLAGS<span class="k">)</span>
@@ -922,7 +922,7 @@ gfortran -o my_prog tabulate.o functions.o
 <p>使用 <code class="docutils literal notranslate"><span class="pre">+=</span></code> 附加到未定义的变量将产生一个递归扩展的变量，该状态将被继承以进行所有进一步的附加。</p>
 </div>
 <p>虽然这似乎是一个有趣的功能，但它往往会导致令人惊讶和意想不到的结果。通常，在定义像编译器这样的变量时，根本没有理由实际使用递归扩展。</p>
-<p>The same can easily be achieved using the <code class="docutils literal notranslate"><span class="pre">:=</span></code> declaration:</p>
+<p>使用 <code class="docutils literal notranslate"><span class="pre">:=</span></code> 声明可以轻松实现相同的目的：</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span>
 	<span class="nb">echo</span> <span class="k">$(</span>FFLAGS<span class="k">)</span>
 
@@ -1004,7 +1004,7 @@ Found ninja-1.10.0 at /usr/bin/ninja
 <p>我们只指定我们有一个 Fortran 项目（恰好需要特定版本的 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 来支持 Fortran）并告诉 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 从文件 <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code> 和 <code class="docutils literal notranslate"><span class="pre">functions.f90</span></code> 构建一个可执行的 <code class="docutils literal notranslate"><span class="pre">my_prog</span></code>。我们不必告诉 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 如何构建项目，它自己解决了这个问题。</p>
 <div class="admonition note">
 <p class="admonition-title">备注</p>
-<p><code class="docutils literal notranslate"><span class="pre">meson</span></code> 是一个跨平台的构建系统，你刚刚为你的程序指定的项目可用于为你的本地操作系统编译二进制文件或为其他平台交叉编译您的项目。同样，<code class="docutils literal notranslate"><span class="pre">meson.build</span></code> 文件是可移植的，也可以在不同的平台上工作。</p>
+<p><code class="docutils literal notranslate"><span class="pre">meson</span></code> 是一个跨平台的构建系统，你刚刚为你的程序指定的项目可用于为你的本地操作系统编译二进制文件或为其它平台交叉编译你的项目。同样，<code class="docutils literal notranslate"><span class="pre">meson.build</span></code> 文件是可移植的，也可以在不同的平台上工作。</p>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">meson</span></code> 的文档可以在 <a href="https://mesonbuild.com/" target="_blank" rel="noopener">meson-build 网页</a>中找到。</p>
 </section>
@@ -1065,11 +1065,7 @@ Found ninja-1.10.0 at /usr/bin/ninja
 <p>我们指定我们有一个 Fortran 项目，并告诉 CMake 从文件 <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code> 和 <code class="docutils literal notranslate"><span class="pre">functions.f90</span></code> 创建一个可执行的 <code class="docutils literal notranslate"><span class="pre">my_prog</span></code>。 CMake 知道如何从指定的源构建可执行文件的详细信息，因此我们不必担心构建过程中的实际步骤。</p>
 <div class="admonition tip">
 <p class="admonition-title">小技巧</p>
-<p>CMake’s official reference can be found at the
-&lt;a href=”https://cmake.org/cmake/help/latest/”, target=”_blank” rel=”noopener”&gt;CMake webpage</a>.
-It is organised in manpages, which are also available with your local CMake
-installation as well using <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">cmake</span></code>. While it covers all functionality of
-CMake, it sometimes covers them only very briefly.</p>
+<p>CMake 的官方参考可以在 &lt;a href=”https://cmake.org/cmake/help/latest/”, target=”_blank” rel=”noopener”&gt;CMake 网页</a>中找到。它以联机帮助页的形式进行组织，本地 CMake 安装以及使用 <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">cmake</span></code> 也可以使用联机帮助页。虽然它涵盖了 CMake 的所有功能，但有时只是非常简短地介绍了它们。</p>
 </div>
 </section>
 </section>

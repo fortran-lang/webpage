@@ -438,7 +438,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/tips/">
-     智能提示
+     提示语
     </a>
    </li>
   </ul>
@@ -455,7 +455,7 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../hello_world/">
-     Hello world
+     Hello World
     </a>
    </li>
    <li class="toctree-l2">
@@ -755,7 +755,7 @@
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="derived-types">
 <h1>派生类型<a class="headerlink" href="#derived-types" title="此标题的永久链接">#</a></h1>
-<p>正如前面在 <a class="reference internal" href="../variables/"><span class="doc std std-doc">Variables</span></a> 中所讨论的，Fortran 中有五种内置数据类型。 _派生类型_是一种特殊形式的数据类型，可以封装其他内置类型以及其他派生类型。它可以被认为等同于 C 和 C++ 编程语言中的 <em>struct</em>。</p>
+<p>正如前面在 <a class="reference internal" href="../variables/"><span class="doc std std-doc">变量</span></a> 中所讨论的，Fortran 中有五种内置数据类型。 <em>派生类型</em> 是一种特殊形式的数据类型，可以封装其它内置类型以及其它派生类型。它可以被认为等同于 C 和 C++ 编程语言中的 <em>struct</em> 。</p>
 <section id="a-quick-take-on-derived-types">
 <h2>快速了解派生类型<a class="headerlink" href="#a-quick-take-on-derived-types" title="此标题的永久链接">#</a></h2>
 <p>这是一个基本派生类型的示例：</p>
@@ -813,7 +813,7 @@
 <h2>声明派生类型的选项<a class="headerlink" href="#options-to-declare-a-derived-type" title="此标题的永久链接">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">attribute-list</span></code> 可能指的是以下内容：</p>
 <ul class="simple">
-<li><p>_访问类型_是 <code class="docutils literal notranslate"><span class="pre">公共</span></code> 或 <code class="docutils literal notranslate"><span class="pre">私有</span></code> 的</p></li>
+<li><p><em>访问类型</em> 是 <code class="docutils literal notranslate"><span class="pre">公共</span></code> 或 <code class="docutils literal notranslate"><span class="pre">私有</span></code> 的</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">bind(c)</span></code> 提供与 C 编程语言的互操作性</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">extends(</span></code><em>parent</em><code class="docutils literal notranslate"><span class="pre">)</span></code>，其中_parent_是先前声明的派生类型的名称，当前派生类型将继承其所有成员和功能</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">abstract</span></code> —— 一个面向对象的特征，在高级编程教程中涉及到</p></li>
@@ -836,7 +836,7 @@
 <blockquote>
 <div><p>使用语句 <code class="docutils literal notranslate"><span class="pre">sequence</span></code> 的前提是下面定义的数据类型既不是 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 也不是 <code class="docutils literal notranslate"><span class="pre">pointer</span></code> 类型。 此外，它并不意味着这些数据类型将以任何特定的形式存储在内存中，也就是说，与 <code class="docutils literal notranslate"><span class="pre">contiguous</span></code> 属性没有关系。</p>
 </div></blockquote>
-<p>如果使用_访问类型_属性 <code class="docutils literal notranslate"><span class="pre">public</span></code> 和 <code class="docutils literal notranslate"><span class="pre">private</span></code>，则声明所有在下面声明的成员变量将被自动分配相应的属性。</p>
+<p>如果使用 <em>访问类型</em> 属性 <code class="docutils literal notranslate"><span class="pre">public</span></code> 和 <code class="docutils literal notranslate"><span class="pre">private</span></code>，则声明所有在下面声明的成员变量将被自动分配相应的属性。</p>
 <p>属性<code class="docutils literal notranslate"><span class="pre">bind(c)</span></code>是用来实现 Fortran 的派生类型和 C 的结构体之间的兼容性。</p>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">bind(c)</span></code> 的例子：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">f_to_c</span><span class="w"></span>
@@ -951,8 +951,8 @@
 </section>
 <section id="options-to-declare-members-of-a-derived-type">
 <h2>用于声明派生类型成员的选项<a class="headerlink" href="#options-to-declare-members-of-a-derived-type" title="此标题的永久链接">#</a></h2>
-<p><code class="docutils literal notranslate"><span class="pre">[member-variables]</span></code> 指的是所有成员数据类型的声明。 这些数据类型可以是任何内置的数据类型，和/或其他派生类型，正如在上述例子中已经展示的。 然而，成员变量可以有自己广泛的语法，其形式为：<code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">[,member-attributes]</span> <span class="pre">::</span> <span class="pre">name[attr-dependent-spec][init]</span></code></p>
-<p><code class="docutils literal notranslate"><span class="pre">type</span></code>：任何内置类型或其他派生类型</p>
+<p><code class="docutils literal notranslate"><span class="pre">[member-variables]</span></code> 指的是所有成员数据类型的声明。 这些数据类型可以是任何内置的数据类型，和/或其它派生类型，正如在上述例子中已经展示的。 然而，成员变量可以有自己广泛的语法，其形式为：<code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">[,member-attributes]</span> <span class="pre">::</span> <span class="pre">name[attr-dependent-spec][init]</span></code></p>
+<p><code class="docutils literal notranslate"><span class="pre">type</span></code>：任何内置类型或其它派生类型</p>
 <p><code class="docutils literal notranslate"><span class="pre">member-attributes</span></code>（可选）：</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">public</span></code> 或 <code class="docutils literal notranslate"><span class="pre">private</span></code> 访问属性</p></li>
@@ -981,7 +981,7 @@
 </pre></div>
 </div>
 <blockquote>
-<div><p>以下属性：<code class="docutils literal notranslate"><span class="pre">pointer</span></code>、<code class="docutils literal notranslate"><span class="pre">codimension</span></code>、<code class="docutils literal notranslate"><span class="pre">contiguous</span></code>、<code class="docutils literal notranslate"><span class="pre">volatile</span></code>、<code class="docutils literal notranslate"><span class="pre">asynchronous</span></code> 是_快速入门_教程中不会涉及的高级特性。然而，在这里展示它们，是为了让读者知道这些特征确实存在并能够识别它们。这些特性将在接下来的《高级编程》迷你书中详细介绍。</p>
+<div><p>以下属性：<code class="docutils literal notranslate"><span class="pre">pointer</span></code>、<code class="docutils literal notranslate"><span class="pre">codimension</span></code>、<code class="docutils literal notranslate"><span class="pre">contiguous</span></code>、<code class="docutils literal notranslate"><span class="pre">volatile</span></code>、<code class="docutils literal notranslate"><span class="pre">asynchronous</span></code> 是 <em>快速入门</em> 教程中不会涉及的高级特性。然而，在这里展示它们，是为了让读者知道这些特征确实存在并能够识别它们。这些特性将在接下来的《高级编程》迷你书中详细介绍。</p>
 </div></blockquote>
 </section>
 <section id="type-bound-procedures">

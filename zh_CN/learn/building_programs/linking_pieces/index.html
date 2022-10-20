@@ -438,7 +438,7 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../os_setup/tips/">
-     智能提示
+     提示语
     </a>
    </li>
   </ul>
@@ -455,7 +455,7 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../quickstart/hello_world/">
-     Hello world
+     Hello World
     </a>
    </li>
    <li class="toctree-l2">
@@ -744,8 +744,8 @@
 <span class="k">end program </span><span class="n">tabulate</span><span class="w"></span>
 </pre></div>
 </div>
-<p>注意「use」语句—这将是我们定义函数「f」的地方。</p>
-<p>我们想让程序具有通用性，所以要把具体的源代码 —— 函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 的实现—与通用源代码分开。有几种方法来实现这一点，但其中一种是把它放在不同的源文件中。我们可以把通用程序交给用户，他们提供具体的源代码。</p>
+<p>注意 <code class="docutils literal notranslate"><span class="pre">use</span></code> 语句 —— 这将是我们定义函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 的地方。</p>
+<p>我们想让程序具有通用性，所以要把具体的源代码 —— 函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 的实现 —— 与通用源代码分开。有几种方法来实现这一点，但其中一种是把它放在不同的源文件中。我们可以把通用程序交给用户，他们提供具体的源代码。</p>
 <p>假设该函数在源文件“functions.f90”中实现为：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">user_functions</span><span class="w"></span>
 <span class="w">    </span><span class="k">implicit none</span>
@@ -759,7 +759,7 @@
 <span class="k">end module </span><span class="n">user_functions</span><span class="w"></span>
 </pre></div>
 </div>
-<p>构建具有这种特定函数的程序，我们需要编译两个源代码文件并通过链接来合并他们为一个可执行程序。因为「tabulate」程序依赖于function模块，我们需要首先编译包含我们模块的源文件。要执行的命令序列为：</p>
+<p>构建具有这种特定函数的程序，我们需要编译两个源代码文件并通过链接来合并它们为一个可执行程序。因为“tabulate”程序依赖于”function“模块，我们需要首先编译包含我们模块的源文件。要执行的命令序列为：</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -c functions.f90
 $ gfortran tabulate.f90 functions.o
 </pre></div>

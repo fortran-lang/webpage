@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Build tools &#8212; Fortran Programming Language</title>
+    <title>Инструменты сборки &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -522,7 +522,7 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Build tools
+     Инструменты сборки
     </a>
    </li>
    <li class="toctree-l2">
@@ -717,29 +717,29 @@
 <nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-make-as-build-tool">
-   Using make as build tool
+   Использование make как инструмент сборки
   </a>
   <ul class="nav section-nav flex-column">
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#recursively-expanded-variables">
-     Recursively expanded variables
+     Рекурсивно расширяемые переменные
     </a>
    </li>
    <li class="toc-h3 nav-item toc-entry">
     <a class="reference internal nav-link" href="#comments-and-whitespace">
-     Comments and whitespace
+     Комментарии и символ пробела
     </a>
    </li>
   </ul>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#the-meson-build-system">
-   The meson build system
+   Система сборки meson
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#creating-a-cmake-project">
-   Creating a CMake project
+   Создание проекта в системе сборки CMake
   </a>
  </li>
 </ul>
@@ -756,89 +756,45 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="build-tools">
-<h1>Build tools<a class="headerlink" href="#build-tools" title="Permalink to this heading">#</a></h1>
-<p>Compiling your Fortran projects by hand can become quite complicated depending
-on the number of source files and the interdependencies through the module.
-Supporting different compilers and linkers or different platforms can become
-increasingly complicated unless the right tools are used to automatically
-perform those tasks.</p>
-<p>Depending on the size of your project and the purpose of project different
-options for the build automation can be used.</p>
-<p>First, your integrated development environment probably provides a way to build
-your program. A popular cross-platform tool is Microsoft’s
-<a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a>,
-but others exist, such as
-<a href="https://atom.io/" target="_blank" rel="noopener">Atom</a>,
-<a href="https://www.eclipse.org/photran/" target="_blank" rel="noopener">Eclipse Photran</a>,
-and <a href="http://www.codeblocks.org/" target="_blank" rel="noopener">Code::Blocks</a>.
-They offer a graphical user-interface, but are often very specific for the
-compiler and platform.</p>
-<p>For smaller projects, the rule based build system <code class="docutils literal notranslate"><span class="pre">make</span></code> is a common
-choice. Based on the rules defined it can perform task like (re)compiling
-object files from updated source files, creating libraries and linking
-executables.
-To use <code class="docutils literal notranslate"><span class="pre">make</span></code> for your project you have to encode those rules in <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>,
-which defines the interdependencies of all the final program, the intermediary
-object files or libraries and the actual source files.
-For a short introduction see <a class="reference internal" href="#using-make-as-build-tool"><span class="std std-doc">the guide on <code class="docutils literal notranslate"><span class="pre">make</span></code></span></a>.</p>
-<p>Maintenance tools like autotools and CMake can generate Makefiles or
-Visual Studio project files via a high-level description. They abstract
-away from the compiler and platform specifics.</p>
-<p>Which of those tools are the best choice for your projects depends on many factors.
-Choose a build tool you are comfortable working with, it should not get in your
-way while developing. Spending more time on working against your build tools
-than doing actual development work can quickly become frustrating.</p>
-<p>Also, consider the accessibility of your build tools.
-If it is restricted to a specific integrated development environment, can all
-developers on your project access it?
-If you are using a specific build system, does it work on all platforms you
-are developing for?
-How large is the entry barrier of your build tools? Consider the learning curve
-for the build tools, the perfect build tool will be of no use, if you have to
-learn a complex programming language first to add a new source file.
-Finally, consider what other project are using, those you are depending on and
-those that use (or will use) your project as dependency.</p>
+<h1>Инструменты сборки<a class="headerlink" href="#build-tools" title="Permalink to this heading">#</a></h1>
+<p>Компиляция ваших проектов на языке Fortran вручную может стать довольно сложной задачей по мере роста числа файлов исходного кода и зависимостей в файлах модулей. Поддержка различных компиляторов и компоновщиков или различных платформ может стать все более сложной, если не использовать правильные инструменты для автоматического выполнения этих задач.</p>
+<p>В зависимости от размера и цели вашего проекта могут быть использованы различные варианты автоматизации сборки.</p>
+<p>Прежде всего, ваша интегрированная среда разработки (IDE), возможно, предоставляет способ сборки вашей программы. Популярным кроссплатформенным инструментом является <a href="https://code.visualstudio.com/" target="_blank" rel="noopener">Visual Studio Code</a> от Microsoft, но существуют и другие, такие как <a href="https://atom.io/" target="_blank" rel="noopener">Atom</a>, <a href="https://www.eclipse.org/photran/" target="_blank" rel="noopener">Eclipse Photran</a>, и <a href="http://www.codeblocks.org/" target="_blank" rel="noopener">Code::Blocks</a>. Они предлагают пользовательский интерфейс, но часто очень специфичны для компилятора и платформы.</p>
+<p>Для небольших проектов часто используется система сборки <code class="docutils literal notranslate"><span class="pre">make</span></code>. На основе заданных правил она может выполнять такие задачи, как (пере)компиляция объектных файлов из обновлённых файлов исходных кодов, создание библиотек, и компоновка исполняемых файлов. Чтобы использовать <code class="docutils literal notranslate"><span class="pre">make</span></code>, для вашего проекта вы должны создать эти правила в файле <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, который определяет взаимозависимости всех конечных программ, промежуточных объектных файлов или библиотек и непосредственно файлов исходных кодов. Краткое введение по этой системе сборки приводится <a class="reference internal" href="#using-make-as-build-tool"><span class="std std-doc">в руководстве по <code class="docutils literal notranslate"><span class="pre">make</span></code></span></a>.</p>
+<p>Инструменты сопровождения, такие как autotools и CMake, могут генерировать файлы Makefile или файлы проектов Visual Studio через высокоуровневое описание. Они абстрагируются от специфики компилятора и платформы.</p>
+<p>Какой из этих инструментов лучше выбрать для ваших проектов, зависит от многих факторов. Выбирайте инструмент сборки, с которым вам удобно работать, он не должен мешать вам во время разработки. Если тратить больше времени на работу с инструментом сборки, чем на саму разработку, то это может быстро надоесть.</p>
+<p>Также обратите внимание на доступность инструментов сборки. Если их использование ограничено одной IDE, смогут ли все разработчики вашего проекта получить к ним доступ? Если вы используете определённую систему сборки, работает ли она на всех платформах, для которых вы разрабатываете? Насколько велик входной порог для ваших инструментов сборки? Предварительно узнайте о кривой обучения для инструментов сборки – идеальный инструмент сборки будет бесполезен, если сначала вам сначала придётся изучить сложный язык программирования, чтобы добавить новый файл исходного кода. Наконец, посмотрите, какие другие проекты вы используете как зависимости и какие используют (или будут использовать) ваш проект как зависимость.</p>
 <section id="using-make-as-build-tool">
-<h2>Using make as build tool<a class="headerlink" href="#using-make-as-build-tool" title="Permalink to this heading">#</a></h2>
-<p>The most well-known and commonly used build system is called <code class="docutils literal notranslate"><span class="pre">make</span></code>.
-It performs actions following rules defined in a configuration file
-called <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> or <code class="docutils literal notranslate"><span class="pre">makefile</span></code>, which usually leads to compiling a program
-from the provided source code.</p>
+<h2>Использование make как инструмент сборки<a class="headerlink" href="#using-make-as-build-tool" title="Permalink to this heading">#</a></h2>
+<p>Наиболее известная и часто используемая система сборки называется <code class="docutils literal notranslate"><span class="pre">make</span></code>. Она выполняет действия, следуя правилам, определенным в конфигурационном файле, называемом <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> или <code class="docutils literal notranslate"><span class="pre">makefile</span></code>, что обычно приводит к компиляции программы из предоставленного исходного кода.</p>
 <div class="admonition tip">
 <p class="admonition-title">Совет</p>
-<p>For an in-depth <code class="docutils literal notranslate"><span class="pre">make</span></code> tutorial lookup its info page. There is an online version of this <a href="https://www.gnu.org/software/make/manual/make.html" target="_blank" rel="noopener">info page</a>, available.</p>
+<p>Для ознакомления с подробным руководством по <code class="docutils literal notranslate"><span class="pre">make</span></code> смотрите его информационную страницу. Существует онлайн версия этой информационной страницы, доступная по <a href="https://www.gnu.org/software/make/manual/make.html" target="_blank" rel="noopener">ссылке</a>.</p>
 </div>
-<p>We will start with the basics from your clean source directory. Create and open
-the file <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, we start with a simple rule called <em>all</em>:</p>
+<p>Мы начнём с основ, находясь в пустом каталоге. Создайте и откройте файл с именем <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, в котором создайте простое правило под названием <em>all</em>:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span>
 	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
-<p>After saving the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> run it by executing <code class="docutils literal notranslate"><span class="pre">make</span></code> in the same directory.
-You should see the following output:</p>
+<p>После сохранения файла <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> запустите его, выполнив команду <code class="docutils literal notranslate"><span class="pre">make</span></code> в той же директории. Вы должны будете увидеть следующий вывод:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>echo &quot;all&quot;
 all
 </pre></div>
 </div>
-<p>First, we note that <code class="docutils literal notranslate"><span class="pre">make</span></code> is substituting <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code> for the name of the rule,
-the second thing to note is that <code class="docutils literal notranslate"><span class="pre">make</span></code> is always printing the command it is
-running, finally, we see the result of running <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">&quot;all&quot;</span></code>.</p>
+<p>Во-первых, заметим, что <code class="docutils literal notranslate"><span class="pre">make</span></code> подставляем вместо <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code> имя правила; во-вторых, что следует отметить, <code class="docutils literal notranslate"><span class="pre">make</span></code> всегда выводит выполняемую команду; наконец, мы видим результат выполнения команды <code class="docutils literal notranslate"><span class="pre">echo</span> <span class="pre">\&quot;all\&quot;</span></code>.</p>
 <div class="admonition note">
 <p class="admonition-title">Примечание</p>
-<p>We call the entry point of our <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> always <em>all</em> by convention, but you can choose whatever name you like.</p>
+<p>Мы всегда называем точку входа нашего <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> <em>all</em> по договорённости, но вы можете выбрать для неё любое другое имя, которое вам нравится.</p>
 </div>
 <div class="admonition note">
 <p class="admonition-title">Примечание</p>
-<p>You should not have noticed it if your editor is working correctly,
-but you have to indent the content of a rule with a tab character.
-In case you have problems running the above <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> and see an error like</p>
+<p>Вы не должны были заметить этого, если ваш редактор работает правильно, но при описании правила отступы следует делать используя символ табуляции. Если у вас возникли проблемы с запуском приведённого выше <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> и вы видите ошибку, похожую на такую</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>Makefile:2: *** missing separator.  Stop.
 </pre></div>
 </div>
-<p>The indentation is probably not correct. In this case replace the indentation
-in the second line with a tab character.</p>
+<p>Вероятно, отступ сделан неправильно. В этом случае, используйте для отступа во второй строке символ табуляции.</p>
 </div>
-<p>Now we want to make our rules more complicated, therefore we add another rule:</p>
+<p>Теперь мы хотим усложнить наши правила, поэтому добавим ещё одно:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">PROG</span> <span class="o">:=</span> my_prog
 
 <span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
@@ -848,36 +804,21 @@ in the second line with a tab character.</p>
 	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
-<p>Note how we declare variables in <code class="docutils literal notranslate"><span class="pre">make</span></code>, you should always declare your local
-variables with <code class="docutils literal notranslate"><span class="pre">:=</span></code>. To access the content of a variable we use the <code class="docutils literal notranslate"><span class="pre">$(...)</span></code>,
-note that we have to enclose the variable name in parenthesis.</p>
+<p>Обратите внимание, как мы объявляем переменные в <code class="docutils literal notranslate"><span class="pre">make</span></code>: вы всегда должны объявлять свои локальные переменные с помощью оператора <code class="docutils literal notranslate"><span class="pre">:=</span></code>. Для доступа к содержимому переменной используется оператор <code class="docutils literal notranslate"><span class="pre">$(...)</span></code>. Заметьте, что при этом необходимо заключить имя переменной в круглые скобки.</p>
 <div class="admonition note">
 <p class="admonition-title">Примечание</p>
-<p>The declaration of variables is usually done with <code class="docutils literal notranslate"><span class="pre">:=</span></code>, but <code class="docutils literal notranslate"><span class="pre">make</span></code> does
-support <em>recursively expanded</em> variables as well with <code class="docutils literal notranslate"><span class="pre">=</span></code>.
-Normally, the first kind of declaration is wanted, as they are more predictable
-and do not have a runtime overhead from the recursive expansion.</p>
+<p>Объявление переменных обычно выполняется с помощью оператора <code class="docutils literal notranslate"><span class="pre">:=</span></code>, но <code class="docutils literal notranslate"><span class="pre">make</span></code> поддерживает и <em>рекурсивно расширяемые</em> переменные с помощью оператора <code class="docutils literal notranslate"><span class="pre">=</span></code>. Обычно желательно использовать первый тип объявления, так как такие переменные более предсказуемы и не имеют накладных расходов во время выполнения из-за рекурсивного расширения.</p>
 </div>
-<p>We introduced a dependency of the rule all, namely the content of the variable
-<code class="docutils literal notranslate"><span class="pre">PROG</span></code>, also we modified the printout, we want to see all the dependencies
-of this rule, which are stored in the variable <code class="docutils literal notranslate"><span class="pre">$^</span></code>.
-Now for the new rule which we name after the value of the variable <code class="docutils literal notranslate"><span class="pre">PROG</span></code>,
-it does the same thing we did before for the rule <em>all</em>, note how the value
-of <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code> is dependent on the rule it is used in.</p>
-<p>Again check by running the <code class="docutils literal notranslate"><span class="pre">make</span></code>, you should see:</p>
+<p>Мы добавили зависимость для правила <em>all</em>, а именно содержимое переменной <code class="docutils literal notranslate"><span class="pre">PROG</span></code>. Также мы изменили вывод, чтобы видеть все зависимости этого правила, которые хранятся в переменной <code class="docutils literal notranslate"><span class="pre">$^</span></code>. Теперь для нового правила, которое мы назвали по значению переменной <code class="docutils literal notranslate"><span class="pre">PROG</span></code>, выполняются те же операции, что были выполнены выше для правила <em>all</em>. Обратите внимание, как значение переменной <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code> зависит от правила, в котором она используется.</p>
+<p>Выполнив команду <code class="docutils literal notranslate"><span class="pre">make</span></code> снова, теперь вы должны увидеть:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>echo &quot;my_prog&quot;
 my_prog
 echo &quot;all depends on my_prog&quot;
 all depends on my_prog
 </pre></div>
 </div>
-<p>The dependency has been correctly resolved and evaluated before performing
-any action on the rule <em>all</em>.
-Let’s run only the second rule: type <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">my_prog</span></code> and you will only find
-the first two lines in your terminal.</p>
-<p>The next step is to perform some real actions with <code class="docutils literal notranslate"><span class="pre">make</span></code>, we take
-the source code from the previous chapter here and add new rules to our
-<code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
+<p>Зависимость была правильно разрешена и вычислена перед выполнением любого действия в правиле <em>all</em>. Давайте запустим выполнение только второго правила: наберите команду <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">my_prog</span></code> и в вашем терминале отобразятся только первые две строки предыдущего вывода.</p>
+<p>Следующим шагом будет выполнение некоторых реальных действий с помощью <code class="docutils literal notranslate"><span class="pre">make</span></code>, мы возьмем исходный код из предыдущей главы и добавим новые правила в наш <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">OBJS</span> <span class="o">:=</span> tabulate.o functions.o
 <span class="nv">PROG</span> <span class="o">:=</span> my_prog
 
@@ -890,19 +831,9 @@ the source code from the previous chapter here and add new rules to our
 	gfortran -c -o <span class="nv">$@</span> $&lt;
 </pre></div>
 </div>
-<p>We define <code class="docutils literal notranslate"><span class="pre">OBJS</span></code> which stands for object files, our program depends on
-those <code class="docutils literal notranslate"><span class="pre">OBJS</span></code> and for each object file we create a rule to make them from
-a source file.
-The last rule we introduced is a pattern matching rule, <code class="docutils literal notranslate"><span class="pre">%</span></code> is the common
-pattern between <code class="docutils literal notranslate"><span class="pre">tabulate.o</span></code> and <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code>, which connects our object file
-<code class="docutils literal notranslate"><span class="pre">tabulate.o</span></code> to the source file <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code>.
-With this set, we run our compiler, here <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> and translate the source
-file into an object file, we do not create an executable yet due to the <code class="docutils literal notranslate"><span class="pre">-c</span></code>
-flag.
-Note the usage of the <code class="docutils literal notranslate"><span class="pre">$&lt;</span></code> for the first element of the dependencies here.</p>
-<p>After compiling all the object files we attempt to link the program, we do not
-use a linker directly, but <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> to produce the executable.</p>
-<p>Now we run the build script with <code class="docutils literal notranslate"><span class="pre">make</span></code>:</p>
+<p>Мы определили переменную <code class="docutils literal notranslate"><span class="pre">OBJS</span></code>, содержащую список объектных файлов. Наша программа зависит от списка <code class="docutils literal notranslate"><span class="pre">OBJS</span></code> и для каждого элемента из него мы создаём правило, чтобы скомпилировать объектный файл из файла исходного кода. Последнее правило, которое мы описали является правилом сопоставления шаблонов, где <code class="docutils literal notranslate"><span class="pre">%</span></code> – общий шаблон между <code class="docutils literal notranslate"><span class="pre">tabulate.o</span></code> и <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code>, который соединяет наш объектный файл <code class="docutils literal notranslate"><span class="pre">tabulate.o</span></code> с файлом исходного кода <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code>. Используя этот набор, мы запускаем компилятор <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> и транслируем исходный код в объектный файл, при этом исполняемый файл пока не создаётся, так как используется ключ компилятора <code class="docutils literal notranslate"><span class="pre">-c</span></code>. Обратите внимание на использование переменной <code class="docutils literal notranslate"><span class="pre">$&lt;</span></code> для обращения к первому элементу списка зависимостей.</p>
+<p>После компиляции всех объектных файлов мы пытаемся скомпоновать программу, используя компоновщик не напрямую, а вызывая компилятор <code class="docutils literal notranslate"><span class="pre">gfortran</span></code>, чтобы создать исполняемый файл.</p>
+<p>Теперь мы запускаем сценарий сборки командой <code class="docutils literal notranslate"><span class="pre">make</span></code>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gfortran -c -o tabulate.o tabulate.f90
 tabulate.f90:2:7:
 
@@ -913,30 +844,22 @@ compilation terminated.
 make: *** [Makefile:10: tabulate.f90.o] Error 1
 </pre></div>
 </div>
-<p>We remember that we have dependencies between our source files, therefore we add
-this dependency explicitly to the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> with</p>
+<p>Мы помним, что у нас есть зависимости между нашими исходными файлами, поэтому мы явно добавляем эту зависимость в <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> с помощью правила</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">tabulate.o</span><span class="o">:</span> <span class="n">functions</span>.<span class="n">o</span>
 </pre></div>
 </div>
-<p>Now we can retry and find that the build is working correctly. The output should
-look like</p>
+<p>Теперь мы можем повторить попытку запуска сценария сборки и убедиться, что процесс сборки работает правильно. Вывод должен выглядеть следующим образом</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gfortran -c -o functions.o functions.f90
 gfortran -c -o tabulate.o tabulate.f90
 gfortran -o my_prog tabulate.o functions.o
 </pre></div>
 </div>
-<p>You should find <em>four</em> new files in the directory now.
-Run <code class="docutils literal notranslate"><span class="pre">my_prog</span></code> to make sure everything works as expected.
-Let’s run <code class="docutils literal notranslate"><span class="pre">make</span></code> again:</p>
+<p>В каталоге должны появиться <em>четыре</em> новых файла. Запустите программу <code class="docutils literal notranslate"><span class="pre">my_prog</span></code>, чтобы убедиться, что она работает как ожидается. Попробуйте выполнить команду <code class="docutils literal notranslate"><span class="pre">make</span></code> ещё раз:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make: Nothing to be done for &#39;all&#39;.
 </pre></div>
 </div>
-<p>Using the timestamps of the executable <code class="docutils literal notranslate"><span class="pre">make</span></code> was able to determine, it is
-newer than both <code class="docutils literal notranslate"><span class="pre">tabulate.o</span></code> and <code class="docutils literal notranslate"><span class="pre">functions.o</span></code>, which in turn are newer than
-<code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code> and <code class="docutils literal notranslate"><span class="pre">functions.f90</span></code>.
-Therefore, the program is already up-to-date with the latest code and no
-action has to be performed.</p>
-<p>In the end, we will have a look at a complete <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
+<p>Используя временные метки исполняемого файла <code class="docutils literal notranslate"><span class="pre">make</span></code> определил, что исполняемый файл новее чем каждый из файлов <code class="docutils literal notranslate"><span class="pre">tabulate.o</span></code> и <code class="docutils literal notranslate"><span class="pre">functions.o</span></code>, которые, в свою очередь, новее чем файлы исходного кода <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code> и <code class="docutils literal notranslate"><span class="pre">functions.f90</span></code>. Поэтому программа уже соответствует содержимому файлов исходного кода и никаких действий по её пересборке выполнять не нужно.</p>
+<p>В заключение мы рассмотрим готовый вариант скрипта <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable all of make&#39;s built-in rules (similar to Fortran&#39;s implicit none)</span>
 <span class="nv">MAKEFLAGS</span> <span class="o">+=</span> --no-builtin-rules --no-builtin-variables
 <span class="c"># configuration</span>
@@ -968,47 +891,19 @@ action has to be performed.</p>
 	<span class="k">$(</span>RM<span class="k">)</span> <span class="k">$(</span>filter %.o, <span class="k">$(</span>OBJS<span class="k">))</span> <span class="k">$(</span>wildcard *.mod<span class="k">)</span> <span class="k">$(</span>PROG<span class="k">)</span>
 </pre></div>
 </div>
-<p>Since you are starting with <code class="docutils literal notranslate"><span class="pre">make</span></code> we highly recommend to always include
-the first line, like with Fortran’s <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code> we do not want to have
-implicit rules messing up our <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> in surprising and harmful ways.</p>
-<p>Next, we have a configuration section where we define variables, in case you
-want to switch out your compiler, it can be easily done here.
-We also introduced the <code class="docutils literal notranslate"><span class="pre">SRCS</span></code> variable to hold all source files, which is
-more intuitive than specifying object files.
-We can easily create the object files by appending a <code class="docutils literal notranslate"><span class="pre">.o</span></code> suffix using the
-functions <code class="docutils literal notranslate"><span class="pre">addsuffix</span></code>.
-The <code class="docutils literal notranslate"><span class="pre">.PHONY</span></code> is a special rule, which should be used for all entry points
-of your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, here we define two entry point, we already know <em>all</em>,
-the new <em>clean</em> rule deletes all the build artifacts again such that we indeed
-start with a clean directory.</p>
-<p>Also, we slightly changed the build rule for the object files to account for
-appending the <code class="docutils literal notranslate"><span class="pre">.o</span></code> suffix instead of substituting it.
-Notice that we still need to explicitly define the interdependencies in the
-<code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. We also added a dependency for the object files on the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>
-itself, in case you change the compiler, this will allow you to safely rebuild.</p>
-<p>Now you know enough about <code class="docutils literal notranslate"><span class="pre">make</span></code> to use it for building small projects.
-If you plan to use <code class="docutils literal notranslate"><span class="pre">make</span></code> more extensively, we have compiled a few tips
-for you as well.</p>
+<p>Поскольку вы начинаете с системы сборки <code class="docutils literal notranslate"><span class="pre">make</span></code> мы настоятельно рекомендуем всегда добавлять указанную первую строчку, так как и в случае с оператором Fortran <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code>, мы не хотим, чтобы неявные правила испортили наш <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> неожиданным и вредным образом.</p>
+<p>Далее идёт раздел конфигурации, где мы определяем переменные. В случае если вы захотите указать другой компилятор, это легко сделать здесь. Мы также ввели переменную <code class="docutils literal notranslate"><span class="pre">SRCS</span></code> для хранения списка всех файлов исходного кода, что более интуитивно понятно, чем указание списка объектных файлов. Мы можем легко создать список объектных файлов, добавив суффикс <code class="docutils literal notranslate"><span class="pre">.o</span></code> при помощи функции <code class="docutils literal notranslate"><span class="pre">addsuffix</span></code>. <code class="docutils literal notranslate"><span class="pre">.PHONY</span></code> – специальное правило, которое должно использоваться для всех точек входа вашего <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. В нём мы определяем две точки входа: уже известное нам правило <em>all</em> и новое правило <em>clean</em>, которое удаляет все файлы, полученные в процессе сборки программы, чтобы следующая сборка выполнялась с самого начала.</p>
+<p>Также мы немного изменили правило сборки для объектных файлов, чтобы учесть добавление суффикса <code class="docutils literal notranslate"><span class="pre">.o</span></code> вместо замены на него. Обратите внимание, что нам по прежнему нужно явно определять взаимозависимости в <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. Мы также добавили зависимость для объектных файлов от самого <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, на случай если вы укажите другой компилятор. Это позволит вам безопасно выполнить пересборку.</p>
+<p>Теперь вы знаете о <code class="docutils literal notranslate"><span class="pre">make</span></code> достаточно, чтобы использовать его для создания небольших проектов. Если вы планируете использовать <code class="docutils literal notranslate"><span class="pre">make</span></code> более широко, мы подготовили для вас несколько советов.</p>
 <div class="admonition tip">
 <p class="admonition-title">Совет</p>
-<p>In this guide, we avoided and disabled a lot of the commonly used <code class="docutils literal notranslate"><span class="pre">make</span></code>
-features that can be particularly troublesome if not used correctly, we highly
-recommend staying away from the builtin rules and variables if you do not feel
-confident working with <code class="docutils literal notranslate"><span class="pre">make</span></code>, but explicitly declare all variables and rules.</p>
-<p>You will find that <code class="docutils literal notranslate"><span class="pre">make</span></code> is capable tool to automate short interdependent
-workflows and to build small projects. But for larger projects, you will
-probably soon run against some of it limitations. Usually, <code class="docutils literal notranslate"><span class="pre">make</span></code> is therefore
-not used alone but combined with other tools to generate the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>
-completely or in parts.</p>
+<p>В этом руководстве мы избегали использования и отключили многие часто используемые возможности <code class="docutils literal notranslate"><span class="pre">make</span></code>, которые могут быть особенно проблемными при неправильном применении. Мы настоятельно рекомендуем воздержаться от использования встроенных правил и переменных, если вы не чувствуете себя уверенно при работе с <code class="docutils literal notranslate"><span class="pre">make</span></code>, и использовать явное объявление переменных и правил.</p>
+<p>Вы обнаружите, что <code class="docutils literal notranslate"><span class="pre">make</span></code> является удобным инструментом для автоматизации коротких взаимозависимых рабочих процессов и создания небольших проектов. Но для больших проектов вы, вероятно, вскоре столкнётесь с некоторыми его ограничениями. Поэтому обычно <code class="docutils literal notranslate"><span class="pre">make</span></code> используется не сам по себе, а в сочетании с другими инструментами для создания файла <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> полностью или создания его фрагментов.</p>
 </div>
 <section id="recursively-expanded-variables">
-<h3>Recursively expanded variables<a class="headerlink" href="#recursively-expanded-variables" title="Permalink to this heading">#</a></h3>
-<p>Commonly seen in many projects are recursively expanded variables (declared with
-<code class="docutils literal notranslate"><span class="pre">=</span></code> instead of <code class="docutils literal notranslate"><span class="pre">:=</span></code>). Recursive expansion of your variables allows out-of-order
-declaration and other neat tricks with <code class="docutils literal notranslate"><span class="pre">make</span></code>, since they are defined as rules,
-which are expanded at runtime, rather than being defined while parsing.</p>
-<p>For example, declaring and using your Fortran flags with this snippet will work
-completely fine:</p>
+<h3>Рекурсивно расширяемые переменные<a class="headerlink" href="#recursively-expanded-variables" title="Permalink to this heading">#</a></h3>
+<p>Во многих проектах часто встречаются рекурсивно расширяемые переменные (объявление с использованием оператора <code class="docutils literal notranslate"><span class="pre">=</span></code> вместо <code class="docutils literal notranslate"><span class="pre">:=</span></code>). Рекурсивное расширение ваших переменных позволяет объявлять их не по порядку и делать другие хитрые трюки с использованием <code class="docutils literal notranslate"><span class="pre">make</span></code>, так как они определяются как правила, которые расширяются во время выполнения, а не во время анализа.</p>
+<p>Например, объявление и использование ваших флагов компиляции Fortran с помощью приведённого ниже фрагмента будет работать совершенно нормально:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span>
 	<span class="nb">echo</span> <span class="k">$(</span>FFLAGS<span class="k">)</span>
 
@@ -1017,19 +912,17 @@ completely fine:</p>
 <span class="nv">include_dirs</span> <span class="o">+=</span> -I/opt/some_dep/include
 </pre></div>
 </div>
-<p>You should find the expected (or maybe unexpected) printout after running <code class="docutils literal notranslate"><span class="pre">make</span></code></p>
+<p>После выполнения команды <code class="docutils literal notranslate"><span class="pre">make</span></code> вы должны получить ожидаемый (или, возможно, неожиданный) вывод</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>echo -I./include -I/opt/some_dep/include -O
 -I./include -I/opt/some_dep/include -O
 </pre></div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Совет</p>
-<p>appending with <code class="docutils literal notranslate"><span class="pre">+=</span></code> to an undefined variable will produce a recursively expanded variable with this state being inherited for all further appending.</p>
+<p>добавление к списку с помощью оператора <code class="docutils literal notranslate"><span class="pre">+=</span></code> для неинициализированной переменной приведёт к её рекурсивному расширению, причём это состояние будет наследоваться при всех дальнейших добавлениях.</p>
 </div>
-<p>While, it seems like an interesting feature to use, it tends to lead to
-surprising and unexpected outcomes. Usually, when defining variables like your
-compiler, there is little reason to actually use the recursive expansion at all.</p>
-<p>The same can easily be achieved using the <code class="docutils literal notranslate"><span class="pre">:=</span></code> declaration:</p>
+<p>Хотя эта возможность кажется интересной, она имеет тенденцию приводить к удивительным и неожиданным результатам. Обычно при определении переменных для вашего компилятора нет особых причин использовать рекурсивное расширение.</p>
+<p>Нужного эффекта при объявлении можно добиться используя оператор <code class="docutils literal notranslate"><span class="pre">:=</span></code>:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span>
 	<span class="nb">echo</span> <span class="k">$(</span>FFLAGS<span class="k">)</span>
 
@@ -1040,69 +933,46 @@ compiler, there is little reason to actually use the recursive expansion at all.
 </div>
 <div class="admonition important">
 <p class="admonition-title">Важно</p>
-<p>always think of a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> as a whole set of rules, it must be parsed completely before any rule can be evaluated.</p>
+<p>всегда думайте о содержимом файла <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> как о целом наборе правил, так как он должен быть полностью проанализирован, прежде чем любое правило сможет быть выполнено.</p>
 </div>
-<p>You can use whatever kind of variables you like most, mixing them should be done
-carefully, of course. It is important to be aware of the differences between the
-two kinds and the respective implications.</p>
+<p>Вы можете использовать любой вид переменных, который вам больше нравится, но смешивать их использование следует с осторожностью. Важно знать о различиях между этими двумя видами и о соответствующих последствиях.</p>
 </section>
 <section id="comments-and-whitespace">
-<h3>Comments and whitespace<a class="headerlink" href="#comments-and-whitespace" title="Permalink to this heading">#</a></h3>
-<p>There are some caveats with whitespace and comments, which might pop up from
-time to time when using <code class="docutils literal notranslate"><span class="pre">make</span></code>. First, <code class="docutils literal notranslate"><span class="pre">make</span></code> does not know of any data
-type except for strings and the default separator is just a space.
-This means <code class="docutils literal notranslate"><span class="pre">make</span></code> will give a hard time trying to build a project which
-has spaces in file names. If you encounter such case, renaming the file
-is possibly the easiest solution at hand.</p>
-<p>Another common problem is leading and trailing whitespace, once introduced,
-<code class="docutils literal notranslate"><span class="pre">make</span></code> will happily carry it along and it does in fact make a difference
-when comparing strings in <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
-<p>Those can be introduced by comments like</p>
+<h3>Комментарии и символ пробела<a class="headerlink" href="#comments-and-whitespace" title="Permalink to this heading">#</a></h3>
+<p>Есть некоторые предостережения по поводу символа пробела и комментариев, которые могут время от времени проявляться при использовании <code class="docutils literal notranslate"><span class="pre">make</span></code>. Во-первых, утилита <code class="docutils literal notranslate"><span class="pre">make</span></code> не знает ни одного типа данных, кроме строк и разделителем по умолчанию является пробел. Это означает, что <code class="docutils literal notranslate"><span class="pre">make</span></code> будет испытывать трудности при попытке собрать проект, в именах файлов которого используются символы пробела. Если вы столкнулись с такой проблемой, то переименование файла, возможно, будет самым простым её решением.</p>
+<p>Другая распространённая проблема – символы пробела в начале и конце строки. Если их ввести, то <code class="docutils literal notranslate"><span class="pre">make</span></code> воспримет их как часть строки и это повлияет на содержимое этих строк внутри файла <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
+<p>Такое может произойти при добавлении комментария</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span> <span class="o">:=</span> /usr  <span class="c1"># path to install location</span>
 <span class="nf">install</span><span class="o">:</span>
 	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span>prefix<span class="k">)</span><span class="s2">/lib&quot;</span>
 </pre></div>
 </div>
-<p>While the comment will be correctly removed by <code class="docutils literal notranslate"><span class="pre">make</span></code>, the trailing two spaces
-are now part of the variable content. Run <code class="docutils literal notranslate"><span class="pre">make</span></code> and check that this is indeed
-the case:</p>
+<p>Хотя комментарий будет корректно удалён при анализе утилитой <code class="docutils literal notranslate"><span class="pre">make</span></code>, но два завершающих пробельных символа являются частью содержимого переменной. Запустите команду <code class="docutils literal notranslate"><span class="pre">make</span></code> и убедитесь, что это действительно так:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;/usr  /lib&quot;</span>
 <span class="o">/</span><span class="n">usr</span>  <span class="o">/</span><span class="n">lib</span>
 </pre></div>
 </div>
-<p>To solve this issue, you can either move the comment, or strip the whitespace with
-the <code class="docutils literal notranslate"><span class="pre">strip</span></code> function instead. Alternatively, you could try to <code class="docutils literal notranslate"><span class="pre">join</span></code> the
-strings.</p>
+<p>Чтобы разрешить эту проблему, вы можете либо перенести комментарий на следующую строку, либо удалить пробелы в содержимом переменной с помощью функции <code class="docutils literal notranslate"><span class="pre">strip</span></code>. В качестве альтернативного решения можно попробовать соединить строки с помощью функции <code class="docutils literal notranslate"><span class="pre">join</span></code>.</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span> <span class="o">:=</span> /usr  <span class="c1"># path to install location</span>
 <span class="nf">install</span><span class="o">:</span>
 	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span>strip <span class="k">$(</span>prefix<span class="k">))</span><span class="s2">/lib&quot;</span>
 	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span>join <span class="k">$(</span>join <span class="k">$(</span>prefix<span class="k">)</span>, /<span class="k">)</span>, lib<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
-<p>All in all, none of this solutions will make your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> more readable,
-therefore, it is prudent to pay extra attention to whitespace and comments when
-writing and using <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
+<p>В целом, ни одно из этих решений не сделает ваш файл <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> более удобным для чтения, поэтому при написании и использовании правил <code class="docutils literal notranslate"><span class="pre">make</span></code> следует уделять повышенное внимание символам пробела и комментариям.</p>
 </section>
 </section>
 <section id="the-meson-build-system">
-<h2>The meson build system<a class="headerlink" href="#the-meson-build-system" title="Permalink to this heading">#</a></h2>
-<p>After you have learned the basics of <code class="docutils literal notranslate"><span class="pre">make</span></code>, which we call a low-level build
-system, we will introduce <code class="docutils literal notranslate"><span class="pre">meson</span></code>, a high-level build system.
-While you specify in a low-level build system how to build your program,
-you can use a high-level build system to specify what to build.
-A high-level build system will deal for you with how and generate
-build files for a low-level build system.</p>
-<p>There are plenty of high-level build systems available, but we will focus on
-<code class="docutils literal notranslate"><span class="pre">meson</span></code> because it is constructed to be particularly user friendly.
-The default low-level build-system of <code class="docutils literal notranslate"><span class="pre">meson</span></code> is called <code class="docutils literal notranslate"><span class="pre">ninja</span></code>.</p>
-<p>Let’s have a look at a complete <code class="docutils literal notranslate"><span class="pre">meson.build</span></code> file:</p>
+<h2>Система сборки meson<a class="headerlink" href="#the-meson-build-system" title="Permalink to this heading">#</a></h2>
+<p>После того, как вы изучили основы <code class="docutils literal notranslate"><span class="pre">make</span></code>,которую мы называем низкоуровневой системой сборки, мы ознакомим вас с <code class="docutils literal notranslate"><span class="pre">meson</span></code>, высокоуровневой системой сборки. В то время как в низкоуровневой системе сборки вы указываете, как собрать вашу программу, в высокоуровневой системе сборки вы можете указать, что собирать. Высокоуровневая система сборки определит как создать файлы сборки для низкоуровневой системы сборки и сгенерирует их за вас.</p>
+<p>Существует множество высокоуровневых систем сборки, но мы остановимся на <code class="docutils literal notranslate"><span class="pre">meson</span></code> , потому что она построена так, чтобы быть особенно удобной для пользователя. Низкоуровневая система сборки, используемая в <code class="docutils literal notranslate"><span class="pre">meson</span></code> по умолчанию, называется <code class="docutils literal notranslate"><span class="pre">ninja</span></code>.</p>
+<p>Давайте посмотрим на готовый файл <code class="docutils literal notranslate"><span class="pre">meson.build</span></code>:</p>
 <!-- meson is unknown by the highlighter, python looks okayish -->
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">project</span><span class="p">(</span><span class="s1">&#39;my_proj&#39;</span><span class="p">,</span> <span class="s1">&#39;fortran&#39;</span><span class="p">,</span> <span class="n">meson_version</span><span class="p">:</span> <span class="s1">&#39;&gt;=0.49&#39;</span><span class="p">)</span>
 <span class="n">executable</span><span class="p">(</span><span class="s1">&#39;my_prog&#39;</span><span class="p">,</span> <span class="n">files</span><span class="p">(</span><span class="s1">&#39;tabulate.f90&#39;</span><span class="p">,</span> <span class="s1">&#39;functions.f90&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>And we are already done, the next step is to configure our low-level build system
-with <code class="docutils literal notranslate"><span class="pre">meson</span> <span class="pre">setup</span> <span class="pre">build</span></code>, you should see output somewhat similar to this</p>
+<p>И этого достаточно, следующим шагом будет настройка нашей низкоуровневой системы сборки с помощью команды <code class="docutils literal notranslate"><span class="pre">meson</span> <span class="pre">setup</span> <span class="pre">build</span></code>, в результате выполнения которой вы должны увидеть результат, похожий на этот</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>The Meson build system
 Version: 0.53.2
 Source dir: /home/awvwgk/Examples
@@ -1119,61 +989,39 @@ Build targets in project: 1
 Found ninja-1.10.0 at /usr/bin/ninja
 </pre></div>
 </div>
-<p>The provided information at this point is already more detailed than anything
-we could have provided in a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, let’s run the build with
-<code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">-C</span> <span class="pre">build</span></code>, which should show something like</p>
+<p>Представленная информация на данный момент уже более подробна, чем все, что мы могли бы описать в файле <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. Давайте запустим сборку с помощью команды <code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">-C</span> <span class="pre">build</span></code>, в результате выполнения которой отобразится что-то похожее на вывод</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[1/4] Compiling Fortran object &#39;my_prog@exe/functions.f90.o&#39;.
 [2/4] Dep hack
 [3/4] Compiling Fortran object &#39;my_prog@exe/tabulate.f90.o&#39;.
 [4/4] Linking target my_prog.
 </pre></div>
 </div>
-<p>Find and test your program at <code class="docutils literal notranslate"><span class="pre">build/my_prog</span></code> to ensure it works correctly.
-We note the steps <code class="docutils literal notranslate"><span class="pre">ninja</span></code> performed are the same we would have coded up in a
-<code class="docutils literal notranslate"><span class="pre">Makefile</span></code> (including the dependency), yet we did not have to specify them,
-have a look at your <code class="docutils literal notranslate"><span class="pre">meson.build</span></code> file again:</p>
+<p>Найдите и протестируйте свою программу в каталоге <code class="docutils literal notranslate"><span class="pre">build/my_prog</span></code>, чтобы убедиться, что она работает правильно. Заметим, что последовательность шагов, которую выполнила система сборки <code class="docutils literal notranslate"><span class="pre">ninja</span></code>, аналогична той, которую бы мы записали в <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> (включая указание зависимости), но нам не пришлось её явно описывать. Посмотрите ещё раз на свой файл <code class="docutils literal notranslate"><span class="pre">meson.build</span></code>:</p>
 <div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">project</span><span class="p">(</span><span class="s1">&#39;my_proj&#39;</span><span class="p">,</span> <span class="s1">&#39;fortran&#39;</span><span class="p">,</span> <span class="n">meson_version</span><span class="p">:</span> <span class="s1">&#39;&gt;=0.49&#39;</span><span class="p">)</span>
 <span class="n">executable</span><span class="p">(</span><span class="s1">&#39;my_prog&#39;</span><span class="p">,</span> <span class="n">files</span><span class="p">(</span><span class="s1">&#39;tabulate.f90&#39;</span><span class="p">,</span> <span class="s1">&#39;functions.f90&#39;</span><span class="p">))</span>
 </pre></div>
 </div>
-<p>We only specified that we have a Fortran project (which happens to require
-a certain version of <code class="docutils literal notranslate"><span class="pre">meson</span></code> for the Fortran support) and told <code class="docutils literal notranslate"><span class="pre">meson</span></code>
-to build an executable <code class="docutils literal notranslate"><span class="pre">my_prog</span></code> from the files <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code> and
-<code class="docutils literal notranslate"><span class="pre">functions.f90</span></code>.
-We had not to tell <code class="docutils literal notranslate"><span class="pre">meson</span></code> how to build the project, it figured this out
-by itself.</p>
+<p>Мы только указали, что у нас есть проект на языке Fortran (для поддержки проектов на языке Fortran требуется определенная версия <code class="docutils literal notranslate"><span class="pre">meson</span></code>) и сказали системе сборки <code class="docutils literal notranslate"><span class="pre">meson</span></code> собрать исполняемый файл <code class="docutils literal notranslate"><span class="pre">my_prog</span></code> из файлов исходного кода <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code> и <code class="docutils literal notranslate"><span class="pre">functions.f90</span></code>. Нам не нужно было указывать <code class="docutils literal notranslate"><span class="pre">meson</span></code>, как собирать проект, система сборки разобралась с этим сама.</p>
 <div class="admonition note">
 <p class="admonition-title">Примечание</p>
-<p><code class="docutils literal notranslate"><span class="pre">meson</span></code> is a cross-platform build system, the project you just specified
-for your program can be used to compile binaries for your native operating
-system or to cross-compile your project for other platforms.
-Similarly, the <code class="docutils literal notranslate"><span class="pre">meson.build</span></code> file is portable and will work on different
-platforms as well.</p>
+<p><code class="docutils literal notranslate"><span class="pre">meson</span></code> является кроссплатформенной системой сборки, поэтому файл её проекта, который вы только что создали для своей программы, может быть использован для компиляции исполняемых файлов для вашей родной операционной системы или для кросс-компиляции вашего проекта для других платформ. Аналогично, файл <code class="docutils literal notranslate"><span class="pre">meson.build</span></code> является переносимым и будет работать на разных платформах.</p>
 </div>
-<p>The documentation of <code class="docutils literal notranslate"><span class="pre">meson</span></code> can be found at the
-<a href="https://mesonbuild.com/" target="_blank" rel="noopener">meson-build webpage</a>.</p>
+<p>Документация системы сборки <code class="docutils literal notranslate"><span class="pre">meson</span></code> доступна на <a href="https://mesonbuild.com/" target="_blank" rel="noopener">веб-странице meson-build</a>.</p>
 </section>
 <section id="creating-a-cmake-project">
-<h2>Creating a CMake project<a class="headerlink" href="#creating-a-cmake-project" title="Permalink to this heading">#</a></h2>
-<p>Similar to <code class="docutils literal notranslate"><span class="pre">meson</span></code> CMake is a high-level build system as well and commonly
-used to build Fortran projects.</p>
+<h2>Создание проекта в системе сборки CMake<a class="headerlink" href="#creating-a-cmake-project" title="Permalink to this heading">#</a></h2>
+<p>Подобно <code class="docutils literal notranslate"><span class="pre">meson</span></code>, система сборки CMake является высокоуровневой и часто используется для сборки проектов на языке Fortran.</p>
 <div class="admonition note">
 <p class="admonition-title">Примечание</p>
-<p>CMake follows a slightly different strategy and provides you with a complete
-programming language to create your build files.
-This is has the advantage that you can do almost everything with CMake,
-but your CMake build files can also become as complex as the program you are
-building.</p>
+<p>CMake придерживается несколько иной стратегии и предоставляет вам полный язык программирования для создания файлов сборки. Преимуществом является то, что с помощью CMake, можно делать практически все, но ваши файлы сборки CMake могут стать такими же сложными, как и программа, которую вы собираете.</p>
 </div>
-<p>Start by creating the file <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> with the content</p>
+<p>Начните с создания файла <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> со следующим содержимым</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.7</span><span class="p">)</span>
 <span class="nb">project</span><span class="p">(</span><span class="s2">&quot;my_proj&quot;</span><span class="w"> </span><span class="s">LANGUAGES</span><span class="w"> </span><span class="s2">&quot;Fortran&quot;</span><span class="p">)</span>
 <span class="nb">add_executable</span><span class="p">(</span><span class="s2">&quot;my_prog&quot;</span><span class="w"> </span><span class="s2">&quot;tabulate.f90&quot;</span><span class="w"> </span><span class="s2">&quot;functions.f90&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>Similar to <code class="docutils literal notranslate"><span class="pre">meson</span></code> we are already done with our CMake build file.
-We configure our low-level build files with <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-B</span> <span class="pre">build</span> <span class="pre">-G</span> <span class="pre">Ninja</span></code>,
-you should see output similar to this</p>
+<p>Как и в случае с <code class="docutils literal notranslate"><span class="pre">meson</span></code>, этого достаточно для сборки нашей программы с помощью файла сборки CMake. Мы настроим наши низкоуровневые файлы сборки с помощью команды <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-B</span> <span class="pre">build</span> <span class="pre">-G</span> <span class="pre">Ninja</span></code>, в результате выполнения которой вы увидите вывод, похожий на следующий</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-- The Fortran compiler identification is GNU 10.2.0
 -- Detecting Fortran compiler ABI info
 -- Detecting Fortran compiler ABI info - done
@@ -1185,11 +1033,7 @@ you should see output similar to this</p>
 -- Build files have been written to: /home/awvwgk/Examples/build
 </pre></div>
 </div>
-<p>You might be surprised that CMake tries to use the compiler <code class="docutils literal notranslate"><span class="pre">f95</span></code>, fortunately
-this is just a symbolic link to <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> on most systems and not the actual
-<code class="docutils literal notranslate"><span class="pre">f95</span></code> compiler.
-To give CMake a better hint you can export the environment variable <code class="docutils literal notranslate"><span class="pre">FC=gfortran</span></code>
-rerunning should show the correct compiler name now</p>
+<p>Вас может удивить, что CMake пытается использовать компилятор <code class="docutils literal notranslate"><span class="pre">f95</span></code>. К счастью, в большинстве систем это имя символической ссылки на компилятор <code class="docutils literal notranslate"><span class="pre">gfortran</span></code>, а не непосредственно компилятор <code class="docutils literal notranslate"><span class="pre">f95</span></code>. Чтобы подсказать CMake какой компилятор использовать, вы можете экспортировать переменную окружения <code class="docutils literal notranslate"><span class="pre">FC=gfortran</span></code>. Повторный вызов приведённый выше команды настройки должен отобразить правильное имя компилятора</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>-- The Fortran compiler identification is GNU 10.2.0
 -- Detecting Fortran compiler ABI info
 -- Detecting Fortran compiler ABI info - done
@@ -1201,11 +1045,8 @@ rerunning should show the correct compiler name now</p>
 -- Build files have been written to: /home/awvwgk/Example/build
 </pre></div>
 </div>
-<p>In a similar manner you could use your Intel Fortran compiler instead to build
-your project (set <code class="docutils literal notranslate"><span class="pre">FC=ifort</span></code>).</p>
-<p>CMake provides support for several low-level build files, since the default is
-platform specific, we will just use <code class="docutils literal notranslate"><span class="pre">ninja</span></code> since we already used it together
-with <code class="docutils literal notranslate"><span class="pre">meson</span></code>. As before, build your project with <code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">-C</span> <span class="pre">build</span></code>:</p>
+<p>Аналогичным образом вы можете использовать ваш компилятор Intel Fortran compiler для сборки вашего проекта (установив переменную окружения <code class="docutils literal notranslate"><span class="pre">FC=ifort</span></code>).</p>
+<p>CMake обеспечивает поддержку нескольких низкоуровневых файлов сборки, так как по умолчанию они зависят от используемой платформы. Мы будем применять только низкоуровневую систему сборки <code class="docutils literal notranslate"><span class="pre">ninja</span></code>, так как мы уже использовали её вместе с <code class="docutils literal notranslate"><span class="pre">meson</span></code>. Как и прежде, собрать проект при этом можно с помощью команды <code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">-C</span> <span class="pre">build</span></code>:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[1/6] Building Fortran preprocessed CMakeFiles/my_prog.dir/functions.f90-pp.f90
 [2/6] Building Fortran preprocessed CMakeFiles/my_prog.dir/tabulate.f90-pp.f90
 [3/6] Generating Fortran dyndep file CMakeFiles/my_prog.dir/Fortran.dd
@@ -1214,29 +1055,17 @@ with <code class="docutils literal notranslate"><span class="pre">meson</span></
 [6/6] Linking Fortran executable my_prog
 </pre></div>
 </div>
-<p>Find and test your program at <code class="docutils literal notranslate"><span class="pre">build/my_prog</span></code> to ensure it works correctly.
-The steps <code class="docutils literal notranslate"><span class="pre">ninja</span></code> performed are somewhat different, because there is usually
-more than one way to write the low-level build files to accomplish the task
-of building a project. Fortunately, we do not have to concern ourselves but have
-our build system handle those details for us.</p>
-<p>Finally, we will shortly recap on our complete <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> to specify
-our project:</p>
+<p>Найдите и протестируйте свою программу в каталоге <code class="docutils literal notranslate"><span class="pre">build/my_prog</span></code>, чтобы убедиться, что она работает правильно. Последовательность шагов, выполняемая системой сборки <code class="docutils literal notranslate"><span class="pre">ninja</span></code> в этот раз несколько отличается, потому что существует более одного способа записи низкоуровневых файлов сборки для выполнения задачи сборки проекта. К счастью, нам не нужно беспокоиться об этом, а поручить нашей системе сборки учесть эти детали за нас.</p>
+<p>Наконец, мы кратко напомним содержимое готового файла <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code>, используемого для описания нашего проекта:</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.7</span><span class="p">)</span>
 <span class="nb">project</span><span class="p">(</span><span class="s2">&quot;my_proj&quot;</span><span class="w"> </span><span class="s">LANGUAGES</span><span class="w"> </span><span class="s2">&quot;Fortran&quot;</span><span class="p">)</span>
 <span class="nb">add_executable</span><span class="p">(</span><span class="s2">&quot;my_prog&quot;</span><span class="w"> </span><span class="s2">&quot;tabulate.f90&quot;</span><span class="w"> </span><span class="s2">&quot;functions.f90&quot;</span><span class="p">)</span>
 </pre></div>
 </div>
-<p>We specified that we have a Fortran project and told CMake to create an executable
-<code class="docutils literal notranslate"><span class="pre">my_prog</span></code> from the files <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code> and <code class="docutils literal notranslate"><span class="pre">functions.f90</span></code>.
-CMake knows the details how to build the executable from the specified sources,
-so we do not have to worry about the actual steps in the build process.</p>
+<p>Мы указали, что у нас есть проект на языке Fortran и сказали системе сборки CMake создать исполняемый файл <code class="docutils literal notranslate"><span class="pre">my_prog</span></code> на основе файлов исходного кода <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code> и <code class="docutils literal notranslate"><span class="pre">functions.f90</span></code>. CMake знает, как собрать исполняемый файл из указанных исходных файлов, поэтому нам не нужно беспокоиться о фактически выполняемых шагах в процессе сборки.</p>
 <div class="admonition tip">
 <p class="admonition-title">Совет</p>
-<p>CMake’s official reference can be found at the
-&lt;a href=»https://cmake.org/cmake/help/latest/», target=»_blank» rel=»noopener»&gt;CMake webpage</a>.
-It is organised in manpages, which are also available with your local CMake
-installation as well using <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">cmake</span></code>. While it covers all functionality of
-CMake, it sometimes covers them only very briefly.</p>
+<p>Официальное руководство по CMake можно найти на <a href="https://cmake.org/cmake/help/latest/" target="_blank" rel="noopener">веб-странице CMake</a>. Она организована в виде man-страниц, которые также доступны в системе при установленном CMake с помощью вызова команды <code class="docutils literal notranslate"><span class="pre">man</span> <span class="pre">cmake</span></code> в терминале. Хотя руководство и охватывает все функциональные возможности CMake, но иногда освещает их очень кратко.</p>
 </div>
 </section>
 </section>
