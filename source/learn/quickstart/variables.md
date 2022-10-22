@@ -79,7 +79,7 @@ Watch out for assignment at declaration:
 ```fortran
 integer :: amount = 1
 ```
-**This is NOT a normal initialisation;** it implies the `save` attribute which means that the variable retains
+**This is NOT a normal initialisation;** it implies the `save` attribute, which means that the variable retains
 its value between procedure calls. Good practice is to initialise your variables separately to their declaration.
 ::::
 ## Standard input / output
