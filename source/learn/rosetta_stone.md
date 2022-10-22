@@ -36,6 +36,7 @@ print *, size(a)
 print *, maxval(a)
 print *, minval(a)
 print *, sum(a)
+end program
 
 ```
 :::::
@@ -117,6 +118,7 @@ print *, size(a)
 print *, maxval(a)
 print *, minval(a)
 print *, sum(a)
+end program
 
 ```
 :::::
@@ -149,6 +151,7 @@ print *, a(2, :)
 print *
 print *, b(1, :)
 print *, b(2, :)
+end program
 
 ```
 :::::
@@ -211,6 +214,7 @@ print *, minval(a)
 print *, a(1, 1), a(1, 2), a(1, 3)
 print *, a(2, 1), a(2, 2), a(2, 3)
 print "(3i5)", transpose(a)
+end program
 
 ```
 :::::
@@ -288,18 +292,19 @@ b[a > 5] = a[a > 5] - 3
 :::::
 
 :::::{grid-item}
-   ```{code-block} text
+   ```{code-block} fortran
 :caption: Fortran
 
 integer :: a(10), b(10)
 a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 where (a > 5)
-       b = a - 3
+    b = a - 3
 elsewhere (a > 2)
-       b = 1
+    b = 1
 elsewhere
-       b = 0
+    b = 0
 end where
+end program
 
 ```
 :::::
@@ -323,7 +328,7 @@ for i in range(len(a)):
 :::::
 
 :::::{grid-item}
-   ```{code-block} text
+   ```{code-block} fortran
 :caption: Fortran
 
 integer :: a(10), b(10)
@@ -335,6 +340,7 @@ elsewhere (a > 2)
 elsewhere
     b = 0
 end where
+end program
 
 ```
 :::::
@@ -354,7 +360,7 @@ print(sum(o[(a > 2) & (a < 6)]))
 :::::
 
 :::::{grid-item}
-   ```{code-block} text
+   ```{code-block} fortran
 :caption: Fortran
 
 integer :: a(10)
@@ -362,6 +368,7 @@ a = [1, 2, 3, 4, 5, 6, 7, 8, 9, 10]
 print *, sum(a)
 print *, sum(a, mask=a > 2 .and. a < 6)
 print *, count(a > 2 .and. a < 6)
+end program
 
 ```
 :::::
@@ -380,7 +387,7 @@ print(dot(a, b))
 :::::
 
 :::::{grid-item}
-   ```{code-block} text
+   ```{code-block} fortran
 :caption: Fortran
 
 integer :: a(2, 2), b(2, 2)
@@ -388,6 +395,7 @@ a = reshape([1, 2, 3, 4], [2, 2], order=[2, 1])
 b = reshape([2, 3, 4, 5], [2, 2], order=[2, 1])
 print *, a * b
 print *, matmul(a, b)
+end program
 
 ```
 :::::
@@ -428,7 +436,7 @@ c = array([i for i in range(1, 7)
 :::::
 
 :::::{grid-item}
-   ```{code-block} text
+   ```{code-block} fortran
 :caption: Fortran
 
 use types, only: dp
@@ -465,7 +473,7 @@ print(b[:2])
 :::::
 
 :::::{grid-item}
-   ```{code-block} text
+   ```{code-block} fortran
 :caption: Fortran
 
 integer :: a(3), b(-1:1)
@@ -475,6 +483,7 @@ print *, a(:)
 print *, b(:)
 print *, a(:2)
 print *, b(:0)
+end program
 
 ```
 :::::
@@ -582,8 +591,7 @@ a(i:j)
 :::::
 ::::::
 
-Select  n   elements starting with index
-\`i\`:
+Select  n   elements starting with index i:
 
 ::::::{grid} 1 1 2 2
 :gutter: 0
@@ -1432,7 +1440,7 @@ def foo(a, k):
 :::::
 
 :::::{grid-item}
-   ```{code-block} text
+   ```{code-block} fortran
 :caption: Fortran
 
 real(dp) function simpson(f, a, b) result(s)
