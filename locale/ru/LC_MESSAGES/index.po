@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-29 16:02+0200\n"
-"PO-Revision-Date: 2022-10-18 11:50+0000\n"
+"PO-Revision-Date: 2022-10-22 23:04+0000\n"
 "Last-Translator: Sergey Torokhov <torokhov-s-a@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/ru/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.15-dev\n"
+"X-Generator: Weblate 4.14.2-dev\n"
 "Generated-By: Babel 2.10.3\n"
 
 #: ../../source/community.md:10
@@ -1902,8 +1902,8 @@ msgid ""
 "Manager](https://github.com/fortran-lang/fpm), [this "
 "website](https://github.com/fortran-lang/webpage)."
 msgstr ""
-"Вы также можете помочь сделать Fortran лучше, внося свой вклад в набор "
-"инструментов, таких как [Стандартная Библиотека](https://github.com/"
+"Вы также можете помочь сделать Fortran лучше, внося свой вклад в разработку "
+"набора инструментов, таких как [Стандартная Библиотека](https://github.com/"
 "fortran-lang/stdlib), [Менеджер пакетов для языка Fortran](https://github."
 "com/fortran-lang/fpm), или [этот веб-сайт](https://github.com/fortran-lang/"
 "webpage)."
@@ -2013,14 +2013,14 @@ msgid ""
 "{octicon}`book;1em;sd-text-info` <a href='../learn/best_practices/'>Fortran "
 "Best Practices</a>"
 msgstr ""
-"{octicon}`book;1em;sd-text-info` <a href='../learn/best_practices/'>Лучшие "
-"практические методы языка Fortran</a>"
+"{octicon}`book;1em;sd-text-info` <a href='../learn/best_practices/"
+"'>Практические рекомендации по разработке на Fortran</a>"
 
 #: ../../source/learn.md:138
 msgid "This tutorial collects a modern canonical way of doing things in Fortran."
 msgstr ""
-"Это руководство содержит современные канонические способы реализаций задач "
-"на языке Fortran."
+"Это руководство объединяет современные стандартные методы написания кода на "
+"языке Fortran."
 
 #: ../../source/learn.md:147
 msgid "Fortran Documentation"
@@ -2518,46 +2518,51 @@ msgstr ""
 #: ../../source/learn/best_practices/arrays.md:1
 #: ../../source/learn/best_practices/index.md:12
 msgid "Arrays"
-msgstr ""
+msgstr "Массивы"
 
 #: ../../source/learn/best_practices/arrays.md:3
 msgid ""
 "Arrays are a central object in Fortran. The creation of dynamic sized arrays "
 "is discussed in the [allocatable arrays section](./allocatable_arrays.html)."
 msgstr ""
+"Массивы являются центральным объектом в языке Fortran. Создание массивов "
+"динамического размера рассматривается в разделе [выделяемые (динамические) "
+"массивы](./allocatable_arrays)."
 
 #: ../../source/learn/best_practices/arrays.md:6
 msgid "To pass arrays to procedures four ways are available"
-msgstr ""
+msgstr "Для передачи массивов в процедуры доступны четыре способа"
 
 #: ../../source/learn/best_practices/arrays.md:8
 msgid "_assumed-shape_ arrays"
-msgstr ""
+msgstr "_assumed-shape_ массивы (предполагаемой формы)"
 
 #: ../../source/learn/best_practices/arrays.md:9
 msgid "_assumed-rank_ arrays"
-msgstr ""
+msgstr "_assumed-rank_ массивы (предполагаемой размерности)"
 
 #: ../../source/learn/best_practices/arrays.md:10
 #: ../../source/learn/best_practices/element_operations.md:6
 msgid "_explicit-shape_ arrays"
-msgstr ""
+msgstr "_explicit-shape_ массивы (явной формы)"
 
 #: ../../source/learn/best_practices/arrays.md:11
 msgid "_assumed-size_ arrays"
-msgstr ""
+msgstr "_assumed-size_ массивы (предполагаемого размера)"
 
 #: ../../source/learn/best_practices/arrays.md:13
 msgid "The preferred way to pass arrays to procedures is as _assumed-shape_ arrays"
 msgstr ""
+"Предпочтительным способом передачи массивов в процедуры является передача "
+"массивов в виде _assumed-shape_ массива (предполагаемой формы)"
 
 #: ../../source/learn/best_practices/arrays.md:26
 msgid "Higher-dimensional arrays can be passed in a similar way."
-msgstr ""
+msgstr "Массивы большей размерности могут быть переданы аналогичным образом."
 
 #: ../../source/learn/best_practices/arrays.md:35
 msgid "The array is simply passed by"
-msgstr ""
+msgstr "Имя массива просто передаётся как аргумент"
 
 #: ../../source/learn/best_practices/arrays.md:42
 msgid ""
@@ -2566,6 +2571,11 @@ msgid ""
 " optionally at runtime. Similarly, array strides can be passed without "
 "requiring a copy of the array but as _assumed-shape_ descriptor:"
 msgstr ""
+"В этом случае копирование массива не производится, что имеет то "
+"преимущество, что информация о форме и размере автоматически передаётся и "
+"проверяется при компиляции и, по желанию, во время выполнения. Аналогично, "
+"строки массива могут передаваться без необходимости копирования массива, а "
+"как дескриптор _assumed-shape_ (предполагаемой формы):"
 
 #: ../../source/learn/best_practices/arrays.md:54
 msgid ""
@@ -2573,12 +2583,18 @@ msgid ""
 "subroutines. Avoid passing arrays as whole slices, as it obfuscates the "
 "actual intent of the code:"
 msgstr ""
+"Это всегда должно быть вашим стандартным способом передачи массивов в "
+"подпрограммы и из подпрограмм. Избегайте передачи массивов как целых "
+"фрагментов, так как это запутывает реальный замысел кода:"
 
 #: ../../source/learn/best_practices/arrays.md:62
 msgid ""
 "In case more general arrays should be passed to a procedure the _assumed-"
 "rank_ functionality introduced in the Fortran 2018 standard can be used"
 msgstr ""
+"В случае, если процедуре необходимо передавать более общие массивы, можно "
+"использовать функциональность _assumed-rank_ (предполагаемой размерности), "
+"введённую в стандарте Fortran 2018"
 
 #: ../../source/learn/best_practices/arrays.md:77
 msgid ""
@@ -2586,6 +2602,9 @@ msgid ""
 "This easily allows to create more generic functions that have to deal with "
 "different array ranks."
 msgstr ""
+"Фактическая размерность может быть запрошена во время выполнения с помощью "
+"конструкции `select rank`. Это позволяет легко создавать более универсальные "
+"функции, которым приходится иметь дело с массивами разной размерности."
 
 #: ../../source/learn/best_practices/arrays.md:81
 msgid ""
@@ -2594,26 +2613,38 @@ msgid ""
 " arrays but they find frequent use for interfacing with C or in legacy "
 "Fortran procedures, therefore they will be discussed briefly here."
 msgstr ""
+"_Explicit-shape_ массивы (явной формы) могут быть полезны для возврата "
+"данных из функций. Большая часть их функциональности может быть "
+"предоставлена _assumed-shape_ массивами (предполагаемой формы) и _assumed-"
+"rank_ массивами (предполагаемой размерности), но они часто используются для "
+"взаимодействия с языком C или в унаследованных процедурах Fortran, поэтому "
+"здесь они будут рассмотрены кратко."
 
 #: ../../source/learn/best_practices/arrays.md:86
 msgid ""
 "To use _explicit-shape_ arrays, the dimension has to be passed explicitly as "
 "dummy argument like in the example below"
 msgstr ""
+"Чтобы использовать _explicit-shape_ массивы (явной формы), размерность "
+"должна быть передана в явном виде как фиктивный аргумент, как в примере ниже"
 
 #: ../../source/learn/best_practices/arrays.md:100
 msgid "For high-dimensional arrays additional indices have to be passed."
 msgstr ""
+"Для массивов больших размерностей необходимо передавать дополнительные "
+"индексы."
 
 #: ../../source/learn/best_practices/arrays.md:110
 msgid "The routines can be invoked by"
-msgstr ""
+msgstr "Эти процедуры могут быть вызваны как"
 
 #: ../../source/learn/best_practices/arrays.md:118
 msgid ""
 "Note that the shape is not checked, so the following would be legal code that"
 " will potentially yield incorrect results:"
 msgstr ""
+"Обратите внимание, что форма массива не проверяется, поэтому следующий код "
+"будет легальным и потенциально может дать неверные результаты:"
 
 #: ../../source/learn/best_practices/arrays.md:127
 msgid ""
@@ -2621,10 +2652,16 @@ msgid ""
 "_explicit-shape_ arrays require contiguous memory and will create temporary "
 "arrays in case non-contiguous array strides are passed."
 msgstr ""
+"В этом случае схема памяти сохраняется, но форма изменяется. Кроме того, "
+"_explicit-shape_ массивы (явной формы) требуют непрерывной памяти и будут "
+"создавать временные массивы в случае, если будут переданы несмежные строки "
+"массива."
 
 #: ../../source/learn/best_practices/arrays.md:131
 msgid "To return an array from a function with _explicit-shape_ use"
 msgstr ""
+"Чтобы вернуть массив из функции как _explicit-shape_ массив (явной формы), "
+"используйте"
 
 #: ../../source/learn/best_practices/arrays.md:144
 msgid ""
@@ -2635,6 +2672,14 @@ msgid ""
 "dimension, this disables the usage of this array with many intrinsic "
 "functions, like `size` or `shape`."
 msgstr ""
+"Наконец, существуют _assumed-size_ (предполагаемого размера) массивы, "
+"которые обеспечивают наименьшую проверку во время компиляции и выполнения и "
+"часто встречаются в устаревшем коде. Их следует избегать и вместо них "
+"использовать _assumed-shape_ массивы (предполагаемой формы) или _assumed-"
+"rank_ массивы (предполагаемой размерности). Фиктивный аргумент _assumed-"
+"size_ массива (предполагаемого размера) обозначается звёздочкой в качестве "
+"последнего измерения, что запрещает использование такого массива со многими "
+"встроенными функциями, такими как `size` или `shape`."
 
 #: ../../source/learn/best_practices/arrays.md:151
 msgid ""
@@ -2642,28 +2687,37 @@ msgid ""
 "`size` and `shape` intrinsic functions can be used to query for those "
 "properties"
 msgstr ""
+"Для проверки правильности размера и формы _assumed-shape_ массива ("
+"предполагаемой формы) можно использовать встроенные функции `size` и `shape` "
+"для запроса этих свойств"
 
 #: ../../source/learn/best_practices/arrays.md:159
 msgid ""
 "Note that `size` returns the total size of all dimensions. To obtain the "
 "shape of a specific dimension add it as second argument to the function."
 msgstr ""
+"Обратите внимание, что `size` возвращает общий размер всех измерений. Чтобы "
+"получить форму конкретного измерения, добавьте его номер в качестве второго "
+"аргумента в функции."
 
 #: ../../source/learn/best_practices/arrays.md:162
 msgid "Arrays can be initialized by using an array constructor"
-msgstr ""
+msgstr "Массивы могут быть инициализированы с помощью конструктора массивов"
 
 #: ../../source/learn/best_practices/arrays.md:169
 msgid "The array constructor can be annotated with the type of the constructed array"
 msgstr ""
+"Конструктор массива может быть аннотирован типом конструируемого массива"
 
 #: ../../source/learn/best_practices/arrays.md:176
 msgid "Implicit do loops can be used inside an array constructor as well"
-msgstr ""
+msgstr "Неявные циклы do можно использовать и внутри конструктора массива"
 
 #: ../../source/learn/best_practices/arrays.md:184
 msgid "In order for the array to start with different index than 1, do:"
 msgstr ""
+"Для того чтобы массив начинался с индекса, отличного от 1, сделайте "
+"следующее:"
 
 #: ../../source/learn/best_practices/callbacks.md:1
 #: ../../source/learn/best_practices/index.md:12
@@ -2855,7 +2909,7 @@ msgstr ""
 #: ../../source/learn/best_practices/floating_point.md:1
 #: ../../source/learn/best_practices/index.md:12
 msgid "Floating Point Numbers"
-msgstr ""
+msgstr "Числа с плавающей точкой"
 
 #: ../../source/learn/best_practices/floating_point.md:3
 msgid ""
@@ -2864,16 +2918,24 @@ msgid ""
 "precision is required. For this purpose a custom kind parameter can be "
 "defined. The recommended way of defining kind parameters is to use"
 msgstr ""
+"По умолчанию для представления чисел с плавающей точкой используется "
+"одинарная точность (обычно 32 бита / 4 байта). Для большинства задач "
+"требуется более высокая точность. Для этой цели может быть определён "
+"пользовательский параметр kind. Рекомендуемый способ определения параметров "
+"kind -- использовать запись"
 
 #: ../../source/learn/best_practices/floating_point.md:12
 msgid ""
 "For many purposes it also suffices to directly infer the kind parameter from "
 "a literal like here"
 msgstr ""
+"Для многих целей также достаточно непосредственно вывести параметр kind из "
+"литерала, как здесь"
 
 #: ../../source/learn/best_practices/floating_point.md:19
 msgid "or to rename the imported kind parameter from the `iso_fortran_env` module"
 msgstr ""
+"или переименовать импортируемый параметр kind из модуля `iso_fortran_env`"
 
 #: ../../source/learn/best_practices/floating_point.md:25
 msgid ""
@@ -2882,6 +2944,10 @@ msgid ""
 "/doctor-fortran-in-it-takes-all-kinds/\">Doctor Fortran in it takes all "
 "KINDs</a>."
 msgstr ""
+"Некоторые размышления о параметрах kind можно найти в статье <a href=\"https"
+"://web.archive.org/web/20200930090137/https://stevelionel.com/drfortran/2017/"
+"03/27/doctor-fortran-in-it-takes-all-kinds/\">Doctor Fortran in it takes all "
+"KINDs</a>."
 
 #: ../../source/learn/best_practices/floating_point.md:28
 msgid ""
@@ -2889,18 +2955,25 @@ msgid ""
 "include them with use as necessary. An example for such a module is given "
 "with"
 msgstr ""
+"Рекомендуется иметь отдельный модуль для определения параметров kind и "
+"подключать их для использования по мере необходимости. Приведём пример "
+"такого модуля"
 
 #: ../../source/learn/best_practices/floating_point.md:56
 msgid ""
 "Floating point constants should always be declared including a kind parameter"
 " suffix:"
 msgstr ""
+"Константы чисел с плавающей точкой всегда должны объявляться с "
+"использованием суффикса параметра kind:"
 
 #: ../../source/learn/best_practices/floating_point.md:65
 msgid ""
 "It is safe to assign integers to floating point numbers without losing "
 "accuracy:"
 msgstr ""
+"Безопасно присваивать целые числа переменным ожидающим присвоения чисел с "
+"плавающей точкой без потери точности:"
 
 #: ../../source/learn/best_practices/floating_point.md:72
 msgid ""
@@ -2908,10 +2981,14 @@ msgid ""
 "`3/4` equal to `0`), one can convert the integer to a floating point number "
 "by:"
 msgstr ""
+"Для того, чтобы произвести деление для чисел с плавающей точкой (в отличие "
+"от целочисленного деления `3/4` дающего в результате `0`), одно из чисел "
+"можно преобразовать из целого в число с плавающей точкой:"
 
 #: ../../source/learn/best_practices/floating_point.md:81
 msgid "or simply separate the integer division with multiplication by `1.0_dp`"
 msgstr ""
+"или просто уйти от целочисленного деления посредством умножения на `1.0_dp`"
 
 #: ../../source/learn/best_practices/floating_point.md:88
 msgid ""
@@ -2919,26 +2996,29 @@ msgid ""
 "format specifier `(g0)` or the exponential representation `(es24.16e3)`, "
 "which will give you 17 significant digits of printout."
 msgstr ""
+"Для вывода чисел с плавающей точкой без потери точности используйте "
+"спецификатор неограниченного формата `(g0)` или экспоненциальное "
+"представление `(es24.16e3)`, которое даст вам 17 значащих цифр при печати."
 
 #: ../../source/learn/best_practices/index.md:12
 #: ../../source/learn/best_practices/style_guide.md:1
 msgid "Fortran Style Guide"
-msgstr ""
+msgstr "Руководство по стилю оформления кода Fortran"
 
 #: ../../source/learn/best_practices/index.md:12
 #: ../../source/learn/best_practices/integer_division.md:1
 msgid "Integer Division"
-msgstr ""
+msgstr "Целочисленное деление"
 
 #: ../../source/learn/best_practices/index.md:12
 #: ../../source/learn/best_practices/modules_programs.md:1
 msgid "Modules and Programs"
-msgstr ""
+msgstr "Модули и программы"
 
 #: ../../source/learn/best_practices/index.md:12
 #: ../../source/learn/best_practices/multidim_arrays.md:1
 msgid "Multidimensional Arrays"
-msgstr ""
+msgstr "Многомерные массивы"
 
 #: ../../source/learn/best_practices/index.md:12
 msgid "Element-wise Operations on Array"
@@ -2951,7 +3031,7 @@ msgstr ""
 
 #: ../../source/learn/best_practices/index.md:4
 msgid "Fortran Best Practices"
-msgstr ""
+msgstr "Практические рекомендации по разработке на Fortran"
 
 #: ../../source/learn/best_practices/index.md:6
 msgid ""
@@ -2961,6 +3041,12 @@ msgid ""
 " discussed. It is meant for programmers with basic familiarity of the Fortran"
 " syntax and programming in general."
 msgstr ""
+"Это руководство объединяет современные стандартные методы написания кода на "
+"языке Fortran. Оно служит руководством по стилю и практическими "
+"рекомендациями для популярных тем и распространённых задач. Как правило, "
+"приводится и обсуждается стандартное решение или пример. Данное руководство "
+"предназначено для программистов, имеющих базовое представление о синтаксисе "
+"языка Fortran и программировании в целом."
 
 #: ../../source/learn/best_practices/integer_division.md:3
 msgid ""
@@ -2972,6 +3058,13 @@ msgid ""
 " left to right. Consider the following example for integer division of an odd"
 " number:"
 msgstr ""
+"Fortran различает арифметику чисел с плавающей точкой и целочисленную "
+"арифметику. Важно отметить, что при делении целых чисел всегда используется "
+"целочисленная арифметика. Кроме того, хотя Fortran использует стандартный "
+"порядок операций (например, умножение и деление имеют приоритет выше чем "
+"сложение и вычитание, при отсутствии скобок), операции с одинаковым "
+"приоритетом производятся слева направо. Рассмотрим следующий пример "
+"целочисленного деления нечётного числа:"
 
 #: ../../source/learn/best_practices/integer_division.md:21
 msgid ""
@@ -2980,6 +3073,11 @@ msgid ""
 "cast to reals before using the division operator, or separate the integers by"
 " multiplying by `1.0_dp`:"
 msgstr ""
+"Будьте осторожны, если вы действительно хотите использовать целочисленную "
+"арифметику в данном контексте. Если вы хотите использовать арифметику чисел "
+"с плавающей точкой, то перед использованием оператора деления обязательно "
+"приведите его к вещественному виду или разделите целые числа операцией "
+"умножения на `1.0_dp`:"
 
 #: ../../source/learn/best_practices/modules_programs.md:3
 msgid ""
@@ -2990,10 +3088,17 @@ msgid ""
 "with the library name to avoid name clashes when used as dependency in other "
 "projects."
 msgstr ""
+"Использование модулей является предпочтительным способом создания "
+"современных библиотек и приложений на языке Fortran. По соглашению, один "
+"файл исходного кода всегда должен содержать только один модуль, а имя модуля "
+"должно соответствовать относительному пути к файлу, чтобы обеспечить удобную "
+"навигацию в больших проектах. Также рекомендуется добавлять к имени модуля "
+"префикс в виде имени библиотеки, чтобы избежать конфликта имён при "
+"использовании библиотеки в качестве зависимости в других проектах."
 
 #: ../../source/learn/best_practices/modules_programs.md:9
 msgid "An example for such a module file is given here"
-msgstr ""
+msgstr "Пример такого файла модуля приведён здесь"
 
 #: ../../source/learn/best_practices/modules_programs.md:45
 msgid ""
@@ -3004,6 +3109,12 @@ msgid ""
 "the most important parts of creating long-living software, regardless of "
 "language."
 msgstr ""
+"В этом примере модуля можно выделить несколько моментов. Во-первых, каждый "
+"модуль начинается с комментариев, документирующих цель и содержание модуля. "
+"Аналогично, каждая процедура начинается с комментария, кратко описывающего "
+"ее назначение и смысл фиктивных аргументов. Документирование -- одна из "
+"самых важных частей создания долговечного программного обеспечения, "
+"независимо от языка."
 
 #: ../../source/learn/best_practices/modules_programs.md:51
 msgid ""
@@ -3015,12 +3126,22 @@ msgid ""
 " on a single line and explicitly listing all exported symbols in _public_ "
 "statements."
 msgstr ""
+"Во-вторых, импорты (_use_) и экспорты (_public_) указаны в явном виде, что "
+"позволяет с первого взгляда на исходный текст модуля проверить используемые "
+"и доступные процедуры, константы и производные типы. Импорт обычно "
+"ограничивается областью применения модуля, а не реимпортируется в каждую "
+"процедуру или область применения интерфейса. Аналогично, экспорт "
+"осуществляется в явном виде путем добавления оператора _private_ в отдельной "
+"строке и явного перечисления всех экспортируемых символов в операторах "
+"_public_."
 
 #: ../../source/learn/best_practices/modules_programs.md:59
 msgid ""
 "Finally, the `implicit none` statement works for the whole module and there "
 "is no need to repeat it within each procedure."
 msgstr ""
+"Наконец, оператор `implicit none` работает для всего модуля, и нет "
+"необходимости дублировать его в каждой процедуре."
 
 #: ../../source/learn/best_practices/modules_programs.md:62
 msgid ""
@@ -3029,6 +3150,10 @@ msgid ""
 "like parameters or enumerators only or export them as _protected_ rather than"
 " _public_."
 msgstr ""
+"Переменные внутри модуля являются статическими (_неявно сохранёнными_, "
+"_implicitly saved_). Настоятельно рекомендуется ограничить использование "
+"переменных модуля только константными выражениями, такими как параметры или "
+"перечисления, или экспортировать их как _protected_, а не как _public_."
 
 #: ../../source/learn/best_practices/modules_programs.md:67
 msgid ""
@@ -3037,18 +3162,26 @@ msgid ""
 "to provide specialized and optimized implementations without requiring the "
 "use of preprocessor."
 msgstr ""
+"Подмодули (Submodules) можно использовать для разрыва длинных цепочек "
+"зависимостей и сокращения каскадов перекомпиляции в программах Fortran. Они "
+"также дают возможность предоставлять специализированные и оптимизированные "
+"реализации, не требуя использования препроцессора."
 
 #: ../../source/learn/best_practices/modules_programs.md:71
 msgid ""
 "An example from the Fortran standard library is the quadrature module, which "
 "only defines interfaces to module procedures, but no implementations"
 msgstr ""
+"Примером из Fortran standard library является модуль квадратур, который "
+"определяет только интерфейсы для процедур модуля, но не их реализацию"
 
 #: ../../source/learn/best_practices/modules_programs.md:104
 msgid ""
 "While the implementation is provided in separate submodules like the one for "
 "the trapezoidal integration rule given here."
 msgstr ""
+"В то время как реализация предоставляется в отдельных подмодулях, как, "
+"например, для описания интегрирования методом трапеций, приведённого здесь."
 
 #: ../../source/learn/best_practices/modules_programs.md:138
 msgid ""
@@ -3056,6 +3189,9 @@ msgid ""
 "submodule. Several submodules can be used to reduce the compilation load for "
 "huge modules."
 msgstr ""
+"Обратите внимание, что процедуры модуля не обязательно должны быть "
+"реализованы в одном подмодуле. Несколько подмодулей могут быть использованы "
+"для снижения нагрузки компиляции для больших модулей."
 
 #: ../../source/learn/best_practices/modules_programs.md:141
 msgid ""
@@ -3064,6 +3200,11 @@ msgid ""
 "modules allows you to write reusable code and focus the program unit on "
 "conveying user input to the respective library functions and objects."
 msgstr ""
+"Наконец, при создании программы рекомендуется свести к минимуму количество "
+"фактических реализаций в теле программы. Повторное использование реализаций "
+"из модулей позволяет написать многократно используемый код и сосредоточиться "
+"в программном блоке на передаче пользовательского ввода соответствующим "
+"библиотечным функциям и объектам."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:3
 msgid ""
@@ -3074,6 +3215,12 @@ msgid ""
 "the columns. This is important when passing array slices to procedures which "
 "expect to work on contiguous data."
 msgstr ""
+"Многомерные массивы хранятся в памяти по столбцам. Это означает, что крайний "
+"левый (внутренний) индекс обращается к элементам последовательно. С "
+"практической точки зрения это означает, что срез массива `V(:, 1)` "
+"непрерывен, а расстояние между элементами в срезе `V(1, :)` равно "
+"размерности столбцов. Это важно при передаче срезов массива процедурам, "
+"которые работают с непрерывными в памяти данными."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:10
 msgid ""
@@ -3081,6 +3228,9 @@ msgid ""
 "application, usually when performing operations on a multidimensional the "
 "sequential access should always advance in unity strides."
 msgstr ""
+"Локальность памяти важно учитывать в зависимости от вашего приложения, "
+"обычно при выполнении операций с многомерной памятью последовательный доступ "
+"всегда должен осуществляться шаг за шагом."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:14
 msgid ""
@@ -3089,12 +3239,16 @@ msgid ""
 "`xyz1`/`xyz2`, while the inner-most loop is advancing the left-most index of "
 "the matrix `a`."
 msgstr ""
+"В следующем примере оценивается величина обратная расстоянию между двумя "
+"наборами точек. Обратите внимание, что точки хранятся последовательно в "
+"массивах `xyz1`/`xyz2`, а внутренний цикл продвигается по крайнему левому "
+"индексу массива `a`."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:33
 msgid ""
 "Another example would be the contraction of the third dimension of a rank "
 "three array:"
-msgstr ""
+msgstr "Другим примером может быть снижение размерности трёхмерного массива:"
 
 #: ../../source/learn/best_practices/multidim_arrays.md:46
 msgid ""
@@ -3102,16 +3256,22 @@ msgid ""
 "of higher rank arrays as lower rank arrays without requiring to reshape and "
 "potentially create a temporary copy of the array."
 msgstr ""
+"Непрерывные срезы массива можно использовать при переобозначении с привязкой "
+"к массиву, чтобы разрешить использование массивов более высокой размерности "
+"в качестве массивов более низкой размерности без необходимости изменения "
+"формы и потенциального создания временной копии массива."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:50
 msgid ""
 "For example this can be used to contract the third dimension of a rank three "
 "array using a matrix-vector operation:"
 msgstr ""
+"Например, это можно использовать для снижения размерности трёхмерного "
+"массива с помощью матрично-векторной операции:"
 
 #: ../../source/learn/best_practices/style_guide.md:3
 msgid "Naming Convention"
-msgstr ""
+msgstr "Соглашение об именовании"
 
 #: ../../source/learn/best_practices/style_guide.md:5
 msgid ""
@@ -3119,16 +3279,23 @@ msgid ""
 " and that seems to be prevalent in most scientific codes (as well as the "
 "Fortran standard library), and you are welcome to follow it."
 msgstr ""
+"В конечном счёте, это вопрос предпочтений. Это руководство по стилю, которое "
+"нам нравится и которое, похоже, преобладает в большинстве научных кодов (а "
+"также в Fortran standard library), и вы можете следовать ему."
 
 #: ../../source/learn/best_practices/style_guide.md:9
 msgid "Use lowercase for all Fortran constructs (`do`, `subroutine`, `module`, ...)."
 msgstr ""
+"Используйте строчные буквы для всех конструкций языка Fortran (`do`, "
+"`subroutine`, `module`, ...)."
 
 #: ../../source/learn/best_practices/style_guide.md:11
 msgid ""
 "Follow short mathematical notation for mathematical variables/functions "
 "(`Ylm`, `Gamma`, `gamma`, `Enl`, `Rnl`, ...)."
 msgstr ""
+"Для математических переменных/функций используйте краткие математические "
+"обозначения (`Ylm`, `Gamma`, `gamma`, `Enl`, `Rnl`, ...)."
 
 #: ../../source/learn/best_practices/style_guide.md:13
 msgid ""
@@ -3138,6 +3305,11 @@ msgid ""
 "`spline_interp`, `spline_interpolate`, `stoperr`, `stop_error`, "
 "`meshexp_der`)."
 msgstr ""
+"Для других имён используйте все строчные буквы: старайтесь, чтобы имена "
+"состояли из одного или двух слогов; если требуется больше, используйте "
+"подчёркивание для уточнения (`sortpair`, `whitechar`, `meshexp`, `numstrings`"
+", `linspace`, `meshgrid`, `argsort`, `spline`, `spline_interp`, "
+"`spline_interpolate`, `stoperr`, `stop_error`, `meshexp_der`)."
 
 #: ../../source/learn/best_practices/style_guide.md:19
 msgid ""
@@ -3148,6 +3320,12 @@ msgid ""
 "in contrast to `get_argument()` where `getarg()` is perfectly clean and "
 "clear."
 msgstr ""
+"Например, \\\"spline interpolation\\\" может быть сокращено до "
+"`spline_interpolation`, `spline_interpolate`, `spline_interp`, `spline`, но "
+"не `splineint` (\\\"int\\\" может означать интегрирование, целое число и "
+"т.д. --- слишком много двусмысленности, даже в ясном контексте "
+"вычислительного кода). Обратный пример: для `get_argument()` сокращение "
+"`getarg()` будет совершенно ясным и понятным."
 
 #: ../../source/learn/best_practices/style_guide.md:26
 msgid ""
@@ -3160,10 +3338,18 @@ msgid ""
 "collaboration and for one's own sanity when going back to some old code you "
 "haven't seen in while."
 msgstr ""
+"Выше приведены общие рекомендации. В целом, выбор правильного имени, "
+"безусловно, зависит от усекаемого слова и достаточно ли оставить первый "
+"слог. Обычно это так, но, очевидно, не всегда. Поэтому подумайте над тем, "
+"чтобы \\\"стараться использовать названия, состоящие из 2 слогов или меньше\\"
+"\", так как это может повлиять на наглядность и простоту. Простые и "
+"последовательные правила именования являются реальной помощью в этом "
+"отношении -- как для совместной работы, так и для собственного здравомыслия "
+"при возвращении к старому коду, который вы давно не видели."
 
 #: ../../source/learn/best_practices/style_guide.md:35
 msgid "Indentation"
-msgstr ""
+msgstr "Отступы"
 
 #: ../../source/learn/best_practices/style_guide.md:37
 msgid ""
@@ -3171,10 +3357,13 @@ msgid ""
 "indentation is a matter of preference, the most common choices are two, three"
 " or four spaces."
 msgstr ""
+"Используйте последовательные отступы чтобы сделать ваш код читабельным. "
+"Размер отступа -- это вопрос предпочтений, наиболее распространёнными "
+"вариантами являются отступы в два, три или четыре пробела."
 
 #: ../../source/learn/best_practices/style_guide.md:41
 msgid "Comparison to Other Languages"
-msgstr ""
+msgstr "Сравнение с другими языками программирования"
 
 #: ../../source/learn/best_practices/style_guide.md:43
 msgid ""
@@ -3188,6 +3377,15 @@ msgid ""
 " with their more general-purpose missions. But Fortran has a different "
 "mission (numerical scientific computing)."
 msgstr ""
+"С другой стороны, в большинстве других языков программирования, где основное "
+"внимание в той или иной форме уделяется определению и использованию больших "
+"наборов сложных объектов с множеством свойств и моделей поведения, известных "
+"только в коде, в котором они определены (в отличие от определения с помощью "
+"одной и той же нотации во всей литературе), имеет смысл использовать более "
+"длинные, более наглядные имена. Поэтому соглашения об именовании, которые "
+"используются в языках общего назначения, таких как C++ и Python, вполне "
+"соответствуют их более общим задачам. Но у Fortran другая задача (численные "
+"научные вычисления)."
 
 #: ../../source/learn/best_practices/type_casting.md:3
 msgid ""
@@ -18899,7 +19097,7 @@ msgstr ""
 
 #: ../../source/learn/quickstart/derived_types.md:254
 msgid "Type-bound procedures"
-msgstr "Подпрограммы производного типа данных"
+msgstr "Подпрограммы связанные с производным типом данных"
 
 #: ../../source/learn/quickstart/derived_types.md:256
 msgid ""
@@ -18909,10 +19107,10 @@ msgid ""
 "declarations."
 msgstr ""
 "Производный тип данных может содержать функции или процедуры, которые "
-"_привязаны_ к нему. Мы будем называть их _подпрограммами производного типа "
-"данных_. Подпрограммы производного типа данных размещаются после оператора "
-"`contains`, который, в свою очередь, размещается после объявления всех "
-"переменных-компонентов."
+"_связаны_ с ним. Мы будем называть их _подпрограммами связанными с "
+"производным типом данных_. Подпрограммы связанные с производным типом данных "
+"размещаются после оператора `contains`, который, в свою очередь, размещается "
+"после объявления всех переменных-компонентов."
 
 #: ../../source/learn/quickstart/derived_types.md:258
 msgid ""
@@ -18920,13 +19118,13 @@ msgid ""
 "into OOP features of modern Fortran. For now we'll focus on a simple example "
 "to show their basic use."
 msgstr ""
-"Невозможно полностью описать подпрограммы производного типа данных, не "
-"углубляясь в особенности ООП современного Fotran. Сейчас мы остановимся на "
-"простом примере, чтобы показать их базовое использование."
+"Невозможно полностью описать подпрограммы связанные с производным типом "
+"данных, не углубляясь в особенности ООП современного Fotran. Сейчас мы "
+"остановимся на простом примере, чтобы показать их базовое использование."
 
 #: ../../source/learn/quickstart/derived_types.md:260
 msgid "Here's an example of a derived type with a basic type-bound procedure:"
-msgstr "Пример производного типа данных со встроенной в него подпрограммой:"
+msgstr "Пример производного типа данных со связанной с ним подпрограммой:"
 
 #: ../../source/learn/quickstart/derived_types.md:304
 msgid "What is new:"
@@ -18940,9 +19138,10 @@ msgid ""
 " a type-bound procedure."
 msgstr ""
 "`self` -- произвольное имя, которое мы выбрали для представления экземпляра "
-"производного типа данных `t_square` внутри его функции. Это позволяет нам "
-"получить доступ к его компонентам и автоматически передавать его в качестве "
-"аргумента при вызове подпрограммы производного типа данных."
+"производного типа данных `t_square` внутри связанной с ним функции. Это "
+"позволяет нам получить доступ к его компонентам и автоматически передавать "
+"его в качестве аргумента при вызове подпрограммы связанной с производным "
+"типом данных."
 
 #: ../../source/learn/quickstart/derived_types.md:307
 msgid ""
@@ -18953,7 +19152,7 @@ msgid ""
 msgstr ""
 "Теперь мы используем `class(t_square)` вместо `type(t_square)` в интерфейсе "
 "функции `area`. Это позволяет нам вызывать функцию `area` для любого "
-"производным типа, который расширяет производный тип `t_square`. Ключевое "
+"производного типа, который расширяет производный тип `t_square`. Ключевое "
 "слово `class` вводит свойство ООП -- полиморфизм."
 
 #: ../../source/learn/quickstart/derived_types.md:309
@@ -18963,18 +19162,18 @@ msgid ""
 "sq%area()` or `print *, sq%area()`. If you define it instead as a subroutine,"
 " you can invoke it from its own `call` statement:"
 msgstr ""
-"В приведённом выше примере функция производного типа данных `area` "
-"определена как функция и может быть вызвана только в выражении, например, `x "
-"= sq%area()` или `print *, sq%area()`. Если вместо этого определить её как "
-"процедуру, то её можно вызывать с помощью оператора `call`:"
+"В приведённом выше примере подпрограмма `area` связанная с производным типом "
+"данных определена как функция и может быть вызвана только в выражении, "
+"например, `x = sq%area()` или `print *, sq%area()`. Если вместо этого "
+"определить её как процедуру, то её можно вызывать с помощью оператора `call`:"
 
 #: ../../source/learn/quickstart/derived_types.md:328
 msgid ""
 "In contrast to the example with the type-bound function, we now have two "
 "arguments:"
 msgstr ""
-"В отличии от примера с функцией производного типа, теперь у нас два "
-"аргумента:"
+"В отличии от примера с функцией связанной с производным типом данных, теперь "
+"у нас два аргумента:"
 
 #: ../../source/learn/quickstart/derived_types.md:330
 msgid ""
@@ -19678,10 +19877,10 @@ msgid ""
 " will not be necessary if we place our subroutine in a module as described "
 "later."
 msgstr ""
-"Этот пример использует так называемый аргумент _с явным указанием образа_ "
-"массива, так как мы передали дополнительные переменные для описания размеров "
-"массива `A`; это не потребуется, если мы поместим нашу процедуру в модуль, "
-"как описано ниже."
+"Этот пример использует так называемый аргумент _explicit-shape_ массива ("
+"явной формы) , так как мы передали дополнительные переменные для описания "
+"размеров массива `A`; это не потребуется, если мы поместим нашу процедуру в "
+"модуль, как описано ниже."
 
 #: ../../source/learn/quickstart/organising_code.md:63
 msgid "Functions"
@@ -19753,9 +19952,9 @@ msgid ""
 msgstr ""
 "Сравните эту процедуру `print_matrix` с написанной вне модуля. Нам больше не "
 "нужно явно передавать размеры матрицы, и вместо этого мы можем "
-"воспользоваться аргументами с _неявным заданием образа_, поскольку модуль "
-"сгенерирует для нас необходимый явный интерфейс. Это приводит к "
-"значительному упрощению интерфейса процедуры."
+"воспользоваться _assumed-shape_ аргументами (предполагаемой формы), "
+"поскольку модуль сгенерирует для нас необходимый явный интерфейс. Это "
+"приводит к значительному упрощению интерфейса процедуры."
 
 #: ../../source/learn/quickstart/organising_code.md:145
 msgid "To `use` the module within a program:"
