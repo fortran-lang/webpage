@@ -9,7 +9,7 @@ url = "https://play-api.fortran-lang.org/run"
 headers = CaseInsensitiveDict()
 headers["Accept"] = "application/json"
 headers["Content-Type"] = "application/json"
-data_dict = {"code":"","programInput":"","libs":[]}
+data_dict = {"code":"","programInput":"","libs":["stdlib"]}
 comp_error = [b"<ERROR>",b"Error",b"app/main.f90",b"<h1>Bad Request</h1>"]
 
 
@@ -66,6 +66,8 @@ class PlayCodeBlock(CodeBlock):
             literal = container_wrapper(self, literal, caption)
         except ValueError as exc:
             return [document.reporter.warning(exc, line=self.lineno)]
+        if "end program" not in code:
+            code = code+"\nend program"
         data_dict['code'] = code
         resp = requests.post(url, headers=headers, json=data_dict)
         print(resp.content)
