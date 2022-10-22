@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-29 16:02+0200\n"
-"PO-Revision-Date: 2022-10-22 23:04+0000\n"
+"PO-Revision-Date: 2022-10-22 23:58+0000\n"
 "Last-Translator: Sergey Torokhov <torokhov-s-a@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/ru/>\n"
@@ -2749,39 +2749,47 @@ msgstr ""
 
 #: ../../source/learn/best_practices/element_operations.md:1
 msgid "Element-wise Operations on Arrays"
-msgstr ""
+msgstr "Элементные операции с массивами"
 
 #: ../../source/learn/best_practices/element_operations.md:3
 msgid ""
 "There are three approaches to perform element-wise operations on arrays when "
 "using subroutines and functions:"
 msgstr ""
+"Существует три подхода к выполнению элементных операций с массивами при "
+"использовании процедур и функций:"
 
 #: ../../source/learn/best_practices/element_operations.md:5
 msgid "`elemental` procedures"
-msgstr ""
+msgstr "`elemental` (элементные) подпрограммы"
 
 #: ../../source/learn/best_practices/element_operations.md:7
 msgid ""
 "implementing the operation for vectors and write simple wrapper subroutines "
 "(that use `reshape` internally) for each array shape"
 msgstr ""
+"реализация операции для векторов и написание простых процедур-обёрток ("
+"которые используют внутри операцию `reshape`) для каждой формы массива"
 
 #: ../../source/learn/best_practices/element_operations.md:10
 msgid ""
 "In the first approach, one uses the `elemental` keyword to create a function "
 "like this:"
 msgstr ""
+"В первом подходе используется ключевое слово `elemental` для создания "
+"функции, подобной этой:"
 
 #: ../../source/learn/best_practices/element_operations.md:21
 msgid ""
 "All arguments (in and out) must be scalars. You can then use this function "
 "with arrays of any (compatible) shape, for example:"
 msgstr ""
+"Все аргументы (in и out) должны быть скалярами. Вы можете использовать эту "
+"функцию с массивами любой (совместимой) формы, например:"
 
 #: ../../source/learn/best_practices/element_operations.md:32
 msgid "The output will be:"
-msgstr ""
+msgstr "Вывод будет следующим:"
 
 #: ../../source/learn/best_practices/element_operations.md:42
 msgid ""
@@ -2791,6 +2799,11 @@ msgid ""
 "arguments must be either arrays of the same shape or scalars). If it does "
 "not, you will get a compiler error."
 msgstr ""
+"В приведённом выше примере обычно `n` является параметром, а `x` -- массивом "
+"произвольной формы, но, как видите, языку Fortran всё равно, пока конечная "
+"операция имеет (если один аргумент является массивом, то остальные аргументы "
+"должны быть либо массивами той же формы, либо скалярами). Если это не так, "
+"то вы получите сообщение компилятора об ошибке."
 
 #: ../../source/learn/best_practices/element_operations.md:48
 msgid ""
@@ -2798,6 +2811,10 @@ msgid ""
 "pure. It results that `elemental procedures` can only use `pure` procedures "
 "and have no side effects."
 msgstr ""
+"Ключевое слово `elemental` подразумевает ключевое слово `pure`, поэтому "
+"процедура должна быть чистой. Это приводит к тому, что `elemental procedures`"
+" (элементные подпрограммы) могут использовать только `pure` (чистые) "
+"подпрограммы и не имеют побочных эффектов."
 
 #: ../../source/learn/best_practices/element_operations.md:51
 msgid ""
@@ -2807,26 +2824,31 @@ msgid ""
 "make `nroot` operate on a vector and write a simple wrapper for other array "
 "shapes, e.g.:"
 msgstr ""
+"Если алгоритм элементной подпрограммы можно сделать быстрее, используя "
+"внутри операции с массивами или если по каким-то причинам аргументы должны "
+"быть массивами несовместимых форм, то следует использовать два других "
+"подхода. Можно заставить `nroot` работать с вектором и написать простую "
+"обёртку для других форм массивов, например:"
 
 #: ../../source/learn/best_practices/element_operations.md:82
 msgid "And use as follows:"
-msgstr ""
+msgstr "И использовать следующим образом:"
 
 #: ../../source/learn/best_practices/element_operations.md:90
 msgid "This will print:"
-msgstr ""
+msgstr "Вывод будет следующим:"
 
 #: ../../source/learn/best_practices/element_operations.md:98
 msgid "Or one can use _explicit-shape_ arrays as follows:"
-msgstr ""
+msgstr "Или можно использовать _explicit-shape_ массивы (явной формы):"
 
 #: ../../source/learn/best_practices/element_operations.md:110
 msgid "Use as follows:"
-msgstr ""
+msgstr "Применяя следующим образом:"
 
 #: ../../source/learn/best_practices/element_operations.md:118
 msgid "The output is the same as before:"
-msgstr ""
+msgstr "Вывод будет таким же, как в прошлый раз:"
 
 #: ../../source/learn/best_practices/file_io.md:1
 #: ../../source/learn/best_practices/index.md:12
@@ -3022,7 +3044,7 @@ msgstr "Многомерные массивы"
 
 #: ../../source/learn/best_practices/index.md:12
 msgid "Element-wise Operations on Array"
-msgstr ""
+msgstr "Элементные операции с массивами"
 
 #: ../../source/learn/best_practices/index.md:12
 #: ../../source/learn/best_practices/type_casting.md:1
@@ -19877,10 +19899,10 @@ msgid ""
 " will not be necessary if we place our subroutine in a module as described "
 "later."
 msgstr ""
-"Этот пример использует так называемый аргумент _explicit-shape_ массива ("
-"явной формы) , так как мы передали дополнительные переменные для описания "
-"размеров массива `A`; это не потребуется, если мы поместим нашу процедуру в "
-"модуль, как описано ниже."
+"Этот пример использует так называемый аргумент в виде _explicit-shape_ "
+"массива (явной формы), так как мы передали дополнительные переменные для "
+"описания размеров массива `A`; это не потребуется, если мы поместим нашу "
+"процедуру в модуль, как описано ниже."
 
 #: ../../source/learn/quickstart/organising_code.md:63
 msgid "Functions"
