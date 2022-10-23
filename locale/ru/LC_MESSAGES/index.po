@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-29 16:02+0200\n"
-"PO-Revision-Date: 2022-10-22 23:58+0000\n"
+"PO-Revision-Date: 2022-10-23 00:54+0000\n"
 "Last-Translator: Sergey Torokhov <torokhov-s-a@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/ru/>\n"
@@ -2441,7 +2441,7 @@ msgstr ""
 #: ../../source/learn/best_practices/allocatable_arrays.md:1
 #: ../../source/learn/best_practices/index.md:12
 msgid "Allocatable Arrays"
-msgstr ""
+msgstr "Выделяемые (динамические) массивы"
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:3
 msgid ""
@@ -2451,18 +2451,28 @@ msgid ""
 "out-of-scope. Using `allocatable` variables removes the possibility to create"
 " memory leaks in an application."
 msgstr ""
+"Аттрибут `allocatable` обеспечивает безопасный способ работы с памятью. По "
+"сравнению с переменными с атрибутом `pointer` память управляется "
+"автоматически и будет автоматически освобождена, как только переменная "
+"выйдет за пределы области видимости. Использование `allocatable` (выделяемых)"
+" переменных устраняет возможность создания утечек памяти в приложении."
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:9
 msgid ""
 "They can be used in subroutines to create scratch or work arrays, where "
 "automatic arrays would become too large to fit on the stack."
 msgstr ""
+"Они могут быть использованы в процедурах для создания временных или рабочих "
+"массивов, в случаях, когда автоматические массивы были бы слишком большими, "
+"чтобы поместиться в стеке."
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:17
 msgid ""
 "The allocation status can be checked using the `allocated` intrinsic to avoid"
 " uninitialized access"
 msgstr ""
+"Статус выделения памяти может быть проверен с помощью встроенной функции "
+"`allocated`, чтобы избежать неинициализированного доступа"
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:30
 msgid ""
@@ -2470,10 +2480,16 @@ msgid ""
 "`allocatable` attribute. Using it in combination with `intent(out)` will "
 "deallocate previous allocations before entering the procedure:"
 msgstr ""
+"Для выделения памяти переменным внутри подпрограммы фиктивный аргумент "
+"должен иметь атрибут `allocatable`. Его использование в сочетании с "
+"атрибутом `intent(out)` приведёт к освобождению памяти из предыдущих её "
+"выделений перед входом в подпрограмму:"
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:41
 msgid "The allocated array can be used afterwards like a normal array"
 msgstr ""
+"Выделяемый (динамический) массив в дальнейшем может быть использован как "
+"обычный массив"
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:48
 msgid ""
@@ -2481,12 +2497,19 @@ msgid ""
 "deallocation. Similarly, deallocation can only be invoked for allocated "
 "arrays. To reallocate an array use"
 msgstr ""
+"Для массива, для которого была выделена память, не может быть выделена "
+"память без предварительного освобождения выделенной ранее памяти. "
+"Аналогично, освобождение памяти может быть выполнено только для массивов, "
+"для которых она была выделена. Для повторного выделения памяти массиву "
+"используйте"
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:57
 msgid ""
 "Passing allocated arrays to procedures does not require the `allocatable` "
 "attribute for the dummy arguments anymore."
 msgstr ""
+"Передача выделяемых (динамических) массивов в подпрограммы больше не требует "
+"использования атрибута `allocatable` для фиктивных аргументов."
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:80
 msgid ""
@@ -2496,12 +2519,20 @@ msgid ""
 "attribute is not limited to arrays and can also be associated with scalars, "
 "which can be useful in combination with `optional` dummy arguments."
 msgstr ""
+"Передача массива с невыделенной памятью этом контексте приведёт к "
+"некорректному доступу к памяти. Выделяемые (динамические) массивы могут быть "
+"переданы как необязательные фиктивные аргументы –- если им не выделена "
+"память, то аргументы не будут учитываться. Атрибут `allocatable` не "
+"ограничивается массивами и также может быть связан со скалярами, что может "
+"быть полезно в сочетании с необязательными фиктивными аргументами."
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:86
 msgid ""
 "Allocations can be moved between different arrays with `allocatable` "
 "attribute using the `move_alloc` intrinsic subroutine."
 msgstr ""
+"Выделенные области памяти могут быть перемещены между разными массивами, "
+"имеющими атрибут `allocatable`, с помощью встроенной процедуры `move_alloc`."
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:118
 msgid ""
@@ -2510,10 +2541,16 @@ msgid ""
 "at the respective address. The allocation supports initialization using the "
 "source attribute:"
 msgstr ""
+"Наконец, выделение памяти не приводит к инициализации массива. Содержимое "
+"неинициализированного массива, скорее всего, представляет собой просто байты "
+"того, что ранее находилось по соответствующему адресу. Операция выделения "
+"памяти поддерживает инициализацию с помощью указания источника (source):"
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:127
 msgid "The `source` keyword supports scalar and array valued variables and constants."
 msgstr ""
+"Ключевое слово `source` поддерживает использование скаляров, переменных в "
+"виде массива значений и констант."
 
 #: ../../source/learn/best_practices/arrays.md:1
 #: ../../source/learn/best_practices/index.md:12
@@ -2554,7 +2591,7 @@ msgstr "_assumed-size_ массивы (предполагаемого разме
 msgid "The preferred way to pass arrays to procedures is as _assumed-shape_ arrays"
 msgstr ""
 "Предпочтительным способом передачи массивов в процедуры является передача "
-"массивов в виде _assumed-shape_ массива (предполагаемой формы)"
+"массивов в виде _assumed-shape_ массивов (предполагаемой формы)"
 
 #: ../../source/learn/best_practices/arrays.md:26
 msgid "Higher-dimensional arrays can be passed in a similar way."
