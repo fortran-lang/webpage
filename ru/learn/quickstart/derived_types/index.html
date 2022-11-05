@@ -539,7 +539,7 @@
  </li>
  <li class="toctree-l1 has-children">
   <a class="reference internal" href="../../best_practices/">
-   Fortran Best Practices
+   Практические рекомендации по разработке на Fortran
   </a>
   <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -549,57 +549,57 @@
   <ul>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/style_guide/">
-     Fortran Style Guide
+     Руководство по стилю оформления кода Fortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/floating_point/">
-     Floating Point Numbers
+     Числа с плавающей точкой
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/integer_division/">
-     Integer Division
+     Целочисленное деление
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/modules_programs/">
-     Modules and Programs
+     Модули и программы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/arrays/">
-     Arrays
+     Массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/multidim_arrays/">
-     Multidimensional Arrays
+     Многомерные массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/element_operations/">
-     Element-wise Operations on Array
+     Элементные операции с массивами
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/allocatable_arrays/">
-     Allocatable Arrays
+     Выделяемые (динамические) массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/file_io/">
-     File Input/Output
+     Файловый ввод/вывод
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/callbacks/">
-     Callbacks
+     Функции обратного вызова
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../../best_practices/type_casting/">
-     Type Casting in Callbacks
+     Приведение типа в функциях обратного вызова
     </a>
    </li>
   </ul>
@@ -737,7 +737,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#type-bound-procedures">
-   Подпрограммы производного типа данных
+   Подпрограммы связанные с производным типом данных
   </a>
  </li>
 </ul>
@@ -985,12 +985,12 @@
 </div></blockquote>
 </section>
 <section id="type-bound-procedures">
-<h2>Подпрограммы производного типа данных<a class="headerlink" href="#type-bound-procedures" title="Permalink to this heading">#</a></h2>
-<p>Производный тип данных может содержать функции или процедуры, которые <em>привязаны</em> к нему. Мы будем называть их <em>подпрограммами производного типа данных</em>. Подпрограммы производного типа данных размещаются после оператора <code class="docutils literal notranslate"><span class="pre">contains</span></code>, который, в свою очередь, размещается после объявления всех переменных-компонентов.</p>
+<h2>Подпрограммы связанные с производным типом данных<a class="headerlink" href="#type-bound-procedures" title="Permalink to this heading">#</a></h2>
+<p>Производный тип данных может содержать функции или процедуры, которые <em>связаны</em> с ним. Мы будем называть их <em>подпрограммами связанными с производным типом данных</em>. Подпрограммы связанные с производным типом данных размещаются после оператора <code class="docutils literal notranslate"><span class="pre">contains</span></code>, который, в свою очередь, размещается после объявления всех переменных-компонентов.</p>
 <blockquote>
-<div><p>Невозможно полностью описать подпрограммы производного типа данных, не углубляясь в особенности ООП современного Fotran. Сейчас мы остановимся на простом примере, чтобы показать их базовое использование.</p>
+<div><p>Невозможно полностью описать подпрограммы связанные с производным типом данных, не углубляясь в особенности ООП современного Fotran. Сейчас мы остановимся на простом примере, чтобы показать их базовое использование.</p>
 </div></blockquote>
-<p>Пример производного типа данных со встроенной в него подпрограммой:</p>
+<p>Пример производного типа данных со связанной с ним подпрограммой:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">m_shapes</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
 <span class="k">  private</span>
@@ -1034,10 +1034,10 @@
 </div>
 <p>Что нового?:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">self</span></code> – произвольное имя, которое мы выбрали для представления экземпляра производного типа данных <code class="docutils literal notranslate"><span class="pre">t_square</span></code> внутри его функции. Это позволяет нам получить доступ к его компонентам и автоматически передавать его в качестве аргумента при вызове подпрограммы производного типа данных.</p></li>
-<li><p>Теперь мы используем <code class="docutils literal notranslate"><span class="pre">class(t_square)</span></code> вместо <code class="docutils literal notranslate"><span class="pre">type(t_square)</span></code> в интерфейсе функции <code class="docutils literal notranslate"><span class="pre">area</span></code>. Это позволяет нам вызывать функцию <code class="docutils literal notranslate"><span class="pre">area</span></code> для любого производным типа, который расширяет производный тип <code class="docutils literal notranslate"><span class="pre">t_square</span></code>. Ключевое слово <code class="docutils literal notranslate"><span class="pre">class</span></code> вводит свойство ООП – полиморфизм.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">self</span></code> – произвольное имя, которое мы выбрали для представления экземпляра производного типа данных <code class="docutils literal notranslate"><span class="pre">t_square</span></code> внутри связанной с ним функции. Это позволяет нам получить доступ к его компонентам и автоматически передавать его в качестве аргумента при вызове подпрограммы связанной с производным типом данных.</p></li>
+<li><p>Теперь мы используем <code class="docutils literal notranslate"><span class="pre">class(t_square)</span></code> вместо <code class="docutils literal notranslate"><span class="pre">type(t_square)</span></code> в интерфейсе функции <code class="docutils literal notranslate"><span class="pre">area</span></code>. Это позволяет нам вызывать функцию <code class="docutils literal notranslate"><span class="pre">area</span></code> для любого производного типа, который расширяет производный тип <code class="docutils literal notranslate"><span class="pre">t_square</span></code>. Ключевое слово <code class="docutils literal notranslate"><span class="pre">class</span></code> вводит свойство ООП – полиморфизм.</p></li>
 </ul>
-<p>В приведённом выше примере функция производного типа данных <code class="docutils literal notranslate"><span class="pre">area</span></code> определена как функция и может быть вызвана только в выражении, например, <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">sq%area()</span></code> или <code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">*,</span> <span class="pre">sq%area()</span></code>. Если вместо этого определить её как процедуру, то её можно вызывать с помощью оператора <code class="docutils literal notranslate"><span class="pre">call</span></code>:</p>
+<p>В приведённом выше примере подпрограмма <code class="docutils literal notranslate"><span class="pre">area</span></code> связанная с производным типом данных определена как функция и может быть вызвана только в выражении, например, <code class="docutils literal notranslate"><span class="pre">x</span> <span class="pre">=</span> <span class="pre">sq%area()</span></code> или <code class="docutils literal notranslate"><span class="pre">print</span> <span class="pre">*,</span> <span class="pre">sq%area()</span></code>. Если вместо этого определить её как процедуру, то её можно вызывать с помощью оператора <code class="docutils literal notranslate"><span class="pre">call</span></code>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! Change within module</span>
 <span class="k">contains</span>
 <span class="k">  subroutine </span><span class="n">area</span><span class="p">(</span><span class="n">self</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"></span>
@@ -1054,7 +1054,7 @@
 <span class="c">! Do stuff with x...</span>
 </pre></div>
 </div>
-<p>В отличии от примера с функцией производного типа, теперь у нас два аргумента:</p>
+<p>В отличии от примера с функцией связанной с производным типом данных, теперь у нас два аргумента:</p>
 <ul class="simple">
 <li><p><code class="docutils literal notranslate"><span class="pre">class(t_square),</span> <span class="pre">intent(in)</span> <span class="pre">::</span> <span class="pre">self</span></code> – сам экземпляр производного типа</p></li>
 <li><p><code class="docutils literal notranslate"><span class="pre">real,</span> <span class="pre">intent(out)</span> <span class="pre">::</span> <span class="pre">x</span></code> – переменная, которая используется для хранения вычисленной площади и возврата значения</p></li>

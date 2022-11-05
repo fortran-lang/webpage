@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Multidimensional Arrays &#8212; Fortran Programming Language</title>
+    <title>Многомерные массивы &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,8 +45,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="Element-wise Operations on Arrays" href="../element_operations/" />
-    <link rel="prev" title="Arrays" href="../arrays/" /> 
+    <link rel="next" title="Элементные операции с массивами" href="../element_operations/" />
+    <link rel="prev" title="Массивы" href="../arrays/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -539,7 +539,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Практические рекомендации по разработке на Fortran
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -549,57 +549,57 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../style_guide/">
-     Fortran Style Guide
+     Руководство по стилю оформления кода Fortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../floating_point/">
-     Floating Point Numbers
+     Числа с плавающей точкой
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../integer_division/">
-     Integer Division
+     Целочисленное деление
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../modules_programs/">
-     Modules and Programs
+     Модули и программы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     Массивы
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Multidimensional Arrays
+     Многомерные массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../element_operations/">
-     Element-wise Operations on Array
+     Элементные операции с массивами
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../allocatable_arrays/">
-     Allocatable Arrays
+     Выделяемые (динамические) массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../file_io/">
-     File Input/Output
+     Файловый ввод/вывод
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../callbacks/">
-     Callbacks
+     Функции обратного вызова
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type_casting/">
-     Type Casting in Callbacks
+     Приведение типа в функциях обратного вызова
     </a>
    </li>
   </ul>
@@ -724,20 +724,10 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="multidimensional-arrays">
-<h1>Multidimensional Arrays<a class="headerlink" href="#multidimensional-arrays" title="Permalink to this heading">#</a></h1>
-<p>Multidimensional arrays are stored in column-major order. This means the
-left-most (inner-most) index addresses elements contiguously.
-From a practical point this means that the array slice <code class="docutils literal notranslate"><span class="pre">V(:,</span> <span class="pre">1)</span></code> is
-contiguous, while the stride between elements in the slice <code class="docutils literal notranslate"><span class="pre">V(1,</span> <span class="pre">:)</span></code>
-is the dimension of the columns. This is important when passing array
-slices to procedures which expect to work on contiguous data.</p>
-<p>The locality of the memory is important to consider depending on
-your application, usually when performing operations on a multidimensional
-the sequential access should always advance in unity strides.</p>
-<p>In the following example the inverse distance between two sets of points
-is evaluated. Note that the points are stored contiguously in the arrays
-<code class="docutils literal notranslate"><span class="pre">xyz1</span></code>/<code class="docutils literal notranslate"><span class="pre">xyz2</span></code>, while the inner-most loop is advancing the left-most
-index of the matrix <code class="docutils literal notranslate"><span class="pre">a</span></code>.</p>
+<h1>Многомерные массивы<a class="headerlink" href="#multidimensional-arrays" title="Permalink to this heading">#</a></h1>
+<p>Многомерные массивы хранятся в памяти по столбцам. Это означает, что крайний левый (внутренний) индекс обращается к элементам последовательно. С практической точки зрения это означает, что срез массива <code class="docutils literal notranslate"><span class="pre">V(:,</span> <span class="pre">1)</span></code> непрерывен, а расстояние между элементами в срезе <code class="docutils literal notranslate"><span class="pre">V(1,</span> <span class="pre">:)</span></code> равно размерности столбцов. Это важно при передаче срезов массива процедурам, которые работают с непрерывными в памяти данными.</p>
+<p>Локальность памяти важно учитывать в зависимости от вашего приложения, обычно при выполнении операций с многомерной памятью последовательный доступ всегда должен осуществляться шаг за шагом.</p>
+<p>В следующем примере оценивается величина обратная расстоянию между двумя наборами точек. Обратите внимание, что точки хранятся последовательно в массивах <code class="docutils literal notranslate"><span class="pre">xyz1</span></code>/<code class="docutils literal notranslate"><span class="pre">xyz2</span></code>, а внутренний цикл продвигается по крайнему левому индексу массива <code class="docutils literal notranslate"><span class="pre">a</span></code>.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">coulomb_matrix</span><span class="p">(</span><span class="n">xyz1</span><span class="p">,</span><span class="w"> </span><span class="n">xyz2</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">xyz1</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">xyz2</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
@@ -751,8 +741,7 @@ index of the matrix <code class="docutils literal notranslate"><span class="pre"
 <span class="k">end subroutine </span><span class="n">coulomb_matrix</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Another example would be the contraction of the third dimension of a rank
-three array:</p>
+<p>Другим примером может быть снижение размерности трёхмерного массива:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">amat</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">amat</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
 <span class="w">    </span><span class="k">do </span><span class="n">k</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">amat</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
@@ -762,11 +751,8 @@ three array:</p>
 <span class="k">end do</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Contiguous array slices can be used in array-bound remapping to allow usage
-of higher rank arrays as lower rank arrays without requiring to reshape
-and potentially create a temporary copy of the array.</p>
-<p>For example this can be used to contract the third dimension of a rank
-three array using a matrix-vector operation:</p>
+<p>Непрерывные срезы массива можно использовать при переобозначении с привязкой к массиву, чтобы разрешить использование массивов более высокой размерности в качестве массивов более низкой размерности без необходимости изменения формы и потенциального создания временной копии массива.</p>
+<p>Например, это можно использовать для снижения размерности трёхмерного массива с помощью матрично-векторной операции:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">matmul312</span><span class="p">(</span><span class="n">amat</span><span class="p">,</span><span class="w"> </span><span class="n">bvec</span><span class="p">,</span><span class="w"> </span><span class="n">cmat</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">contiguous</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">target</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">amat</span><span class="p">(:,</span><span class="w"> </span><span class="p">:,</span><span class="w"> </span><span class="p">:)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">bvec</span><span class="p">(:)</span><span class="w"></span>

@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>File Input/Output &#8212; Fortran Programming Language</title>
+    <title>Файловый ввод/вывод &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,8 +45,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="Callbacks" href="../callbacks/" />
-    <link rel="prev" title="Allocatable Arrays" href="../allocatable_arrays/" /> 
+    <link rel="next" title="Функции обратного вызова" href="../callbacks/" />
+    <link rel="prev" title="Выделяемые (динамические) массивы" href="../allocatable_arrays/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -539,7 +539,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Практические рекомендации по разработке на Fortran
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -549,57 +549,57 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../style_guide/">
-     Fortran Style Guide
+     Руководство по стилю оформления кода Fortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../floating_point/">
-     Floating Point Numbers
+     Числа с плавающей точкой
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../integer_division/">
-     Integer Division
+     Целочисленное деление
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../modules_programs/">
-     Modules and Programs
+     Модули и программы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     Массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../multidim_arrays/">
-     Multidimensional Arrays
+     Многомерные массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../element_operations/">
-     Element-wise Operations on Array
+     Элементные операции с массивами
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../allocatable_arrays/">
-     Allocatable Arrays
+     Выделяемые (динамические) массивы
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     File Input/Output
+     Файловый ввод/вывод
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../callbacks/">
-     Callbacks
+     Функции обратного вызова
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type_casting/">
-     Type Casting in Callbacks
+     Приведение типа в функциях обратного вызова
     </a>
    </li>
   </ul>
@@ -724,30 +724,23 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="file-input-output">
-<h1>File Input/Output<a class="headerlink" href="#file-input-output" title="Permalink to this heading">#</a></h1>
-<p>In Fortran files are managed by unit identifiers. Interaction with the filesystem
-mainly happens through the <code class="docutils literal notranslate"><span class="pre">open</span></code> and <code class="docutils literal notranslate"><span class="pre">inquire</span></code> built-in procedures.
-Generally, the workflow is to open a file to a unit identifier, read and/or write
-to it and close it again.</p>
+<h1>Файловый ввод/вывод<a class="headerlink" href="#file-input-output" title="Permalink to this heading">#</a></h1>
+<p>В языке Fortran работа с файлами осуществляется с помощью идентификационных номеров. Взаимодействие с файловой системой в основном происходит с помощью встроенных процедур <code class="docutils literal notranslate"><span class="pre">open</span></code> и <code class="docutils literal notranslate"><span class="pre">inquire</span></code>. Как правило, рабочий процесс заключается в открытии файла с идентификационным номером, чтении и/или записи в него и последующем закрытии.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="w"></span>
 <span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="c">! ...</span>
 <span class="k">close</span><span class="p">(</span><span class="n">io</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>By default the file will be created if it is not existing already and opened for
-both reading and writing. Writing to an existing file will start in the first
-record (line) and therefore overwrite the file by default.</p>
-<p>To create a read-only access to a file the <code class="docutils literal notranslate"><span class="pre">status</span></code> and <code class="docutils literal notranslate"><span class="pre">action</span></code> have to be
-specified with</p>
+<p>По умолчанию файл будет создан, если он ещё не существует, и открыт как для чтения, так и для записи. Запись в существующий файл начнётся с первой записи (строки) и, следовательно, по умолчанию перезапишет файл.</p>
+<p>Чтобы открыть доступ к файлу только для чтения, аргументы <code class="docutils literal notranslate"><span class="pre">status</span></code> (статус) и <code class="docutils literal notranslate"><span class="pre">action</span></code> (действие) должны быть указаны в качестве параметров</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="w"></span>
 <span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;old&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;read&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="k">read</span><span class="p">(</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
 <span class="k">close</span><span class="p">(</span><span class="n">io</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In case the file is not present a runtime error will occur. To check for the existence
-of a file prior to opening it the <code class="docutils literal notranslate"><span class="pre">inquire</span></code> function can be used</p>
+<p>В случае если файл не существует, произойдёт ошибка времени выполнения. Для проверки существования файла перед его открытием можно использовать функцию <code class="docutils literal notranslate"><span class="pre">inquire</span></code></p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">exists</span><span class="w"></span>
 <span class="k">inquire</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">exist</span><span class="o">=</span><span class="n">exists</span><span class="p">)</span><span class="w"></span>
 <span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">exists</span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w"></span>
@@ -755,7 +748,7 @@ of a file prior to opening it the <code class="docutils literal notranslate"><sp
 <span class="k">end if</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Alternatively, the <code class="docutils literal notranslate"><span class="pre">open</span></code> procedure can return an optional <em>iostat</em> and <em>iomsg</em>:</p>
+<p>С другой стороны, процедура <code class="docutils literal notranslate"><span class="pre">open</span></code> может возвращать необязательные аргументы <em>iostat</em> и <em>iomsg</em>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span>
 <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">512</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">msg</span><span class="w"></span>
 <span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;old&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;read&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
@@ -765,20 +758,15 @@ of a file prior to opening it the <code class="docutils literal notranslate"><sp
 <span class="k">end if</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Note that <em>iomsg</em> requires a fixed-length character variable with sufficient storage
-size to hold the error message.</p>
-<p>Similarly, writing to a file happens by using the <em>status</em> and <em>action</em> keyword.
-To create a new file use</p>
+<p>Обратите внимание, что аргументу <em>iomsg</em> для передачи значения требуется символьная переменная фиксированной длины достаточного размера, чтобы разместить в ней сообщение об ошибке.</p>
+<p>Аналогично, запись в файл происходит с использованием ключевых слов <em>status</em> и <em>action</em>. Для создания нового файла используйте следующий синтаксис</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="w"></span>
 <span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;new&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;write&quot;</span><span class="p">)</span><span class="w"></span>
 <span class="k">write</span><span class="p">(</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
 <span class="k">close</span><span class="p">(</span><span class="n">io</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Alternatively, <code class="docutils literal notranslate"><span class="pre">status=&quot;replace&quot;</span></code> can be used to overwrite an existing file.
-It is highly recommended to first check for the existence of a file before deciding
-on the <em>status</em> to use.
-To append to an output file the <em>position</em> keyword can be specified explicitly with</p>
+<p>В качестве альтернативы можно использовать <code class="docutils literal notranslate"><span class="pre">status=\&quot;replace\&quot;</span></code> для перезаписи существующего файла. Настоятельно рекомендуется сначала проверить существование файла, прежде чем принимать решение об использовании параметра <em>status</em>. Для добавления данных в выходной файл можно явно указать ключевое слово <em>position</em></p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="w"></span>
 <span class="k">open</span><span class="p">(</span><span class="n">newunit</span><span class="o">=</span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">position</span><span class="o">=</span><span class="s2">&quot;append&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
 <span class="w">  </span><span class="p">&amp;</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;old&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;write&quot;</span><span class="p">)</span><span class="w"></span>
@@ -787,11 +775,8 @@ To append to an output file the <em>position</em> keyword can be specified expli
 <span class="k">close</span><span class="p">(</span><span class="n">io</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>To reset the position in a file the built-in procedures <code class="docutils literal notranslate"><span class="pre">rewind</span></code> and <code class="docutils literal notranslate"><span class="pre">backspace</span></code>
-can be used. <code class="docutils literal notranslate"><span class="pre">rewind</span></code> will reset to the first record (line), while <code class="docutils literal notranslate"><span class="pre">backspace</span></code> will
-return to the previous record (line).</p>
-<p>Finally, to delete a file the file has to be opened and can be deleted after closing
-with</p>
+<p>Для сброса позиции в файле можно использовать встроенные процедуры <code class="docutils literal notranslate"><span class="pre">rewind</span></code> и <code class="docutils literal notranslate"><span class="pre">backspace</span></code>. Процедура <code class="docutils literal notranslate"><span class="pre">rewind</span></code> возвращает позицию к первой записи (строке), а <code class="docutils literal notranslate"><span class="pre">backspace</span></code> – к предыдущей записи (строке).</p>
+<p>Наконец, для удаления файла файл должен быть открыт и может быть удалён после закрытия следующим образом</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">exists</span><span class="w"></span>
 <span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">io</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span>
 <span class="k">inquire</span><span class="p">(</span><span class="k">file</span><span class="o">=</span><span class="s2">&quot;log.txt&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">exist</span><span class="o">=</span><span class="n">exists</span><span class="p">)</span><span class="w"></span>
@@ -801,8 +786,7 @@ with</p>
 <span class="k">end if</span><span class="w"></span>
 </pre></div>
 </div>
-<p>A useful IO feature is scratch files, which can be opened with <code class="docutils literal notranslate"><span class="pre">status=&quot;scratch&quot;</span></code>.
-They are automatically deleted after closing the unit identifier.</p>
+<p>Полезной функцией ввода/вывода являются временные (scratch) файлы, которые можно открыть, указав параметр <code class="docutils literal notranslate"><span class="pre">status=\&quot;scratch\&quot;</span></code>. Такие файлы автоматически удаляются после закрытия файла с соответствующим идентификационным номером.</p>
 </section>
 
 <div class="section">

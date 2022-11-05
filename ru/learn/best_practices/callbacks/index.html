@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Callbacks &#8212; Fortran Programming Language</title>
+    <title>Функции обратного вызова &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,8 +45,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="Type Casting in Callbacks" href="../type_casting/" />
-    <link rel="prev" title="File Input/Output" href="../file_io/" /> 
+    <link rel="next" title="Приведение типа в функциях обратного вызова" href="../type_casting/" />
+    <link rel="prev" title="Файловый ввод/вывод" href="../file_io/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -539,7 +539,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Практические рекомендации по разработке на Fortran
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -549,57 +549,57 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../style_guide/">
-     Fortran Style Guide
+     Руководство по стилю оформления кода Fortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../floating_point/">
-     Floating Point Numbers
+     Числа с плавающей точкой
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../integer_division/">
-     Integer Division
+     Целочисленное деление
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../modules_programs/">
-     Modules and Programs
+     Модули и программы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     Массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../multidim_arrays/">
-     Multidimensional Arrays
+     Многомерные массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../element_operations/">
-     Element-wise Operations on Array
+     Элементные операции с массивами
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../allocatable_arrays/">
-     Allocatable Arrays
+     Выделяемые (динамические) массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../file_io/">
-     File Input/Output
+     Файловый ввод/вывод
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Callbacks
+     Функции обратного вызова
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type_casting/">
-     Type Casting in Callbacks
+     Приведение типа в функциях обратного вызова
     </a>
    </li>
   </ul>
@@ -724,11 +724,9 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="callbacks">
-<h1>Callbacks<a class="headerlink" href="#callbacks" title="Permalink to this heading">#</a></h1>
-<p>A callback is a function that is passed as an argument to another function.</p>
-<p>The preferred way of creating such a callback is to provide an <em>abstract interface</em>
-declaring the signature of the callback. This allows to use compile time checks
-for the passed callback.</p>
+<h1>Функции обратного вызова<a class="headerlink" href="#callbacks" title="Permalink to this heading">#</a></h1>
+<p>Функция обратного вызова – это функция, которая передаётся в качестве аргумента в другую функцию.</p>
+<p>Предпочтительным способом создания такой функции обратного вызова является предоставление <em>абстрактного интерфейса</em>, объявляющего сигнатуру функции обратного вызова. Это позволяет использовать проверку времени компиляции для переданной функции обратного вызова.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -756,8 +754,7 @@ for the passed callback.</p>
 <span class="k">end module </span><span class="n">integrals</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The function can then be used with a callback by importing the module
-as shown in the following example</p>
+<p>После этого функцию можно использовать в качестве функции обратного вызова, импортировав модуль, как показано в следующем примере</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">demo_functions</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -783,8 +780,7 @@ as shown in the following example</p>
 <span class="k">end module </span><span class="n">demo_functions</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Exporting the abstract interface allows you to create procedure pointers with the
-correct signature and also to extend the callback further as shown here</p>
+<p>Экспорт абстрактного интерфейса позволяет создавать указатели подпрограмм с правильной сигнатурой, а также расширять функции обратного вызова, как показано здесь</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">demo_integrals</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">integrals</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">simpson</span><span class="p">,</span><span class="w"> </span><span class="n">integrable_function</span><span class="w"></span>

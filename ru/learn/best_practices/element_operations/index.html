@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Element-wise Operations on Arrays &#8212; Fortran Programming Language</title>
+    <title>Элементные операции с массивами &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,8 +45,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="Allocatable Arrays" href="../allocatable_arrays/" />
-    <link rel="prev" title="Multidimensional Arrays" href="../multidim_arrays/" /> 
+    <link rel="next" title="Выделяемые (динамические) массивы" href="../allocatable_arrays/" />
+    <link rel="prev" title="Многомерные массивы" href="../multidim_arrays/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -539,7 +539,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Практические рекомендации по разработке на Fortran
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -549,57 +549,57 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../style_guide/">
-     Fortran Style Guide
+     Руководство по стилю оформления кода Fortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../floating_point/">
-     Floating Point Numbers
+     Числа с плавающей точкой
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../integer_division/">
-     Integer Division
+     Целочисленное деление
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../modules_programs/">
-     Modules and Programs
+     Модули и программы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     Массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../multidim_arrays/">
-     Multidimensional Arrays
+     Многомерные массивы
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Element-wise Operations on Array
+     Элементные операции с массивами
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../allocatable_arrays/">
-     Allocatable Arrays
+     Выделяемые (динамические) массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../file_io/">
-     File Input/Output
+     Файловый ввод/вывод
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../callbacks/">
-     Callbacks
+     Функции обратного вызова
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type_casting/">
-     Type Casting in Callbacks
+     Приведение типа в функциях обратного вызова
     </a>
    </li>
   </ul>
@@ -724,16 +724,14 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="element-wise-operations-on-arrays">
-<h1>Element-wise Operations on Arrays<a class="headerlink" href="#element-wise-operations-on-arrays" title="Permalink to this heading">#</a></h1>
-<p>There are three approaches to perform element-wise operations on arrays when using subroutines and functions:</p>
+<h1>Элементные операции с массивами<a class="headerlink" href="#element-wise-operations-on-arrays" title="Permalink to this heading">#</a></h1>
+<p>Существует три подхода к выполнению элементных операций с массивами при использовании процедур и функций:</p>
 <ul class="simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">elemental</span></code> procedures</p></li>
-<li><p><em>explicit-shape</em> arrays</p></li>
-<li><p>implementing the operation for vectors and write simple wrapper
-subroutines (that use <code class="docutils literal notranslate"><span class="pre">reshape</span></code> internally) for each array shape</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">elemental</span></code> (элементные) подпрограммы</p></li>
+<li><p><em>explicit-shape</em> массивы (явной формы)</p></li>
+<li><p>реализация операции для векторов и написание простых процедур-обёрток (которые используют внутри операцию <code class="docutils literal notranslate"><span class="pre">reshape</span></code>) для каждой формы массива</p></li>
 </ul>
-<p>In the first approach, one uses the <code class="docutils literal notranslate"><span class="pre">elemental</span></code> keyword to create a
-function like this:</p>
+<p>В первом подходе используется ключевое слово <code class="docutils literal notranslate"><span class="pre">elemental</span></code> для создания функции, подобной этой:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="k">elemental function </span><span class="n">nroot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
@@ -741,8 +739,7 @@ function like this:</p>
 <span class="k">end function</span><span class="w"></span>
 </pre></div>
 </div>
-<p>All arguments (in and out) must be scalars. You can then use this
-function with arrays of any (compatible) shape, for example:</p>
+<p>Все аргументы (in и out) должны быть скалярами. Вы можете использовать эту функцию с массивами любой (совместимой) формы, например:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">)</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">1._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="mf">0._dp</span><span class="p">])</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nb">reshape</span><span class="p">([</span><span class="mf">1._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="mf">0._dp</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]))</span><span class="w"></span>
@@ -750,7 +747,7 @@ function with arrays of any (compatible) shape, for example:</p>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">([</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">],</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The output will be:</p>
+<p>Вывод будет следующим:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="mf">3.0000000000000000</span><span class="w"></span>
 <span class="mf">1.0000000000000000</span><span class="w">        </span><span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">3.0000000000000000</span><span class="w">        </span><span class="mf">3.1622776601683795</span><span class="w"></span>
 <span class="mf">1.0000000000000000</span><span class="w">        </span><span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">3.0000000000000000</span><span class="w">        </span><span class="mf">3.1622776601683795</span><span class="w"></span>
@@ -758,18 +755,9 @@ function with arrays of any (compatible) shape, for example:</p>
 <span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">1.5874010519681994</span><span class="w">        </span><span class="mf">1.4142135623730951</span><span class="w">        </span><span class="mf">1.3195079107728942</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In the above, typically <code class="docutils literal notranslate"><span class="pre">n</span></code> is a parameter and <code class="docutils literal notranslate"><span class="pre">x</span></code> is the array of an
-arbitrary shape, but as you can see, Fortran does not care as long as
-the final operation makes sense (if one argument is an array, then the
-other arguments must be either arrays of the same shape or scalars). If
-it does not, you will get a compiler error.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">elemental</span></code> keyword implies the <code class="docutils literal notranslate"><span class="pre">pure</span></code> keyword, so the procedure
-must be pure. It results that <code class="docutils literal notranslate"><span class="pre">elemental</span> <span class="pre">procedures</span></code> can only use <code class="docutils literal notranslate"><span class="pre">pure</span></code> procedures and have no side effects.</p>
-<p>If the elemental procedure algorithm can be made faster using array
-operations inside, or if for some reasons the arguments must be arrays of
-incompatible shapes, then one should use the other two approaches. One
-can make <code class="docutils literal notranslate"><span class="pre">nroot</span></code> operate on a vector and write a simple wrapper for
-other array shapes, e.g.:</p>
+<p>В приведённом выше примере обычно <code class="docutils literal notranslate"><span class="pre">n</span></code> является параметром, а <code class="docutils literal notranslate"><span class="pre">x</span></code> – массивом произвольной формы, но, как видите, языку Fortran всё равно, пока конечная операция имеет (если один аргумент является массивом, то остальные аргументы должны быть либо массивами той же формы, либо скалярами). Если это не так, то вы получите сообщение компилятора об ошибке.</p>
+<p>Ключевое слово <code class="docutils literal notranslate"><span class="pre">elemental</span></code> подразумевает ключевое слово <code class="docutils literal notranslate"><span class="pre">pure</span></code>, поэтому процедура должна быть чистой. Это приводит к тому, что <code class="docutils literal notranslate"><span class="pre">elemental</span> <span class="pre">procedures</span></code> (элементные подпрограммы) могут использовать только <code class="docutils literal notranslate"><span class="pre">pure</span></code> (чистые) подпрограммы и не имеют побочных эффектов.</p>
+<p>Если алгоритм элементной подпрограммы можно сделать быстрее, используя внутри операции с массивами или если по каким-то причинам аргументы должны быть массивами несовместимых форм, то следует использовать два других подхода. Можно заставить <code class="docutils literal notranslate"><span class="pre">nroot</span></code> работать с вектором и написать простую обёртку для других форм массивов, например:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">function </span><span class="n">nroot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">(:)</span><span class="w"></span>
@@ -794,20 +782,19 @@ other array shapes, e.g.:</p>
 <span class="k">end function</span><span class="w"></span>
 </pre></div>
 </div>
-<p>And use as follows:</p>
+<p>И использовать следующим образом:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot_0d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">)</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">1._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="mf">0._dp</span><span class="p">])</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot_2d</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nb">reshape</span><span class="p">([</span><span class="mf">1._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="mf">0._dp</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]))</span><span class="w"></span>
 </pre></div>
 </div>
-<p>This will print:</p>
+<p>Вывод будет следующим:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="mf">3.0000000000000000</span><span class="w"></span>
 <span class="mf">1.0000000000000000</span><span class="w">        </span><span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">3.0000000000000000</span><span class="w">        </span><span class="mf">3.1622776601683795</span><span class="w"></span>
 <span class="mf">1.0000000000000000</span><span class="w">        </span><span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">3.0000000000000000</span><span class="w">        </span><span class="mf">3.1622776601683795</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Or one can use <em>explicit-shape</em> arrays as
-follows:</p>
+<p>Или можно использовать <em>explicit-shape</em> массивы (явной формы):</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">function </span><span class="n">nroot</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">y</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="n">k</span><span class="p">)</span><span class="w"></span>
@@ -816,13 +803,13 @@ follows:</p>
 <span class="k">end function</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Use as follows:</p>
+<p>Применяя следующим образом:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">9._dp</span><span class="p">])</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mf">1._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="mf">0._dp</span><span class="p">])</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">nroot</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="nb">reshape</span><span class="p">([</span><span class="mf">1._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">4._dp</span><span class="p">,</span><span class="w"> </span><span class="mf">9._dp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="mf">0._dp</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]))</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The output is the same as before:</p>
+<p>Вывод будет таким же, как в прошлый раз:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="mf">3.0000000000000000</span><span class="w"></span>
 <span class="mf">1.0000000000000000</span><span class="w">        </span><span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">3.0000000000000000</span><span class="w">        </span><span class="mf">3.1622776601683795</span><span class="w"></span>
 <span class="mf">1.0000000000000000</span><span class="w">        </span><span class="mf">2.0000000000000000</span><span class="w">        </span><span class="mf">3.0000000000000000</span><span class="w">        </span><span class="mf">3.1622776601683795</span><span class="w"></span>

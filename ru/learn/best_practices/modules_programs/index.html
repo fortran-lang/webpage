@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Modules and Programs &#8212; Fortran Programming Language</title>
+    <title>Модули и программы &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,8 +45,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="Arrays" href="../arrays/" />
-    <link rel="prev" title="Integer Division" href="../integer_division/" /> 
+    <link rel="next" title="Массивы" href="../arrays/" />
+    <link rel="prev" title="Целочисленное деление" href="../integer_division/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -539,7 +539,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Практические рекомендации по разработке на Fortran
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -549,57 +549,57 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../style_guide/">
-     Fortran Style Guide
+     Руководство по стилю оформления кода Fortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../floating_point/">
-     Floating Point Numbers
+     Числа с плавающей точкой
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../integer_division/">
-     Integer Division
+     Целочисленное деление
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Modules and Programs
+     Модули и программы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     Массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../multidim_arrays/">
-     Multidimensional Arrays
+     Многомерные массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../element_operations/">
-     Element-wise Operations on Array
+     Элементные операции с массивами
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../allocatable_arrays/">
-     Allocatable Arrays
+     Выделяемые (динамические) массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../file_io/">
-     File Input/Output
+     Файловый ввод/вывод
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../callbacks/">
-     Callbacks
+     Функции обратного вызова
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type_casting/">
-     Type Casting in Callbacks
+     Приведение типа в функциях обратного вызова
     </a>
    </li>
   </ul>
@@ -724,13 +724,9 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="modules-and-programs">
-<h1>Modules and Programs<a class="headerlink" href="#modules-and-programs" title="Permalink to this heading">#</a></h1>
-<p>Modules are the preferred way create modern Fortran libraries and applications.
-As a convention, one source file should always contain only one module, while
-the module name should match the filepath to allow easy navigation in larger
-projects. It is also recommended to prefix module names with the library name
-to avoid name clashes when used as dependency in other projects.</p>
-<p>An example for such a module file is given here</p>
+<h1>Модули и программы<a class="headerlink" href="#modules-and-programs" title="Permalink to this heading">#</a></h1>
+<p>Использование модулей является предпочтительным способом создания современных библиотек и приложений на языке Fortran. По соглашению, один файл исходного кода всегда должен содержать только один модуль, а имя модуля должно соответствовать относительному пути к файлу, чтобы обеспечить удобную навигацию в больших проектах. Также рекомендуется добавлять к имени модуля префикс в виде имени библиотеки, чтобы избежать конфликта имён при использовании библиотеки в качестве зависимости в других проектах.</p>
+<p>Пример такого файла модуля приведён здесь</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!&gt; Interface to TOML processing library.</span>
 <span class="c">!&gt;</span>
 <span class="c">!&gt; ...</span>
@@ -764,29 +760,12 @@ to avoid name clashes when used as dependency in other projects.</p>
 <span class="k">end module </span><span class="n">fpm_toml</span><span class="w"></span>
 </pre></div>
 </div>
-<p>There are a few things in this example module to highlight. First, every module
-starts with comments documenting the purpose and content of the module.
-Similarly, every procedure starts with a comment briefly describing its
-purpose and the intent of the dummy arguments. Documentation is one of the most
-important parts of creating long-living software, regardless of language.</p>
-<p>Second, imports (<em>use</em>) and exports (<em>public</em>) are explicitly given, this
-allows on a glance at the module source to check the used and available
-procedures, constants and derived types. The imports are usually limited
-to the module scope rather than reimported in every procedure or interface
-scope. Similarly, exports are made explicitly by adding a <em>private</em> statement
-on a single line and explicitly listing all exported symbols in <em>public</em>
-statements.</p>
-<p>Finally, the <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code> statement works for the whole module and there
-is no need to repeat it within each procedure.</p>
-<p>Variables inside a module are static (<em>implicitly saved</em>). It is highly
-recommended to limit the usage of module variables to constant expressions,
-like parameters or enumerators only or export them as <em>protected</em> rather
-than <em>public</em>.</p>
-<p>Submodules can be used to break long dependency chains and shorten recompilation
-cascades in Fortran programs. They also offer the possibility to provide specialized
-and optimized implementations without requiring the use of preprocessor.</p>
-<p>An example from the Fortran standard library is the quadrature module, which
-only defines interfaces to module procedures, but no implementations</p>
+<p>В этом примере модуля можно выделить несколько моментов. Во-первых, каждый модуль начинается с комментариев, документирующих цель и содержание модуля. Аналогично, каждая процедура начинается с комментария, кратко описывающего ее назначение и смысл фиктивных аргументов. Документирование – одна из самых важных частей создания долговечного программного обеспечения, независимо от языка.</p>
+<p>Во-вторых, импорты (<em>use</em>) и экспорты (<em>public</em>) указаны в явном виде, что позволяет с первого взгляда на исходный текст модуля проверить используемые и доступные процедуры, константы и производные типы. Импорт обычно ограничивается областью применения модуля, а не реимпортируется в каждую процедуру или область применения интерфейса. Аналогично, экспорт осуществляется в явном виде путем добавления оператора <em>private</em> в отдельной строке и явного перечисления всех экспортируемых символов в операторах <em>public</em>.</p>
+<p>Наконец, оператор <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code> работает для всего модуля, и нет необходимости дублировать его в каждой процедуре.</p>
+<p>Переменные внутри модуля являются статическими (<em>неявно сохранёнными</em>, <em>implicitly saved</em>). Настоятельно рекомендуется ограничить использование переменных модуля только константными выражениями, такими как параметры или перечисления, или экспортировать их как <em>protected</em>, а не как <em>public</em>.</p>
+<p>Подмодули (Submodules) можно использовать для разрыва длинных цепочек зависимостей и сокращения каскадов перекомпиляции в программах Fortran. Они также дают возможность предоставлять специализированные и оптимизированные реализации, не требуя использования препроцессора.</p>
+<p>Примером из Fortran standard library является модуль квадратур, который определяет только интерфейсы для процедур модуля, но не их реализацию</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!&gt; Numerical integration</span>
 <span class="c">!&gt;</span>
 <span class="c">!&gt; ...</span>
@@ -816,8 +795,7 @@ only defines interfaces to module procedures, but no implementations</p>
 <span class="k">end module </span><span class="n">stdlib_quadrature</span><span class="w"></span>
 </pre></div>
 </div>
-<p>While the implementation is provided in separate submodules like the one for the
-trapezoidal integration rule given here.</p>
+<p>В то время как реализация предоставляется в отдельных подмодулях, как, например, для описания интегрирования методом трапеций, приведённого здесь.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!&gt; Actual implementation of the trapezoidal integration rule</span>
 <span class="c">!&gt;</span>
 <span class="c">!&gt; ...</span>
@@ -848,12 +826,8 @@ trapezoidal integration rule given here.</p>
 <span class="k">end submodule </span><span class="n">stdlib_quadrature_trapz</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Note that the module procedures do not have to be implemented in the same submodule.
-Several submodules can be used to reduce the compilation load for huge modules.</p>
-<p>Finally, when setting up a program, it is recommended to keep the actual implementations
-in the program body at minimum. Reusing implementations from modules allows you to write
-reusable code and focus the program unit on conveying user input to the respective library
-functions and objects.</p>
+<p>Обратите внимание, что процедуры модуля не обязательно должны быть реализованы в одном подмодуле. Несколько подмодулей могут быть использованы для снижения нагрузки компиляции для больших модулей.</p>
+<p>Наконец, при создании программы рекомендуется свести к минимуму количество фактических реализаций в теле программы. Повторное использование реализаций из модулей позволяет написать многократно используемый код и сосредоточиться в программном блоке на передаче пользовательского ввода соответствующим библиотечным функциям и объектам.</p>
 </section>
 
 <div class="section">

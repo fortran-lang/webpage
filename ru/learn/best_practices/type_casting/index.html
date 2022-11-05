@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Type Casting in Callbacks &#8212; Fortran Programming Language</title>
+    <title>Приведение типа в функциях обратного вызова &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -46,7 +46,7 @@
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
     <link rel="next" title="Fortran Intrinsics" href="../../intrinsics/" />
-    <link rel="prev" title="Callbacks" href="../callbacks/" /> 
+    <link rel="prev" title="Функции обратного вызова" href="../callbacks/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -539,7 +539,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Практические рекомендации по разработке на Fortran
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -549,57 +549,57 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../style_guide/">
-     Fortran Style Guide
+     Руководство по стилю оформления кода Fortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../floating_point/">
-     Floating Point Numbers
+     Числа с плавающей точкой
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../integer_division/">
-     Integer Division
+     Целочисленное деление
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../modules_programs/">
-     Modules and Programs
+     Модули и программы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     Массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../multidim_arrays/">
-     Multidimensional Arrays
+     Многомерные массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../element_operations/">
-     Element-wise Operations on Array
+     Элементные операции с массивами
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../allocatable_arrays/">
-     Allocatable Arrays
+     Выделяемые (динамические) массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../file_io/">
-     File Input/Output
+     Файловый ввод/вывод
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../callbacks/">
-     Callbacks
+     Функции обратного вызова
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Type Casting in Callbacks
+     Приведение типа в функциях обратного вызова
     </a>
    </li>
   </ul>
@@ -717,42 +717,42 @@
 <nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#work-arrays">
-   Work Arrays
+   Рабочие массивы
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#general-structure">
-   General Structure
+   Общая структура данных
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#private-module-variables">
-   Private Module Variables
+   Переменные частного модуля
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#nested-functions">
-   Nested functions
+   Вложенные функции
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-type-c-ptr-pointer">
-   Using type(c_ptr) Pointer
+   Использование type(c_ptr) указателя
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#transfer-intrinsic-function">
-   transfer() Intrinsic Function
+   Встроенная функция transfer()
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#object-oriented-approach">
-   Object Oriented Approach
+   Объектно-ориентированный подход
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#complete-example-of-void-vs-type-c-ptr-and-transfer">
-   Complete Example of void * vs type(c_ptr) and transfer()
+   Пример с использованием void * vs type(c_ptr) и функции transfer()
   </a>
  </li>
 </ul>
@@ -769,18 +769,13 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="type-casting-in-callbacks">
-<h1>Type Casting in Callbacks<a class="headerlink" href="#type-casting-in-callbacks" title="Permalink to this heading">#</a></h1>
-<p>There are essentially five different ways to do type casting, each with its own
-advantages and disadvantages.</p>
-<p>The methods I, II and V can be used both in C and Fortran. The methods
-III and IV are only available in Fortran. The method VI is obsolete and
-should not be used.</p>
+<h1>Приведение типа в функциях обратного вызова<a class="headerlink" href="#type-casting-in-callbacks" title="Permalink to this heading">#</a></h1>
+<p>Существует пять различных способов приведения типа, каждый из которых имеет свои преимущества и недостатки.</p>
+<p>Методы I, II и V можно использовать как в языке C, так и в языке Fortran. Методы III и IV доступны только в языке Fortran. Метод VI является устаревшим и не должен использоваться.</p>
 <section id="work-arrays">
-<h2>Work Arrays<a class="headerlink" href="#work-arrays" title="Permalink to this heading">#</a></h2>
-<p>Pass a «work array» which is packed with everything needed by
-the caller and unpacked by the called routine. This is the old way –
-e.g., how LAPACK does it.</p>
-<p>Integrator:</p>
+<h2>Рабочие массивы<a class="headerlink" href="#work-arrays" title="Permalink to this heading">#</a></h2>
+<p>Передача «рабочего массива», в который упаковывается всё необходимое для вызывающей программы и распаковывается вызываемой программой. Это старый способ – например, его используют в библиотеке LAPACK.</p>
+<p>Реализация:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -807,7 +802,7 @@ e.g., how LAPACK does it.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Usage:</p>
+<p>Использование:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">test</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">integrals</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">simpson</span><span class="w"></span>
@@ -840,13 +835,9 @@ e.g., how LAPACK does it.</p>
 </div>
 </section>
 <section id="general-structure">
-<h2>General Structure<a class="headerlink" href="#general-structure" title="Permalink to this heading">#</a></h2>
-<p>Define a general structure which encompass the variations you
-actually need (or are even remotely likely to need going forward). This
-single structure type can then change if needed as future
-needs/ideas permit but won’t likely need to change from passing, say,
-real numbers to, say, and instantiation of a text editor.</p>
-<p>Integrator:</p>
+<h2>Общая структура данных<a class="headerlink" href="#general-structure" title="Permalink to this heading">#</a></h2>
+<p>Задание общей структуры данных, которая охватывает все варианты, которые вам действительно нужны (или даже отдалённо, вероятно, что понадобятся в будущем). Этот единственный тип структуры может изменяться по мере необходимости в соответствии с будущими потребностями/идеями, но, скорее всего, он не будет меняться от передачи, скажем, вещественных чисел до, скажем, создания экземпляра текстового редактора.</p>
+<p>Реализация:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -882,7 +873,7 @@ real numbers to, say, and instantiation of a text editor.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Usage:</p>
+<p>Использование:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">test</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">integrals</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">simpson</span><span class="p">,</span><span class="w"> </span><span class="n">context</span><span class="w"></span>
@@ -913,17 +904,13 @@ real numbers to, say, and instantiation of a text editor.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>There is only so much flexibility really needed. For example, you could
-define two structure types for this purpose, one for Schroedinger and
-one for Dirac. Each would then be sufficiently general and contain all
-the needed pieces with all the right labels.</p>
-<p>Point is: it needn’t be «one abstract type to encompass all» or bust.
-There are natural and viable options between «all» and «none».</p>
+<p>На самом деле требуется лишь только такая гибкость. Например, вы можете определить два типа структур для этой цели, один для уравнения Шредингера и один для уравнения Дирака. Каждый из них будет достаточно общим и будет содержать все необходимые части с правильными обозначениями.</p>
+<p>Суть в том, что это не обязательно должен быть «один абстрактный тип, охватывающий всё». Существуют естественные и жизнеспособные варианты между «всё» и «ничего».</p>
 </section>
 <section id="private-module-variables">
-<h2>Private Module Variables<a class="headerlink" href="#private-module-variables" title="Permalink to this heading">#</a></h2>
-<p>Hide the variable arguments completely by passing in module variables.</p>
-<p>Integrator:</p>
+<h2>Переменные частного модуля<a class="headerlink" href="#private-module-variables" title="Permalink to this heading">#</a></h2>
+<p>Полностью скройте аргументы-переменные, передавая переменные модуля.</p>
+<p>Реализация:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -948,7 +935,7 @@ There are natural and viable options between «all» and «none».</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Usage:</p>
+<p>Использование:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">test</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">integrals</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">simpson</span><span class="w"></span>
@@ -976,14 +963,11 @@ There are natural and viable options between «all» and «none».</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>However it is best to avoid such global variables – even though really
-just semi-global – if possible. But sometimes it may be the simplest
-cleanest way. However, with a bit of thought, usually there is a better,
-safer, more explicit way along the lines of II or IV.</p>
+<p>Тем не менее если это возможно, лучше избегать таких глобальных переменных, даже если на самом деле они просто полуглобальные. Но иногда это может быть самым простым и чистым способом. Однако, если немного подумать, обычно есть лучший, более безопасный, более явный способ, подобный способам II или IV.</p>
 </section>
 <section id="nested-functions">
-<h2>Nested functions<a class="headerlink" href="#nested-functions" title="Permalink to this heading">#</a></h2>
-<p>Integrator:</p>
+<h2>Вложенные функции<a class="headerlink" href="#nested-functions" title="Permalink to this heading">#</a></h2>
+<p>Реализация:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -1008,7 +992,7 @@ safer, more explicit way along the lines of II or IV.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Usage:</p>
+<p>Использование:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">foo</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="p">)</span><span class="w"></span>
 <span class="k">use </span><span class="n">integrals</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">simpson</span><span class="w"></span>
 <span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">k</span><span class="w"></span>
@@ -1027,10 +1011,9 @@ safer, more explicit way along the lines of II or IV.</p>
 </div>
 </section>
 <section id="using-type-c-ptr-pointer">
-<h2>Using type(c_ptr) Pointer<a class="headerlink" href="#using-type-c-ptr-pointer" title="Permalink to this heading">#</a></h2>
-<p>In C, one would use the <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*</span></code> pointer. In Fortran, one can use
-<code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> for exactly the same purpose.</p>
-<p>Integrator:</p>
+<h2>Использование type(c_ptr) указателя<a class="headerlink" href="#using-type-c-ptr-pointer" title="Permalink to this heading">#</a></h2>
+<p>В языке C можно использовать указатель <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*</span></code>. В языке Fortran для той же цели можно использовать <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code>.</p>
+<p>Реализация:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="kt">c_ptr</span>
@@ -1058,7 +1041,7 @@ safer, more explicit way along the lines of II or IV.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Usage:</p>
+<p>Использование:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">test</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
 <span class="w">  </span><span class="k">use </span><span class="n">integrals</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">simpson</span><span class="w"></span>
@@ -1094,31 +1077,20 @@ safer, more explicit way along the lines of II or IV.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>As always, with the advantages of such re-casting, as Fortran lets you
-do if you really want to, come also the disadvantages that fewer
-compile- and run-time checks are possible to catch errors; and with
-that, inevitably more leaky, bug-prone code. So one always has to
-balance the costs and benefits.</p>
-<p>Usually, in the context of scientific programming, where the main thrust
-is to represent and solve precise mathematical formulations (as opposed
-to create a GUI with some untold number of buttons, drop-downs, and
-other interface elements), simplest, least bug-prone, and fastest is to
-use one of the previous approaches.</p>
+<p>Как всегда, с преимуществами такого повторного приведения типа, который Fortran позволяет осуществить, если вы действительно этого хотите, связаны и недостатки: возможно выполнить меньше проверок времени компиляции и времени выполнения для выявления ошибок; вместе с этим появляется неизбежно больше возможных утечек, подверженный ошибкам код. Поэтому всегда нужно соизмерять потери и выгоды.</p>
+<p>Обычно, в контексте научного программирования, где основным направлением является представление и решение точных математических формулировок (в отличие от создания графического интерфейса с бесчисленным количеством кнопок, выпадающих списков и других элементов интерфейса), наиболее простым, наименее подверженным ошибкам и быстрым является использование одного из предыдущих подходов.</p>
 </section>
 <section id="transfer-intrinsic-function">
-<h2>transfer() Intrinsic Function<a class="headerlink" href="#transfer-intrinsic-function" title="Permalink to this heading">#</a></h2>
-<p>Before Fortran 2003, the only way to do type casting was using the
-<code class="docutils literal notranslate"><span class="pre">transfer</span></code> intrinsic function. It is functionally equivalent to the
-method V, but more verbose and more error prone. It is now obsolete and
-one should use the method V instead.</p>
-<p>Examples:</p>
+<h2>Встроенная функция transfer()<a class="headerlink" href="#transfer-intrinsic-function" title="Permalink to this heading">#</a></h2>
+<p>До появления стандарта Fortran 2003 единственным способом приведения типов было использование встроенной функции <code class="docutils literal notranslate"><span class="pre">transfer</span></code>. Она функционально эквивалентна методу V, но более многословна и более подвержена ошибкам. Теперь она устарела, и вместо неё следует использовать метод V.</p>
+<p>Примеры:</p>
 <p><a class="reference external" href="http://jblevins.org/log/transfer">http://jblevins.org/log/transfer</a></p>
 <p><a class="reference external" href="http://jblevins.org/research/generic-list.pdf">http://jblevins.org/research/generic-list.pdf</a></p>
 <p><a class="reference external" href="http://www.macresearch.org/advanced_fortran_90_callbacks_with_the_transfer_function">http://www.macresearch.org/advanced_fortran_90_callbacks_with_the_transfer_function</a></p>
 </section>
 <section id="object-oriented-approach">
-<h2>Object Oriented Approach<a class="headerlink" href="#object-oriented-approach" title="Permalink to this heading">#</a></h2>
-<p>The module:</p>
+<h2>Объектно-ориентированный подход<a class="headerlink" href="#object-oriented-approach" title="Permalink to this heading">#</a></h2>
+<p>Модуль:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
@@ -1153,12 +1125,8 @@ one should use the method V instead.</p>
 <span class="k">end module</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The abstract type prescribes exactly what the integration routine needs,
-namely a method to evaluate the function, but imposes nothing else on
-the user. The user extends this type, providing a concrete
-implementation of the eval type bound procedure and adding necessary
-context data as components of the extended type.</p>
-<p>Usage:</p>
+<p>Абстрактный тип описывает именно то, что требуется процедуре интегрирования, а именно метод для вычисления значения функции, но не навязывает пользователю ничего другого. Пользователь расширяет этот тип, предоставляя конкретную реализацию процедуры <code class="docutils literal notranslate"><span class="pre">eval</span></code> связанной с типом данных и добавляя необходимые контекстные данные в качестве компонентов расширенного типа.</p>
+<p>Использование:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">example_usage</span><span class="w"></span>
 
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"></span>
@@ -1197,14 +1165,13 @@ context data as components of the extended type.</p>
 </div>
 </section>
 <section id="complete-example-of-void-vs-type-c-ptr-and-transfer">
-<h2>Complete Example of void * vs type(c_ptr) and transfer()<a class="headerlink" href="#complete-example-of-void-vs-type-c-ptr-and-transfer" title="Permalink to this heading">#</a></h2>
-<p>Here are three equivalent codes: one in C using <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*</span></code> and two codes
-in Fortran using <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> and <code class="docutils literal notranslate"><span class="pre">transfer()</span></code>:</p>
+<h2>Пример с использованием void * vs type(c_ptr) и функции transfer()<a class="headerlink" href="#complete-example-of-void-vs-type-c-ptr-and-transfer" title="Permalink to this heading">#</a></h2>
+<p>Здесь приводятся три эквивалентных метода: один на языке C с использованием <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*</span></code> и два на языке Fortran с использованием <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> и функции <code class="docutils literal notranslate"><span class="pre">transfer()</span></code>:</p>
 <table class="docutils align-default">
 <thead>
-<tr class="row-odd"><th class="head"><p>Language  </p></th>
-<th class="head"><p>Method</p></th>
-<th class="head"><p>Link</p></th>
+<tr class="row-odd"><th class="head"><p>Язык  </p></th>
+<th class="head"><p>Метод</p></th>
+<th class="head"><p>Ссылка</p></th>
 </tr>
 </thead>
 <tbody>
@@ -1222,14 +1189,8 @@ in Fortran using <code class="docutils literal notranslate"><span class="pre">ty
 </tr>
 </tbody>
 </table>
-<p>The C code uses the standard C approach for writing extensible libraries
-that accept callbacks and contexts. The two Fortran codes show how to do
-the same. The <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> method is equivalent to the C version and
-that is the approach that should be used.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">transfer()</span></code> method is here for completeness only (before Fortran
-2003, it was the only way) and it is a little cumbersome, because the
-user needs to create auxiliary conversion functions for each of his
-types. As such, the <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> method should be used instead.</p>
+<p>Метод на языке C использует стандартный подход языка C для написания расширяемых библиотек, которые принимают в качестве аргумента функции обратного вызова и контексты. Два метода на языке Fortran показывают, как сделать то же самое. Метод <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> эквивалентен версии на языке C, и именно этот подход следует использовать.</p>
+<p>Метод с функцией <code class="docutils literal notranslate"><span class="pre">transfer()</span></code> приведён здесь только для полноты картины (до стандарта Fortran 2003 он являлся единственным), и он немного громоздок, поскольку пользователю необходимо создавать вспомогательные функции преобразования для каждого из своих типов. Вместо него следует использовать <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code>.</p>
 </section>
 </section>
 

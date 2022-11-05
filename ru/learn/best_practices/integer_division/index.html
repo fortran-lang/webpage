@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Integer Division &#8212; Fortran Programming Language</title>
+    <title>Целочисленное деление &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,8 +45,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="Modules and Programs" href="../modules_programs/" />
-    <link rel="prev" title="Floating Point Numbers" href="../floating_point/" /> 
+    <link rel="next" title="Модули и программы" href="../modules_programs/" />
+    <link rel="prev" title="Числа с плавающей точкой" href="../floating_point/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -539,7 +539,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Практические рекомендации по разработке на Fortran
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -549,57 +549,57 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../style_guide/">
-     Fortran Style Guide
+     Руководство по стилю оформления кода Fortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../floating_point/">
-     Floating Point Numbers
+     Числа с плавающей точкой
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Integer Division
+     Целочисленное деление
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../modules_programs/">
-     Modules and Programs
+     Модули и программы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     Массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../multidim_arrays/">
-     Multidimensional Arrays
+     Многомерные массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../element_operations/">
-     Element-wise Operations on Array
+     Элементные операции с массивами
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../allocatable_arrays/">
-     Allocatable Arrays
+     Выделяемые (динамические) массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../file_io/">
-     File Input/Output
+     Файловый ввод/вывод
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../callbacks/">
-     Callbacks
+     Функции обратного вызова
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type_casting/">
-     Type Casting in Callbacks
+     Приведение типа в функциях обратного вызова
     </a>
    </li>
   </ul>
@@ -724,14 +724,8 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="integer-division">
-<h1>Integer Division<a class="headerlink" href="#integer-division" title="Permalink to this heading">#</a></h1>
-<p>Fortran distinguishes between floating point and integer arithmetic. It is
-important to note that division for integers is always using integer
-arithmetic. Furthermore, while Fortran uses the standard order-of-operations
-(e.g. multiplication and division preceed addition and subtraction, in the
-absence of parenthesis), operations of the same precedence are evaluated from
-left to right. Consider the following example for integer division of an odd
-number:</p>
+<h1>Целочисленное деление<a class="headerlink" href="#integer-division" title="Permalink to this heading">#</a></h1>
+<p>Fortran различает арифметику чисел с плавающей точкой и целочисленную арифметику. Важно отметить, что при делении целых чисел всегда используется целочисленная арифметика. Кроме того, хотя Fortran использует стандартный порядок операций (например, умножение и деление имеют приоритет выше чем сложение и вычитание, при отсутствии скобок), операции с одинаковым приоритетом производятся слева направо. Рассмотрим следующий пример целочисленного деления нечётного числа:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
 <span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w">  </span><span class="c">! prints 1</span>
@@ -741,10 +735,7 @@ number:</p>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w">  </span><span class="c">! prints -1</span>
 </pre></div>
 </div>
-<p>Be careful about whether you want to actually use integer arithmetic
-in this context. If you want to use floating point arithmetic instead
-make sure to cast to reals before using the division operator, or separate
-the integers by multiplying by <code class="docutils literal notranslate"><span class="pre">1.0_dp</span></code>:</p>
+<p>Будьте осторожны, если вы действительно хотите использовать целочисленную арифметику в данном контексте. Если вы хотите использовать арифметику чисел с плавающей точкой, то перед использованием оператора деления обязательно приведите его к вещественному виду или разделите целые числа операцией умножения на <code class="docutils literal notranslate"><span class="pre">1.0_dp</span></code>:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
 <span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
 <span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w">  </span><span class="c">! prints 1.5</span>

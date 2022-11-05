@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Fortran Style Guide &#8212; Fortran Programming Language</title>
+    <title>Руководство по стилю оформления кода Fortran &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,8 +45,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="Floating Point Numbers" href="../floating_point/" />
-    <link rel="prev" title="Fortran Best Practices" href="../" /> 
+    <link rel="next" title="Числа с плавающей точкой" href="../floating_point/" />
+    <link rel="prev" title="Практические рекомендации по разработке на Fortran" href="../" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -539,7 +539,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Практические рекомендации по разработке на Fortran
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -549,57 +549,57 @@
   <ul class="current">
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Fortran Style Guide
+     Руководство по стилю оформления кода Fortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../floating_point/">
-     Floating Point Numbers
+     Числа с плавающей точкой
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../integer_division/">
-     Integer Division
+     Целочисленное деление
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../modules_programs/">
-     Modules and Programs
+     Модули и программы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     Массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../multidim_arrays/">
-     Multidimensional Arrays
+     Многомерные массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../element_operations/">
-     Element-wise Operations on Array
+     Элементные операции с массивами
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../allocatable_arrays/">
-     Allocatable Arrays
+     Выделяемые (динамические) массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../file_io/">
-     File Input/Output
+     Файловый ввод/вывод
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../callbacks/">
-     Callbacks
+     Функции обратного вызова
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type_casting/">
-     Type Casting in Callbacks
+     Приведение типа в функциях обратного вызова
     </a>
    </li>
   </ul>
@@ -717,17 +717,17 @@
 <nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#naming-convention">
-   Naming Convention
+   Соглашение об именовании
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#indentation">
-   Indentation
+   Отступы
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#comparison-to-other-languages">
-   Comparison to Other Languages
+   Сравнение с другими языками программирования
   </a>
  </li>
 </ul>
@@ -744,55 +744,25 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="fortran-style-guide">
-<h1>Fortran Style Guide<a class="headerlink" href="#fortran-style-guide" title="Permalink to this heading">#</a></h1>
+<h1>Руководство по стилю оформления кода Fortran<a class="headerlink" href="#fortran-style-guide" title="Permalink to this heading">#</a></h1>
 <section id="naming-convention">
-<h2>Naming Convention<a class="headerlink" href="#naming-convention" title="Permalink to this heading">#</a></h2>
-<p>Ultimately this is a matter of preference. Here is a style guide that we
-like and that seems to be prevalent in most scientific codes (as well as
-the Fortran standard library), and you are welcome to follow it.</p>
+<h2>Соглашение об именовании<a class="headerlink" href="#naming-convention" title="Permalink to this heading">#</a></h2>
+<p>В конечном счёте, это вопрос предпочтений. Это руководство по стилю, которое нам нравится и которое, похоже, преобладает в большинстве научных кодов (а также в Fortran standard library), и вы можете следовать ему.</p>
 <ol class="arabic simple">
-<li><p>Use lowercase for all Fortran constructs (<code class="docutils literal notranslate"><span class="pre">do</span></code>, <code class="docutils literal notranslate"><span class="pre">subroutine</span></code>,
-<code class="docutils literal notranslate"><span class="pre">module</span></code>, …).</p></li>
-<li><p>Follow short mathematical notation for mathematical
-variables/functions (<code class="docutils literal notranslate"><span class="pre">Ylm</span></code>, <code class="docutils literal notranslate"><span class="pre">Gamma</span></code>, <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, <code class="docutils literal notranslate"><span class="pre">Enl</span></code>, <code class="docutils literal notranslate"><span class="pre">Rnl</span></code>, …).</p></li>
-<li><p>For other names use all lowercase: try to keep names to one or two
-syllables; if more are required, use underscores to clarify
-(<code class="docutils literal notranslate"><span class="pre">sortpair</span></code>, <code class="docutils literal notranslate"><span class="pre">whitechar</span></code>, <code class="docutils literal notranslate"><span class="pre">meshexp</span></code>, <code class="docutils literal notranslate"><span class="pre">numstrings</span></code>, <code class="docutils literal notranslate"><span class="pre">linspace</span></code>,
-<code class="docutils literal notranslate"><span class="pre">meshgrid</span></code>, <code class="docutils literal notranslate"><span class="pre">argsort</span></code>, <code class="docutils literal notranslate"><span class="pre">spline</span></code>, <code class="docutils literal notranslate"><span class="pre">spline_interp</span></code>,
-<code class="docutils literal notranslate"><span class="pre">spline_interpolate</span></code>, <code class="docutils literal notranslate"><span class="pre">stoperr</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_error</span></code>, <code class="docutils literal notranslate"><span class="pre">meshexp_der</span></code>).</p></li>
+<li><p>Используйте строчные буквы для всех конструкций языка Fortran (<code class="docutils literal notranslate"><span class="pre">do</span></code>, <code class="docutils literal notranslate"><span class="pre">subroutine</span></code>, <code class="docutils literal notranslate"><span class="pre">module</span></code>, …).</p></li>
+<li><p>Для математических переменных/функций используйте краткие математические обозначения (<code class="docutils literal notranslate"><span class="pre">Ylm</span></code>, <code class="docutils literal notranslate"><span class="pre">Gamma</span></code>, <code class="docutils literal notranslate"><span class="pre">gamma</span></code>, <code class="docutils literal notranslate"><span class="pre">Enl</span></code>, <code class="docutils literal notranslate"><span class="pre">Rnl</span></code>, …).</p></li>
+<li><p>Для других имён используйте все строчные буквы: старайтесь, чтобы имена состояли из одного или двух слогов; если требуется больше, используйте подчёркивание для уточнения (<code class="docutils literal notranslate"><span class="pre">sortpair</span></code>, <code class="docutils literal notranslate"><span class="pre">whitechar</span></code>, <code class="docutils literal notranslate"><span class="pre">meshexp</span></code>, <code class="docutils literal notranslate"><span class="pre">numstrings</span></code>, <code class="docutils literal notranslate"><span class="pre">linspace</span></code>, <code class="docutils literal notranslate"><span class="pre">meshgrid</span></code>, <code class="docutils literal notranslate"><span class="pre">argsort</span></code>, <code class="docutils literal notranslate"><span class="pre">spline</span></code>, <code class="docutils literal notranslate"><span class="pre">spline_interp</span></code>, <code class="docutils literal notranslate"><span class="pre">spline_interpolate</span></code>, <code class="docutils literal notranslate"><span class="pre">stoperr</span></code>, <code class="docutils literal notranslate"><span class="pre">stop_error</span></code>, <code class="docutils literal notranslate"><span class="pre">meshexp_der</span></code>).</p></li>
 </ol>
-<p>For example «spline interpolation» can be shortened to
-<code class="docutils literal notranslate"><span class="pre">spline_interpolation</span></code>, <code class="docutils literal notranslate"><span class="pre">spline_interpolate</span></code>, <code class="docutils literal notranslate"><span class="pre">spline_interp</span></code>, <code class="docutils literal notranslate"><span class="pre">spline</span></code>,
-but not to <code class="docutils literal notranslate"><span class="pre">splineint</span></code> («int» could mean integration, integer, etc. —
-too much ambiguity, even in the clear context of a computational code).
-This is in contrast to <code class="docutils literal notranslate"><span class="pre">get_argument()</span></code> where <code class="docutils literal notranslate"><span class="pre">getarg()</span></code> is perfectly
-clean and clear.</p>
-<p>The above are general guidelines. In general, choosing the right name
-certainly depends on the word being truncated as to whether the first
-syllable is sufficient. Usually it is but clearly not always. Thus some
-thought should go into step «try to keep names to 2 syllables or less»
-since it can really affect the indicativeness and simplicity. Simple
-consistent naming rules are a real help in this regard – for both
-collaboration and for one’s own sanity when going back to some old code
-you haven’t seen in while.</p>
+<p>Например, «spline interpolation» может быть сокращено до <code class="docutils literal notranslate"><span class="pre">spline_interpolation</span></code>, <code class="docutils literal notranslate"><span class="pre">spline_interpolate</span></code>, <code class="docutils literal notranslate"><span class="pre">spline_interp</span></code>, <code class="docutils literal notranslate"><span class="pre">spline</span></code>, но не <code class="docutils literal notranslate"><span class="pre">splineint</span></code> («int» может означать интегрирование, целое число и т.д. — слишком много двусмысленности, даже в ясном контексте вычислительного кода). Обратный пример: для <code class="docutils literal notranslate"><span class="pre">get_argument()</span></code> сокращение <code class="docutils literal notranslate"><span class="pre">getarg()</span></code> будет совершенно ясным и понятным.</p>
+<p>Выше приведены общие рекомендации. В целом, выбор правильного имени, безусловно, зависит от усекаемого слова и достаточно ли оставить первый слог. Обычно это так, но, очевидно, не всегда. Поэтому подумайте над тем, чтобы «стараться использовать названия, состоящие из 2 слогов или меньше», так как это может повлиять на наглядность и простоту. Простые и последовательные правила именования являются реальной помощью в этом отношении – как для совместной работы, так и для собственного здравомыслия при возвращении к старому коду, который вы давно не видели.</p>
 </section>
 <section id="indentation">
-<h2>Indentation<a class="headerlink" href="#indentation" title="Permalink to this heading">#</a></h2>
-<p>Use a consistent indentation to make your code readable.
-The amount of indentation is a matter of preference, the most common choices
-are two, three or four spaces.</p>
+<h2>Отступы<a class="headerlink" href="#indentation" title="Permalink to this heading">#</a></h2>
+<p>Используйте последовательные отступы чтобы сделать ваш код читабельным. Размер отступа – это вопрос предпочтений, наиболее распространёнными вариантами являются отступы в два, три или четыре пробела.</p>
 </section>
 <section id="comparison-to-other-languages">
-<h2>Comparison to Other Languages<a class="headerlink" href="#comparison-to-other-languages" title="Permalink to this heading">#</a></h2>
-<p>On the other hand, in most of the rest of the programming world, where
-the main focus is, in one form or another, on defining and using large
-sets of complex objects, with tons of properties and behaviors, known
-only in the code in which they are defined (as opposed to defined by the
-same notation throughout the literature), it makes more sense to use
-longer, more descriptive names. The naming conventions one sees used in
-more general-purpose languages such as C++ and Python, therefore, are
-perfectly consistent with their more general-purpose missions. But
-Fortran has a different mission (numerical scientific computing).</p>
+<h2>Сравнение с другими языками программирования<a class="headerlink" href="#comparison-to-other-languages" title="Permalink to this heading">#</a></h2>
+<p>С другой стороны, в большинстве других языков программирования, где основное внимание в той или иной форме уделяется определению и использованию больших наборов сложных объектов с множеством свойств и моделей поведения, известных только в коде, в котором они определены (в отличие от определения с помощью одной и той же нотации во всей литературе), имеет смысл использовать более длинные, более наглядные имена. Поэтому соглашения об именовании, которые используются в языках общего назначения, таких как C++ и Python, вполне соответствуют их более общим задачам. Но у Fortran другая задача (численные научные вычисления).</p>
 </section>
 </section>
 

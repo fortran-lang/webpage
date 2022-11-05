@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Floating Point Numbers &#8212; Fortran Programming Language</title>
+    <title>Числа с плавающей точкой &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,8 +45,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="Integer Division" href="../integer_division/" />
-    <link rel="prev" title="Fortran Style Guide" href="../style_guide/" /> 
+    <link rel="next" title="Целочисленное деление" href="../integer_division/" />
+    <link rel="prev" title="Руководство по стилю оформления кода Fortran" href="../style_guide/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -539,7 +539,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Практические рекомендации по разработке на Fortran
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -549,57 +549,57 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../style_guide/">
-     Fortran Style Guide
+     Руководство по стилю оформления кода Fortran
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Floating Point Numbers
+     Числа с плавающей точкой
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../integer_division/">
-     Integer Division
+     Целочисленное деление
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../modules_programs/">
-     Modules and Programs
+     Модули и программы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     Массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../multidim_arrays/">
-     Multidimensional Arrays
+     Многомерные массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../element_operations/">
-     Element-wise Operations on Array
+     Элементные операции с массивами
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../allocatable_arrays/">
-     Allocatable Arrays
+     Выделяемые (динамические) массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../file_io/">
-     File Input/Output
+     Файловый ввод/вывод
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../callbacks/">
-     Callbacks
+     Функции обратного вызова
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type_casting/">
-     Type Casting in Callbacks
+     Приведение типа в функциях обратного вызова
     </a>
    </li>
   </ul>
@@ -724,27 +724,21 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="floating-point-numbers">
-<h1>Floating Point Numbers<a class="headerlink" href="#floating-point-numbers" title="Permalink to this heading">#</a></h1>
-<p>The default representation of floating point numbers is using single precision
-(usually 32 bits / 4 bytes). For most applications a higher precision is required.
-For this purpose a custom kind parameter can be defined.
-The recommended way of defining kind parameters is to use</p>
+<h1>Числа с плавающей точкой<a class="headerlink" href="#floating-point-numbers" title="Permalink to this heading">#</a></h1>
+<p>По умолчанию для представления чисел с плавающей точкой используется одинарная точность (обычно 32 бита / 4 байта). Для большинства задач требуется более высокая точность. Для этой цели может быть определён пользовательский параметр kind. Рекомендуемый способ определения параметров kind – использовать запись</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">selected_real_kind</span><span class="p">(</span><span class="mi">15</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>For many purposes it also suffices to directly infer the kind parameter from
-a literal like here</p>
+<p>Для многих целей также достаточно непосредственно вывести параметр kind из литерала, как здесь</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="mf">0.0d0</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>or to rename the imported kind parameter from the <code class="docutils literal notranslate"><span class="pre">iso_fortran_env</span></code> module</p>
+<p>или переименовать импортируемый параметр kind из модуля <code class="docutils literal notranslate"><span class="pre">iso_fortran_env</span></code></p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">dp</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">real64</span><span class="w"></span>
 </pre></div>
 </div>
-<p>For some insightful thoughts on kind parameters see
-<a href="https://web.archive.org/web/20200930090137/https://stevelionel.com/drfortran/2017/03/27/doctor-fortran-in-it-takes-all-kinds/">Doctor Fortran in it takes all KINDs</a>.</p>
-<p>It is recommended to have a central module to define kind parameters and include
-them with use as necessary. An example for such a module is given with</p>
+<p>Некоторые размышления о параметрах kind можно найти в статье <a href="https://web.archive.org/web/20200930090137/https://stevelionel.com/drfortran/2017/03/27/doctor-fortran-in-it-takes-all-kinds/">Doctor Fortran in it takes all KINDs</a>.</p>
+<p>Рекомендуется иметь отдельный модуль для определения параметров kind и подключать их для использования по мере необходимости. Приведём пример такого модуля</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!&gt; Numerical storage size parameters for real and integer values</span>
 <span class="k">module </span><span class="n">kind_parameter</span><span class="w"></span>
 <span class="w">   </span><span class="k">implicit none</span>
@@ -769,33 +763,29 @@ them with use as necessary. An example for such a module is given with</p>
 <span class="k">end module </span><span class="n">kind_parameter</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Floating point constants should always be declared including a kind parameter suffix:</p>
+<p>Константы чисел с плавающей точкой всегда должны объявляться с использованием суффикса параметра kind:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"></span>
 <span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0_dp</span><span class="w"></span>
 <span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.5_dp</span><span class="w"></span>
 <span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.34e8_dp</span><span class="w"></span>
 </pre></div>
 </div>
-<p>It is safe to assign integers to floating point numbers without losing accuracy:</p>
+<p>Безопасно присваивать целые числа переменным ожидающим присвоения чисел с плавающей точкой без потери точности:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
 <span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"></span>
 </pre></div>
 </div>
-<p>In order to impose floating point division (as opposed to integer
-division <code class="docutils literal notranslate"><span class="pre">3/4</span></code> equal to <code class="docutils literal notranslate"><span class="pre">0</span></code>), one can convert the integer to a floating
-point number by:</p>
+<p>Для того, чтобы произвести деление для чисел с плавающей точкой (в отличие от целочисленного деления <code class="docutils literal notranslate"><span class="pre">3/4</span></code> дающего в результате <code class="docutils literal notranslate"><span class="pre">0</span></code>), одно из чисел можно преобразовать из целого в число с плавающей точкой:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
 <span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="kt">real</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="w">  </span><span class="c">! &#39;a&#39; is equal to 0.75_dp</span>
 </pre></div>
 </div>
-<p>or simply separate the integer division with multiplication by <code class="docutils literal notranslate"><span class="pre">1.0_dp</span></code></p>
+<p>или просто уйти от целочисленного деления посредством умножения на <code class="docutils literal notranslate"><span class="pre">1.0_dp</span></code></p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
 <span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="mf">1.0_dp</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">4</span><span class="w">  </span><span class="c">! &#39;a&#39; is equal to 0.75_dp</span>
 </pre></div>
 </div>
-<p>To print floating point numbers without losing precision use the unlimited
-format specifier <code class="docutils literal notranslate"><span class="pre">(g0)</span></code> or the exponential representation <code class="docutils literal notranslate"><span class="pre">(es24.16e3)</span></code>,
-which will give you 17 significant digits of printout.</p>
+<p>Для вывода чисел с плавающей точкой без потери точности используйте спецификатор неограниченного формата <code class="docutils literal notranslate"><span class="pre">(g0)</span></code> или экспоненциальное представление <code class="docutils literal notranslate"><span class="pre">(es24.16e3)</span></code>, которое даст вам 17 значащих цифр при печати.</p>
 </section>
 
 <div class="section">

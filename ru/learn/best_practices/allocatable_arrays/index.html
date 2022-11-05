@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Allocatable Arrays &#8212; Fortran Programming Language</title>
+    <title>Выделяемые (динамические) массивы &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,8 +45,8 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="File Input/Output" href="../file_io/" />
-    <link rel="prev" title="Element-wise Operations on Arrays" href="../element_operations/" /> 
+    <link rel="next" title="Файловый ввод/вывод" href="../file_io/" />
+    <link rel="prev" title="Элементные операции с массивами" href="../element_operations/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -539,7 +539,7 @@
  </li>
  <li class="toctree-l1 current active has-children">
   <a class="reference internal" href="../">
-   Fortran Best Practices
+   Практические рекомендации по разработке на Fortran
   </a>
   <input checked="" class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
   <label for="toctree-checkbox-4">
@@ -549,57 +549,57 @@
   <ul class="current">
    <li class="toctree-l2">
     <a class="reference internal" href="../style_guide/">
-     Fortran Style Guide
+     Руководство по стилю оформления кода Fortran
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../floating_point/">
-     Floating Point Numbers
+     Числа с плавающей точкой
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../integer_division/">
-     Integer Division
+     Целочисленное деление
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../modules_programs/">
-     Modules and Programs
+     Модули и программы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../arrays/">
-     Arrays
+     Массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../multidim_arrays/">
-     Multidimensional Arrays
+     Многомерные массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../element_operations/">
-     Element-wise Operations on Array
+     Элементные операции с массивами
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Allocatable Arrays
+     Выделяемые (динамические) массивы
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../file_io/">
-     File Input/Output
+     Файловый ввод/вывод
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../callbacks/">
-     Callbacks
+     Функции обратного вызова
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../type_casting/">
-     Type Casting in Callbacks
+     Приведение типа в функциях обратного вызова
     </a>
    </li>
   </ul>
@@ -724,20 +724,14 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="allocatable-arrays">
-<h1>Allocatable Arrays<a class="headerlink" href="#allocatable-arrays" title="Permalink to this heading">#</a></h1>
-<p>The <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute provides a safe way for memory handling.
-In comparison to variables with <code class="docutils literal notranslate"><span class="pre">pointer</span></code> attribute the memory is managed
-automatically and will be deallocated automatically once the variable goes
-out-of-scope. Using <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> variables removes the possibility to
-create memory leaks in an application.</p>
-<p>They can be used in subroutines to create scratch or work arrays, where
-automatic arrays would become too large to fit on the stack.</p>
+<h1>Выделяемые (динамические) массивы<a class="headerlink" href="#allocatable-arrays" title="Permalink to this heading">#</a></h1>
+<p>Аттрибут <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> обеспечивает безопасный способ работы с памятью. По сравнению с переменными с атрибутом <code class="docutils literal notranslate"><span class="pre">pointer</span></code> память управляется автоматически и будет автоматически освобождена, как только переменная выйдет за пределы области видимости. Использование <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> (выделяемых) переменных устраняет возможность создания утечек памяти в приложении.</p>
+<p>Они могут быть использованы в процедурах для создания временных или рабочих массивов, в случаях, когда автоматические массивы были бы слишком большими, чтобы поместиться в стеке.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">temp</span><span class="p">(:)</span><span class="w"></span>
 <span class="k">allocate</span><span class="p">(</span><span class="n">temp</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The allocation status can be checked using the <code class="docutils literal notranslate"><span class="pre">allocated</span></code> intrinsic
-to avoid uninitialized access</p>
+<p>Статус выделения памяти может быть проверен с помощью встроенной функции <code class="docutils literal notranslate"><span class="pre">allocated</span></code>, чтобы избежать неинициализированного доступа</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span><span class="w"></span>
 
@@ -747,29 +741,24 @@ to avoid uninitialized access</p>
 <span class="k">end subroutine </span><span class="n">show_arr</span><span class="w"></span>
 </pre></div>
 </div>
-<p>To allocate variables inside a procedure the dummy argument has to carry
-the <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute. Using it in combination with <code class="docutils literal notranslate"><span class="pre">intent(out)</span></code>
-will deallocate previous allocations before entering the procedure:</p>
+<p>Для выделения памяти переменным внутри подпрограммы фиктивный аргумент должен иметь атрибут <code class="docutils literal notranslate"><span class="pre">allocatable</span></code>. Его использование в сочетании с атрибутом <code class="docutils literal notranslate"><span class="pre">intent(out)</span></code> приведёт к освобождению памяти из предыдущих её выделений перед входом в подпрограмму:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">foo</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lam</span><span class="p">(:)</span><span class="w"></span>
 <span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">lam</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="w"></span>
 <span class="k">end subroutine </span><span class="n">foo</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The allocated array can be used afterwards like a normal array</p>
+<p>Выделяемый (динамический) массив в дальнейшем может быть использован как обычный массив</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lam</span><span class="p">(:)</span><span class="w"></span>
 <span class="k">call </span><span class="n">foo</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>An already allocated array cannot be allocated again without prior deallocation.
-Similarly, deallocation can only be invoked for allocated arrays. To reallocate
-an array use</p>
+<p>Для массива, для которого была выделена память, не может быть выделена память без предварительного освобождения выделенной ранее памяти. Аналогично, освобождение памяти может быть выполнено только для массивов, для которых она была выделена. Для повторного выделения памяти массиву используйте</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">lam</span><span class="p">))</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="w"></span>
 <span class="k">allocate</span><span class="p">(</span><span class="n">lam</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Passing allocated arrays to procedures does not require the <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute
-for the dummy arguments anymore.</p>
+<p>Передача выделяемых (динамических) массивов в подпрограммы больше не требует использования атрибута <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> для фиктивных аргументов.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span><span class="w"></span>
 
@@ -789,13 +778,8 @@ for the dummy arguments anymore.</p>
 <span class="k">end subroutine </span><span class="n">proc</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Passing an unallocated array in this context will lead to an invalid memory access.
-Allocatable arrays can be passed to <code class="docutils literal notranslate"><span class="pre">optional</span></code> dummy arguments – if they are unallocated
-the argument will not be present. The <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute is not limited to
-arrays and can also be associated with scalars, which can be useful in combination
-with <code class="docutils literal notranslate"><span class="pre">optional</span></code> dummy arguments.</p>
-<p>Allocations can be moved between different arrays with <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute
-using the <code class="docutils literal notranslate"><span class="pre">move_alloc</span></code> intrinsic subroutine.</p>
+<p>Передача массива с невыделенной памятью этом контексте приведёт к некорректному доступу к памяти. Выделяемые (динамические) массивы могут быть переданы как необязательные фиктивные аргументы –- если им не выделена память, то аргументы не будут учитываться. Атрибут <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> не ограничивается массивами и также может быть связан со скалярами, что может быть полезно в сочетании с необязательными фиктивными аргументами.</p>
+<p>Выделенные области памяти могут быть перемещены между разными массивами, имеющими атрибут <code class="docutils literal notranslate"><span class="pre">allocatable</span></code>, с помощью встроенной процедуры <code class="docutils literal notranslate"><span class="pre">move_alloc</span></code>.</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">resize</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">var</span><span class="p">(:)</span><span class="w"></span>
 <span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
@@ -824,14 +808,12 @@ using the <code class="docutils literal notranslate"><span class="pre">move_allo
 <span class="k">end subroutine </span><span class="n">resize</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Finally, allocations do not initialize the array. The content of the uninitialized
-array is most likely just the bytes of whatever was previously at the respective address.
-The allocation supports initialization using the source attribute:</p>
+<p>Наконец, выделение памяти не приводит к инициализации массива. Содержимое неинициализированного массива, скорее всего, представляет собой просто байты того, что ранее находилось по соответствующему адресу. Операция выделения памяти поддерживает инициализацию с помощью указания источника (source):</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span><span class="w"></span>
 <span class="k">allocate</span><span class="p">(</span><span class="n">arr</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">source</span><span class="o">=</span><span class="mf">0.0_dp</span><span class="p">)</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The <code class="docutils literal notranslate"><span class="pre">source</span></code> keyword supports scalar and array valued variables and constants.</p>
+<p>Ключевое слово <code class="docutils literal notranslate"><span class="pre">source</span></code> поддерживает использование скаляров, переменных в виде массива значений и констант.</p>
 </section>
 
 <div class="section">
