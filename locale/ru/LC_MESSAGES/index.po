@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-29 16:02+0200\n"
-"PO-Revision-Date: 2022-10-23 00:54+0000\n"
+"PO-Revision-Date: 2022-11-05 19:38+0000\n"
 "Last-Translator: Sergey Torokhov <torokhov-s-a@yandex.ru>\n"
 "Language-Team: Russian <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/ru/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n%10==1 && n%100!=11 ? 0 : n%10>=2 && n"
 "%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 4.14.2-dev\n"
+"X-Generator: Weblate 4.14.2\n"
 "Generated-By: Babel 2.10.3\n"
 
 #: ../../source/community.md:10
@@ -2759,11 +2759,13 @@ msgstr ""
 #: ../../source/learn/best_practices/callbacks.md:1
 #: ../../source/learn/best_practices/index.md:12
 msgid "Callbacks"
-msgstr ""
+msgstr "Функции обратного вызова"
 
 #: ../../source/learn/best_practices/callbacks.md:3
 msgid "A callback is a function that is passed as an argument to another function."
 msgstr ""
+"Функция обратного вызова -- это функция, которая передаётся в качестве "
+"аргумента в другую функцию."
 
 #: ../../source/learn/best_practices/callbacks.md:5
 msgid ""
@@ -2771,18 +2773,27 @@ msgid ""
 "interface_ declaring the signature of the callback. This allows to use "
 "compile time checks for the passed callback."
 msgstr ""
+"Предпочтительным способом создания такой функции обратного вызова является "
+"предоставление _абстрактного интерфейса_, объявляющего сигнатуру функции "
+"обратного вызова. Это позволяет использовать проверку времени компиляции для "
+"переданной функции обратного вызова."
 
 #: ../../source/learn/best_practices/callbacks.md:37
 msgid ""
 "The function can then be used with a callback by importing the module as "
 "shown in the following example"
 msgstr ""
+"После этого функцию можно использовать в качестве функции обратного вызова, "
+"импортировав модуль, как показано в следующем примере"
 
 #: ../../source/learn/best_practices/callbacks.md:66
 msgid ""
 "Exporting the abstract interface allows you to create procedure pointers with"
 " the correct signature and also to extend the callback further as shown here"
 msgstr ""
+"Экспорт абстрактного интерфейса позволяет создавать указатели подпрограмм с "
+"правильной сигнатурой, а также расширять функции обратного вызова, как "
+"показано здесь"
 
 #: ../../source/learn/best_practices/element_operations.md:1
 msgid "Element-wise Operations on Arrays"
@@ -2890,7 +2901,7 @@ msgstr "Вывод будет таким же, как в прошлый раз:"
 #: ../../source/learn/best_practices/file_io.md:1
 #: ../../source/learn/best_practices/index.md:12
 msgid "File Input/Output"
-msgstr ""
+msgstr "Файловый ввод/вывод"
 
 #: ../../source/learn/best_practices/file_io.md:3
 msgid ""
@@ -2899,6 +2910,11 @@ msgid ""
 "procedures. Generally, the workflow is to open a file to a unit identifier, "
 "read and/or write to it and close it again."
 msgstr ""
+"В языке Fortran работа с файлами осуществляется с помощью идентификационных "
+"номеров. Взаимодействие с файловой системой в основном происходит с помощью "
+"встроенных процедур `open` и `inquire`. Как правило, рабочий процесс "
+"заключается в открытии файла с идентификационным номером, чтении и/или "
+"записи в него и последующем закрытии."
 
 #: ../../source/learn/best_practices/file_io.md:15
 msgid ""
@@ -2906,36 +2922,51 @@ msgid ""
 "for both reading and writing. Writing to an existing file will start in the "
 "first record (line) and therefore overwrite the file by default."
 msgstr ""
+"По умолчанию файл будет создан, если он ещё не существует, и открыт как для "
+"чтения, так и для записи. Запись в существующий файл начнётся с первой "
+"записи (строки) и, следовательно, по умолчанию перезапишет файл."
 
 #: ../../source/learn/best_practices/file_io.md:19
 msgid ""
 "To create a read-only access to a file the `status` and `action` have to be "
 "specified with"
 msgstr ""
+"Чтобы открыть доступ к файлу только для чтения, аргументы `status` (статус) "
+"и `action` (действие) должны быть указаны в качестве параметров"
 
 #: ../../source/learn/best_practices/file_io.md:29
 msgid ""
 "In case the file is not present a runtime error will occur. To check for the "
 "existence of a file prior to opening it the `inquire` function can be used"
 msgstr ""
+"В случае если файл не существует, произойдёт ошибка времени выполнения. Для "
+"проверки существования файла перед его открытием можно использовать функцию "
+"`inquire`"
 
 #: ../../source/learn/best_practices/file_io.md:40
 msgid ""
 "Alternatively, the `open` procedure can return an optional _iostat_ and "
 "_iomsg_:"
 msgstr ""
+"С другой стороны, процедура `open` может возвращать необязательные аргументы "
+"_iostat_ и _iomsg_:"
 
 #: ../../source/learn/best_practices/file_io.md:52
 msgid ""
 "Note that _iomsg_ requires a fixed-length character variable with sufficient "
 "storage size to hold the error message."
 msgstr ""
+"Обратите внимание, что аргументу _iomsg_ для передачи значения требуется "
+"символьная переменная фиксированной длины достаточного размера, чтобы "
+"разместить в ней сообщение об ошибке."
 
 #: ../../source/learn/best_practices/file_io.md:55
 msgid ""
 "Similarly, writing to a file happens by using the _status_ and _action_ "
 "keyword. To create a new file use"
 msgstr ""
+"Аналогично, запись в файл происходит с использованием ключевых слов _status_ "
+"и _action_. Для создания нового файла используйте следующий синтаксис"
 
 #: ../../source/learn/best_practices/file_io.md:65
 msgid ""
@@ -2944,6 +2975,11 @@ msgid ""
 "before deciding on the _status_ to use. To append to an output file the "
 "_position_ keyword can be specified explicitly with"
 msgstr ""
+"В качестве альтернативы можно использовать `status=\\\"replace\\\"` для "
+"перезаписи существующего файла. Настоятельно рекомендуется сначала проверить "
+"существование файла, прежде чем принимать решение об использовании параметра "
+"_status_. Для добавления данных в выходной файл можно явно указать ключевое "
+"слово _position_"
 
 #: ../../source/learn/best_practices/file_io.md:79
 msgid ""
@@ -2951,12 +2987,17 @@ msgid ""
 "`backspace` can be used. `rewind` will reset to the first record (line), "
 "while `backspace` will return to the previous record (line)."
 msgstr ""
+"Для сброса позиции в файле можно использовать встроенные процедуры `rewind` "
+"и `backspace`. Процедура `rewind` возвращает позицию к первой записи (строке)"
+", а `backspace` -- к предыдущей записи (строке)."
 
 #: ../../source/learn/best_practices/file_io.md:83
 msgid ""
 "Finally, to delete a file the file has to be opened and can be deleted after "
 "closing with"
 msgstr ""
+"Наконец, для удаления файла файл должен быть открыт и может быть удалён "
+"после закрытия следующим образом"
 
 #: ../../source/learn/best_practices/file_io.md:96
 msgid ""
@@ -2964,6 +3005,10 @@ msgid ""
 "`status=\"scratch\"`. They are automatically deleted after closing the unit "
 "identifier."
 msgstr ""
+"Полезной функцией ввода/вывода являются временные (scratch) файлы, которые "
+"можно открыть, указав параметр `status=\\\"scratch\\\"`. Такие файлы "
+"автоматически удаляются после закрытия файла с соответствующим "
+"идентификационным номером."
 
 #: ../../source/learn/best_practices/floating_point.md:1
 #: ../../source/learn/best_practices/index.md:12
@@ -3086,7 +3131,7 @@ msgstr "Элементные операции с массивами"
 #: ../../source/learn/best_practices/index.md:12
 #: ../../source/learn/best_practices/type_casting.md:1
 msgid "Type Casting in Callbacks"
-msgstr ""
+msgstr "Приведение типа в функциях обратного вызова"
 
 #: ../../source/learn/best_practices/index.md:4
 msgid "Fortran Best Practices"
@@ -3451,6 +3496,8 @@ msgid ""
 "There are essentially five different ways to do type casting, each with its "
 "own advantages and disadvantages."
 msgstr ""
+"Существует пять различных способов приведения типа, каждый из которых имеет "
+"свои преимущества и недостатки."
 
 #: ../../source/learn/best_practices/type_casting.md:6
 msgid ""
@@ -3458,10 +3505,13 @@ msgid ""
 "and IV are only available in Fortran. The method VI is obsolete and should "
 "not be used."
 msgstr ""
+"Методы I, II и V можно использовать как в языке C, так и в языке Fortran. "
+"Методы III и IV доступны только в языке Fortran. Метод VI является "
+"устаревшим и не должен использоваться."
 
 #: ../../source/learn/best_practices/type_casting.md:10
 msgid "Work Arrays"
-msgstr ""
+msgstr "Рабочие массивы"
 
 #: ../../source/learn/best_practices/type_casting.md:12
 msgid ""
@@ -3469,6 +3519,9 @@ msgid ""
 "and unpacked by the called routine. This is the old way -- e.g., how LAPACK "
 "does it."
 msgstr ""
+"Передача \"рабочего массива\", в который упаковывается всё необходимое для "
+"вызывающей программы и распаковывается вызываемой программой. Это старый "
+"способ -- например, его используют в библиотеке LAPACK."
 
 #: ../../source/learn/best_practices/type_casting.md:16
 #: ../../source/learn/best_practices/type_casting.md:86
@@ -3476,7 +3529,7 @@ msgstr ""
 #: ../../source/learn/best_practices/type_casting.md:233
 #: ../../source/learn/best_practices/type_casting.md:284
 msgid "Integrator:"
-msgstr ""
+msgstr "Реализация:"
 
 #: ../../source/learn/best_practices/type_casting.md:45
 #: ../../source/learn/best_practices/type_casting.md:124
@@ -3485,11 +3538,11 @@ msgstr ""
 #: ../../source/learn/best_practices/type_casting.md:314
 #: ../../source/learn/best_practices/type_casting.md:424
 msgid "Usage:"
-msgstr ""
+msgstr "Использование:"
 
 #: ../../source/learn/best_practices/type_casting.md:78
 msgid "General Structure"
-msgstr ""
+msgstr "Общая структура данных"
 
 #: ../../source/learn/best_practices/type_casting.md:80
 msgid ""
@@ -3499,6 +3552,12 @@ msgid ""
 "need to change from passing, say, real numbers to, say, and instantiation of "
 "a text editor."
 msgstr ""
+"Задание общей структуры данных, которая охватывает все варианты, которые вам "
+"действительно нужны (или даже отдалённо, вероятно, что понадобятся в будущем)"
+". Этот единственный тип структуры может изменяться по мере необходимости в "
+"соответствии с будущими потребностями/идеями, но, скорее всего, он не будет "
+"меняться от передачи, скажем, вещественных чисел до, скажем, создания "
+"экземпляра текстового редактора."
 
 #: ../../source/learn/best_practices/type_casting.md:157
 msgid ""
@@ -3507,20 +3566,27 @@ msgid ""
 " Dirac. Each would then be sufficiently general and contain all the needed "
 "pieces with all the right labels."
 msgstr ""
+"На самом деле требуется лишь только такая гибкость. Например, вы можете "
+"определить два типа структур для этой цели, один для уравнения Шредингера и "
+"один для уравнения Дирака. Каждый из них будет достаточно общим и будет "
+"содержать все необходимые части с правильными обозначениями."
 
 #: ../../source/learn/best_practices/type_casting.md:162
 msgid ""
 "Point is: it needn't be \"one abstract type to encompass all\" or bust. There"
 " are natural and viable options between \"all\" and \"none\"."
 msgstr ""
+"Суть в том, что это не обязательно должен быть \"один абстрактный тип, "
+"охватывающий всё\". Существуют естественные и жизнеспособные варианты между "
+"\"всё\" и \"ничего\"."
 
 #: ../../source/learn/best_practices/type_casting.md:165
 msgid "Private Module Variables"
-msgstr ""
+msgstr "Переменные частного модуля"
 
 #: ../../source/learn/best_practices/type_casting.md:167
 msgid "Hide the variable arguments completely by passing in module variables."
-msgstr ""
+msgstr "Полностью скройте аргументы-переменные, передавая переменные модуля."
 
 #: ../../source/learn/best_practices/type_casting.md:226
 msgid ""
@@ -3529,21 +3595,27 @@ msgid ""
 "way. However, with a bit of thought, usually there is a better, safer, more "
 "explicit way along the lines of II or IV."
 msgstr ""
+"Тем не менее если это возможно, лучше избегать таких глобальных переменных, "
+"даже если на самом деле они просто полуглобальные. Но иногда это может быть "
+"самым простым и чистым способом. Однако, если немного подумать, обычно есть "
+"лучший, более безопасный, более явный способ, подобный способам II или IV."
 
 #: ../../source/learn/best_practices/type_casting.md:231
 #: ../../source/news/2021/05-01-Fortran-Newsletter-May-2021.md:208
 msgid "Nested functions"
-msgstr ""
+msgstr "Вложенные функции"
 
 #: ../../source/learn/best_practices/type_casting.md:279
 msgid "Using type(c_ptr) Pointer"
-msgstr ""
+msgstr "Использование type(c_ptr) указателя"
 
 #: ../../source/learn/best_practices/type_casting.md:281
 msgid ""
 "In C, one would use the `void *` pointer. In Fortran, one can use "
 "`type(c_ptr)` for exactly the same purpose."
 msgstr ""
+"В языке C можно использовать указатель `void *`. В языке Fortran для той же "
+"цели можно использовать `type(c_ptr)`."
 
 #: ../../source/learn/best_practices/type_casting.md:352
 msgid ""
@@ -3552,6 +3624,12 @@ msgid ""
 "time checks are possible to catch errors; and with that, inevitably more "
 "leaky, bug-prone code. So one always has to balance the costs and benefits."
 msgstr ""
+"Как всегда, с преимуществами такого повторного приведения типа, который "
+"Fortran позволяет осуществить, если вы действительно этого хотите, связаны и "
+"недостатки: возможно выполнить меньше проверок времени компиляции и времени "
+"выполнения для выявления ошибок; вместе с этим появляется неизбежно больше "
+"возможных утечек, подверженный ошибкам код. Поэтому всегда нужно соизмерять "
+"потери и выгоды."
 
 #: ../../source/learn/best_practices/type_casting.md:358
 msgid ""
@@ -3561,10 +3639,16 @@ msgid ""
 "interface elements), simplest, least bug-prone, and fastest is to use one of "
 "the previous approaches."
 msgstr ""
+"Обычно, в контексте научного программирования, где основным направлением "
+"является представление и решение точных математических формулировок (в "
+"отличие от создания графического интерфейса с бесчисленным количеством "
+"кнопок, выпадающих списков и других элементов интерфейса), наиболее простым, "
+"наименее подверженным ошибкам и быстрым является использование одного из "
+"предыдущих подходов."
 
 #: ../../source/learn/best_practices/type_casting.md:364
 msgid "transfer() Intrinsic Function"
-msgstr ""
+msgstr "Встроенная функция transfer()"
 
 #: ../../source/learn/best_practices/type_casting.md:366
 msgid ""
@@ -3573,10 +3657,14 @@ msgid ""
 "verbose and more error prone. It is now obsolete and one should use the "
 "method V instead."
 msgstr ""
+"До появления стандарта Fortran 2003 единственным способом приведения типов "
+"было использование встроенной функции `transfer`. Она функционально "
+"эквивалентна методу V, но более многословна и более подвержена ошибкам. "
+"Теперь она устарела, и вместо неё следует использовать метод V."
 
 #: ../../source/learn/best_practices/type_casting.md:371
 msgid "Examples:"
-msgstr ""
+msgstr "Примеры:"
 
 #: ../../source/learn/best_practices/type_casting.md:373
 msgid "<http://jblevins.org/log/transfer>"
@@ -3592,11 +3680,11 @@ msgstr ""
 
 #: ../../source/learn/best_practices/type_casting.md:379
 msgid "Object Oriented Approach"
-msgstr ""
+msgstr "Объектно-ориентированный подход"
 
 #: ../../source/learn/best_practices/type_casting.md:381
 msgid "The module:"
-msgstr ""
+msgstr "Модуль:"
 
 #: ../../source/learn/best_practices/type_casting.md:418
 msgid ""
@@ -3606,28 +3694,36 @@ msgid ""
 "eval type bound procedure and adding necessary context data as components of "
 "the extended type."
 msgstr ""
+"Абстрактный тип описывает именно то, что требуется процедуре интегрирования, "
+"а именно метод для вычисления значения функции, но не навязывает "
+"пользователю ничего другого. Пользователь расширяет этот тип, предоставляя "
+"конкретную реализацию процедуры `eval` связанной с типом данных и добавляя "
+"необходимые контекстные данные в качестве компонентов расширенного типа."
 
 #: ../../source/learn/best_practices/type_casting.md:463
 msgid "Complete Example of void \\* vs type(c_ptr) and transfer()"
-msgstr ""
+msgstr "Пример с использованием void \\* vs type(c_ptr) и функции transfer()"
 
 #: ../../source/learn/best_practices/type_casting.md:465
 msgid ""
 "Here are three equivalent codes: one in C using `void *` and two codes in "
 "Fortran using `type(c_ptr)` and `transfer()`:"
 msgstr ""
+"Здесь приводятся три эквивалентных метода: один на языке C с использованием `"
+"void *` и два на языке Fortran с использованием `type(c_ptr)` и функции "
+"`transfer()`:"
 
 #: ../../source/learn/best_practices/type_casting.md
 msgid "Language &nbsp;"
-msgstr ""
+msgstr "Язык &nbsp;"
 
 #: ../../source/learn/best_practices/type_casting.md
 msgid "Method"
-msgstr ""
+msgstr "Метод"
 
 #: ../../source/learn/best_practices/type_casting.md
 msgid "Link"
-msgstr ""
+msgstr "Ссылка"
 
 #: ../../source/learn/best_practices/type_casting.md
 msgid "C"
@@ -3668,6 +3764,11 @@ msgid ""
 "same. The `type(c_ptr)` method is equivalent to the C version and that is the"
 " approach that should be used."
 msgstr ""
+"Метод на языке C использует стандартный подход языка C для написания "
+"расширяемых библиотек, которые принимают в качестве аргумента функции "
+"обратного вызова и контексты. Два метода на языке Fortran показывают, как "
+"сделать то же самое. Метод `type(c_ptr)` эквивалентен версии на языке C, и "
+"именно этот подход следует использовать."
 
 #: ../../source/learn/best_practices/type_casting.md:479
 msgid ""
@@ -3676,6 +3777,11 @@ msgid ""
 " create auxiliary conversion functions for each of his types. As such, the "
 "`type(c_ptr)` method should be used instead."
 msgstr ""
+"Метод с функцией `transfer()` приведён здесь только для полноты картины (до "
+"стандарта Fortran 2003 он являлся единственным), и он немного громоздок, "
+"поскольку пользователю необходимо создавать вспомогательные функции "
+"преобразования для каждого из своих типов. Вместо него следует использовать "
+"`type(c_ptr)`."
 
 #: ../../source/learn/building_programs/build_tools.md:1
 #: ../../source/learn/building_programs/index.md:47
