@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>Distributing your programs &#8212; Fortran Programming Language</title>
+    <title>Распространение ваших программ &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -46,7 +46,7 @@
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
     <link rel="next" title="Практические рекомендации по разработке на Fortran" href="../../best_practices/" />
-    <link rel="prev" title="An introduction to make" href="../project_make/" /> 
+    <link rel="prev" title="Введение в систему сборки make" href="../project_make/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
@@ -333,7 +333,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../compilers/">
-  Compilers
+  Компиляторы
  </a>
 </li>
 
@@ -527,12 +527,12 @@
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../project_make/">
-     An introduction to make
+     Введение в систему сборки make
     </a>
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     Distributing your programs
+     Распространение ваших программ
     </a>
    </li>
   </ul>
@@ -717,7 +717,7 @@
 <nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#distributing-the-tabulation-program">
-   Distributing the tabulation program
+   Распространение программы создания табличной функции
   </a>
  </li>
 </ul>
@@ -734,51 +734,31 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="distributing-your-programs">
-<h1>Distributing your programs<a class="headerlink" href="#distributing-your-programs" title="Permalink to this heading">#</a></h1>
-<p>When you distribute your programs, there are a number of options you can
-choose from:</p>
+<h1>Распространение ваших программ<a class="headerlink" href="#distributing-your-programs" title="Permalink to this heading">#</a></h1>
+<p>Когда вы распространяете свои программы, существует несколько вариантов, из которых вы можете выбрать:</p>
 <ol class="arabic simple">
-<li><p>Distribute the entire source code</p></li>
-<li><p>Distribute a pre-built executable program</p></li>
-<li><p>Distribute static or dynamic libraries that people can use</p></li>
+<li><p>Распространение всего исходного кода</p></li>
+<li><p>Распространение предварительно собранного исполняемого файла программы</p></li>
+<li><p>Распространение статических или динамических библиотек, которые могут использовать люди</p></li>
 </ol>
-<p><strong>Option 1: Distribute the entire source code</strong></p>
-<p>By far the simplest — for you as a programmer — is this one: you leave it
-up to the user to build it on their own machine. Unfortunately, that
-means you will have to have a user-friendly build system in place and
-the user will have to have access to suitable compilers. For build systems:
-see the previous section.</p>
-<p><strong>Option 2: Distribute a pre-built executable program</strong></p>
-<p>A pre-built program that does not need to be customised, other than via its
-input, will still need to come with the various run-time libraries and will
-be specific to the operating system/environment it was built for.</p>
-<p>The set of run-time libraries differs per operating system and compiler version.
-For a freely available compiler like gfortran, the easiest thing is to ask the
-user to install that compiler on their system. In the case of Windows: the Cygwin
-environment may be called for.</p>
-<p>Alternatively, you can supply copies of the run-time libraries together with your
-program. Put them in the directory where they can be found at run-time.</p>
-<p>Note: On Windows, the Intel Fortran comes with a set of <em>redistributable</em> libraries.
-These will need to be made available.</p>
-<p>In general: use a tool like «ldd» or «dependency walker» to find out what
-libraries are required and consult the documentation of the compiler.</p>
-<p>If your program does allow customisation, consider using dynamic libraries for this.
-More is said about this below.</p>
-<p><strong>Option 3: Distribute static or dynamic libraries that people can use</strong></p>
-<p>This option is a combination of the first two options. It does put some burden on
-the user, as they must create a main program that calls your routines in the
-proper way, but they do not need to know much about the build system you used.
-You will have to deal with the run-time libraries, though.</p>
-<p>If you choose this option, besides the compiled libraries, you will also need to
-supply the module intermediate files. These files are compiler-specific, but so are
-the static libraries you build.</p>
+<p><strong>Вариант 1: Распространение всего исходного кода</strong></p>
+<p>Этот вариант, безусловно, самый простой для вас как программиста: вы предоставляете пользователю возможность самому собрать программу в своей системе. К сожалению, это означает, что у вас должна использоваться удобная система сборки, а у пользователя должен быть доступ к подходящим компиляторам. О системах сборки: см. предыдущие разделы.</p>
+<p><strong>Вариант 2: Распространение предварительно собранного исполняемого файла программы</strong></p>
+<p>Предварительно собранный исполняемый файл программы, которую не нужно настраивать, кроме как через входные данные, всё равно должен поставляться с различными библиотеками времени выполнения и будет специфичен для операционной системы/среды, в которой он был собран.</p>
+<p>Набор библиотек времени выполнения различается в зависимости от операционной системы и версии компилятора. Для свободно распространяемого компилятора, такого как gfortran, проще всего попросить пользователя установить этот компилятор в его систему. В случае Windows: можно для этого обратиться к использованию среды Cygwin.</p>
+<p>В качестве альтернативы вы можете предоставить копии библиотек времени выполнения вместе с вашей программой. Поместите их в каталог, где они могут быть найдены во время выполнения.</p>
+<p>Примечание: В Windows компилятор Intel Fortran поставляется с набором <em>распространяемых библиотек</em>. Их нужно будет сделать доступными.</p>
+<p>В общем случае: используйте такие инструменты, как «ldd» или «dependency walker», чтобы узнать, какие библиотеки требуются, а также обратитесь к документации компилятора.</p>
+<p>Если ваша программа допускает настройку, рассмотрите возможность использования динамических библиотек для этой цели. Подробнее об этом будет сказано ниже.</p>
+<p><strong>Вариант 3: Распространение статических или динамических библиотек, которые могут использовать люди</strong></p>
+<p>Этот вариант представляет собой комбинацию первых двух вариантов. Он возлагает некоторую нагрузку на пользователя, так как он должен создать основную программу, вызывающую ваши подпрограммы надлежащим образом, но ему не нужно много знать о системе сборки, которую вы использовали. Однако вам придётся иметь дело с библиотеками времени выполнения.</p>
+<p>Если вы выберете этот вариант, помимо скомпилированных библиотек, вам также нужно будет предоставить промежуточные файлы модуля. Эти файлы специфичны для компилятора, как и статические библиотеки, которые вы собираете.</p>
 <section id="distributing-the-tabulation-program">
-<h2>Distributing the tabulation program<a class="headerlink" href="#distributing-the-tabulation-program" title="Permalink to this heading">#</a></h2>
-<p>As shown above, the tabulation program can be built with the user-defined function
-in a dynamic library. This enables you to:</p>
+<h2>Распространение программы создания табличной функции<a class="headerlink" href="#distributing-the-tabulation-program" title="Permalink to this heading">#</a></h2>
+<p>Как показано ранее, программа создания табличной функции может быть собрана с помощью пользовательской функции в динамической библиотеке. Это позволяет:</p>
 <ul class="simple">
-<li><p>Ship the executable (with the appropriate run-time libraries)</p></li>
-<li><p>Provide a skeleton version of the module, something like:</p></li>
+<li><p>Поставлять исполняемый файл (с соответствующими библиотеками времени выполнения)</p></li>
+<li><p>Предоставить заготовку модуля, например:</p></li>
 </ul>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">user_functions</span><span class="w"></span>
 <span class="w">    </span><span class="k">implicit none</span>
@@ -796,20 +776,17 @@ in a dynamic library. This enables you to:</p>
 </pre></div>
 </div>
 <ul class="simple">
-<li><p>Provide a basic build script with a command like:</p></li>
+<li><p>Предоставить базовый сценарий сборки с помощью команды вида:</p></li>
 </ul>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gfortran -o functions.dll functions.f90 -shared
 </pre></div>
 </div>
-<p>or:</p>
+<p>или:</p>
 <div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ifort -exe:functions.dll functions.f90 -dll
 </pre></div>
 </div>
-<p>As said, you cannot control that the user has done the right thing — any
-DLL «functions.dll» with a function <code class="docutils literal notranslate"><span class="pre">f</span></code> would be accepted, but not necessarily
-lead to a successful run.</p>
-<p>An alternative set-up would be to change the main program into a subroutine
-and have the function as an argument:</p>
+<p>Как уже было сказано, вы не можете проконтролировать, что пользователь сделал все правильно - любая DLL «functions.dll» с функцией <code class="docutils literal notranslate"><span class="pre">f</span></code> будет принята, но не обязательно приведёт к успешному запуску программы.</p>
+<p>Альтернативной настройкой может быть изменение основной программы на процедуру и использование функции в качестве аргумента:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">tabulation</span><span class="w"></span>
 <span class="w">    </span><span class="k">implicit none</span>
 <span class="k">contains</span>
@@ -828,7 +805,7 @@ and have the function as an argument:</p>
 <span class="k">end module </span><span class="n">tabulation</span><span class="w"></span>
 </pre></div>
 </div>
-<p>Then provide a skeleton main program:</p>
+<p>Тогда предоставьте заготовку основной программы:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">tabulate_f</span><span class="w"></span>
 <span class="w">    </span><span class="k">use </span><span class="n">tabulation</span><span class="w"></span>
 
@@ -846,9 +823,7 @@ and have the function as an argument:</p>
 <span class="k">end program </span><span class="n">tabulate_f</span><span class="w"></span>
 </pre></div>
 </div>
-<p>The advantage is that the compiler can check the interface of the
-function that is passed and that the user has more freedom in the use of the
-functionality provided by your library.</p>
+<p>Преимущество состоит в том, что компилятор может проверить интерфейс передаваемой функции, а пользователь имеет больше свободы в использовании функциональности, предоставляемой вашей библиотекой.</p>
 </section>
 </section>
 

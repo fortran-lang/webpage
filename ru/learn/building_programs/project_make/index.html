@@ -6,7 +6,7 @@
     <meta charset="utf-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
 
-    <title>An introduction to make &#8212; Fortran Programming Language</title>
+    <title>Введение в систему сборки make &#8212; Fortran Programming Language</title>
 <script>
   document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
   document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
@@ -45,7 +45,7 @@
     <script src="../../../_static/design-tabs.js"></script>
     <link rel="index" title="Алфавитный указатель" href="../../../genindex/" />
     <link rel="search" title="Поиск" href="../../../search/" />
-    <link rel="next" title="Distributing your programs" href="../distributing/" />
+    <link rel="next" title="Распространение ваших программ" href="../distributing/" />
     <link rel="prev" title="Инструменты сборки" href="../build_tools/" /> 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
@@ -333,7 +333,7 @@
 
 <li class="toctree-l1 nav-item">
  <a class="reference internal nav-link" href="../../../compilers/">
-  Compilers
+  Компиляторы
  </a>
 </li>
 
@@ -527,12 +527,12 @@
    </li>
    <li class="toctree-l2 current active">
     <a class="current reference internal" href="#">
-     An introduction to make
+     Введение в систему сборки make
     </a>
    </li>
    <li class="toctree-l2">
     <a class="reference internal" href="../distributing/">
-     Distributing your programs
+     Распространение ваших программ
     </a>
    </li>
   </ul>
@@ -722,7 +722,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#automatically-generated-dependencies">
-   Automatically generated dependencies
+   Автоматически создаваемые зависимости
   </a>
  </li>
 </ul>
@@ -739,52 +739,32 @@
               
               <article class="bd-article" role="main">
                  <section class="tex2jax_ignore mathjax_ignore" id="an-introduction-to-make">
-<h1>An introduction to make<a class="headerlink" href="#an-introduction-to-make" title="Permalink to this heading">#</a></h1>
-<p>We briefly discussed the basics of <code class="docutils literal notranslate"><span class="pre">make</span></code>. This chapter gives ideas
-and strategies to scale <code class="docutils literal notranslate"><span class="pre">make</span></code> for larger projects.</p>
-<p>Before going into detail with <code class="docutils literal notranslate"><span class="pre">make</span></code>, consider a few points:</p>
+<h1>Введение в систему сборки make<a class="headerlink" href="#an-introduction-to-make" title="Permalink to this heading">#</a></h1>
+<p>Мы кратко рассказали об основах <code class="docutils literal notranslate"><span class="pre">make</span></code>. В этой главе приводятся идеи и стратегии масштабирования использования <code class="docutils literal notranslate"><span class="pre">make</span></code> для более крупных проектов.</p>
+<p>Прежде чем подробнее рассмотреть систему сборки <code class="docutils literal notranslate"><span class="pre">make</span></code>, остановимся на нескольких моментах:</p>
 <ol class="arabic simple">
-<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code> is a Unix tool and might give you a hard time when porting to non-Unix
-platforms. That said, there are also different flavors of <code class="docutils literal notranslate"><span class="pre">make</span></code> available,
-not all might support the features you want to use.</p></li>
-<li><p>While <code class="docutils literal notranslate"><span class="pre">make</span></code> gives you full control over the build process, it also
-means you are responsible for the entire build process, and you have to specify the rules for every detail of your project.
-You might find yourself spending a significant amount of time writing and
-maintaining your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> instead of developing your source code.</p></li>
-<li><p>You can work with your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, but think about other developers
-on your project who may not be familiar with <code class="docutils literal notranslate"><span class="pre">make</span></code>. How much time do you expect them to spend learning your
-<code class="docutils literal notranslate"><span class="pre">Makefile</span></code> and would they be able to debug or add features?</p></li>
-<li><p>Pure <code class="docutils literal notranslate"><span class="pre">make</span></code> will not scale. You will soon add auxiliary programs
-to dynamically or statically generate your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. Those introduce
-dependencies and possible sources of errors. The effort needed to test and document those
-tools should not be underestimated.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">make</span></code> – это инструмент Unix подобных систем и при переносе на отличные от них платформы, у вас могут возникнуть трудности. Тем не менее существуют различные варианты <code class="docutils literal notranslate"><span class="pre">make</span></code>, но не все они могут поддерживать функции, которые вы захотите использовать.</p></li>
+<li><p>Хотя <code class="docutils literal notranslate"><span class="pre">make</span></code> даёт полный контроль над процессом сборки, это также означает, что вы несёте ответственность за весь процесс и должны указать плавила для каждой части вашего проекта. Вы можете обнаружить, что тратите значительное количество времени на написание и поддержку <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> вместо того, чтобы разрабатывать исходный код.</p></li>
+<li><p>Вы можете работать над своим <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, но подумайте о других разработчиках проекта, которые могут быть не знакомы с системой сборки <code class="docutils literal notranslate"><span class="pre">make</span></code>. Сколько времени, по вашему мнению, они потратят на изучение вашего <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> и смогут ли они отлаживать или добавлять функции?</p></li>
+<li><p>Чистый <code class="docutils literal notranslate"><span class="pre">make</span></code> не масштабируется. Вскоре вы добавите вспомогательные программы для динамической или статической генерации вашего <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. Они вводят зависимости и возможные источники ошибок. Не следует недооценивать усилия, необходимые для тестирования и документирования этих инструментов.</p></li>
 </ol>
-<p>If you think <code class="docutils literal notranslate"><span class="pre">make</span></code> is suitable for your needs, than you can start writing
-your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. For this course we will use real world examples from the
-package index, which (at the time of writing) use build systems other
-than <code class="docutils literal notranslate"><span class="pre">make</span></code>. This guide should present a general recommended style to write
-<code class="docutils literal notranslate"><span class="pre">make</span></code>, but also serve as demonstration of useful and interesting features.</p>
+<p>Если вы считаете, что система сборки <code class="docutils literal notranslate"><span class="pre">make</span></code> подходит для ваших нужд, то можете приступить к написанию своего <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. В этом курсе мы будем использовать реальные примеры из перечня пакетов, которые (на момент написания статьи) используют системы сборки, отличные от <code class="docutils literal notranslate"><span class="pre">make</span></code>. Это руководство представляет собой общий рекомендуемый стиль написания <code class="docutils literal notranslate"><span class="pre">make</span></code> скриптов, а также служит демонстрацией полезных и интересных функций.</p>
 <div class="admonition tip">
 <p class="admonition-title">Совет</p>
-<p>Even if you find <code class="docutils literal notranslate"><span class="pre">make</span></code> unsuitable to build your project, it is <em>the</em> tool to automate workflows defined by files. Maybe you can leverage its power in a different context.</p>
+<p>Даже если вы считаете систему сборки <code class="docutils literal notranslate"><span class="pre">make</span></code> неподходящей для сборки вашего проекта, он является <em>инструментом для автоматизации рабочих процессов</em>, определяемых файлами. Возможно, вы сможете использовать её возможности в другом контексте.</p>
 </div>
 <section id="getting-started">
 <h2>Первые шаги<a class="headerlink" href="#getting-started" title="Permalink to this heading">#</a></h2>
-<p>For this part we will work with
-<a href="https://github.com/jacobwilliams/fortran-csv-module/tree/1.2.0" target="_blank" rel="noopener"> the Fortran CSV module (v1.2.0)</a>.
-Our goal is to write a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to compile this project to a static library.
-Start by cloning the repository</p>
+<p>В этой части статьи мы будем работать с проектом <a href="https://github.com/jacobwilliams/fortran-csv-module/tree/1.2.0" target="_blank" rel="noopener">Fortran CSV module (v1.2.0)</a>. Наша цель – написать <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> для компиляции этого проекта в статическую библиотеку. Начнём с клонирования репозитория</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">jacobwilliams</span><span class="o">/</span><span class="n">fortran</span><span class="o">-</span><span class="n">csv</span><span class="o">-</span><span class="n">module</span> <span class="o">-</span><span class="n">b</span> <span class="mf">1.2.0</span>
 <span class="n">cd</span> <span class="n">fortran</span><span class="o">-</span><span class="n">csv</span><span class="o">-</span><span class="n">module</span>
 </pre></div>
 </div>
 <div class="admonition tip">
 <p class="admonition-title">Совет</p>
-<p>For this part we will work with the code from tag <code class="docutils literal notranslate"><span class="pre">1.2.0</span></code>, to make it as reproducible as possible. Feel free to use the latest version or another project instead.</p>
+<p>Здесь мы будем работать с кодом, соответствующему тэгу <code class="docutils literal notranslate"><span class="pre">1.2.0</span></code>, чтобы сделать пример максимально воспроизводимым. Не стесняйтесь использовать последнюю версию или другой проект.</p>
 </div>
-<p>This project uses FoBiS as build system, and you can check the
-<code class="docutils literal notranslate"><span class="pre">build.sh</span></code> for options used with FoBiS. We are about to write a <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>
-for this project. First, we check the directory structure and the source files</p>
+<p>Этот проект использует систему сборки FoBiS и вы можете проверить файл <code class="docutils literal notranslate"><span class="pre">build.sh</span></code> для получения списка опций, используемых FoBiS. Мы собираемся написать <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> для этого проекта. Сначала мы проверим структуру каталогов и исходных файлов</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>.
 ├── build.sh
 ├── files
@@ -804,10 +784,8 @@ for this project. First, we check the directory structure and the source files</
         └── csv_write_test.f90
 </pre></div>
 </div>
-<p>We find seven different Fortran source files; the four in <code class="docutils literal notranslate"><span class="pre">src</span></code> should
-be compiled and added to a static library while the three in <code class="docutils literal notranslate"><span class="pre">src/tests</span></code>
-contain individual programs that depend on this static library.</p>
-<p>Start by creating a simple <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
+<p>Мы видим здесь семь файлов исходного кода на языке Fortran: четыре файла из каталога <code class="docutils literal notranslate"><span class="pre">src</span></code> должны быть скомпилированы и добавлены в статическую библиотеку, а три в каталоге <code class="docutils literal notranslate"><span class="pre">src/tests</span></code> содержат отдельные программы, которые зависят от этой статической библиотеки.</p>
+<p>Начнём с создания простого <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable the default rules</span>
 <span class="nv">MAKEFLAGS</span> <span class="o">+=</span> --no-builtin-rules --no-builtin-variables
 
@@ -871,8 +849,7 @@ contain individual programs that depend on this static library.</p>
 	<span class="k">$(</span>RM<span class="k">)</span> <span class="k">$(</span>filter %.o, <span class="k">$(</span>OBJS<span class="k">)</span> <span class="k">$(</span>TEST_OBJS<span class="k">))</span> <span class="k">$(</span>filter %.exe, <span class="k">$(</span>TEST_EXE<span class="k">))</span> <span class="k">$(</span>LIB<span class="k">)</span> <span class="k">$(</span>wildcard *.mod<span class="k">)</span>
 </pre></div>
 </div>
-<p>Invoking <code class="docutils literal notranslate"><span class="pre">make</span></code> should build the static library and the test executables as
-expected:</p>
+<p>Вызов команды <code class="docutils literal notranslate"><span class="pre">make</span></code> должен привести к сборке статической библиотеки и исполняемых файлов тестовых программ, как и ожидалось:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>gfortran -c -o src/csv_kinds.f90.o src/csv_kinds.f90
 gfortran -c -o src/csv_parameters.f90.o src/csv_parameters.f90
 gfortran -c -o src/csv_utilities.f90.o src/csv_utilities.f90
@@ -886,39 +863,20 @@ gfortran -c -o src/tests/csv_write_test.f90.o src/tests/csv_write_test.f90
 gfortran -o src/tests/csv_write_test.exe src/tests/csv_write_test.f90.o libcsv.a
 </pre></div>
 </div>
-<p>There are a few things to note there, a <code class="docutils literal notranslate"><span class="pre">make</span></code> build usually interlaces the
-build artifacts and the source code, unless you put extra effort into implementing
-a build directory.
-Also, right now the the source files and dependencies are specified explicitly,
-which results in several additional lines even for such a simple project.</p>
+<p>Следует отметить несколько моментов: сборка с помощью <code class="docutils literal notranslate"><span class="pre">make</span></code> чередует элементы сборки и компиляцию файлов исходного кода, если вы не приложите дополнительные усилия для реализации каталога сборки. Кроме того, сейчас исходные файлы и зависимости указываются явно, что приводит к необходимости написания дополнительных строк даже в случае такого простого примера.</p>
 </section>
 <section id="automatically-generated-dependencies">
-<h2>Automatically generated dependencies<a class="headerlink" href="#automatically-generated-dependencies" title="Permalink to this heading">#</a></h2>
-<p>The main drawback of <code class="docutils literal notranslate"><span class="pre">make</span></code> for Fortran is the missing capability to
-determine module dependencies. This is usually solved by either adding those
-by hand or automatically scanning the source code with an external tool.
-Some compilers (like the Intel Fortran compiler) also offer to generate dependencies in <code class="docutils literal notranslate"><span class="pre">make</span></code> format.</p>
-<p>Before diving into the dependency generation, we will outline the concept of
-a robust take on the dependency problem.
-First, we want an approach that can process all source files independently,
-while each source file provides (<code class="docutils literal notranslate"><span class="pre">module</span></code>) or requires (<code class="docutils literal notranslate"><span class="pre">use</span></code>) modules.
-When generating the dependencies only the name of the source file and the
-module files are known, and no information on the object file names should be
-required.</p>
-<p>If you check the dependency section above you will note that all dependencies are
-defined between object files rather than source files. To change this, we can
-generate a map from the source files their respective object files:</p>
+<h2>Автоматически создаваемые зависимости<a class="headerlink" href="#automatically-generated-dependencies" title="Permalink to this heading">#</a></h2>
+<p>Основным недостатком системы сборки <code class="docutils literal notranslate"><span class="pre">make</span></code> при сборке проектов на языке Fortran является отсутствие возможности определения зависимостей от модулей. Обычно это решается либо указанием их вручную, либо автоматическим сканированием исходного кода с помощью внешнего инструмента. Некоторые компиляторы (например, Intel Fortran) также предлагают возможность генерировать список зависимостей в формате проекта <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
+<p>Прежде чем перейти к генерации списка зависимостей, мы опишем концепцию надёжного подхода к проблеме зависимостей. Во-первых, нам нужен подход, который может обрабатывать все исходные файлы, независимо, при этом каждый файл исходного кода предоставляет модуль (<code class="docutils literal notranslate"><span class="pre">module</span></code> ) или требует (<code class="docutils literal notranslate"><span class="pre">use</span></code> ) модули. При создании списка зависимостей известны только имя файла исходного кода и имена файлов модулей, а информация об именах объектных файлов не должна требоваться.</p>
+<p>Если вы посмотрите раздел о зависимостях выше, то заметите, что все зависимости определены между объектными файлами, а не файлами исходного кода. Чтобы изменить это, мы можем создать соответствие между именами файлов исходного кода и именами соответствующих объектных файлов:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Define a map from each file name to its object file</span>
 <span class="nv">obj</span> <span class="o">=</span> <span class="k">$(</span>src<span class="k">)</span>.o
 <span class="nf">$(foreach src, $(SRCS) $(TEST_SRCS), $(eval $(src) </span><span class="o">:</span>= <span class="k">$(</span><span class="nv">obj</span><span class="k">)</span>))
 </pre></div>
 </div>
-<p>Note the declaration of <code class="docutils literal notranslate"><span class="pre">obj</span></code> as recursively expanded variable, we effectively
-use this mechanism to define a function in <code class="docutils literal notranslate"><span class="pre">make</span></code>. The <code class="docutils literal notranslate"><span class="pre">foreach</span></code> function
-allows us to loop over all source files, while the <code class="docutils literal notranslate"><span class="pre">eval</span></code> function allows us
-to generate <code class="docutils literal notranslate"><span class="pre">make</span></code> statements and evaluate them for this <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
-<p>We adjust the dependencies accordingly as we can now define the name of the
-object files through the source file names:</p>
+<p>Обратите внимание на объявление <code class="docutils literal notranslate"><span class="pre">obj</span></code> как рекурсивно расширяемую переменную, мы эффективно используем этот механизм для определения функции в <code class="docutils literal notranslate"><span class="pre">make</span></code>. Функция <code class="docutils literal notranslate"><span class="pre">foreach</span></code> позволяет нам перебирать все файлы исходного кода, а функция <code class="docutils literal notranslate"><span class="pre">eval</span></code> позволяет нам генерировать операторы <code class="docutils literal notranslate"><span class="pre">make</span></code> и вычислять их значения для данного <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
+<p>Мы соответствующим образом корректируем список зависимостей, поскольку теперь мы можем определять имена объектных файлов через имена файлов исходного кода:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Define all module interdependencies</span>
 <span class="nv">csv_kinds.mod</span> <span class="o">:=</span> <span class="k">$(</span>src/csv_kinds.f90<span class="k">)</span>
 <span class="nv">csv_module.mod</span> <span class="o">:=</span> <span class="k">$(</span>src/csv_module.F90<span class="k">)</span>
@@ -935,10 +893,8 @@ object files through the source file names:</p>
 <span class="nf">$(src/tests/csv_write_test.f90)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
 </pre></div>
 </div>
-<p>The same strategy of creating a map is already used for the module files, now
-it is just expanded to the object files as well.</p>
-<p>To generate the respective dependency map automatically we will use an
-<code class="docutils literal notranslate"><span class="pre">awk</span></code> script here</p>
+<p>Такая же стратегия создания соответствия имён теперь используется для файлов модулей, на этот раз она распространяется и на имена файлов объектов.</p>
+<p>Для автоматической генерации соответствий имён зависимостей мы будем использовать скрипт <code class="docutils literal notranslate"><span class="pre">awk</span></code>, представленный здесь</p>
 <div class="highlight-awk notranslate"><div class="highlight"><pre><span></span><span class="c1">#!/usr/bin/awk -f</span>
 
 <span class="nb">BEGIN</span> <span class="p">{</span>
@@ -997,48 +953,26 @@ it is just expanded to the object files as well.</p>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>This script makes a few assumptions about the source code it parses, so it will
-not work with all Fortran code (namely submodules are not supported), but for
-this example it will suffice.</p>
+<p>Этот скрипт делает несколько предположений об исходном коде, который он анализирует, поэтому он не будет работать с любым кодом на языке Fortran (в частности, не поддерживается использование submodules), но для данного примера его будет достаточно.</p>
 <div class="admonition tip">
 <p class="admonition-title">Совет</p>
-<p>Using awk</p>
-<p>The above script uses the <code class="docutils literal notranslate"><span class="pre">awk</span></code> language, which is designed for the purpose
-of text stream processing and uses a C-like syntax. In <code class="docutils literal notranslate"><span class="pre">awk</span></code> you can define
-groups which are evaluated on certain events, <em>e.g.</em> when a line matches a
-specific pattern, usually expressed by a
-<a href="https://en.wikipedia.org/wiki/Regular_expression" target="_blank" rel="noopener"> regular expression</a>.</p>
-<p>This <code class="docutils literal notranslate"><span class="pre">awk</span></code> script defines five groups, two of them use the special pattern
-<code class="docutils literal notranslate"><span class="pre">BEGIN</span></code> and <code class="docutils literal notranslate"><span class="pre">END</span></code> which are run before the script starts and after the script
-finishes, respectively.
-Before the script starts we make the script case-insensitive since we are dealing
-with Fortran source code here.
-We also use the special variable <code class="docutils literal notranslate"><span class="pre">FILENAME</span></code> to determine which file we are
-currently parsing and to allow processing multiple files at once.</p>
-<p>With the three patterns defined we are looking for <code class="docutils literal notranslate"><span class="pre">module</span></code>, <code class="docutils literal notranslate"><span class="pre">use</span></code> and
-<code class="docutils literal notranslate"><span class="pre">include</span></code> statements as the first space delimited entry. With the used
-pattern not all valid Fortran code will be parsed correctly.
-A failing example would be:</p>
+<p>Использование awk</p>
+<p>В приведённом выше скрипте используется язык <code class="docutils literal notranslate"><span class="pre">awk</span></code>, который предназначен для обработки текстового потока и использует синтаксис, похожий на синтаксис языка C. В скрипте <code class="docutils literal notranslate"><span class="pre">awk</span></code> вы можете определить группы, для элементов которых вычисляются значения при определённых событиях, <em>например</em>, когда строка соответствует определённому шаблону, обычно выраженному в виде регулярного выражения (<a href="https://en.wikipedia.org/wiki/Regular_expression" target="_blank" rel="noopener">regular expression</a>).</p>
+<p>Этот сценарий <code class="docutils literal notranslate"><span class="pre">awk</span></code> определяет пять групп, две из которых используют специальные шаблоны <code class="docutils literal notranslate"><span class="pre">BEGIN</span></code> и <code class="docutils literal notranslate"><span class="pre">END</span></code>, которые выполняются до начала работы сценария и после его завершения, соответственно. Перед началом работы скрипта мы делаем его нечувствительным к регистру, поскольку мы имеем дело с исходным кодом на языке Fortran. Мы также используем специальную переменную <code class="docutils literal notranslate"><span class="pre">FILENAME</span></code>, чтобы определять какой файл мы сейчас разбираем и чтобы можно было обрабатывать несколько файлов одновременно.</p>
+<p>С помощью трёх заданных шаблонов мы ищем в качестве первой записи, разделённой пробелами, операторы <code class="docutils literal notranslate"><span class="pre">module</span></code>, <code class="docutils literal notranslate"><span class="pre">use</span></code> и <code class="docutils literal notranslate"><span class="pre">include</span></code>. При использовании данного шаблона не весь допустимый исходный код может быть разобран правильно. Примером кода, который не будет обработан правильно, может быть код:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="kd">::</span><span class="n">my_module</span><span class="p">,</span><span class="k">only</span><span class="p">:</span><span class="n">proc</span><span class="w"></span>
 </pre></div>
 </div>
-<p>To make this parsable by the <code class="docutils literal notranslate"><span class="pre">awk</span></code> script we can add another group directly
-after the <code class="docutils literal notranslate"><span class="pre">BEGIN</span></code> group, modifying the stream while processing it with</p>
+<p>Чтобы сценарий <code class="docutils literal notranslate"><span class="pre">awk</span></code> правильно обрабатывал его, мы можем добавить ещё одну группу непосредственно после группы <code class="docutils literal notranslate"><span class="pre">BEGIN</span></code>, изменяя текстовый поток во время его обработки с помощью функции</p>
 <div class="highlight-awk notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
    <span class="kr">gsub</span><span class="p">(</span><span class="sr">/,|:/</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>In theory you would need a full Fortran parser to deal with continuation lines
-and other difficulties. This might be possible to implement in <code class="docutils literal notranslate"><span class="pre">awk</span></code> but
-would require a huge script in the end.</p>
-<p>Also, keep in mind that generating the dependencies should be fast, an expensive
-parser can produce a significant overhead when generating dependencies for a large
-code base. Making reasonable assumptions can simplify and speed up this step, but
-also introduces an error source in your build tools.</p>
+<p>В теории вам потребуется полный синтаксический анализатор языка Fortran для обработки продолжений строк и других случаев. Это возможно реализовать на <code class="docutils literal notranslate"><span class="pre">awk</span></code>, но потребуется огромный скрипт.</p>
+<p>Также следует помнить, что генерация списка зависимостей должны быть быстрой. Ресурсоёмкий синтаксический анализатор может вызвать значительные накладные расходы при генерации списка зависимостей для большой кодовой базы. Принятие разумных допущений может упростить и ускорить этот этап, но также добавляет источник ошибок в ваши инструменты сборки.</p>
 </div>
-<p>Make the script executable (<code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">gen-deps.awk</span></code>) and test it with
-<code class="docutils literal notranslate"><span class="pre">./gen-deps.awk</span> <span class="pre">$(find</span> <span class="pre">src</span> <span class="pre">-name</span> <span class="pre">'*.[fF]90')</span></code>. You should see output like this:</p>
+<p>Сделайте скрипт исполняемым (командой <code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">gen-deps.awk</span></code>) и протестируйте его работу, выполнив команду <code class="docutils literal notranslate"><span class="pre">./gen-deps.awk</span> <span class="pre">$(find</span> <span class="pre">src</span> <span class="pre">-name</span> <span class="pre">'*.[fF]90')</span></code>. Вы должны увидеть вывод, похожий на следующий:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>csv_utilities.mod = $(src/csv_utilities.f90)
 csv_kinds.mod = $(src/csv_kinds.f90)
 csv_parameters.mod = $(src/csv_parameters.f90)
@@ -1059,15 +993,8 @@ $(src/csv_module.F90) += $(csv_parameters.mod)
 $(src/csv_module.F90) += $(iso_fortran_env.mod)
 </pre></div>
 </div>
-<p>Note that the scripts output will use recursively expanded variables and not
-define any dependencies yet, because out-of-order declaration of variables
-might be necessary and we do not want to create any target by accident.
-You can verify that the same information as in the above handwritten snippet is
-present. The only exception is the additional dependency on the
-<code class="docutils literal notranslate"><span class="pre">iso_fortran_env.mod</span></code>, since it is an undefined variable it will just expand
-to an empty string and not introduce any further dependencies.</p>
-<p>Now, you can finally include this piece in your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to automate the
-dependency generation:</p>
+<p>Обратите внимание, что при выводе информации скриптами будут использоваться рекурсивно расширенные переменные и пока не будут определены зависимости, поскольку может потребоваться объявление переменных не по порядку, а мы не хотим случайно создать какую-либо цель сборки. Вы можете убедиться, что здесь присутствует та же информация, что и в приведённом выше рукописном фрагменте. Единственным исключением является дополнительная зависимость от <code class="docutils literal notranslate"><span class="pre">iso_fortran_env.mod</span></code>, поскольку это неопределённая переменная, она просто расширится до пустой строки и не будет создавать никаких дополнительных зависимостей.</p>
+<p>Теперь, наконец, вы можете включить этот фрагмент в свой <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, чтобы автоматизировать генерацию списка зависимостей:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable the default rules</span>
 <span class="nv">MAKEFLAGS</span> <span class="o">+=</span> --no-builtin-rules --no-builtin-variables
 
@@ -1135,18 +1062,9 @@ dependency generation:</p>
 	<span class="k">$(</span>RM<span class="k">)</span> <span class="k">$(</span>filter %.o, <span class="k">$(</span>OBJS<span class="k">)</span> <span class="k">$(</span>TEST_OBJS<span class="k">))</span> <span class="k">$(</span>filter %.d, <span class="k">$(</span>DEPS<span class="k">)</span> <span class="k">$(</span>TEST_DEPS<span class="k">))</span> <span class="k">$(</span>filter %.exe, <span class="k">$(</span>TEST_EXE<span class="k">))</span> <span class="k">$(</span>LIB<span class="k">)</span> <span class="k">$(</span>wildcard *.mod<span class="k">)</span>
 </pre></div>
 </div>
-<p>Here additional dependency files are generated for each source file individually
-and than included into the main <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.
-Also, the dependency files are added as dependency to the object files to ensure
-they are generated before the object is compiled. The pipe character in
-the dependencies defines an order of the rules without a timestamp dependency,
-because it is not necessary to recompile an object file in case dependencies are
-regenerated and potentially unchanged.</p>
-<p>Again, we make use of the <code class="docutils literal notranslate"><span class="pre">eval</span></code> function to generate the dependencies in a
-<code class="docutils literal notranslate"><span class="pre">foreach</span></code> loop over all object files. Note that we created a map between
-the object files in the dependency files, expanding <code class="docutils literal notranslate"><span class="pre">dep</span></code> once yields the
-object file name, expanding it again yields the object files it depends on.</p>
-<p>Building your project with <code class="docutils literal notranslate"><span class="pre">make</span></code> should give an output similar to</p>
+<p>Здесь дополнительные файлы зависимостей генерируются для каждого файла исходного кода отдельно, а затем включаются в основной <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. Кроме того, файлы зависимостей добавляются в качестве зависимостей к файлам объектов, чтобы гарантировать, что они будут сгенерированы до компиляции файла объекта. Символ конвейера (<code class="docutils literal notranslate"><span class="pre">|</span></code>) в списке зависимостей определяет порядок правил вне зависимости от метки времени, так как нет необходимости перекомпилировать объектный файл в случае, если зависимости сгенерированы и потенциально не изменялись.</p>
+<p>Опять же, мы используем функцию <code class="docutils literal notranslate"><span class="pre">eval</span></code> для генерации зависимостей в цикле <code class="docutils literal notranslate"><span class="pre">foreach</span></code> по всем файлам объектов. Обратите внимание, что мы создали соответствие между файлами объектов и файлами зависимостей, расширяя его один раз, получаем имя объектного файла, расширяя его снова, получаем объектные файлы, от которых он зависит.</p>
+<p>Сборка проекта с помощью <code class="docutils literal notranslate"><span class="pre">make</span></code> должна дать результат похожий на следующий</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./gen-deps.awk src/csv_utilities.f90 &gt; src/csv_utilities.f90.d
 ./gen-deps.awk src/csv_parameters.f90 &gt; src/csv_parameters.f90.d
 ./gen-deps.awk src/csv_module.F90 &gt; src/csv_module.F90.d
@@ -1167,15 +1085,12 @@ gfortran -c -o src/tests/csv_write_test.f90.o src/tests/csv_write_test.f90
 gfortran -o src/tests/csv_write_test.exe src/tests/csv_write_test.f90.o libcsv.a
 </pre></div>
 </div>
-<p>Once the dependency files are generated, <code class="docutils literal notranslate"><span class="pre">make</span></code> will only update them if the
-source changes and not require to rebuild them again for every invocation.</p>
+<p>После создания файлов зависимостей <code class="docutils literal notranslate"><span class="pre">make</span></code> будет обновлять их только при изменении их источника и не будет требовать их повторного создания при каждом вызове.</p>
 <div class="admonition tip">
 <p class="admonition-title">Совет</p>
-<p>With correct dependencies you can leverage parallel execution of your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, just use the <code class="docutils literal notranslate"><span class="pre">-j</span></code> flag to create multiple <code class="docutils literal notranslate"><span class="pre">make</span></code> processes.</p>
+<p>При наличии правильного списка зависимостей вы можете запускать параллельное выполнение вашего <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, просто используйте флаг <code class="docutils literal notranslate"><span class="pre">-j</span></code> для создания нескольких процессов <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
 </div>
-<p>Since dependencies can now be generated automatically, there is no need to specify
-the source files explicitly, the <code class="docutils literal notranslate"><span class="pre">wildcard</span></code> function can be used to determine
-them dynamically:</p>
+<p>Поскольку теперь список зависимостей может генерироваться автоматически, нет необходимости указывать список исходных файлов явно, для его динамического определения можно использовать функцию <code class="docutils literal notranslate"><span class="pre">wildcard</span></code>:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># List of all source files</span>
 <span class="nv">SRCS</span> <span class="o">:=</span> <span class="k">$(</span>wildcard src/*.f90<span class="k">)</span> <span class="se">\</span>
         <span class="k">$(</span>wildcard src/*.F90<span class="k">)</span>
