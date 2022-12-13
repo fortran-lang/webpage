@@ -271,4 +271,4 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

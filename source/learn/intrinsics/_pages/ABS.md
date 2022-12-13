@@ -80,7 +80,7 @@ integer,parameter :: dp=kind(0.0d0)
   ! elemental
     write(*, *) 'abs is elemental: ', abs([20,  0,  -1,  -3,  100])
 
-  ! complex input produces real output  
+  ! complex input produces real output
     write(*, *)  cmplx(30.0,40.0)
 
   ! the returned value for complex input can be thought of as the
@@ -112,11 +112,11 @@ end program demo_abs
     abs range test :   1.1754944E-38  1.1754944E-38
     abs is elemental: 20 0 1 3 100
     (30.00000,40.00000)
-    distance of <XX,YY> from zero is   50.0000000000000     
+    distance of <XX,YY> from zero is   50.0000000000000
 ```
 
 ### **Standard**
 
    FORTRAN 77 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

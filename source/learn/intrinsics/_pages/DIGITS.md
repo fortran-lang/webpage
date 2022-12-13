@@ -77,4 +77,4 @@ Fortran 95 and later
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

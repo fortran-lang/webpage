@@ -88,4 +88,4 @@ Fortran 2003 and later
 [**get_command_argument**(3)](#get_command_argument),
 [**command_argument_count**(3)](#command_argument_count)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

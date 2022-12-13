@@ -73,4 +73,4 @@ Fortran 2008 and later
 [**iall**(3)](#iall),
 [**ior**(3)](#ior)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

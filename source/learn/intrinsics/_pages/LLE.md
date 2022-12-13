@@ -2,33 +2,30 @@
 
 ### **Name**
 
-**lle**(3) - \[CHARACTER:COMPARE\] Lexical less than or equal
+**lle**(3) - \[CHARACTER:COMPARE\] ASCII Lexical less than or equal
 
 ### **Syntax**
 
 ```fortran
-result = lle(str_a, str_b)
+   elemental logical function lle(string_a, string_b)
 
-   character(len=*),intent(in) :: str_a, str_b
-
-      or
-
-   character(len=*),intent(in) :: str_a, str_b(*) logical :: result
+    character(len=*),intent(in) :: string_a
+    character(len=*),intent(in) :: string_b
 ```
-
 ### **Description**
 
-Determines whether one string is lexically less than or equal to another
-string, where the two strings are interpreted as containing ASCII
-character codes. if the **string_a** and **string_b** are not the same length,
-the shorter is compared as if spaces were appended to it to form a value
-that has the same length as the longer. Leading spaces are significant.
+  Determines whether one string is lexically less than or equal to
+  another string, where the two strings are interpreted as containing
+  ASCII character codes. if the **string_a** and **string_b** are not
+  the same length, the shorter is compared as if spaces were appended
+  to it to form a value that has the same length as the longer. Leading
+  spaces are significant.
 
-In general, the lexical comparison intrinsics LGE, LGT, LLE, and LLT
-differ from the corresponding intrinsic operators .ge., .gt., .le., and
-.lt., in that the latter use the processor's character ordering (which
-is not ASCII on some targets), whereas the former always use the ASCII
-ordering.
+  In general, the lexical comparison intrinsics **lge**, **lgt**, **lle**,
+  and **llt** differ from the corresponding intrinsic operators _.ge.,
+  .gt., .le., and .lt._, in that the latter use the processor's character
+  ordering (which is not ASCII on some targets), whereas the former
+  always use the ASCII ordering.
 
 ### **Arguments**
 
@@ -44,8 +41,10 @@ ordering.
 ### **Returns**
 
 - **result**
-  Returns **.true.** if **STR_A \<= STR_B**, and **.false.** otherwise, based on
+  Returns _.true._ if **STR_A \<= STR_B**, and _.false._ otherwise, based on
   the ASCII ordering.
+
+  If both input arguments are null strings, _.true._ is always returned.
 
 ### **Examples**
 
@@ -54,20 +53,19 @@ Sample program:
 ```fortran
 program demo_lle
 implicit none
-integer             :: i
+integer :: i
    write(*,'(*(a))')(char(i),i=32,126)
-     write(*,*) lle('abc','ABC')              ! F lowercase is > uppercase
-     write(*,*) lle('abc','abc  ')            ! T trailing spaces
-     ! If both strings are of zero length the result is true.
-     write(*,*) lle('','')                    ! T
-     write(*,*) lle('','a')                   ! T the null string is padded
-     write(*,*) lle('a','')                   ! F
-     write(*,*) lle('abc',['abc','123'])      ! [T,F] scalar and array
-     write(*,*) lle(['cba', '123'],'abc')     ! [F,T]
-     write(*,*) lle(['abc','123'],['cba','123']) ! [T,T] both arrays
+   write(*,*) lle('abc','ABC')          ! F lowercase is > uppercase
+   write(*,*) lle('abc','abc  ')        ! T trailing spaces
+   ! If both strings are of zero length the result is true.
+   write(*,*) lle('','')                ! T
+   write(*,*) lle('','a')               ! T the null string is padded
+   write(*,*) lle('a','')               ! F
+   write(*,*) lle('abc',['abc','123'])  ! [T,F] scalar and array
+   write(*,*) lle(['cba', '123'],'abc') ! [F,T]
+   write(*,*) lle(['abc','123'],['cba','123']) ! [T,T] both arrays
 end program demo_lle
 ```
-
 Results:
 
 ```text
@@ -89,9 +87,9 @@ FORTRAN 77 and later
 
 ### **See Also**
 
-[**lge**(3)](#lge),
-[**lgt**(3)](#lgt),
-[**llt**(3)](#llt)
+  [**lge**(3)](#lge),
+  [**lgt**(3)](#lgt),
+  [**llt**(3)](#llt)
 
 Functions that perform operations on character strings, return lengths
 of arguments, and search for certain arguments:
@@ -110,4 +108,4 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions \@urbanjost_

@@ -63,4 +63,4 @@ Fortran 95 and later
 [**ceiling**(3)](#ceiling),
 [**floor**(3)](#floor)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

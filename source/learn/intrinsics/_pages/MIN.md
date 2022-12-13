@@ -54,4 +54,4 @@ FORTRAN 77 and later
 [**minloc**(3)](#minloc),
 [**minval**(3)](#minval)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

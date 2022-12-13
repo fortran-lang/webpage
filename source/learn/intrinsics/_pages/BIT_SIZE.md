@@ -67,4 +67,4 @@ Typical Results:
 
 Fortran 95 and later
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

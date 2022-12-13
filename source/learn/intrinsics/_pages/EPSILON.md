@@ -76,7 +76,7 @@ contains
    ! calculate the epsilon value of a machine the hard way
    real(kind=dp) :: t
    real(kind=dp) :: my_dp_eps
-   
+
       ! starting with a value of 1, keep dividing the value
       ! by 2 until no change is detected. Note that with
       ! infinite precision this would be an infinite loop,
@@ -89,7 +89,7 @@ contains
          if (t <= 1.0d0) exit
       enddo SET_ST
       my_dp_eps = 2.0d0*my_dp_eps
-   
+
    end function my_dp_eps
 end program demo_epsilon
 ```
@@ -130,4 +130,4 @@ Fortran 95 and later
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

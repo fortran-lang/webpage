@@ -91,4 +91,4 @@ of arguments, and search for certain arguments:
   [**len**(3)](#len),
   [**trim**(3)](#trim)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

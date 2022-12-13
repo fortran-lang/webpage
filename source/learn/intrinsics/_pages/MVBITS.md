@@ -79,7 +79,7 @@ character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
 
     !! COPY PART OF A VALUE TO ITSELF
     ! can copy bit from a value to itself
-    call mvbits(intfrom,0,1,intfrom,31) 
+    call mvbits(intfrom,0,1,intfrom,31)
     write(*,bits)intfrom,intfrom
 
     !! MOVING BYTES AT A TIME
@@ -145,4 +145,4 @@ Fortran 95 and later
 [**ior**(3)](#ior),
 [**ieor**(3)](#ieor)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

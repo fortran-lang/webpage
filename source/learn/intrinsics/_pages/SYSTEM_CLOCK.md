@@ -106,4 +106,4 @@ Fortran 95 and later
 [**date_and_time**(3)](#date_and_time),
 [**cpu_time**(3)](#cpu_time)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

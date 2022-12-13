@@ -113,4 +113,4 @@ Fortran 95 and later
 [**spread**(3)](#spread),
 [**unpack**(3)](#unpack)
 
-###### fortran-lang intrinsic descriptions (license: MIT) @urbanjost
+ _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -45,4 +45,4 @@ Fortran 2008 and later
 [**lbound**(3)](#lbound),
 [**ubound**(3)](#ubound)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

@@ -61,4 +61,4 @@ Fortran 2003 and later
 [**c_funloc**(3)](#c_funloc),
 **iso_c_binding**(3)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_

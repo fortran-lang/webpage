@@ -68,4 +68,4 @@ Fortran 95 and later
 [**set_exponent**(3)](#set_exponent),
 [**tiny**(3)](#tiny)
 
-###### fortran-lang intrinsic descriptions
+ _fortran-lang intrinsic descriptions_
