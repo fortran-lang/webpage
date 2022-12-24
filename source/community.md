@@ -135,6 +135,24 @@ See the full [Code of Conduct](https://github.com/fortran-lang/.github/blob/main
 :::::
 
 :::{div} sd-text-left sd-fs-2 sd-text-primary
+Brief History
+:::
+
+The Fortran-lang project was started at the beginning of 2020 by Ondřej Čertík
+and Milan Curcic
+([[1]](https://ondrejcertik.com/blog/2021/03/resurrecting-fortran/),
+[[2]](https://medium.com/modern-fortran/first-year-of-fortran-lang-d8796bfa0067)).
+The effort built upon work of several members of the Fortran Standards
+Committee that built a GitHub proposals repository to track proposals to the
+Standards Committee, which lead to the creation of the Fortran Standard Library
+(`stdlib`), the Fortran Package Manager (`fpm`) and the `fortra-lang.org`
+website. The webpage quickly become the top result in major search engines for
+"Fortran". We created a Fortran Discourse where the whole Fortran community can
+meet and discuss, make announcements, ask for help, etc. The Fortran-lang
+effort was joined by hundreds of contributors. At the end of 2022 the
+Fortran-lang project was accepted under NumFOCUS for fiscal sponsorship.
+
+:::{div} sd-text-left sd-fs-2 sd-text-primary
 Fortran-lang Contributors
 :::
 
