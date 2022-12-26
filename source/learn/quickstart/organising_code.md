@@ -18,7 +18,7 @@ the dummy argument types and attributes are declared within the body of the subr
 
 **Example:**
 
-```fortran
+```{play-code-block} fortran
 ! Print matrix A to screen
 subroutine print_matrix(n,m,A)
   implicit none
@@ -44,7 +44,7 @@ In this example, the subroutine does not modify its arguments, hence all argumen
 
 We can call this subroutine from a program using a `call` statement:
 
-```fortran
+```{play-code-block} fortran
 program call_sub
   implicit none
 
@@ -62,7 +62,7 @@ end program call_sub
 
 ## Functions
 
-```fortran
+```{play-code-block} fortran
 ! L2 Norm of a vector
 function vector_norm(n,vec) result(norm)
   implicit none
@@ -79,7 +79,7 @@ end function vector_norm
 
 To execute this function:
 
-```fortran
+```{play-code-block} fortran
 program run_fcn
   implicit none
 
@@ -110,7 +110,7 @@ They can contain data objects, type definitions, procedures, and interfaces.
 
 **Example:**
 
-```fortran
+```{play-code-block} fortran
 module my_mod
   implicit none
 
@@ -144,7 +144,7 @@ end module my_mod
 
 To `use` the module within a program:
 
-```fortran
+```{play-code-block} fortran
 program use_mod
   use my_mod
   implicit none
@@ -160,13 +160,13 @@ end program use_mod
 
 **Example:** explicit import list
 
-```fortran
+```{play-code-block} fortran
 use my_mod, only: public_var
 ```
 
 **Example:** aliased import
 
-```fortran
+```{play-code-block} fortran
 use my_mod, only: printMat=>print_matrix
 ```
 

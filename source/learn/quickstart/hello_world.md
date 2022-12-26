@@ -39,7 +39,7 @@ warranty; not even for MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.
 
 Once you have set up your compiler, open a new file in your favourite code editor and enter the following:
 
-```fortran
+```{play-code-block} fortran
 program hello
   ! This is a comment line; it is ignored by the compiler
   print *, 'Hello, World!'

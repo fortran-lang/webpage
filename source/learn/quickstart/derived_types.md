@@ -6,7 +6,7 @@ As discussed previously in [Variables](variables), there are five built-in data 
 
 Here's an example of a basic derived type:
 
-```fortran
+```{play-code-block} fortran
 type :: t_pair
   integer :: i
   real :: x
@@ -15,7 +15,7 @@ end type
 
 The syntax to create a variable of type `t_pair` and access its members is:
 
-```fortran
+```{play-code-block} fortran
 ! Declare
 type(t_pair) :: pair
 ! Initialize
@@ -30,7 +30,7 @@ You can also initialize derived type members by invoking the derived type constr
 
 Example using the derived type constructor:
 
-```fortran
+```{play-code-block} fortran
 pair = t_pair(1, 0.5)      ! Initialize with positional arguments
 pair = t_pair(i=1, x=0.5)  ! Initialize with keyword arguments
 pair = t_pair(x=0.5, i=1)  ! Keyword arguments can go in any order
@@ -38,7 +38,7 @@ pair = t_pair(x=0.5, i=1)  ! Keyword arguments can go in any order
 
 Example with default initialization:
 
-```fortran
+```{play-code-block} fortran
 type :: t_pair
   integer :: i = 1
   real :: x = 0.5
@@ -79,7 +79,7 @@ The `sequence` attribute may be used only to declare that the following members 
 
 Example with `sequence`:
 
-```fortran
+```{play-code-block} fortran
 type :: t_pair
   sequence
   integer :: i
@@ -98,7 +98,7 @@ The attribute `bind(c)` is used to achieve compatibility between Fortran's deriv
 
 Example with `bind(c)`:
 
-```fortran
+```{play-code-block} fortran
 module f_to_c
   use iso_c_bindings, only: c_int
   implicit none
@@ -124,7 +124,7 @@ struct c_struct {
 
 Example of a derived type with `parameterized-declaration-list` and with the attribute `public`:
 
-```fortran
+```{play-code-block} fortran
 module m_matrix
  implicit none
  private
@@ -154,7 +154,7 @@ The attribute `extends` was added in the F2003 standard and introduces an import
 
 Example with the attribute `extends`:
 
-```fortran
+```{play-code-block} fortran
 module m_employee
   implicit none
   private
@@ -229,7 +229,7 @@ end program test_employee
 
 Examples of common cases:
 
-```fortran
+```{play-code-block} fortran
 type :: t_example
   ! 1st case: simple built-in type with access attribute and [init]
   integer, private :: i = 0
@@ -259,7 +259,7 @@ A derived type can contain functions or subroutines that are _bound_ to it. We'l
 
 Here's an example of a derived type with a basic type-bound procedure:
 
-```fortran
+```{play-code-block} fortran
 module m_shapes
   implicit none
   private
@@ -308,7 +308,7 @@ What is new:
 
 In the above example, the type-bound procedure `area` is defined as a function and can be invoked only in an expression, for example `x = sq%area()` or `print *, sq%area()`. If you define it instead as a subroutine, you can invoke it from its own `call` statement:
 
-```fortran
+```{play-code-block} fortran
 ! Change within module
 contains
   subroutine area(self, x)

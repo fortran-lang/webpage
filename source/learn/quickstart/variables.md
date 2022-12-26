@@ -34,7 +34,7 @@ In the following example we declare a variable for each of the built-in types.
 
 **Example:** variable declaration
 
-```fortran
+```{play-code-block} fortran
 program variables
   implicit none
 
@@ -62,7 +62,7 @@ Once we have declared a variable, we can assign and reassign values to it using 
 
 **Example:** variable assignment
 
-```fortran
+```{play-code-block} fortran
 amount = 10
 pi = 3.1415927
 frequency = (1.0, -0.5)
@@ -85,7 +85,7 @@ This is commonly referred to as writing to `standard output` or `stdout`.
 
 We can use the `print` statement introduced earlier to print variable values to `stdout`:
 
-```fortran
+```{play-code-block} fortran
 print *, 'The value of amount (integer) is: ', amount
 print *, 'The value of pi (real) is: ', pi
 print *, 'The value of frequency (complex) is: ', frequency
@@ -96,7 +96,7 @@ print *, 'The value of isOkay (logical) is: ', isOkay
 In a similar way, we can read values from the command window
 using the `read` statement:
 
-```fortran
+```{play-code-block} fortran
 program read_value
   implicit none
   integer :: age
@@ -127,7 +127,7 @@ The usual set of arithmetic operators are available, listed in order of preceden
 
 **Example:**
 
-```fortran
+```{play-code-block} fortran
 program arithmetic
   implicit none
 
@@ -163,7 +163,7 @@ The `iso_fortran_env` intrinsic module provides `kind` parameters for the common
 
 **Example:** explicit real `kind`
 
-```fortran
+```{play-code-block} fortran
 program float
   use, intrinsic :: iso_fortran_env, only: sp=>real32, dp=>real64
   implicit none
@@ -181,7 +181,7 @@ end program float
 
 **Example:** C-interoperable `kind`
 
-```fortran
+```{play-code-block} fortran
 program float
   use, intrinsic :: iso_c_binding, only: sp=>c_float, dp=>c_double
   implicit none

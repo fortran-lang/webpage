@@ -16,7 +16,7 @@ using the `dimension` attribute or by appending the array dimensions in parenthe
 
 **Example:** static array declaration
 
-```fortran
+```{play-code-block} fortran
 program arrays
   implicit none
 
@@ -43,7 +43,7 @@ we can perform operations on all or part of an array using array _slicing_ notat
 
 **Example:** array slicing
 
-```fortran
+```{play-code-block} fortran
 program array_slice
   implicit none
 
@@ -80,7 +80,7 @@ These are _allocated_ while the program is running once we know how big the arra
 
 **Example:** allocatable arrays
 
-```fortran
+```{play-code-block} fortran
 program allocatable
   implicit none
 
@@ -105,7 +105,7 @@ when they go out of scope.
 
 **Example:** static character string
 
-```fortran
+```{play-code-block} fortran
 program string
   implicit none
 
@@ -126,7 +126,7 @@ end program string
 
 **Example:** allocatable character string
 
-```fortran
+```{play-code-block} fortran
 program allocatable_string
   implicit none
 
@@ -155,7 +155,7 @@ Finally, we use the intrinsic function `trim` to remove any excess spaces when p
 
 **Example:** string array
 
-```fortran
+```{play-code-block} fortran
 program string_array
   implicit none
   character(len=10), dimension(2) :: keys, vals

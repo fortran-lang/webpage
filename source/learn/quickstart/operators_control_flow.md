@@ -47,7 +47,7 @@ message to describe the nature of the `angle` variable:
 
 **Example:** single branch `if`
 
-```fortran
+```{play-code-block} fortran
 if (angle < 90.0) then
   print *, 'Angle is acute'
 end if
@@ -65,7 +65,7 @@ We can add an alternative branch to the construct using the `else` keyword:
 
 **Example:** two-branch `if`-`else`
 
-```fortran
+```{play-code-block} fortran
 if (angle < 90.0) then
   print *, 'Angle is acute'
 else
@@ -80,7 +80,7 @@ We can actually add any number of branches using `else if` to specify more condi
 
 **Example:** multi-branch `if`-`else if`-`else`
 
-```fortran
+```{play-code-block} fortran
 if (angle < 90.0) then
   print *, 'Angle is acute'
 else if (angle < 180.0) then
@@ -105,7 +105,7 @@ to specify the start value and final value of our counting variable.
 
 **Example:** `do` loop
 
-```fortran
+```{play-code-block} fortran
 integer :: i
 
 do i = 1, 10
@@ -115,7 +115,7 @@ end do
 
 **Example:** `do` loop with skip
 
-```fortran
+```{play-code-block} fortran
 integer :: i
 
 do i = 1, 10, 2
@@ -130,7 +130,7 @@ in `while()` evaluates to `.true.`.
 
 **Example:** `do while()` loop
 
-```fortran
+```{play-code-block} fortran
 integer :: i
 
 i = 1
@@ -150,7 +150,7 @@ with such cases.
 
 **Example:** loop with `exit`
 
-```fortran
+```{play-code-block} fortran
 integer :: i
 
 do i = 1, 100
@@ -166,7 +166,7 @@ On the other hand, `cycle` skips whatever is left of the loop and goes into the 
 
 **Example:** loop with `cycle`
 
-```fortran
+```{play-code-block} fortran
 integer :: i
 
 do i = 1, 10
@@ -190,7 +190,7 @@ A recurring case in any programming language is the use of nested loops. Nested 
 
 **Example:** tagged nested loops
 
-```fortran
+```{play-code-block} fortran
 integer :: i, j
 
 outer_loop: do i = 1, 10
@@ -217,7 +217,7 @@ These requirements place restrictions on what can be placed within the loop body
 
 **Example:** `do concurrent()` loop
 
-```fortran
+```{play-code-block} fortran
 real, parameter :: pi = 3.14159265
 integer, parameter :: n = 10
 real :: result_sin(n)
