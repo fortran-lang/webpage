@@ -540,3 +540,111 @@ It is organised in manpages, which are also available with your local CMake
 installation as well using `man cmake`. While it covers all functionality of
 CMake, it sometimes covers them only very briefly.
 ::::
+
+## The SCons build system
+
+SCons is one another high-level cross-platform build system with automatic
+dependency analysis that supports Fortran projects. SCons configuration files
+are executed as Python scripts but it could be successfully used without
+knowledge about Python programming. The using of Python scripting if needed
+allows to handle build process and file naming in more sophisticated manner.
+
+::::{note}
+SCons doesn't automatically passes the external environment variables such as
+`PATH` therefore it will not find programs and tools that installed into
+non-standard locations unless are specified or passed via appropriate variables.
+That guaranties that build isn't affected by external (especially user's)
+environment variables and build is repeatable. The most of such variables
+and compiler options and flags are required to be configured within special
+"isolated" `Environments` (please refer to
+<a href="https://scons.org/doc/production/HTML/scons-user/ch07.html" target="_blank" rel="noopener">User Guide</a>
+for additional information).
+::::
+
+The SCons doesn't use external low-level build systems and relies on own
+build system. The `ninja` support as external tool to generate `ninja.build`
+file is highly experimental (available since scons 4.2) and required to be
+enabled explicitly by additional configuration.
+
+The simple SCons project is `SConstruct` file that contains:
+
+```python
+Program('my_proj', ['tabulate.f90', 'functions.f90'])
+```
+
+The next step is to build our project with command `scons`:
+
+    scons: Reading SConscript files ...
+    scons: done reading SConscript files.
+    scons: Building targets ...
+    gfortran -o functions.o -c functions.f90
+    gfortran -o tabulate.o -c tabulate.f90
+    gfortran -o my_proj tabulate.o functions.o
+    scons: done building targets.
+
+or with `scons -Q` to disable extended output:
+
+    gfortran -o functions.o -c functions.f90
+    gfortran -o tabulate.o -c tabulate.f90
+    gfortran -o my_proj tabulate.o functions.o
+
+Find and test your program `my_prog` at the same directory as source files
+(by default) to ensure it works correctly.
+
+To cleanup the build artifacts run `scons -c` (or `scons -Qc`):
+
+    scons: Reading SConscript files ...
+    scons: done reading SConscript files.
+    scons: Cleaning targets ...
+    Removed functions.o
+    Removed user_functions.mod
+    Removed tabulate.o
+    Removed my_proj
+    scons: done cleaning targets.
+
+In our SCons `SConstruct` file
+
+```python
+Program('my_proj', ['tabulate.f90', 'functions.f90'])
+```
+
+we specified executable target name `my_proj` (optional, if omitted the first
+source file name is used) and list of source files
+`['tabulate.f90', 'functions.f90']`. There is no need to specify project source
+files language -- it's detected automatically by SCons for supported languages.
+
+The list of source files could be specified with SCons `Glob` function:
+
+```python
+Program('my_proj', Glob('*.f90'))
+```
+
+or using SCons `Split` function:
+
+```python
+Program('my_proj', Split('tabulate.f90 functions.f90'))
+```
+
+or in more readable form by assigning variable:
+
+```python
+src_files = Split('tabulate.f90 functions.f90')
+Program('my_proj', src_files)
+```
+
+In case of `Split` function the multiple lines could be used with Python
+"triple-quote" syntax:
+
+```python
+src_files = Split("""tabulate.f90
+                     functions.f90""")
+Program('my_proj', src_files)
+```
+
+::::{tip}
+SCons official webpage provides:
+<a href="https://scons.org/doc/production/HTML/scons-user/index.html" target="_blank" rel="noopener">User Guide</a>
+with extended description of various aspects how to handle the build process,
+<a href="https://scons.org/faq.html" target="_blank" rel="noopener">Frequently Asked Questions</a> page and
+<a href="https://scons.org/doc/production/HTML/scons-man.html" target="_blank" rel="noopener">man page</a>.
+::::
