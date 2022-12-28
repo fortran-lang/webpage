@@ -535,7 +535,7 @@ so we do not have to worry about the actual steps in the build process.
 
 ::::{tip}
 CMake's official reference can be found at the
-<a href="https://cmake.org/cmake/help/latest/", target="\_blank" rel="noopener">CMake webpage</a>.
+<a href="https://cmake.org/cmake/help/latest/" target="_blank" rel="noopener">CMake webpage</a>.
 It is organised in manpages, which are also available with your local CMake
 installation as well using `man cmake`. While it covers all functionality of
 CMake, it sometimes covers them only very briefly.
