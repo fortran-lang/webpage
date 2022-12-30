@@ -41,6 +41,13 @@ jobs:
 
       - run: touch build/html/.nojekyll
 
+      - name: Create Bing authentification
+        run: |
+          echo > build/html/BingSiteAuth.xml \
+            "<?xml version=\"1.0\"?><users><user>${{ env.BING_TOKEN }}</user></users>"
+        env:
+          BING_TOKEN: ${{ secrets.BING_TOKEN }}
+
       - name: Deploy documentation sphinx
         uses: JamesIves/github-pages-deploy-action@v4.4.1
         if: github.event_name == 'push' && github.ref == 'refs/heads/main'
