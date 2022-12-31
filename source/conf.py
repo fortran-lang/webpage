@@ -68,8 +68,9 @@ extensions = [
     "sphinx_copybutton",
     "sphinx.ext.intersphinx",
     "sphinx_jinja",
-    "sphinx_sitemap",
 ]
+if language == "en":
+    extensions.append("sphinx_sitemap")
 
 myst_enable_extensions = [
     "colon_fence",
