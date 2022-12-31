@@ -40,6 +40,7 @@ jobs:
       # Comment on pull request
       - name: Comment on pull request
         uses: peter-evans/create-or-update-comment@v2
+        if: contains(github.event.comment.body, '#delete_preview')
         with:
           issue-number: ${{github.event.issue.number}}
           body: The preview build for this PR has now been deleted.
