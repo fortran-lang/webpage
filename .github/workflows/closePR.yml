@@ -31,6 +31,8 @@ jobs:
       - name: Commit and push to gh-pages
         uses: EndBug/add-and-commit@v9.1.1
         with:
+          committer_email: 53436240+fortran-lang@users.noreply.github.com
+          committer_name: Fortran
           message: "Sphinx build cleanup pr/${{github.event.issue.number}}"
         env:
           GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
@@ -38,6 +40,7 @@ jobs:
       # Comment on pull request
       - name: Comment on pull request
         uses: peter-evans/create-or-update-comment@v2
+        if: contains(github.event.comment.body, '#delete_preview')
         with:
           issue-number: ${{github.event.issue.number}}
           body: The preview build for this PR has now been deleted.
