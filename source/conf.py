@@ -69,8 +69,6 @@ extensions = [
     "sphinx.ext.intersphinx",
     "sphinx_jinja",
 ]
-if language == "en":
-    extensions.append("sphinx_sitemap")
 
 myst_enable_extensions = [
     "colon_fence",
@@ -93,6 +91,9 @@ locale_dirs = ["../locale/"]
 
 language = str(sys.argv[-1][11:])
 html_search_language = str(sys.argv[-1][11:])
+
+if language == "en":
+    extensions.append("sphinx_sitemap")
 
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
