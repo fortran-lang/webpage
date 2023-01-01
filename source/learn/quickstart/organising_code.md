@@ -137,8 +137,8 @@ contains
 end module my_mod
 ```
 
-> Compare this `print_matrix` subroutine with that written outside of a module
-> we no longer have to explicitly pass the matrix dimensions and can instead take
+> Compare this `print_matrix` subroutine with that written outside of a module.
+> We no longer have to explicitly pass the matrix dimensions and can instead take
 > advantage of _assumed-shape_ arguments since the module will generate the required
 > explicit interface for us. This results in a much simpler subroutine interface.
 
