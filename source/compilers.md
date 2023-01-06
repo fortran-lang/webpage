@@ -38,7 +38,7 @@ compiler.
 Also available online at [dev.lfortran.org](https://dev.lfortran.org/) using a statically served, WASM based LFortran Compiler for running code in web browsers.
 <p style="font-size:24px;color:#734f96;"><b>Commercial compilers</b></p>
 
-<h4> <b> Intel</b></h4>
+<h4> <b> Intel oneAPI</b></h4>
 
 [Intel oneAPI](https://software.intel.com/content/www/us/en/develop/tools/oneapi/all-toolkits.html)
 is Intel's suite of compilers, tools, and libraries for Fortran, C, C++, and
@@ -46,13 +46,13 @@ Python. Intel oneAPI HPC Toolkit provides
 [two Fortran compilers](https://software.intel.com/content/www/us/en/develop/articles/intel-oneapi-fortran-compiler-release-notes.html):
 
 - Intel Fortran Compiler (`ifx`), a new, LLVM-based compiler
-  that with full Fortran 2018 support.  It also has the [majority of OpenMP 5.0/5.1](https://www.intel.com/content/www/us/en/developer/articles/technical/fortran-language-and-openmp-features-in-ifx.html) including offload to Intel GPUs. 
-  ifx can also offload DO CONCURRENT to Intel GPUs.
+  that comes with full Fortran 2018 support. It also supports the [majority of OpenMP 5.0/5.1](https://www.intel.com/content/www/us/en/developer/articles/technical/fortran-language-and-openmp-features-in-ifx.html) including offload to Intel GPUs. 
+  ifx can also offload `do concurrent` to Intel GPUs.
 - Intel Fortran Compiler Classic (`ifort`), a mature compiler
-  with full Fortran 2018 support, cpu only.
+  with full Fortran 2018 support, for CPUs only.
 
-The current version of Intel oneAPI is available for free, support can be purchased.
-Currently the ifx compiler supports Linux and Windows platforms for x86_64 architectures.  ifort supports Linux, Windows, and mac OS.
+The current version of Intel oneAPI is available for free, and support can be purchased.
+Currently the ifx compiler supports Linux and Windows platforms for x86-64 architectures. ifort supports Linux, Windows, and macOS.
 Community support is available for the free version at the [Intel Developer forum](https://community.intel.com/t5/Intel-Fortran-Compiler/bd-p/fortran-compiler).
 Optionally, you can purchase [Priority Support](https://www.intel.com/content/www/us/en/developer/get-help/priority-support.html) with additional benefits including access to previous versions of ifort and ifx.
 
