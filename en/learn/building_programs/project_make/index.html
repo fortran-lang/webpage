@@ -809,66 +809,66 @@ be compiled and added to a static library while the three in <code class="docuti
 contain individual programs that depend on this static library.</p>
 <p>Start by creating a simple <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable the default rules</span>
-<span class="nv">MAKEFLAGS</span> <span class="o">+=</span> --no-builtin-rules --no-builtin-variables
+<span class="nv">MAKEFLAGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>--no-builtin-rules<span class="w"> </span>--no-builtin-variables
 
 <span class="c"># Project name</span>
-<span class="nv">NAME</span> <span class="o">:=</span> csv
+<span class="nv">NAME</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>csv
 
 <span class="c"># Configuration settings</span>
-<span class="nv">FC</span> <span class="o">:=</span> gfortran
-<span class="nv">AR</span> <span class="o">:=</span> ar rcs
-<span class="nv">LD</span> <span class="o">:=</span> <span class="k">$(</span>FC<span class="k">)</span>
-<span class="nv">RM</span> <span class="o">:=</span> rm -f
+<span class="nv">FC</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>gfortran
+<span class="nv">AR</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>ar<span class="w"> </span>rcs
+<span class="nv">LD</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>FC<span class="k">)</span>
+<span class="nv">RM</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>rm<span class="w"> </span>-f
 
 <span class="c"># List of all source files</span>
-<span class="nv">SRCS</span> <span class="o">:=</span> src/csv_kinds.f90 <span class="se">\</span>
-        src/csv_module.F90 <span class="se">\</span>
-        src/csv_parameters.f90 <span class="se">\</span>
-        src/csv_utilities.f90
-<span class="nv">TEST_SRCS</span> <span class="o">:=</span> src/tests/csv_read_test.f90 <span class="se">\</span>
-             src/tests/csv_test.f90 <span class="se">\</span>
-             src/tests/csv_write_test.f90
+<span class="nv">SRCS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>src/csv_kinds.f90<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>src/csv_module.F90<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>src/csv_parameters.f90<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>src/csv_utilities.f90
+<span class="nv">TEST_SRCS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>src/tests/csv_read_test.f90<span class="w"> </span><span class="se">\</span>
+<span class="w">             </span>src/tests/csv_test.f90<span class="w"> </span><span class="se">\</span>
+<span class="w">             </span>src/tests/csv_write_test.f90
 
 <span class="c"># Create lists of the build artefacts in this project</span>
-<span class="nv">OBJS</span> <span class="o">:=</span> <span class="k">$(</span>addsuffix .o, <span class="k">$(</span>SRCS<span class="k">))</span>
-<span class="nv">TEST_OBJS</span> <span class="o">:=</span> <span class="k">$(</span>addsuffix .o, <span class="k">$(</span>TEST_SRCS<span class="k">))</span>
-<span class="nv">LIB</span> <span class="o">:=</span> <span class="k">$(</span>patsubst %, lib%.a, <span class="k">$(</span>NAME<span class="k">))</span>
-<span class="nv">TEST_EXE</span> <span class="o">:=</span> <span class="k">$(</span>patsubst %.f90, %.exe, <span class="k">$(</span>TEST_SRCS<span class="k">))</span>
+<span class="nv">OBJS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>addsuffix<span class="w"> </span>.o,<span class="w"> </span><span class="k">$(</span>SRCS<span class="k">))</span>
+<span class="nv">TEST_OBJS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>addsuffix<span class="w"> </span>.o,<span class="w"> </span><span class="k">$(</span>TEST_SRCS<span class="k">))</span>
+<span class="nv">LIB</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>patsubst<span class="w"> </span>%,<span class="w"> </span>lib%.a,<span class="w"> </span><span class="k">$(</span>NAME<span class="k">))</span>
+<span class="nv">TEST_EXE</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>patsubst<span class="w"> </span>%.f90,<span class="w"> </span>%.exe,<span class="w"> </span><span class="k">$(</span>TEST_SRCS<span class="k">))</span>
 
 <span class="c"># Declare all public targets</span>
-<span class="nf">.PHONY</span><span class="o">:</span> <span class="n">all</span> <span class="n">clean</span>
-<span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">LIB</span><span class="k">)</span> <span class="k">$(</span><span class="nv">TEST_EXE</span><span class="k">)</span>
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">all</span> <span class="n">clean</span>
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">LIB</span><span class="k">)</span> <span class="k">$(</span><span class="nv">TEST_EXE</span><span class="k">)</span>
 
 <span class="c"># Create the static library from the object files</span>
-<span class="nf">$(LIB)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
-	<span class="k">$(</span>AR<span class="k">)</span> <span class="nv">$@</span> $^
+<span class="nf">$(LIB)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
+<span class="w">	</span><span class="k">$(</span>AR<span class="k">)</span><span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$^
 
 <span class="c"># Link the test executables</span>
-<span class="nf">$(TEST_EXE)</span><span class="o">:</span> %.<span class="n">exe</span>: %.<span class="n">f</span>90.<span class="n">o</span> <span class="k">$(</span><span class="nv">LIB</span><span class="k">)</span>
-	<span class="k">$(</span>LD<span class="k">)</span> -o <span class="nv">$@</span> $^
+<span class="nf">$(TEST_EXE)</span><span class="o">:</span><span class="w"> </span>%.<span class="n">exe</span>: %.<span class="n">f</span>90.<span class="n">o</span> <span class="k">$(</span><span class="nv">LIB</span><span class="k">)</span>
+<span class="w">	</span><span class="k">$(</span>LD<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$^
 
 <span class="c"># Create object files from Fortran source</span>
-<span class="nf">$(OBJS) $(TEST_OBJS)</span><span class="o">:</span> %.<span class="n">o</span>: %
-	<span class="k">$(</span>FC<span class="k">)</span> -c -o <span class="nv">$@</span> $&lt;
+<span class="nf">$(OBJS) $(TEST_OBJS)</span><span class="o">:</span><span class="w"> </span>%.<span class="n">o</span>: %
+<span class="w">	</span><span class="k">$(</span>FC<span class="k">)</span><span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$&lt;
 
 <span class="c"># Define all module interdependencies</span>
-<span class="nv">csv_kinds.mod</span> <span class="o">:=</span> src/csv_kinds.f90.o
-<span class="nv">csv_module.mod</span> <span class="o">:=</span> src/csv_module.F90.o
-<span class="nv">csv_parameters.mod</span> <span class="o">:=</span> src/csv_parameters.f90.o
-<span class="nv">csv_utilities.mod</span> <span class="o">:=</span> src/csv_utilities.f90.o
-<span class="nf">src/csv_module.F90.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_utilities.mod</span><span class="k">)</span>
-<span class="nf">src/csv_module.F90.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_kinds.mod</span><span class="k">)</span>
-<span class="nf">src/csv_module.F90.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_parameters.mod</span><span class="k">)</span>
-<span class="nf">src/csv_parameters.f90.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_kinds.mod</span><span class="k">)</span>
-<span class="nf">src/csv_utilities.f90.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_kinds.mod</span><span class="k">)</span>
-<span class="nf">src/csv_utilities.f90.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_parameters.mod</span><span class="k">)</span>
-<span class="nf">src/tests/csv_read_test.f90.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
-<span class="nf">src/tests/csv_test.f90.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
-<span class="nf">src/tests/csv_write_test.f90.o</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
+<span class="nv">csv_kinds.mod</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>src/csv_kinds.f90.o
+<span class="nv">csv_module.mod</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>src/csv_module.F90.o
+<span class="nv">csv_parameters.mod</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>src/csv_parameters.f90.o
+<span class="nv">csv_utilities.mod</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>src/csv_utilities.f90.o
+<span class="nf">src/csv_module.F90.o</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_utilities.mod</span><span class="k">)</span>
+<span class="nf">src/csv_module.F90.o</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_kinds.mod</span><span class="k">)</span>
+<span class="nf">src/csv_module.F90.o</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_parameters.mod</span><span class="k">)</span>
+<span class="nf">src/csv_parameters.f90.o</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_kinds.mod</span><span class="k">)</span>
+<span class="nf">src/csv_utilities.f90.o</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_kinds.mod</span><span class="k">)</span>
+<span class="nf">src/csv_utilities.f90.o</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_parameters.mod</span><span class="k">)</span>
+<span class="nf">src/tests/csv_read_test.f90.o</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
+<span class="nf">src/tests/csv_test.f90.o</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
+<span class="nf">src/tests/csv_write_test.f90.o</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
 
 <span class="c"># Cleanup, filter to avoid removing source code by accident</span>
 <span class="nf">clean</span><span class="o">:</span>
-	<span class="k">$(</span>RM<span class="k">)</span> <span class="k">$(</span>filter %.o, <span class="k">$(</span>OBJS<span class="k">)</span> <span class="k">$(</span>TEST_OBJS<span class="k">))</span> <span class="k">$(</span>filter %.exe, <span class="k">$(</span>TEST_EXE<span class="k">))</span> <span class="k">$(</span>LIB<span class="k">)</span> <span class="k">$(</span>wildcard *.mod<span class="k">)</span>
+<span class="w">	</span><span class="k">$(</span>RM<span class="k">)</span><span class="w"> </span><span class="k">$(</span>filter<span class="w"> </span>%.o,<span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>TEST_OBJS<span class="k">))</span><span class="w"> </span><span class="k">$(</span>filter<span class="w"> </span>%.exe,<span class="w"> </span><span class="k">$(</span>TEST_EXE<span class="k">))</span><span class="w"> </span><span class="k">$(</span>LIB<span class="k">)</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.mod<span class="k">)</span>
 </pre></div>
 </div>
 <p>Invoking <code class="docutils literal notranslate"><span class="pre">make</span></code> should build the static library and the test executables as
@@ -909,7 +909,7 @@ required.</p>
 defined between object files rather than source files. To change this, we can
 generate a map from the source files their respective object files:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Define a map from each file name to its object file</span>
-<span class="nv">obj</span> <span class="o">=</span> <span class="k">$(</span>src<span class="k">)</span>.o
+<span class="nv">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>src<span class="k">)</span>.o
 <span class="nf">$(foreach src, $(SRCS) $(TEST_SRCS), $(eval $(src) </span><span class="o">:</span>= <span class="k">$(</span><span class="nv">obj</span><span class="k">)</span>))
 </pre></div>
 </div>
@@ -920,19 +920,19 @@ to generate <code class="docutils literal notranslate"><span class="pre">make</s
 <p>We adjust the dependencies accordingly as we can now define the name of the
 object files through the source file names:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Define all module interdependencies</span>
-<span class="nv">csv_kinds.mod</span> <span class="o">:=</span> <span class="k">$(</span>src/csv_kinds.f90<span class="k">)</span>
-<span class="nv">csv_module.mod</span> <span class="o">:=</span> <span class="k">$(</span>src/csv_module.F90<span class="k">)</span>
-<span class="nv">csv_parameters.mod</span> <span class="o">:=</span> <span class="k">$(</span>src/csv_parameters.f90<span class="k">)</span>
-<span class="nv">csv_utilities.mod</span> <span class="o">:=</span> <span class="k">$(</span>src/csv_utilities.f90<span class="k">)</span>
-<span class="nf">$(src/csv_module.F90)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_utilities.mod</span><span class="k">)</span>
-<span class="nf">$(src/csv_module.F90)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_kinds.mod</span><span class="k">)</span>
-<span class="nf">$(src/csv_module.F90)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_parameters.mod</span><span class="k">)</span>
-<span class="nf">$(src/csv_parameters.f90)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_kinds.mod</span><span class="k">)</span>
-<span class="nf">$(src/csv_utilities.f90)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_kinds.mod</span><span class="k">)</span>
-<span class="nf">$(src/csv_utilities.f90)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_parameters.mod</span><span class="k">)</span>
-<span class="nf">$(src/tests/csv_read_test.f90)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
-<span class="nf">$(src/tests/csv_test.f90)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
-<span class="nf">$(src/tests/csv_write_test.f90)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
+<span class="nv">csv_kinds.mod</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>src/csv_kinds.f90<span class="k">)</span>
+<span class="nv">csv_module.mod</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>src/csv_module.F90<span class="k">)</span>
+<span class="nv">csv_parameters.mod</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>src/csv_parameters.f90<span class="k">)</span>
+<span class="nv">csv_utilities.mod</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>src/csv_utilities.f90<span class="k">)</span>
+<span class="nf">$(src/csv_module.F90)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_utilities.mod</span><span class="k">)</span>
+<span class="nf">$(src/csv_module.F90)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_kinds.mod</span><span class="k">)</span>
+<span class="nf">$(src/csv_module.F90)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_parameters.mod</span><span class="k">)</span>
+<span class="nf">$(src/csv_parameters.f90)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_kinds.mod</span><span class="k">)</span>
+<span class="nf">$(src/csv_utilities.f90)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_kinds.mod</span><span class="k">)</span>
+<span class="nf">$(src/csv_utilities.f90)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_parameters.mod</span><span class="k">)</span>
+<span class="nf">$(src/tests/csv_read_test.f90)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
+<span class="nf">$(src/tests/csv_test.f90)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
+<span class="nf">$(src/tests/csv_write_test.f90)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">csv_module.mod</span><span class="k">)</span>
 </pre></div>
 </div>
 <p>The same strategy of creating a map is already used for the module files, now
@@ -1019,7 +1019,7 @@ currently parsing and to allow processing multiple files at once.</p>
 <code class="docutils literal notranslate"><span class="pre">include</span></code> statements as the first space delimited entry. With the used
 pattern not all valid Fortran code will be parsed correctly.
 A failing example would be:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="kd">::</span><span class="n">my_module</span><span class="p">,</span><span class="k">only</span><span class="p">:</span><span class="n">proc</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="kd">::</span><span class="n">my_module</span><span class="p">,</span><span class="k">only</span><span class="p">:</span><span class="n">proc</span>
 </pre></div>
 </div>
 <p>To make this parsable by the <code class="docutils literal notranslate"><span class="pre">awk</span></code> script we can add another group directly
@@ -1069,70 +1069,70 @@ to an empty string and not introduce any further dependencies.</p>
 <p>Now, you can finally include this piece in your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to automate the
 dependency generation:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable the default rules</span>
-<span class="nv">MAKEFLAGS</span> <span class="o">+=</span> --no-builtin-rules --no-builtin-variables
+<span class="nv">MAKEFLAGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>--no-builtin-rules<span class="w"> </span>--no-builtin-variables
 
 <span class="c"># Project name</span>
-<span class="nv">NAME</span> <span class="o">:=</span> csv
+<span class="nv">NAME</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>csv
 
 <span class="c"># Configuration settings</span>
-<span class="nv">FC</span> <span class="o">:=</span> gfortran
-<span class="nv">AR</span> <span class="o">:=</span> ar rcs
-<span class="nv">LD</span> <span class="o">:=</span> <span class="k">$(</span>FC<span class="k">)</span>
-<span class="nv">RM</span> <span class="o">:=</span> rm -f
-<span class="nv">GD</span> <span class="o">:=</span> ./gen-deps.awk
+<span class="nv">FC</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>gfortran
+<span class="nv">AR</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>ar<span class="w"> </span>rcs
+<span class="nv">LD</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>FC<span class="k">)</span>
+<span class="nv">RM</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>rm<span class="w"> </span>-f
+<span class="nv">GD</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>./gen-deps.awk
 
 <span class="c"># List of all source files</span>
-<span class="nv">SRCS</span> <span class="o">:=</span> src/csv_kinds.f90 <span class="se">\</span>
-        src/csv_module.F90 <span class="se">\</span>
-        src/csv_parameters.f90 <span class="se">\</span>
-        src/csv_utilities.f90
-<span class="nv">TEST_SRCS</span> <span class="o">:=</span> src/tests/csv_read_test.f90 <span class="se">\</span>
-             src/tests/csv_test.f90 <span class="se">\</span>
-             src/tests/csv_write_test.f90
+<span class="nv">SRCS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>src/csv_kinds.f90<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>src/csv_module.F90<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>src/csv_parameters.f90<span class="w"> </span><span class="se">\</span>
+<span class="w">        </span>src/csv_utilities.f90
+<span class="nv">TEST_SRCS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>src/tests/csv_read_test.f90<span class="w"> </span><span class="se">\</span>
+<span class="w">             </span>src/tests/csv_test.f90<span class="w"> </span><span class="se">\</span>
+<span class="w">             </span>src/tests/csv_write_test.f90
 
 <span class="c"># Add source and tests directories to search paths</span>
 <span class="cp">vpath % .: src</span>
 <span class="cp">vpath % .: src/tests</span>
 
 <span class="c"># Define a map from each file name to its object file</span>
-<span class="nv">obj</span> <span class="o">=</span> <span class="k">$(</span>src<span class="k">)</span>.o
+<span class="nv">obj</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>src<span class="k">)</span>.o
 <span class="nf">$(foreach src, $(SRCS) $(TEST_SRCS), $(eval $(src) </span><span class="o">:</span>= <span class="k">$(</span><span class="nv">obj</span><span class="k">)</span>))
 
 <span class="c"># Create lists of the build artefacts in this project</span>
-<span class="nv">OBJS</span> <span class="o">:=</span> <span class="k">$(</span>addsuffix .o, <span class="k">$(</span>SRCS<span class="k">))</span>
-<span class="nv">DEPS</span> <span class="o">:=</span> <span class="k">$(</span>addsuffix .d, <span class="k">$(</span>SRCS<span class="k">))</span>
-<span class="nv">TEST_OBJS</span> <span class="o">:=</span> <span class="k">$(</span>addsuffix .o, <span class="k">$(</span>TEST_SRCS<span class="k">))</span>
-<span class="nv">TEST_DEPS</span> <span class="o">:=</span> <span class="k">$(</span>addsuffix .d, <span class="k">$(</span>TEST_SRCS<span class="k">))</span>
-<span class="nv">LIB</span> <span class="o">:=</span> <span class="k">$(</span>patsubst %, lib%.a, <span class="k">$(</span>NAME<span class="k">))</span>
-<span class="nv">TEST_EXE</span> <span class="o">:=</span> <span class="k">$(</span>patsubst %.f90, %.exe, <span class="k">$(</span>TEST_SRCS<span class="k">))</span>
+<span class="nv">OBJS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>addsuffix<span class="w"> </span>.o,<span class="w"> </span><span class="k">$(</span>SRCS<span class="k">))</span>
+<span class="nv">DEPS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>addsuffix<span class="w"> </span>.d,<span class="w"> </span><span class="k">$(</span>SRCS<span class="k">))</span>
+<span class="nv">TEST_OBJS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>addsuffix<span class="w"> </span>.o,<span class="w"> </span><span class="k">$(</span>TEST_SRCS<span class="k">))</span>
+<span class="nv">TEST_DEPS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>addsuffix<span class="w"> </span>.d,<span class="w"> </span><span class="k">$(</span>TEST_SRCS<span class="k">))</span>
+<span class="nv">LIB</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>patsubst<span class="w"> </span>%,<span class="w"> </span>lib%.a,<span class="w"> </span><span class="k">$(</span>NAME<span class="k">))</span>
+<span class="nv">TEST_EXE</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>patsubst<span class="w"> </span>%.f90,<span class="w"> </span>%.exe,<span class="w"> </span><span class="k">$(</span>TEST_SRCS<span class="k">))</span>
 
 <span class="c"># Declare all public targets</span>
-<span class="nf">.PHONY</span><span class="o">:</span> <span class="n">all</span> <span class="n">clean</span>
-<span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">LIB</span><span class="k">)</span> <span class="k">$(</span><span class="nv">TEST_EXE</span><span class="k">)</span>
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">all</span> <span class="n">clean</span>
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">LIB</span><span class="k">)</span> <span class="k">$(</span><span class="nv">TEST_EXE</span><span class="k">)</span>
 
 <span class="c"># Create the static library from the object files</span>
-<span class="nf">$(LIB)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
-	<span class="k">$(</span>AR<span class="k">)</span> <span class="nv">$@</span> $^
+<span class="nf">$(LIB)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
+<span class="w">	</span><span class="k">$(</span>AR<span class="k">)</span><span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$^
 
 <span class="c"># Link the test executables</span>
-<span class="nf">$(TEST_EXE)</span><span class="o">:</span> %.<span class="n">exe</span>: %.<span class="n">f</span>90.<span class="n">o</span> <span class="k">$(</span><span class="nv">LIB</span><span class="k">)</span>
-	<span class="k">$(</span>LD<span class="k">)</span> -o <span class="nv">$@</span> $^
+<span class="nf">$(TEST_EXE)</span><span class="o">:</span><span class="w"> </span>%.<span class="n">exe</span>: %.<span class="n">f</span>90.<span class="n">o</span> <span class="k">$(</span><span class="nv">LIB</span><span class="k">)</span>
+<span class="w">	</span><span class="k">$(</span>LD<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$^
 
 <span class="c"># Create object files from Fortran source</span>
-<span class="nf">$(OBJS) $(TEST_OBJS)</span><span class="o">:</span> %.<span class="n">o</span>: % <span class="p">|</span> %.<span class="n">d</span>
-	<span class="k">$(</span>FC<span class="k">)</span> -c -o <span class="nv">$@</span> $&lt;
+<span class="nf">$(OBJS) $(TEST_OBJS)</span><span class="o">:</span><span class="w"> </span>%.<span class="n">o</span>: % <span class="p">|</span> %.<span class="n">d</span>
+<span class="w">	</span><span class="k">$(</span>FC<span class="k">)</span><span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$&lt;
 
 <span class="c"># Process the Fortran source for module dependencies</span>
-<span class="nf">$(DEPS) $(TEST_DEPS)</span><span class="o">:</span> %.<span class="n">d</span>: %
-	<span class="k">$(</span>GD<span class="k">)</span> $&lt; &gt; <span class="nv">$@</span>
+<span class="nf">$(DEPS) $(TEST_DEPS)</span><span class="o">:</span><span class="w"> </span>%.<span class="n">d</span>: %
+<span class="w">	</span><span class="k">$(</span>GD<span class="k">)</span><span class="w"> </span>$&lt;<span class="w"> </span>&gt;<span class="w"> </span><span class="nv">$@</span>
 
 <span class="c"># Define all module interdependencies</span>
 <span class="cp">include $(DEPS) $(TEST_DEPS)</span>
-<span class="nf">$(foreach dep, $(OBJS) $(TEST_OBJS), $(eval $(dep)</span><span class="o">:</span> <span class="k">$($(</span><span class="nv">dep</span><span class="k">))</span>))
+<span class="nf">$(foreach dep, $(OBJS) $(TEST_OBJS), $(eval $(dep)</span><span class="o">:</span><span class="w"> </span><span class="k">$($(</span><span class="nv">dep</span><span class="k">))</span>))
 
 <span class="c"># Cleanup, filter to avoid removing source code by accident</span>
 <span class="nf">clean</span><span class="o">:</span>
-	<span class="k">$(</span>RM<span class="k">)</span> <span class="k">$(</span>filter %.o, <span class="k">$(</span>OBJS<span class="k">)</span> <span class="k">$(</span>TEST_OBJS<span class="k">))</span> <span class="k">$(</span>filter %.d, <span class="k">$(</span>DEPS<span class="k">)</span> <span class="k">$(</span>TEST_DEPS<span class="k">))</span> <span class="k">$(</span>filter %.exe, <span class="k">$(</span>TEST_EXE<span class="k">))</span> <span class="k">$(</span>LIB<span class="k">)</span> <span class="k">$(</span>wildcard *.mod<span class="k">)</span>
+<span class="w">	</span><span class="k">$(</span>RM<span class="k">)</span><span class="w"> </span><span class="k">$(</span>filter<span class="w"> </span>%.o,<span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>TEST_OBJS<span class="k">))</span><span class="w"> </span><span class="k">$(</span>filter<span class="w"> </span>%.d,<span class="w"> </span><span class="k">$(</span>DEPS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>TEST_DEPS<span class="k">))</span><span class="w"> </span><span class="k">$(</span>filter<span class="w"> </span>%.exe,<span class="w"> </span><span class="k">$(</span>TEST_EXE<span class="k">))</span><span class="w"> </span><span class="k">$(</span>LIB<span class="k">)</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.mod<span class="k">)</span>
 </pre></div>
 </div>
 <p>Here additional dependency files are generated for each source file individually
@@ -1177,9 +1177,9 @@ source changes and not require to rebuild them again for every invocation.</p>
 the source files explicitly, the <code class="docutils literal notranslate"><span class="pre">wildcard</span></code> function can be used to determine
 them dynamically:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># List of all source files</span>
-<span class="nv">SRCS</span> <span class="o">:=</span> <span class="k">$(</span>wildcard src/*.f90<span class="k">)</span> <span class="se">\</span>
-        <span class="k">$(</span>wildcard src/*.F90<span class="k">)</span>
-<span class="nv">TEST_SRCS</span> <span class="o">:=</span> <span class="k">$(</span>wildcard src/tests/*.f90<span class="k">)</span>
+<span class="nv">SRCS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>src/*.f90<span class="k">)</span><span class="w"> </span><span class="se">\</span>
+<span class="w">        </span><span class="k">$(</span>wildcard<span class="w"> </span>src/*.F90<span class="k">)</span>
+<span class="nv">TEST_SRCS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>src/tests/*.f90<span class="k">)</span>
 </pre></div>
 </div>
 </section>

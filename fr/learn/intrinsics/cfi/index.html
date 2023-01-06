@@ -1103,7 +1103,7 @@
 </section>
 <section id="syntax">
 <h3><strong>Syntax</strong><a class="headerlink" href="#syntax" title="Lien permanent vers cette rubrique">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">(</span><span class="n">c_prt_1</span><span class="p">,</span><span class="w"> </span><span class="n">c_ptr_2</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">(</span><span class="n">c_prt_1</span><span class="p">,</span><span class="w"> </span><span class="n">c_ptr_2</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1137,20 +1137,20 @@ addresses.</p>
 <section id="examples">
 <h3><strong>Examples</strong><a class="headerlink" href="#examples" title="Lien permanent vers cette rubrique">#</a></h3>
 <p>Sample program:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_associated</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_associated</span>
 
 <span class="k">contains</span>
 
-<span class="k">subroutine </span><span class="n">association_test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<span class="k">subroutine </span><span class="n">association_test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 <span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">,</span><span class="w"> </span><span class="kt">c_ptr</span>
 <span class="k">implicit none</span>
-<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
-<span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
-<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">      </span><span class="k">stop</span><span class="w"> </span><span class="s1">&#39;b and a do not point to same target&#39;</span><span class="w"></span>
-<span class="k">end subroutine </span><span class="n">association_test</span><span class="w"></span>
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span>
+<span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">      </span><span class="k">stop</span><span class="w"> </span><span class="s1">&#39;b and a do not point to same target&#39;</span>
+<span class="k">end subroutine </span><span class="n">association_test</span>
 
-<span class="k">end program </span><span class="n">demo_c_associated</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_c_associated</span>
 </pre></div>
 </div>
 </section>
@@ -1174,7 +1174,7 @@ addresses.</p>
 </section>
 <section id="id2">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id2" title="Lien permanent vers cette rubrique">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="p">,</span><span class="w"> </span><span class="nb">shape</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="p">,</span><span class="w"> </span><span class="nb">shape</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1208,20 +1208,20 @@ must be equal to the rank of <strong>fptr</strong>.</p>
 <section id="id5">
 <h3><strong>Examples</strong><a class="headerlink" href="#id5" title="Lien permanent vers cette rubrique">#</a></h3>
 <p>Sample program:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_f_pointer</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_f_pointer</span>
 <span class="k">use </span><span class="nb">iso_c_binding</span>
 <span class="k">implicit none</span>
 <span class="k">interface</span>
-<span class="k">   subroutine </span><span class="n">my_routine</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myC_func&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="k">   subroutine </span><span class="n">my_routine</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myC_func&#39;</span><span class="p">)</span>
 <span class="w">      </span><span class="k">import</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="kt">c_ptr</span>
-<span class="kt">      </span><span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="kt">      </span><span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span>
 <span class="w">   </span><span class="k">end subroutine</span>
 <span class="k">end interface</span>
-<span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cptr</span><span class="w"></span>
-<span class="kt">real</span><span class="p">,</span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">(:)</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">my_routine</span><span class="p">(</span><span class="n">cptr</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">12</span><span class="p">])</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_c_f_pointer</span><span class="w"></span>
+<span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cptr</span>
+<span class="kt">real</span><span class="p">,</span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">(:)</span>
+<span class="w">   </span><span class="k">call </span><span class="n">my_routine</span><span class="p">(</span><span class="n">cptr</span><span class="p">)</span>
+<span class="w">   </span><span class="k">call </span><span class="nb">c_f_pointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">12</span><span class="p">])</span>
+<span class="k">end program </span><span class="n">demo_c_f_pointer</span>
 </pre></div>
 </div>
 </section>
@@ -1245,7 +1245,7 @@ must be equal to the rank of <strong>fptr</strong>.</p>
 </section>
 <section id="id9">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id9" title="Lien permanent vers cette rubrique">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">c_f_procpointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">c_f_procpointer</span><span class="p">(</span><span class="n">cptr</span><span class="p">,</span><span class="w"> </span><span class="n">fptr</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1272,27 +1272,27 @@ pointer <strong>cptr</strong> to the Fortran procedure pointer <strong>fptr</str
 <section id="id12">
 <h3><strong>Examples</strong><a class="headerlink" href="#id12" title="Lien permanent vers cette rubrique">#</a></h3>
 <p>Sample program:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_f_procpointer</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_f_procpointer</span>
 <span class="k">use </span><span class="nb">iso_c_binding</span>
 <span class="k">implicit none</span>
 <span class="k">abstract interface</span>
-<span class="k">   function </span><span class="n">func</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"></span>
+<span class="k">   function </span><span class="n">func</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
 <span class="w">   </span><span class="k">import</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="kt">c_float</span>
-<span class="kt">   real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
-<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">func</span><span class="w"></span>
+<span class="kt">   real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span>
+<span class="w">   </span><span class="kt">real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">func</span>
 <span class="w">   </span><span class="k">end function</span>
 <span class="k">end interface</span>
 <span class="k">interface</span>
-<span class="k">   function </span><span class="n">getIterFunc</span><span class="p">()</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;getIterFunc&quot;</span><span class="p">)</span><span class="w"></span>
+<span class="k">   function </span><span class="n">getIterFunc</span><span class="p">()</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s2">&quot;getIterFunc&quot;</span><span class="p">)</span>
 <span class="w">   </span><span class="k">import</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="kt">c_funptr</span>
-<span class="kt">   </span><span class="k">type</span><span class="p">(</span><span class="kt">c_funptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">getIterFunc</span><span class="w"></span>
+<span class="kt">   </span><span class="k">type</span><span class="p">(</span><span class="kt">c_funptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">getIterFunc</span>
 <span class="w">   </span><span class="k">end function</span>
 <span class="k">end interface</span>
-<span class="k">type</span><span class="p">(</span><span class="kt">c_funptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cfunptr</span><span class="w"></span>
-<span class="k">procedure</span><span class="p">(</span><span class="n">func</span><span class="p">),</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">myFunc</span><span class="w"></span>
-<span class="w">   </span><span class="n">cfunptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getIterFunc</span><span class="p">()</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="nb">c_f_procpointer</span><span class="p">(</span><span class="n">cfunptr</span><span class="p">,</span><span class="w"> </span><span class="n">myFunc</span><span class="p">)</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_c_f_procpointer</span><span class="w"></span>
+<span class="k">type</span><span class="p">(</span><span class="kt">c_funptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cfunptr</span>
+<span class="k">procedure</span><span class="p">(</span><span class="n">func</span><span class="p">),</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">myFunc</span>
+<span class="w">   </span><span class="n">cfunptr</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">getIterFunc</span><span class="p">()</span>
+<span class="w">   </span><span class="k">call </span><span class="nb">c_f_procpointer</span><span class="p">(</span><span class="n">cfunptr</span><span class="p">,</span><span class="w"> </span><span class="n">myFunc</span><span class="p">)</span>
+<span class="k">end program </span><span class="n">demo_c_f_procpointer</span>
 </pre></div>
 </div>
 </section>
@@ -1316,7 +1316,7 @@ pointer <strong>cptr</strong> to the Fortran procedure pointer <strong>fptr</str
 </section>
 <section id="id16">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id16" title="Lien permanent vers cette rubrique">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_funloc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_funloc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1343,29 +1343,29 @@ argument.</p>
 <h3><strong>Examples</strong><a class="headerlink" href="#id20" title="Lien permanent vers cette rubrique">#</a></h3>
 <p>Sample program:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! program demo_c_funloc and module</span>
-<span class="k">module </span><span class="n">x</span><span class="w"></span>
+<span class="k">module </span><span class="n">x</span>
 <span class="k">use </span><span class="nb">iso_c_binding</span>
 <span class="k">implicit none</span>
 <span class="k">contains</span>
-<span class="k">subroutine </span><span class="n">sub</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">)</span><span class="w"></span>
-<span class="kt">real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
-<span class="w">   </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="mf">5.0</span><span class="w"></span>
-<span class="k">end subroutine </span><span class="n">sub</span><span class="w"></span>
-<span class="k">end module </span><span class="n">x</span><span class="w"></span>
+<span class="k">subroutine </span><span class="n">sub</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="kt">real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span>
+<span class="w">   </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">)</span><span class="o">+</span><span class="mf">5.0</span>
+<span class="k">end subroutine </span><span class="n">sub</span>
+<span class="k">end module </span><span class="n">x</span>
 <span class="c">!</span>
-<span class="k">program </span><span class="n">demo_c_funloc</span><span class="w"></span>
+<span class="k">program </span><span class="n">demo_c_funloc</span>
 <span class="k">use </span><span class="nb">iso_c_binding</span>
-<span class="k">use </span><span class="n">x</span><span class="w"></span>
+<span class="k">use </span><span class="n">x</span>
 <span class="k">implicit none</span>
 <span class="k">interface</span>
-<span class="k">   subroutine </span><span class="n">my_routine</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myC_func&#39;</span><span class="p">)</span><span class="w"></span>
+<span class="k">   subroutine </span><span class="n">my_routine</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="k">bind</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">name</span><span class="o">=</span><span class="s1">&#39;myC_func&#39;</span><span class="p">)</span>
 <span class="w">     </span><span class="k">import</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="kt">c_funptr</span>
-<span class="kt">     </span><span class="k">type</span><span class="p">(</span><span class="kt">c_funptr</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span><span class="w"></span>
+<span class="kt">     </span><span class="k">type</span><span class="p">(</span><span class="kt">c_funptr</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span>
 <span class="w">   </span><span class="k">end subroutine</span>
 <span class="k">end interface</span>
-<span class="k">   call </span><span class="n">my_routine</span><span class="p">(</span><span class="nb">c_funloc</span><span class="p">(</span><span class="n">sub</span><span class="p">))</span><span class="w"></span>
+<span class="k">   call </span><span class="n">my_routine</span><span class="p">(</span><span class="nb">c_funloc</span><span class="p">(</span><span class="n">sub</span><span class="p">))</span>
 <span class="c">!</span>
-<span class="k">end program </span><span class="n">demo_c_funloc</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_c_funloc</span>
 </pre></div>
 </div>
 </section>
@@ -1391,7 +1391,7 @@ argument.</p>
 </section>
 <section id="id24">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id24" title="Lien permanent vers cette rubrique">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1420,14 +1420,14 @@ argument.</p>
 <section id="id28">
 <h3><strong>Examples</strong><a class="headerlink" href="#id28" title="Lien permanent vers cette rubrique">#</a></h3>
 <p>Sample program:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">subroutine </span><span class="n">association_test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">subroutine </span><span class="n">association_test</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
 <span class="w">   </span><span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="nb">c_associated</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">,</span><span class="w"> </span><span class="kt">c_ptr</span>
 <span class="kt">   </span><span class="k">implicit none</span>
-<span class="k">   </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="w"></span>
-<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
-<span class="w">     </span><span class="k">if</span><span class="p">(</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">        </span><span class="k">stop</span><span class="w"> </span><span class="s1">&#39;b and a do not point to same target&#39;</span><span class="w"></span>
-<span class="w">   </span><span class="k">end subroutine </span><span class="n">association_test</span><span class="w"></span>
+<span class="k">   </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span>
+<span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="kt">c_ptr</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span>
+<span class="w">     </span><span class="k">if</span><span class="p">(</span><span class="nb">c_associated</span><span class="p">(</span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="nb">c_loc</span><span class="p">(</span><span class="n">a</span><span class="p">)))</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">        </span><span class="k">stop</span><span class="w"> </span><span class="s1">&#39;b and a do not point to same target&#39;</span>
+<span class="w">   </span><span class="k">end subroutine </span><span class="n">association_test</span>
 </pre></div>
 </div>
 </section>
@@ -1453,7 +1453,7 @@ argument.</p>
 </section>
 <section id="id32">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id32" title="Lien permanent vers cette rubrique">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_sizeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">c_sizeof</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1485,12 +1485,12 @@ of the data pointed to by these components.</p>
 <section id="id36">
 <h3><strong>Examples</strong><a class="headerlink" href="#id36" title="Lien permanent vers cette rubrique">#</a></h3>
 <p>Sample program:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_sizeof</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_c_sizeof</span>
 <span class="k">use </span><span class="nb">iso_c_binding</span>
 <span class="k">implicit none</span>
-<span class="kt">real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nb">c_sizeof</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="nb">c_sizeof</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_c_sizeof</span><span class="w"></span>
+<span class="kt">real</span><span class="p">(</span><span class="kt">c_float</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="nb">c_sizeof</span><span class="p">(</span><span class="n">s</span><span class="p">)</span><span class="o">/</span><span class="nb">c_sizeof</span><span class="p">(</span><span class="n">r</span><span class="p">)</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">5</span><span class="p">)</span>
+<span class="k">end program </span><span class="n">demo_c_sizeof</span>
 </pre></div>
 </div>
 <p>Results:</p>

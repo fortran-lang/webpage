@@ -748,22 +748,22 @@
 <h1>管理库（静态和动态库）<a class="headerlink" href="#managing-libraries-static-and-dynamic-libraries" title="此标题的永久链接">#</a></h1>
 <p>如果你需要管理一个由几十个源文件构建的程序（这并不少见！），指定所有目标文件所需的命令行将会非常长。这很快就变得乏味，甚至不可能维护。因此有一个不同的解决方案：创建自己的库。</p>
 <p>库以紧凑的形式包含任意数量的目标文件，因此命令行变得更短：</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -o tabulate tabulate.f90 functions.o supportlib.a
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-o<span class="w"> </span>tabulate<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.o<span class="w"> </span>supportlib.a
 </pre></div>
 </div>
 <p>其中 “supportlib.a “是一个，两个或多个对象文件的集合，所有这些文件都经过编译，然后放入一个库中。扩展名”.a “被Linux和类Linux平台使用。在Windows上使用扩展名”.lib”。</p>
 <p>创建自己的库并不复杂：在 Linux 上，你可以使用像 <code class="docutils literal notranslate"><span class="pre">ar</span></code> 这样的程序来实现这一点：</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -c file1.f90 file2.f90
-$ gfortran -c file3.f90 ...
-$ ar r supportlib.a file1.o file2.o
-$ ar r supportlib.a file3.o ...
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+$<span class="w"> </span>ar<span class="w"> </span>r<span class="w"> </span>supportlib.a<span class="w"> </span>file1.o<span class="w"> </span>file2.o
+$<span class="w"> </span>ar<span class="w"> </span>r<span class="w"> </span>supportlib.a<span class="w"> </span>file3.o<span class="w"> </span>...
 </pre></div>
 </div>
 <p>或在Windows上使用<code class="docutils literal notranslate"><span class="pre">lib</span></code> 工具：</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>c:<span class="se">\.</span>..&gt; ifort -c file1.f90 file2.f90
-c:<span class="se">\.</span>..&gt; ifort -c file3.f90 ...
-c:<span class="se">\.</span>..&gt; lib /out:supportlib.lib file1.obj file2.obj
-c:<span class="se">\.</span>..&gt; lib supportlib.lib file3.obj ...
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>c:<span class="se">\.</span>..&gt;<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+c:<span class="se">\.</span>..&gt;<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+c:<span class="se">\.</span>..&gt;<span class="w"> </span>lib<span class="w"> </span>/out:supportlib.lib<span class="w"> </span>file1.obj<span class="w"> </span>file2.obj
+c:<span class="se">\.</span>..&gt;<span class="w"> </span>lib<span class="w"> </span>supportlib.lib<span class="w"> </span>file3.obj<span class="w"> </span>...
 </pre></div>
 </div>
 <p>注意：</p>
@@ -780,15 +780,15 @@ c:<span class="se">\.</span>..&gt; lib supportlib.lib file3.obj ...
 <p>一种灵活的替代方法是使用所谓的动态库。这些库保留在可执行程序之外，因此可以在不重建整个程序的情况下进行替换。编译器甚至操作系统本身都严重依赖于这样的动态库。你可以将动态库视为一种需要一些帮助才能运行的可执行程序。</p>
 <p>构建动态库与构建静态库的工作方式略有不同：你使用编译器/链接器而不是像 <code class="docutils literal notranslate"><span class="pre">ar</span></code> 或 <code class="docutils literal notranslate"><span class="pre">lib</span></code> 这样的工具。</p>
 <p>在 Linux 上：</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -fpic -c file1.f90 file2.f90
-$ gfortran -fpic -c file3.f90 ...
-$ gfortran -shared -o supportlib.so file1.o file2.o file3.o ...
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-fpic<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+$<span class="w"> </span>gfortran<span class="w"> </span>-fpic<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+$<span class="w"> </span>gfortran<span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span>supportlib.so<span class="w"> </span>file1.o<span class="w"> </span>file2.o<span class="w"> </span>file3.o<span class="w"> </span>...
 </pre></div>
 </div>
 <p>在 Windows 上，使用英特尔 Fortran 编译器：</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ifort -c file1.f90 file2.f90
-$ ifort -c file3.f90 ...
-$ ifort -dll -exe:supportlib.dll file1.obj file2.obj file3.obj ...
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+$<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+$<span class="w"> </span>ifort<span class="w"> </span>-dll<span class="w"> </span>-exe:supportlib.dll<span class="w"> </span>file1.obj<span class="w"> </span>file2.obj<span class="w"> </span>file3.obj<span class="w"> </span>...
 </pre></div>
 </div>
 <p>不同之处在于：</p>
@@ -797,12 +797,12 @@ $ ifort -dll -exe:supportlib.dll file1.obj file2.obj file3.obj ...
 <li><p>你需要在链接步骤中说明你需要一个动态库（在 Linux 上：共享对象/库，因此扩展名为“.so”；在 Windows 上：动态链接库）</p></li>
 </ul>
 <p>还有一件事需要注意：在 Windows 上，你必须明确指定要 <em>exported</em> 的过程，即在动态库中可见。有几种方法 —— 取决于你使用的编译器 —— 来实现这一点。一种方法是通过所谓的编译器指令：</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span>
 <span class="c">!GCC$ ATTRIBUTES DLLEXPORT:: myroutine</span>
 </pre></div>
 </div>
 <p>或者，使用英特尔 Fortran 编译器：</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span>
 <span class="c">!DEC$ ATTRIBUTES DLLEXPORT:: myroutine</span>
 </pre></div>
 </div>
@@ -814,24 +814,24 @@ $ ifort -dll -exe:supportlib.dll file1.obj file2.obj file3.obj ...
 <p><code class="docutils literal notranslate"><span class="pre">tabulate</span></code> 程序需要一个用户定义的例程 <code class="docutils literal notranslate"><span class="pre">f</span></code>。如果我们让它驻留在动态库中，比如“functions.dll”，我们可以通过在目录中放置另一个动态库来简单地替换函数的实现。无需像这样重建程序。</p>
 <p>在 Cygwin 上，没有必要显式导出一个过程——当你构建一个动态库时，所有公开可见的例程都会被导出。此外，不会生成导入库。</p>
 <p>由于我们的动态库可以从单个源文件构建，我们可以走捷径：</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -shared -o functions.dll functions.f90
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span>functions.dll<span class="w"> </span>functions.f90
 </pre></div>
 </div>
 <p>这会生成文件“functions.dll”和“user_functions.mod”。实用程序 <code class="docutils literal notranslate"><span class="pre">nm</span></code> 告诉我们函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 的确切名称：</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ nm functions.dll
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>nm<span class="w"> </span>functions.dll
 ...
-000000054f9d7000 B __dynamically_loaded
-                 U __end__
-<span class="m">0000000000000200</span> A __file_alignment__
-000000054f9d1030 T __function_MOD_f
-000000054f9d1020 T __gcc_deregister_frame
-000000054f9d1000 T __gcc_register_frame
+000000054f9d7000<span class="w"> </span>B<span class="w"> </span>__dynamically_loaded
+<span class="w">                 </span>U<span class="w"> </span>__end__
+<span class="m">0000000000000200</span><span class="w"> </span>A<span class="w"> </span>__file_alignment__
+000000054f9d1030<span class="w"> </span>T<span class="w"> </span>__function_MOD_f
+000000054f9d1020<span class="w"> </span>T<span class="w"> </span>__gcc_deregister_frame
+000000054f9d1000<span class="w"> </span>T<span class="w"> </span>__gcc_register_frame
 ...
 </pre></div>
 </div>
 <p>它已收到前缀 <code class="docutils literal notranslate"><span class="pre">__function_MOD_</span></code> 以将其与可能在另一个模块中定义的任何其它例程“f”区分开来。</p>
 <p>下一步是构建程序：</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -o tabulate tabulate.f90 functions.dll
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-o<span class="w"> </span>tabulate<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.dll
 </pre></div>
 </div>
 <p>DLL 和 .mod 文件用于构建可执行程序，检查函数的接口、正确的名称和对“a”DLL（称为“functions.dll”）的引用。</p>
@@ -841,12 +841,12 @@ $ ifort -dll -exe:supportlib.dll file1.obj file2.obj file3.obj ...
 <h2>Windows和Intel Fortran<a class="headerlink" href="#windows-and-intel-fortran" title="此标题的永久链接">#</a></h2>
 <p>设置与 Linux 相同，但在 Windows 上需要显式导出例程。并且生成了一个导入库——这是应该在链接步骤中使用的库。</p>
 <p>源文件必须包含编译器指令，否则函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 不会被导出：</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
 <span class="c">!DEC$ ATTRIBUTES DLLEXPORT :: f</span>
 </pre></div>
 </div>
 <p>我们再次走捷径：</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ifort -exe:functions.dll functions.f90 -dll
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifort<span class="w"> </span>-exe:functions.dll<span class="w"> </span>functions.f90<span class="w"> </span>-dll
 </pre></div>
 </div>
 <p>这会产生文件“functions.dll”、“user_functions.mod”以及“functions.lib”（以及这里不重要的另外两个文件）。 “dependency walker”程序告诉我们函数“f”的确切名称是 <code class="docutils literal notranslate"><span class="pre">FUNCTION_mp_F</span></code>。它也被导出，以便在下一步中链接器可以找到它：</p>

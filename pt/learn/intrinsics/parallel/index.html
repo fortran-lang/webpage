@@ -1985,7 +1985,7 @@
 </section>
 <section id="syntax">
 <h3><strong>Syntax</strong><a class="headerlink" href="#syntax" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_broadcast</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">source_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_broadcast</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">source_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2029,15 +2029,15 @@ on all images and refer to an image of the current team.</p>
 <section id="examples">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_broadcast</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_broadcast</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
 <span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">      </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span><span class="w"></span>
+<span class="k">      </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
 <span class="w">   </span><span class="k">endif</span>
-<span class="k">   call </span><span class="n">co_broadcast</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">source_image</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">this_image</span><span class="p">(),</span><span class="w"> </span><span class="s2">&quot;:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_co_broadcast</span><span class="w"></span>
+<span class="k">   call </span><span class="n">co_broadcast</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">source_image</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">this_image</span><span class="p">(),</span><span class="w"> </span><span class="s2">&quot;:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span>
+<span class="k">end program </span><span class="n">demo_co_broadcast</span>
 </pre></div>
 </div>
 </section>
@@ -2058,7 +2058,7 @@ on all images and refer to an image of the current team.</p>
 </section>
 <section id="id2">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">co_lbound</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">co_lbound</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2115,7 +2115,7 @@ along that codimension.</p>
 </section>
 <section id="id7">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_max</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2161,15 +2161,15 @@ current team.</p>
 <section id="id10">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_max</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_max</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
-<span class="w">   </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">co_max</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span>
+<span class="w">   </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span>
+<span class="w">   </span><span class="k">call </span><span class="n">co_max</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="k">     write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Maximal value&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="w">  </span><span class="c">! prints num_images()</span>
 <span class="w">   </span><span class="k">endif</span>
-<span class="k">end program </span><span class="n">demo_co_max</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_co_max</span>
 </pre></div>
 </div>
 <p>Resultados:</p>
@@ -2198,7 +2198,7 @@ current team.</p>
 </section>
 <section id="id14">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_min</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2244,15 +2244,15 @@ current team.</p>
 <section id="id17">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_min</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_min</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
-<span class="w">   </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">co_min</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span>
+<span class="w">   </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span>
+<span class="w">   </span><span class="k">call </span><span class="n">co_min</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
 <span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="k">     write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Minimal value&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="w">  </span><span class="c">! prints 1</span>
 <span class="w">   </span><span class="k">endif</span>
-<span class="k">end program </span><span class="n">demo_co_min</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_co_min</span>
 </pre></div>
 </div>
 </section>
@@ -2277,7 +2277,7 @@ current team.</p>
 </section>
 <section id="id21">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_reduce</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_reduce</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2341,25 +2341,25 @@ of the current team.</p>
 <section id="id24">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_reduce</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_reduce</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span>
 
-<span class="w">   </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">co_reduce</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">myprod</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span>
+<span class="w">   </span><span class="k">call </span><span class="n">co_reduce</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">myprod</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
 <span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Product value&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="w">  </span><span class="c">! prints num_images() factorial</span>
 <span class="w">   </span><span class="k">endif</span>
 
 <span class="k">contains</span>
 
-<span class="k">pure function </span><span class="n">myprod</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
-<span class="w">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">myprod</span><span class="w"></span>
-<span class="w">   </span><span class="n">myprod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
-<span class="k">end function </span><span class="n">myprod</span><span class="w"></span>
+<span class="k">pure function </span><span class="n">myprod</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span>
+<span class="w">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">myprod</span>
+<span class="w">   </span><span class="n">myprod</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span>
+<span class="k">end function </span><span class="n">myprod</span>
 
-<span class="k">end program </span><span class="n">demo_co_reduce</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_co_reduce</span>
 </pre></div>
 </div>
 </section>
@@ -2391,7 +2391,7 @@ type as a result.</p>
 </section>
 <section id="id28">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">co_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">,</span><span class="w"> </span><span class="n">errmsg</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2437,16 +2437,16 @@ current team.</p>
 <section id="id31">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_sum</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_co_sum</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
-<span class="w">   </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">co_sum</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span>
+<span class="w">   </span><span class="n">val</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span>
+<span class="w">   </span><span class="k">call </span><span class="n">co_sum</span><span class="p">(</span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">result_image</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
 <span class="w">      </span><span class="c">! prints (n**2 + n)/2, with n = num_images()</span>
-<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;The sum is &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;The sum is &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">val</span>
 <span class="w">   </span><span class="k">endif</span>
-<span class="k">end program </span><span class="n">demo_co_sum</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_co_sum</span>
 </pre></div>
 </div>
 <p>Resultados:</p>
@@ -2475,7 +2475,7 @@ current team.</p>
 </section>
 <section id="id35">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id35" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">co_ubound</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">co_ubound</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2533,7 +2533,7 @@ along that codimension.</p>
 </section>
 <section id="id42">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id42" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">event_query</span><span class="p">(</span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">event_query</span><span class="p">(</span><span class="n">event</span><span class="p">,</span><span class="w"> </span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2570,18 +2570,18 @@ iso_fortran_env; shall not be coindexed.</p>
 <section id="id45">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id45" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_event_query</span><span class="w"></span>
-<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_event_query</span>
+<span class="k">use </span><span class="n">iso_fortran_env</span>
 <span class="k">implicit none</span>
-<span class="k">type</span><span class="p">(</span><span class="n">event_type</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">event_value_has_been_set</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cnt</span><span class="w"></span>
+<span class="k">type</span><span class="p">(</span><span class="n">event_type</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">event_value_has_been_set</span><span class="p">[</span><span class="o">*</span><span class="p">]</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cnt</span>
 <span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">      call </span><span class="n">event_query</span><span class="p">(</span><span class="n">event_value_has_been_set</span><span class="p">,</span><span class="w"> </span><span class="n">cnt</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cnt</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Value has been set&quot;</span><span class="w"></span>
+<span class="k">      call </span><span class="n">event_query</span><span class="p">(</span><span class="n">event_value_has_been_set</span><span class="p">,</span><span class="w"> </span><span class="n">cnt</span><span class="p">)</span>
+<span class="w">      </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">cnt</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Value has been set&quot;</span>
 <span class="w">   </span><span class="n">elseif</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">      </span><span class="n">event</span><span class="w"> </span><span class="n">post</span><span class="p">(</span><span class="n">event_value_has_been_set</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span><span class="w"></span>
+<span class="k">      </span><span class="n">event</span><span class="w"> </span><span class="n">post</span><span class="p">(</span><span class="n">event_value_has_been_set</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
 <span class="w">   </span><span class="k">endif</span>
-<span class="k">end program </span><span class="n">demo_event_query</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_event_query</span>
 </pre></div>
 </div>
 </section>
@@ -2599,7 +2599,7 @@ iso_fortran_env; shall not be coindexed.</p>
 </section>
 <section id="id48">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id48" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">image_index</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="n">sub</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">image_index</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="n">sub</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2634,10 +2634,10 @@ zero.</p>
 <p>Exemplo de programa:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo</span><span class="w"> </span><span class="nb">image_index</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">array</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">array</span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="o">-</span><span class="mi">1</span><span class="p">:</span><span class="mi">4</span><span class="p">,</span><span class="mi">8</span><span class="p">,</span><span class="o">*</span><span class="p">]</span>
 <span class="w">   </span><span class="c">! Writes  28 (or 0 if there are fewer than 28 images)</span>
-<span class="w">   </span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="nb">image_index</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span><span class="w"></span>
-<span class="k">end </span><span class="n">demo</span><span class="w"> </span><span class="nb">image_index</span><span class="w"></span>
+<span class="w">   </span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="nb">image_index</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="mi">0</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">1</span><span class="p">])</span>
+<span class="k">end </span><span class="n">demo</span><span class="w"> </span><span class="nb">image_index</span>
 </pre></div>
 </div>
 </section>
@@ -2660,7 +2660,7 @@ zero.</p>
 </section>
 <section id="id56">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id56" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">num_images</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span><span class="w"> </span><span class="n">failed</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">num_images</span><span class="p">(</span><span class="n">distance</span><span class="p">,</span><span class="w"> </span><span class="n">failed</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2698,20 +2698,20 @@ of images which do have not the failed status.</p>
 <section id="id60">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id60" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_num_images</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_num_images</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span><span class="p">[</span><span class="o">*</span><span class="p">]</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
 
-<span class="w">   </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"></span>
+<span class="w">   </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span>
 <span class="w">   </span><span class="k">sync all</span>
 <span class="k">   if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">     do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">num_images</span><span class="p">()</span><span class="w"></span>
-<span class="w">       </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(2(a,i0))&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;value[&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;] is &#39;</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"></span>
+<span class="k">     do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">num_images</span><span class="p">()</span>
+<span class="w">       </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(2(a,i0))&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;value[&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;] is &#39;</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 <span class="w">     </span><span class="k">end do</span>
 <span class="k">   endif</span>
 
-<span class="k">end program </span><span class="n">demo_num_images</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_num_images</span>
 </pre></div>
 </div>
 </section>
@@ -2734,7 +2734,7 @@ of images which do have not the failed status.</p>
 </section>
 <section id="id64">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id64" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span>
 </pre></div>
 </div>
 <p>ou</p>
@@ -2743,7 +2743,7 @@ result = this_image(distance)
 </pre></div>
 </div>
 <p>ou</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">(</span><span class="n">coarray</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2790,18 +2790,18 @@ present, a scalar is returned, with the value of the <strong>dim</strong> elemen
 <section id="id68">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id68" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_this_image</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_this_image</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
-<span class="w">   </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span><span class="w"></span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span><span class="p">[</span><span class="o">*</span><span class="p">]</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+<span class="w">   </span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">this_image</span><span class="p">()</span>
 <span class="w">   </span><span class="k">sync all</span>
 <span class="k">   if</span><span class="w"> </span><span class="p">(</span><span class="nb">this_image</span><span class="p">()</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">      do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">num_images</span><span class="p">()</span><span class="w"></span>
-<span class="w">         </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(2(a,i0))&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;value[&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;] is &#39;</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="w"></span>
+<span class="k">      do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">num_images</span><span class="p">()</span>
+<span class="w">         </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(2(a,i0))&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;value[&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;] is &#39;</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
 <span class="w">      </span><span class="k">end do</span>
 <span class="k">   endif</span>
-<span class="k">end program </span><span class="n">demo_this_image</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_this_image</span>
 </pre></div>
 </div>
 <p>Resultados:</p>
@@ -2832,7 +2832,7 @@ or later</p>
 </section>
 <section id="id72">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id72" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_and</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_and</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2871,12 +2871,12 @@ is converted to the kind of <strong>atom</strong>.</p>
 <section id="id75">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id75" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_and</span><span class="w"></span>
-<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_and</span>
+<span class="k">use </span><span class="n">iso_fortran_env</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">atomic_and</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">))</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_atomic_and</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_and</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">))</span>
+<span class="k">end program </span><span class="n">demo_atomic_and</span>
 </pre></div>
 </div>
 </section>
@@ -2905,7 +2905,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id79">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id79" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_fetch_and</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_fetch_and</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -2950,12 +2950,12 @@ is converted to the kind of <strong>atom</strong>.</p>
 <section id="id82">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id82" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_fetch_and</span><span class="w"></span>
-<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_fetch_and</span>
+<span class="k">use </span><span class="n">iso_fortran_env</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">old</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">atomic_fetch_and</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">old</span><span class="p">)</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_atomic_fetch_and</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">old</span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_fetch_and</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">old</span><span class="p">)</span>
+<span class="k">end program </span><span class="n">demo_atomic_fetch_and</span>
 </pre></div>
 </div>
 </section>
@@ -2982,7 +2982,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id86">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id86" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_fetch_or</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_fetch_or</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -3027,12 +3027,12 @@ is converted to the kind of <strong>atom</strong>.</p>
 <section id="id89">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id89" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_fetch_or</span><span class="w"></span>
-<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_fetch_or</span>
+<span class="k">use </span><span class="n">iso_fortran_env</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">old</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">atomic_fetch_or</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">old</span><span class="p">)</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_atomic_fetch_or</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">old</span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_fetch_or</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">old</span><span class="p">)</span>
+<span class="k">end program </span><span class="n">demo_atomic_fetch_or</span>
 </pre></div>
 </div>
 </section>
@@ -3059,7 +3059,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id93">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id93" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_fetch_xor</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_fetch_xor</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -3104,12 +3104,12 @@ is converted to the kind of <strong>atom</strong>.</p>
 <section id="id96">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id96" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_fetch_xor</span><span class="w"></span>
-<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_fetch_xor</span>
+<span class="k">use </span><span class="n">iso_fortran_env</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">old</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">atomic_fetch_xor</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">old</span><span class="p">)</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_atomic_fetch_xor</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">old</span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_fetch_xor</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">),</span><span class="w"> </span><span class="n">old</span><span class="p">)</span>
+<span class="k">end program </span><span class="n">demo_atomic_fetch_xor</span>
 </pre></div>
 </div>
 </section>
@@ -3136,7 +3136,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id100">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id100" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_or</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_or</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -3175,12 +3175,12 @@ is converted to the kind of <strong>atom</strong>.</p>
 <section id="id103">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id103" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_or</span><span class="w"></span>
-<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_or</span>
+<span class="k">use </span><span class="n">iso_fortran_env</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">atomic_or</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">))</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_atomic_or</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_or</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">))</span>
+<span class="k">end program </span><span class="n">demo_atomic_or</span>
 </pre></div>
 </div>
 </section>
@@ -3207,7 +3207,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id107">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id107" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_xor</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_xor</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -3246,12 +3246,12 @@ is converted to the kind of <strong>atom</strong>.</p>
 <section id="id110">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id110" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_xor</span><span class="w"></span>
-<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_xor</span>
+<span class="k">use </span><span class="n">iso_fortran_env</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">atomic_xor</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">))</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_atomic_xor</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_xor</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">int</span><span class="p">(</span><span class="n">b</span><span class="s1">&#39;10100011101&#39;</span><span class="p">))</span>
+<span class="k">end program </span><span class="n">demo_atomic_xor</span>
 </pre></div>
 </div>
 </section>
@@ -3278,7 +3278,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id114">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id114" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_add</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_add</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -3317,12 +3317,12 @@ is converted to the kind of <strong>atom</strong>.</p>
 <section id="id117">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id117" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_add</span><span class="w"></span>
-<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_add</span>
+<span class="k">use </span><span class="n">iso_fortran_env</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">atomic_add</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">this_image</span><span class="p">())</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_atomic_add</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_add</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">this_image</span><span class="p">())</span>
+<span class="k">end program </span><span class="n">demo_atomic_add</span>
 </pre></div>
 </div>
 </section>
@@ -3349,7 +3349,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id121">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id121" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_cas</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="n">compare</span><span class="p">,</span><span class="w"> </span><span class="n">new</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_cas</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="n">compare</span><span class="p">,</span><span class="w"> </span><span class="n">new</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -3401,12 +3401,12 @@ value is converted to the kind of <strong>atom</strong>.</p>
 <section id="id124">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id124" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_cas</span><span class="w"></span>
-<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_cas</span>
+<span class="k">use </span><span class="n">iso_fortran_env</span>
 <span class="k">implicit none</span>
-<span class="kt">logical</span><span class="p">(</span><span class="n">atomic_logical_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">prev</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">atomic_cas</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">prev</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.,</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.)</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_atomic_cas</span><span class="w"></span>
+<span class="kt">logical</span><span class="p">(</span><span class="n">atomic_logical_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">prev</span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_cas</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">prev</span><span class="p">,</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.,</span><span class="w"> </span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+<span class="k">end program </span><span class="n">demo_atomic_cas</span>
 </pre></div>
 </div>
 </section>
@@ -3430,12 +3430,12 @@ value is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id128">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id128" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">atomic_define</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">atomic_define</span><span class="w"> </span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span>
 
-<span class="w">   </span><span class="k">subroutine </span><span class="nb">atomic_define</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="w"></span>
+<span class="w">   </span><span class="k">subroutine </span><span class="nb">atomic_define</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span>
+<span class="w">   </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span>
 <span class="w">   </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span>
-<span class="k">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">stat</span><span class="w"></span>
+<span class="k">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">stat</span>
 </pre></div>
 </div>
 </section>
@@ -3475,12 +3475,12 @@ is converted to the kind of <strong>atom</strong>.</p>
 <section id="id131">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id131" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_define</span><span class="w"></span>
-<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_define</span>
+<span class="k">use </span><span class="n">iso_fortran_env</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
-<span class="w">    </span><span class="k">call </span><span class="nb">atomic_define</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">this_image</span><span class="p">())</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_atomic_define</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span>
+<span class="w">    </span><span class="k">call </span><span class="nb">atomic_define</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">this_image</span><span class="p">())</span>
+<span class="k">end program </span><span class="n">demo_atomic_define</span>
 </pre></div>
 </div>
 </section>
@@ -3508,7 +3508,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id135">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id135" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_fetch_add</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">atomic_fetch_add</span><span class="p">(</span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">old</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -3553,12 +3553,12 @@ is converted to the kind of <strong>atom</strong>.</p>
 <section id="id138">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id138" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_fetch_add</span><span class="w"></span>
-<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_fetch_add</span>
+<span class="k">use </span><span class="n">iso_fortran_env</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">old</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="n">atomic_add</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">this_image</span><span class="p">(),</span><span class="w"> </span><span class="n">old</span><span class="p">)</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_atomic_fetch_add</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">(</span><span class="n">atomic_int_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">],</span><span class="w"> </span><span class="n">old</span>
+<span class="w">   </span><span class="k">call </span><span class="n">atomic_add</span><span class="p">(</span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">this_image</span><span class="p">(),</span><span class="w"> </span><span class="n">old</span><span class="p">)</span>
+<span class="k">end program </span><span class="n">demo_atomic_fetch_add</span>
 </pre></div>
 </div>
 </section>
@@ -3585,7 +3585,7 @@ is converted to the kind of <strong>atom</strong>.</p>
 </section>
 <section id="id142">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id142" title="Permalink to this heading">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">atomic_ref</span><span class="p">(</span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">atomic_ref</span><span class="p">(</span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">atom</span><span class="p">,</span><span class="w"> </span><span class="nb">stat</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -3625,18 +3625,18 @@ kind.</p>
 <section id="id145">
 <h3><strong>Exemplos</strong><a class="headerlink" href="#id145" title="Permalink to this heading">#</a></h3>
 <p>Exemplo de programa:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_ref</span><span class="w"></span>
-<span class="k">use </span><span class="n">iso_fortran_env</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_atomic_ref</span>
+<span class="k">use </span><span class="n">iso_fortran_env</span>
 <span class="k">implicit none</span>
-<span class="kt">logical</span><span class="p">(</span><span class="n">atomic_logical_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span><span class="w"></span>
-<span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
-<span class="w">   </span><span class="k">call </span><span class="nb">atomic_ref</span><span class="p">(</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="kt">logical</span><span class="p">(</span><span class="n">atomic_logical_kind</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="o">*</span><span class="p">]</span>
+<span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span>
+<span class="w">   </span><span class="k">call </span><span class="nb">atomic_ref</span><span class="p">(</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">)</span>
 <span class="w">   </span><span class="c">! ```</span>
-<span class="w">   </span><span class="k">call </span><span class="nb">atomic_ref</span><span class="p">(</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">atomic_ref</span><span class="p">(</span><span class="w"> </span><span class="n">val</span><span class="p">,</span><span class="w"> </span><span class="n">atom</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="w"> </span><span class="p">)</span>
 <span class="w">   </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">val</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">      print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Obtained&quot;</span><span class="w"></span>
+<span class="k">      print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Obtained&quot;</span>
 <span class="w">   </span><span class="k">endif</span>
-<span class="k">end program </span><span class="n">demo_atomic_ref</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_atomic_ref</span>
 </pre></div>
 </div>
 </section>

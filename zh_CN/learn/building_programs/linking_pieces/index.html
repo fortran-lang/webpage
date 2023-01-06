@@ -728,41 +728,41 @@
 <h1>链接对象<a class="headerlink" href="#linking-the-objects" title="此标题的永久链接">#</a></h1>
 <p>几乎所有程序，除了最简单的，都是用不同的片段组合构建的。我们将更详细地研究这种情况。</p>
 <p>这是一个对函数制表的通用程序（源代码在 “tabulate.f90”）：</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">tabulate</span><span class="w"></span>
-<span class="w">    </span><span class="k">use </span><span class="n">user_functions</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">tabulate</span>
+<span class="w">    </span><span class="k">use </span><span class="n">user_functions</span>
 
 <span class="w">    </span><span class="k">implicit none</span>
-<span class="k">    </span><span class="kt">real</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">xbegin</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span><span class="w"></span>
-<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">steps</span><span class="w"></span>
+<span class="k">    </span><span class="kt">real</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">xbegin</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span>
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">steps</span>
 
-<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;Please enter the range (begin, end) and the number of steps:&#39;</span><span class="w"></span>
-<span class="w">    </span><span class="k">read</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w">  </span><span class="n">xbegin</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span><span class="p">,</span><span class="w"> </span><span class="n">steps</span><span class="w"></span>
+<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;Please enter the range (begin, end) and the number of steps:&#39;</span>
+<span class="w">    </span><span class="k">read</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w">  </span><span class="n">xbegin</span><span class="p">,</span><span class="w"> </span><span class="n">xend</span><span class="p">,</span><span class="w"> </span><span class="n">steps</span>
 
-<span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">steps</span><span class="w"></span>
-<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xbegin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">xend</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xbegin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">steps</span><span class="w"></span>
-<span class="w">        </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(2f10.4)&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">steps</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">xbegin</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="p">(</span><span class="n">xend</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">xbegin</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">steps</span>
+<span class="w">        </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(2f10.4)&#39;</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
 <span class="w">    </span><span class="k">end do</span>
-<span class="k">end program </span><span class="n">tabulate</span><span class="w"></span>
+<span class="k">end program </span><span class="n">tabulate</span>
 </pre></div>
 </div>
 <p>注意 <code class="docutils literal notranslate"><span class="pre">use</span></code> 语句 —— 这将是我们定义函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 的地方。</p>
 <p>我们想让程序具有通用性，所以要把具体的源代码 —— 函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 的实现 —— 与通用源代码分开。有几种方法来实现这一点，但其中一种是把它放在不同的源文件中。我们可以把通用程序交给用户，他们提供具体的源代码。</p>
 <p>假设该函数在源文件“functions.f90”中实现为：</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">user_functions</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">user_functions</span>
 <span class="w">    </span><span class="k">implicit none</span>
 <span class="k">contains</span>
 
-<span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
-<span class="w">    </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span><span class="w"></span>
-<span class="k">end function </span><span class="n">f</span><span class="w"></span>
+<span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span>
+<span class="w">    </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="n">x</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">sin</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="k">end function </span><span class="n">f</span>
 
-<span class="k">end module </span><span class="n">user_functions</span><span class="w"></span>
+<span class="k">end module </span><span class="n">user_functions</span>
 </pre></div>
 </div>
 <p>构建具有这种特定函数的程序，我们需要编译两个源代码文件并通过链接来合并它们为一个可执行程序。因为“tabulate”程序依赖于”function“模块，我们需要首先编译包含我们模块的源文件。要执行的命令序列为：</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -c functions.f90
-$ gfortran tabulate.f90 functions.o
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>functions.f90
+$<span class="w"> </span>gfortran<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.o
 </pre></div>
 </div>
 <p>第一步编译模块，生成一个目标文件 “functions.o” 和一个模块的中间文件 “user_functions.mod”。该模块文件包含编译器确定该模块中定义了函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 及其接口所需的所有信息。此信息很重要：它使得编译器能够检查您是否以正确的方式调用了该函数。可能是你犯了一个错误，使用了两个参数而不是一个参数调用了该函数。如果编译器对函数的接口一无所知，那么它就无法检查任何内容。</p>

@@ -812,7 +812,7 @@ from the provided source code.</p>
 <p>We will start with the basics from your clean source directory. Create and open
 the file <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, we start with a simple rule called <em>all</em>:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span>
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 <p>After saving the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> run it by executing <code class="docutils literal notranslate"><span class="pre">make</span></code> in the same directory.
@@ -840,13 +840,13 @@ In case you have problems running the above <code class="docutils literal notran
 in the second line with a tab character.</p>
 </div>
 <p>Now we want to make our rules more complicated, therefore we add another rule:</p>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">PROG</span> <span class="o">:=</span> my_prog
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">PROG</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>my_prog
 
-<span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2"> depends on </span>$<span class="s2">^&quot;</span>
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2"> depends on </span>$<span class="s2">^&quot;</span>
 
 <span class="nf">$(PROG)</span><span class="o">:</span>
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 <p>Note how we declare variables in <code class="docutils literal notranslate"><span class="pre">make</span></code>, you should always declare your local
@@ -879,16 +879,16 @@ the first two lines in your terminal.</p>
 <p>The next step is to perform some real actions with <code class="docutils literal notranslate"><span class="pre">make</span></code>, we take
 the source code from the previous chapter here and add new rules to our
 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">OBJS</span> <span class="o">:=</span> tabulate.o functions.o
-<span class="nv">PROG</span> <span class="o">:=</span> my_prog
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">OBJS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>tabulate.o<span class="w"> </span>functions.o
+<span class="nv">PROG</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>my_prog
 
-<span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
 
-<span class="nf">$(PROG)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
-	gfortran -o <span class="nv">$@</span> $^
+<span class="nf">$(PROG)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
+<span class="w">	</span>gfortran<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$^
 
-<span class="nf">$(OBJS)</span><span class="o">:</span> %.<span class="n">o</span>: %.<span class="n">f</span>90
-	gfortran -c -o <span class="nv">$@</span> $&lt;
+<span class="nf">$(OBJS)</span><span class="o">:</span><span class="w"> </span>%.<span class="n">o</span>: %.<span class="n">f</span>90
+<span class="w">	</span>gfortran<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$&lt;
 </pre></div>
 </div>
 <p>We define <code class="docutils literal notranslate"><span class="pre">OBJS</span></code> which stands for object files, our program depends on
@@ -916,7 +916,7 @@ make: *** [Makefile:10: tabulate.f90.o] Error 1
 </div>
 <p>We remember that we have dependencies between our source files, therefore we add
 this dependency explicitly to the <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> with</p>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">tabulate.o</span><span class="o">:</span> <span class="n">functions</span>.<span class="n">o</span>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">tabulate.o</span><span class="o">:</span><span class="w"> </span><span class="n">functions</span>.<span class="n">o</span>
 </pre></div>
 </div>
 <p>Now we can retry and find that the build is working correctly. The output should
@@ -939,34 +939,34 @@ Therefore, the program is already up-to-date with the latest code and no
 action has to be performed.</p>
 <p>In the end, we will have a look at a complete <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable all of make&#39;s built-in rules (similar to Fortran&#39;s implicit none)</span>
-<span class="nv">MAKEFLAGS</span> <span class="o">+=</span> --no-builtin-rules --no-builtin-variables
+<span class="nv">MAKEFLAGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>--no-builtin-rules<span class="w"> </span>--no-builtin-variables
 <span class="c"># configuration</span>
-<span class="nv">FC</span> <span class="o">:=</span> gfortran
-<span class="nv">LD</span> <span class="o">:=</span> <span class="k">$(</span>FC<span class="k">)</span>
-<span class="nv">RM</span> <span class="o">:=</span> rm -f
+<span class="nv">FC</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>gfortran
+<span class="nv">LD</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>FC<span class="k">)</span>
+<span class="nv">RM</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>rm<span class="w"> </span>-f
 <span class="c"># list of all source files</span>
-<span class="nv">SRCS</span> <span class="o">:=</span> tabulate.f90 functions.f90
-<span class="nv">PROG</span> <span class="o">:=</span> my_prog
+<span class="nv">SRCS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>tabulate.f90<span class="w"> </span>functions.f90
+<span class="nv">PROG</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>my_prog
 
-<span class="nv">OBJS</span> <span class="o">:=</span> <span class="k">$(</span>addsuffix .o, <span class="k">$(</span>SRCS<span class="k">))</span>
+<span class="nv">OBJS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>addsuffix<span class="w"> </span>.o,<span class="w"> </span><span class="k">$(</span>SRCS<span class="k">))</span>
 
-<span class="nf">.PHONY</span><span class="o">:</span> <span class="n">all</span> <span class="n">clean</span>
-<span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">all</span> <span class="n">clean</span>
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
 
-<span class="nf">$(PROG)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
-	<span class="k">$(</span>LD<span class="k">)</span> -o <span class="nv">$@</span> $^
+<span class="nf">$(PROG)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
+<span class="w">	</span><span class="k">$(</span>LD<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$^
 
-<span class="nf">$(OBJS)</span><span class="o">:</span> %.<span class="n">o</span>: %
-	<span class="k">$(</span>FC<span class="k">)</span> -c -o <span class="nv">$@</span> $&lt;
+<span class="nf">$(OBJS)</span><span class="o">:</span><span class="w"> </span>%.<span class="n">o</span>: %
+<span class="w">	</span><span class="k">$(</span>FC<span class="k">)</span><span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$&lt;
 
 <span class="c"># define dependencies between object files</span>
-<span class="nf">tabulate.f90.o</span><span class="o">:</span> <span class="n">functions</span>.<span class="n">f</span>90.<span class="n">o</span> <span class="n">user_functions</span>.<span class="n">mod</span>
+<span class="nf">tabulate.f90.o</span><span class="o">:</span><span class="w"> </span><span class="n">functions</span>.<span class="n">f</span>90.<span class="n">o</span> <span class="n">user_functions</span>.<span class="n">mod</span>
 
 <span class="c"># rebuild all object files in case this Makefile changes</span>
-<span class="nf">$(OBJS)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">MAKEFILE_LIST</span><span class="k">)</span>
+<span class="nf">$(OBJS)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">MAKEFILE_LIST</span><span class="k">)</span>
 
 <span class="nf">clean</span><span class="o">:</span>
-	<span class="k">$(</span>RM<span class="k">)</span> <span class="k">$(</span>filter %.o, <span class="k">$(</span>OBJS<span class="k">))</span> <span class="k">$(</span>wildcard *.mod<span class="k">)</span> <span class="k">$(</span>PROG<span class="k">)</span>
+<span class="w">	</span><span class="k">$(</span>RM<span class="k">)</span><span class="w"> </span><span class="k">$(</span>filter<span class="w"> </span>%.o,<span class="w"> </span><span class="k">$(</span>OBJS<span class="k">))</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.mod<span class="k">)</span><span class="w"> </span><span class="k">$(</span>PROG<span class="k">)</span>
 </pre></div>
 </div>
 <p>Since you are starting with <code class="docutils literal notranslate"><span class="pre">make</span></code> we highly recommend to always include
@@ -1011,11 +1011,11 @@ which are expanded at runtime, rather than being defined while parsing.</p>
 <p>For example, declaring and using your Fortran flags with this snippet will work
 completely fine:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span>
-	<span class="nb">echo</span> <span class="k">$(</span>FFLAGS<span class="k">)</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="k">$(</span>FFLAGS<span class="k">)</span>
 
-<span class="nv">FFLAGS</span> <span class="o">=</span> <span class="k">$(</span>include_dirs<span class="k">)</span> -O
-<span class="nv">include_dirs</span> <span class="o">+=</span> -I./include
-<span class="nv">include_dirs</span> <span class="o">+=</span> -I/opt/some_dep/include
+<span class="nv">FFLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>include_dirs<span class="k">)</span><span class="w"> </span>-O
+<span class="nv">include_dirs</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-I./include
+<span class="nv">include_dirs</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-I/opt/some_dep/include
 </pre></div>
 </div>
 <p>You should find the expected (or maybe unexpected) printout after running <code class="docutils literal notranslate"><span class="pre">make</span></code></p>
@@ -1032,11 +1032,11 @@ surprising and unexpected outcomes. Usually, when defining variables like your
 compiler, there is little reason to actually use the recursive expansion at all.</p>
 <p>The same can easily be achieved using the <code class="docutils literal notranslate"><span class="pre">:=</span></code> declaration:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span>
-	<span class="nb">echo</span> <span class="k">$(</span>FFLAGS<span class="k">)</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="k">$(</span>FFLAGS<span class="k">)</span>
 
-<span class="nv">include_dirs</span> <span class="o">:=</span> -I./include
-<span class="nv">include_dirs</span> <span class="o">+=</span> -I/opt/some_dep/include
-<span class="nv">FFLAGS</span> <span class="o">:=</span> <span class="k">$(</span>include_dirs<span class="k">)</span> -O
+<span class="nv">include_dirs</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>-I./include
+<span class="nv">include_dirs</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-I/opt/some_dep/include
+<span class="nv">FFLAGS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>include_dirs<span class="k">)</span><span class="w"> </span>-O
 </pre></div>
 </div>
 <div class="admonition important">
@@ -1059,9 +1059,9 @@ is possibly the easiest solution at hand.</p>
 <code class="docutils literal notranslate"><span class="pre">make</span></code> will happily carry it along and it does in fact make a difference
 when comparing strings in <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
 <p>Those can be introduced by comments like</p>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span> <span class="o">:=</span> /usr  <span class="c1"># path to install location</span>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>/usr<span class="w">  </span><span class="c1"># path to install location</span>
 <span class="nf">install</span><span class="o">:</span>
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span>prefix<span class="k">)</span><span class="s2">/lib&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>prefix<span class="k">)</span><span class="s2">/lib&quot;</span>
 </pre></div>
 </div>
 <p>While the comment will be correctly removed by <code class="docutils literal notranslate"><span class="pre">make</span></code>, the trailing two spaces
@@ -1074,10 +1074,10 @@ the case:</p>
 <p>To solve this issue, you can either move the comment, or strip the whitespace with
 the <code class="docutils literal notranslate"><span class="pre">strip</span></code> function instead. Alternatively, you could try to <code class="docutils literal notranslate"><span class="pre">join</span></code> the
 strings.</p>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span> <span class="o">:=</span> /usr  <span class="c1"># path to install location</span>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>/usr<span class="w">  </span><span class="c1"># path to install location</span>
 <span class="nf">install</span><span class="o">:</span>
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span>strip <span class="k">$(</span>prefix<span class="k">))</span><span class="s2">/lib&quot;</span>
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span>join <span class="k">$(</span>join <span class="k">$(</span>prefix<span class="k">)</span>, /<span class="k">)</span>, lib<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>strip<span class="w"> </span><span class="k">$(</span>prefix<span class="k">))</span><span class="s2">/lib&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>join<span class="w"> </span><span class="k">$(</span>join<span class="w"> </span><span class="k">$(</span>prefix<span class="k">)</span>,<span class="w"> </span>/<span class="k">)</span>,<span class="w"> </span>lib<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 <p>All in all, none of this solutions will make your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> more readable,

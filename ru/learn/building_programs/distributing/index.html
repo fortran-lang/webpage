@@ -761,67 +761,67 @@
 <li><p>Поставлять исполняемый файл (с соответствующими библиотеками времени выполнения)</p></li>
 <li><p>Предоставить заготовку модуля, например:</p></li>
 </ul>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">user_functions</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">user_functions</span>
 <span class="w">    </span><span class="k">implicit none</span>
 <span class="k">contains</span>
 
-<span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
 <span class="c">!DEC$ ATTRIBUTES DLLEXPORT :: f</span>
-<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span>
 
 <span class="w">    </span><span class="c">! your function body goes here</span>
 
-<span class="k">end function </span><span class="n">f</span><span class="w"></span>
+<span class="k">end function </span><span class="n">f</span>
 
-<span class="k">end module </span><span class="n">user_functions</span><span class="w"></span>
+<span class="k">end module </span><span class="n">user_functions</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>Предоставить базовый сценарий сборки с помощью команды вида:</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gfortran -o functions.dll functions.f90 -shared
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gfortran<span class="w"> </span>-o<span class="w"> </span>functions.dll<span class="w"> </span>functions.f90<span class="w"> </span>-shared
 </pre></div>
 </div>
 <p>или:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ifort -exe:functions.dll functions.f90 -dll
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ifort<span class="w"> </span>-exe:functions.dll<span class="w"> </span>functions.f90<span class="w"> </span>-dll
 </pre></div>
 </div>
 <p>Как уже было сказано, вы не можете проконтролировать, что пользователь сделал все правильно - любая DLL «functions.dll» с функцией <code class="docutils literal notranslate"><span class="pre">f</span></code> будет принята, но не обязательно приведёт к успешному запуску программы.</p>
 <p>Альтернативной настройкой может быть изменение основной программы на процедуру и использование функции в качестве аргумента:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">tabulation</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">tabulation</span>
 <span class="w">    </span><span class="k">implicit none</span>
 <span class="k">contains</span>
 
-<span class="k">subroutine </span><span class="n">tabulate</span><span class="p">(</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="k">subroutine </span><span class="n">tabulate</span><span class="p">(</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="p">)</span>
 <span class="w">    </span><span class="k">interface</span>
-<span class="k">        </span><span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
-<span class="w">        </span><span class="k">end function </span><span class="n">f</span><span class="w"></span>
-<span class="w">    </span><span class="k">end interface</span><span class="w"></span>
+<span class="k">        </span><span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
+<span class="w">            </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span>
+<span class="w">        </span><span class="k">end function </span><span class="n">f</span>
+<span class="w">    </span><span class="k">end interface</span>
 
 <span class="w">    </span><span class="c">! your implementation goes here</span>
 
-<span class="k">end subroutine </span><span class="n">tabulate</span><span class="w"></span>
+<span class="k">end subroutine </span><span class="n">tabulate</span>
 
-<span class="k">end module </span><span class="n">tabulation</span><span class="w"></span>
+<span class="k">end module </span><span class="n">tabulation</span>
 </pre></div>
 </div>
 <p>Тогда предоставьте заготовку основной программы:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">tabulate_f</span><span class="w"></span>
-<span class="w">    </span><span class="k">use </span><span class="n">tabulation</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">tabulate_f</span>
+<span class="w">    </span><span class="k">use </span><span class="n">tabulation</span>
 
-<span class="w">    </span><span class="k">call </span><span class="n">tabulate</span><span class="p">(</span><span class="w"> </span><span class="n">func1</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">call </span><span class="n">tabulate</span><span class="p">(</span><span class="w"> </span><span class="n">func1</span><span class="w"> </span><span class="p">)</span>
 
 <span class="k">contains</span>
 
-<span class="kt">real </span><span class="k">function </span><span class="n">func1</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="kt">real </span><span class="k">function </span><span class="n">func1</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span>
 
 <span class="w">    </span><span class="c">! your function body goes here</span>
 
-<span class="k">end function </span><span class="n">func1</span><span class="w"></span>
+<span class="k">end function </span><span class="n">func1</span>
 
-<span class="k">end program </span><span class="n">tabulate_f</span><span class="w"></span>
+<span class="k">end program </span><span class="n">tabulate_f</span>
 </pre></div>
 </div>
 <p>Преимущество состоит в том, что компилятор может проверить интерфейс передаваемой функции, а пользователь имеет больше свободы в использовании функциональности, предоставляемой вашей библиотекой.</p>

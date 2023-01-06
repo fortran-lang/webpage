@@ -773,33 +773,33 @@
 <h1>数组声明<a class="headerlink" href="#array-declaration" title="此标题的永久链接">#</a></h1>
 <p>我们可以声明任何类型的数组。声明数组变量有两种常见的表示法：使用 <code class="docutils literal notranslate"><span class="pre">dimension</span></code> 属性或通过将括号中的数组维度附加到变量名称。</p>
 <p><strong>示例：</strong> 静态数组声明</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">arrays</span><span class="w"></span>
-<span class="w">  </span><span class="k">implicit none</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">arrays</span>
+<span class="w">  </span><span class="k">implicit none</span>
 
 <span class="w">  </span><span class="c">! 1D integer array</span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="w"></span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span>
 
 <span class="w">  </span><span class="c">! An equivalent array declaration</span>
-<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="w">  </span><span class="c">! 2D real array</span>
-<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array3</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array3</span>
 
 <span class="w">  </span><span class="c">! Custom lower and upper index bounds</span>
-<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array4</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array5</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array4</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array5</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="k">end program </span><span class="n">arrays</span><span class="w"></span>
+<span class="k">end program </span><span class="n">arrays</span>
 </pre></div>
 </div>
 <section id="array-slicing">
 <h2>数组切片<a class="headerlink" href="#array-slicing" title="此标题的永久链接">#</a></h2>
 <p>Fortran 语言的一个强大特性是它对数组操作的内置支持。我们可以使用数组 <em>切片</em> 表示法对数组的全部或部分执行操作：</p>
 <p><strong>示例：</strong> 数组切片</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">array_slice</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">array_slice</span>
 <span class="w">  </span><span class="k">implicit none</span>
 
-<span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
 <span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w">  </span><span class="c">! 1D integer array of 10 elements</span>
 <span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w">  </span><span class="c">! 2D integer array of 100 elements</span>
 
@@ -813,7 +813,7 @@
 <span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array2</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="c">! Print out the first column in a 2D array</span>
 <span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="c">! Print an array in reverse</span>
 
-<span class="k">end program </span><span class="n">array_slice</span><span class="w"></span>
+<span class="k">end program </span><span class="n">array_slice</span>
 </pre></div>
 </div>
 <blockquote>
@@ -829,18 +829,18 @@
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program allocatable</span>
 <span class="k">  implicit none</span>
 
-<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="p">(:)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(:,:)</span><span class="w"></span>
+<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="p">(:)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(:,:)</span>
 
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 
 <span class="w">  </span><span class="c">! ...</span>
 
-<span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">array1</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">array2</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">array1</span><span class="p">)</span>
+<span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">array2</span><span class="p">)</span>
 
-<span class="k">end program allocatable</span><span class="w"></span>
+<span class="k">end program allocatable</span>
 </pre></div>
 </div>
 <p>可分配的本地数组超出范围时会自动释放。</p>
@@ -848,41 +848,41 @@
 <section id="character-strings">
 <h2>字符串<a class="headerlink" href="#character-strings" title="此标题的永久链接">#</a></h2>
 <p><strong>示例：</strong> 静态字符串</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string</span>
 <span class="w">  </span><span class="k">implicit none</span>
 
-<span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="w"></span>
-<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">last_name</span><span class="w"></span>
-<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">full_name</span><span class="w"></span>
+<span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">last_name</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">full_name</span>
 
-<span class="w">  </span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span>
+<span class="w">  </span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span>
 
 <span class="w">  </span><span class="c">! String concatenation</span>
-<span class="w">  </span><span class="n">full_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_name</span><span class="o">//</span><span class="s1">&#39; &#39;</span><span class="o">//</span><span class="n">last_name</span><span class="w"></span>
+<span class="w">  </span><span class="n">full_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_name</span><span class="o">//</span><span class="s1">&#39; &#39;</span><span class="o">//</span><span class="n">last_name</span>
 
-<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">full_name</span><span class="w"></span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">full_name</span>
 
-<span class="k">end program </span><span class="n">string</span><span class="w"></span>
+<span class="k">end program </span><span class="n">string</span>
 </pre></div>
 </div>
 <p><strong>示例：</strong> 可分配的字符串</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">allocatable_string</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">allocatable_string</span>
 <span class="w">  </span><span class="k">implicit none</span>
 
-<span class="k">  </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="w"></span>
-<span class="w">  </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">last_name</span><span class="w"></span>
+<span class="k">  </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">last_name</span>
 
 <span class="w">  </span><span class="c">! Explicit allocation statement</span>
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="p">)</span>
+<span class="w">  </span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span>
 
 <span class="w">  </span><span class="c">! Allocation on assignment</span>
-<span class="w">  </span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span>
 
-<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="o">//</span><span class="s1">&#39; &#39;</span><span class="o">//</span><span class="n">last_name</span><span class="w"></span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="o">//</span><span class="s1">&#39; &#39;</span><span class="o">//</span><span class="n">last_name</span>
 
-<span class="k">end program </span><span class="n">allocatable_string</span><span class="w"></span>
+<span class="k">end program </span><span class="n">allocatable_string</span>
 </pre></div>
 </div>
 </section>
@@ -890,28 +890,28 @@
 <h2>字符串数组<a class="headerlink" href="#array-of-strings" title="此标题的永久链接">#</a></h2>
 <p>字符串数组可以在 Fortran 中表示为 <code class="docutils literal notranslate"><span class="pre">character</span></code> 变量数组。 <code class="docutils literal notranslate"><span class="pre">character</span></code> 数组中的所有元素都具有相等的长度。但是，可以将不同长度的字符串作为输入提供给数组构造函数，如下例所示。如果它们分别比“字符”数组的声明长度长或短，它们将被截断或用空格右填充。最后，在将值打印到标准输出时，我们使用内部函数 <code class="docutils literal notranslate"><span class="pre">trim</span></code> 删除任何多余的空格。</p>
 <p><strong>示例：</strong> 字符串数组</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string_array</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string_array</span>
 <span class="w">  </span><span class="k">implicit none</span>
-<span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span><span class="w"></span>
+<span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span>
 
-<span class="w">  </span><span class="n">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;dbname&quot;</span><span class="p">]</span><span class="w"></span>
-<span class="w">  </span><span class="n">vals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="s2">&quot;ben&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;motivation&quot;</span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="n">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;dbname&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="n">vals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="s2">&quot;ben&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;motivation&quot;</span><span class="p">]</span>
 
-<span class="w">  </span><span class="k">call </span><span class="n">show</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">call </span><span class="n">show</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span><span class="p">)</span>
 
 <span class="w">  </span><span class="k">contains</span>
 
-<span class="k">  subroutine </span><span class="n">show</span><span class="p">(</span><span class="n">akeys</span><span class="p">,</span><span class="w"> </span><span class="n">avals</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">akeys</span><span class="p">(:),</span><span class="w"> </span><span class="n">avals</span><span class="p">(:)</span><span class="w"></span>
-<span class="w">    </span><span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="k">  subroutine </span><span class="n">show</span><span class="p">(</span><span class="n">akeys</span><span class="p">,</span><span class="w"> </span><span class="n">avals</span><span class="p">)</span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">akeys</span><span class="p">(:),</span><span class="w"> </span><span class="n">avals</span><span class="p">(:)</span>
+<span class="w">    </span><span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
 
-<span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">akeys</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">akeys</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="w"> </span><span class="s2">&quot;: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">avals</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">akeys</span><span class="p">)</span>
+<span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">akeys</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="w"> </span><span class="s2">&quot;: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">avals</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 <span class="w">    </span><span class="k">end do</span>
 
-<span class="k">  end subroutine </span><span class="n">show</span><span class="w"></span>
+<span class="k">  end subroutine </span><span class="n">show</span>
 
-<span class="k">end program </span><span class="n">string_array</span><span class="w"></span>
+<span class="k">end program </span><span class="n">string_array</span>
 </pre></div>
 </div>
 </section>

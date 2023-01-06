@@ -761,67 +761,67 @@
 <li><p>运送可执行文件（使用适当的运行时库）</p></li>
 <li><p>提供模块的骨架版本，例如：</p></li>
 </ul>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">user_functions</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">user_functions</span>
 <span class="w">    </span><span class="k">implicit none</span>
 <span class="k">contains</span>
 
-<span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
 <span class="c">!DEC$ ATTRIBUTES DLLEXPORT :: f</span>
-<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span>
 
 <span class="w">    </span><span class="c">! your function body goes here</span>
 
-<span class="k">end function </span><span class="n">f</span><span class="w"></span>
+<span class="k">end function </span><span class="n">f</span>
 
-<span class="k">end module </span><span class="n">user_functions</span><span class="w"></span>
+<span class="k">end module </span><span class="n">user_functions</span>
 </pre></div>
 </div>
 <ul class="simple">
 <li><p>使用以下命令提供基本构建脚本：</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gfortran -o functions.dll functions.f90 -shared
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>gfortran<span class="w"> </span>-o<span class="w"> </span>functions.dll<span class="w"> </span>functions.f90<span class="w"> </span>-shared
 </pre></div>
 </div>
 <p>或者：</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ifort -exe:functions.dll functions.f90 -dll
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>ifort<span class="w"> </span>-exe:functions.dll<span class="w"> </span>functions.f90<span class="w"> </span>-dll
 </pre></div>
 </div>
 <p>如前所述，你无法控制用户是否做了正确的事情 —— 任何带有函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 的 DLL <code class="docutils literal notranslate"><span class="pre">functions.dll</span></code> 都会被接受，但不一定会导致成功运行。</p>
 <p>另一种设置是将主程序更改为子程序并将函数作为参数：</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">tabulation</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">tabulation</span>
 <span class="w">    </span><span class="k">implicit none</span>
 <span class="k">contains</span>
 
-<span class="k">subroutine </span><span class="n">tabulate</span><span class="p">(</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="k">subroutine </span><span class="n">tabulate</span><span class="p">(</span><span class="w"> </span><span class="n">f</span><span class="w"> </span><span class="p">)</span>
 <span class="w">    </span><span class="k">interface</span>
-<span class="k">        </span><span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">            </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
-<span class="w">        </span><span class="k">end function </span><span class="n">f</span><span class="w"></span>
-<span class="w">    </span><span class="k">end interface</span><span class="w"></span>
+<span class="k">        </span><span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
+<span class="w">            </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span>
+<span class="w">        </span><span class="k">end function </span><span class="n">f</span>
+<span class="w">    </span><span class="k">end interface</span>
 
 <span class="w">    </span><span class="c">! your implementation goes here</span>
 
-<span class="k">end subroutine </span><span class="n">tabulate</span><span class="w"></span>
+<span class="k">end subroutine </span><span class="n">tabulate</span>
 
-<span class="k">end module </span><span class="n">tabulation</span><span class="w"></span>
+<span class="k">end module </span><span class="n">tabulation</span>
 </pre></div>
 </div>
 <p>然后提供一个骨架主程序：</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">tabulate_f</span><span class="w"></span>
-<span class="w">    </span><span class="k">use </span><span class="n">tabulation</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">tabulate_f</span>
+<span class="w">    </span><span class="k">use </span><span class="n">tabulation</span>
 
-<span class="w">    </span><span class="k">call </span><span class="n">tabulate</span><span class="p">(</span><span class="w"> </span><span class="n">func1</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">call </span><span class="n">tabulate</span><span class="p">(</span><span class="w"> </span><span class="n">func1</span><span class="w"> </span><span class="p">)</span>
 
 <span class="k">contains</span>
 
-<span class="kt">real </span><span class="k">function </span><span class="n">func1</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"></span>
+<span class="kt">real </span><span class="k">function </span><span class="n">func1</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span>
 
 <span class="w">    </span><span class="c">! your function body goes here</span>
 
-<span class="k">end function </span><span class="n">func1</span><span class="w"></span>
+<span class="k">end function </span><span class="n">func1</span>
 
-<span class="k">end program </span><span class="n">tabulate_f</span><span class="w"></span>
+<span class="k">end program </span><span class="n">tabulate_f</span>
 </pre></div>
 </div>
 <p>优点是编译器可以检查传递的函数的接口，并且用户可以更自由地使用你的库提供的功能。</p>

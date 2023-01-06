@@ -773,33 +773,33 @@
 <h1>Объявление массива<a class="headerlink" href="#array-declaration" title="Permalink to this heading">#</a></h1>
 <p>Мы можем объявить массивы любого типа. Существуют два распространённых способа (нотации) для объявления массива: использование атрибута <code class="docutils literal notranslate"><span class="pre">dimension</span></code> или указание размерности массива в круглых скобках после имени переменной обозначающей массив.</p>
 <p><strong>Пример:</strong> объявление статического массива</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">arrays</span><span class="w"></span>
-<span class="w">  </span><span class="k">implicit none</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">arrays</span>
+<span class="w">  </span><span class="k">implicit none</span>
 
 <span class="w">  </span><span class="c">! 1D integer array</span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="w"></span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span>
 
 <span class="w">  </span><span class="c">! An equivalent array declaration</span>
-<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
 
 <span class="w">  </span><span class="c">! 2D real array</span>
-<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array3</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array3</span>
 
 <span class="w">  </span><span class="c">! Custom lower and upper index bounds</span>
-<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array4</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array5</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array4</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array5</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>
 
-<span class="k">end program </span><span class="n">arrays</span><span class="w"></span>
+<span class="k">end program </span><span class="n">arrays</span>
 </pre></div>
 </div>
 <section id="array-slicing">
 <h2>Срез массива<a class="headerlink" href="#array-slicing" title="Permalink to this heading">#</a></h2>
 <p>Мощной особенностью языка Fortran является встроенная поддержка операций над массивами; мы можем выполнять операции над всем массивом или его частью, используя операцию получения среза <em>slicing</em>, указав в скобках после имени массива диапазон индексов, и, если необходимо, шаг, разделив начальный, конечный индексы и шаг двоеточием (<code class="docutils literal notranslate"><span class="pre">:</span></code>):</p>
 <p><strong>Пример:</strong> срез массива</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">array_slice</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">array_slice</span>
 <span class="w">  </span><span class="k">implicit none</span>
 
-<span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
 <span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w">  </span><span class="c">! 1D integer array of 10 elements</span>
 <span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w">  </span><span class="c">! 2D integer array of 100 elements</span>
 
@@ -813,7 +813,7 @@
 <span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array2</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="c">! Print out the first column in a 2D array</span>
 <span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="c">! Print an array in reverse</span>
 
-<span class="k">end program </span><span class="n">array_slice</span><span class="w"></span>
+<span class="k">end program </span><span class="n">array_slice</span>
 </pre></div>
 </div>
 <blockquote>
@@ -829,18 +829,18 @@
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program allocatable</span>
 <span class="k">  implicit none</span>
 
-<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="p">(:)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(:,:)</span><span class="w"></span>
+<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="p">(:)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(:,:)</span>
 
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
 
 <span class="w">  </span><span class="c">! ...</span>
 
-<span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">array1</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">array2</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">array1</span><span class="p">)</span>
+<span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">array2</span><span class="p">)</span>
 
-<span class="k">end program allocatable</span><span class="w"></span>
+<span class="k">end program allocatable</span>
 </pre></div>
 </div>
 <p>Память выделенная под локальные динамические массивы высвобождается автоматически когда происходит выход из области их видимости.</p>
@@ -848,41 +848,41 @@
 <section id="character-strings">
 <h2>Символьные строки<a class="headerlink" href="#character-strings" title="Permalink to this heading">#</a></h2>
 <p><strong>Пример:</strong> статические символьные строки</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string</span>
 <span class="w">  </span><span class="k">implicit none</span>
 
-<span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="w"></span>
-<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">last_name</span><span class="w"></span>
-<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">full_name</span><span class="w"></span>
+<span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">last_name</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">full_name</span>
 
-<span class="w">  </span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="w"></span>
-<span class="w">  </span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span>
+<span class="w">  </span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span>
 
 <span class="w">  </span><span class="c">! String concatenation</span>
-<span class="w">  </span><span class="n">full_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_name</span><span class="o">//</span><span class="s1">&#39; &#39;</span><span class="o">//</span><span class="n">last_name</span><span class="w"></span>
+<span class="w">  </span><span class="n">full_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_name</span><span class="o">//</span><span class="s1">&#39; &#39;</span><span class="o">//</span><span class="n">last_name</span>
 
-<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">full_name</span><span class="w"></span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">full_name</span>
 
-<span class="k">end program </span><span class="n">string</span><span class="w"></span>
+<span class="k">end program </span><span class="n">string</span>
 </pre></div>
 </div>
 <p><strong>Пример:</strong> выделяемые (динамические) символьные строки</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">allocatable_string</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">allocatable_string</span>
 <span class="w">  </span><span class="k">implicit none</span>
 
-<span class="k">  </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="w"></span>
-<span class="w">  </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">last_name</span><span class="w"></span>
+<span class="k">  </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">last_name</span>
 
 <span class="w">  </span><span class="c">! Explicit allocation statement</span>
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="p">)</span>
+<span class="w">  </span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span>
 
 <span class="w">  </span><span class="c">! Allocation on assignment</span>
-<span class="w">  </span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span><span class="w"></span>
+<span class="w">  </span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span>
 
-<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="o">//</span><span class="s1">&#39; &#39;</span><span class="o">//</span><span class="n">last_name</span><span class="w"></span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="o">//</span><span class="s1">&#39; &#39;</span><span class="o">//</span><span class="n">last_name</span>
 
-<span class="k">end program </span><span class="n">allocatable_string</span><span class="w"></span>
+<span class="k">end program </span><span class="n">allocatable_string</span>
 </pre></div>
 </div>
 </section>
@@ -890,28 +890,28 @@
 <h2>Массив строк<a class="headerlink" href="#array-of-strings" title="Permalink to this heading">#</a></h2>
 <p>Массив строк в Fortran может быть представлен как массив переменных символьного типа <code class="docutils literal notranslate"><span class="pre">character</span></code>. Все элементы в массиве типа <code class="docutils literal notranslate"><span class="pre">character</span></code> имеют одинаковую длину. Однако в конструктор массива можно ввести строки разной длины, как показано в примере ниже. Они будут усечены или дополнены пробелами справа, если они длиннее или короче, соответственно, чем объявленная длина <code class="docutils literal notranslate"><span class="pre">character</span></code> (символьного) массива. Наконец, мы используем встроенную функцию <code class="docutils literal notranslate"><span class="pre">trim</span></code>, для удаления лишних пробелов при печати значений в стандартный вывод.</p>
 <p><strong>Пример:</strong> массив строк</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string_array</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string_array</span>
 <span class="w">  </span><span class="k">implicit none</span>
-<span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span><span class="w"></span>
+<span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span>
 
-<span class="w">  </span><span class="n">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;dbname&quot;</span><span class="p">]</span><span class="w"></span>
-<span class="w">  </span><span class="n">vals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="s2">&quot;ben&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;motivation&quot;</span><span class="p">]</span><span class="w"></span>
+<span class="w">  </span><span class="n">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;dbname&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="n">vals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="s2">&quot;ben&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;motivation&quot;</span><span class="p">]</span>
 
-<span class="w">  </span><span class="k">call </span><span class="n">show</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">call </span><span class="n">show</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span><span class="p">)</span>
 
 <span class="w">  </span><span class="k">contains</span>
 
-<span class="k">  subroutine </span><span class="n">show</span><span class="p">(</span><span class="n">akeys</span><span class="p">,</span><span class="w"> </span><span class="n">avals</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">akeys</span><span class="p">(:),</span><span class="w"> </span><span class="n">avals</span><span class="p">(:)</span><span class="w"></span>
-<span class="w">    </span><span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="k">  subroutine </span><span class="n">show</span><span class="p">(</span><span class="n">akeys</span><span class="p">,</span><span class="w"> </span><span class="n">avals</span><span class="p">)</span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">akeys</span><span class="p">(:),</span><span class="w"> </span><span class="n">avals</span><span class="p">(:)</span>
+<span class="w">    </span><span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
 
-<span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">akeys</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">akeys</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="w"> </span><span class="s2">&quot;: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">avals</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="w"></span>
+<span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">akeys</span><span class="p">)</span>
+<span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">akeys</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="w"> </span><span class="s2">&quot;: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">avals</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
 <span class="w">    </span><span class="k">end do</span>
 
-<span class="k">  end subroutine </span><span class="n">show</span><span class="w"></span>
+<span class="k">  end subroutine </span><span class="n">show</span>
 
-<span class="k">end program </span><span class="n">string_array</span><span class="w"></span>
+<span class="k">end program </span><span class="n">string_array</span>
 </pre></div>
 </div>
 </section>

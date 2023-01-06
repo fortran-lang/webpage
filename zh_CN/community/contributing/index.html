@@ -584,27 +584,27 @@ ARRAY_index
 <section id="code-style">
 <h3>代码风格<a class="headerlink" href="#code-style" title="此标题的永久链接">#</a></h3>
 <p>缩进使用两个空格，代码单元内部都需要缩进，但是 <code class="docutils literal notranslate"><span class="pre">contains</span></code> 语句与其所在的 <code class="docutils literal notranslate"><span class="pre">module</span></code> 或 <code class="docutils literal notranslate"><span class="pre">type</span></code> 保持同一层级。尽量将一行代码限制在 90 个字符以内。这些考量能让代码更具可读性，也容易在宽度较小的设备上浏览。</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">m</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">m</span>
 <span class="w">  </span><span class="k">implicit none</span>
 <span class="k">  private</span>
-<span class="k">  public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a_t</span><span class="w"></span>
+<span class="k">  public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a_t</span>
 
-<span class="w">  </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a_t</span><span class="w"></span>
-<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span><span class="w"></span>
+<span class="w">  </span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a_t</span>
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">val</span>
 <span class="w">  </span><span class="k">contains</span>
-<span class="k">    procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">func</span><span class="w"></span>
-<span class="w">  </span><span class="k">end type </span><span class="n">a_t</span><span class="w"></span>
+<span class="k">    procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">func</span>
+<span class="w">  </span><span class="k">end type </span><span class="n">a_t</span>
 
 <span class="k">contains</span>
 
-<span class="k">  subroutine </span><span class="n">func</span><span class="p">(</span><span class="n">self</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="k">class</span><span class="p">(</span><span class="n">a_t</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">self</span><span class="w"></span>
+<span class="k">  subroutine </span><span class="n">func</span><span class="p">(</span><span class="n">self</span><span class="p">)</span>
+<span class="w">    </span><span class="k">class</span><span class="p">(</span><span class="n">a_t</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">self</span>
 <span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">self</span><span class="p">%</span><span class="n">val</span><span class="w"> </span><span class="o">&gt;</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">      print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">%</span><span class="n">val</span><span class="w"></span>
+<span class="k">      print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">self</span><span class="p">%</span><span class="n">val</span>
 <span class="w">    </span><span class="k">end if</span>
-<span class="k">  end function </span><span class="n">func</span><span class="w"></span>
+<span class="k">  end function </span><span class="n">func</span>
 
-<span class="k">end module </span><span class="n">m</span><span class="w"></span>
+<span class="k">end module </span><span class="n">m</span>
 </pre></div>
 </div>
 <p>每个代码片段块都默认以不缩进开始，即使相应代码放在更大的上下文中是应当缩进的。</p>
@@ -620,48 +620,48 @@ ARRAY_index
 </pre></div>
 </div>
 <p>若有利于提高可读性，请放心舍去表达式中的空格，但是一般建议在运算符周围加上空格。</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">y1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">y1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span>
 <span class="n">y2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="o">*</span><span class="n">d</span><span class="w">  </span><span class="c">! instead of a * b + c * d</span>
-<span class="n">y3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
-<span class="n">y4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span><span class="w"></span>
-<span class="n">s3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">s2</span><span class="w"></span>
+<span class="n">y3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="o">**</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
+<span class="n">y4</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="o">*</span><span class="n">b</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">c</span><span class="o">*</span><span class="n">d</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span>
+<span class="n">s3</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">s1</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">s2</span>
 </pre></div>
 </div>
 <p>通常在逗号后添加一个空格，除非使用短索引值或变量名称进行索引。</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="n">a2</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span><span class="w"></span>
-<span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"></span>
-<span class="n">b2</span><span class="p">(</span><span class="n">long_i_name</span><span class="p">,</span><span class="w"> </span><span class="n">long_j_name</span><span class="p">)</span><span class="w"></span>
-<span class="n">b3</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span><span class="w"></span>
-<span class="k">call </span><span class="n">some_subroutine</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">an_option</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span><span class="w"></span>
-<span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">]</span><span class="w"></span>
-<span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)]</span><span class="w"></span>
-<span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">a</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span>
+<span class="n">a2</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>
+<span class="n">b</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span>
+<span class="n">b2</span><span class="p">(</span><span class="n">long_i_name</span><span class="p">,</span><span class="w"> </span><span class="n">long_j_name</span><span class="p">)</span>
+<span class="n">b3</span><span class="p">(</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">j</span><span class="p">)</span>
+<span class="k">call </span><span class="n">some_subroutine</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">an_option</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span>
+<span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">]</span>
+<span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)]</span>
+<span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span>
 <span class="c">! ...</span>
 </pre></div>
 </div>
 <p>除了简单索引之外，其它可以省略空格的情况包括：</p>
 <ul>
 <li><p>import 中的别名</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">sp</span><span class="o">=&gt;</span><span class="kt">c_float</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="kt">c_double</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">sp</span><span class="o">=&gt;</span><span class="kt">c_float</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="kt">c_double</span>
 </pre></div>
 </div>
 </li>
 <li><p>字符串拼接</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;hello &#39;</span><span class="o">//</span><span class="s1">&#39;world&#39;</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;hello &#39;</span><span class="o">//</span><span class="s1">&#39;world&#39;</span>
 </pre></div>
 </div>
 </li>
 <li><p>访问派生类型的成员（属性）</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="p">%</span><span class="n">x</span><span class="w"></span>
-<span class="n">p</span><span class="p">%</span><span class="n">calc_something</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">p</span><span class="p">%</span><span class="n">x</span>
+<span class="n">p</span><span class="p">%</span><span class="n">calc_something</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
 </pre></div>
 </div>
 </li>
 <li><p>以关键字传递参数时的 <code class="docutils literal notranslate"><span class="pre">=</span></code></p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">sr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="w"></span>
-<span class="n">point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="mf">2.</span><span class="p">)</span><span class="w"></span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">s</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="n">sr</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span>
+<span class="n">point</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">t_point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="mf">1.</span><span class="p">,</span><span class="w"> </span><span class="n">y</span><span class="o">=</span><span class="mf">2.</span><span class="p">)</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">s</span>
 </pre></div>
 </div>
 </li>

@@ -1208,10 +1208,10 @@
 </section>
 <section id="syntax">
 <h3><strong>Syntax</strong><a class="headerlink" href="#syntax" title="Enlace permanente a este encabezado">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">command_argument_count</span><span class="p">()</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">command_argument_count</span><span class="p">()</span>
 
-<span class="w">     </span><span class="kt">integer </span><span class="k">function </span><span class="nb">command_argument_count</span><span class="p">()</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="nb">count</span><span class="p">)</span><span class="w"></span>
-<span class="w">     </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span><span class="w"></span>
+<span class="w">     </span><span class="kt">integer </span><span class="k">function </span><span class="nb">command_argument_count</span><span class="p">()</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="nb">count</span><span class="p">)</span>
+<span class="w">     </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span>
 </pre></div>
 </div>
 </section>
@@ -1238,23 +1238,23 @@ arguments passed on the command line when the program was invoked.</p>
 <section id="examples">
 <h3><strong>Examples</strong><a class="headerlink" href="#examples" title="Enlace permanente a este encabezado">#</a></h3>
 <p>Sample program:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_command_argument_count</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_command_argument_count</span>
 <span class="k">implicit none</span>
 <span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span>
-<span class="nb">   count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">command_argument_count</span><span class="p">()</span><span class="w"></span>
+<span class="nb">   count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">command_argument_count</span><span class="p">()</span>
 <span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">count</span>
-<span class="k">end program </span><span class="n">demo_command_argument_count</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_command_argument_count</span>
 </pre></div>
 </div>
 <p>Sample output:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>   <span class="c1"># the command verb does not count</span>
-   ./test_command_argument_count
-       <span class="m">0</span>
-   <span class="c1"># quoted strings may count as one argument</span>
-   ./test_command_argument_count count arguments
-       <span class="m">2</span>
-   ./test_command_argument_count <span class="s1">&#39;count arguments&#39;</span>
-       <span class="m">1</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="c1"># the command verb does not count</span>
+<span class="w">   </span>./test_command_argument_count
+<span class="w">       </span><span class="m">0</span>
+<span class="w">   </span><span class="c1"># quoted strings may count as one argument</span>
+<span class="w">   </span>./test_command_argument_count<span class="w"> </span>count<span class="w"> </span>arguments
+<span class="w">       </span><span class="m">2</span>
+<span class="w">   </span>./test_command_argument_count<span class="w"> </span><span class="s1">&#39;count arguments&#39;</span>
+<span class="w">       </span><span class="m">1</span>
 </pre></div>
 </div>
 </section>
@@ -1277,12 +1277,12 @@ arguments passed on the command line when the program was invoked.</p>
 </section>
 <section id="id2">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id2" title="Enlace permanente a este encabezado">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">call </span><span class="nb">get_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">call </span><span class="nb">get_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span>
 
-<span class="w">    </span><span class="k">subroutine </span><span class="nb">get_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="n">length</span><span class="p">,</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">command</span><span class="w"></span>
-<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">length</span><span class="w"></span>
-<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">status</span><span class="w"></span>
+<span class="w">    </span><span class="k">subroutine </span><span class="nb">get_command</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="n">length</span><span class="p">,</span><span class="n">status</span><span class="p">)</span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">command</span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">length</span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">status</span>
 </pre></div>
 </div>
 </section>
@@ -1325,31 +1325,31 @@ in case of an error.</p>
 <section id="id5">
 <h3><strong>Examples</strong><a class="headerlink" href="#id5" title="Enlace permanente a este encabezado">#</a></h3>
 <p>Sample program:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_get_command</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_get_command</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">COMMAND_LINE_LENGTH</span><span class="w"></span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">COMMAND_LINE</span><span class="w"></span>
+<span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">COMMAND_LINE_LENGTH</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">COMMAND_LINE</span>
 <span class="w">   </span><span class="c">! get command line length</span>
-<span class="w">   </span><span class="k">call </span><span class="nb">get_command</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="n">COMMAND_LINE_LENGTH</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">get_command</span><span class="p">(</span><span class="n">length</span><span class="o">=</span><span class="n">COMMAND_LINE_LENGTH</span><span class="p">)</span>
 <span class="w">   </span><span class="c">! allocate string big enough to hold command line</span>
-<span class="w">   </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">COMMAND_LINE_LENGTH</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">COMMAND_LINE</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">COMMAND_LINE_LENGTH</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">COMMAND_LINE</span><span class="p">)</span>
 <span class="w">   </span><span class="c">! get command line as a string</span>
-<span class="w">   </span><span class="k">call </span><span class="nb">get_command</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="n">COMMAND_LINE</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">get_command</span><span class="p">(</span><span class="n">command</span><span class="o">=</span><span class="n">COMMAND_LINE</span><span class="p">)</span>
 <span class="w">   </span><span class="c">! trim leading spaces just in case</span>
-<span class="w">   </span><span class="n">COMMAND_LINE</span><span class="o">=</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">COMMAND_LINE</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(&quot;OUTPUT:&quot;,a)&#39;</span><span class="p">)</span><span class="n">COMMAND_LINE</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_get_command</span><span class="w"></span>
+<span class="w">   </span><span class="n">COMMAND_LINE</span><span class="o">=</span><span class="nb">adjustl</span><span class="p">(</span><span class="n">COMMAND_LINE</span><span class="p">)</span>
+<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(&quot;OUTPUT:&quot;,a)&#39;</span><span class="p">)</span><span class="n">COMMAND_LINE</span>
+<span class="k">end program </span><span class="n">demo_get_command</span>
 </pre></div>
 </div>
 <p>Results:</p>
-<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span>     <span class="c1"># note that shell expansion removes some of the whitespace</span>
-     <span class="c1"># without quotes</span>
-     ./test_get_command  arguments    on <span class="nb">command</span>   line to   <span class="nb">echo</span>
+<div class="highlight-bash notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="c1"># note that shell expansion removes some of the whitespace</span>
+<span class="w">     </span><span class="c1"># without quotes</span>
+<span class="w">     </span>./test_get_command<span class="w">  </span>arguments<span class="w">    </span>on<span class="w"> </span><span class="nb">command</span><span class="w">   </span>line<span class="w"> </span>to<span class="w">   </span><span class="nb">echo</span>
 
-     OUTPUT:./test_get_command arguments on <span class="nb">command</span> line to <span class="nb">echo</span>
+<span class="w">     </span>OUTPUT:./test_get_command<span class="w"> </span>arguments<span class="w"> </span>on<span class="w"> </span><span class="nb">command</span><span class="w"> </span>line<span class="w"> </span>to<span class="w"> </span><span class="nb">echo</span>
 
-     <span class="c1"># using the bash shell with single quotes</span>
-     ./test_get_command  <span class="s1">&#39;arguments  *&gt;&lt;`~[]!{}?&quot;\&#39;</span><span class="p">|</span> <span class="s1">&#39;</span>
+<span class="w">     </span><span class="c1"># using the bash shell with single quotes</span>
+<span class="w">     </span>./test_get_command<span class="w">  </span><span class="s1">&#39;arguments  *&gt;&lt;`~[]!{}?&quot;\&#39;</span><span class="p">|</span><span class="w"> </span><span class="s1">&#39;</span>
 
 <span class="s1">     OUTPUT:./test_get_command arguments  *&gt;&lt;`~[]!{}?&quot;&#39;</span><span class="p">|</span>
 </pre></div>
@@ -1374,13 +1374,13 @@ in case of an error.</p>
 </section>
 <section id="id9">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id9" title="Enlace permanente a este encabezado">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">)</span>
 
-<span class="w">     </span><span class="k">subroutine </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="k">value</span><span class="p">,</span><span class="n">length</span><span class="p">.</span><span class="n">status</span><span class="p">)</span><span class="w"></span>
-<span class="w">     </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">                    </span><span class="kd">::</span><span class="w"> </span><span class="n">number</span><span class="w"></span>
+<span class="w">     </span><span class="k">subroutine </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">number</span><span class="p">,</span><span class="k">value</span><span class="p">,</span><span class="n">length</span><span class="p">.</span><span class="n">status</span><span class="p">)</span>
+<span class="w">     </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">                    </span><span class="kd">::</span><span class="w"> </span><span class="n">number</span>
 <span class="w">     </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span>
-<span class="k">     </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">length</span><span class="w"></span>
-<span class="w">     </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">status</span><span class="w"></span>
+<span class="k">     </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">length</span>
+<span class="w">     </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">status</span>
 </pre></div>
 </div>
 </section>
@@ -1437,53 +1437,53 @@ truncated command line argument, <strong>status</strong> is <strong>-1</strong>;
 <section id="id12">
 <h3><strong>Examples</strong><a class="headerlink" href="#id12" title="Enlace permanente a este encabezado">#</a></h3>
 <p>Sample program:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_get_command_argument</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_get_command_argument</span>
 <span class="k">implicit none</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">progname</span><span class="w"></span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">255</span><span class="p">)</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">progname</span>
 <span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="nb">stat</span>
-<span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">longest</span><span class="p">,</span><span class="w"> </span><span class="n">argument_length</span><span class="w"></span>
-<span class="kt">integer</span><span class="p">,</span><span class="k">allocatable</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">istat</span><span class="p">(:),</span><span class="w"> </span><span class="n">ilen</span><span class="p">(:)</span><span class="w"></span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">args</span><span class="p">(:)</span><span class="w"></span>
+<span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">longest</span><span class="p">,</span><span class="w"> </span><span class="n">argument_length</span>
+<span class="kt">integer</span><span class="p">,</span><span class="k">allocatable</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">istat</span><span class="p">(:),</span><span class="w"> </span><span class="n">ilen</span><span class="p">(:)</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">args</span><span class="p">(:)</span>
 <span class="w">  </span><span class="c">!</span>
 <span class="w">  </span><span class="c">! get number of arguments</span>
-<span class="w">  </span><span class="nb">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">command_argument_count</span><span class="p">()</span><span class="w"></span>
-<span class="w">  </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;The number of arguments is &#39;</span><span class="p">,</span><span class="nb">count</span><span class="w"></span>
+<span class="w">  </span><span class="nb">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">command_argument_count</span><span class="p">()</span>
+<span class="w">  </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;The number of arguments is &#39;</span><span class="p">,</span><span class="nb">count</span>
 <span class="w">  </span><span class="c">!</span>
 <span class="w">  </span><span class="c">! simple usage</span>
 <span class="w">  </span><span class="c">!</span>
-<span class="w">  </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">progname</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
+<span class="w">  </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="w"> </span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">progname</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">)</span>
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
-<span class="k">     print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;The program&#39;s name is &quot;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nb">trim</span><span class="w"> </span><span class="p">(</span><span class="n">progname</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="k">endif</span><span class="w"></span>
+<span class="k">     print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;The program&#39;s name is &quot;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nb">trim</span><span class="w"> </span><span class="p">(</span><span class="n">progname</span><span class="p">)</span>
+<span class="w">  </span><span class="k">endif</span>
 <span class="w">  </span><span class="c">!</span>
 <span class="w">  </span><span class="c">! showing how to make an array to hold any argument list</span>
 <span class="w">  </span><span class="c">!</span>
 <span class="w">  </span><span class="c">! find longest argument</span>
 <span class="w">  </span><span class="c">!</span>
-<span class="w">  </span><span class="n">longest</span><span class="o">=</span><span class="mi">0</span><span class="w"></span>
+<span class="w">  </span><span class="n">longest</span><span class="o">=</span><span class="mi">0</span>
 <span class="w">  </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">count</span>
-<span class="nb">     </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="n">i</span><span class="p">,</span><span class="n">length</span><span class="o">=</span><span class="n">argument_length</span><span class="p">)</span><span class="w"></span>
-<span class="w">     </span><span class="n">longest</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">longest</span><span class="p">,</span><span class="n">argument_length</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="k">enddo</span><span class="w"></span>
+<span class="nb">     </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">number</span><span class="o">=</span><span class="n">i</span><span class="p">,</span><span class="n">length</span><span class="o">=</span><span class="n">argument_length</span><span class="p">)</span>
+<span class="w">     </span><span class="n">longest</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">longest</span><span class="p">,</span><span class="n">argument_length</span><span class="p">)</span>
+<span class="w">  </span><span class="k">enddo</span>
 <span class="w">  </span><span class="c">!</span>
 <span class="w">  </span><span class="c">! allocate string array big enough to hold command line</span>
 <span class="w">  </span><span class="c">! argument strings and related information</span>
 <span class="w">  </span><span class="c">!</span>
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">longest</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">args</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">count</span><span class="p">))</span><span class="w"></span>
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">istat</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">count</span><span class="p">))</span><span class="w"></span>
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">ilen</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">count</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="n">longest</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">args</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">count</span><span class="p">))</span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">istat</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">count</span><span class="p">))</span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">ilen</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="nb">count</span><span class="p">))</span>
 <span class="w">  </span><span class="c">!</span>
 <span class="w">  </span><span class="c">! read the arguments into the array</span>
 <span class="w">  </span><span class="c">!</span>
 <span class="w">  </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">count</span>
-<span class="nb">    </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">status</span><span class="o">=</span><span class="n">istat</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">length</span><span class="o">=</span><span class="n">ilen</span><span class="p">(</span><span class="n">i</span><span class="p">))</span><span class="w"></span>
-<span class="w">  </span><span class="k">enddo</span><span class="w"></span>
+<span class="nb">    </span><span class="k">call </span><span class="nb">get_command_argument</span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">args</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">status</span><span class="o">=</span><span class="n">istat</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">length</span><span class="o">=</span><span class="n">ilen</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+<span class="w">  </span><span class="k">enddo</span>
 <span class="w">  </span><span class="c">!</span>
 <span class="w">  </span><span class="c">! show the results</span>
 <span class="w">  </span><span class="c">!</span>
-<span class="w">  </span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(i3.3,1x,i0.5,1x,i0.5,1x,&quot;[&quot;,a,&quot;]&quot;)&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">  </span><span class="p">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">istat</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">ilen</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">args</span><span class="p">(</span><span class="n">i</span><span class="p">)(:</span><span class="n">ilen</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">count</span><span class="p">)</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_get_command_argument</span><span class="w"></span>
+<span class="w">  </span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(i3.3,1x,i0.5,1x,i0.5,1x,&quot;[&quot;,a,&quot;]&quot;)&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">  </span><span class="p">&amp;</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">istat</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">ilen</span><span class="p">(</span><span class="n">i</span><span class="p">),</span><span class="n">args</span><span class="p">(</span><span class="n">i</span><span class="p">)(:</span><span class="n">ilen</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="n">i</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span><span class="nb">count</span><span class="p">)</span>
+<span class="k">end program </span><span class="n">demo_get_command_argument</span>
 </pre></div>
 </div>
 <p>Results:</p>
@@ -1518,8 +1518,8 @@ truncated command line argument, <strong>status</strong> is <strong>-1</strong>;
 </section>
 <section id="id16">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id16" title="Enlace permanente a este encabezado">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="nb">time</span><span class="p">)</span><span class="w"></span>
-<span class="w">     </span><span class="kt">real</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">time</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="nb">time</span><span class="p">)</span>
+<span class="w">     </span><span class="kt">real</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">time</span>
 </pre></div>
 </div>
 </section>
@@ -1558,17 +1558,17 @@ include system overhead time.</p>
 <section id="id19">
 <h3><strong>Examples</strong><a class="headerlink" href="#id19" title="Enlace permanente a este encabezado">#</a></h3>
 <p>Sample program:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_cpu_time</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_cpu_time</span>
 <span class="k">implicit none</span>
-<span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">finish</span><span class="w"></span>
+<span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">finish</span>
 <span class="w">   </span><span class="c">!</span>
-<span class="w">   </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="n">start</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="n">start</span><span class="p">)</span>
 <span class="w">   </span><span class="c">! put code to test here</span>
-<span class="w">   </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="n">finish</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">cpu_time</span><span class="p">(</span><span class="n">finish</span><span class="p">)</span>
 <span class="w">   </span><span class="c">!</span>
 <span class="w">   </span><span class="c">! writes processor time taken by the piece of code.</span>
-<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(&quot;Processor Time = &quot;,f6.3,&quot; seconds.&quot;)&#39;</span><span class="p">,</span><span class="n">finish</span><span class="o">-</span><span class="n">start</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_cpu_time</span><span class="w"></span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(&quot;Processor Time = &quot;,f6.3,&quot; seconds.&quot;)&#39;</span><span class="p">,</span><span class="n">finish</span><span class="o">-</span><span class="n">start</span>
+<span class="k">end program </span><span class="n">demo_cpu_time</span>
 </pre></div>
 </div>
 <p>Results:</p>
@@ -1595,12 +1595,12 @@ include system overhead time.</p>
 </section>
 <section id="id23">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id23" title="Enlace permanente a este encabezado">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">subroutine </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">zone</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">subroutine </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="w"> </span><span class="nb">time</span><span class="p">,</span><span class="w"> </span><span class="n">zone</span><span class="p">,</span><span class="w"> </span><span class="n">values</span><span class="p">)</span>
 
-<span class="w">     </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">date</span><span class="w"></span>
+<span class="w">     </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">8</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">date</span>
 <span class="w">     </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">time</span>
-<span class="nb">     </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">zone</span><span class="w"></span>
-<span class="w">     </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"></span>
+<span class="nb">     </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">5</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">zone</span>
+<span class="w">     </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span>
 </pre></div>
 </div>
 </section>
@@ -1649,30 +1649,30 @@ representing the difference with respect to Coordinated Universal Time (UTC).</p
 <section id="id26">
 <h3><strong>Examples</strong><a class="headerlink" href="#id26" title="Enlace permanente a este encabezado">#</a></h3>
 <p>Sample program:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_date_and_time</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_date_and_time</span>
 <span class="k">implicit none</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">date</span><span class="w"></span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">8</span><span class="p">)</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">date</span>
 <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="nb">time</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">zone</span><span class="w"></span>
-<span class="kt">integer</span><span class="p">,</span><span class="k">dimension</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">values</span><span class="w"></span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">zone</span>
+<span class="kt">integer</span><span class="p">,</span><span class="k">dimension</span><span class="p">(</span><span class="mi">8</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">values</span>
 
-<span class="w">    </span><span class="k">call </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="nb">time</span><span class="p">,</span><span class="n">zone</span><span class="p">,</span><span class="n">values</span><span class="p">)</span><span class="w"></span>
+<span class="w">    </span><span class="k">call </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">date</span><span class="p">,</span><span class="nb">time</span><span class="p">,</span><span class="n">zone</span><span class="p">,</span><span class="n">values</span><span class="p">)</span>
 
 <span class="w">    </span><span class="c">! using keyword arguments</span>
-<span class="w">    </span><span class="k">call </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">DATE</span><span class="o">=</span><span class="n">date</span><span class="p">,</span><span class="nb">TIME</span><span class="o">=</span><span class="nb">time</span><span class="p">,</span><span class="n">ZONE</span><span class="o">=</span><span class="n">zone</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(*(g0))&#39;</span><span class="p">,</span><span class="s1">&#39;DATE=&quot;&#39;</span><span class="p">,</span><span class="n">date</span><span class="p">,</span><span class="s1">&#39;&quot; TIME=&quot;&#39;</span><span class="p">,</span><span class="nb">time</span><span class="p">,</span><span class="s1">&#39;&quot; ZONE=&quot;&#39;</span><span class="p">,</span><span class="n">zone</span><span class="p">,</span><span class="s1">&#39;&quot;&#39;</span><span class="w"></span>
+<span class="w">    </span><span class="k">call </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">DATE</span><span class="o">=</span><span class="n">date</span><span class="p">,</span><span class="nb">TIME</span><span class="o">=</span><span class="nb">time</span><span class="p">,</span><span class="n">ZONE</span><span class="o">=</span><span class="n">zone</span><span class="p">)</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(*(g0))&#39;</span><span class="p">,</span><span class="s1">&#39;DATE=&quot;&#39;</span><span class="p">,</span><span class="n">date</span><span class="p">,</span><span class="s1">&#39;&quot; TIME=&quot;&#39;</span><span class="p">,</span><span class="nb">time</span><span class="p">,</span><span class="s1">&#39;&quot; ZONE=&quot;&#39;</span><span class="p">,</span><span class="n">zone</span><span class="p">,</span><span class="s1">&#39;&quot;&#39;</span>
 
-<span class="w">    </span><span class="k">call </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">VALUES</span><span class="o">=</span><span class="n">values</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(i5,a)&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39; - The year&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39; - The month&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="s1">&#39; - The day of the month&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="s1">&#39; - Time difference with UTC in minutes&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="s1">&#39; - The hour of the day&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="s1">&#39; - The minutes of the hour&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="s1">&#39; - The seconds of the minute&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="s1">&#39; - The milliseconds of the second&#39;</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_date_and_time</span><span class="w"></span>
+<span class="w">    </span><span class="k">call </span><span class="nb">date_and_time</span><span class="p">(</span><span class="n">VALUES</span><span class="o">=</span><span class="n">values</span><span class="p">)</span>
+<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(i5,a)&#39;</span><span class="p">)</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39; - The year&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39; - The month&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="s1">&#39; - The day of the month&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="s1">&#39; - Time difference with UTC in minutes&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">5</span><span class="p">),</span><span class="s1">&#39; - The hour of the day&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">6</span><span class="p">),</span><span class="s1">&#39; - The minutes of the hour&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">7</span><span class="p">),</span><span class="s1">&#39; - The seconds of the minute&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">     </span><span class="p">&amp;</span><span class="w"> </span><span class="n">values</span><span class="p">(</span><span class="mi">8</span><span class="p">),</span><span class="s1">&#39; - The milliseconds of the second&#39;</span>
+<span class="k">end program </span><span class="n">demo_date_and_time</span>
 </pre></div>
 </div>
 <p>Results:</p>
@@ -1716,13 +1716,13 @@ representing the difference with respect to Coordinated Universal Time (UTC).</p
 </section>
 <section id="id30">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id30" title="Enlace permanente a este encabezado">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="nb">system_clock</span><span class="p">(</span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="nb">system_clock</span><span class="p">(</span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="p">)</span>
 
 <span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span>
-<span class="nb">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">count_rate</span><span class="w"></span>
+<span class="nb">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">count_rate</span>
 <span class="w">    </span><span class="c">! or !</span>
-<span class="w">   </span><span class="kt">real</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">count_rate</span><span class="w"></span>
-<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">count_max</span><span class="w"></span>
+<span class="w">   </span><span class="kt">real</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">count_rate</span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">count_max</span>
 </pre></div>
 </div>
 </section>
@@ -1777,28 +1777,28 @@ value that <strong>COUNT</strong> can have, or zero if there is no clock.</p>
 <section id="id33">
 <h3><strong>Examples</strong><a class="headerlink" href="#id33" title="Enlace permanente a este encabezado">#</a></h3>
 <p>Sample program:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_system_clock</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_system_clock</span>
 <span class="k">implicit none</span>
-<span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">wp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="mf">1.0d0</span><span class="p">)</span><span class="w"></span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="w"></span>
-<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">finish</span><span class="w"></span>
-<span class="kt">real</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="n">time_read</span><span class="w"></span>
+<span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">wp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="mf">1.0d0</span><span class="p">)</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">finish</span>
+<span class="kt">real</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="n">time_read</span>
 
-<span class="w">   </span><span class="k">call </span><span class="nb">system_clock</span><span class="p">(</span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">system_clock</span><span class="p">(</span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="p">)</span>
+<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="nb">count</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span>
 
-<span class="w">   </span><span class="k">call </span><span class="nb">system_clock</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">)</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">system_clock</span><span class="p">(</span><span class="n">start</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="p">)</span>
 <span class="w">   </span><span class="c">! &lt;&lt;&lt;&lt; code to time</span>
-<span class="w">   </span><span class="k">call </span><span class="nb">system_clock</span><span class="p">(</span><span class="n">finish</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="n">time_read</span><span class="o">=</span><span class="p">(</span><span class="n">finish</span><span class="o">-</span><span class="n">start</span><span class="p">)</span><span class="o">/</span><span class="kt">real</span><span class="p">(</span><span class="n">count_rate</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(a30,1x,f7.4,1x,a)&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;time * : &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">time_read</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; seconds&#39;</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">system_clock</span><span class="p">(</span><span class="n">finish</span><span class="p">)</span>
+<span class="w">   </span><span class="n">time_read</span><span class="o">=</span><span class="p">(</span><span class="n">finish</span><span class="o">-</span><span class="n">start</span><span class="p">)</span><span class="o">/</span><span class="kt">real</span><span class="p">(</span><span class="n">count_rate</span><span class="p">,</span><span class="n">wp</span><span class="p">)</span>
+<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(a30,1x,f7.4,1x,a)&#39;</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;time * : &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">time_read</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39; seconds&#39;</span>
 
-<span class="k">end program </span><span class="n">demo_system_clock</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_system_clock</span>
 </pre></div>
 </div>
 <p>If the processor clock is a 24-hour clock that registers time at
 approximately 18.20648193 ticks per second, at 11:30 A.M. the reference</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="k">call </span><span class="nb">system_clock</span><span class="w"> </span><span class="p">(</span><span class="nb">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">      </span><span class="k">call </span><span class="nb">system_clock</span><span class="w"> </span><span class="p">(</span><span class="nb">count</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">,</span><span class="w"> </span><span class="n">count_rate</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">count_max</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">m</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>defines</p>
@@ -1827,13 +1827,13 @@ approximately 18.20648193 ticks per second, at 11:30 A.M. the reference</p>
 </section>
 <section id="id37">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id37" title="Enlace permanente a este encabezado">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">subroutine </span><span class="nb">execute_command_line</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="w"> </span><span class="n">wait</span><span class="p">,</span><span class="w"> </span><span class="n">exitstat</span><span class="p">,</span><span class="w"> </span><span class="n">cmdstat</span><span class="p">,</span><span class="w"> </span><span class="n">cmdmsg</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">subroutine </span><span class="nb">execute_command_line</span><span class="p">(</span><span class="n">command</span><span class="p">,</span><span class="w"> </span><span class="n">wait</span><span class="p">,</span><span class="w"> </span><span class="n">exitstat</span><span class="p">,</span><span class="w"> </span><span class="n">cmdstat</span><span class="p">,</span><span class="w"> </span><span class="n">cmdmsg</span><span class="p">)</span>
 
-<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">command</span><span class="w"></span>
-<span class="w">    </span><span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">wait</span><span class="w"></span>
-<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">exitstat</span><span class="w"></span>
-<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cmdstat</span><span class="w"></span>
-<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cmdmsg</span><span class="w"></span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">command</span>
+<span class="w">    </span><span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">wait</span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">exitstat</span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cmdstat</span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">cmdmsg</span>
 </pre></div>
 </div>
 </section>
@@ -1906,16 +1906,16 @@ processor-dependent explanatory message.Otherwise, it is unchanged.</p>
 <section id="id40">
 <h3><strong>Examples</strong><a class="headerlink" href="#id40" title="Enlace permanente a este encabezado">#</a></h3>
 <p>Sample program:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_exec</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_exec</span>
 <span class="k">implicit none</span>
-<span class="k">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="k">   </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
 
-<span class="w">   </span><span class="k">call </span><span class="nb">execute_command_line</span><span class="p">(</span><span class="s2">&quot;external_prog.exe&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">exitstat</span><span class="o">=</span><span class="n">i</span><span class="p">)</span><span class="w"></span>
-<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Exit status of external_prog.exe was &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">execute_command_line</span><span class="p">(</span><span class="s2">&quot;external_prog.exe&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">exitstat</span><span class="o">=</span><span class="n">i</span><span class="p">)</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Exit status of external_prog.exe was &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span>
 
-<span class="w">   </span><span class="k">call </span><span class="nb">execute_command_line</span><span class="p">(</span><span class="s2">&quot;reindex_files.exe&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wait</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span><span class="w"></span>
-<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Now reindexing files in the background&quot;</span><span class="w"></span>
-<span class="k">end program </span><span class="n">demo_exec</span><span class="w"></span>
+<span class="w">   </span><span class="k">call </span><span class="nb">execute_command_line</span><span class="p">(</span><span class="s2">&quot;reindex_files.exe&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">wait</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.)</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Now reindexing files in the background&quot;</span>
+<span class="k">end program </span><span class="n">demo_exec</span>
 </pre></div>
 </div>
 </section>
@@ -1942,13 +1942,13 @@ be terminated alongside.</p>
 </section>
 <section id="id43">
 <h3><strong>Syntax</strong><a class="headerlink" href="#id43" title="Enlace permanente a este encabezado">#</a></h3>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">call </span><span class="nb">get_environment_variable</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">trim_name</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">call </span><span class="nb">get_environment_variable</span><span class="p">(</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="p">,</span><span class="w"> </span><span class="n">trim_name</span><span class="p">)</span>
 
-<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">name</span><span class="w"></span>
+<span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">name</span>
 <span class="w">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span>
-<span class="k">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">length</span><span class="w"></span>
-<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">status</span><span class="w"></span>
-<span class="w">   </span><span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">trim_name</span><span class="w"></span>
+<span class="k">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">length</span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">status</span>
+<span class="w">   </span><span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">trim_name</span>
 </pre></div>
 </div>
 </section>
@@ -2011,53 +2011,53 @@ environment variable name.</p>
 <section id="id47">
 <h3><strong>Examples</strong><a class="headerlink" href="#id47" title="Enlace permanente a este encabezado">#</a></h3>
 <p>Sample program:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_getenv</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_getenv</span>
 <span class="k">implicit none</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">homedir</span><span class="w"></span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">var</span><span class="w"></span>
-<span class="w">     </span><span class="n">var</span><span class="o">=</span><span class="s1">&#39;HOME&#39;</span><span class="w"></span>
-<span class="w">     </span><span class="n">homedir</span><span class="o">=</span><span class="n">get_env</span><span class="p">(</span><span class="n">var</span><span class="p">)</span><span class="w"></span>
-<span class="w">     </span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(a,&quot;=&quot;&quot;&quot;,a,&quot;&quot;&quot;&quot;)&#39;</span><span class="p">)</span><span class="n">var</span><span class="p">,</span><span class="n">homedir</span><span class="w"></span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">homedir</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">var</span>
+<span class="w">     </span><span class="n">var</span><span class="o">=</span><span class="s1">&#39;HOME&#39;</span>
+<span class="w">     </span><span class="n">homedir</span><span class="o">=</span><span class="n">get_env</span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+<span class="w">     </span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(a,&quot;=&quot;&quot;&quot;,a,&quot;&quot;&quot;&quot;)&#39;</span><span class="p">)</span><span class="n">var</span><span class="p">,</span><span class="n">homedir</span>
 
 <span class="k">contains</span>
 
-<span class="k">function </span><span class="n">get_env</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span><span class="n">DEFAULT</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="k">VALUE</span><span class="p">)</span><span class="w"></span>
+<span class="k">function </span><span class="n">get_env</span><span class="p">(</span><span class="n">NAME</span><span class="p">,</span><span class="n">DEFAULT</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="k">VALUE</span><span class="p">)</span>
 <span class="c">! a function that makes calling get_environment_variable(3) simple</span>
 <span class="k">implicit none</span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">NAME</span><span class="w"></span>
-<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">DEFAULT</span><span class="w"></span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">NAME</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">DEFAULT</span>
 <span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w">         </span><span class="kd">::</span><span class="w"> </span><span class="k">VALUE</span>
-<span class="kt">integer</span><span class="w">                              </span><span class="kd">::</span><span class="w"> </span><span class="n">howbig</span><span class="w"></span>
+<span class="kt">integer</span><span class="w">                              </span><span class="kd">::</span><span class="w"> </span><span class="n">howbig</span>
 <span class="kt">integer</span><span class="w">                              </span><span class="kd">::</span><span class="w"> </span><span class="nb">stat</span>
-<span class="kt">integer</span><span class="w">                              </span><span class="kd">::</span><span class="w"> </span><span class="n">length</span><span class="w"></span>
+<span class="kt">integer</span><span class="w">                              </span><span class="kd">::</span><span class="w"> </span><span class="n">length</span>
 <span class="w">   </span><span class="c">! get length required to hold value</span>
-<span class="w">   </span><span class="n">length</span><span class="o">=</span><span class="mi">0</span><span class="w"></span>
-<span class="w">   </span><span class="k">VALUE</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"></span>
+<span class="w">   </span><span class="n">length</span><span class="o">=</span><span class="mi">0</span>
+<span class="w">   </span><span class="k">VALUE</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
 <span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="n">NAME</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="s1">&#39;&#39;</span><span class="p">)</span><span class="k">then</span>
-<span class="k">      call </span><span class="nb">get_environment_variable</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">NAME</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="o">=</span><span class="n">howbig</span><span class="p">,</span><span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">,</span><span class="n">trim_name</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span><span class="w"></span>
-<span class="w">      </span><span class="k">select case</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="p">)</span><span class="w"></span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
+<span class="k">      call </span><span class="nb">get_environment_variable</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">      </span><span class="p">&amp;</span><span class="w"> </span><span class="n">NAME</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="o">=</span><span class="n">howbig</span><span class="p">,</span><span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">,</span><span class="n">trim_name</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+<span class="w">      </span><span class="k">select case</span><span class="w"> </span><span class="p">(</span><span class="nb">stat</span><span class="p">)</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
 <span class="w">       </span><span class="c">!*!print *, NAME, &quot; is not defined in the environment. Strange...&quot;</span>
-<span class="w">       </span><span class="k">VALUE</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"></span>
-<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="k">VALUE</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">)</span>
 <span class="w">       </span><span class="c">!*!print *, &amp;</span>
 <span class="w">       </span><span class="c">!*!&quot;This processor does not support environment variables. Boooh!&quot;</span>
-<span class="w">       </span><span class="k">VALUE</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"></span>
-<span class="w">      </span><span class="k">case </span><span class="n">default</span><span class="w"></span>
+<span class="w">       </span><span class="k">VALUE</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
+<span class="w">      </span><span class="k">case </span><span class="n">default</span>
 <span class="w">       </span><span class="c">! make string to hold value of sufficient size</span>
-<span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="k">VALUE</span><span class="p">))</span><span class="k">deallocate</span><span class="p">(</span><span class="k">VALUE</span><span class="p">)</span><span class="w"></span>
-<span class="w">       </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">howbig</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">VALUE</span><span class="p">)</span><span class="w"></span>
+<span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="k">VALUE</span><span class="p">))</span><span class="k">deallocate</span><span class="p">(</span><span class="k">VALUE</span><span class="p">)</span>
+<span class="w">       </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="nb">max</span><span class="p">(</span><span class="n">howbig</span><span class="p">,</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">VALUE</span><span class="p">)</span>
 <span class="w">       </span><span class="c">! get value</span>
-<span class="w">       </span><span class="k">call </span><span class="nb">get_environment_variable</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span><span class="w"></span>
-<span class="w">       </span><span class="p">&amp;</span><span class="w"> </span><span class="n">NAME</span><span class="p">,</span><span class="k">VALUE</span><span class="p">,</span><span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">,</span><span class="n">trim_name</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span><span class="w"></span>
-<span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="nb">stat</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">VALUE</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="w"></span>
+<span class="w">       </span><span class="k">call </span><span class="nb">get_environment_variable</span><span class="p">(</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">       </span><span class="p">&amp;</span><span class="w"> </span><span class="n">NAME</span><span class="p">,</span><span class="k">VALUE</span><span class="p">,</span><span class="n">status</span><span class="o">=</span><span class="nb">stat</span><span class="p">,</span><span class="n">trim_name</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.)</span>
+<span class="w">       </span><span class="k">if</span><span class="p">(</span><span class="nb">stat</span><span class="p">.</span><span class="n">ne</span><span class="p">.</span><span class="mi">0</span><span class="p">)</span><span class="k">VALUE</span><span class="o">=</span><span class="s1">&#39;&#39;</span>
 <span class="w">      </span><span class="k">end select</span>
 <span class="k">   endif</span>
-<span class="k">   if</span><span class="p">(</span><span class="k">VALUE</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="nb">present</span><span class="p">(</span><span class="n">DEFAULT</span><span class="p">))</span><span class="k">VALUE</span><span class="o">=</span><span class="n">DEFAULT</span><span class="w"></span>
-<span class="k">end function </span><span class="n">get_env</span><span class="w"></span>
+<span class="k">   if</span><span class="p">(</span><span class="k">VALUE</span><span class="p">.</span><span class="n">eq</span><span class="p">.</span><span class="s1">&#39;&#39;</span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="nb">present</span><span class="p">(</span><span class="n">DEFAULT</span><span class="p">))</span><span class="k">VALUE</span><span class="o">=</span><span class="n">DEFAULT</span>
+<span class="k">end function </span><span class="n">get_env</span>
 
-<span class="k">end program </span><span class="n">demo_getenv</span><span class="w"></span>
+<span class="k">end program </span><span class="n">demo_getenv</span>
 </pre></div>
 </div>
 <p>Typical Results:</p>

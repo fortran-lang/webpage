@@ -774,7 +774,7 @@
 </div>
 <p>Мы начнём с основ, находясь в пустом каталоге. Создайте и откройте файл с именем <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, в котором создайте простое правило под названием <em>all</em>:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span>
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 <p>После сохранения файла <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> запустите его, выполнив команду <code class="docutils literal notranslate"><span class="pre">make</span></code> в той же директории. Вы должны будете увидеть следующий вывод:</p>
@@ -796,13 +796,13 @@ all
 <p>Вероятно, отступ сделан неправильно. В этом случае, используйте для отступа во второй строке символ табуляции.</p>
 </div>
 <p>Теперь мы хотим усложнить наши правила, поэтому добавим ещё одно:</p>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">PROG</span> <span class="o">:=</span> my_prog
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">PROG</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>my_prog
 
-<span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2"> depends on </span>$<span class="s2">^&quot;</span>
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2"> depends on </span>$<span class="s2">^&quot;</span>
 
 <span class="nf">$(PROG)</span><span class="o">:</span>
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 <p>Обратите внимание, как мы объявляем переменные в <code class="docutils literal notranslate"><span class="pre">make</span></code>: вы всегда должны объявлять свои локальные переменные с помощью оператора <code class="docutils literal notranslate"><span class="pre">:=</span></code>. Для доступа к содержимому переменной используется оператор <code class="docutils literal notranslate"><span class="pre">$(...)</span></code>. Заметьте, что при этом необходимо заключить имя переменной в круглые скобки.</p>
@@ -820,16 +820,16 @@ all depends on my_prog
 </div>
 <p>Зависимость была правильно разрешена и вычислена перед выполнением любого действия в правиле <em>all</em>. Давайте запустим выполнение только второго правила: наберите команду <code class="docutils literal notranslate"><span class="pre">make</span> <span class="pre">my_prog</span></code> и в вашем терминале отобразятся только первые две строки предыдущего вывода.</p>
 <p>Следующим шагом будет выполнение некоторых реальных действий с помощью <code class="docutils literal notranslate"><span class="pre">make</span></code>, мы возьмем исходный код из предыдущей главы и добавим новые правила в наш <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>:</p>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">OBJS</span> <span class="o">:=</span> tabulate.o functions.o
-<span class="nv">PROG</span> <span class="o">:=</span> my_prog
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">OBJS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>tabulate.o<span class="w"> </span>functions.o
+<span class="nv">PROG</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>my_prog
 
-<span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
 
-<span class="nf">$(PROG)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
-	gfortran -o <span class="nv">$@</span> $^
+<span class="nf">$(PROG)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
+<span class="w">	</span>gfortran<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$^
 
-<span class="nf">$(OBJS)</span><span class="o">:</span> %.<span class="n">o</span>: %.<span class="n">f</span>90
-	gfortran -c -o <span class="nv">$@</span> $&lt;
+<span class="nf">$(OBJS)</span><span class="o">:</span><span class="w"> </span>%.<span class="n">o</span>: %.<span class="n">f</span>90
+<span class="w">	</span>gfortran<span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$&lt;
 </pre></div>
 </div>
 <p>Мы определили переменную <code class="docutils literal notranslate"><span class="pre">OBJS</span></code>, содержащую список объектных файлов. Наша программа зависит от списка <code class="docutils literal notranslate"><span class="pre">OBJS</span></code> и для каждого элемента из него мы создаём правило, чтобы скомпилировать объектный файл из файла исходного кода. Последнее правило, которое мы описали является правилом сопоставления шаблонов, где <code class="docutils literal notranslate"><span class="pre">%</span></code> – общий шаблон между <code class="docutils literal notranslate"><span class="pre">tabulate.o</span></code> и <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code>, который соединяет наш объектный файл <code class="docutils literal notranslate"><span class="pre">tabulate.o</span></code> с файлом исходного кода <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code>. Используя этот набор, мы запускаем компилятор <code class="docutils literal notranslate"><span class="pre">gfortran</span></code> и транслируем исходный код в объектный файл, при этом исполняемый файл пока не создаётся, так как используется ключ компилятора <code class="docutils literal notranslate"><span class="pre">-c</span></code>. Обратите внимание на использование переменной <code class="docutils literal notranslate"><span class="pre">$&lt;</span></code> для обращения к первому элементу списка зависимостей.</p>
@@ -846,7 +846,7 @@ make: *** [Makefile:10: tabulate.f90.o] Error 1
 </pre></div>
 </div>
 <p>Мы помним, что у нас есть зависимости между нашими исходными файлами, поэтому мы явно добавляем эту зависимость в <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> с помощью правила</p>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">tabulate.o</span><span class="o">:</span> <span class="n">functions</span>.<span class="n">o</span>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">tabulate.o</span><span class="o">:</span><span class="w"> </span><span class="n">functions</span>.<span class="n">o</span>
 </pre></div>
 </div>
 <p>Теперь мы можем повторить попытку запуска сценария сборки и убедиться, что процесс сборки работает правильно. Вывод должен выглядеть следующим образом</p>
@@ -862,34 +862,34 @@ gfortran -o my_prog tabulate.o functions.o
 <p>Используя временные метки исполняемого файла <code class="docutils literal notranslate"><span class="pre">make</span></code> определил, что исполняемый файл новее чем каждый из файлов <code class="docutils literal notranslate"><span class="pre">tabulate.o</span></code> и <code class="docutils literal notranslate"><span class="pre">functions.o</span></code>, которые, в свою очередь, новее чем файлы исходного кода <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code> и <code class="docutils literal notranslate"><span class="pre">functions.f90</span></code>. Поэтому программа уже соответствует содержимому файлов исходного кода и никаких действий по её пересборке выполнять не нужно.</p>
 <p>В заключение мы рассмотрим готовый вариант скрипта <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable all of make&#39;s built-in rules (similar to Fortran&#39;s implicit none)</span>
-<span class="nv">MAKEFLAGS</span> <span class="o">+=</span> --no-builtin-rules --no-builtin-variables
+<span class="nv">MAKEFLAGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>--no-builtin-rules<span class="w"> </span>--no-builtin-variables
 <span class="c"># configuration</span>
-<span class="nv">FC</span> <span class="o">:=</span> gfortran
-<span class="nv">LD</span> <span class="o">:=</span> <span class="k">$(</span>FC<span class="k">)</span>
-<span class="nv">RM</span> <span class="o">:=</span> rm -f
+<span class="nv">FC</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>gfortran
+<span class="nv">LD</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>FC<span class="k">)</span>
+<span class="nv">RM</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>rm<span class="w"> </span>-f
 <span class="c"># list of all source files</span>
-<span class="nv">SRCS</span> <span class="o">:=</span> tabulate.f90 functions.f90
-<span class="nv">PROG</span> <span class="o">:=</span> my_prog
+<span class="nv">SRCS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>tabulate.f90<span class="w"> </span>functions.f90
+<span class="nv">PROG</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>my_prog
 
-<span class="nv">OBJS</span> <span class="o">:=</span> <span class="k">$(</span>addsuffix .o, <span class="k">$(</span>SRCS<span class="k">))</span>
+<span class="nv">OBJS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>addsuffix<span class="w"> </span>.o,<span class="w"> </span><span class="k">$(</span>SRCS<span class="k">))</span>
 
-<span class="nf">.PHONY</span><span class="o">:</span> <span class="n">all</span> <span class="n">clean</span>
-<span class="nf">all</span><span class="o">:</span> <span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
+<span class="nf">.PHONY</span><span class="o">:</span><span class="w"> </span><span class="n">all</span> <span class="n">clean</span>
+<span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
 
-<span class="nf">$(PROG)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
-	<span class="k">$(</span>LD<span class="k">)</span> -o <span class="nv">$@</span> $^
+<span class="nf">$(PROG)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">OBJS</span><span class="k">)</span>
+<span class="w">	</span><span class="k">$(</span>LD<span class="k">)</span><span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$^
 
-<span class="nf">$(OBJS)</span><span class="o">:</span> %.<span class="n">o</span>: %
-	<span class="k">$(</span>FC<span class="k">)</span> -c -o <span class="nv">$@</span> $&lt;
+<span class="nf">$(OBJS)</span><span class="o">:</span><span class="w"> </span>%.<span class="n">o</span>: %
+<span class="w">	</span><span class="k">$(</span>FC<span class="k">)</span><span class="w"> </span>-c<span class="w"> </span>-o<span class="w"> </span><span class="nv">$@</span><span class="w"> </span>$&lt;
 
 <span class="c"># define dependencies between object files</span>
-<span class="nf">tabulate.f90.o</span><span class="o">:</span> <span class="n">functions</span>.<span class="n">f</span>90.<span class="n">o</span> <span class="n">user_functions</span>.<span class="n">mod</span>
+<span class="nf">tabulate.f90.o</span><span class="o">:</span><span class="w"> </span><span class="n">functions</span>.<span class="n">f</span>90.<span class="n">o</span> <span class="n">user_functions</span>.<span class="n">mod</span>
 
 <span class="c"># rebuild all object files in case this Makefile changes</span>
-<span class="nf">$(OBJS)</span><span class="o">:</span> <span class="k">$(</span><span class="nv">MAKEFILE_LIST</span><span class="k">)</span>
+<span class="nf">$(OBJS)</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">MAKEFILE_LIST</span><span class="k">)</span>
 
 <span class="nf">clean</span><span class="o">:</span>
-	<span class="k">$(</span>RM<span class="k">)</span> <span class="k">$(</span>filter %.o, <span class="k">$(</span>OBJS<span class="k">))</span> <span class="k">$(</span>wildcard *.mod<span class="k">)</span> <span class="k">$(</span>PROG<span class="k">)</span>
+<span class="w">	</span><span class="k">$(</span>RM<span class="k">)</span><span class="w"> </span><span class="k">$(</span>filter<span class="w"> </span>%.o,<span class="w"> </span><span class="k">$(</span>OBJS<span class="k">))</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.mod<span class="k">)</span><span class="w"> </span><span class="k">$(</span>PROG<span class="k">)</span>
 </pre></div>
 </div>
 <p>Поскольку вы начинаете с системы сборки <code class="docutils literal notranslate"><span class="pre">make</span></code> мы настоятельно рекомендуем всегда добавлять указанную первую строчку, так как и в случае с оператором Fortran <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code>, мы не хотим, чтобы неявные правила испортили наш <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> неожиданным и вредным образом.</p>
@@ -906,11 +906,11 @@ gfortran -o my_prog tabulate.o functions.o
 <p>Во многих проектах часто встречаются рекурсивно расширяемые переменные (объявление с использованием оператора <code class="docutils literal notranslate"><span class="pre">=</span></code> вместо <code class="docutils literal notranslate"><span class="pre">:=</span></code>). Рекурсивное расширение ваших переменных позволяет объявлять их не по порядку и делать другие хитрые трюки с использованием <code class="docutils literal notranslate"><span class="pre">make</span></code>, так как они определяются как правила, которые расширяются во время выполнения, а не во время анализа.</p>
 <p>Например, объявление и использование ваших флагов компиляции Fortran с помощью приведённого ниже фрагмента будет работать совершенно нормально:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span>
-	<span class="nb">echo</span> <span class="k">$(</span>FFLAGS<span class="k">)</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="k">$(</span>FFLAGS<span class="k">)</span>
 
-<span class="nv">FFLAGS</span> <span class="o">=</span> <span class="k">$(</span>include_dirs<span class="k">)</span> -O
-<span class="nv">include_dirs</span> <span class="o">+=</span> -I./include
-<span class="nv">include_dirs</span> <span class="o">+=</span> -I/opt/some_dep/include
+<span class="nv">FFLAGS</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">$(</span>include_dirs<span class="k">)</span><span class="w"> </span>-O
+<span class="nv">include_dirs</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-I./include
+<span class="nv">include_dirs</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-I/opt/some_dep/include
 </pre></div>
 </div>
 <p>После выполнения команды <code class="docutils literal notranslate"><span class="pre">make</span></code> вы должны получить ожидаемый (или, возможно, неожиданный) вывод</p>
@@ -925,11 +925,11 @@ gfortran -o my_prog tabulate.o functions.o
 <p>Хотя эта возможность кажется интересной, она имеет тенденцию приводить к удивительным и неожиданным результатам. Обычно при определении переменных для вашего компилятора нет особых причин использовать рекурсивное расширение.</p>
 <p>Нужного эффекта при объявлении можно добиться используя оператор <code class="docutils literal notranslate"><span class="pre">:=</span></code>:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span>
-	<span class="nb">echo</span> <span class="k">$(</span>FFLAGS<span class="k">)</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="k">$(</span>FFLAGS<span class="k">)</span>
 
-<span class="nv">include_dirs</span> <span class="o">:=</span> -I./include
-<span class="nv">include_dirs</span> <span class="o">+=</span> -I/opt/some_dep/include
-<span class="nv">FFLAGS</span> <span class="o">:=</span> <span class="k">$(</span>include_dirs<span class="k">)</span> -O
+<span class="nv">include_dirs</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>-I./include
+<span class="nv">include_dirs</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>-I/opt/some_dep/include
+<span class="nv">FFLAGS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>include_dirs<span class="k">)</span><span class="w"> </span>-O
 </pre></div>
 </div>
 <div class="admonition important">
@@ -943,9 +943,9 @@ gfortran -o my_prog tabulate.o functions.o
 <p>Есть некоторые предостережения по поводу символа пробела и комментариев, которые могут время от времени проявляться при использовании <code class="docutils literal notranslate"><span class="pre">make</span></code>. Во-первых, утилита <code class="docutils literal notranslate"><span class="pre">make</span></code> не знает ни одного типа данных, кроме строк и разделителем по умолчанию является пробел. Это означает, что <code class="docutils literal notranslate"><span class="pre">make</span></code> будет испытывать трудности при попытке собрать проект, в именах файлов которого используются символы пробела. Если вы столкнулись с такой проблемой, то переименование файла, возможно, будет самым простым её решением.</p>
 <p>Другая распространённая проблема – символы пробела в начале и конце строки. Если их ввести, то <code class="docutils literal notranslate"><span class="pre">make</span></code> воспримет их как часть строки и это повлияет на содержимое этих строк внутри файла <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
 <p>Такое может произойти при добавлении комментария</p>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span> <span class="o">:=</span> /usr  <span class="c1"># path to install location</span>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>/usr<span class="w">  </span><span class="c1"># path to install location</span>
 <span class="nf">install</span><span class="o">:</span>
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span>prefix<span class="k">)</span><span class="s2">/lib&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>prefix<span class="k">)</span><span class="s2">/lib&quot;</span>
 </pre></div>
 </div>
 <p>Хотя комментарий будет корректно удалён при анализе утилитой <code class="docutils literal notranslate"><span class="pre">make</span></code>, но два завершающих пробельных символа являются частью содержимого переменной. Запустите команду <code class="docutils literal notranslate"><span class="pre">make</span></code> и убедитесь, что это действительно так:</p>
@@ -954,10 +954,10 @@ gfortran -o my_prog tabulate.o functions.o
 </pre></div>
 </div>
 <p>Чтобы разрешить эту проблему, вы можете либо перенести комментарий на следующую строку, либо удалить пробелы в содержимом переменной с помощью функции <code class="docutils literal notranslate"><span class="pre">strip</span></code>. В качестве альтернативного решения можно попробовать соединить строки с помощью функции <code class="docutils literal notranslate"><span class="pre">join</span></code>.</p>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span> <span class="o">:=</span> /usr  <span class="c1"># path to install location</span>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>/usr<span class="w">  </span><span class="c1"># path to install location</span>
 <span class="nf">install</span><span class="o">:</span>
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span>strip <span class="k">$(</span>prefix<span class="k">))</span><span class="s2">/lib&quot;</span>
-	<span class="nb">echo</span> <span class="s2">&quot;</span><span class="k">$(</span>join <span class="k">$(</span>join <span class="k">$(</span>prefix<span class="k">)</span>, /<span class="k">)</span>, lib<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>strip<span class="w"> </span><span class="k">$(</span>prefix<span class="k">))</span><span class="s2">/lib&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>join<span class="w"> </span><span class="k">$(</span>join<span class="w"> </span><span class="k">$(</span>prefix<span class="k">)</span>,<span class="w"> </span>/<span class="k">)</span>,<span class="w"> </span>lib<span class="k">)</span><span class="s2">&quot;</span>
 </pre></div>
 </div>
 <p>В целом, ни одно из этих решений не сделает ваш файл <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> более удобным для чтения, поэтому при написании и использовании правил <code class="docutils literal notranslate"><span class="pre">make</span></code> следует уделять повышенное внимание символам пробела и комментариям.</p>

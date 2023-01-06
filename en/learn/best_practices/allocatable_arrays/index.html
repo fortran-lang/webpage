@@ -732,61 +732,61 @@ out-of-scope. Using <code class="docutils literal notranslate"><span class="pre"
 create memory leaks in an application.</p>
 <p>They can be used in subroutines to create scratch or work arrays, where
 automatic arrays would become too large to fit on the stack.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">temp</span><span class="p">(:)</span><span class="w"></span>
-<span class="k">allocate</span><span class="p">(</span><span class="n">temp</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">temp</span><span class="p">(:)</span>
+<span class="k">allocate</span><span class="p">(</span><span class="n">temp</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>The allocation status can be checked using the <code class="docutils literal notranslate"><span class="pre">allocated</span></code> intrinsic
 to avoid uninitialized access</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span>
 
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">    print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="w"></span>
+<span class="k">    print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span>
 <span class="w">  </span><span class="k">end if</span>
-<span class="k">end subroutine </span><span class="n">show_arr</span><span class="w"></span>
+<span class="k">end subroutine </span><span class="n">show_arr</span>
 </pre></div>
 </div>
 <p>To allocate variables inside a procedure the dummy argument has to carry
 the <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute. Using it in combination with <code class="docutils literal notranslate"><span class="pre">intent(out)</span></code>
 will deallocate previous allocations before entering the procedure:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">foo</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lam</span><span class="p">(:)</span><span class="w"></span>
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">lam</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="w"></span>
-<span class="k">end subroutine </span><span class="n">foo</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">foo</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lam</span><span class="p">(:)</span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">lam</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="k">end subroutine </span><span class="n">foo</span>
 </pre></div>
 </div>
 <p>The allocated array can be used afterwards like a normal array</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lam</span><span class="p">(:)</span><span class="w"></span>
-<span class="k">call </span><span class="n">foo</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lam</span><span class="p">(:)</span>
+<span class="k">call </span><span class="n">foo</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>An already allocated array cannot be allocated again without prior deallocation.
 Similarly, deallocation can only be invoked for allocated arrays. To reallocate
 an array use</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">lam</span><span class="p">))</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="w"></span>
-<span class="k">allocate</span><span class="p">(</span><span class="n">lam</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">lam</span><span class="p">))</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span>
+<span class="k">allocate</span><span class="p">(</span><span class="n">lam</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>Passing allocated arrays to procedures does not require the <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute
 for the dummy arguments anymore.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span>
 
-<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="w"></span>
-<span class="k">end subroutine </span><span class="n">show_arr</span><span class="w"></span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span>
+<span class="k">end subroutine </span><span class="n">show_arr</span>
 
-<span class="k">subroutine </span><span class="n">proc</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="w"></span>
+<span class="k">subroutine </span><span class="n">proc</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span>
 
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">arr</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">arr</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 
-<span class="w">  </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">arr</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">  </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="w">    </span><span class="n">arr</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">  </span><span class="k">end do</span>
-<span class="k">  call </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
-<span class="k">end subroutine </span><span class="n">proc</span><span class="w"></span>
+<span class="k">  call </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="k">end subroutine </span><span class="n">proc</span>
 </pre></div>
 </div>
 <p>Passing an unallocated array in this context will lead to an invalid memory access.
@@ -796,39 +796,39 @@ arrays and can also be associated with scalars, which can be useful in combinati
 with <code class="docutils literal notranslate"><span class="pre">optional</span></code> dummy arguments.</p>
 <p>Allocations can be moved between different arrays with <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute
 using the <code class="docutils literal notranslate"><span class="pre">move_alloc</span></code> intrinsic subroutine.</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">resize</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">var</span><span class="p">(:)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">this_size</span><span class="p">,</span><span class="w"> </span><span class="n">new_size</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">inital_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">resize</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">var</span><span class="p">(:)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">this_size</span><span class="p">,</span><span class="w"> </span><span class="n">new_size</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">inital_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span>
 
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">var</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">    </span><span class="n">this_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">tmp</span><span class="p">)</span><span class="w"></span>
+<span class="k">    </span><span class="n">this_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">tmp</span><span class="p">)</span>
 <span class="w">  </span><span class="k">else</span>
-<span class="k">    </span><span class="n">this_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initial_size</span><span class="w"></span>
+<span class="k">    </span><span class="n">this_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initial_size</span>
 <span class="w">  </span><span class="k">end if</span>
 
 <span class="k">  if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">    </span><span class="n">new_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
+<span class="k">    </span><span class="n">new_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span>
 <span class="w">  </span><span class="k">else</span>
-<span class="k">    </span><span class="n">new_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">this_size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">this_size</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="k">    </span><span class="n">new_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">this_size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">this_size</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">  </span><span class="k">end if</span>
 
-<span class="k">  allocate</span><span class="p">(</span><span class="n">var</span><span class="p">(</span><span class="n">new_size</span><span class="p">))</span><span class="w"></span>
+<span class="k">  allocate</span><span class="p">(</span><span class="n">var</span><span class="p">(</span><span class="n">new_size</span><span class="p">))</span>
 
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">    </span><span class="n">this_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">min</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"></span>
-<span class="w">    </span><span class="n">var</span><span class="p">(:</span><span class="n">this_size</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmp</span><span class="p">(:</span><span class="n">this_size</span><span class="p">)</span><span class="w"></span>
+<span class="k">    </span><span class="n">this_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">min</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="w">    </span><span class="n">var</span><span class="p">(:</span><span class="n">this_size</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmp</span><span class="p">(:</span><span class="n">this_size</span><span class="p">)</span>
 <span class="w">  </span><span class="k">end if</span>
-<span class="k">end subroutine </span><span class="n">resize</span><span class="w"></span>
+<span class="k">end subroutine </span><span class="n">resize</span>
 </pre></div>
 </div>
 <p>Finally, allocations do not initialize the array. The content of the uninitialized
 array is most likely just the bytes of whatever was previously at the respective address.
 The allocation supports initialization using the source attribute:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span><span class="w"></span>
-<span class="k">allocate</span><span class="p">(</span><span class="n">arr</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">source</span><span class="o">=</span><span class="mf">0.0_dp</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span>
+<span class="k">allocate</span><span class="p">(</span><span class="n">arr</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">source</span><span class="o">=</span><span class="mf">0.0_dp</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">source</span></code> keyword supports scalar and array valued variables and constants.</p>

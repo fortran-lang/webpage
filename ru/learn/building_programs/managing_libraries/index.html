@@ -748,22 +748,22 @@
 <h1>Управление библиотеками (статические и динамические библиотеки)<a class="headerlink" href="#managing-libraries-static-and-dynamic-libraries" title="Permalink to this heading">#</a></h1>
 <p>Если вам нужно управлять программой, собранной из десятков файлов исходного кода (а это не редкость!), то командная строка, необходимая для указания всех объектных файлов будет очень длинной. Очень скоро поддержка такого списка станет утомительной или даже невозможной. Поэтому необходимо другое решение: создание собственных библиотек.</p>
 <p>Библиотеки содержат любое количество объектных файлов в компактной форме, так что командная строка для сборки программы становится короче:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -o tabulate tabulate.f90 functions.o supportlib.a
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-o<span class="w"> </span>tabulate<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.o<span class="w"> </span>supportlib.a
 </pre></div>
 </div>
 <p>где «supportlib.a» – набор из одного, двух или нескольких объектных файлов, скомпилированных, а затем помещённых в библиотеку. Расширение файла «.a» используется в операционных системах Linux и Linux-подобных платформах. В операционной системе Windows используется расширение «.lib».</p>
 <p>Создание собственных библиотек не так уж сложно: в Linux это можно сделать, например, с помощью утилиты <code class="docutils literal notranslate"><span class="pre">ar</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -c file1.f90 file2.f90
-$ gfortran -c file3.f90 ...
-$ ar r supportlib.a file1.o file2.o
-$ ar r supportlib.a file3.o ...
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+$<span class="w"> </span>ar<span class="w"> </span>r<span class="w"> </span>supportlib.a<span class="w"> </span>file1.o<span class="w"> </span>file2.o
+$<span class="w"> </span>ar<span class="w"> </span>r<span class="w"> </span>supportlib.a<span class="w"> </span>file3.o<span class="w"> </span>...
 </pre></div>
 </div>
 <p>а в Windows с помощью утилиты <code class="docutils literal notranslate"><span class="pre">lib</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>c:<span class="se">\.</span>..&gt; ifort -c file1.f90 file2.f90
-c:<span class="se">\.</span>..&gt; ifort -c file3.f90 ...
-c:<span class="se">\.</span>..&gt; lib /out:supportlib.lib file1.obj file2.obj
-c:<span class="se">\.</span>..&gt; lib supportlib.lib file3.obj ...
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>c:<span class="se">\.</span>..&gt;<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+c:<span class="se">\.</span>..&gt;<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+c:<span class="se">\.</span>..&gt;<span class="w"> </span>lib<span class="w"> </span>/out:supportlib.lib<span class="w"> </span>file1.obj<span class="w"> </span>file2.obj
+c:<span class="se">\.</span>..&gt;<span class="w"> </span>lib<span class="w"> </span>supportlib.lib<span class="w"> </span>file3.obj<span class="w"> </span>...
 </pre></div>
 </div>
 <p>Примечание:</p>
@@ -780,15 +780,15 @@ c:<span class="se">\.</span>..&gt; lib supportlib.lib file3.obj ...
 <p>Гибкой альтернативой является использование так называемых динамических библиотек. Эти библиотеки остаются снаружи исполняемого файла программы и, как следствие, могут быть заменены без пересборки всей программы. Компиляторы и сама операционная система в значительной степени полагаются на такие динамические библиотеки. Можно рассматривать динамические библиотеки как своего рода исполняемые программы, которым для запуска требуется небольшая помощь.</p>
 <p>Создание динамических библиотек происходит немного иначе, чем создание статических: вы используете компилятор/компоновщик вместо таких инструментов как <code class="docutils literal notranslate"><span class="pre">ar</span></code> или <code class="docutils literal notranslate"><span class="pre">lib</span></code>.</p>
 <p>В Linux:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -fpic -c file1.f90 file2.f90
-$ gfortran -fpic -c file3.f90 ...
-$ gfortran -shared -o supportlib.so file1.o file2.o file3.o ...
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-fpic<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+$<span class="w"> </span>gfortran<span class="w"> </span>-fpic<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+$<span class="w"> </span>gfortran<span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span>supportlib.so<span class="w"> </span>file1.o<span class="w"> </span>file2.o<span class="w"> </span>file3.o<span class="w"> </span>...
 </pre></div>
 </div>
 <p>В Windows с компилятором Intel Fortran:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ifort -c file1.f90 file2.f90
-$ ifort -c file3.f90 ...
-$ ifort -dll -exe:supportlib.dll file1.obj file2.obj file3.obj ...
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+$<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+$<span class="w"> </span>ifort<span class="w"> </span>-dll<span class="w"> </span>-exe:supportlib.dll<span class="w"> </span>file1.obj<span class="w"> </span>file2.obj<span class="w"> </span>file3.obj<span class="w"> </span>...
 </pre></div>
 </div>
 <p>Различия заключаются в следующем:</p>
@@ -797,12 +797,12 @@ $ ifort -dll -exe:supportlib.dll file1.obj file2.obj file3.obj ...
 <li><p>На этапе компоновки нужно указать, что вам нужна динамическая библиотека (в Linux: shared object/library, отсюда расширение «.so»; в Windows: dynamic link library)</p></li>
 </ul>
 <p>Есть ещё один момент, о котором следует знать: в Windows вы должны явно указать, что процедура должна быть <em>экспортирована</em>, т.е. видна в динамической библиотеке. Существует несколько способов, в зависимости от используемого компилятора, добиться этого. Один из них – с помощью так называемой директивы компилятора:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span>
 <span class="c">!GCC$ ATTRIBUTES DLLEXPORT:: myroutine</span>
 </pre></div>
 </div>
 <p>Или, при использовании компилятора Intel Fortran:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span>
 <span class="c">!DEC$ ATTRIBUTES DLLEXPORT:: myroutine</span>
 </pre></div>
 </div>
@@ -814,24 +814,24 @@ $ ifort -dll -exe:supportlib.dll file1.obj file2.obj file3.obj ...
 <p>Для программы <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> требуется пользовательская подпрограмма <code class="docutils literal notranslate"><span class="pre">f</span></code>. Если мы поместим её в динамическую библиотеку, например, «functions.dll», мы можем просто заменить реализацию функции, поместив в каталог другую динамическую библиотеку. Пересобирать саму программу при этом не нужно.</p>
 <p>В оболочке Cygwin нет необходимости явно экспортировать подпрограмму – все публично видимые подпрограммы экспортируются при создании динамической библиотеки. При этом не создаётся импортируемая библиотека.</p>
 <p>Так как наша динамическая библиотека может быть собрана из одного файла исходного кода, мы можем использовать простой способ её создания:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -shared -o functions.dll functions.f90
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span>functions.dll<span class="w"> </span>functions.f90
 </pre></div>
 </div>
 <p>В результате будут созданы файлы «functions.dll» и «user_functions.mod». Утилита <code class="docutils literal notranslate"><span class="pre">nm</span></code> сообщает нам точное имя функции <code class="docutils literal notranslate"><span class="pre">f</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ nm functions.dll
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>nm<span class="w"> </span>functions.dll
 ...
-000000054f9d7000 B __dynamically_loaded
-                 U __end__
-<span class="m">0000000000000200</span> A __file_alignment__
-000000054f9d1030 T __function_MOD_f
-000000054f9d1020 T __gcc_deregister_frame
-000000054f9d1000 T __gcc_register_frame
+000000054f9d7000<span class="w"> </span>B<span class="w"> </span>__dynamically_loaded
+<span class="w">                 </span>U<span class="w"> </span>__end__
+<span class="m">0000000000000200</span><span class="w"> </span>A<span class="w"> </span>__file_alignment__
+000000054f9d1030<span class="w"> </span>T<span class="w"> </span>__function_MOD_f
+000000054f9d1020<span class="w"> </span>T<span class="w"> </span>__gcc_deregister_frame
+000000054f9d1000<span class="w"> </span>T<span class="w"> </span>__gcc_register_frame
 ...
 </pre></div>
 </div>
 <p>Она получила префикс <code class="docutils literal notranslate"><span class="pre">__function_MOD_</span></code>, чтобы можно было отличить её от функции «f», которая может быть определена в другом модуле.</p>
 <p>Следующим шагом будет сборка программы:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -o tabulate tabulate.f90 functions.dll
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-o<span class="w"> </span>tabulate<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.dll
 </pre></div>
 </div>
 <p>DLL и файл .mod используются для сборки исполняемого файла программы с проверкой интерфейса функции, правильного имени и ссылки на DLL, названой «functions.dll».</p>
@@ -841,12 +841,12 @@ $ ifort -dll -exe:supportlib.dll file1.obj file2.obj file3.obj ...
 <h2>Windows и Intel Fortran<a class="headerlink" href="#windows-and-intel-fortran" title="Permalink to this heading">#</a></h2>
 <p>Настройка в этом случае такая же, как и в случае с Linux, но в Windows необходимо явно экспортировать подпрограммы. При этом создаётся импортируемая библиотека (import library) – именно эта библиотека должна использоваться на этапе компоновки.</p>
 <p>Файл исходного кода должен содержать директиву компилятора, иначе функция <code class="docutils literal notranslate"><span class="pre">f</span></code> не будет экспортирована:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
 <span class="c">!DEC$ ATTRIBUTES DLLEXPORT :: f</span>
 </pre></div>
 </div>
 <p>И снова мы используем простой способ сборки библиотеки:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ifort -exe:functions.dll functions.f90 -dll
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifort<span class="w"> </span>-exe:functions.dll<span class="w"> </span>functions.f90<span class="w"> </span>-dll
 </pre></div>
 </div>
 <p>В результате также будет созданы файлы «functions.dll», «user_functions.mod», а также «functions.lib» (и ещё два файла, не имеющие в данном случае значения). Программа «dependency walker» сообщит нам, что точное имя функции «f» – <code class="docutils literal notranslate"><span class="pre">FUNCTION_mp_F</span></code>. Она также экспортирована, чтобы компоновщик смог найти её на следующем этапе сборки программы:</p>

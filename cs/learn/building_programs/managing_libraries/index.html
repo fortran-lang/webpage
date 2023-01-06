@@ -753,7 +753,7 @@ even impossible to maintain. So a different solution is called for:
 create your own libraries.</p>
 <p>Libraries contain any number of object files in a compact form, so that
 the command-line becomes far shorter:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -o tabulate tabulate.f90 functions.o supportlib.a
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-o<span class="w"> </span>tabulate<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.o<span class="w"> </span>supportlib.a
 </pre></div>
 </div>
 <p>where „supportlib.a“ is a collection of one, two or many object files,
@@ -761,17 +761,17 @@ all compiled and then put into a library. The extension „.a“ is used by
 Linux and Linux-like platforms. On Windows the extension „.lib“ is used.</p>
 <p>Creating your own libraries is not that complicated:
 on Linux, you can achieve this using a utility like <code class="docutils literal notranslate"><span class="pre">ar</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -c file1.f90 file2.f90
-$ gfortran -c file3.f90 ...
-$ ar r supportlib.a file1.o file2.o
-$ ar r supportlib.a file3.o ...
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+$<span class="w"> </span>ar<span class="w"> </span>r<span class="w"> </span>supportlib.a<span class="w"> </span>file1.o<span class="w"> </span>file2.o
+$<span class="w"> </span>ar<span class="w"> </span>r<span class="w"> </span>supportlib.a<span class="w"> </span>file3.o<span class="w"> </span>...
 </pre></div>
 </div>
 <p>or on Windows using the <code class="docutils literal notranslate"><span class="pre">lib</span></code> utility:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>c:<span class="se">\.</span>..&gt; ifort -c file1.f90 file2.f90
-c:<span class="se">\.</span>..&gt; ifort -c file3.f90 ...
-c:<span class="se">\.</span>..&gt; lib /out:supportlib.lib file1.obj file2.obj
-c:<span class="se">\.</span>..&gt; lib supportlib.lib file3.obj ...
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>c:<span class="se">\.</span>..&gt;<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+c:<span class="se">\.</span>..&gt;<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+c:<span class="se">\.</span>..&gt;<span class="w"> </span>lib<span class="w"> </span>/out:supportlib.lib<span class="w"> </span>file1.obj<span class="w"> </span>file2.obj
+c:<span class="se">\.</span>..&gt;<span class="w"> </span>lib<span class="w"> </span>supportlib.lib<span class="w"> </span>file3.obj<span class="w"> </span>...
 </pre></div>
 </div>
 <p>Note:</p>
@@ -808,15 +808,15 @@ programs that need a bit of help to be run.</p>
 static libraries: you use the compiler/linker instead of a tool
 like <code class="docutils literal notranslate"><span class="pre">ar</span></code> or <code class="docutils literal notranslate"><span class="pre">lib</span></code>.</p>
 <p>On Linux:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -fpic -c file1.f90 file2.f90
-$ gfortran -fpic -c file3.f90 ...
-$ gfortran -shared -o supportlib.so file1.o file2.o file3.o ...
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-fpic<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+$<span class="w"> </span>gfortran<span class="w"> </span>-fpic<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+$<span class="w"> </span>gfortran<span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span>supportlib.so<span class="w"> </span>file1.o<span class="w"> </span>file2.o<span class="w"> </span>file3.o<span class="w"> </span>...
 </pre></div>
 </div>
 <p>On Windows, with the Intel Fortran compiler:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ifort -c file1.f90 file2.f90
-$ ifort -c file3.f90 ...
-$ ifort -dll -exe:supportlib.dll file1.obj file2.obj file3.obj ...
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+$<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+$<span class="w"> </span>ifort<span class="w"> </span>-dll<span class="w"> </span>-exe:supportlib.dll<span class="w"> </span>file1.obj<span class="w"> </span>file2.obj<span class="w"> </span>file3.obj<span class="w"> </span>...
 </pre></div>
 </div>
 <p>The differences are that:</p>
@@ -832,12 +832,12 @@ explicitly specify that a procedure is to be <em>exported</em>, i.e. is visible
 in the dynamic library. There are several ways — depending on the
 compiler you use — to achieve this. One method is via a so-called
 compiler directive:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span>
 <span class="c">!GCC$ ATTRIBUTES DLLEXPORT:: myroutine</span>
 </pre></div>
 </div>
 <p>Or, with the Intel Fortran compiler:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">myroutine</span><span class="p">(</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="p">)</span>
 <span class="c">!DEC$ ATTRIBUTES DLLEXPORT:: myroutine</span>
 </pre></div>
 </div>
@@ -858,26 +858,26 @@ publically visible routines are exported when you build a dynamic library.
 Also, no import library is generated.</p>
 <p>Since our dynamic library can be built from a single source file, we
 can take a shortcut:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -shared -o functions.dll functions.f90
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span>functions.dll<span class="w"> </span>functions.f90
 </pre></div>
 </div>
 <p>This produces the files „functions.dll“ and „user_functions.mod“. The
 utility <code class="docutils literal notranslate"><span class="pre">nm</span></code> tells us the exact name of the function <code class="docutils literal notranslate"><span class="pre">f</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ nm functions.dll
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>nm<span class="w"> </span>functions.dll
 ...
-000000054f9d7000 B __dynamically_loaded
-                 U __end__
-<span class="m">0000000000000200</span> A __file_alignment__
-000000054f9d1030 T __function_MOD_f
-000000054f9d1020 T __gcc_deregister_frame
-000000054f9d1000 T __gcc_register_frame
+000000054f9d7000<span class="w"> </span>B<span class="w"> </span>__dynamically_loaded
+<span class="w">                 </span>U<span class="w"> </span>__end__
+<span class="m">0000000000000200</span><span class="w"> </span>A<span class="w"> </span>__file_alignment__
+000000054f9d1030<span class="w"> </span>T<span class="w"> </span>__function_MOD_f
+000000054f9d1020<span class="w"> </span>T<span class="w"> </span>__gcc_deregister_frame
+000000054f9d1000<span class="w"> </span>T<span class="w"> </span>__gcc_register_frame
 ...
 </pre></div>
 </div>
 <p>It has received a prefix <code class="docutils literal notranslate"><span class="pre">__function_MOD_</span></code> to distinguish it from any
 other routine „f“ that might be defined in another module.</p>
 <p>The next step is to build the program:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -o tabulate tabulate.f90 functions.dll
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-o<span class="w"> </span>tabulate<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.dll
 </pre></div>
 </div>
 <p>The DLL and the .mod file are used to build the executable program
@@ -895,12 +895,12 @@ to explicitly export the routines. And an import library is generated —
 this is the library that should be used in the link step.</p>
 <p>The source file must contain the compiler directive, otherwise the function <code class="docutils literal notranslate"><span class="pre">f</span></code>
 is not exported:</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
 <span class="c">!DEC$ ATTRIBUTES DLLEXPORT :: f</span>
 </pre></div>
 </div>
 <p>Again we take a shortcut:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ ifort -exe:functions.dll functions.f90 -dll
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifort<span class="w"> </span>-exe:functions.dll<span class="w"> </span>functions.f90<span class="w"> </span>-dll
 </pre></div>
 </div>
 <p>This produces the files „functions.dll“, „user_functions.mod“ as well as „functions.lib“ (and two

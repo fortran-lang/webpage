@@ -734,12 +734,12 @@
 </ul>
 <p>Компиляторы являются сложными программами: они должны понимать язык программирования гораздо детальнее и глубже, чем средний программист. Кроме того, они должны понимать внутреннюю организацию работы компьютера. В итоге, с годами они были дополнены многочисленными опциями для настройки процесса компиляции и конечной программы, которая будет собрана.</p>
 <p>Но основы достаточно просты. Возьмём компилятор gfortran, входящий в состав GNU compiler collection (набор компиляторов GNU). Чтобы скомпилировать простую программу, как приведённая выше, состоящую из одного файла исходного кода, вы выполняете следующую команду, предполагая, что исходный код сохранён в файле «hello.f90»:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran -c hello.f90
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>hello.f90
 </pre></div>
 </div>
 <p>Выполнение этой команды приведёт к созданию файла «hello.o» (так как компилятор gfortran использует расширение «.o\ в качестве расширения для объектных файлов).</p>
 <p>Опция компилятора «-c» означает: только компилировать файлы исходного кода. Если её не указать, то по умолчанию компилятор будет компилировать файлы исходного кода и запускать компоновщик для создания исполняемого файла программы. Выполнение команды:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran hello.f90
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>hello.f90
 </pre></div>
 </div>
 <p>приведёт к созданию исполняемого файла «a.out» в системах Linux или «a.exe» в системе Windows.</p>
@@ -747,28 +747,28 @@
 <ul class="simple">
 <li><p>Компилятор может пожаловаться на содержимое файла исходного кода, если обнаружит в нём что-то неправильное, например, опечатку или неизвестное ключевое слово. В этом случае процесс компиляции прерывается и вы не получите ни объектного файла, ни исполняемого файла программы. Например, если слово «program» по ошибке было набрано как «prgoram», то компилятор сообщит об ошибках:</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran hello3.f90
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>hello3.f90
 hello.f90:1:0:
 
-    <span class="m">1</span> <span class="p">|</span> prgoram hello
-      <span class="p">|</span>
-Error: Unclassifiable statement at <span class="o">(</span><span class="m">1</span><span class="o">)</span>
+<span class="w">    </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>prgoram<span class="w"> </span>hello
+<span class="w">      </span><span class="p">|</span>
+Error:<span class="w"> </span>Unclassifiable<span class="w"> </span>statement<span class="w"> </span>at<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>
 hello3.f90:3:17:
 
-    <span class="m">3</span> <span class="p">|</span> end program hello
-      <span class="p">|</span>                 <span class="m">1</span>
-Error: Syntax error <span class="k">in</span> END PROGRAM statement at <span class="o">(</span><span class="m">1</span><span class="o">)</span>
-f951: Error: Unexpected end of file <span class="k">in</span> <span class="s1">&#39;hello.f90&#39;</span>
+<span class="w">    </span><span class="m">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>end<span class="w"> </span>program<span class="w"> </span>hello
+<span class="w">      </span><span class="p">|</span><span class="w">                 </span><span class="m">1</span>
+Error:<span class="w"> </span>Syntax<span class="w"> </span>error<span class="w"> </span><span class="k">in</span><span class="w"> </span>END<span class="w"> </span>PROGRAM<span class="w"> </span>statement<span class="w"> </span>at<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>
+f951:<span class="w"> </span>Error:<span class="w"> </span>Unexpected<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;hello.f90&#39;</span>
 </pre></div>
 </div>
 <p>Используя этот отчёт компилятора об ошибках, вы можете исправить текст исходного кода программы и повторить попытку компиляции.</p>
 <ul class="simple">
 <li><p>Выполнение шага сборки без опции «-c» может быть успешным, только если файл исходного кода содержит основную программу, обозначаемую в тексте программы оператором <code class="docutils literal notranslate"><span class="pre">program</span></code> языка Fortran. В противном случае компоновщик пожалуется на отсутствующий «символ» («symbol») сообщением примерно следующего содержания:</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$ gfortran hello2.f90
-/usr/lib/../lib64/crt1.o: In <span class="k">function</span> <span class="sb">`</span>_start<span class="s1">&#39;:</span>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>hello2.f90
+/usr/lib/../lib64/crt1.o:<span class="w"> </span>In<span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="sb">`</span>_start<span class="s1">&#39;:</span>
 <span class="s1">(.text+0x20): undefined reference to `main&#39;</span>
-collect2: error: ld returned <span class="m">1</span> <span class="nb">exit</span> status
+collect2:<span class="w"> </span>error:<span class="w"> </span>ld<span class="w"> </span>returned<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span>status
 </pre></div>
 </div>
 <p>Файл «hello2.f90» почти такой же как и файл «hello.f90», за исключением того, что ключевое слово <code class="docutils literal notranslate"><span class="pre">program</span></code> было заменено на ключевое слово <code class="docutils literal notranslate"><span class="pre">subroutine</span></code>.</p>

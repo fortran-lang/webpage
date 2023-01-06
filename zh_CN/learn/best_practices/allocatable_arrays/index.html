@@ -728,90 +728,90 @@
 <h1>可分配数组<a class="headerlink" href="#allocatable-arrays" title="此标题的永久链接">#</a></h1>
 <p><code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 属性为内存处理提供了一种安全的方式。与具有 <code class="docutils literal notranslate"><span class="pre">pointer</span></code> 属性的变量相比，内存是自动管理的，一旦变量超出范围，就会自动释放。使用 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 变量消除了在应用程序中创建内存泄漏的可能性。</p>
 <p>当自动数组变得太大而无法放入堆栈时，它们可以在子例程中用于创建临时数组或工作数组。</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">temp</span><span class="p">(:)</span><span class="w"></span>
-<span class="k">allocate</span><span class="p">(</span><span class="n">temp</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">temp</span><span class="p">(:)</span>
+<span class="k">allocate</span><span class="p">(</span><span class="n">temp</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>可以使用 <code class="docutils literal notranslate"><span class="pre">allocated</span></code> 内部函数检查分配状态，以避免未初始化的访问</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span>
 
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">arr</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">    print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="w"></span>
+<span class="k">    print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span>
 <span class="w">  </span><span class="k">end if</span>
-<span class="k">end subroutine </span><span class="n">show_arr</span><span class="w"></span>
+<span class="k">end subroutine </span><span class="n">show_arr</span>
 </pre></div>
 </div>
 <p>要在过程中分配变量，虚拟参数必须带有 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 属性。将它与 <code class="docutils literal notranslate"><span class="pre">intent(out)</span></code> 结合使用将在进入程序之前取消分配先前的分配：</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">foo</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lam</span><span class="p">(:)</span><span class="w"></span>
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">lam</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="w"></span>
-<span class="k">end subroutine </span><span class="n">foo</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">foo</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lam</span><span class="p">(:)</span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">lam</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
+<span class="k">end subroutine </span><span class="n">foo</span>
 </pre></div>
 </div>
 <p>分配后的数组可以像普通数组一样使用</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lam</span><span class="p">(:)</span><span class="w"></span>
-<span class="k">call </span><span class="n">foo</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">lam</span><span class="p">(:)</span>
+<span class="k">call </span><span class="n">foo</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>如果没有事先释放，则无法再次分配已分配的数组。同样，只能对已分配的数组释放。重新分配数组使用</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">lam</span><span class="p">))</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span><span class="w"></span>
-<span class="k">allocate</span><span class="p">(</span><span class="n">lam</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">lam</span><span class="p">))</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="n">lam</span><span class="p">)</span>
+<span class="k">allocate</span><span class="p">(</span><span class="n">lam</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>将分配的数组传递给过程不再需要虚拟参数的 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 属性。</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span>
 
-<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span><span class="w"></span>
-<span class="k">end subroutine </span><span class="n">show_arr</span><span class="w"></span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">arr</span>
+<span class="k">end subroutine </span><span class="n">show_arr</span>
 
-<span class="k">subroutine </span><span class="n">proc</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="w"></span>
+<span class="k">subroutine </span><span class="n">proc</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span>
 
-<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">arr</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span><span class="w"></span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">arr</span><span class="p">(</span><span class="mi">5</span><span class="p">))</span>
 
-<span class="w">  </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="n">arr</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="w">  </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="w">    </span><span class="n">arr</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="o">*</span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">  </span><span class="k">end do</span>
-<span class="k">  call </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span><span class="w"></span>
-<span class="k">end subroutine </span><span class="n">proc</span><span class="w"></span>
+<span class="k">  call </span><span class="n">show_arr</span><span class="p">(</span><span class="n">arr</span><span class="p">)</span>
+<span class="k">end subroutine </span><span class="n">proc</span>
 </pre></div>
 </div>
 <p>在此上下文中传递未分配的数组将导致无效的内存访问。可分配数组可以传递给 <code class="docutils literal notranslate"><span class="pre">optional</span></code> 虚拟参数——如果它们未分配，则该参数将不存在。 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 属性不仅限于数组，还可以与标量相关联，这可以与 <code class="docutils literal notranslate"><span class="pre">optional</span></code> 虚拟参数结合使用。</p>
 <p>可以使用 <code class="docutils literal notranslate"><span class="pre">move_alloc</span></code> 内在子例程在具有 <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> 属性的不同数组之间移动分配。</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">resize</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">var</span><span class="p">(:)</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">this_size</span><span class="p">,</span><span class="w"> </span><span class="n">new_size</span><span class="w"></span>
-<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">inital_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">resize</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">n</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">wp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">var</span><span class="p">(:)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">this_size</span><span class="p">,</span><span class="w"> </span><span class="n">new_size</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">inital_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">16</span>
 
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">var</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">    </span><span class="n">this_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"></span>
-<span class="w">    </span><span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">tmp</span><span class="p">)</span><span class="w"></span>
+<span class="k">    </span><span class="n">this_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span>
+<span class="w">    </span><span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="n">tmp</span><span class="p">)</span>
 <span class="w">  </span><span class="k">else</span>
-<span class="k">    </span><span class="n">this_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initial_size</span><span class="w"></span>
+<span class="k">    </span><span class="n">this_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">initial_size</span>
 <span class="w">  </span><span class="k">end if</span>
 
 <span class="k">  if</span><span class="w"> </span><span class="p">(</span><span class="nb">present</span><span class="p">(</span><span class="n">n</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">    </span><span class="n">new_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span><span class="w"></span>
+<span class="k">    </span><span class="n">new_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">n</span>
 <span class="w">  </span><span class="k">else</span>
-<span class="k">    </span><span class="n">new_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">this_size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">this_size</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="w"></span>
+<span class="k">    </span><span class="n">new_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">this_size</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">this_size</span><span class="o">/</span><span class="mi">2</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">  </span><span class="k">end if</span>
 
-<span class="k">  allocate</span><span class="p">(</span><span class="n">var</span><span class="p">(</span><span class="n">new_size</span><span class="p">))</span><span class="w"></span>
+<span class="k">  allocate</span><span class="p">(</span><span class="n">var</span><span class="p">(</span><span class="n">new_size</span><span class="p">))</span>
 
 <span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">allocated</span><span class="p">(</span><span class="n">tmp</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
-<span class="k">    </span><span class="n">this_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">min</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span><span class="w"></span>
-<span class="w">    </span><span class="n">var</span><span class="p">(:</span><span class="n">this_size</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmp</span><span class="p">(:</span><span class="n">this_size</span><span class="p">)</span><span class="w"></span>
+<span class="k">    </span><span class="n">this_size</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">min</span><span class="p">(</span><span class="n">size</span><span class="p">(</span><span class="n">tmp</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">var</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">))</span>
+<span class="w">    </span><span class="n">var</span><span class="p">(:</span><span class="n">this_size</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">tmp</span><span class="p">(:</span><span class="n">this_size</span><span class="p">)</span>
 <span class="w">  </span><span class="k">end if</span>
-<span class="k">end subroutine </span><span class="n">resize</span><span class="w"></span>
+<span class="k">end subroutine </span><span class="n">resize</span>
 </pre></div>
 </div>
 <p>最后，分配操作不会初始化数组。未初始化数组的内容很可能只是之前在对应地址的字节。分配操作支持使用 source 属性进行初始化：</p>
-<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span><span class="w"></span>
-<span class="k">allocate</span><span class="p">(</span><span class="n">arr</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">source</span><span class="o">=</span><span class="mf">0.0_dp</span><span class="p">)</span><span class="w"></span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span>
+<span class="k">allocate</span><span class="p">(</span><span class="n">arr</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">source</span><span class="o">=</span><span class="mf">0.0_dp</span><span class="p">)</span>
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">source</span></code> 关键字支持标量和数组值变量和常量。</p>
