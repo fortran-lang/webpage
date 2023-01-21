@@ -9,7 +9,7 @@ and Milan Curcic
 The effort built upon work of several members of the Fortran Standards
 Committee that built a GitHub proposals repository to track proposals to the
 Standards Committee, which lead to the creation of the Fortran Standard Library
-(`stdlib`), the Fortran Package Manager (`fpm`) and the `fortra-lang.org`
+(`stdlib`), the Fortran Package Manager (`fpm`) and the `fortran-lang.org`
 website. The webpage quickly become the top result in major search engines for
 "Fortran". We created a Fortran Discourse where the whole Fortran community can
 meet and discuss, make announcements, ask for help, etc. The Fortran-lang
