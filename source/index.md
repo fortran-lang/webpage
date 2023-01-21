@@ -157,5 +157,6 @@ compilers
 community
 packages
 news
+history
 
 :::
