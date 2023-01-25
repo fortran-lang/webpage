@@ -56,7 +56,7 @@ The workflow for doing so takes the following form:
 5. Create a pull request in the fortran-lang/webpage from your modified fork branch
    - (See [github help: creating a pull request](https://help.github.com/en/github/collaborating-with-issues-and-pull-requests/creating-a-pull-request) )
 
-**Note: Before opening a pull request you must build your changes locally using Sphinx (see [README.md](https://github.com/fortran-lang/webpage/HEAD/blob/README.md)) to verify that your changes build correctly and render as you expect.**
+**Note: Before opening a pull request you must build your changes locally using Sphinx (see [README.md](https://github.com/fortran-lang/webpage/blob/HEAD/README.md)) to verify that your changes build correctly and render as you expect.**
 
 **Note: You can continue to push changes to your fork branch after you open a pull request - the pull request will update accordingly**
 
