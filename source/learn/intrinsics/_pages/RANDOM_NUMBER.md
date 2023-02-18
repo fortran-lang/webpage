@@ -4,18 +4,29 @@
 
 **random_number**(3) - \[MATHEMATICS:RANDOM\] Pseudo-random number
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-   random_number(harvest)
+    call random_number(harvest)
 ```
+
+```fortran
+     subroutine random_number(harvest)
+
+      real,intent(out) :: harvest(..)
+```
+
+### **Characteristics**
+
+- **harvest** and the result are default _real_ variables
 
 ### **Description**
 
-Returns a single pseudorandom number or an array of pseudorandom numbers
-from the uniform distribution over the range 0 \<= x \< 1.
+**random_number**(3) returns a single pseudorandom number or an array of
+pseudorandom numbers from the uniform distribution over the range
+0 \<= x \< 1.
 
-### **Arguments**
+### **Options**
 
 - **harvest**
   : Shall be a scalar or an array of type _real_.
@@ -84,10 +95,10 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
 [**random_seed**(3)](#random_seed)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

@@ -4,15 +4,21 @@
 
 **atomic_fetch_xor**(3) - \[ATOMIC:BIT MANIPULATION\] Atomic bitwise XOR operation with prior fetch
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-call atomic_fetch_xor (atom, value, old, stat)
+    call atomic_fetch_xor (atom, value, old [,stat] )
 ```
+
+```fortran
+     subroutine atomic_fetch_xor (atom, value, old, stat)
+```
+
+### **Characteristics**
 
 ### **Description**
 
-**atomic_fetch_xor(atom, value, old)** atomically stores the value of
+**atomic_fetch_xor**(3) atomically stores the value of
 **atom** in **old** and defines **atom** with the bitwise **xor** between the values of
 **atom** and **value**. When **stat** is present and the invocation was successful,
 it is assigned the value **0**. If it is present and the invocation has
@@ -21,7 +27,7 @@ failed, it is assigned a positive value; in particular, for a coindexed
 iso_fortran_env's stat_stopped_image and if the remote image has
 failed, the value stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
@@ -52,7 +58,7 @@ end program demo_atomic_fetch_xor
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -65,4 +71,4 @@ TS 18508 or later
 
 [**atomic_fetch_or**(3)](#atomic_fetch_or)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

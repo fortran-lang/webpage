@@ -4,17 +4,23 @@
 
 **c_loc**(3) - \[ISO_C_BINDING\] Obtain the C address of an object
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = c_loc(x)
+    result = c_loc(x)
 ```
+
+```fortran
+
+```
+
+### **Characteristics**
 
 ### **Description**
 
-**c_loc(x)** determines the C address of the argument.
+**c_loc**(3) determines the C address of the argument.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall have either the _pointer_ or _target_ attribute. It shall not be a
@@ -22,7 +28,7 @@ result = c_loc(x)
   type and kind type parameters, or be a scalar, nonpolymorphic
   variable with no length type parameters.
 
-### **Returns**
+### **Result**
 
 The return value is of type c_ptr and contains the C address of the
 argument.
@@ -44,7 +50,7 @@ Sample program:
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
@@ -55,4 +61,4 @@ Fortran 2003 and later
 [**c_f_procpointer**(3)](#c_f_procpointer),
 **iso_c_binding**(3)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

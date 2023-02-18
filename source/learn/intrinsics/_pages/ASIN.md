@@ -4,38 +4,58 @@
 
 **asin**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arcsine function
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = asin(x)
-
-    elemental TYPE(kind=KIND) function asin(x)
-    TYPE(kind=KIND) :: x
+    result = asin(x)
 ```
 
-where the returned value has the kind of the input value
-and TYPE may be _real_ or _complex_
+```fortran
+     elemental TYPE(kind=KIND) function asin(x)
+
+      TYPE(kind=KIND) :: x
+```
+
+### **Characteristics**
+
+- **TYPE** may be _real_ or _complex_
+- **KIND** may be any kind supported by the associated type.
+- The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
-**asin(x)** computes the arcsine of its argument **x**.
+**asin**(3) computes the arcsine of its argument **x**.
 
 The arcsine is the inverse function of the sine function. It is commonly
 used in trigonometry when trying to find the angle when the lengths of
 the hypotenuse and the opposite side of a right triangle are known.
 
-### **Arguments**
+### **Options**
 
 - **x**
+  : The value to compute the arcsine of
   : The type shall be either _real_ and a magnitude that is less than or
   equal to one; or be _complex_.
 
-### **Returns**
+### **Result**
 
 - **result**
-  : The return value is of the same type and kind as **x**. The real part of
-  the result is in radians and lies in the range **-PI/2 \<=
-  asin(x) \<= PI/2**.
+  The result has a value equal to a processor-dependent approximation
+  to arcsin(x).
+
+  If **x** is real the result is _real_ and it is expressed in radians
+  and lies in the range
+
+```fortran
+        PI/2 <= ASIN (X) <= PI/2.
+```
+
+If the argument (and therefore the result) is imaginary the real part
+of the result is in radians and lies in the range
+
+```fortran
+    -PI/2 <= real(asin(x)) <= PI/2
+```
 
 ### **Examples**
 
@@ -93,12 +113,14 @@ train reducing the allowable grade.
 
 ### **Standard**
 
-FORTRAN 77 and later, for a complex argument Fortran 2008 or later
+FORTRAN 77 , for a _complex_ argument Fortran 2008
 
 ### **See Also**
 
-- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
-
 Inverse function: [**sin**(3)](#sin)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+### **Resources**
+
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

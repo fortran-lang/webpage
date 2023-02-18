@@ -4,25 +4,46 @@
 
 **spacing**(3) - \[MODEL_COMPONENTS\] Smallest distance between two numbers of a given type
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = spacing(x)
+    result = spacing(x)
 ```
+
+```fortran
+     elemental real(kind=KIND) function spacing(x)
+
+      real(kind=KIND), intent(in) :: x
+```
+
+### **Characteristics**
+
+- **x** is type real of any valid kind
+- The result is of the same type as the input argument **x**.
 
 ### **Description**
 
-Determines the distance between the argument **x** and the nearest adjacent
-number of the same type.
+**spacing**(3) determines the distance between the argument **x**
+and the nearest adjacent number of the same type.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
 
-### **Returns**
+### **Result**
 
-The result is of the same type as the input argument **x**.
+If **x** does not have the value zero and is not an IEEE infinity or NaN, the result has the value
+nearest to **x** for values of the same type and kind assuming the value is representable.
+
+Otherwise, the value is the same as **tiny(x)**. + zero produces **tiny(x)** + IEEE Infinity produces an IEEE Nan + if an IEEE NaN, that NaN is returned
+
+If there are two extended model values equally near to **x**, the
+value of greater absolute value is taken.
+
+<!--
+       b**(e-p), where b, e, and p are as defined in 16.4
+-->
 
 ### **Examples**
 
@@ -34,21 +55,27 @@ implicit none
 integer, parameter :: sgl = selected_real_kind(p=6, r=37)
 integer, parameter :: dbl = selected_real_kind(p=13, r=200)
 
-   write(*,*) spacing(1.0_sgl)      ! "1.1920929e-07"          on i686
-   write(*,*) spacing(1.0_dbl)      ! "2.220446049250313e-016" on i686
+   write(*,*) spacing(1.0_sgl)
+   write(*,*) nearest(1.0_sgl,+1.0),nearest(1.0_sgl,+1.0)-1.0
+
+   write(*,*) spacing(1.0_dbl)
 end program demo_spacing
 ```
 
 Results:
 
+Typical values ...
+
 ```text
-      1.19209290E-07
-      2.2204460492503131E-016
+     1.1920929E-07
+      1.000000      1.1920929E-07
+     0.9999999     -5.9604645E-08
+     2.220446049250313E-016
 ```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -68,4 +95,4 @@ Fortran 95 and later
 [**set_exponent**(3)](#set_exponent),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

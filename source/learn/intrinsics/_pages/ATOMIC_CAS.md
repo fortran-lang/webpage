@@ -4,25 +4,31 @@
 
 **atomic_cas**(3) - \[ATOMIC\] Atomic compare and swap
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-call atomic_cas (atom, old, compare, new, stat)
+    call atomic_cas (atom, old, compare, new [,stat] )
 ```
+
+```fortran
+     subroutine atomic_cas (atom, old, compare, new, stat)
+```
+
+### **Characteristics**
 
 ### **Description**
 
-atomic_cas compares the variable **atom** with the value of **compare**; if the
-value is the same, **atom** is set to the value of **new**. Additionally, **old** is
-set to the value of **atom** that was used for the comparison. When **stat** is
-present and the invocation was successful, it is assigned the value 0.
-If it is present and the invocation has failed, it is assigned a
-positive value; in particular, for a coindexed **atom**, if the remote image
-has stopped, it is assigned the value of iso_fortran_env's
-stat_stopped_image and if the remote image has failed, the value
-stat_failed_image.
+**atomic_cas**(3) compares the variable **atom** with the value of
+**compare**; if the value is the same, **atom** is set to the value of
+**new**. Additionally, **old** is set to the value of **atom** that was
+used for the comparison. When **stat** is present and the invocation
+was successful, it is assigned the value 0. If it is present and the
+invocation has failed, it is assigned a positive value; in particular,
+for a coindexed **atom**, if the remote image has stopped, it is assigned
+the value of iso_fortran_env's stat_stopped_image and if the remote
+image has failed, the value stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of either integer type with
@@ -57,7 +63,7 @@ end program demo_atomic_cas
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -65,4 +71,4 @@ TS 18508 or later
 [**atomic_ref**(3)](#atomic_ref),
 [**iso_fortran_env**(3)](#)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

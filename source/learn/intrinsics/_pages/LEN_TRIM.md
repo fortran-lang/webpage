@@ -2,37 +2,49 @@
 
 ### **Name**
 
-**len_trim**(3) - \[CHARACTER:WHITESPACE\] Length of a character entity without trailing blank characters
+**len_trim**(3) - \[CHARACTER:WHITESPACE\] Character length without trailing blank characters
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-   result = len_trim(string, kind)
-
-    integer(kind=KIND) function len_trim(string,KIND) result (value)
-    character(len=*),intent(in) :: string
-    integer,optional,intent(in) :: KIND
-    integer(kind=KIND) :: value
+  result = len_trim(string [,kind])
 ```
+
+```fortran
+   elemental integer(kind=KIND) function len_trim(string,KIND)
+
+    character(len=*),intent(in) :: string
+    integer(kind=KIND),intent(in),optional :: KIND
+```
+
+### **Characteristics**
+
+- **string** is of type _character_
+- **kind** is a scalar integer constant expression specifying the kind
+  of the returned value.
+- The return value is of type _integer_ and of kind **KIND**. If **KIND**
+  is absent, the return value is of default _integer_ kind.
 
 ### **Description**
 
-Returns the length of a character string, ignoring any trailing blanks.
+**len_trim**(3) returns the length of a character string, ignoring
+any trailing blanks.
 
-### **Arguments**
+### **Options**
 
 - **string**
   : The input string whose length is to be measured.
-  Shall be a scalar of type _character_
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : Indicates the kind parameter of the result.
 
-### **Returns**
+### **Result**
 
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default _integer_ kind.
+The result equals the number of characters remaining
+after any trailing blanks in **string** are removed.
+
+If the input argument is of zero length or all blanks
+the result is zero.
 
 ### **Examples**
 
@@ -42,16 +54,27 @@ Sample program
 program demo_len_trim
 implicit none
 character(len=:),allocatable :: string
-   string=' how long is this string?     '
-   write(*,*)'LENGTH=',len(string)
+integer :: i
+! basic usage
+   string=" how long is this string?     "
+   write(*,*) string
+   write(*,*)'UNTRIMMED LENGTH=',len(string)
    write(*,*)'TRIMMED LENGTH=',len_trim(string)
+
+   ! print string, then print substring of string
+   string='xxxxx   '
+   write(*,*)string,string,string
+   i=len_trim(string)
+   write(*,*)string(:i),string(:i),string(:i)
    !
-   ELE:block ! elemental example
+  ! elemental example
+   ELE:block
+   ! an array of strings may be used
    character(len=:),allocatable :: tablet(:)
    tablet=[character(len=256) :: &
    & ' how long is this string?     ',&
    & 'and this one?']
-      write(*,*)'LENGTH=            ',len(tablet)
+      write(*,*)'UNTRIMMED LENGTH=  ',len(tablet)
       write(*,*)'TRIMMED LENGTH=    ',len_trim(tablet)
       write(*,*)'SUM TRIMMED LENGTH=',sum(len_trim(tablet))
    endblock ELE
@@ -61,18 +84,20 @@ end program demo_len_trim
 
 Results:
 
-```
-    LENGTH=          30
+```text
+     how long is this string?
+    UNTRIMMED LENGTH=          30
     TRIMMED LENGTH=          25
-    LENGTH=                     256
+    xxxxx   xxxxx   xxxxx
+    xxxxxxxxxxxxxxx
+    UNTRIMMED LENGTH=           256
     TRIMMED LENGTH=              25          13
     SUM TRIMMED LENGTH=          38
 ```
 
 ### **Standard**
 
-Fortran 95 and later, with **kind** argument - Fortran 2003
-and later
+Fortran 95 . **kind** argument added with Fortran 2003.
 
 ### **See Also**
 
@@ -91,4 +116,4 @@ of arguments, and search for certain arguments:
   [**len**(3)](#len),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

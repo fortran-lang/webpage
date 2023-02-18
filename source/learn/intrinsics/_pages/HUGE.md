@@ -4,35 +4,43 @@
 
 **huge**(3) - \[NUMERIC MODEL\] Largest number of a type and kind
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = huge(x)
-
-   function huge(x) result(answer)
-   TYPE(kind=KIND),intent(in) :: x
-   TYPE(kind=KIND) :: answer
+    result = huge(x)
 ```
 
-where **TYPE** may be _real_ or _integer_ and **KIND** is any supported
-associated _kind_.
+```fortran
+     TYPE(kind=KIND) function huge(x)
+
+      TYPE(kind=KIND),intent(in) :: x(..)
+```
+
+### **Characteristics**
+
+- **x** may be any _real_ or _integer_ scalar or array and any kind.
+- The result will be a scalar of the same type and kind as the input **x**
 
 ### **Description**
 
-**huge(x)** returns the largest number that is not an infinity for the
-kind and type of **x**.
+**huge**(3) returns the largest number that is not an overflow
+for the kind and type of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : Shall be an arbitrary value of type _real_ or _integer_.
-  The value is used merely to determine what _kind_ and _type_ of
-  scalar is being queried.
+  : **x** is an arbitrary value which is used merely to determine what
+  _kind_ and _type_ of scalar is being queried. It need not be defined,
+  as only its characteristics are used.
 
-### **Returns**
+### **Result**
 
-The return value is of the same type and kind as _x_ and is the
-largest value supported by the specified model.
+The result is the largest value supported by the specified type
+and kind.
+
+Note the result is as the same kind as the input to ensure the returned
+value does not overflow. Any assignment of the result to a variable
+should take this into consideration.
 
 ### **Examples**
 
@@ -48,6 +56,13 @@ real :: v, w
    print *, huge(0), huge(0.0), huge(0.0d0)
    print *, tiny(0.0), tiny(0.0d0)
 
+   sum=0.0d0
+   ! note subtracting one because counter is the end value+1 on exit
+   do i=0,huge(0)-1
+      sum=sum+i
+   enddo
+   write(*,*)'sum=',sum
+
    ! advanced
    biggest=huge(0)
    ! be careful of overflow when using integers in computation
@@ -56,11 +71,13 @@ real :: v, w
       w=6**i   ! Danger, Danger
       v=6.0**i
       k=v      ! Danger, Danger
+
       if(v.gt.biggest)then
          write(*,f) i, j, k, v, v.eq.w, 'wrong j and k and w'
       else
          write(*,f) i, j, k, v, v.eq.w
       endif
+
    enddo
 end program demo_huge
 ```
@@ -89,7 +106,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -109,4 +126,4 @@ Fortran 95 and later
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -4,24 +4,29 @@
 
 **atomic_fetch_add**(3) - \[ATOMIC\] Atomic ADD operation with prior fetch
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-call atomic_fetch_add(atom, value, old, stat)
+    call atomic_fetch_add(atom, value, old [,stat] )
 ```
+
+```fortran
+     subroutine atomic_fetch_add(atom, value, old, stat)
+```
+
+### **Characteristics**
 
 ### **Description**
 
-**atomic_fetch_add(atom, value, old)** atomically stores the value of
-**atom** in **old** and adds the value of **var** to the variable **atom**. When **stat** is
+**atomic_fetch_add**(3) atomically stores the value of **atom** in **old**
+and adds the value of **var** to the variable **atom**. When **stat** is
 present and the invocation was successful, it is assigned the value **0**.
-If it is present and the invocation has failed, it is assigned a
-positive value; in particular, for a coindexed **atom**, if the remote image
-has stopped, it is assigned the value of iso_fortran_env's
-stat_stopped_image and if the remote image has failed, the value
-stat_failed_image.
+If it is present and the invocation has failed, it is assigned a positive
+value; in particular, for a coindexed **atom**, if the remote image has
+stopped, it is assigned the value of iso_fortran_env's stat_stopped_image
+and if the remote image has failed, the value stat_failed_image.
 
-### **Arguments**
+### **Options**
 
 - **atom**
   : Scalar coarray or coindexed variable of integer type with
@@ -52,7 +57,7 @@ end program demo_atomic_fetch_add
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -65,4 +70,4 @@ TS 18508 or later
 
 [**atomic_fetch_xor**(3)](#atomic_fetch_xor)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

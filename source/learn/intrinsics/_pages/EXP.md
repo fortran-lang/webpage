@@ -2,40 +2,59 @@
 
 ### **Name**
 
-**exp**(3) - \[MATHEMATICS\] Exponential function
+**exp**(3) - \[MATHEMATICS\] Base-e exponential function
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = exp(x)
+    result = exp(x)
 ```
+
+```fortran
+     elemental TYPE(kind=KIND) function exp(x)
+
+      TYPE(kind=KIND),intent(in) :: x
+```
+
+### **Characteristics**
+
+- **x** may be _real_ or _complex_ of any kind.
+- The return value has the same type and kind as **x**.
 
 ### **Description**
 
-**exp**(x) computes the base "_e_" exponential of **x** where "_e_" is
-_Euler's constant_.
+**exp**(3) returns the value of _e_ (the base of natural logarithms)
+raised to the power of **x**.
+
+"_e_" is also known as _Euler's constant_.
 
 If **x** is of type _complex_, its imaginary part is regarded as a value
-in radians such that (see _Euler's formula_):
+in radians such that if (see _Euler's formula_):
 
-if
-**cx=(re,im)**
+```fortran
+    cx=(re,im)
+```
+
 then
-**exp(cx)=exp(re)\*cmplx(cos(im),sin(im),kind=kind(cx))**
+
+```fortran
+    exp(cx) = exp(re) * cmplx(cos(im),sin(im),kind=kind(cx))
+```
 
 Since **exp**(3) is the inverse function of **log**(3) the maximum valid magnitude
 of the _real_ component of **x** is **log(huge(x))**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_ or _complex_.
 
-### **Returns**
+### **Result**
 
 The value of the result is **e\*\*x** where **e** is Euler's constant.
 
-The return value has the same type and kind as **x**.
+If **x** is of type complex, its imaginary part is
+regarded as a value in radians.
 
 ### **Examples**
 
@@ -86,14 +105,16 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
 - [**log**(3)](#log)
 
+### **Resources**
+
 - Wikipedia:[Exponential function](https://en.wikipedia.org/wiki/Exponential_function)
 
 - Wikipedia:[Euler's formula](https://en.wikipedia.org/wiki/Euler%27s_formula)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

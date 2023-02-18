@@ -4,38 +4,49 @@
 
 **blt**(3) - \[BIT:COMPARE\] Bitwise less than
 
-### **Syntax**
-```fortran
-    elemental function blt(i, j)
+### **Synopsis**
 
-     integer(kind=KIND),intent(in) :: i
-     integer(kind=KIND),intent(in) :: j
-     logical :: blt
+```fortran
+    result = blt(i,j)
 ```
-  where the _kind_ of **i** and **j** may be of any supported _integer_
-  kind, not necessarily the same.  An exception is that values may be a
-  BOZ constant with a value valid for the _integer_ kind available with
-  the most bits on the current platform.
+
+```fortran
+     elemental logical function blt(i, j)
+
+      integer(kind=**),intent(in) :: i
+      integer(kind=**),intent(in) :: j
+```
+
+### **Characteristics**
+
+- **i** is an _integer_ of any kind or a BOZ-literal-constant
+- **j** is an _integer_ of any kind or a BOZ-literal-constant, not
+  necessarily the same as **i**.
+- the result is of default logical kind
+
+BOZ constants must have a value valid for the _integer_ kind available
+with the most bits on the current platform.
 
 ### **Description**
 
-Determines whether an integer is bitwise less than another.
+**blt**(3) determines whether an _integer_ is bitwise less than another.
 
-### **Arguments**
+### **Options**
 
 - **i**
-    Shall be of _integer_ type or a BOZ literal constant.
+  : Shall be of _integer_ type or a BOZ literal constant.
 
 - **j**
   : Shall be of _integer_ type or a BOZ constant.
 
-### **Returns**
+### **Result**
 
 The return value is of type _logical_ and of the default kind.
 
 ### **Examples**
 
 Sample program:
+
 ```fortran
 program demo_blt
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
@@ -49,13 +60,16 @@ integer(kind=int8) :: byte
       byte=i
       write(*,'(sp,i0.4,*(1x,1l,1x,b0.8))')i,blt(byte,64_int8),byte
    enddo
-
-   ! see the BGE() description for an extended description 
+  ! BOZ literals
+   write(*,*)blt(z'1000', z'101011010')
+   ! see the BGE() description for an extended description
    ! of related information
 
 end program demo_blt
 ```
+
 Results:
+
 ```text
    > -0128  F 10000000
    > -0096  F 10100000
@@ -65,10 +79,12 @@ Results:
    > +0032  T 00100000
    > +0064  F 01000000
    > +0096  F 01100000
+   > T
 ```
+
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -76,4 +92,4 @@ Fortran 2008 and later
 [**bgt**(3)](#bgt),
 [**ble**(3)](#ble)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

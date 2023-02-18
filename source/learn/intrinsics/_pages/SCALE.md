@@ -4,31 +4,47 @@
 
 **scale**(3) - \[MODEL_COMPONENTS\] Scale a real value by a whole power of the radix
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = scale(x, i)
-
-   real(kind=KIND),intent(in) :: x
-   integer,intent(in)         :: i
+    result = scale(x, i)
 ```
+
+```fortran
+     elemental real(kind=KIND) function scale(x, i)
+
+      real(kind=KIND),intent(in)   :: x
+      integer(kind=**),intent(in)  :: i
+```
+
+### **Characteristics**
+
+- **x** is type _real_ of any kind
+- **i** is type an _integer_ of any kind
+- the result is _real_ of the same kind as **x**
 
 ### **Description**
 
-**scale(x,i)** returns x \* **radix(x)\*\*i**.
+**scale**(3) returns x \* **radix(x)\*\*i**.
 
-### **Arguments**
+It is almost certain the radix(base) of the platform is two, therefore
+**scale**(3) is generally the same as **x\*2\*\*i**
+
+### **Options**
 
 - **x**
-  : The type of the argument shall be a _real_.
+  : the value to multiply by **radix(x)\*\*i**. Its type and kind is used
+  to determine the radix for values with its characteristics and determines
+  the characteristics of the result, so care must be taken the returned
+  value is within the range of the characteristics of **x**.
 
 - **i**
-  : The type of the argument shall be a _integer_.
+  : The power to raise the radix of the machine to
 
-### **Returns**
+### **Result**
 
-The return value is of the same type and kind as **x**. Its value is
-**x \* radix(x)\*\*i**.
+The return value is **x \* radix(x)\*\*i**, assuming that value can be
+represented by a value of the type and kind of **x**.
 
 ### **Examples**
 
@@ -51,7 +67,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -71,4 +87,4 @@ Fortran 95 and later
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

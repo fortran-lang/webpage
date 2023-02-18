@@ -4,37 +4,44 @@
 
 **sinh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic sine function
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = sinh(x)
-
-    elemental TYPE(kind=KIND) function sinh(x)
-    TYPE(kind=KIND) :: x
+    result = sinh(x)
 ```
 
-Where the returned value has the kind of the input value
-and TYPE may be _real_ or _complex_
+```fortran
+     elemental TYPE(kind=KIND) function sinh(x)
+
+      TYPE(kind=KIND) :: x
+```
+
+### **Characteristics**
+
+- **TYPE** may be _real_ or _complex_
+- **KIND** may be any kind supported by the associated type.
+- The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
-**sinh(x)** computes the hyperbolic sine of **x**.
+**sinh**(3) computes the hyperbolic sine of **x**.
 
 The hyperbolic sine of x is defined mathematically as:
 
-**sinh(x) = (exp(x) - exp(-x)) / 2.0**
+```fortran
+     sinh(x) = (exp(x) - exp(-x)) / 2.0
+```
 
-If **x** is of type _complex_ its imaginary part is regarded as a value
-in radians.
-
-### **Arguments**
+### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : The value to calculate the hyperbolic sine of
 
-### **Returns**
+### **Result**
 
-The return value has same type and kind as **x**.
+The result has a value equal to a processor-dependent approximation
+to sinh(X). If X is of type complex its imaginary part is regarded
+as a value in radians.
 
 ### **Examples**
 
@@ -49,10 +56,11 @@ real(kind=real64) :: x = - 1.0_real64
 real(kind=real64) :: nan, inf
 character(len=20) :: line
 
+  ! basics
    print *, sinh(x)
    print *, (exp(x)-exp(-x))/2.0
 
-   ! sinh(3) is elemental and can handle an array
+  ! sinh(3) is elemental and can handle an array
    print *, sinh([x,2.0*x,x/3.0])
 
    ! a NaN input returns NaN
@@ -85,12 +93,14 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later, for a complex argument Fortran 2008 or later
+Fortran 95 , for a complex argument Fortran 2008
 
 ### **See Also**
 
-- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
-
 [**asinh**(3)](#asinh)
 
- _fortran-lang intrinsic descriptions_
+### **Resources**
+
+- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

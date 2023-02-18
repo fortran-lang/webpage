@@ -4,29 +4,40 @@
 
 **null**(3) - \[TRANSFORMATIONAL\] Function that returns a disassociated pointer
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-ptr => null(mold)
-
+    ptr => null( [mold] )
 ```
+
+```fortran
+     function null(mold)
+
+      type(TYPE(kind=**)),pointer,optional :: mold
+```
+
+### **Characteristics**
+
+- **mold** is a pointer of any association status and of any type.
+- The result is a disassociated pointer or an unallocated allocatable entity.
 
 ### **Description**
 
-Returns a disassociated pointer.
+**null**(3) returns a disassociated pointer.
 
 If **mold** is present, a disassociated pointer of the same type is
 returned, otherwise the type is determined by context.
 
-In _Fortran 95_, **mold** is optional. Please note that _Fortran 2003_ includes cases where it is required.
+In _Fortran 95_, **mold** is optional. Please note that _Fortran 2003_
+includes cases where it is required.
 
-### **Arguments**
+### **Options**
 
 - **mold**
-  : (Optional) shall be a pointer of any association status and of any
+  : a pointer of any association status and of any
   type.
 
-### **Returns**
+### **Result**
 
 A disassociated pointer or an unallocated allocatable entity.
 
@@ -72,6 +83,7 @@ end subroutine s2
 
 end module showit
 
+program demo_null
 use showit, only : gen
 
 real,target :: x = 200.0
@@ -98,8 +110,7 @@ integer_ptr => i
 call gen (3, real_ptr ) ! invokes s2
 call gen (4, integer_ptr ) ! invokes s1
 
-end
-!end program demo_null
+end program demo_null
 ```
 
 Results:
@@ -113,10 +124,10 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
 [**associated**(3)](#associated)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

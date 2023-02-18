@@ -4,22 +4,28 @@
 
 **co_broadcast**(3) - \[COLLECTIVE\] Copy a value to all images the current set of images
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-call co_broadcast(a, source_image, stat, errmsg)
+    call co_broadcast(a, source_image [,stat] [,errmsg] )
 ```
+
+```fortran
+
+```
+
+### **Characteristics**
 
 ### **Description**
 
-**co_broadcast(3)** copies the value of argument **a** on the image with image
+**co_broadcast**(3) copies the value of argument **a** on the image with image
 index source_image to all images in the current team. **a** becomes defined
 as if by intrinsic assignment. If the execution was successful and **stat**
 is present, it is assigned the value zero. If the execution failed, **stat**
 gets assigned a nonzero value and, if present, **errmsg** gets assigned a
 value describing the occurred error.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : **intent(inout)** argument; shall have the same dynamic type and
@@ -52,6 +58,10 @@ integer :: val(3)
 end program demo_co_broadcast
 ```
 
+### **Standard**
+
+Fortran xx
+
 ### **See Also**
 
 [**co_max**(3)](#co_max),
@@ -59,4 +69,4 @@ end program demo_co_broadcast
 [**co_sum**(3)](#co_sum),
 [**co_reduce**(3)](#co_reduce)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

@@ -2,31 +2,39 @@
 
 ### **Name**
 
-**maxval**(3) - \[ARRAY REDUCTION\] determines the maximum value in an array or row
+**maxval**(3) - \[ARRAY:REDUCTION\] Determines the maximum value in an array or row
 
-### **Syntax**
-
-```fortran
-result = maxval(array, dim, mask)
-```
-
-or
+### **Synopsis**
 
 ```fortran
-result = maxval(array, mask)
+    result = maxval(array [,mask]) | maxval(array [,dim] [,mask])
 ```
+
+```fortran
+     NUMERIC function maxval(array ,dim, mask)
+
+      NUMERIC,intent(in) :: array(..)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+- **NUMERIC** designates any numeric type and kind.
 
 ### **Description**
 
-Determines the maximum value of the elements in an array value, or, if
-the **dim** argument is supplied, determines the maximum value along each
-row of the array in the **dim** direction. If **mask** is present, only the
-elements for which **mask** is **.true.** are considered. If the array has zero
-size, or all of the elements of **mask** are .false., then the result is the
-most negative number of the type and kind of **array** if **array** is numeric,
-or a string of nulls if **array** is of character type.
+**maxval**(3) determines the maximum value of the elements in an
+array value, or, if the **dim** argument is supplied, determines the
+maximum value along each row of the array in the **dim** direction. If
+**mask** is present, only the elements for which **mask** is _.true._
+are considered. If the array has zero size, or all of the elements of
+**mask** are _.false._, then the result is the most negative number
+of the type and kind of **array** if **array** is numeric, or a string
+of nulls if **array** is of character type.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_, or _character_.
@@ -40,7 +48,7 @@ or a string of nulls if **array** is of character type.
   : (Optional) Shall be an array of type _logical_, and conformable with
   **array**.
 
-### **Returns**
+### **Result**
 
 If **dim** is absent, or if **array** has a rank of one, the result is a scalar.
 If **dim** is present, the result is an array with a rank one less than the
@@ -72,19 +80,22 @@ end program demo_maxval
 Results:
 
 ```
-   55
-   11     22     33     44     55
-    5     50     55
-   22
+ >  55
+ >  11     22     33     44     55
+ >   5     50     55
+ >  22
 ```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
+[**maxloc**(3)](#maxloc),
+[**minloc**(3)](#minloc),
+[**minval**(3)](#minval),
 [**max**(3)](#max),
-[**maxloc**(3)](#maxloc)
+[**min**(3)](#min)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

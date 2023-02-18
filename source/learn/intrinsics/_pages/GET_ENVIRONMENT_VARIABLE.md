@@ -2,50 +2,69 @@
 
 ### **Name**
 
-**get_environment_variable**(3) - \[SYSTEM:ENVIRONMENT\] Get an environmental variable
+**get_environment_variable**(3) - \[SYSTEM:ENVIRONMENT\] Get value of an environment variable
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-  call get_environment_variable(name, value, length, status, trim_name)
-
-   character(len=*),intent(in) :: name
-   character(len=*),intent(out),optional :: value
-   integer,intent(out),optional :: length
-   integer,intent(out),optional :: status
-   logical,intent(out),optional :: trim_name
+    call get_environment_variable(name [,value] [,length] &
+    & [,status] [,trim_name] [,errmsg] )
 ```
+
+```fortran
+     subroutine character(len=*) get_environment_variable( &
+     & name, value, length, status, trim_name, errmsg )
+
+      character(len=*),intent(in) :: name
+      character(len=*),intent(out),optional   :: value
+      integer(kind=**),intent(out),optional   :: length
+      integer(kind=**),intent(out),optional   :: status
+      logical,intent(out),optional            :: trim_name
+      character(len=*),intent(inout),optional :: errmsg
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+  meeting the conditions described herein.
+- **name**, **value**, and **errmsg** are a scalar _character_ of
+  default kind.
+- **length** and **status** are _integer_ scalars with a decimal exponent
+  range of at least four.
+- **trim_name** is a scalar of type _logical_ and of default kind.
 
 ### **Description**
 
-Get the **value** of the environmental variable **name**.
+**get_environment_variable**(3) gets the **value** of the environment
+variable **name**.
 
 Note that **get_environment_variable**(3) need not be thread-safe. It
 is the responsibility of the user to ensure that the environment is not
 being updated concurrently.
 
+If running in parallel be aware
+It is processor dependent whether an environment variable that exists
+on an image also exists on another image, and if it does exist on both
+images whether the values are the same or different.
+
 ### **Options**
 
 - **name**
   : The name of the environment variable to query.
+  The interpretation of case is processor dependent.
 
-    Shall be a scalar of type _character_ and of default kind.
-
-### **Returns**
+### **Result**
 
 - **value**
-  : The value of the environment variable being queried.
-
-  Shall be a scalar of type _character_ and of default kind.
-  The value of **name** is stored in **value**. If **value** is not
-  large enough to hold the data, it is truncated. If **name** is not
-  set, **value** will be filled with blanks.
+  : The value of the environment variable being queried. If **value**
+  is not large enough to hold the data, it is truncated. If the variable
+  **name** is not set or has no value, or the processor does not support
+  environment variables **value** will be filled with blanks.
 
 - **length**
   : Argument **length** contains the length needed for storing the
-  environment variable **name** or zero if it is not present.
-
-  Shall be a scalar of type _integer_ and of default kind.
+  environment variable **name**. It is zero if the environment variable
+  is not set.
 
 - **status**
   : **status** is **-1** if **value** is present but too short for the
@@ -53,14 +72,10 @@ being updated concurrently.
   not exist and **2** if the processor does not support environment
   variables; in all other cases **status** is zero.
 
-  Shall be a scalar of type _integer_ and of default kind.
-
 - **trim_name**
-  : If **trim_name** is present with the value **.false.**, the trailing
-  blanks in **name** are significant; otherwise they are not part of the
-  environment variable name.
-
-  Shall be a scalar of type _logical_ and of default kind.
+  : If **trim_name** is present with the value _.false._, the trailing
+  blanks in **name** are significant; otherwise they are not part of
+  the environment variable name.
 
 ### **Examples**
 
@@ -71,46 +86,46 @@ program demo_getenv
 implicit none
 character(len=:),allocatable :: homedir
 character(len=:),allocatable :: var
+
      var='HOME'
      homedir=get_env(var)
      write (*,'(a,"=""",a,"""")')var,homedir
 
 contains
 
-function get_env(NAME,DEFAULT) result(VALUE)
+function get_env(name,default) result(value)
 ! a function that makes calling get_environment_variable(3) simple
 implicit none
-character(len=*),intent(in)          :: NAME
-character(len=*),intent(in),optional :: DEFAULT
-character(len=:),allocatable         :: VALUE
+character(len=*),intent(in)          :: name
+character(len=*),intent(in),optional :: default
+character(len=:),allocatable         :: value
 integer                              :: howbig
 integer                              :: stat
 integer                              :: length
-   ! get length required to hold value
    length=0
-   VALUE=''
-   if(NAME.ne.'')then
-      call get_environment_variable( &
-      & NAME, length=howbig,status=stat,trim_name=.true.)
+   value=''
+   if(name.ne.'')then
+      call get_environment_variable( name, &
+      & length=howbig,status=stat,trim_name=.true.)
       select case (stat)
       case (1)
-       !*!print *, NAME, " is not defined in the environment. Strange..."
-       VALUE=''
+       print *, name, " is not defined in the environment. Strange..."
+       value=''
       case (2)
-       !*!print *, &
-       !*!"This processor does not support environment variables. Boooh!"
-       VALUE=''
+       print *, &
+       "This processor does not support environment variables. Boooh!"
+       value=''
       case default
-       ! make string to hold value of sufficient size
-       if(allocated(VALUE))deallocate(VALUE)
-       allocate(character(len=max(howbig,1)) :: VALUE)
+       ! make string of sufficient size to hold value
+       if(allocated(value))deallocate(value)
+       allocate(character(len=max(howbig,1)) :: value)
        ! get value
        call get_environment_variable( &
-       & NAME,VALUE,status=stat,trim_name=.true.)
-       if(stat.ne.0)VALUE=''
+       & name,value,status=stat,trim_name=.true.)
+       if(stat.ne.0)value=''
       end select
    endif
-   if(VALUE.eq.''.and.present(DEFAULT))VALUE=DEFAULT
+   if(value.eq.''.and.present(default))value=default
 end function get_env
 
 end program demo_getenv
@@ -124,6 +139,13 @@ Typical Results:
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+### **See also**
+
+[**get_command_argument**(3)](#get_command_argument),
+[**get_command**(3)](#get_command)
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+#

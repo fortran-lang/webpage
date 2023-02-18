@@ -2,67 +2,70 @@
 
 ### **Name**
 
-**all**(3) - \[ARRAY REDUCTION\] determines if all the values are true
+**all**(3) - \[ARRAY:REDUCTION\] Determines if all the values are true
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = all(mask, dim)
+   result = all(mask [,dim])
 ```
+
+```fortran
+     function all(mask ,dim)
+
+      logical(kind=KIND),intent(in) :: mask(..)
+      integer,intent(in),optional   :: dim
+      logical(kind=KIND)            :: all(..)
+```
+
+### **Characteristics**
+
+- **mask** is a _logical_ array
+- **dim** is an _integer_
+- the result is a logical array if **dim** is supplied,
+  otherwise it is a logical scalar. It has the same characteristics
+  as **mask**
 
 ### **Description**
 
-Logical conjunction of elements of **mask** along dimension **dim**.
+**all**(3) determines if all the values are true in **mask** in the
+array along dimension **dim** if **dim** is specified; otherwise all
+elements are tested together.
 
-"**all(mask, dim)**" determines if all the values are true in **mask**
-in the array along dimension **dim**.
+This testing type is called a logical conjunction of elements of
+**mask** along dimension **dim**.
 
-### **Arguments**
+The mask is generally a _logical_ expression, allowing for comparing
+arrays and many other common operations.
+
+### **Options**
 
 - **mask**
-  : shall be a logical array. That is, the type of the argument shall be
-  _logical_ and it shall not be scalar.
+  : the logical array to be tested for all elements being _.true_.
 
 - **dim**
-  : (optional) **dim** shall be a scalar integer with a value that lies
-  between one and the rank of **mask**. The corresponding actual argument
-  shall not be an optional dummy argument.
+  : **dim** indicates the direction through the elements of **mask**
+  to group elements for testing.
+  : **dim** has a value that lies between one and the rank of **mask**.
+  : The corresponding actual argument shall not be an optional dummy
+  argument.
+  : If **dim** is not present all elements are tested and a single
+  scalar value is returned.
 
-### **Returns**
+### **Result**
 
-"**all(mask)**" returns a scalar value of type _logical_ where the kind
-type parameter is the same as the kind type parameter of **mask**. If
-**dim** is present, then **all(mask, dim)** returns an array with the rank
-of **mask** minus 1. The shape is determined from the shape of **mask**
-where the **dim** dimension is elided.
-
-1.  **all(mask)** is true if all elements of **mask** are true. It also is
-    true if **mask** has zero size; otherwise, it is false.
+1.  If **dim** is not present **all(mask)** is _.true._ if all elements
+    of **mask** are _.true._. It also is _.true._ if **mask** has zero size;
+    otherwise, it is _.false._ .
 
 2.  If the rank of **mask** is one, then **all(mask, dim)** is equivalent
-    to **all(mask)**. If the rank is greater than one, then **all(mask,
-    dim)** is determined by applying **all()** to the array sections.
+    to **all(mask)**.
 
-3.  Result Characteristics. The result is of type _logical_ with the
-    same kind type parameter as **mask**. It is scalar if **dim**
-    is absent or **n = 1**; otherwise, the result has rank **n - 1**
-    and shape **\[d1, d2, . . ., dDIM-1, dDIM+1, . . ., dn \]**
-    where **\[d1, d2, . . ., dn \]** is the shape of **mask**.
-
-4.  Result Value.
-
-    Case (i):
-    : The result of **all(mask)** has the value true if all
-    elements of **mask** are true or if **mask** has
-    size zero, and the result has value false if any element
-    of **mask** is false.
-
-    Case (ii):
-    : If **mask** has rank one, **all(mask,dim)** is equal to
-    **all(mask)**. Otherwise, the value of element **(s1, s2,
-    . . ., sdim-1, sdim+1, . . ., sn )** of all **(mask,
-    dim)** is equal to **all(mask (s1, s2, . . ., sdim-1,
-    :, sdim+1, . . ., sn ))**.
+3.  If the rank of **mask** is greater than one and **dim** is present then
+    **all(mask,dim)** returns an array with the rank (number of
+    dimensions) of **mask** minus 1. The shape is determined from the
+    shape of **mask** where the **dim** dimension is elided. A value is
+    returned for each set of elements along the **dim** dimension.
 
 ### **Examples**
 
@@ -71,60 +74,46 @@ Sample program:
 ```fortran
 program demo_all
 implicit none
-logical l
-   l = all([.true., .true., .true.])
-   print *, l
-   call section
+logical,parameter :: T=.true., F=.false.
+logical bool
+  ! basic usage
+   ! is everything true?
+   bool = all([ T,T,T ])
+   bool = all([ T,F,T ])
+   print *, bool
 
-contains
+  ! by a dimension
+   ARRAYS: block
+   integer :: a(2,3), b(2,3)
+    ! set everything to one except one value in b
+    a = 1
+    b = 1
+    b(2,2) = 2
+    ! now compare those two arrays
+    print *,'entire array :', all(a ==  b )
+    print *,'compare columns:', all(a ==  b, dim=1)
+    print *,'compare rows:', all(a ==  b, dim=2)
+  end block ARRAYS
 
-subroutine section
-integer a(2,3), b(2,3)
-  a = 1
-  b = 1
-  b(2,2) = 2
-  print *, all(a .eq. b, 1)
-  print *, all(a .eq. b, 2)
-end subroutine section
 end program demo_all
 ```
 
 Results:
 
 ```text
-    T
-    T F T
-    T F
-```
-
-Case (i):
-
-```text
-     The value of all([.TRUE., .FALSE., .TRUE.]) is false.
-```
-
-Case (ii):
-
-```text
-                          1|3|5
-   If B is the array      -+-+-
-                          2|4|6
-
-                          0|3|5
-   and C is the array     -+-+-
-                          7|4|8
-
-   then all(B /= C, DIM = 1) is
-
-      [true, false, false]
-
-   and **all(B /= C, DIM = 2)** is
-
-        [false, false].
+ >  T
+ >  F
+ >  entire array : F
+ >  compare columns: T F T
+ >  compare rows: T F
 ```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
- _fortran-lang intrinsic descriptions_
+### **See Also**
+
+[**any**(3)](#any)
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

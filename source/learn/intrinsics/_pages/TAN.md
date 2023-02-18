@@ -4,24 +4,38 @@
 
 **tan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Tangent function
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
 result = tan(x)
 ```
 
+```fortran
+ elemental TYPE(kind=KIND) function tan(x)
+
+  TYPE(kind=KIND),intent(in) :: x
+```
+
+### **Characteristics**
+
+- the **TYPE** of **x** may be _real_ or _complex_ of any supported kind
+- The returned value will be of the same type and kind as the argument
+  **x**.
+
 ### **Description**
 
-**tan(x)** computes the tangent of **x**.
+**tan**(3) computes the tangent of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : The angle in radians to compute the tangent of for _real_ input.
+  If **x** is of type _complex_, its real part is regarded as a value
+  in radians.
 
-### **Returns**
+### **Result**
 
-The return value has the same type and kind as **x**.
+The return value is the tangent of the value **x**.
 
 ### **Examples**
 
@@ -45,12 +59,13 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later. For a complex argument, Fortran 2008 or later.
+FORTRAN 77 . For a complex argument, Fortran 2008 .
 
 ### **See Also**
 
 [**atan**(3)](#atan),
+[**atan2**(3)](#atan2),
 [**cos**(3)](#cos),
 [**sin**(3)](#sin)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

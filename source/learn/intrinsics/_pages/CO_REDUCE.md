@@ -4,15 +4,21 @@
 
 **co_reduce**(3) - \[COLLECTIVE\] Reduction of values on the current set of images
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-call co_reduce(a, operation, result_image, stat, errmsg)
+    call co_reduce(a, operation, result_image [,stat] [,errmsg] )
 ```
+
+```fortran
+
+```
+
+### **Characteristics**
 
 ### **Description**
 
-co_reduce determines element-wise the reduction of the value of **a** on
+**co_reduce**(3) determines element-wise the reduction of the value of **a** on
 all images of the current team. The pure function passed as **operation** is
 used to pairwise reduce the values of **a** by passing either the value of **a**
 of different images or the result values of such a reduction as
@@ -25,7 +31,7 @@ assigned the value zero. If the execution failed, **stat** gets assigned a
 nonzero value and, if present, **errmsg** gets assigned a value describing
 the occurred error.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : is an **intent(inout)** argument and shall be nonpolymorphic. If it
@@ -90,7 +96,7 @@ type as a result.
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -99,4 +105,4 @@ TS 18508 or later
 [**co_sum**(3)](#co_sum),
 [**co_broadcast**(3)](#co_broadcast)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

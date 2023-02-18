@@ -2,34 +2,56 @@
 
 ### **Name**
 
-**anint**(3) - \[NUMERIC\] Nearest whole number
+**anint**(3) - \[NUMERIC\] Real nearest whole number
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = anint(a, kind)
+    result = anint(a [,kind])
 ```
+
+```fortran
+     elemental real(kind=KIND) function anint(x,KIND)
+
+      real(kind=**),intent(in)   :: x
+      integer,intent(in),optional :: KIND
+```
+
+### **Characteristics**
+
+- **a** is type _real_ of any kind
+- **KIND** is a scalar integer constant expression.
+- the result is type _real_. The kind of the result is the same as **x**
+  unless specified by **kind**.
 
 ### **Description**
 
-**anint(a \[, kind\])** rounds its argument to the nearest whole number.
+**anint**(3) rounds its argument to the nearest whole number.
 
-### **Arguments**
+Unlike **nint**(3) which returns an _integer_ the full range or real
+values can be returned (_integer_ types typically have a smaller range
+of values than _real_ types).
+
+### **Options**
 
 - **a**
-  : the type of the argument shall be _real_.
+  : the value to round
 
 - **kind**
-  : (optional) an _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : specifies the kind of the result. The default is the kind of **a**.
 
-### **Returns**
+### **Result**
 
-The return value is of type real with the kind type parameter of the
-argument if the optional **kind** is absent; otherwise, the kind type
-parameter will be given by **kind**. If **a** is greater than zero, **anint(a)**
-returns **aint(a + 0.5)**. If **a** is less than or equal to zero then it
-returns **aint(a - 0.5)**.
+The return value is the real whole number nearest **a**.
+
+If **a** is greater than zero, **anint(a)**(3) returns **aint(a + 0.5)**.
+
+If **a** is less than or equal to zero then it returns **aint(a - 0.5)**,
+except **aint** specifies that for |**a**| < 1 the result is zero (0).
+
+It is processor-dependent whether anint(a) returns negative zero when
+-0.5 < a <= -0.0. Compiler switches are often available which enable
+or disable support of negative zero.
 
 ### **Examples**
 
@@ -37,23 +59,33 @@ Sample program:
 
 ```fortran
 program demo_anint
-use, intrinsic :: iso_fortran_env, only : real_kinds, &
-& real32, real64, real128
+use, intrinsic :: iso_fortran_env, only : real32, real64, real128
 implicit none
-real(kind=real32) :: x4
-real(kind=real64) :: x8
+real,allocatable :: arr(:)
 
-   x4 = 1.234E0_real32
-   x8 = 4.321_real64
-   print *, anint(x4), dnint(x8)
-   x8 = anint(x4,kind=real64)
-   print *, x8
-   print *
-   ! elemental
-   print *,anint([ &
-    & -2.7,  -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, &
-    &  0.0, &
-    & +0.5,  +1.0, +1.5, +2.0, +2.2, +2.5, +2.7  ])
+  ! basics
+   print *, 'ANINT (2.783) has the value 3.0 =>', anint(2.783)
+   print *, 'ANINT (-2.783) has the value -3.0 =>', anint(-2.783)
+
+   print *, 'by default the kind of the output is the kind of the input'
+   print *, anint(1234567890.1234567890e0)
+   print *, anint(1234567890.1234567890d0)
+
+   print *, 'sometimes specifying the result kind is useful when passing'
+   print *, 'results as an argument, for example.'
+   print *, 'do you know why the results are different?'
+   print *, anint(1234567890.1234567890,kind=real64)
+   print *, anint(1234567890.1234567890d0,kind=real64)
+
+  ! elemental
+   print *, 'numbers on a cusp are always the most troublesome'
+   print *, anint([ -2.7, -2.5, -2.2, -2.0, -1.5, -1.0, -0.5, 0.0 ])
+
+   print *, 'negative zero is processor dependent'
+   arr=[ 0.0, 0.1, 0.5, 1.0, 1.5, 2.0, 2.2, 2.5, 2.7 ]
+   print *, anint(arr)
+   arr=[ -0.0, -0.1, -0.5, -1.0, -1.5, -2.0, -2.2, -2.5, -2.7 ]
+   print *, anint(arr)
 
 end program demo_anint
 ```
@@ -61,18 +93,29 @@ end program demo_anint
 Results:
 
 ```text
-    1.00000000       4.0000000000000000
-    1.0000000000000000
-
-   -3.00000000      -3.00000000      -2.00000000      -2.00000000
-   -2.00000000      -1.00000000      -1.00000000       0.00000000
-    1.00000000       1.00000000       2.00000000       2.00000000
-    2.00000000       3.00000000       3.00000000
+ >  ANINT (2.783) has the value 3.0 =>   3.000000
+ >  ANINT (-2.783) has the value -3.0 =>  -3.000000
+ >  by default the kind of the output is the kind of the input
+ >   1.2345679E+09
+ >    1234567890.00000
+ >  sometimes specifying the result kind is useful when passing
+ >  results as an argument, for example.
+ >  do you know why the results are different?
+ >    1234567936.00000
+ >    1234567890.00000
+ >  numbers on a cusp are always the most troublesome
+ >   -3.000000      -3.000000      -2.000000      -2.000000      -2.000000
+ >   -1.000000      -1.000000      0.0000000E+00
+ >  negative zero is processor dependent
+ >   0.0000000E+00  0.0000000E+00   1.000000       1.000000       2.000000
+ >    2.000000       2.000000       3.000000       3.000000
+ >   0.0000000E+00  0.0000000E+00  -1.000000      -1.000000      -2.000000
+ >   -2.000000      -2.000000      -3.000000      -3.000000
 ```
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -83,4 +126,4 @@ FORTRAN 77 and later
 [**ceiling**(3)](#ceiling),
 [**floor**(3)](#floor)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

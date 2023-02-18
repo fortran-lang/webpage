@@ -4,18 +4,24 @@
 
 **co_ubound**(3) - \[COLLECTIVE\] Upper codimension bounds of an array
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = co_ubound(coarray, dim, kind)
+    result = co_ubound(coarray [,dim] [,kind] )
 ```
+
+```fortran
+
+```
+
+### **Characteristics**
 
 ### **Description**
 
-Returns the upper cobounds of a coarray, or a single upper cobound along
-the **dim** codimension.
+**co_ubound**(3) returns the upper cobounds of a coarray, or a single
+upper cobound along the **dim** codimension.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an coarray, of any type.
@@ -27,7 +33,7 @@ the **dim** codimension.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
 the return value is of default integer kind. If **dim** is absent, the
@@ -37,7 +43,7 @@ along that codimension.
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -45,4 +51,4 @@ Fortran 2008 and later
 [**lbound**(3)](#lbound),
 [**ubound**(3)](#ubound)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

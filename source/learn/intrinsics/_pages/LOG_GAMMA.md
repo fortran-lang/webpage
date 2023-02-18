@@ -2,26 +2,41 @@
 
 ### **Name**
 
-**log_gamma**(3) - \[MATHEMATICS\] Logarithm of the Gamma function
+**log_gamma**(3) - \[MATHEMATICS\] Logarithm of the absolute value of
+the Gamma function
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-x = log_gamma(x)
+    result = log_gamma(x)
 ```
+
+```fortran
+     elemental real(kind=KIND) function log_gamma(x)
+
+      real(kind=KIND),intent(in) :: x
+```
+
+### **Characteristics**
+
+- **x** may be any _real_ type
+- the return value is of same type and kind as **x**.
 
 ### **Description**
 
-**log_gamma(x)** computes the natural logarithm of the absolute value of the Gamma function.
+**log_gamma**(3) computes the natural logarithm of the absolute value
+of the Gamma function.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : Shall be of type _real_ and neither zero nor a negative integer.
+  : neither negative nor zero value to render the result for.
 
-### **Returns**
+### **Result**
 
-The return value is of type _real_ of the same kind as **x**.
+The result has a value equal to a processor-dependent approximation
+to the natural logarithm of the absolute value of the gamma function
+of **x**.
 
 ### **Examples**
 
@@ -32,21 +47,23 @@ program demo_log_gamma
 implicit none
 real :: x = 1.0
    write(*,*)x,log_gamma(x) ! returns 0.0
+   write(*,*)x,log_gamma(3.0) ! returns 0.693 (approximately)
 end program demo_log_gamma
 ```
 
 Results:
 
 ```text
-      1.00000000       0.00000000
+ >    1.000000      0.0000000E+00
+ >    1.000000      0.6931472
 ```
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
 Gamma function: [**gamma**(3)](#gamma)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

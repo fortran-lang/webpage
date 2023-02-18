@@ -2,35 +2,58 @@
 
 ### **Name**
 
-**shape**(3) - \[ARRAY INQUIRY\] Determine the shape of an array
+**shape**(3) - \[ARRAY:INQUIRY\] Determine the shape of an array or scalar
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = shape(source, kind)
+  result = shape( source [,kind] )
 ```
+
+```fortran
+   integer(kind=KIND) function shape( source, KIND )
+
+    type(TYPE(kind=**)),intent(in)       :: source(..)
+    integer(kind=**),intent(in),optional :: KIND
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+
+- **source** is an array or scalar of any type. If **source** is a pointer
+  it must be associated and allocatable arrays must be allocated. It shall
+  not be an assumed-size array.
+
+- **KIND** is a constant _integer_ initialization expression.
+
+- the result is an _integer_ array of rank one with size equal to the
+  rank of **source** of the kind specified by **KIND** if **KIND**
+  is present, otherwise it has the default integer kind.
 
 ### **Description**
 
-Determines the shape of an array.
+**shape**(3) queries the shape of an array.
 
-### **Arguments**
+### **Options**
 
 - **source**
-  : Shall be an array or scalar of any type. If **source** is a pointer it
+  : an array or scalar of any type. If **source** is a pointer it
   must be associated and allocatable arrays must be allocated.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : indicates the kind parameter of the result.
 
-### **Returns**
+### **Result**
 
-An _integer_ array of rank one with as many elements as **source** has
-dimensions. The elements of the resulting array correspond to the extend
-of **source** along the respective dimensions. If **source** is a scalar, the
-result is the rank one array of size zero. If **kind** is absent, the return
-value has the default integer kind otherwise the specified kind.
+An _integer_ array of rank one with as many elements as **source**
+has dimensions.
+
+The elements of the resulting array correspond to the extent of
+**source** along the respective dimensions.
+
+If **source** is a scalar, the result is an empty array (a rank-one
+array of size zero).
 
 ### **Examples**
 
@@ -61,11 +84,30 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later; with KIND argument Fortran 2003 and later
+Fortran 95 ; with KIND argument Fortran 2003
 
 ### **See Also**
 
-[**reshape**(3)](#reshape),
-[**size**(3)](#size)
+#### Array inquiry:
 
- _fortran-lang intrinsic descriptions_
+- [**size**(3)](#size) - Determine the size of an array
+- [**rank**(3)](#rank) - Rank of a data object
+- [**ubound**(3)](#ubound) - Upper dimension bounds of an array
+- [**lbound**(3)](#lbound) - Lower dimension bounds of an array
+
+#### State Inquiry:
+
+- [**allocated**(3)](#allocated) - Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contiguous) - Test if object is contiguous
+
+#### Kind Inquiry:
+
+- [**kind**(3)](#kind) - Kind of an entity
+
+#### Bit Inquiry:
+
+- [**storage_size**(3)](#storage_size) - Storage size in bits
+- [**bit_size**(3)](#bit_size) - Bit size inquiry function
+- [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

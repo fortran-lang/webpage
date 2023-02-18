@@ -4,24 +4,34 @@
 
 **co_sum**(3) - \[COLLECTIVE\] Sum of values on the current set of images
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-call co_sum(a, result_image, stat, errmsg)
+    call co_sum(a, result_image [,stat] [,errmsg] )
 ```
+
+```fortran
+
+```
+
+### **Characteristics**
 
 ### **Description**
 
-co_sum sums up the values of each element of **a** on all images of the
-current team. If result_image is present, the summed-up values are
-returned in **a** on the specified image only and the value of **a** on the
-other images become undefined. If result_image is not present, the
-value is returned on all images. If the execution was successful and
-**stat** is present, it is assigned the value zero. If the execution failed,
-**stat** gets assigned a nonzero value and, if present, **errmsg** gets assigned
-a value describing the occurred error.
+**co_sum**(3) sums up the values of each element of **a** on all images
+of the current team.
 
-### **Arguments**
+If result_image is present, the summed-up values are returned in **a**
+on the specified image only and the value of **a** on the other images
+become undefined.
+
+If result_image is not present, the value is returned on all images. If
+the execution was successful and **stat** is present, it is assigned the
+value zero. If the execution failed, **stat** gets assigned a nonzero
+value and, if present, **errmsg** gets assigned a value describing the
+occurred error.
+
+### **Options**
 
 - **a**
   : shall be an integer, real or complex variable, which has the same
@@ -63,7 +73,7 @@ Results:
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -72,4 +82,4 @@ TS 18508 or later
 [**co_reduce**(3)](#co_reduce),
 [**co_broadcast**(3)](#co_broadcast)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

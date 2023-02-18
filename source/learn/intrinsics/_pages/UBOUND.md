@@ -2,38 +2,70 @@
 
 ### **Name**
 
-**ubound**(3) - \[ARRAY INQUIRY\] Upper dimension bounds of an array
+**ubound**(3) - \[ARRAY:INQUIRY\] Upper dimension bounds of an array
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = ubound(array, dim, kind)
+    result = ubound(array [,dim] [,kind] )
 ```
+
+```fortran
+     elemental TYPE(kind=KIND) function ubound(array,dim,kind)
+
+      TYPE(kind=KIND),intent(in)           :: array
+      integer(kind=**),intent(in),optional :: dim
+      integer(kind=**),intent(in),optional :: kind
+```
+
+### **Characteristics**
+
+- **array** shall be assumed-rank or an array, of any type.
+  It cannot be an unallocated allocatable array or a pointer that is not associated.
+
+- **dim** shall be a scalar _integer_.
+  The corresponding actual argument shall not be an optional dummy
+  argument, a disassociated pointer, or an unallocated allocatable.
+
+- **kind** an _integer_ initialization expression indicating the kind
+  parameter of the result.
+
+- The return value is of type _integer_ and of kind **kind**. If **kind**
+  is absent, the return value is of default integer kind.
+  The result is scalar if **dim** is present; otherwise, the result is
+  an array of rank one and size n, where n is the rank of **array**.
+
+- a kind designated as \*\* may be any supported kind for the type
 
 ### **Description**
 
-Returns the upper bounds of an array, or a single upper bound along the
-**dim** dimension.
+**ubound**(3) returns the upper bounds of an array, or a single upper
+bound along the **dim** dimension.
 
-### **Arguments**
+### **Options**
 
 - **array**
-  : Shall be an array, of any type.
+  : The assumed-rank or array of any type whose upper bounds are to be
+  determined. If allocatable it must be allocated; if a pointer it must
+  be associated. If an assumed-size array, **dim** must be present.
 
 - **dim**
-  : (Optional) Shall be a scalar _integer_.
+  : a specific dimension of **array** to determine the bounds of.
+  If **dim** is absent, the result is an array of the upper bounds of
+  **array**. **dim** is required if **array** is an assumed-size array,
+  and in that case must be less than or equal to the rank of **array**.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : indicates the kind parameter of the result. If absent, an _integer_
+  of the default kind is returned.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind**
 is absent, the return value is of default integer kind.
 
 If **dim** is absent, the result is an array of the upper bounds of
-**array**.
+each dimension of the **array**.
 
 If **dim** is present, the result is a scalar corresponding to the upper
 bound of the array along that dimension.
@@ -42,6 +74,11 @@ If **array** is an expression rather than a whole array or array
 structure component, or if it has a zero extent along the relevant
 dimension, the upper bound is taken to be the number of elements along
 the relevant dimension.
+
+NOTE1
+If ARRAY is assumed-rank and has rank zero, DIM cannot be present
+since it cannot satisfy the requirement
+**1 <= DIM <= 0**.
 
 ### **Examples**
 
@@ -66,7 +103,8 @@ integer,intent(in) :: arr(:)
 end subroutine msub
 
 end module m2_bounds
-
+!
+program demo_ubound
 use m2_bounds, only : msub
 implicit none
 interface
@@ -102,21 +140,42 @@ end subroutine esub
 Results:
 
 ```text
-  MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
-  CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
-  MSUB: LOWER=           1 UPPER=          21 SIZE=          21
-  ESUB: LOWER=           1 UPPER=          21 SIZE=          21
+ >  MAIN: LOWER=         -10 UPPER=          10 SIZE=          21
+ >  CSUB: LOWER=         -10 UPPER=          10 SIZE=          21
+ >  MSUB: LOWER=           1 UPPER=          21 SIZE=          21
+ >  ESUB: LOWER=           1 UPPER=          21 SIZE=          21
 ```
 
 ### **Standard**
 
-Fortran 95 and later, with KIND argument Fortran 2003
-and later
+Fortran 95 , with KIND argument Fortran 2003
 
 ### **See Also**
 
-[**lbound**(3)](#lbound),
-[**co_ubound**(3)](#co_ubound),
-[__co\_lbound__(3)(co_lbound)]
+#### Array inquiry:
 
- _fortran-lang intrinsic descriptions_
+- [**size**(3)](#size) - Determine the size of an array
+- [**rank**(3)](#rank) - Rank of a data object
+- [**shape**(3)](#shape) - Determine the shape of an array
+- [**lbound**(3)](#lbound) - Lower dimension bounds of an array
+
+[**co_ubound**(3)](#co_ubound),
+[**co_lbound**(3)](co_lbound)
+
+#### State Inquiry:
+
+- [**allocated**(3)](#allocated) - Status of an allocatable entity
+- [**is_contiguous**(3)](#is_contiguous) - Test if object is contiguous
+
+#### Kind Inquiry:
+
+- [**kind**(3)](#kind) - Kind of an entity
+
+#### Bit Inquiry:
+
+- [**storage_size**(3)](#storage_size) - Storage size in bits
+- [**bit_size**(3)](#bit_size) - Bit size inquiry function
+- [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
+- [**lbound**(3)](#lbound),
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

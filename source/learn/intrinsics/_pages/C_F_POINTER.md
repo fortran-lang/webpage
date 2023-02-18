@@ -4,18 +4,33 @@
 
 **c_f_pointer**(3) - \[ISO_C_BINDING\] Convert C into Fortran pointer
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-call c_f_pointer(cptr, fptr, shape)
+    call c_f_pointer(cptr, fptr [,shape] )
 ```
+
+```fortran
+     subroutine c_f_pointer(cptr, fptr ,shape )
+
+      type(c_ptr),intent(in) :: cprt
+      type(TYPE),pointer,intent(out) :: fprt
+      integer,intent(in),optional :: shape(:)
+```
+
+### **Characteristics**
+
+The Fortran pointer **fprt** must be interoperable with **cptr**
+
+**shape** is only specified if **fptr** is an array.
 
 ### **Description**
 
-**c_f_pointer(cptr, fptr\[, shape\])** Assign the target, the C
-pointer, **cptr** to the Fortran pointer **fptr** and specify its shape.
+**c_f_pointer**(3) assigns the target (the C pointer **cptr**) to the
+Fortran pointer **fptr** and specifies its shape if **fptr** points to
+an array.
 
-### **Arguments**
+### **Options**
 
 - **cptr**
   : scalar of the type c_ptr. It is **intent(in)**.
@@ -51,7 +66,7 @@ end program demo_c_f_pointer
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
@@ -59,4 +74,4 @@ Fortran 2003 and later
 [**c_f_procpointer**(3)](#c_f_procpointer),
 **iso_c_binding**(3)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

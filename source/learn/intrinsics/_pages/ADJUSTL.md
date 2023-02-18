@@ -2,33 +2,40 @@
 
 ### **Name**
 
-**adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-adjust a string
+**adjustl**(3) - \[CHARACTER:WHITESPACE\] Left-justified a string
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-    result = adjustl(string)
-
-     character(len=(len(string)) elemental function adjustr(a)
-
-     character(len=*),intent(in) :: string
+  result = adjustl(string)
 ```
+
+```fortran
+   elemental character(len=len(string),kind=KIND) function adjustl(string)
+
+    character(len=*,kind=KIND),intent(in) :: string
+```
+
+### **Characteristics**
+
+- **string** is a _character_ variable of any supported kind
+- The return value is a _character_ variable of the same kind
+  and length as **string**
 
 ### **Description**
 
-**adjustl(string)** will left-adjust a string by removing leading
+**adjustl**(3) will left-justify a string by removing leading
 spaces. Spaces are inserted at the end of the string as needed.
 
-### **Arguments**
+### **Options**
 
 - **string**
-  : the type shall be _character_.
+  : the string to left-justify
 
-### **Returns**
+### **Result**
 
-The return value is of type _character_ and of the same kind as **string**
-where leading spaces are removed and the same number of spaces are
-inserted on the end of **string**.
+A copy of **string** where leading spaces are removed and the same
+number of spaces are inserted on the end of **string**.
 
 ### **Examples**
 
@@ -39,33 +46,51 @@ program demo_adjustl
 implicit none
 character(len=20) :: str = '   sample string'
 character(len=:),allocatable :: astr
-    !
-    ! basic use
-    str = adjustl(str)
-    write(*,'("[",a,"]")') str, trim(str)
-    !
-    ! an allocatable string stays the same length
-    ! and is not trimmed.
+integer :: length
+
+   ! basic use
+    write(*,'(a,"[",a,"]")') 'original: ',str
+    str=adjustl(str)
+    write(*,'(a,"[",a,"]")') 'adjusted: ',str
+
+    ! a fixed-length string can be printed
+    ! trimmed using trim(3f) or len_trim(3f)
+    write(*,'(a,"[",a,"]")') 'trimmed:  ',trim(str)
+    length=len_trim(str)
+    write(*,'(a,"[",a,"]")') 'substring:',str(:length)
+
+    ! note an allocatable string stays the same length too
+    ! and is not trimmed by just an adjustl(3f) call.
     astr='    allocatable string   '
-    write(*,'("[",a,"]")') adjustl(astr)
-    !
+    write(*,'(a,"[",a,"]")') 'original:',astr
+    astr = adjustl(astr)
+    write(*,'(a,"[",a,"]")') 'adjusted:',astr
+    ! trim(3f) can be used to change the length
+    astr = trim(astr)
+    write(*,'(a,"[",a,"]")') 'trimmed: ',astr
+
 end program demo_adjustl
 ```
 
 Results:
 
 ```text
-   [sample string       ]
-   [sample string]
-   [allocatable string       ]
+   original: [   sample string    ]
+   adjusted: [sample string       ]
+   trimmed:  [sample string]
+   substring:[sample string]
+   original:[    allocatable string   ]
+   adjusted:[allocatable string       ]
+   trimmed: [allocatable string]
 ```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
-[**adjustr**(3)](#adjustr)
+[**adjustr**(3)](#adjustr),
+[**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

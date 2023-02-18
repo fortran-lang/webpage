@@ -4,26 +4,43 @@
 
 **maxloc**(3) - \[ARRAY:LOCATION\] Location of the maximum value within an array
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = maxloc(array, dim, mask) result = maxloc(array, mask)
+    result = maxloc(array [,mask]) | maxloc(array [,dim] [,mask])
 ```
+
+```fortran
+     NUMERIC function maxloc(array, dim, mask)
+
+      NUMERIC,intent(in) :: array(..)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+- **NUMERIC** designates any intrinsic numeric type and kind.
 
 ### **Description**
 
-Determines the location of the element in the array with the maximum
-value, or, if the **dim** argument is supplied, determines the locations
-of the maximum element along each row of the array in the **dim**
-direction. If **mask** is present, only the elements for which **mask**
-is **.true.** are considered. If more than one element in the array has
+**maxloc**(3) determines the location of the element in the array with
+the maximum value, or, if the **dim** argument is supplied, determines
+the locations of the maximum element along each row of the array in the
+**dim** direction.
+
+If **mask** is present, only the elements for which **mask**
+is _.true._ are considered. If more than one element in the array has
 the maximum value, the location returned is that of the first such element
-in array element order. If the array has zero size, or all of the elements
+in array element order.
+
+If the array has zero size, or all of the elements
 of **mask** are .false., then the result is an array of zeroes. Similarly,
 if **dim** is supplied and all of the elements of **mask** along a given
 row are zero, the result value for that row is zero.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_, or _character_.
@@ -36,7 +53,7 @@ row are zero, the result value for that row is zero.
 - **mask**
   : Shall be an array of type _logical_, and conformable with **array**.
 
-### **Returns**
+### **Result**
 
 If **dim** is absent, the result is a rank-one array with a length equal
 to the rank of **array**. If **dim** is present, the result is an array
@@ -67,13 +84,13 @@ integer,save :: ints(3,5)= reshape([&
     write(*,*) maxloc(ints)
     write(*,*) maxloc(ints,dim=1)
     write(*,*) maxloc(ints,dim=2)
-    ! when array bounds do not start with one remember MAXLOC(3) returns the
-    ! offset relative to the lower bound-1 of the location of the maximum
-    ! value, not the subscript of the maximum value. When the lower bound of
-    ! the array is one, these values are the same. In other words, MAXLOC(3)
-    ! returns the subscript of the value assuming the first subscript of the
-    ! array is one no matter what the lower bound of the subscript actually
-    ! is.
+    ! when array bounds do not start with one remember MAXLOC(3) returns
+    ! the offset relative to the lower bound-1 of the location of the
+    ! maximum value, not the subscript of the maximum value. When the
+    ! lower bound of the array is one, these values are the same. In
+    ! other words, MAXLOC(3) returns the subscript of the value assuming
+    ! the first subscript of the array is one no matter what the lower
+    ! bound of the subscript actually is.
     write(*,'(g0,1x,g0)') (ii,i(ii),ii=lbound(i,dim=1),ubound(i,dim=1))
     write(*,*)maxloc(i)
 
@@ -83,25 +100,29 @@ end program demo_maxloc
 Results:
 
 ```text
-      3       5
-      3       3       3       3       3
-      5       5       5
-   -3 47
-   -2 48
-   -1 49
-   0 50
-   1 49
-   2 48
-   3 47
+ >     3       5
+ >     3       3       3       3       3
+ >     5       5       5
+ >  -3 47
+ >  -2 48
+ >  -1 49
+ >  0 50
+ >  1 49
+ >  2 48
+ >  3 47
 ```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
-[**max**(3)](#max),
-[**maxval**(3)](#maxval)
+- [**findloc**(3)](#findloc) - Location of first element of ARRAY
+  identified by MASK along dimension DIM matching a target
+- [**minloc**(3)](#minloc) - Location of the minimum value within an array
+- [**maxval**(3)](#maxval)
+- [**minval**(3)](#minval)
+- [**max**(3)](#max)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

@@ -2,24 +2,32 @@
 
 ### **Name**
 
-**product**(3) - \[ARRAY REDUCTION\] Product of array elements
+**product**(3) - \[ARRAY:REDUCTION\] Product of array elements
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-  result = product(array, dim, mask)
-
-    NUMERIC,intent(in) :: array(..)
-    integer,intent(in),optional :: dim
-    logical,intent(in),optional :: mask(..)
+    result = product(array [,dim] [,mask])
 ```
 
-where **NUMERIC** is any numeric type
+```fortran
+     NUMERIC function product(array, dim, mask)
+
+      NUMERIC,intent(in) :: array(..)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+- **NUMERIC** is any numeric type and kind.
 
 ### **Description**
 
-Multiplies together all the selected elements of **array**, or along
-dimension **dim** if the corresponding element in **mask** is **.true.**.
+**product**(3) multiplies together all the selected elements of **array**,
+or along dimension **dim** if the corresponding element in **mask**
+is _.true._.
 
 If **dim** is absent, a scalar with the product of all elements in **array** is
 returned. (Note a zero-sized **array** returns **1**).
@@ -29,7 +37,7 @@ When **dim** is present, If the masked array has a dimension of one
 **n-1**, where **n** equals the rank of **array**, and a shape similar
 to that of **array** with dimension **dim** dropped is returned.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_ or _complex_.
@@ -42,7 +50,7 @@ to that of **array** with dimension **dim** dropped is returned.
   : shall be of type _logical_ and either be a scalar or an
   array of the same shape as **array**.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as **array**.
 
@@ -78,7 +86,8 @@ integer,allocatable :: array(:)
    print all, 'zero-sized array=>',product([integer :: ])
    ! NOTE: If nothing in the mask is true, this also results in a null
    !       array
-   print all, 'all elements have a false mask=>',product(array,mask=.false.)
+   print all, 'all elements have a false mask=>', &
+            & product(array,mask=.false.)
 
 endblock NO_DIM
 
@@ -115,7 +124,8 @@ integer :: box(2,3,4)
 
    ! only one plane has negative values, so note all the "1" values
    ! for vectors with no elements
-   call print_matrix_int('negative values',product(box,mask=box < 0,dim=1))
+   call print_matrix_int('negative values', &
+   & product(box,mask=box < 0,dim=1))
 
 !   If DIM is specified and ARRAY has rank greater than one, the
 !   result is a new array in which dimension DIM has been eliminated.
@@ -224,11 +234,11 @@ dim=3 :( 2 3 )
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
 [**sum**(3)](#sum), note that an element by element multiplication is done
 directly using the star character.
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

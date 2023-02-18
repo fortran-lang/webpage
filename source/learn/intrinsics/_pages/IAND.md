@@ -2,30 +2,60 @@
 
 ### **Name**
 
-**iand**(3) - \[BIT:LOGICAL\] Bitwise logical and
+**iand**(3) - \[BIT:LOGICAL\] Bitwise logical AND
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = iand(i, j)
+    result = iand(i, j)
 ```
+
+```fortran
+     elemental integer(kind=KIND) function iand(i,j)
+
+      integer(kind=KIND),intent(in) :: i
+      integer(kind=KIND),intent(in) :: j
+```
+
+### **Characteristics**
+
+- **i**, **j** and the result shall have the same _integer_ type and kind,
+  with the exception that one of **i** or **j** may be a BOZ constant.
 
 ### **Description**
 
-Bitwise logical **and**.
+**iand**(3) returns the bitwise logical **and** of two values.
 
-### **Arguments**
+### **Options**
 
 - **i**
-  : The type shall be _integer_.
+  : one of the pair of values to compare the bits of
 
 - **j**
-  : The type shall be _integer_, of the same kind as **i**.
+  : one of the pair of values to compare the bits of
 
-### **Returns**
+If either **i** or **j** is a BOZ-literal-constant, it is first converted
+as if by the intrinsic function **int**(3) to type _integer_ with the
+kind type parameter of the other.
 
-The return type is _integer_, of the same kind as the arguments. (If the
-argument kinds differ, it is of the same kind as the larger argument.)
+### **Result**
+
+The result has the value obtained by combining **i** and **i**
+bit-by-bit according to the following table:
+
+```text
+    I  |  J  |  IAND (I, J)
+  ----------------------------
+    1  |  1  |    1
+    1  |  0  |    0
+    0  |  1  |    0
+    0  |  0  |    0
+```
+
+So if both the bit in **i** and **j** are on the resulting bit is on
+(a one); else the resulting bit is off (a zero).
+
+This is commonly called the "bitwise logical AND" of the two values.
 
 ### **Examples**
 
@@ -35,20 +65,24 @@ Sample program:
 program demo_iand
 implicit none
 integer :: a, b
-      data a / z'f' /, b / z'3' /
-      write (*,*) iand(a, b)
+ data a / z'f' /, b / z'3' /
+ write (*,*) 'a=',a,' b=',b,'iand(a,b)=',iand(a, b)
+ write (*,'(b32.32)') a,b,iand(a,b)
 end program demo_iand
 ```
 
 Results:
 
 ```text
-              3
+    a= 15  b= 3 iand(a,b)= 3
+   00000000000000000000000000001111
+   00000000000000000000000000000011
+   00000000000000000000000000000011
 ```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -63,4 +97,4 @@ Fortran 95 and later
 [**ieor**(3)](#ieor),
 [**mvbits**(3)](#mvbits)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

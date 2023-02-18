@@ -2,36 +2,43 @@
 
 ### **Name**
 
-**int**(3) - \[TYPE:NUMERIC\] Convert to integer type by truncating towards zero
+**int**(3) - \[TYPE:NUMERIC\] Truncate towards zero and convert to integer
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = int(a, kind)
-
- integer(kind=KIND) elemental function int(a,kind)
- TYPE(kind=KIND),intent(in),optional :: a
- integer,optional :: kind
+    result = int(a [,kind])
 ```
+
+```fortran
+     elemental integer(kind=KIND) function int(a, KIND )
+
+      TYPE(kind=**),intent(in) :: a
+      integer,optional :: KIND
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+- **a** shall be of type integer, real, or complex, or a boz-literal-constant.
+- **KIND** shall be a scalar integer constant expression.
 
 ### **Description**
 
-Convert to integer type by truncating towards zero.
+**int**(3) truncates towards zero and return an _integer_.
 
-### **Arguments**
+### **Options**
 
 - **a**
-  : Shall be of type _integer_, _real_, or _complex_ or a BOZ-literal-constant.
+  : is the value to truncate towards zero
 
 - **kind**
-  : An _integer_ initialization expression indicating the kind
-  parameter of the result.
-
+  : indicates the kind parameter of the result.
   If not present the returned type is that of default integer type.
 
-### **Returns**
+### **Result**
 
-returns an _integer_ variable or array applying the following rules:
+returns an _integer_ variable applying the following rules:
 
 **Case**:
 
@@ -100,24 +107,24 @@ end program demo_int
 Results:
 
 ```text
-            -10   10
-             42
-             -3  -3
-            -10  -10  -10   10   10  10
-    -2147483648   2.14748467E+09
-     2147484672   2.14748467E+09
-     9223372036854775807
-     9223372036854775807
-     9223372036854775807
-
-    -2          -2          -2          -2          -1
-    -1           0           0           0           1
-     1           2           2           2           2
+ >          -10   10
+ >           42
+ >           -3  -3
+ >          -10  -10  -10   10   10  10
+ >  -2147483648   2.14748467E+09
+ >   2147484672   2.14748467E+09
+ >   9223372036854775807
+ >   9223372036854775807
+ >   9223372036854775807
+ >
+ >  -2          -2          -2          -2          -1
+ >  -1           0           0           0           1
+ >   1           2           2           2           2
 ```
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
@@ -128,4 +135,4 @@ FORTRAN 77 and later
 [**ceiling**(3)](#ceiling),
 [**floor**(3)](#floor)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

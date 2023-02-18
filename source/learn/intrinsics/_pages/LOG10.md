@@ -2,31 +2,38 @@
 
 ### **Name**
 
-**log10**(3) - \[MATHEMATICS\] Base 10 logarithm function
+**log10**(3) - \[MATHEMATICS\] Base 10 or common logarithm
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = log10(x)
-
-   real(kind=KIND) elemental function log10(x)
-   real(kind=KIND),intent(in) :: x
+    result = log10(x)
 ```
+
+```fortran
+     elemental real(kind=KIND) function log10(x)
+
+      real(kind=KIND),intent(in) :: x
+```
+
+### **Characteristics**
+
+- **x** may be any kind of _real_ value
+- the result is the same type and characteristics as **x**.
 
 ### **Description**
 
-**log10(x)** computes the base 10 logarithm of **x**. This
-is generally called the "common logarithm".
+**log10**(3) computes the base 10 logarithm of **x**. This is generally
+called the "common logarithm".
 
-### **Arguments**
+### **Options**
 
 - **x**
   : A _real_ value > 0 to take the log of.
 
-### **Returns**
+### **Result**
 
-The return value is of type _real_ . The kind type parameter is
-the same as **x**.
+The logarithm to base 10 of **x**
 
 ### **Examples**
 
@@ -52,13 +59,17 @@ end program demo_log10
 Results:
 
 ```text
-   log10(1.0000000000000000) is 0.0000000000000000
-      0.00000000       1.00000000       2.00000000       3.00000000
-      4.00000000       5.00000000       6.00000000       7.00000000
+ > log10(1.000000000000000) is .000000000000000
+ >   0.0000000E+00   1.000000       2.000000       3.000000       4.000000
+ >    5.000000       6.000000       7.000000
 ```
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
- _fortran-lang intrinsic descriptions_
+### **See also**
+
+[\*\*\*\*(3)](#)
+
+_fortran-lang intrinsic descriptions_

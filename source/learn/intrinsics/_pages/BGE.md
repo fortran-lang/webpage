@@ -4,73 +4,81 @@
 
 **bge**(3) - \[BIT:COMPARE\] Bitwise greater than or equal to
 
-### **Syntax**
-```fortran
-    elemental function bge(i, j)
+### **Synopsis**
 
-     integer(kind=KIND),intent(in) :: i
-     integer(kind=KIND),intent(in) :: j
-     logical :: bge
+```fortran
+    result = bge(i,j)
 ```
-  where the _kind_ of **i** and **j** may be of any supported _integer_
-  kind, not necessarily the same.  An exception is that values may be a
-  BOZ constant with a value valid for the _integer_ kind available with
-  the most bits on the current platform.
+
+```fortran
+      elemental logical function bge(i, j)
+
+       integer(kind=**),intent(in) :: i
+       integer(kind=**),intent(in) :: j
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+
+- the _integer_ _kind_ of **i** and **j** may not necessarily be
+  the same. In addition, values may be a BOZ constant with a value
+  valid for the _integer_ kind available with the most bits on the
+  current platform.
+
+- The return value is of type default _logical_.
 
 ### **Description**
 
-  Determines whether one _integer_ is bitwise greater than or equal
-  to another.
+**bge**(3) Determines whether one _integer_ is bitwise greater than
+or equal to another.
 
-  The bit-level representation of a value is platform dependent. The
-  endian-ness of a system and whether the system uses a "two's complement"
-  representation of signs can affect the results, for example.
+The bit-level representation of a value is platform dependent. The
+endian-ness of a system and whether the system uses a "two's complement"
+representation of signs can affect the results, for example.
 
-  A BOZ constant (Binary, Octal, Hexadecimal) does not have a _kind_
-  or _type_ of its own, so be aware it is subject to truncation when
-  transferred to an _integer_ type. The most bits the constant may
-  contain is limited by the most bits representable by any _integer_
-  kind supported by the compilation.
-
+A BOZ constant (Binary, Octal, Hexadecimal) does not have a _kind_
+or _type_ of its own, so be aware it is subject to truncation when
+transferred to an _integer_ type. The most bits the constant may
+contain is limited by the most bits representable by any _integer_
+kind supported by the compilation.
 
 #### Bit Sequence Comparison
 
-  When bit sequences of unequal length are compared, the shorter sequence
-  is padded with zero bits on the left to the same length as the longer
-  sequence (up to the largest number of bits any available _integer_ kind
-  supports).
+When bit sequences of unequal length are compared, the shorter sequence
+is padded with zero bits on the left to the same length as the longer
+sequence (up to the largest number of bits any available _integer_ kind
+supports).
 
-  Bit sequences are compared from left to right, one bit at a time,
-  until unequal bits are found or until all bits have been compared and
-  found to be equal.
+Bit sequences are compared from left to right, one bit at a time,
+until unequal bits are found or until all bits have been compared and
+found to be equal.
 
-  The bits are always evaluated in this order, not necessarily from MSB
-  to LSB (most significant bit to least significant bit).
+The bits are always evaluated in this order, not necessarily from MSB
+to LSB (most significant bit to least significant bit).
 
-  If unequal bits are found the sequence with zero in the unequal
-  position is considered to be less than the sequence with one in the
-  unequal position.
+If unequal bits are found the sequence with zero in the unequal
+position is considered to be less than the sequence with one in the
+unequal position.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : The value to test if >= **j** based on the bit representation
-    of the values.
-    Shall be of _integer_ type or a BOZ literal constant.
+  of the values.
 
 - **j**
   : The value to test **i** against.
-    Shall be of _integer_ type or a BOZ literal constant.
 
-### **Returns**
+### **Result**
 
-  The return value is of type _logical_ and of the default kind.
-  It is _.true._ if **i** is bit-wise greater than **j** and _.false._
-  otherwise.
+Returns _.true._ if **i** is bit-wise greater than **j** and _.false._
+otherwise.
 
 ### **Examples**
 
 Sample program:
+
 ```fortran
 program demo_bge
 use,intrinsic :: iso_fortran_env, only : int8, int16, int32, int64
@@ -81,7 +89,7 @@ integer(kind=int8),allocatable :: arr1(:), arr2(:)
 
   ! BASIC USAGE
    write(*,*)'bge(-127,127)=',bge( -127, 127 )
-   ! on (very common) "two's complement" machines that are 
+   ! on (very common) "two's complement" machines that are
    ! little-endian -127 will be greater than 127
 
    ! BOZ constants
@@ -97,7 +105,7 @@ integer(kind=int8),allocatable :: arr1(:), arr2(:)
    ! two arrays
    write(*, *)'compare two arrays'
    arr1=int( [ -127, -0, +0,  127], kind=int8 )
-   arr2=int( [  127,  0,  0, -127], kind=int8 ) 
+   arr2=int( [  127,  0,  0, -127], kind=int8 )
    write(*,*)'arr1=',arr1
    write(*,*)'arr2=',arr2
    write(*, *)'bge(arr1,arr2)=',bge( arr1, arr2 )
@@ -121,10 +129,11 @@ integer(kind=int8),allocatable :: arr1(:), arr2(:)
 
 end program demo_bge
 ```
+
 Results:
 
-  How an integer value is represented at the bit level can vary. These
-  are just the values expected on Today's most common platforms ...
+How an integer value is represented at the bit level can vary. These
+are just the values expected on Today's most common platforms ...
 
 ```text
     > bge(-127,127)= T
@@ -137,7 +146,7 @@ Results:
     > bge(arr1,arr2)= T T T F
     > Compare some one-byte values to 64.
     > Notice that the values are tested as bits not as integers
-    > so the resuls are as if values are unsigned integers.
+    > so the results are as if values are unsigned integers.
     > -0128  T 10000000
     > -0096  T 10100000
     > -0064  T 11000000
@@ -149,9 +158,10 @@ Results:
     > plus zero=0
     > minus zero=0
 ```
+
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -159,4 +169,4 @@ Fortran 2008 and later
 [**ble**(3)](#ble),
 [**blt**(3)](#blt)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -4,18 +4,24 @@
 
 **co_lbound**(3) - \[COLLECTIVE\] Lower codimension bounds of an array
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = co_lbound(coarray, dim, kind)
+     result = co_lbound( coarray [,dim] [,kind] )
 ```
+
+```fortran
+
+```
+
+### **Characteristics**
 
 ### **Description**
 
-Returns the lower bounds of a coarray, or a single lower cobound along
-the **dim** codimension.
+**co_lbound**(3) returns the lower bounds of a coarray, or a single
+lower cobound along the **dim** codimension.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an coarray, of any type.
@@ -27,7 +33,7 @@ the **dim** codimension.
   : (Optional) An _integer_ initialization expression indicating the kind
   parameter of the result.
 
-### **Returns**
+### **Result**
 
 The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
 the return value is of default integer kind. If **dim** is absent, the
@@ -37,11 +43,11 @@ along that codimension.
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
 [**co_ubound**(3)](#co_ubound),
 [**lbound**(3)](#lbound)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

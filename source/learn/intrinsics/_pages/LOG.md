@@ -2,30 +2,52 @@
 
 ### **Name**
 
-**log**(3) - \[MATHEMATICS\] Logarithm function
+**log**(3) - \[MATHEMATICS\] Natural logarithm
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = log(x)
+  result = log(x)
 ```
+
+```fortran
+   elemental TYPE(kind=KIND) function log(x)
+
+    TYPE(kind=KIND),intent(in) :: x
+```
+
+### **Characteristics**
+
+- **x** may be any _real_ or _complex_ kind.
+- the result is the same type and characteristics as **x**.
 
 ### **Description**
 
-**log(x)** computes the natural logarithm of **x**, i.e. the logarithm to
+**log**(3) computes the natural logarithm of **x**, i.e. the logarithm to
 the base "e".
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : The value to compute the natural log of.
+  If **x** is _real_, its value shall be greater than zero.
+  If **x** is _complex_, its value shall not be zero.
 
-### **Returns**
+### **Result**
 
-The return value is of type _real_ or _complex_. The kind type parameter is
-the same as **x**. If **x** is _complex_, the imaginary part OMEGA is in the range
+The natural logarithm of **x**.
+If **x** is the _complex_ value **(r,i)** , the imaginary part "i" is in the range
 
-**-PI** \< OMEGA \<= PI.
+```fortran
+    -PI < i <= PI
+```
+
+If the real part of **x** is less than zero and the imaginary part of
+**x** is zero, then the imaginary part of the result is approximately
+**PI** if the imaginary part of **PI** is positive real zero or the
+processor does not distinguish between positive and negative real zero,
+and approximately **-PI** if the imaginary part of **x** is negative
+real zero.
 
 ### **Examples**
 
@@ -50,6 +72,10 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
- _fortran-lang intrinsic descriptions_
+### **See also**
+
+[\*\*\*\*(3)](#)
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

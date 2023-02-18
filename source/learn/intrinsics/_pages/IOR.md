@@ -2,32 +2,59 @@
 
 ### **Name**
 
-**ior**(3) - \[BIT:LOGICAL\] Bitwise logical inclusive or
+**ior**(3) - \[BIT:LOGICAL\] Bitwise logical inclusive OR
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-   result = ior(i, j)
-    integer,intent(in) :: i
-    integer,intent(in) :: j
+    result = ior(i, j)
 ```
+
+```fortran
+     elemental integer(kind=KIND) function ior(i,j)
+
+      integer(kind=KIND ,intent(in) :: i
+      integer(kind=KIND ,intent(in) :: j
+```
+
+### **Characteristics**
+
+- **i**, **j** and the result shall have the same _integer_ type and kind,
+  with the exception that one of **i** or **j** may be a BOZ constant.
 
 ### **Description**
 
-**ior** returns the bit-wise Boolean inclusive-**or** of **i** and **j**.
+**ior**(3) returns the bit-wise Boolean inclusive-or of **i** and **j**.
 
-### **Arguments**
+### **Options**
 
 - **i**
-  : an _integer_ scalar or array.
+  : one of the pair of values to compare the bits of
 
 - **j**
-  : _integer_ scalar or array, of the same kind as **i**.
+  : one of the pair of values to compare the bits of
 
-### **Returns**
+If either **i** or **j** is a BOZ-literal-constant, it is first converted
+as if by the intrinsic function **int**(3) to type _integer_ with the
+kind type parameter of the other.
 
-The return type is _integer_, of the same kind as the arguments. (If the
-argument kinds differ, it is of the same kind as the larger argument.)
+### **Result**
+
+The result has the value obtained by combining I and J
+bit-by-bit according to the following table:
+
+```text
+          I   J   IOR (I, J)
+          1   1        1
+          1   0        1
+          0   1        1
+          0   0        0
+```
+
+Where if the bit is set in either input value, it is set in the
+result. Otherwise the result bit is zero.
+
+This is commonly called the "bitwise logical inclusive OR" of the two values.
 
 ### **Examples**
 
@@ -54,7 +81,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -69,4 +96,4 @@ Fortran 95 and later
 [**ieor**(3)](#ieor),
 [**mvbits**(3)](#mvbits)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -2,34 +2,42 @@
 
 ### **Name**
 
-**digits**(3) - \[NUMERIC MODEL\] Significant digits function
+**digits**(3) - \[NUMERIC MODEL\] Significant digits in the numeric model
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = digits(x)
-    function digits(x)
-    type(integer(kind=kind(0)))      :: digits
-    type(TYPE(kind=KIND)),intent(in) :: x(..)
+    result = digits(x)
 ```
 
-where TYPE may be _integer_ or _real_ and KIND is any kind supported by
-TYPE.
+```fortran
+     integer function digits(x)
+
+      TYPE(kind=KIND),intent(in) :: x(..)
+```
+
+### **Characteristics**
+
+- **x** an _integer_ or _real_ scalar or array
+
+- The return value is an _integer_ of default kind.
 
 ### **Description**
 
-**digits(x)** returns the number of significant digits of the internal
+**digits**(3) returns the number of significant digits of the internal
 model representation of **x**. For example, on a system using a 32-bit
-floating point representation, a default real number would likely return 24.
+floating point representation, a default real number would likely
+return 24.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : The type may be a scalar or array of type _integer_ or _real_.
+  : a value of the type and kind to query
 
-### **Returns**
+### **Result**
 
-The return value is of type _integer_ of default kind.
+The number of significant digits in a variable of the type and kind
+of **x**.
 
 ### **Examples**
 
@@ -47,17 +55,17 @@ doubleprecision :: y = 2.33d0
 end program demo_digits
 ```
 
-Typical Results:
+Results:
 
-```
-    default integer:                  31
-    default real:                     24
-    default doubleprecision:          53
+```text
+ >  default integer:          31
+ >  default real:             24
+ >  default doubleprecision:          53
 ```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -77,4 +85,4 @@ Fortran 95 and later
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

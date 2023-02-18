@@ -2,48 +2,69 @@
 
 ### **Name**
 
-**reduce**(3) - \[TRANSFORMATIONAL\] general reduction of an array
+**reduce**(3) - \[TRANSFORMATIONAL\] General reduction of an array
 
-### **Syntax**
+### **Synopsis**
 
 There are two forms to this function:
-```fortran
 
-   reduce(array, operation, mask, identity, ordered)
-   reduce(array, operation, dim, mask, identity, ordered)
+```fortran
+   result = reduce(array, operation [,mask]  [,identity]  [,ordered] )
+```
+
+or
+
+```fortran
+   result = reduce (array, operation, dim  &
+   & [,mask] [,identity] [,ordered] )
 ```
 
 ```fortran
-      type(TYPE),intent(in)          :: array
-      pure function                  :: operation
-      integer,intent(in),optional    :: dim
-      logical,optional               :: mask
-      type(TYPE),intent(in),optional :: identity
-      logical,intent(in),optional    :: ordered
+    type(TYPE(kind=KIND)) function reduce &
+    & (array, operation, dim, mask, identity, ordered )
+
+     type(TYPE(kind=KIND)),intent(in) :: array
+     pure function                  :: operation
+     integer,intent(in),optional    :: dim
+     logical,optional               :: mask
+     type(TYPE),intent(in),optional :: identity
+     logical,intent(in),optional    :: ordered
 ```
-   where TYPE may be of any type. TYPE must be the same for **array**
-   and **identity**.
 
-### **description**
+### **Characteristics**
 
-   Reduce a list of conditionally selected values from an array to a
-   single value by iteratively applying a binary function.
+- **array** is an array of any type
+- **operation** is a pure function with exactly two arguments
+  - each argument is scalar, non-allocatable, a nonpointer,
+    nonpolymorphic and nonoptional with the same type and kind as array.
+  - if one argument has the asynchronous, target, or value attribute so
+    shall the other.
+- **dim** is an _integer_ scalar
+- **mask** is a logical conformable with **array**
+- **identity** is a scalar with the same type and type parameters as **array**
+- **ordered** is a logical scalar
+- the result is of the same type and type parameters as **array**.
 
-   Common in functional programming, a **reduce** function applies a
-   binary operator (a pure function with two arguments) to all elements
-   cumulatively.
+### **Description**
 
-   **reduce** is a "higher-order" function; ie. it is a function that
-   receives other functions as arguments.
+**reduce**(3) reduces a list of conditionally selected values from
+an array to a single value by iteratively applying a binary function.
 
-   The **reduce** function receives a binary operator (a function with
-   two arguments, just like the basic arithmetic operators). It is first
-   applied to two unused values in the list to generate an accumulator
-   value which is subsequently used as the first argument to the function
-   as the function is recursively applied to all the remaining selected
-   values in the input array.
+Common in functional programming, a **reduce** function applies a
+binary operator (a pure function with two arguments) to all elements
+cumulatively.
 
-### **options**
+**reduce** is a "higher-order" function; ie. it is a function that
+receives other functions as arguments.
+
+The **reduce** function receives a binary operator (a function with
+two arguments, just like the basic arithmetic operators). It is first
+applied to two unused values in the list to generate an accumulator
+value which is subsequently used as the first argument to the function
+as the function is recursively applied to all the remaining selected
+values in the input array.
+
+### **Options**
 
 - **array**
   : An array of any type and allowed rank to select values from.
@@ -81,8 +102,8 @@ There are two forms to this function:
 
   When present only those elements of **array** are passed
   to **operation** for which the corresponding elements
-  of **mask** are true, as if **array* was filtered with
-  **pack(3)**.
+  of **mask** are true, as if **array\* was filtered with
+  **pack(3)\*\*.
 
 - **identity**
   : shall be scalar with the same type and type parameters as **array**.
@@ -98,7 +119,7 @@ There are two forms to this function:
   reduction. Otherwise, the compiler is free to assume that the operation
   is commutative and may evaluate the reduction in the most optimal way.
 
-### **result**
+### **Result**
 
 The result is of the same type and type parameters as **array**. It is
 scalar if **dim** does not appear.
@@ -107,10 +128,11 @@ If **dim** is present, it indicates the one dimension along which to
 perform the reduction, and the resultant array has a rank reduced by
 one relative to the input array.
 
-### **examples**
+### **Examples**
 
-   The following examples all use the function MY_MULT, which returns
-   the product of its two real arguments.
+The following examples all use the function MY_MULT, which returns
+the product of its two real arguments.
+
 ```fortran
    program demo_reduce
    implicit none
@@ -128,10 +150,8 @@ one relative to the input array.
       ! the product of only the positive elements of an array
       arr=[1, -1, 2, -2, 3, -3 ]
       write(*,*)'positive value product=',reduce(arr, my_mult, mask=arr>0)
-      !write(*,*)'positive value sum=',reduce(pack(arr,mask=arr>0), my_mult )
    ! sum values ignoring negative values
       write(*,*)'sum positive values=',reduce(arr, my_sum, mask=arr>0)
-      !write(*,*)'sum positive values=',reduce(pack(arr,mask=arr>0), my_sum )
 
    ! a single-valued array returns the single value as the
    ! calls to the operator stop when only one element remains
@@ -163,7 +183,9 @@ one relative to the input array.
 
    end program demo_reduce
 ```
-  Results:
+
+Results:
+
 ```text
      >  1 2 3 4
      >  product= 24
@@ -175,15 +197,18 @@ one relative to the input array.
      > [720, should be [720],
      > [2, 12, 30, should be [2,12,30],
      > [15, 48, should be [15, 48],
-````
-
-### **See Also**
-- [co_reduce(3)](CO_REDUCE)
-- [associative:wipipedia](https://en.wikipedia.org/wiki/Associative_property)
-
+```
 
 ### **Standard**
 
-   Fortran 2018
+Fortran 2018
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+### **See Also**
+
+- [co_reduce(3)](#co_reduce)
+
+### **Resources**
+
+- [associative:wikipedia](https://en.wikipedia.org/wiki/Associative_property)
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

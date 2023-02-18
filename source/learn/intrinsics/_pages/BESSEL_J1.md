@@ -4,23 +4,34 @@
 
 **bessel_j1**(3) - \[MATHEMATICS\] Bessel function of the first kind of order 1
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
     result = bessel_j1(x)
 ```
 
+```fortran
+     elemental real(kind=KIND) function bessel_j1(x)
+
+      real(kind=KIND),intent(in) :: x
+```
+
+### **Characteristics**
+
+- KIND may be any supported _real_ KIND.
+- the result is of the same type and kind as **x**
+
 ### **Description**
 
-**bessel_j1(x)** computes the Bessel function of the first kind
+**bessel_j1**(3) computes the Bessel function of the first kind
 of order **1** of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _real_ and lies in the range
 **-0.5818 \<= bessel(0,x) \<= 0.5818** . It has the same kind as **x**.
@@ -30,14 +41,14 @@ The return value is of type _real_ and lies in the range
 Sample program:
 
 ```fortran
-program demo_besj1
+program demo_bessel_j1
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
  & real32, real64, real128
 implicit none
 real(kind=real64) :: x = 1.0_real64
    x = bessel_j1(x)
    write(*,*)x
-end program demo_besj1
+end program demo_bessel_j1
 ```
 
 Results:
@@ -48,7 +59,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -58,4 +69,4 @@ Fortran 2008 and later
 [**bessel_y1**(3)](#bessel_y1),
 [**bessel_yn**(3)](#bessel_yn)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

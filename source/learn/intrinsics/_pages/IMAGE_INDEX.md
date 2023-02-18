@@ -4,17 +4,23 @@
 
 **image_index**(3) - \[COLLECTIVE\] Cosubscript to image index conversion
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = image_index(coarray, sub)
+    result = image_index(coarray, sub)
 ```
+
+```fortran
+
+```
+
+### **Characteristics**
 
 ### **Description**
 
-Returns the image index belonging to a cosubscript.
+**image_index**(3) returns the image index belonging to a cosubscript.
 
-### **Arguments**
+### **Options**
 
 - **coarray**
   : Coarray of any type.
@@ -23,7 +29,7 @@ Returns the image index belonging to a cosubscript.
   : default integer rank-1 array of a size equal to the corank of
   **coarray**.
 
-### **Returns**
+### **Result**
 
 Scalar default integer with the value of the image index which
 corresponds to the cosubscripts. For invalid cosubscripts the result is
@@ -44,11 +50,11 @@ end demo image_index
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
 [**this_image**(3)](#this_image),
 [**num_images**(3)](#num_images)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

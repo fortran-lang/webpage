@@ -2,36 +2,43 @@
 
 ### **Name**
 
-**atan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent function
+**atan**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arctangent AKA inverse tangent function
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-   result = atan(y, x)
-
-    TYPE(kind=KIND):: atan
-    TYPE(kind=KIND,intent(in) :: x
-    TYPE(kind=KIND,intent(in),optional :: y
+    result = atan([x) | atan(y, x)
 ```
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any **KIND** supported
-by the associated type. If **y** is present **x** is \_real`.
+```fortran
+     elemental TYPE(kind=KIND) function atan(y,x)
+
+      TYPE(kind=KIND),intent(in) :: x
+      TYPE(kind=**),intent(in),optional :: y
+```
+
+### **Characteristics**
+
+- If **y** is present **x** and **y** must both be _real_.
+  Otherwise, **x** may be _complex_.
+- **KIND** can be any kind supported by the associated type.
+- The returned value is of the same type and kind as **x**.
 
 ### **Description**
 
-**atan(x)** computes the arctangent of **x**.
+**atan**(3) computes the arctangent of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_; if **y** is present, **x**
-  shall be _real_.
+  : The value to compute the arctangent of.
+  if **y** is present, **x** shall be _real_.
 
 - **y**
-  : Shall be of the same type and kind as **x**. If **x** is zero, **y**
+  : is of the same type and kind as **x**. If **x** is zero, **y**
   must not be zero.
 
-### **Returns**
+### **Result**
 
 The returned value is of the same type and kind as **x**. If **y** is
 present, the result is identical to **atan2(y,x)**. Otherwise, it is the
@@ -75,13 +82,15 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later for a complex argument; and for two
-arguments Fortran 2008 or later
+FORTRAN 77 for a complex argument; and for two
+arguments Fortran 2008
 
 ### **See Also**
 
-- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
-
 [**atan2**(3)](#atan2), [**tan**(3)](#tan)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+### **Resources**
+
+- [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

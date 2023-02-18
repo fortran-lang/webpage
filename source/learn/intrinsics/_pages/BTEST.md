@@ -4,38 +4,48 @@
 
 **btest**(3) - \[BIT:INQUIRY\] Tests a bit of an _integer_ value.
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-   result = btest(i, pos)
-
-    integer(kind=KIND) elemental function btest(i,pos)
-    integer,intent(in)  :: i
-    logical,intent(out) :: pos
+    result = btest(i,pos)
 ```
 
-where **KIND** is any _integer_ kind supported by the programming environment.
+```fortran
+     elemental logical function btest(i,pos)
+
+      integer(kind=**),intent(in)  :: i
+      integer(kind=**),intent(in)  :: pos
+```
+
+### **Characteristics**
+
+- **i** is an _integer_ of any kind
+- **pos** is a _integer_ of any kind
+- the result is a default logical
 
 ### **Description**
 
-**btest(i,pos)** returns logical **.true.** if the bit at **pos** in **i** is set.
+**btest**(3) returns logical _.true._ if the bit at **pos** in **i** is
+set to 1. Position zero is the right-most bit. Bit position increases
+from right to left up to **bitsize(i)-1**.
 
-### **Arguments**
+### **Options**
 
 - **i**
-  : The type shall be _integer_.
+  : The _integer_ containing the bit to be tested
 
 - **pos**
-  : The bit position to query. it must be a valid position for the
-  value **i**; ie. **0 <= pos <= bit_size(i)** .
+  : The position of the bit to query. it must be a valid position for the
+  value **i**; ie. **0 <= pos <= bit_size(i)**.
 
-  A value of zero refers to the least significant bit.
+### **Result**
 
-### **Returns**
+The result is a _logical_ that has the value _.true._ if bit position
+**pos** of **i** has the value **1** and the value _.false._ if bit
+**pos** of **i** has the value **0**.
 
-The result is a _logical_ that has the value **.true.** if bit
-position **pos** of **i** has the value **1** and the value
-**.false.** if bit **pos** of **i** has the value **0**.
+Positions of bits in the sequence are numbered from right to left,
+with the position of the rightmost bit being zero.
 
 ### **Examples**
 
@@ -86,39 +96,39 @@ end program demo_btest
 Results:
 
 ```text
-Looking at the integer: 33856=>11111111111111110111101111000000
-
-00000000000000001000010001000000
-11111111111111110111101111000000
-1000010001000000
-11111111111111110111101111000000
-from bit 0 to bit 32==>
-FFFFFFTFFFTFFFFTFFFFFFFFFFFFFFFF
-
-so for 33856 with a bit size of 32
-00000000000000001000010001000000
-________________^____^___^______
-
-and for -33856 with a bit size of 32
-11111111111111110111101111000000
-^^^^^^^^^^^^^^^^_^^^^_^^^^______
-
-given the array a ...
- 1  3
- 2  4
-
-the value of btest (a, 2)
- F  F
- F  T
-
-the value of btest (2, a)
- T  F
- F  F
+  > Looking at the integer: 33856=>11111111111111110111101111000000
+  >
+  > 00000000000000001000010001000000
+  > 11111111111111110111101111000000
+  > 1000010001000000
+  > 11111111111111110111101111000000
+  > from bit 0 to bit 32==>
+  > FFFFFFTFFFTFFFFTFFFFFFFFFFFFFFFF
+  >
+  > so for 33856 with a bit size of 32
+  > 00000000000000001000010001000000
+  > ________________^____^___^______
+  >
+  > and for -33856 with a bit size of 32
+  > 11111111111111110111101111000000
+  > ^^^^^^^^^^^^^^^^_^^^^_^^^^______
+  >
+  > given the array a ...
+  >  1  3
+  >  2  4
+  >
+  > the value of btest (a, 2)
+  >  F  F
+  >  F  T
+  >
+  > the value of btest (2, a)
+  >  T  F
+  >  F  F
 ```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -133,4 +143,4 @@ Fortran 95 and later
 [**ieor**(3)](#ieor),
 [**mvbits**(3)](#mvbits)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

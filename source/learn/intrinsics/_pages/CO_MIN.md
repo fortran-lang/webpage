@@ -4,24 +4,30 @@
 
 **co_min**(3) - \[COLLECTIVE\] Minimal value on the current set of images
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-call co_min(a, result_image, stat, errmsg)
+     call co_min(a, result_image [,stat] [,errmsg] )
 ```
+
+```fortran
+
+```
+
+### **Characteristics**
 
 ### **Description**
 
-co_min determines element-wise the minimal value of **a** on all images of
-the current team. If result_image is present, the minimal values are
-returned in **a** on the specified image only and the value of **a** on the
-other images become undefined. If result_image is not present, the
-value is returned on all images. If the execution was successful and
-**stat** is present, it is assigned the value zero. If the execution failed,
-**stat** gets assigned a nonzero value and, if present, **errmsg** gets assigned
-a value describing the occurred error.
+**co_min**(3) determines element-wise the minimal value of **a** on all
+images of the current team. If result_image is present, the minimal values
+are returned in **a** on the specified image only and the value of **a**
+on the other images become undefined. If result_image is not present,
+the value is returned on all images. If the execution was successful
+and **stat** is present, it is assigned the value zero. If the execution
+failed, **stat** gets assigned a nonzero value and, if present, **errmsg**
+gets assigned a value describing the occurred error.
 
-### **Arguments**
+### **Options**
 
 - **a**
   : shall be an integer, real or character variable, which has the same
@@ -56,7 +62,7 @@ end program demo_co_min
 
 ### **Standard**
 
-TS 18508 or later
+TS 18508
 
 ### **See Also**
 
@@ -65,4 +71,4 @@ TS 18508 or later
 [**co_reduce**(3)](#co_reduce),
 [**co_broadcast**(3)](#co_broadcast)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

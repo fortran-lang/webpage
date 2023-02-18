@@ -4,26 +4,32 @@
 
 **c_sizeof**(3) - \[ISO_C_BINDING\] Size in bytes of an expression
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-n = c_sizeof(x)
+    result = c_sizeof(x)
 ```
+
+```fortran
+
+```
+
+### **Characteristics**
 
 ### **Description**
 
-**c_sizeof(x)** calculates the number of bytes of storage the
+**c_sizeof**(3) calculates the number of bytes of storage the
 expression **x** occupies.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The argument shall be an interoperable data entity.
 
-### **Returns**
+### **Result**
 
 The return value is of type integer and of the system-dependent kind
-c*size_t (from the \_iso_c_binding* module). Its value is the
+c*size_t (from the iso_c_binding* module). Its value is the
 number of bytes occupied by the argument. If the argument has the
 _pointer_ attribute, the number of bytes of the storage area pointed to is
 returned. If the argument is of a derived type with _pointer_ or
@@ -49,7 +55,7 @@ Results:
     T
 ```
 
-The example will print .true. unless you are using a platform where
+The example will print _.true._ unless you are using a platform where
 default _real_ variables are unusually padded.
 
 ### **Standard**
@@ -60,4 +66,4 @@ Fortran 2008
 
 [**storage_size**(3)](#storage_size)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

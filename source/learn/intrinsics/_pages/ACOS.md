@@ -2,32 +2,37 @@
 
 ### **Name**
 
-**acos**(3) - \[MATHEMATICS:TRIGONOMETRIC\] arccosine (inverse cosine) function
+**acos**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Arccosine (inverse cosine) function
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-  result = acos(x)
-
-   TYPE(kind=KIND),elemental :: acos
-
-   TYPE(kind=KIND,intent(in) :: x
+    result = acos(x)
 ```
 
-where **TYPE** may be _real_ or _complex_ and **KIND** may be any **KIND** supported
-by the associated type.
+```fortran
+     elemental TYPE(kind=KIND) function acos(x)
+
+      TYPE(kind=KIND),intent(in) :: x
+```
+
+### **Characteristics**
+
+- **TYPE** may be _real_ or _complex_
+- **KIND** may be any kind supported by the associated type.
+- The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
-**acos(x)** computes the arccosine of **x** (inverse of **cos(x)**).
+**acos**(3) computes the arccosine of **x** (inverse of **cos(x)**).
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : Must be type _real_ or _complex_. If the type is _real_, the value
-  must satisfy |**x**| <= 1.
+  : The value to compute the arctangent of.
+  : If the type is _real_, the value must satisfy |**x**| <= 1.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type and kind as **x**. The _real_ part of
 the result is in radians and lies in the range **0 \<= acos(x%re) \<= PI** .
@@ -41,15 +46,25 @@ program demo_acos
 use, intrinsic :: iso_fortran_env, only : real_kinds,real32,real64,real128
 implicit none
 character(len=*),parameter :: all='(*(g0,1x))'
-real(kind=real64) :: x = 0.866_real64
-real(kind=real64),parameter :: d2r=acos(-1.0_real64)/180.0_real64
+real(kind=real64) :: x , d2r
 
+   ! basics
+    x = 0.866_real64
     print all,'acos(',x,') is ', acos(x)
-    print all,'90 degrees is ', d2r*90.0_real64, ' radians'
-    print all,'180 degrees is ', d2r*180.0_real64, ' radians'
+
+   ! acos(-1) should be PI
     print all,'for reference &
-    &PI ~ 3.14159265358979323846264338327950288419716939937510'
+    &PI ~= 3.14159265358979323846264338327950288419716939937510'
+    write(*,*) acos(-1.0_real64)
+    d2r=acos(-1.0_real64)/180.0_real64
+    print all,'90 degrees is ', d2r*90.0_real64, ' radians'
+   ! elemental
     print all,'elemental',acos([-1.0,-0.5,0.0,0.50,1.0])
+   ! complex
+    print *,'complex',acos( (-1.0,  0.0) )
+    print *,'complex',acos( (-1.0, -1.0) )
+    print *,'complex',acos( ( 0.0, -0.0) )
+    print *,'complex',acos( ( 1.0,  0.0) )
 
 end program demo_acos
 ```
@@ -57,21 +72,27 @@ end program demo_acos
 Results:
 
 ```text
-   acos( .8660000000000000 ) is  .5236495809318289
-   90 degrees is  1.570796326794897  radians
-   180 degrees is  3.141592653589793  radians
-   for reference PI ~ 3.14159265358979323846264338327950288419716939937510
-   elemental 3.141593 2.094395 1.570796 1.047198 .000000
+ acos( 0.86599999999999999 ) is  0.52364958093182890
+ for reference PI ~= 3.14159265358979323846264338327950288419716939937510
+    3.1415926535897931
+ 90 degrees is  1.5707963267948966  radians
+ elemental 3.14159274 2.09439516 1.57079637 1.04719758 0.00000000
+  complex            (3.14159274,-0.00000000)
+  complex             (2.23703575,1.06127501)
+  complex             (1.57079637,0.00000000)
+  complex            (0.00000000,-0.00000000)
 ```
 
 ### **Standard**
 
-FORTRAN 77 and later; for a _complex_ argument - Fortran 2008 and later
+FORTRAN 77 ; for a _complex_ argument - Fortran 2008
 
 ### **See Also**
 
+Inverse function: [**cos**(3)](cos)
+
+### **Resources**
+
 - [wikipedia: inverse trigonometric functions](https://en.wikipedia.org/wiki/Inverse_trigonometric_functions)
 
-Inverse function: [**cos**(3](cos))
-
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

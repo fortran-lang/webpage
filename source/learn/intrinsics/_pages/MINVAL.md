@@ -2,28 +2,42 @@
 
 ### **Name**
 
-**minval**(3) - \[ARRAY REDUCTION\] Minimum value of an array
+**minval**(3) - \[ARRAY:REDUCTION\] Minimum value of an array
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = minval(array, dim, mask) result = minval(array, mask)
+    result = minval(array, [mask]) | minval(array [,dim] [,mask])
 ```
+
+```fortran
+     NUMERIC function minval(array, dim, mask)
+
+      NUMERIC,intent(in) :: array(..)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(..)
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+- **NUMERIC** is any numeric type and kind.
 
 ### **Description**
 
-Determines the minimum value of the elements in an array value, or, if
-the **dim** argument is supplied, determines the minimum value along each
-row of the array in the **dim** direction.
+**minval**(3) determines the minimum value of the elements in an array
+value, or, if the **dim** argument is supplied, determines the minimum
+value along each row of the array in the **dim** direction.
 
-If **mask** is present, only the
-elements for which **mask** is **.true.** are considered.
+If **mask** is present, only the elements for which **mask** is
+_.true._ are considered.
 
-If the array has zero size, or all of the elements of **mask** are
-.false., then the result is **huge(array)** if **array** is numeric, or a
-string of **char(len=255)** characters if **array** is of character type.
+If the array has zero size, or all of the elements of **mask**
+are _.false._, then the result is **huge(array)** if **array** is
+numeric, or a string of **char(len=255)** characters if **array**
+is of character type.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_, _real_, or _character_.
@@ -36,7 +50,7 @@ string of **char(len=255)** characters if **array** is of character type.
 - **mask**
   : Shall be an array of type _logical_, and conformable with **array**.
 
-### **Returns**
+### **Result**
 
 If **dim** is absent, or if **array** has a rank of one, the result is a scalar.
 
@@ -110,42 +124,45 @@ end program demo_minval
 Results:
 
 ```text
- Given the array
-    1   -2    3    4    5
-   10   20  -30   40   50
-   11   22   33  -44   55
-
- What is the smallest element in the array?
-   -44 at < 3 4 >
- What is the smallest element in each column?
-   1 -2 -30 -44 5
- What is the smallest element in each row?
-   -2 -30 -44
- What is the smallest element in each column,
- considering only those elements that are
- greater than zero?
-   1 20 3 4 5
- if everything is false a zero-sized array is NOT returned
-  2147483647  2147483647  2147483647  2147483647  2147483647
- even for a zero-sized input
-   2147483647
- a scalar answer for everything false is huge()
-   2147483647
-   2147483647
- some calls with three dimensions
-   -55
-   1 -2 -30 -44 5 -11 -22 -33 -40 -55
-   -2 -30 -44 -5 -50 -55
-   shape of answer is  3 2
+ > Given the array
+ >    1   -2    3    4    5
+ >   10   20  -30   40   50
+ >   11   22   33  -44   55
+ >
+ > What is the smallest element in the array?
+ >   -44 at < 3 4 >
+ > What is the smallest element in each column?
+ >   1 -2 -30 -44 5
+ > What is the smallest element in each row?
+ >   -2 -30 -44
+ > What is the smallest element in each column,
+ > considering only those elements that are
+ > greater than zero?
+ >   1 20 3 4 5
+ > if everything is false a zero-sized array is NOT returned
+ >  2147483647  2147483647  2147483647  2147483647  2147483647
+ > even for a zero-sized input
+ >   2147483647
+ > a scalar answer for everything false is huge()
+ >   2147483647
+ >   2147483647
+ > some calls with three dimensions
+ >   -55
+ >   1 -2 -30 -44 5 -11 -22 -33 -40 -55
+ >   -2 -30 -44 -5 -50 -55
+ >   shape of answer is  3 2
 ```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
 [**min**(3)](#min),
 [**minloc**(3)](#minloc)
+[**maxloc**(3)](#maxloc),
+[**maxval**(3)](#maxval),
+[**min**(3)](#min)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -4,22 +4,35 @@
 
 **iall**(3) - \[BIT:LOGICAL\] Bitwise and of array elements
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-  result = iall(array, mask)
-
-    or
-
-  result = iall(array, dim, mask)
+    result = iall(array [,mask]) | iall(array ,dim [,mask])
 ```
+
+```fortran
+     integer(kind=KIND) function iall(array,dim,mask)
+
+      integer(kind=KIND),intent(in)        :: array(*)
+      integer(kind=**),intent(in),optional :: dim
+      logical(kind=**),intent(in),optional :: mask(*)
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+- **array** must be an _integer_ array
+- **mask** is a _logical_ array that conforms to **array** of any
+  _logical_ kind.
+- **dim** may be of any _integer_ kind.
+- The result will by of the same type and kind as **array**.
 
 ### **Description**
 
-Reduces with bitwise _and_ the elements of **array** along dimension **dim** if
-the corresponding element in **mask** is **.true.**.
+**iall**(3) reduces with a bitwise _and_ the elements of **array** along
+dimension **dim** if the corresponding element in **mask** is _.true._.
 
-### **Arguments**
+### **Options**
 
 - **array**
   : Shall be an array of type _integer_
@@ -32,14 +45,14 @@ the corresponding element in **mask** is **.true.**.
   : (Optional) shall be of type _logical_ and either be a scalar or an
   array of the same shape as **array**.
 
-### **Returns**
+### **Result**
 
 The result is of the same type as **array**.
 
-If **dim** is absent, a scalar with the bitwise _all_ of all elements in **array**
-is returned. Otherwise, an array of rank **n-1**, where **n** equals the
-rank of **array**, and a shape similar to that of **array** with dimension **dim**
-dropped is returned.
+If **dim** is absent, a scalar with the bitwise _all_ of all elements in
+**array** is returned. Otherwise, an array of rank **n-1**, where **n**
+equals the rank of **array**, and a shape similar to that of **array**
+with dimension **dim** dropped is returned.
 
 ### **Examples**
 
@@ -63,12 +76,12 @@ end program demo_iall
 Results:
 
 ```text
-   00100000
+ > 00100000
 ```
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -76,4 +89,4 @@ Fortran 2008 and later
 [**iparity**(3)](#iparity),
 [**iand**(3)](#iand)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

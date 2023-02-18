@@ -4,40 +4,70 @@
 
 **scan**(3) - \[CHARACTER:SEARCH\] Scan a string for the presence of a set of characters
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = scan(string, set[, back [, kind]])
+    result = scan( string, set, [,back] [,kind] )
 ```
+
+```fortran
+     elemental integer(kind=KIND) function scan(string,set,back,kind)
+
+      character(len=*,kind=**),intent(in) :: string
+      character(len=*,kind=**),intent(in) :: set
+      logical,intent(in),optional :: back
+      integer,intent(in),optional :: kind
+```
+
+### **Characteristics**
+
+- **string** is a _character_ string of any kind
+- **set** must be a _character_ string with the same kind as **string**
+- **back** is a _logical_
+- **kind** is a scalar _integer_ constant expression
+- the result is an _integer_ with the kind specified by **kind**. If
+  **kind** is not present the result is a default _integer_.
 
 ### **Description**
 
-Scans a **string** for any of the characters in a **set** of characters.
+**scan**(3) scans a **string** for any of the characters in a **set**
+of characters.
 
-If **back** is either absent or equals **.false.**, this function returns the
-position of the leftmost character of **STRING** that is in **set**. If **back**
-equals **.true.**, the rightmost position is returned. If no character of **set**
-is found in **string**, the result is zero.
+If **back** is either absent or equals _.false._, this function
+returns the position of the leftmost character of **STRING** that is
+in **set**. If **back** equals _.true._, the rightmost position is
+returned. If no character of **set** is found in **string**, the result
+is zero.
 
-### **Arguments**
+### **Options**
 
 - **string**
-  : Shall be of type _character_.
+  : the string to be scanned
 
 - **set**
-  : Shall be of type _character_.
+  : the set of characters which will be matched
 
 - **back**
-  : (Optional) shall be of type _logical_.
+  : if _.true._ the position of the rightmost character matched is
+  returned, instead of the leftmost.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : the kind of the returned value is the same as **kind** if
+  present. Otherwise a default _integer_ kind is returned.
 
-### **Returns**
+### **Result**
 
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default integer kind.
+If **back** is absent or is present with the value false and if
+**string** contains at least one character that is in **set**, the value
+of the result is the position of the leftmost character of **string**
+that is in **set**.
+
+If **back** is present with the value true and if **string** contains at
+least one character that is in **set**, the value of the result is the
+position of the rightmost character of **string** that is in **set**.
+
+The value of the result is zero if no character of STRING is in SET
+or if the length of STRING or SET is zero.
 
 ### **Examples**
 
@@ -55,14 +85,14 @@ end program demo_scan
 Results:
 
 ```text
-              2
-              6
-              0
+ >            2
+ >            6
+ >            0
 ```
 
 ### **Standard**
 
-Fortran 95 and later, with KIND argument - Fortran 2003 and later
+Fortran 95 , with KIND argument - Fortran 2003
 
 ### **See Also**
 
@@ -71,11 +101,11 @@ of arguments, and search for certain arguments:
 
 - **Elemental:**
   [**adjustl**(3)](#adjustl), [**adjustr**(3)](#adjustr), [**index**(3)](#index),
-  [**scan**(3)](#scan), [**verify**(3)](#verify)
+  [**verify**(3)](#verify)
 
 - **Nonelemental:**
   [**len_trim**(3)](#len_trim),
   [**len**(3)](#len),
   [**repeat**(3)](#repeat), [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

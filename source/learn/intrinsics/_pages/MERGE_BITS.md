@@ -4,25 +4,29 @@
 
 **merge_bits**(3) - \[BIT:COPY\] Merge bits using a mask
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = merge_bits(i, j, mask)
-
-    elemental function merge_bits(i,j,mask) result(r)
-    integer(kind=KIND), intent(in) :: i, j, mask
-    integer(kind=KIND) :: r
+    result = merge_bits(i, j, mask)
 ```
 
-where the result and all input values have the same _integer_ type and
-KIND with the exception that the mask and either **i** or **j** may be
-a BOZ constant.
+```fortran
+     elemental integer(kind=KIND) function merge_bits(i,j,mask)
+
+      integer(kind=KIND), intent(in) :: i, j, mask
+```
+
+### **Characteristics**
+
+- the result and all input values have the same _integer_ type and
+  KIND with the exception that the mask and either **i** or **j** may be
+  a BOZ constant.
 
 ### **Description**
 
 A common graphics operation in Ternary Raster Operations is to combine
 bits from two different sources, generally referred to as bit-blending.
-**merge_bits** performs a masked bit-blend of **i** and **j** using
+**merge_bits**(3) performs a masked bit-blend of **i** and **j** using
 the bits of the **mask** value to determine which of the input values
 to copy bits from.
 
@@ -32,9 +36,11 @@ of **j** otherwise (so all three input values must have the same number
 of bits).
 
 The resulting value is the same as would result from
+
 ```fortran
     ior (iand (i, mask),iand (j, not (mask)))
 ```
+
 An exception to all values being of the same _integer_ type is that **i**
 or **j** and/or the mask may be a BOZ constant (A BOZ constant means it is
 either a Binary, Octal, or Hexadecimal literal constant). The BOZ values
@@ -42,7 +48,7 @@ are converted to the _integer_ type of the non-BOZ value(s) as if called
 by the intrinsic function **int()** with the kind of the non-BOZ value(s),
 so the BOZ values must be in the range of the type of the result.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : value to select bits from when the associated bit in the mask is **1**.
@@ -53,13 +59,11 @@ so the BOZ values must be in the range of the type of the result.
 - **mask**
   : a value whose bits are used as a mask to select bits from **i** and **j**
 
-### **Returns**
+### **Result**
 
-The bits blended from **i** and **j** using the mask **mask**. It is the
-same type as **i** if **i** is of type _integer_, otherwise the same type
-as **j**.
+The bits blended from **i** and **j** using the mask **mask**.
 
-### **Example**
+### **Examples**
 
 Sample program:
 
@@ -105,6 +109,7 @@ character(len=*),parameter :: fmt='(*(g0, 1X))'
 
 end program demo_merge_bits
 ```
+
 Results:
 
 ```text
@@ -115,8 +120,13 @@ Results:
    32767 32751 5877
    32767 32767 5877
 ```
+
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+### **See also**
+
+[\*\*\*\*(3)](#)
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

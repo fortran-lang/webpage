@@ -2,41 +2,66 @@
 
 ### **Name**
 
-**ichar**(3) - \[CHARACTER:CONVERSION\] Character-to-integer conversion function
+**ichar**(3) - \[CHARACTER:CONVERSION\] Character-to-integer code conversion function
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-   elemental function ichar(c,kind)
-
-    character(len=1),intent(in) :: c
-    integer,intent(in),optional :: kind
+    result = ichar(c [,kind])
 ```
+
+```fortran
+     elemental integer(kind=KIND) function ichar(c,KIND)
+
+      character(len=1,kind=**),intent(in) :: c
+      integer,intent(in),optional :: KIND
+```
+
+### **Characteristics**
+
+- **c** is a scalar _character_
+- **kind** is a constant _integer_ initialization expression indicating
+  the kind parameter of the result.
+- The return value is of type _integer_ and of kind **kind**. If **kind**
+  is absent, the return value is of default _integer_ kind.
 
 ### **Description**
 
-**ichar(c)** returns the code for the character in the system's native
+**ichar**(3) returns the code for the character in the system's native
 character set. The correspondence between characters and their codes is
 not necessarily the same across different Fortran implementations. For
 example, a platform using EBCDIC would return different values than an
 ASCII platform.
 
-See **iachar**(3) for specifically working with the ASCII character
-set.
+See **iachar**(3) for specifically working with the ASCII character set.
 
-### **Arguments**
+### **Options**
 
 - **c**
-  : Shall be a scalar _character_, with **intent(in)**
+  : The input character to determine the code for.
+  Its value shall be that of a character capable of representation in the processor.
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : indicates the kind parameter of the result. If **kind** is absent,
+  the return value is of default _integer_ kind.
 
-### **Returns**
+### **Result**
 
-The return value is of type _integer_ and of kind **kind**. If **kind** is absent,
-the return value is of default _integer_ kind.
+The code in the system default character set for the character being
+queried is returned.
+
+The result is the position of **c** in the processor collating sequence
+associated with the kind type parameter of **c**.
+
+it is nonnegative and less than n, where n is the number of characters
+in the collating sequence.
+
+The kind type parameter of the result shall specify an integer kind
+that is capable of representing n.
+
+For any characters C and D capable of representation in the processor,
+C <= D is true if and only if ICHAR (C) <= ICHAR (D) is true and C ==
+D is true if and only if ICHAR (C) == ICHAR (D) is true.
 
 ### **Examples**
 
@@ -45,65 +70,21 @@ Sample program:
 ```fortran
 program demo_ichar
 implicit none
-integer i
 
    write(*,*)ichar(['a','z','A','Z'])
-   do i=0,127
-      call printme()
-   enddo
-
-contains
-
-   subroutine printme()
-   character(len=1) :: letter
-
-      letter=char(i)
-      select case(i)
-      case (:31,127:)
-         write(*,'(1x,i0.3,1x,"HEX=",z2.2,1x,i0)')i,letter,ichar(letter)
-      case default
-         write(*,'(1x,i0.3,1x,a,1x,i0)')i,letter,ichar(letter)
-      end select
-
-   end subroutine printme
 
 end program demo_ichar
-```
-
-### **Note**
-
-No intrinsic exists to convert between a numeric value and a formatted
-character string representation -- for instance, given the _character_
-value '154', obtaining an _integer_ or _real_ value with the value 154, or
-vice versa. Instead, this functionality is provided by internal-file
-I/O, as in the following example:
-
-```
-program read_val
-integer value
-character(len=10) string, string2
-   string = '154'
-
-   ! Convert a string to a numeric value
-   read (string,'(I10)') value
-   print *, value
-
-   ! Convert a value to a formatted string
-   write (string2,'(I10)') value
-   print *, string2
-end program read_val
 ```
 
 Results:
 
 ```text
-            154
-           154
+             97         122          65          90
 ```
 
 ### **Standard**
 
-Fortran 95 and later, with KIND argument -Fortran 2003 and later
+Fortran 95 , with KIND argument -Fortran 2003
 
 ### **See Also**
 
@@ -128,4 +109,4 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

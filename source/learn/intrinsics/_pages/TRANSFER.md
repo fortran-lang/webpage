@@ -4,50 +4,68 @@
 
 **transfer**(3) - \[TYPE:MOLD\] Transfer bit patterns
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = transfer(source, mold, size)
+    result = transfer(source, mold [,size] )
 ```
+
+```fortran
+     type(TYPE(kind=KIND)) function transfer(source,mold,size)
+
+      type(TYPE(kind=KIND)),intent(in) :: source(..)
+      type(TYPE(kind=KIND)),intent(in) :: mold(..)
+      integer(kind=**),intent(in),optional :: size
+```
+
+### **Characteristics**
+
+- **source** shall be a scalar or an array of any type.
+- **mold** shall be a scalar or an array of any type.
+- **size** shall be a scalar of type _integer_.
+- **result** has the same type as **mold**
 
 ### **Description**
 
-Interprets the bitwise representation of **source** in memory as if it
-is the representation of a variable or array of the same type and type
-parameters as **mold**.
+**transfer**(3) copies the bitwise representation of **source** in memory
+into a variable or array of the same type and type parameters as **mold**.
 
-This is approximately equivalent to the C concept of "casting" one
-type to another.
+This is approximately equivalent to the C concept of "casting" one type
+to another.
 
-### **Arguments**
+### **Options**
 
 - **source**
-  : Shall be a scalar or an array of any type.
+  : Holds the bit pattern to be copied
 
 - **mold**
-  : Shall be a scalar or an array of any type.
+  : the type of **mold** is used to define the type of the returned
+  value. In addition, if it is an array the returned value is a
+  one-dimensional array. If it is a scalar the returned value is a scalar.
 
 - **size**
-  : (Optional) shall be a scalar of type _integer_.
+  : If **size** is present, the result is a one-dimensional array of
+  length **size**.
 
-### **Returns**
-
-The result has the same type as **mold**, with the bit level representation
-of **source**. If **size** is present, the result is a one-dimensional array of
-length **size**. If **size** is absent but **mold** is an array (of any size or
+If **size** is absent but **mold** is an array (of any size or
 shape), the result is a one-dimensional array of the minimum length
 needed to contain the entirety of the bitwise representation of **source**.
+
 If **size** is absent and **mold** is a scalar, the result is a scalar.
+
+### **Result**
+
+The result has the bit level representation of **source**.
 
 If the bitwise representation of the result is longer than that of
 **source**, then the leading bits of the result correspond to those of
-**source** and any trailing bits are filled arbitrarily.
+**source** but any trailing bits are filled arbitrarily.
 
 When the resulting bit representation does not correspond to a valid
 representation of a variable of the same type as **mold**, the results are
-undefined, and subsequent operations on the result cannot be guaranteed
-to produce sensible behavior. For example, it is possible to create
-_logical_ variables for which **var** and .not. var both appear to be true.
+undefined, and subsequent operations on the result cannot be guaranteed to
+produce sensible behavior. For example, it is possible to create _logical_
+variables for which **var** and .not. var both appear to be true.
 
 ### **Examples**
 
@@ -89,22 +107,26 @@ _Joe Krahn_: Fortran uses **molding** rather than **casting**.
 Casting, as in C, is an in-place reinterpretation. A cast is a device
 that is built around an object to change its shape.
 
-Fortran TRANSFER reinterprets data out-of-place. It can be considered
-**molding** rather than casting. A **mold** is a device that
+Fortran **transfer**(3) reinterprets data out-of-place. It can be
+considered **molding** rather than casting. A **mold** is a device that
 confers a shape onto an object placed into it.
 
 The advantage of molding is that data is always valid in the context
 of the variable that holds it. For many cases, a decent compiler should
-optimize TRANSFER into a simple assignment.
+optimize **transfer**(3) into a simple assignment.
 
 There are disadvantages of this approach. It is problematic to define a
 union of data types because you must know the largest data object, which
-can vary by compiler or compile options. In many cases, an EQUIVALENCE
+can vary by compiler or compile options. In many cases, an _EQUIVALENCE_
 would be far more effective, but Fortran Standards committees seem
-oblivious to the benefits of EQUIVALENCEs when used sparingly.
+oblivious to the benefits of _EQUIVALENCE_ when used sparingly.
 
 ### **Standard**
 
-Fortran 90 and later
+Fortran 90
 
- _fortran-lang intrinsic descriptions_
+### **See also**
+
+[\*\*\*\*(3)](#)
+
+_fortran-lang intrinsic descriptions_

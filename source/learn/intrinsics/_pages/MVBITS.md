@@ -2,17 +2,35 @@
 
 ### **Name**
 
-**mvbits**(3) - \[BIT:COPY\] reproduce bit patterns found in one integer in another
+**mvbits**(3) - \[BIT:COPY\] Reproduce bit patterns found in one integer in another
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-call mvbits(from, frompos, len, to, topos)
+   call mvbits(from, frompos, len, to, topos)
 ```
+
+```fortran
+    elemental subroutine mvbits( from, frompos, len, to, topos )
+
+     integer(kind=KIND),intent(in)    :: from
+     integer(kind=**),intent(in)      :: frompos
+     integer(kind=**),intent(in)      :: len
+     integer(kind=KIND),intent(inout) :: to
+     integer(kind=**),intent(in)      :: topos
+```
+
+### **Characteristics**
+
+- **from** is an _integer_
+- **frompos** is an integer
+- **len** is an integer
+- **to** is an integer of the same kind as **from**.
+- **topos** is an integer
 
 ### **Description**
 
-**mvbits(3f)** copies a bit pattern found in a range of adjacent bits in
+**mvbits**(3) copies a bit pattern found in a range of adjacent bits in
 the _integer_ **from** to a specified position in another integer **to**
 (which is of the same kind as **from**). It otherwise leaves the bits
 in **to** as-is.
@@ -23,25 +41,27 @@ nonnegative and less than **bit_size**(from).
 
 The bits are numbered **0** to **bit_size(i)-1**, from right to left.
 
-### **Arguments**
+### **Options**
 
 - **from**
   : An _integer_ to read bits from.
+
 - **frompos**
   : **frompos** is the position of the first bit to copy. It is a
   nonnegative _integer_ value < **bit_size(from)**.
+
 - **len**
   : A nonnegative _integer_ value that indicates how many bits to
   copy from **from**. It must not specify copying bits past the end
   of **from**. That is, **frompos + len** must be less than or equal
   to **bit_size(from)**.
+
 - **to**
   : The _integer_ variable to place the copied bits into. It must
   be of the same kind as **from** and may even be the same variable
-  as **from**.
+  as **from**, or associated to it.
 
-  **to**
-  : is set by copying the sequence of bits of length **len**,
+  **to** is set by copying the sequence of bits of length **len**,
   starting at position **frompos** of **from** to position **topos** of
   **to**. No other bits of **to** are altered. On return, the **len**
   bits of **to** starting at **topos** are equal to the value that
@@ -52,10 +72,11 @@ The bits are numbered **0** to **bit_size(i)-1**, from right to left.
   **to** to place the specified copy of bits from **from**.
   **topos + len** must be less than or equal to **bit_size(to)**.
 
-### **Example**
+### **Examples**
 
-Sample program that populates a new 32-bit integer with its bytes in
-reverse order (ie. changes the Endian of the integer).
+Sample program that populates a new 32-bit integer with its bytes
+in reverse order from the input value (ie. changes the Endian of the integer).
+
 ```fortran
 program demo_mvbits
 use,intrinsic :: iso_fortran_env,  only : int8, int16, int32, int64
@@ -114,8 +135,10 @@ character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
  end function int_swap32
 
  end program demo_mvbits
-````
-  Results:
+```
+
+Results:
+
 ```text
 
    2147483647                   01111111111111111111111111111111
@@ -126,11 +149,11 @@ character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
    1684234849                   abcd      01100100011000110110001001100001
     non-native
    1633837924                   dcba      01100001011000100110001101100100
-````
+```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -145,4 +168,4 @@ Fortran 95 and later
 [**ior**(3)](#ior),
 [**ieor**(3)](#ieor)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

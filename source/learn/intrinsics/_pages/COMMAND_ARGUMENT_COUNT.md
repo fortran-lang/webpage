@@ -4,29 +4,39 @@
 
 **command_argument_count**(3) - \[SYSTEM:COMMAND LINE\] Get number of command line arguments
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
     result = command_argument_count()
-
-     integer function command_argument_count() result(count)
-     integer :: count
 ```
+
+```fortran
+     integer function command_argument_count()
+```
+
+### **Characteristics**
+
+- the result is of default integer scalar.
 
 ### **Description**
 
-**command_argument_count()** returns the number of arguments passed
+**command_argument_count**(3) returns the number of arguments passed
 on the command line when the containing program was invoked.
 
-### **Arguments**
+### **Options**
 
 None
 
-### **Returns**
+### **Result**
 
-- **count**
-  : The return value is of type default _integer_. It is the number of
-  arguments passed on the command line when the program was invoked.
+: The return value is of type default _integer_. It is the number of
+arguments passed on the command line when the program was invoked.
+
+If there are no command arguments available or if the processor does
+not support command arguments, then the result has the value zero.
+
+If the processor has a concept of a command name, the command name
+does not count as one of the command arguments.
 
 ### **Examples**
 
@@ -56,11 +66,11 @@ Sample output:
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
 [**get_command**(3)](#get_command),
 [**get_command_argument**(3)](#get_command_argument)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

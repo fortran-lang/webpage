@@ -2,31 +2,36 @@
 
 ### **Name**
 
-**dble**(3) - \[TYPE:NUMERIC\] Double conversion function
+**dble**(3) - \[TYPE:NUMERIC\] Converstion to double precision real
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = dble(a)
-
-    elemental function dble(a)
-    type(real(kind=kind(0.0d0)))     :: dble
-    type(TYPE(kind=KIND)),intent(in) :: a
+    result = dble(a)
 ```
 
-where TYPE may be _integer_, _real_, or _complex_ and KIND any kind
-supported by the TYPE.
+```fortran
+     elemental doubleprecision function dble(a)
+
+      doubleprecision :: dble
+      TYPE(kind=KIND),intent(in) :: a
+```
+
+### **Characteristics**
+
+- **a** my be _integer_, _real_, _complex_, or a BOZ-literal-constant
+- the result is a doubleprecision _real_.
 
 ### **Description**
 
-**dble(a)** Converts **a** to double precision _real_ type.
+**dble**(3) Converts **a** to double precision _real_ type.
 
-### **Arguments**
+### **Options**
 
 - **a**
-  : The type shall be _integer_, _real_, or _complex_.
+  : a value to convert to a doubleprecision _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of type _doubleprecision_. For _complex_ input,
 the returned value has the magnitude and sign of the real component
@@ -54,11 +59,15 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
-### **See Also**
+### **See also**
 
-[**float**(3)](#float),
-[**real**(3)](#real)
+- [**aimag**(3)](#aimag) - Imaginary part of complex number
+- [**cmplx**(3)](#cmplx) - Convert values to a complex type
+- [**int**(3)](#int) - Truncate towards zero and convert to integer
+- [**nint**(3)](#nint) - Nearest whole number
+- [**out_of_range**(3)](#out_of_range) - Whether a value cannot be converted safely.
+- [**real**(3)](#real) - Convert to real type
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

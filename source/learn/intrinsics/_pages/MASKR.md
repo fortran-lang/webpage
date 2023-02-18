@@ -4,107 +4,112 @@
 
 **maskr**(3) - \[BIT:SET\] Generates a right-justified mask
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = maskr(i, kind)
-
-  integer elemental function maskr(i,kind)
-  integer,intent(in),optional :: kind
+    result = maskr( i [,kind] )
 ```
+
+```fortran
+     elemental integer(kind=KIND) function maskr(i,KIND)
+
+      integer(kind=**),intent(in) :: i
+      integer(kind=**),intent(in),optional :: KIND
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+- **i** is an integer
+- **kind** Shall be a scalar constant expression of type _integer_
+  whose value is a supported _integer_ kind.
+- The result is an _integer_ of the same _kind_ as **i** unless **kind** is
+  present, which is then used to specify the kind of the result.
 
 ### **Description**
 
-**maskr(i\[, kind\])** has its rightmost **i** bits set to 1, and the
-remaining bits set to 0.
+**maskr**(3) generates an _integer_ with its rightmost **i**
+bits set to 1, and the remaining bits set to 0.
 
-### **Arguments**
+### **Options**
 
 - **i**
-  : Shall be of type _integer_.
-  Its value must be non-negative, and less than or equal to the
-  number of bits for the kind of the result.
+  : the number of right-most bits to set in the _integer_ result. It
+  must be from 0 to the number of bits for the kind of the result.
+  The default kind of the result is the same as **i** unless the result
+  size is specified by **kind**. That is, these Fortran statements must
+  be _.true._ :
+
+```fortran
+   i >= 0 .and. i < bitsize(i) ! if KIND is not specified
+   i >= 0 .and. i < bitsize(0_KIND) ! if KIND is specified
+```
 
 - **kind**
-  : Shall be a scalar constant expression of type _integer_.
+  : designates the kind of the _integer_ result.
 
-### **Returns**
+### **Result**
 
-The return value is of type _integer_. If **kind** is present, it
-specifies the kind value of the return type; otherwise, it is of the
-default integer kind.
+The rightmost **i** bits of the output _integer_ are set to 1 and the
+other bits are set to 0.
 
-It has its rightmost **i** bits set to 1, and the remaining bits set to 0.
-
-### **Example**
+### **Examples**
 
 Sample program:
 
-```fortrqn
+```fortran
 program demo_maskr
 implicit none
 integer :: i
-   i=maskr(1)
-   write(*,'(i0,1x,b0,1x,b0/)') i,i, shiftl(7,bit_size(0)-1)
-   i=maskr(5)
-   write(*,'(i0,1x,b0,1x,b0/)') i,i, shiftl(7,bit_size(0)-5)
-   i=maskr(11)
-   write(*,'(i0,1x,b0,1x,b0/)') i,i, shiftl(7,bit_size(0)-11)
-   ! elemental
-   write(*,'(*(i11,1x,b0,1x,/))') maskr([(i,i,i=0,bit_size(0))])
+
+  ! basics
+   print *,'basics'
+   write(*,'(i0,t5,b32.32)') 1, maskr(1)
+   write(*,'(i0,t5,b32.32)') 5,  maskr(5)
+   write(*,'(i0,t5,b32.32)') 11, maskr(11)
+   print *,"should be equivalent on two's-complement processors"
+   write(*,'(i0,t5,b32.32)') 1,  shiftr(-1,bit_size(0)-1)
+   write(*,'(i0,t5,b32.32)') 5,  shiftr(-1,bit_size(0)-5)
+   write(*,'(i0,t5,b32.32)') 11, shiftr(-1,bit_size(0)-11)
+
+  ! elemental
+   print *,'elemental '
+   print *,'(array argument accepted like called with each element)'
+   write(*,'(*(i11,1x,b0.32,1x,/))') maskr([(i,i,i=0,bit_size(0),4)])
+
 end program demo_maskr
 ```
 
 Results:
 
 ```text
-1 1 10000000000000000000000000000000
-
-31 11111 111000000000000000000000000000
-
-2047 11111111111 111000000000000000000000
-
-          0 0
-          1 1
-          3 11
-          7 111
-         15 1111
-         31 11111
-         63 111111
-        127 1111111
-        255 11111111
-        511 111111111
-       1023 1111111111
-       2047 11111111111
-       4095 111111111111
-       8191 1111111111111
-      16383 11111111111111
-      32767 111111111111111
-      65535 1111111111111111
-     131071 11111111111111111
-     262143 111111111111111111
-     524287 1111111111111111111
-    1048575 11111111111111111111
-    2097151 111111111111111111111
-    4194303 1111111111111111111111
-    8388607 11111111111111111111111
-   16777215 111111111111111111111111
-   33554431 1111111111111111111111111
-   67108863 11111111111111111111111111
-  134217727 111111111111111111111111111
-  268435455 1111111111111111111111111111
-  536870911 11111111111111111111111111111
- 1073741823 111111111111111111111111111111
- 2147483647 1111111111111111111111111111111
-         -1 11111111111111111111111111111111
+ >   basics
+ >  1   00000000000000000000000000000001
+ >  5   00000000000000000000000000011111
+ >  11  00000000000000000000011111111111
+ >   should be equivalent on two's-complement processors
+ >  1   00000000000000000000000000000001
+ >  5   00000000000000000000000000011111
+ >  11  00000000000000000000011111111111
+ >   elemental
+ >   (array argument accepted like called with each element)
+ >            0 00000000000000000000000000000000
+ >           15 00000000000000000000000000001111
+ >          255 00000000000000000000000011111111
+ >         4095 00000000000000000000111111111111
+ >        65535 00000000000000001111111111111111
+ >      1048575 00000000000011111111111111111111
+ >     16777215 00000000111111111111111111111111
+ >    268435455 00001111111111111111111111111111
+ >           -1 11111111111111111111111111111111
 ```
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
 [**maskl**(3)](#maskl)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

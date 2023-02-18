@@ -4,32 +4,38 @@
 
 **cosh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic cosine function
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
     result = cosh(x)
-
-     TYPE(kind=KIND) elemental function cosh(x)
-     TYPE(kind=KIND),intent(in) :: x
 ```
 
-where TYPE may be _real_ or _complex_ and KIND may be any
-supported kind for the associated type. The returned **value**
-will be the same type and kind as the input value **x**.
+```fortran
+     elemental TYPE(kind=KIND) function cosh(x)
+
+      TYPE(kind=KIND),intent(in) :: x
+```
+
+### **Characteristics**
+
+- **TYPE** may be _real_ or _complex_ of any kind.
+- The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
-**cosh(x)** computes the hyperbolic cosine of **x**.
+**cosh**(3) computes the hyperbolic cosine of **x**.
 
-### **Arguments**
+If **x** is of type complex its imaginary part is regarded as a value
+in radians.
+
+### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : the value to compute the hyperbolic cosine of
 
-### **Returns**
+### **Result**
 
-The return value has same type and kind as **x**. If **x** is _complex_, the
-imaginary part of the result is in radians.
+If **x** is _complex_, the imaginary part of the result is in radians.
 
 If **x** is _real_, the return value has a lower bound of one,
 **cosh(x) \>= 1**.
@@ -44,18 +50,26 @@ use, intrinsic :: iso_fortran_env, only : &
  & real_kinds, real32, real64, real128
 implicit none
 real(kind=real64) :: x = 1.0_real64
-    x = cosh(x)
+    write(*,*)'X=',x,'COSH(X=)',cosh(x)
 end program demo_cosh
+```
+
+Results:
+
+```text
+ >  X=   1.00000000000000      COSH(X=)   1.54308063481524
 ```
 
 ### **Standard**
 
-FORTRAN 77 and later, for a complex argument - Fortran 2008 or later
+FORTRAN 77 , for a complex argument - Fortran 2008
 
 ### **See Also**
 
-- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
-
 Inverse function: [**acosh**(3)](#acosh)
 
- _fortran-lang intrinsic descriptions_
+### **Resources**
+
+- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
+
+_fortran-lang intrinsic descriptions_

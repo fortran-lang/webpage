@@ -2,52 +2,63 @@
 
 ### **Name**
 
-**pack**(3) - \[ARRAY CONSTRUCTION\] Pack an array into an array of rank one
+**pack**(3) - \[ARRAY:CONSTRUCTION\] Pack an array into an array of rank one
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = pack(array, mask,vector)
-
-   TYPE(kind=KIND) function pack(array,mask,vector)
-   TYPE(kind=KIND),option(in) :: array(*)
-   logical  :: mask(*)
-   TYPE(kind=KIND),option(in),optional :: vector(*)
+    result = pack( array, mask [,vector] )
 ```
 
-where TYPE(kind=KIND) may be any type, where **array** and **vector**
-and the returned value must by of the same type. **mask** may be a
-scalar as well an an array.
+```fortran
+     TYPE(kind=KIND) function pack(array,mask,vector)
+
+      TYPE(kind=KIND),option(in) :: array(..)
+      logical  :: mask(..)
+      TYPE(kind=KIND),option(in),optional :: vector(*)
+```
+
+### **Characteristics**
+
+- **array** is an array of any type
+- **mask** a _logical_ scalar as well as an array conformable with **array**.
+- **vector** is of the same kind and type as **array** and of rank one
+- the returned value is of the same kind and type as **array**
 
 ### **Description**
 
-Stores the elements of ARRAY in an array of rank one.
+**pack**(3) stores the elements of **array** in an array of rank one.
 
-The beginning of the resulting array is made up of elements whose **mask**
-equals **.true.**. Afterwards, positions are filled with elements taken from
-**vector**.
+The beginning of the resulting array is made up of elements whose
+**mask** equals _.true._. Afterwards, remaining positions are filled with elements
+taken from **vector**
 
-### **Arguments**
+### **Options**
 
 - **array**
-  : Shall be an array of any type.
+  : The data from this array is used to fill the resulting vector
 
 - **mask**
-  : Shall be an array of type _logical_ and of the same size as **array**.
-  Alternatively, it may be a _logical_ scalar.
+  : the _logical_ mask must be the same size as **array** or,
+  alternatively, it may be a _logical_ scalar.
 
 - **vector**
-  : (Optional) shall be an array of the same type as **array** and of rank
+  : an array of the same type as **array** and of rank
   one. If present, the number of elements in **vector** shall be equal to
   or greater than the number of true elements in **mask**. If **mask** is
   scalar, the number of elements in **vector** shall be equal to or
   greater than the number of elements in **array**.
 
-### **Returns**
+**vector** shall have at least as many elements as there are in **array**.
+
+### **Result**
 
 The result is an array of rank one and the same type as that of **array**.
 If **vector** is present, the result size is that of **vector**, the number of
-**.true.** values in **mask** otherwise.
+_.true._ values in **mask** otherwise.
+
+If **mask** is scalar with the value _.true._, in which case the result
+size is the size of **array**.
 
 ### **Examples**
 
@@ -56,61 +67,44 @@ Sample program:
 ```fortran
 program demo_pack
 implicit none
-   call test1()
-   call test2()
-   call test3()
-contains
-!
-subroutine test1()
-! gathering nonzero elements from an array:
-integer :: m(6)
+integer, allocatable :: m(:)
+character(len=10) :: c(4)
 
+ ! gathering nonzero elements from an array:
    m = [ 1, 0, 0, 0, 5, 0 ]
-   write(*, fmt="(*(i0, ' '))") pack(m, m /= 0)  ! "1 5"
+   write(*, fmt="(*(i0, ' '))") pack(m, m /= 0)
 
-end subroutine test1
-!
-subroutine test2()
-! Gathering nonzero elements from an array and appending elements
-! from VECTOR till the size of the mask array (or array size if the
-! mask is scalar):
-integer :: m(4)
-
+ ! Gathering nonzero elements from an array and appending elements
+ ! from VECTOR till the size of the mask array (or array size if the
+ ! mask is scalar):
    m = [ 1, 0, 0, 2 ]
    write(*, fmt="(*(i0, ' '))") pack(m, m /= 0, [ 0, 0, 3, 4 ])
+   write(*, fmt="(*(i0, ' '))") pack(m, m /= 0 )
 
-end subroutine test2
-!
-subroutine test3()
-! select strings whose second character is "a"
-character(len=10) :: m(4)
+ ! select strings whose second character is "a"
+   c = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
+   write(*, fmt="(*(g0, ' '))") pack(c, c(:)(2:2) == 'a' )
 
-m = [ character(len=10) :: 'ape', 'bat', 'cat', 'dog']
-   write(*, fmt="(*(g0, ' '))") pack(m, m(:)(2:2) == 'a' )
-
-end subroutine test3
-!
 end program demo_pack
 ```
 
 Results:
 
 ```text
-   1 5
-   1 2 3 4
-   bat        cat
+ > 1 5
+ > 1 2 3 4
+ > 1 2
+ > bat        cat
 ```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
-[**unpack**(3)](#unpack),
 [**merge**(3)](#merge),
-[**pack**(3)](#pack),
 [**spread**(3)](#spread),
 [**unpack**(3)](#unpack)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

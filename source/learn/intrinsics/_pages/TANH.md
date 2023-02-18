@@ -4,26 +4,41 @@
 
 **tanh**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Hyperbolic tangent function
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-x = tanh(x)
+    result = tanh(x)
 ```
+
+```fortran
+     elemental TYPE(kind=KIND) function tanh(x)
+
+      TYPE(kind=KIND),intent(in) :: x
+```
+
+### **Characteristics**
+
+- **x** may be _real_ or _complex_ and any associated kind supported by
+  the processor.
+- The returned value will be of the same type and kind as the argument.
 
 ### **Description**
 
-**tanh(x)** computes the hyperbolic tangent of **x**.
+**tanh**(3) computes the hyperbolic tangent of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_.
+  : The value to compute the Hyperbolic tangent of.
 
-### **Returns**
+### **Result**
 
-The return value has same type and kind as **x**. If **x** is complex, the
-imaginary part of the result is in radians. If **x** is _real_, the return
-value lies in the range
+Returns the hyperbolic tangent of **x**.
+
+If **x** is _complex_, the imaginary part of the result is regarded as
+a radian value.
+
+If **x** is _real_, the return value lies in the range
 
 ```
       -1 <= tanh(x) <= 1.
@@ -51,12 +66,14 @@ Results:
 
 ### **Standard**
 
-FORTRAN 77 and later, for a complex argument Fortran 2008 or later
+FORTRAN 77 , for a complex argument Fortran 2008
 
 ### **See Also**
 
-- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
-
 [**atanh**(3)](#atanh)
 
- _fortran-lang intrinsic descriptions_
+### **Resources**
+
+- [Wikipedia:hyperbolic functions](https://en.wikipedia.org/wiki/Hyperbolic_functions)
+
+_fortran-lang intrinsic descriptions_

@@ -4,35 +4,45 @@
 
 **num_images**(3) - \[COLLECTIVE\] Number of images
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = num_images(distance, failed)
+    result = num_images([team|team_number])
 ```
+
+```fortran
+     integer function num_images (team)
+
+      type(TEAM_TYPE),intent(in),optional    :: team
+      integer(kind=KIND),intent(in),optional :: team_number
+```
+
+### **Characteristics**
+
+- use of **team** and **team_number** is mutually exclusive
+- **team** is is a scalar of of type **TEAM_TYPE** from the intrinsic module ISO_FORTRAN_ENV.
+- **team_number** is an _integer_ scalar.
+- the result is a default _integer_ scalar.
 
 ### **Description**
 
-Returns the number of images.
+**num_images**(3) Returns the number of images.
 
-### **Arguments**
+### **Options**
 
-- **distance**
-  : (optional, **intent(in)**) Nonnegative scalar integer
+- **team**
+  : shall be a scalar of type TEAM_TYPE from the intrinsic module
+  ISO_FORTRAN_ENV, with a value that identifies the current or an
+  ancestor team.
 
-- **failed**
-  : (optional, **intent(in)**) Scalar logical expression
+- **team_number**
+  : identifies the initial team or a team whose parent is the same as
+  that of the current team.
 
-### **Returns**
+### **Result**
 
-Scalar default-kind _integer_. If **distance** is not present or has value 0,
-the number of images in the current team is returned. For values smaller
-or equal distance to the initial team, it returns the number of images
-index on the ancestor team which has a distance of **distance** from the
-invoking team. If **distance** is larger than the distance to the initial
-team, the number of images of the initial team is returned. If **failed** is
-not present the total number of images is returned; if it has the value
-.true., the number of failed images is returned, otherwise, the number
-of images which do have not the failed status.
+The number of images in the specified team, or in the current team if
+no team is specified.
 
 ### **Examples**
 
@@ -42,6 +52,7 @@ Sample program:
 program demo_num_images
 implicit none
 integer :: value[*]
+real    :: p[*]
 integer :: i
 
    value = this_image()
@@ -52,16 +63,26 @@ integer :: i
      end do
    endif
 
+ ! The following code uses image 1 to read data and
+ ! broadcast it to other images.
+   if (this_image()==1) then
+      p=1234.5678
+      do i = 2, num_images()
+         p[i] = p
+      end do
+   end if
+   sync all
+
 end program demo_num_images
 ```
 
 ### **Standard**
 
-Fortran 2008 and later. With DISTANCE or FAILED argument, TS 18508 or later
+Fortran 2008 . With DISTANCE or FAILED argument, TS 18508
 
 ### **See Also**
 
 [**this_image**(3)](#this_image),
 [**image_index**(3)](#this_index)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

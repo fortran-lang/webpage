@@ -2,20 +2,35 @@
 
 ### **Name**
 
-**set_exponent**(3) - \[MODEL_COMPONENTS\] Set the exponent of the model
+**set_exponent**(3) - \[MODEL_COMPONENTS\] real value with specified exponent
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = set_exponent(x, i)
+    result = set_exponent(x, i)
 ```
+
+```fortran
+     elemental real(kind=KIND) function set_exponent(x,i)
+
+      real(kind=KIND),intent(in) :: x
+      integer(kind=**),intent(in) :: i
+```
+
+### **Characteristics**
+
+- **x** is type _real_
+- **i** is type _integer_
+- a kind designated as \*\* may be any supported kind for the type
+
+- The return value is of the same type and kind as **x**.
 
 ### **Description**
 
-**set_exponent(x, i)** returns the real number whose fractional part is
+**set_exponent**(3) returns the real number whose fractional part is
 that of **x** and whose exponent part is **i**.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_.
@@ -23,11 +38,17 @@ that of **x** and whose exponent part is **i**.
 - **i**
   : Shall be of type _integer_.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type and kind as **x**. The real number
-whose fractional part is that that of **x** and whose exponent part if **i** is
-returned; it is **fraction(x) \* radix(x)\*\*i**.
+whose fractional part is that of **x** and whose exponent part
+if **i** is returned; it is **fraction(x) \* radix(x)\*\*i**.
+
+If **x** has the value zero, the result has the same value as **x**.
+
+If **x** is an IEEE infinity, the result is an IEEE NaN.
+
+If **x** is an IEEE NaN, the result is the same NaN.
 
 ### **Examples**
 
@@ -50,7 +71,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -70,4 +91,4 @@ Fortran 95 and later
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

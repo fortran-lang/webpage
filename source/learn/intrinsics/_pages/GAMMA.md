@@ -4,11 +4,22 @@
 
 **gamma**(3) - \[MATHEMATICS\] Gamma function, which yields factorials for positive whole numbers
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-x = gamma(x)
+    result = gamma(x)
 ```
+
+```fortran
+     elemental real(kind=KIND) function gamma( x)
+
+      type(real,kind=KIND),intent(in) :: x
+```
+
+### **Characteristics**
+
+- **x** is a _real_ value
+- returns a _real_ value with the kind as **x**.
 
 ### **Description**
 
@@ -25,14 +36,16 @@ $$
 t\*\*{x-1}{\\mathrm{e}}\*\*{__-t__}\\,{\\mathrm{d}}t
 $$
 
-### **Arguments**
+### **Options**
 
 - **x**
   : Shall be of type _real_ and neither zero nor a negative integer.
 
-### **Returns**
+### **Result**
 
-The return value is of type _real_ of the same kind as _x_.
+The return value is of type _real_ of the same kind as _x_. The result
+has a value equal to a processor-dependent approximation to the gamma
+function of **x**.
 
 ### **Examples**
 
@@ -122,12 +135,14 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
 Logarithm of the Gamma function: [**log_gamma**(3)](#log_gamma)
 
+### **Resources**
+
 [Wikipedia: Gamma_function](https://en.wikipedia.org/wiki/Gamma_function)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

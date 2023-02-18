@@ -4,27 +4,43 @@
 
 **fraction**(3) - \[MODEL_COMPONENTS\] Fractional part of the model representation
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-y = fraction(x)
+    result = fraction(x)
 ```
+
+```fortran
+     elemental real(kind=KIND) function fraction(x)
+
+      real(kind=KIND),intent(in) :: fraction
+```
+
+### **Characteristics**
+
+- **x** is of type _real_
+- The result has the same characteristics as the argument.
 
 ### **Description**
 
-**fraction(x)** returns the fractional part of the model representation
+**fraction**(3) returns the fractional part of the model representation
 of **x**.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : The type of the argument shall be a _real_.
+  : The value to interrogate
 
-### **Returns**
+### **Result**
 
-The return value is of the same type and kind as the argument. The
-fractional part of the model representation of **x** is returned; it is
-**x \* radix(x)\*\*(-exponent(x))**.
+The fractional part of the model representation of **x** is returned;
+it is **x \* radix(x)\*\*(-exponent(x))**.
+
+If **x** has the value zero, the result is zero.
+
+If **x** is an IEEE NaN, the result is that NaN.
+
+If **x** is an IEEE infinity, the result is an IEEE NaN.
 
 ### **Examples**
 
@@ -42,12 +58,12 @@ end program demo_fraction
 Results:
 
 ```text
-     0.570043862      0.570043862
+     0.5700439      0.5700439
 ```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -67,4 +83,4 @@ Fortran 95 and later
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

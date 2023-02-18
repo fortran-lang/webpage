@@ -4,35 +4,47 @@
 
 **random_seed**(3) - \[MATHEMATICS:RANDOM\] Initialize a pseudo-random number sequence
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-call random_seed(size, put, get)
+    call random_seed( [size] [,put] [,get] )
 ```
+
+```fortran
+     subroutine random_seed( size, put, get )
+
+      integer,intent(out),optional :: size
+      integer,intent(in),optional :: put(*)
+      integer,intent(out),optional :: get(*)
+```
+
+### **Characteristics**
+
+- **size** a scalar default _integer_
+- **put** a rank-one default _integer_ array
+- **get** a rank-one default _integer_ array
+- the result
 
 ### **Description**
 
-Restarts or queries the state of the pseudorandom number generator used
-by random_number.
+**random_seed**(3) restarts or queries the state of the pseudorandom
+number generator used by random_number.
 
 If random_seed is called without arguments, it is seeded with random
 data retrieved from the operating system.
 
-### **Arguments**
+### **Options**
 
 - **size**
-  : (Optional) Shall be a scalar and of type default _integer_, with
-  **intent(out)**. It specifies the minimum size of the arrays used
-  with the **put** and **get** arguments.
+  : specifies the minimum size of the arrays used with the **put**
+  and **get** arguments.
 
 - **put**
-  : (Optional) Shall be an array of type default _integer_ and rank one.
-  It is **intent(in)** and the size of the array must be larger than
-  or equal to the number returned by the **size** argument.
+  : the size of the array must be larger than or equal to the number
+  returned by the **size** argument.
 
 - **get**
-  : (Optional) Shall be an array of type default _integer_ and rank one.
-  It is **intent(out)** and the size of the array must be larger than
+  : It is **intent(out)** and the size of the array must be larger than
   or equal to the number returned by the **size** argument.
 
 ### **Examples**
@@ -62,10 +74,10 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
 [**random_number**(3)](#random_number)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

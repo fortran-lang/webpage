@@ -2,30 +2,43 @@
 
 ### **Name**
 
-**hypot**(3) - \[MATHEMATICS\] returns the distance between the point and the origin.
+**hypot**(3) - \[MATHEMATICS\] Returns the Euclidean distance - the distance between a point and the origin.
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = hypot(x, y)
-
-   real(kind=KIND) elemental function hypot(x,y) result(value)
-   real(kind=KIND),intent(in) :: x, y
+    result = hypot(x, y)
 ```
 
-where **x,y,value** shall all be of the same **kind**.
+```fortran
+     elemental real(kind=KIND) function hypot(x,y)
+
+      real(kind=KIND),intent(in) :: x
+      real(kind=KIND),intent(in) :: y
+```
+
+### **Characteristics**
+
+- **x,y** and the result shall all be _real_ and of the same **kind**.
 
 ### **Description**
 
-**hypot(x,y)** is referred to as the Euclidean distance function. It is
-equal to $\sqrt{x^2+y^2}$, without undue underflow or overflow.
+**hypot**(3) is referred to as the Euclidean distance function. It is
+equal to
+
+```fortran
+sqrt(x**2+y**2)
+```
+
+without undue underflow or overflow.
 
 In mathematics, the _Euclidean distance_ between two points in Euclidean
 space is the length of a line segment between two points.
 
-**hypot(x,y)** returns the distance between the point **<x,y>** and the origin.
+**hypot(x,y)** returns the distance between the point **<x,y>** and
+the origin.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
@@ -33,7 +46,7 @@ space is the length of a line segment between two points.
 - **y**
   : The type and kind type parameter shall be the same as **x**.
 
-### **Returns**
+### **Result**
 
 The return value has the same type and kind type parameter as **x**.
 
@@ -95,6 +108,10 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+### **See also**
+
+[\*\*\*\*(3)](#)
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

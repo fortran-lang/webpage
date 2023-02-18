@@ -4,14 +4,26 @@
 
 **epsilon**(3) - \[NUMERIC MODEL\] Epsilon function
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = epsilon(x)
+    result = epsilon(x)
 ```
+
+```fortran
+     real(kind=kind(x)) function epsilon(x)
+
+      real(kind=kind(x),intent(in)   :: x(..)
+```
+
+### **Characteristics**
+
+- **x** shall be of type _real_. It may be a scalar or an array.
+- the result is a scalar of the same type and kind type parameter as **x**.
+
 ### **Description**
 
-**epsilon(x)** returns the floating point relative accuracy.
+**epsilon**(3) returns the floating point relative accuracy.
 It is the nearly negligible number relative to **1**
 such that **1+ little_number** is not equal to **1**; or more
 precisely
@@ -30,12 +42,12 @@ If _delta_ is too small the algorithm might never halt, as a computation
 summing values smaller than the decimal resolution of the data type does
 not change.
 
-### **Arguments**
+### **Options**
 
 - **x**
   : The type shall be _real_.
 
-### **Returns**
+### **Result**
 
 The return value is of the same type as the argument.
 
@@ -110,7 +122,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -130,4 +142,4 @@ Fortran 95 and later
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

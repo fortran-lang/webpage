@@ -2,17 +2,31 @@
 
 ### **Name**
 
-**is_contiguous**(3) - \[ARRAY INQUIRY\] test if object is contiguous
+**is_contiguous**(3) - \[ARRAY:INQUIRY\] Test if object is contiguous
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = is_contiguous(a)
+    result = is_contiguous(array)
 ```
+
+```fortran
+     logical function is_contiguous(array)
+
+      type(TYPE(kind=**)),intent(in) :: array
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+- **array** may be of any type. It shall be an array or assumed-rank. If it is a pointer it
+  shall be associated.
+- the result is a default logical scalar
 
 ### **Description**
 
-True if and only if an object is contiguous.
+**is_contiguous**(3) returns _.true._ if and only if an object is
+contiguous.
 
 An object is contiguous if it is
 
@@ -74,17 +88,16 @@ An object is not contiguous if it is an array subobject, and
 
 It is processor-dependent whether any other object is contiguous.
 
-### **Arguments**
+### **Options**
 
-- **a**
-  : may be of any type. It shall be an array. If it is a pointer it
-  shall be associated.
+- **array**
+  : An array of any type to be tested for being contiguous. If it is a
+  pointer it shall be associated.
 
-### **Returns**
+### **Result**
 
-- **Result**
-  : of type Default logical scalar. The result has the value true if **a**
-  is contiguous, and false otherwise.
+The result has the value _.true._ if **array** is contiguous, and _.false._
+otherwise.
 
 ### **Examples**
 
@@ -114,6 +127,10 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
- _fortran-lang intrinsic descriptions_
+### **See also**
+
+[\*\*\*\*(3)](#)
+
+_fortran-lang intrinsic descriptions_

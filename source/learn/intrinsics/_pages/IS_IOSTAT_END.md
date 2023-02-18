@@ -2,35 +2,43 @@
 
 ### **Name**
 
-**is_iostat_end**(3) - \[STATE\] Test for end-of-file value
+**is_iostat_end**(3) - \[STATE:INQUIRY\] Test for end-of-file value
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-function is_iostat_end(i)
-
-    logical function   :: is_iostat_end (i) result(yesno)
-    integer,intent(in) :: i
+    result = is_iostat_end(i)
 ```
+
+```fortran
+     elemental logical function is_iostat_end(i)
+
+      integer,intent(in) :: i
+```
+
+### **Characteristics**
+
+- **i** is _integer_ of any kind
+- the return value is a default _logical_
 
 ### **Description**
 
-is_iostat_end(3) tests whether a variable (assumed returned as a status
+**is_iostat_end**(3) tests whether a variable (assumed returned as a status
 from an I/O statement) has the "end of file" I/O status value.
 
 The function is equivalent to comparing the variable with the
 **iostat_end** parameter of the intrinsic module **iso_fortran_env**.
 
-### **Arguments**
+### **Options**
 
 - **i**
   : An _integer_ status value to test if indicating end of file.
 
-### **Returns**
+### **Result**
 
-Returns a _logical_ of the default kind, **.true.** if **i** has the value
+returns _.true._ if and only if**i** has the value
 which indicates an end of file condition for **iostat=** specifiers, and is
-**.false.** otherwise.
+_.false._ otherwise.
 
 ### **Examples**
 
@@ -51,6 +59,7 @@ character(len=256) :: message
          stop 'end of file. Goodbye!'
       else
          write(*,*)'ERROR:',ios,trim(message)
+         exit
       endif
       !
    enddo
@@ -59,6 +68,10 @@ end program demo_iostat
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+### **See also**
+
+[\*\*\*\*(3)](#)
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

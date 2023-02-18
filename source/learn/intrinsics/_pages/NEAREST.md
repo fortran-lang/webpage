@@ -4,26 +4,47 @@
 
 **nearest**(3) - \[MODEL_COMPONENTS\] Nearest representable number
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = nearest(x, s)
+    result = nearest(x, s)
 ```
+
+```fortran
+     elemental real(kind=KIND) function nearest(x,s)
+
+      real(kind=KIND),intent(in) :: x
+      real(kind=**),intent(in) :: s
+```
+
+### **Characteristics**
+
+- **x** may be a _real_ value of any kind.
+- **s** may be a _real_ value of any kind.
+- The return value is of the same type and kind as **x**.
+- a kind designated as \*\* may be any supported kind for the type
 
 ### **Description**
 
-**nearest(x, s)** returns the processor-representable number nearest to
+**nearest**(3) returns the processor-representable number nearest to
 **x** in the direction indicated by the sign of **s**.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : Shall be of type _real_.
+  : the value to find the nearest representable value of
 
 - **s**
-  : Shall be of type _real_ and not equal to zero.
+  : a non-zero value whose sign is used to determine the direction in
+  which to search from **x** to the representable value.
 
-### **Returns**
+  If **s** is positive, **nearest** returns the processor-representable
+  number greater than **x** and nearest to it.
+
+  If **s** is negative, **nearest** returns the processor-representable
+  number smaller than **x** and nearest to it.
+
+### **Result**
 
 The return value is of the same type as **x**. If **s** is positive, **nearest**
 returns the processor-representable number greater than **x** and nearest to
@@ -64,7 +85,7 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -84,4 +105,4 @@ Fortran 95 and later
 [**spacing**(3)](#spacing),
 [**tiny**(3)](#tiny)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

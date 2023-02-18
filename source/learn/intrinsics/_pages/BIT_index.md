@@ -49,4 +49,4 @@ permalink: /learn/intrinsics/BIT_index
 | _BIT:SHIFT_ ||||| [**shiftr**]({{site.baseurl}}/learn/intrinsics/SHIFTR) || &#9679; Shift bits right |
 |----------------|||||----------------------------------------------------------------------||------------------------------------------------------|
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

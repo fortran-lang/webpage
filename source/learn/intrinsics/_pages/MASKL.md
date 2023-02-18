@@ -4,37 +4,54 @@
 
 **maskl**(3) - \[BIT:SET\] Generates a left justified mask
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = maskl(i, kind)
-
-  integer elemental function maskl(i,kind)
-  integer,intent(in),optional :: kind
+    result = maskl( i [,kind] )
 ```
+
+```fortran
+     elemental integer(kind=KIND) function maskl(i,KIND)
+
+      integer(kind=**),intent(in) :: i
+      integer(kind=**),intent(in),optional :: KIND
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+- **i** is an integer
+- **kind** Shall be a scalar constant expression of type _integer_
+  whose value is a supported _integer_ kind.
+- The result is an _integer_ of the same _kind_ as **i** unless **kind** is
+  present, which is then used to specify the kind of the result.
 
 ### **Description**
 
-**maskl(i\[, _kind_\])** has its leftmost **i** bits set to **1**, and the
-remaining bits set to **0**.
+**maskl**(3) has its leftmost **i** bits set to **1**, and the remaining
+bits set to **0**.
 
-### **Arguments**
+### **Options**
 
 - **i**
-  : Shall be of type _integer_.
-  Its value must be non-negative, and less than or equal to the
-  number of bits for the kind of the result.
+  : the number of left-most bits to set in the _integer_ result. It
+  must be from 0 to the number of bits for the kind of the result.
+  The default kind of the result is the same as **i** unless the result
+  size is specified by **kind**. That is, these Fortran statements must
+  be _.true._ :
+
+```fortran
+   i >= 0 .and. i < bitsize(i) ! if KIND is not specified
+   i >= 0 .and. i < bitsize(0_KIND) ! if KIND is specified
+```
 
 - **kind**
-  : Shall be a scalar constant expression of type _integer_.
+  : designates the kind of the _integer_ result.
 
-### **Returns**
+### **Result**
 
-The return value is of type _integer_. If **kind** is present, it specifies
-the kind value of the return type; otherwise, it is of the default
-integer kind.
-
-The leftmost **i** bits are set to 1 and the other bits are set to 0.
+The leftmost **i** bits of the output _integer_ are set to 1 and the
+other bits are set to 0.
 
 ### **Examples**
 
@@ -44,59 +61,37 @@ Sample program:
 program demo_maskl
 implicit none
 integer :: i
-   i=maskl(1)
-   write(*,'(i0,1x,b0,/)') i,i
-   ! elemental
-   write(*,'(*(i11,1x,b0,1x,/))') maskl([(i,i,i=1,bit_size(0))])
+  ! basics
+   i=3
+   write(*,'(i0,1x,b0)') i, maskl(i)
+
+  ! elemental
+   write(*,'(*(i11,1x,b0.32,1x,/))') maskl([(i,i,i=0,bit_size(0),4)])
 end program demo_maskl
 ```
 
 Results:
 
 ```text
--2147483648 10000000000000000000000000000000
+ > 3 11100000000000000000000000000000
+ >           0 00000000000000000000000000000000
+ >  -268435456 11110000000000000000000000000000
+ >   -16777216 11111111000000000000000000000000
+ >    -1048576 11111111111100000000000000000000
+ >      -65536 11111111111111110000000000000000
+ >       -4096 11111111111111111111000000000000
+ >        -256 11111111111111111111111100000000
+ >         -16 11111111111111111111111111110000
+ >          -1 11111111111111111111111111111111
 
-          0 0
--2147483648 10000000000000000000000000000000
--1073741824 11000000000000000000000000000000
- -536870912 11100000000000000000000000000000
- -268435456 11110000000000000000000000000000
- -134217728 11111000000000000000000000000000
-  -67108864 11111100000000000000000000000000
-  -33554432 11111110000000000000000000000000
-  -16777216 11111111000000000000000000000000
-   -8388608 11111111100000000000000000000000
-   -4194304 11111111110000000000000000000000
-   -2097152 11111111111000000000000000000000
-   -1048576 11111111111100000000000000000000
-    -524288 11111111111110000000000000000000
-    -262144 11111111111111000000000000000000
-    -131072 11111111111111100000000000000000
-     -65536 11111111111111110000000000000000
-     -32768 11111111111111111000000000000000
-     -16384 11111111111111111100000000000000
-      -8192 11111111111111111110000000000000
-      -4096 11111111111111111111000000000000
-      -2048 11111111111111111111100000000000
-      -1024 11111111111111111111110000000000
-       -512 11111111111111111111111000000000
-       -256 11111111111111111111111100000000
-       -128 11111111111111111111111110000000
-        -64 11111111111111111111111111000000
-        -32 11111111111111111111111111100000
-        -16 11111111111111111111111111110000
-         -8 11111111111111111111111111111000
-         -4 11111111111111111111111111111100
-         -2 11111111111111111111111111111110
-         -1 11111111111111111111111111111111
 ```
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
 [**maskr**(3)](#maskr)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

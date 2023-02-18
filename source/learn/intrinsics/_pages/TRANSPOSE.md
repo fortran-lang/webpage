@@ -2,28 +2,44 @@
 
 ### **Name**
 
-**transpose**(3) - \[ARRAY MANIPULATION\] Transpose an array of rank two
+**transpose**(3) - \[ARRAY:MANIPULATION\] Transpose an array of rank two
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = transpose(matrix)
+    result = transpose(matrix)
 ```
+
+```fortran
+     function transpose(matrix)
+
+      type(TYPE(kind=KIND)            :: transpose(N,M)
+      type(TYPE(kind=KIND),intent(in) :: matrix(M,N)
+```
+
+### **Characteristics**
+
+- **matrix** is an array of any type with a rank of two.
+- The result will be the same type and kind as **matrix** and the
+  reversed shape of the input array
 
 ### **Description**
 
-Transpose an array of rank two. Element (i, j) of the result has the
-value **matrix(j, i)**, for all i, j.
+**transpose**(3) transposes an array of rank two.
 
-### **Arguments**
+An array is transposed by interchanging the rows and columns of the
+given matrix. That is, element (i,j) of the result has the value of
+element (j,i) of the input for all (i,j).
+
+### **Options**
 
 - **matrix**
-  : Shall be an array of any type and have a rank of two.
+  : The array to transpose
 
-### **Returns**
+### **Result**
 
-The result has the same type as **matrix**, and has shape \[ m, n \] if
-**matrix** has shape \[ n, m \].
+The transpose of the input array. The result has the same type as
+**matrix**, and has shape \[ m, n \] if **matrix** has shape \[ n, m \].
 
 ### **Examples**
 
@@ -83,6 +99,13 @@ Results:
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
- _fortran-lang intrinsic descriptions_
+### **See also**
+
+- [**merge**(3)](#merge) - Merge variables
+- [**pack**(3)](#pack) - Pack an array into an array of rank one
+- [**spread**(3)](#spread) - Add a dimension and replicate data
+- [**unpack**(3)](#unpack) - Scatter the elements of a vector
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

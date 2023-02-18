@@ -4,55 +4,88 @@
 
 **bessel_jn**(3) - \[MATHEMATICS\] Bessel function of the first kind
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-  result = bessel_jn(n, x)
-
-  result = bessel_jn(n1, n2, x)
+    result = bessel_jn(n, x)
 ```
+
+```fortran
+     elemental real(kind=KIND) function bessel_jn(n,x)
+
+      integer(kind=**),intent(in) :: n
+      real(kind=KIND),intent(in) :: x
+```
+
+- KIND may be any valid value for type _real_
+- **x** is _real_
+- The return value has the same type and kind as **x**.
+
+```fortran
+    result = bessel_jn(n1, n2, x)
+```
+
+```fortran
+     real(kind=KIND) function bessel_jn(n1, n2, ,x)
+
+     integer(kind=**),intent(in) :: n1
+     integer(kind=**),intent(in) :: n2
+     real(kind=KIND),intent(in) :: x
+```
+
+- **n1** is _integer_
+- **n2** is _integer_
+- **x** is _real_
+- The return value has the same type and kind as **x**.
 
 ### **Description**
 
-**bessel_jn(n, x)** computes the Bessel function of the first
-kind of order **n** of **x**. If **n** and **x** are arrays, their ranks and shapes
-shall conform.
+**bessel_jn( n, x )** computes the Bessel function of the first kind of
+order **n** of **x**.
 
-**bessel_jn(n1, n2, x)** returns an array with the Bessel function\|Bessel functions
-of the first kind of the orders **n1** to **n2**.
+**bessel_jn(n1, n2, x)** returns an array with the Bessel
+function\|Bessel functions of the first kind of the orders **n1**
+to **n2**.
 
-### **Arguments**
+### **Options**
 
 - **n**
-  : Shall be a scalar or an array of type _integer_.
+  : a non-negative scalar integer..
 
 - **n1**
-  : Shall be a non-negative scalar of type _integer_.
+  : a non-negative scalar _integer_.
 
 - **n2**
-  : Shall be a non-negative scalar of type _integer_.
+  : a non-negative scalar _integer_.
 
 - **x**
-  : Shall be a scalar or an array of type _real_. For
-  **bessel_jn(n1, n2, x)** it shall be scalar.
+  : Shall be a scalar for **bessel_jn(n,x)** or an array
+  For **bessel_jn(n1, n2, x)**.
 
-### **Returns**
+### **Result**
 
-The return value is a scalar of type _real_. It has the same kind as **x**.
+The result value of BESSEL_JN (N, X) is a processor-dependent
+approximation to the Bessel function of the first kind and order N
+of X.
+
+The result of BESSEL_JN (N1, N2, X) is a rank-one array with extent
+MAX (N2-N1+1, 0). Element i of the result value of BESSEL_JN (N1,
+N2, X) is a processor-dependent approximation to the Bessel function
+of the first kind and order N1+i-1 of X.
 
 ### **Examples**
 
 Sample program:
 
 ```fortran
-program demo_besjn
+program demo_bessel_jn
 use, intrinsic :: iso_fortran_env, only : real_kinds, &
    & real32, real64, real128
 implicit none
 real(kind=real64) :: x = 1.0_real64
     x = bessel_jn(5,x)
     write(*,*)x
-end program demo_besjn
+end program demo_bessel_jn
 ```
 
 Results:
@@ -63,7 +96,7 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later
+Fortran 2008
 
 ### **See Also**
 
@@ -73,4 +106,4 @@ Fortran 2008 and later
 [**bessel_y1**(3)](#bessel_y1),
 [**bessel_yn**(3)](#bessel_yn)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

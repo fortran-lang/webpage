@@ -2,27 +2,40 @@
 
 ### **Name**
 
-**trim**(3) - \[CHARACTER:WHITESPACE\] Remove trailing blank characters of a string
+**trim**(3) - \[CHARACTER:WHITESPACE\] Remove trailing blank characters from a string
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = trim(string)
+    result = trim(string)
 ```
+
+```fortran
+     character(len=:,kind=KIND) function trim(string)
+
+      character(len=*,kind=KIND),intent(in) :: string
+```
+
+### **Characteristics**
+
+- **KIND** can be any kind supported for the _character_ type.
+- The result has the same type and kind as the input argument **string**.
 
 ### **Description**
 
-Removes trailing blank characters of a string.
+**trim**(3) removes trailing blank characters from a string.
 
-### **Arguments**
+### **Options**
 
 - **string**
-  : Shall be a scalar of type _character_.
+  : A string to trim
 
-### **Returns**
+### **Result**
 
-A scalar of type _character_ which length is that of **string** less the
-number of trailing blanks.
+The result is the same as **string** except trailing blanks are removed.
+
+If **string** is composed entirely of blanks or has zero length,
+the result has zero length.
 
 ### **Examples**
 
@@ -31,13 +44,32 @@ Sample program:
 ```fortran
 program demo_trim
 implicit none
-character(len=10), parameter :: s = "gfortran  "
-   write(*,*) len(s), len(trim(s))  ! "10 8", with/without trailing blanks
+character(len=:), allocatable :: str, strs(:)
+character(len=*),parameter :: brackets='( *("[",a,"]":,1x) )'
+integer :: i
 
-   ! with/without trailing blanks
-   write(*,*) len(s), len(trim('   leading'))
-   write(*,*) len(s), len(trim('   trailing    '))
-   write(*,*) len(s), len(trim('               '))
+   str='   trailing    '
+   print brackets, str,trim(str) ! trims it
+
+   str='   leading'
+   print brackets, str,trim(str) ! no effect
+
+   str='            '
+   print brackets, str,trim(str) ! becomes zero length
+   print *,  len(str), len(trim('               '))
+
+  ! array elements are all the same length, so you often
+  ! want to print them
+   strs=[character(len=10) :: "Z"," a b c","ABC",""]
+
+   write(*,*)'untrimmed:'
+   ! everything prints as ten characters; nice for neat columns
+   print brackets, (strs(i), i=1,size(strs))
+   print brackets, (strs(i), i=size(strs),1,-1)
+   write(*,*)'trimmed:'
+   ! everything prints trimmed
+   print brackets, (trim(strs(i)), i=1,size(strs))
+   print brackets, (trim(strs(i)), i=size(strs),1,-1)
 
 end program demo_trim
 ```
@@ -45,15 +77,21 @@ end program demo_trim
 Results:
 
 ```text
-      10           8
-      10          10
-      10          11
-      10           0
+    > [   trailing    ] [   trailing]
+    > [   leading] [   leading]
+    > [            ] []
+    >           12           0
+    >  untrimmed:
+    > [Z         ] [ a b c    ] [ABC       ] [          ]
+    > [          ] [ABC       ] [ a b c    ] [Z         ]
+    >  trimmed:
+    > [Z] [ a b c] [ABC] []
+    > [] [ABC] [ a b c] [Z]
 ```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
@@ -64,9 +102,8 @@ of arguments, and search for certain arguments:
   [**adjustl**(3)](#adjustl),
   [**adjustr**(3)](#adjustr),
   [**index**(3)](#index),
-
-[**scan**(3)](#scan),
-[**verify**(3)](#verify)
+  [**scan**(3)](#scan),
+  [**verify**(3)](#verify)
 
 - **Nonelemental:**
   [**len_trim**(3)](#len_trim),
@@ -74,4 +111,4 @@ of arguments, and search for certain arguments:
   [**repeat**(3)](#repeat),
   [**trim**(3)](#trim)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

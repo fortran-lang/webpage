@@ -2,67 +2,85 @@
 
 ### **Name**
 
-**logical**(3) - \[TYPE:LOGICAL\] Converts one kind of _logical_ variable to another
+**logical**(3) - \[TYPE:LOGICAL\] Conversion between kinds of logical values
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = logical(l, kind)
-
- logical(kind=KIND) function logical(L,KIND)
-  logical(kind=INK),intent(in) :: L
-  integer,intent(in),optional :: KIND
+    result = logical(l [,kind])
 ```
+
+```fortran
+     elemental logical(kind=KIND) function logical(l,KIND)
+
+      logical(kind=**),intent(in) :: l
+      integer(kind=**),intent(in),optional :: KIND
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+- **l** is of type logical
+- **KIND** shall be a scalar integer constant expression.
+  If **KIND** is present, the kind type parameter of the result is
+  that specified by the value of **KIND**; otherwise, the kind type
+  parameter is that of default logical.
 
 ### **Description**
 
-Converts one kind of _logical_ variable to another.
+**logical**(3) converts one kind of _logical_ variable to another.
 
-### **Arguments**
+### **Options**
 
 - **l**
-  : The type shall be _logical_.
+  : The _logical_ value to produce a copy of with kind **kind**
 
 - **kind**
-  : (Optional) An _integer_ initialization expression indicating the kind
-  parameter of the result.
+  : indicates the kind parameter of the result.
+  If not present, the default kind is returned.
 
-### **Returns**
+### **Result**
 
 The return value is a _logical_ value equal to **l**, with a kind
-corresponding to **kind**, or of the default logical kind if **kind** is not
-given.
+corresponding to **kind**, or of the default logical kind if **kind**
+is not given.
 
 ### **Examples**
 
 Sample program:
 
 ```fortran
+Linux
 program demo_logical
 ! Access array containing the kind type parameter values supported by this
 ! compiler for entities of logical type
 use iso_fortran_env, only : logical_kinds
+implicit none
+integer :: i
 
    ! list kind values supported on this platform, which generally vary
-   ! in storage size
+   ! in storage size as alias declarations
    do i =1, size(logical_kinds)
-      write(*,*)logical_kinds(i)
+      write(*,'(*(g0))')'integer,parameter :: boolean', &
+      & logical_kinds(i),'=', logical_kinds(i)
    enddo
 
 end program demo_logical
 ```
+
 Results:
 
 ```text
-              1
-              2
-              4
-              8
-             16
+ > integer,parameter :: boolean1=1
+ > integer,parameter :: boolean2=2
+ > integer,parameter :: boolean4=4
+ > integer,parameter :: boolean8=8
+ > integer,parameter :: boolean16=16
 ```
+
 ### **Standard**
 
-Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
+Fortran 95 , related ISO_FORTRAN_ENV module - fortran 2009
 
 ### **See Also**
 
@@ -70,4 +88,4 @@ Fortran 95 and later, related ISO_FORTRAN_ENV module - fortran 2009
 [**real**(3)](#real),
 [**cmplx**(3)](#cmplx)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

@@ -4,54 +4,82 @@
 
 **get_command_argument**(3) - \[SYSTEM:COMMAND LINE\] Get command line arguments
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-     call get_command_argument(number, value, length, status)
-
-     subroutine get_command_argument(number,value,length.status)
-     integer,intent(in)                    :: number
-     character(len=*),intent(out),optional :: value
-     integer,intent(out),optional          :: length
-     integer,intent(out),optional          :: status
+  call get_command_argument(number [,value] [,length] &
+  & [,status] [,errmsg])
 ```
+
+```fortran
+   subroutine get_command_argument( number, value, length, &
+   & status ,errmsg)
+
+    integer(kind=**),intent(in)             :: number
+    character(len=*),intent(out),optional   :: value
+    integer(kind=**),intent(out),optional   :: length
+    integer(kind=**),intent(out),optional   :: status
+    character(len=*),intent(inout),optional :: errmsg
+```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+  meeting the conditions described herein.
+- **number**, **length**, and **status** are scalar _integer_
+  with a decimal exponent range of at least four.
+- **value** and **errmsg** are scalar _character_ variables of default
+  kind.
 
 ### **Description**
 
-Retrieve the **number**-th argument that was passed on the command line
-when the containing program was invoked.
+**get_command_argument**(3) retrieves or queries the n-th argument that
+was passed on the command line to the current program execution.
 
 There is not anything specifically stated about what an argument is but
-in practice the arguments are split on whitespace unless the arguments
-are quoted and IFS values (Internal Field Separators) used by common
-shells are ignored.
+in practice the arguments are strings split on whitespace unless the
+arguments are quoted. IFS values (Internal Field Separators) used by
+common shells are typically ignored and unquoted whitespace is almost
+always the separator.
+
+Shells have often expanded command arguments and spell characters before
+passing them to the program, so the strings read are often not exactly
+what the user typed on the command line.
 
 ### **Options**
 
 - **number**
-  : Shall be a scalar of type **integer**, **number \>= 0**. If **number =
-  0**, **value** is set to the name of the program (on systems that support
-  this feature).
+  : is a non-negative number indicating which argument of the current
+  program command line is to be retrieved or queried.
+  : If **number = 0**, the argument pointed to is set to the name of the
+  program (on systems that support this feature).
+  : if the processor does not have such a concept as a command name the
+  value of command argument 0 is processor dependent.
+  : For values from 1 to the number of arguments passed to the program a
+  value is returned in an order determined by the processor. Conventionally
+  they are returned consecutively as they appear on the command line from
+  left to right.
 
-### **Returns**
+### **Result**
 
 - **value**
-  : Shall be a scalar of type _character_ and of default kind. After
-  get_command_argument returns, the **value** argument holds the
-  **number**-th command line argument. If **value** can not hold the argument,
-  it is truncated to fit the length of **value**. If there are less than
-  **number** arguments specified at the command line, **value** will be filled
-  with blanks.
+  : The **value** argument holds the command line argument.
+  If **value** can not hold the argument, it is truncated to fit the
+  length of **value**.
+  : If there are less than **number** arguments specified at the command
+  line or if the argument specified does not exist for other reasons,
+  **value** will be filled with blanks.
 
 - **length**
-  : (Optional) Shall be a scalar of type _integer_. The **length**
-  argument contains the length of the **number**-th command line argument.
+  : The **length** argument contains the length of the n-th command
+  line argument. The length of **value** has no effect on this value,
+  It is the length required to hold all the significant characters of
+  the argument regardless of how much storage is provided by **value**.
 
 - **status**
-  : (Optional) Shall be a scalar of type _integer_. If the argument
-  retrieval fails, **status** is a positive number; if **value** contains a
-  truncated command line argument, **status** is **-1**; and otherwise the
-  **status** is zero.
+  : If the argument retrieval fails, **status** is a positive number;
+  if **value** contains a truncated command line argument, **status**
+  is **-1**; and otherwise the **status** is zero.
 
 ### **Examples**
 
@@ -61,73 +89,62 @@ Sample program:
 program demo_get_command_argument
 implicit none
 character(len=255)           :: progname
-integer                      :: stat
-integer                      :: count,i, longest, argument_length
-integer,allocatable          :: istat(:), ilen(:)
-character(len=:),allocatable :: args(:)
-  !
-  ! get number of arguments
+integer                      :: count, i, argument_length, istat
+character(len=:),allocatable :: arg
+
+ ! command name assuming it is less than 255 characters in length
+  call get_command_argument (0, progname, status=istat)
+  if (istat == 0) then
+     print *, "The program's name is " // trim (progname)
+  else
+     print *, "Could not get the program's name " // trim (progname)
+  endif
+
+ ! get number of arguments
   count = command_argument_count()
   write(*,*)'The number of arguments is ',count
-  !
-  ! simple usage
-  !
-  call get_command_argument (0, progname, status=stat)
-  if (stat == 0) then
-     print *, "The program's name is " // trim (progname)
-  endif
-  !
-  ! showing how to make an array to hold any argument list
-  !
-  ! find longest argument
-  !
-  longest=0
-  do i=0,count
-     call get_command_argument(number=i,length=argument_length)
-     longest=max(longest,argument_length)
-  enddo
+
   !
   ! allocate string array big enough to hold command line
   ! argument strings and related information
   !
-  allocate(character(len=longest) :: args(0:count))
-  allocate(istat(0:count))
-  allocate(ilen(0:count))
-  !
-  ! read the arguments into the array
-  !
-  do i=0,count
-    call get_command_argument(i, args(i),status=istat(i),length=ilen(i))
+  do i=1,count
+     call get_command_argument(number=i,length=argument_length)
+     if(allocated(arg))deallocate(arg)
+     allocate(character(len=argument_length) :: arg)
+     call get_command_argument(i, arg,status=istat)
+     ! show the results
+     write (*,'(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")') &
+     & i,istat,argument_length,arg
   enddo
-  !
-  ! show the results
-  !
-  write (*,'(i3.3,1x,i0.5,1x,i0.5,1x,"[",a,"]")') &
-  & (i,istat(i),ilen(i),args(i)(:ilen(i)),i=0,count)
+
 end program demo_get_command_argument
 ```
 
 Results:
 
-```text
-/demo_get_command_argument a    test  'of getting   arguments  ' "  leading"
+```bash
+ ./demo_get_command_argument a  test 'of getting  arguments ' " leading"
+```
 
- The number of arguments is            5
- The program's name is xxx
-000 00000 00003 [./test_get_command_argument]
+```text
+ The program's name is ./demo_get_command_argument
+ The number of arguments is            4
 001 00000 00001 [a]
-003 00000 00004 [test]
-004 00000 00024 [of getting   arguments  ]
-005 00000 00018 [  leading]
+002 00000 00004 [test]
+003 00000 00022 [of getting  arguments ]
+004 00000 00008 [ leading]
 ```
 
 ### **Standard**
 
-Fortran 2003 and later
+Fortran 2003
 
 ### **See Also**
 
 [**get_command**(3)](#get_command),
 [**command_argument_count**(3)](#command_argument_count)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+
+#

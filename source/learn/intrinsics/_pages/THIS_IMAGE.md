@@ -4,39 +4,43 @@
 
 **this_image**(3) - \[COLLECTIVE\] Cosubscript index of this image
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = this_image()
+result = this_image() | = this_image(distance) | = this_image(coarray,dim)
 ```
-or
-```
+
 ```fortran
-result = this_image(distance)
+   integer function this_image( distance ,coarray, dim )
+
+    type(TYPE(kind=**),optional :: coarray[*]
+    integer,intent(in),optional :: distance
+    integer,intent(in),optional :: dim
 ```
-or
-```fortran
-result = this_image(coarray, dim)
-```
+
+### **Characteristics**
+
+- a kind designated as \*\* may be any supported kind for the type
+- **coarray** can be of any type. If **dim** is present it is required.
+- **distance** is not permitted together with **coarray**
+- if **dim** if present, coarray is required.
 
 ### **Description**
 
-Returns the cosubscript for this image.
+**this_image**(3) returns the cosubscript for this image.
 
-### **Arguments**
+### **Options**
 
 - **distance**
-  : (optional, **intent(in)**) Nonnegative scalar integer (not permitted
-  together with **coarray**).
+  : Nonnegative scalar _integer_ (not permitted together with **coarray**).
 
 - **coarray**
-  : Coarray of any type (optional; if **dim** present, required).
+  : if **dim** present, required).
 
 - **dim**
-  : default integer scalar (optional). If present, **dim** shall be between
-  one and the corank of **coarray**.
+  : If present, **dim** shall be between one and the corank of **coarray**.
 
-### **Returns**
+### **Result**
 
 Default integer. If **coarray** is not present, it is scalar; if **distance** is
 not present or has value **0**, its value is the image index on the invoking
@@ -77,13 +81,11 @@ Results:
 
 ### **Standard**
 
-Fortran 2008 and later. With DISTANCE argument, TS 18508
-or later
+Fortran 2008. With DISTANCE argument, TS 18508
 
 ### **See Also**
 
-[**num\_images**(3)](#num_images),
-[**image\_index**(3)](#image_index)
+[**num_images**(3)](#num_images),
+[**image_index**(3)](#image_index)
 
- _fortran-lang intrinsic descriptions_
-```
+_fortran-lang intrinsic descriptions_

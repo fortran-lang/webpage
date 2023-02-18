@@ -4,36 +4,49 @@
 
 **sin**(3) - \[MATHEMATICS:TRIGONOMETRIC\] Sine function
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = sin(x)
-
-    elemental TYPE(kind=KIND) function sin(x)
-    TYPE(kind=KIND) :: x
+    result = sin(x)
 ```
 
-Where the returned value has the kind of the input value
-and TYPE may be _real_ or _complex_
+```fortran
+     elemental TYPE(kind=KIND) function sin(x)
+
+      TYPE(kind=KIND) :: x
+```
+
+### **Characteristics**
+
+- **x** may be any _real_ or _complex_ type
+- **KIND** may be any kind supported by the associated type of **x**.
+- The returned value will be of the same type and kind as the argument
+  **x**.
 
 ### **Description**
 
-**sin(x)** computes the sine of an angle given the size of the angle in
-radians.
+**sin**(3) computes the sine of an angle given the size of the angle
+in radians.
 
 The sine of an angle in a right-angled triangle is the ratio of the
-length of the side opposite the given angle divided by the length of the
-hypotenuse.
+length of the side opposite the given angle divided by the length of
+the hypotenuse.
 
-### **Arguments**
+### **Options**
 
 - **x**
-  : The type shall be _real_ or _complex_ in radians.
+  : The angle in radians to compute the sine of.
 
-### **Returns**
+### **Result**
 
 - **result**
-  : The return value has the same type and kind as **x**.
+  The return value contains the processor-dependent approximation of
+  the sine of **x**
+
+  If X is of type _real_, it is regarded as a value in radians.
+
+  If X is of type _complex_, its real part is regarded as a value
+  in radians.
 
 ### **Examples**
 
@@ -44,17 +57,26 @@ program sample_sin
 implicit none
 real :: x = 0.0
    x = sin(x)
+   write(*,*)'X=',x
 end program sample_sin
 ```
 
-### **Haversine Formula**
+Results:
+
+```text
+ >  X=  0.0000000E+00
+```
+
+### Extended Example
+
+#### Haversine Formula
 
 From the article on "Haversine formula" in Wikipedia:
 
 ```text
-The haversine formula is an equation important in navigation,
-giving great-circle distances between two points on a sphere from
-their longitudes and latitudes.
+    The haversine formula is an equation important in navigation,
+    giving great-circle distances between two points on a sphere from
+    their longitudes and latitudes.
 ```
 
 So to show the great-circle distance between the Nashville International
@@ -63,20 +85,20 @@ Airport (BNA) in TN, USA, and the Los Angeles International Airport
 commonly given as
 
 ```text
-BNA: N 36 degrees 7.2',   W 86 degrees 40.2'
-LAX: N 33 degrees 56.4',  W 118 degrees 24.0'
+  BNA: N 36 degrees 7.2',   W 86 degrees 40.2'
+  LAX: N 33 degrees 56.4',  W 118 degrees 24.0'
 ```
 
 which converted to floating-point values in degrees is:
 
 ```text
-     Latitude Longitude
+       Latitude Longitude
 
-   - BNA
-     36.12, -86.67
+     - BNA
+       36.12, -86.67
 
-   - LAX
-     33.94, -118.40
+     - LAX
+       33.94, -118.40
 ```
 
 And then use the haversine formula to roughly calculate the distance
@@ -118,19 +140,29 @@ end program demo_sin
 Results:
 
 ```text
-    distance: 2886.4446 km
+ > distance: 2886.4446 km
 ```
 
 ### **Standard**
 
-FORTRAN 77 and later
+FORTRAN 77
 
 ### **See Also**
 
-- [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
-
 [**asin**(3)](#asin),
 [**cos**(3)](#cos),
-[**tan**(3)](#tan)
+[**tan**(3)](#tan),
+[**acosh**(3)](#acosh),
+[**acos**(3)](#acos),
+[**asinh**(3)](#asinh),
+[**atan2**(3)](#atan2),
+[**atanh**(3)](#atanh),
+[**acosh**(3)](#acosh),
+[**asinh**(3)](#asinh),
+[**atanh**(3)](#atanh)
 
- _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
+### **Resources**
+
+- [Wikipedia:sine and cosine](https://en.wikipedia.org/wiki/Sine_and_cosine)
+
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_

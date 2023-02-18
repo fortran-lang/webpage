@@ -4,26 +4,39 @@
 
 **modulo**(3) - \[NUMERIC\] Modulo function
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-result = modulo(a, p)
+    result = modulo(a, p)
 ```
+
+```fortran
+     elemental TYPE(kind=KIND) function modulo(a,p)
+
+      TYPE(kind=KIND),intent(in) :: a
+      TYPE(kind=KIND),intent(in) :: p
+```
+
+### **Characteristics**
+
+- **a** may be any kind of _real_ or _integer_.
+- **p** is the same type and kind as **a**
+- The result and arguments are all of the same type and kind.
 
 ### **Description**
 
-**modulo(a,p)** computes the **a** modulo **p**.
+**modulo**(3) computes the **a** modulo **p**.
 
-### **Arguments**
+### **Options**
 
 - **a**
-  : Shall be a scalar of type _integer_ or _real_.
+  : the value to take the **modulo** of
 
 - **p**
-  : Shall be a scalar of the same type and kind as **a**. It shall not be
-  zero.
+  : The value to reduce **a** by till the remainder is <= **p**.
+  It shall not be zero.
 
-### **Returns**
+### **Result**
 
 The type and kind of the result are those of the arguments.
 
@@ -57,20 +70,20 @@ end program demo_modulo
 Results:
 
 ```text
-              2
-      1.00000000
-              1
-      4.50000000
-             -1
-     -4.50000000
+ >            2
+ >    1.000000
+ >            1
+ >    4.500000
+ >           -1
+ >   -4.500000
 ```
 
 ### **Standard**
 
-Fortran 95 and later
+Fortran 95
 
 ### **See Also**
 
 [**mod**(3)](#mod)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions_

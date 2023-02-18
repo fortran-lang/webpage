@@ -2,27 +2,37 @@
 
 ### **Name**
 
-**compiler_version**(3) - \[COMPILER INQUIRY\] Compiler version string
+**compiler_version**(3) - \[COMPILER:INQUIRY\] Compiler version string
 
-### **Syntax**
+### **Synopsis**
 
 ```fortran
-str = compiler_version()
+    result = compiler_version()
 ```
+
+```fortran
+     character(len=:) function compiler_version()
+```
+
+### **Characteristics**
+
+- The return value is a default-kind scalar _character_ with
+  system-dependent length.
 
 ### **Description**
 
 **compiler_version**(3) returns a string containing the name and
 version of the compiler.
 
-### **Arguments**
+### **Options**
 
 None.
 
-### **Returns**
+### **Result**
 
-The return value is a default-kind string with system-dependent length.
-It contains the name of the compiler and its version number.
+The return value contains the name of the compiler and its version
+number used to compile the file containing the **compiler_version**(3)
+call.
 
 ### **Examples**
 
@@ -30,25 +40,24 @@ Sample program:
 
 ```fortran
 program demo_compiler_version
-use, intrinsic :: iso_fortran_env, only : compiler_version, compiler_options
+use, intrinsic :: iso_fortran_env, only : compiler_version
 implicit none
-   print '(4a)', &
+   print '(2a)', &
       'This file was compiled by ', &
-      compiler_version(),           &
-      ' using the options ',        &
-      compiler_options()
+      compiler_version()
 end program demo_compiler_version
 ```
 
 Results:
 
-```
-   This file was compiled by GCC version 5.4.0 using the options
-   -I /usr/include/w32api -I /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN
-   -mtune=generic -march=x86-64 -g -Wunused -Wuninitialized -Wall
-   -std=f2008 -fbounds-check -fbacktrace -finit-real=nan
-   -fno-range-check -frecord-marker=4
-   -J /home/urbanjs/V600/lib/CYGWIN64_GFORTRAN
+```text
+This file was compiled by GCC version 10.3.0
+
+This file was compiled by Intel(R) Fortran Intel(R) 64 Compiler
+Classic for applications running on Intel(R) 64, Version 2021.3.0 Build
+20210609_000000
+
+This file was compiled by nvfortran 21.5-0 LLVM
 ```
 
 ### **Standard**
@@ -60,4 +69,4 @@ Fortran 2008
 [**compiler_options**(3)](#compiler_options),
 **iso_fortran_env**(7)
 
- _fortran-lang intrinsic descriptions_
+_fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
