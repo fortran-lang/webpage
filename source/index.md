@@ -150,7 +150,9 @@ Or just write Fortran software for your research, business, or schoolwork. You c
 :::{toctree}
 :hidden:
 
+Play <https://play.fortran-lang.org/>
 learn
+roadmap
 compilers
 community
 packages

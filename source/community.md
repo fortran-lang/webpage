@@ -128,7 +128,7 @@ Community Conduct
 :::
 
 As a community, we strive to make participation in our discussions and projects a friendly and harassment-free experience for everyone.
-See the full [Code of Conduct](https://github.com/fortran-lang/stdlib/blob/HEAD/CODE_OF_CONDUCT.md).
+See the full [Code of Conduct](https://github.com/fortran-lang/.github/blob/main/CODE_OF_CONDUCT.md).
 
 ::::
 

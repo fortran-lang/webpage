@@ -92,6 +92,9 @@ locale_dirs = ["../locale/"]
 language = str(sys.argv[-1][11:])
 html_search_language = str(sys.argv[-1][11:])
 
+if language == "en":
+    extensions.append("sphinx_sitemap")
+
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path.
@@ -194,6 +197,7 @@ fontawesome_link_cdn = True
 blog_path = "news"
 blog_post_pattern = "news/**"
 blog_baseurl = "https://fortran-lang.org/en/"
+html_baseurl = "https://fortran-lang.org/"
 post_redirect_refresh = 1
 post_auto_image = 1
 post_auto_excerpt = 2
