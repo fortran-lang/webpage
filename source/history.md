@@ -2,19 +2,23 @@
 
 ## Creation
 
-The Fortran-lang project was started at the beginning of 2020 by Ondřej Čertík
-and Milan Curcic
-([[1]](https://ondrejcertik.com/blog/2021/03/resurrecting-fortran/),
-[[2]](https://medium.com/modern-fortran/first-year-of-fortran-lang-d8796bfa0067)).
-The effort built upon work of several members of the Fortran Standards
-Committee that built a GitHub proposals repository to track proposals to the
-Standards Committee, which lead to the creation of the Fortran Standard Library
-(`stdlib`), the Fortran Package Manager (`fpm`) and the `fortran-lang.org`
-website. The webpage quickly become the top result in major search engines for
-"Fortran". We created a Fortran Discourse where the whole Fortran community can
-meet and discuss, make announcements, ask for help, etc. The Fortran-lang
-effort was joined by hundreds of contributors. At the end of 2022 the
-Fortran-lang project was accepted under NumFOCUS for fiscal sponsorship.
+The effort to build a new community around Fortran started at the beginning of 2020
+and was initially led by Ondřej Čertík [[1]][blog-ondrej] and Milan Curcic [[2]][blog-milan].
+Starting in several discussions around ambitious proposals for the Fortran Standards
+Committee, the Fortran Standard Library (`stdlib`) [[3]][issue-stdlib], the Fortran
+Package Manager (`fpm`) [[4]][issue-fpm] and the [`fortran-lang.org`][webpage-orig]
+webpage with new logo [[5]][issue-logo] were created.
+With the new webpage and projects attracting more contributors, the Fortran-lang discourse
+was created to provide a place for general discussions around all the things Fortran,
+announcing newly started projects, getting help, etc.
+Since its creation the Fortran-lang community was joined by hundreds of contributors.
+
+[blog-ondrej]: https://ondrejcertik.com/blog/2021/03/resurrecting-fortran/
+[blog-milan]: https://medium.com/modern-fortran/first-year-of-fortran-lang-d8796bfa0067
+[issue-fpm]: https://github.com/j3-fortran/fortran_proposals/issues/55
+[issue-stdlib]: https://github.com/j3-fortran/fortran_proposals/issues/104
+[issue-logo]: https://github.com/j3-fortran/fortran_proposals/issues/47
+[webpage-orig]: https://web.archive.org/web/20200504000648/https://fortran-lang.org/
 
 ## Incubator J3 repo
 
