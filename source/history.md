@@ -82,4 +82,17 @@ and on [GitHub](https://github.com/fortran-lang/fortls).
 
 ## Fortran Publication
 
+In April 2022, members of the Fortran-lang community published a paper in
+Computing in Science & Engineering titled [_The State of Fortran_][pub-state-of-fortran]
+providing an overview of the language and its ecosystem.
+The paper focused on the ongoing efforts
+of developing the Fortran standard library ([`stdlib`][webpage-stdlib])
+and the Fortran package manager ([`fpm`][webpage-fpm]),
+fostering a friendly and welcoming community online ([`Fortran-lang Discourse`][discourse]),
+improving compiler support and language feature development.
+
+[pub-state-of-fortran]: https://ieeexplore.ieee.org/document/9736688
+[discourse]: https://fortran-lang.discourse.group/
+[webpage-fpm]: https://fpm.fortran-lang.org/
+[webpage-stdlib]: https://stdlib.fortran-lang.org/
 ## Conferences and Events
