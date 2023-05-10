@@ -67,6 +67,30 @@ limit: 20 // optional
 :::::
 
 :::{div} sd-text-left sd-fs-2 sd-text-primary
+History
+:::
+
+The effort to build a new community around Fortran started at the beginning of 2020
+and was initially led by Ondřej Čertík [[1]][blog-ondrej] and Milan Curcic [[2]][blog-milan].
+Starting in several discussions around ambitious proposals for the Fortran Standards
+Committee, the Fortran Standard Library (`stdlib`) [[3]][issue-stdlib], the Fortran
+Package Manager (`fpm`) [[4]][issue-fpm] and the [`fortran-lang.org`][webpage-orig]
+webpage with new logo [[5]][issue-logo] were created.
+With the new webpage and projects attracting more contributors, the Fortran-lang discourse
+was created to provide a place for general discussions around all the things Fortran,
+announcing newly started projects, getting help, etc.
+Since its creation the Fortran-lang community was joined by hundreds of contributors.
+
+[Read more](../community/history)
+
+[blog-ondrej]: https://ondrejcertik.com/blog/2021/03/resurrecting-fortran/
+[blog-milan]: https://medium.com/modern-fortran/first-year-of-fortran-lang-d8796bfa0067
+[issue-fpm]: https://github.com/j3-fortran/fortran_proposals/issues/55
+[issue-stdlib]: https://github.com/j3-fortran/fortran_proposals/issues/104
+[issue-logo]: https://github.com/j3-fortran/fortran_proposals/issues/47
+[webpage-orig]: https://web.archive.org/web/20200504000648/https://fortran-lang.org/
+
+:::{div} sd-text-left sd-fs-2 sd-text-primary
 Get Involved
 :::
 
@@ -178,6 +202,7 @@ Contributors:
 
 :::{toctree}
 :hidden:
+community/history
 community/contributing
 community/minibooks
 community/packages
