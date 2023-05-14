@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-29 16:02+0200\n"
-"PO-Revision-Date: 2023-05-13 22:52+0000\n"
+"PO-Revision-Date: 2023-05-19 22:12+0000\n"
 "Last-Translator: Nathan Gurgel <nathan_gurgel@hotmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pt/>\n"
@@ -3251,12 +3251,18 @@ msgid ""
 "subroutines. Avoid passing arrays as whole slices, as it obfuscates the "
 "actual intent of the code:"
 msgstr ""
+"Essa deve ser sempre o meio padrão de passar matrizes para dentro e para "
+"fora de subrotinas. Evite passar matriz como pedaços inteiros, uma vez que "
+"ofusca a intenção real do código:"
 
 #: ../../source/learn/best_practices/arrays.md:62
 msgid ""
 "In case more general arrays should be passed to a procedure the _assumed-"
 "rank_ functionality introduced in the Fortran 2018 standard can be used"
 msgstr ""
+"No caso de precisar matrizes genéricas para um procedimento, a "
+"funcionalidade _assumed-rank_ introduzida na especificação Fortran 2018 pode "
+"ser usada"
 
 #: ../../source/learn/best_practices/arrays.md:77
 msgid ""
@@ -3264,6 +3270,9 @@ msgid ""
 "This easily allows to create more generic functions that have to deal with "
 "different array ranks."
 msgstr ""
+"A atual classificação pode ser consultada em tempo de execução usando o "
+"construto `select rank`. Isso facilmente permite criar funções mais "
+"genéricas que precisam lidar com diferentes classificações de matrizes."
 
 #: ../../source/learn/best_practices/arrays.md:81
 msgid ""
@@ -3272,26 +3281,36 @@ msgid ""
 " arrays but they find frequent use for interfacing with C or in legacy "
 "Fortran procedures, therefore they will be discussed briefly here."
 msgstr ""
+"Matrizes _explicit-shape_ pode ser útil para retornar dados para funções. A "
+"maioria de suas funcionalidades pode ser fornecidas por _assumed-shape_ e "
+"matrizes _assumed-rank_, mas encontram uso frequente para servir de "
+"interface com C ou em processos Fortran legado, portanto serão discutidos "
+"brevemente aqui."
 
 #: ../../source/learn/best_practices/arrays.md:86
 msgid ""
 "To use _explicit-shape_ arrays, the dimension has to be passed explicitly as "
 "dummy argument like in the example below"
 msgstr ""
+"Para usar matrizes _explicit-shape_, a dimensão tem que ser passada "
+"explicitamente como um argumento fictício como no exemplo abaixo"
 
 #: ../../source/learn/best_practices/arrays.md:100
 msgid "For high-dimensional arrays additional indices have to be passed."
 msgstr ""
+"Para matrizes de altas dimensões índices adicionais tem que ser passados."
 
 #: ../../source/learn/best_practices/arrays.md:110
 msgid "The routines can be invoked by"
-msgstr ""
+msgstr "As rotinas podem ser invocadas por"
 
 #: ../../source/learn/best_practices/arrays.md:118
 msgid ""
 "Note that the shape is not checked, so the following would be legal code that"
 " will potentially yield incorrect results:"
 msgstr ""
+"Note que o formato não é checado, assim o código legal à seguir "
+"potencialmente produzirá resultados incorretos:"
 
 #: ../../source/learn/best_practices/arrays.md:127
 msgid ""
@@ -3299,10 +3318,14 @@ msgid ""
 "_explicit-shape_ arrays require contiguous memory and will create temporary "
 "arrays in case non-contiguous array strides are passed."
 msgstr ""
+"Nesse caso a configuração da memória é preservada mas o formato será mudado. "
+"Além disso, matrizes _explicit-shape_ requerem memória contínua e irão criar "
+"matrizes temporárias no caso de caminhos de array não-contínuos forem "
+"passados."
 
 #: ../../source/learn/best_practices/arrays.md:131
 msgid "To return an array from a function with _explicit-shape_ use"
-msgstr ""
+msgstr "Para retornar uma matriz vinda de uma função com uso _explicit-shape_"
 
 #: ../../source/learn/best_practices/arrays.md:144
 msgid ""
@@ -3313,6 +3336,13 @@ msgid ""
 "dimension, this disables the usage of this array with many intrinsic "
 "functions, like `size` or `shape`."
 msgstr ""
+"Finalmente, há matrizes _assumed-size_, que provém o menor tempo de "
+"compilação e checagem em tempo de execução e pode ser encontrado "
+"frequentemente em código legado. Eles devem ser evitados em favor de "
+"matrizes _assumed-shape_ ou _assumed-rank_. Um argumento fictício de uma "
+"matriz _assumed-size_ é identificada por um asterisco como última dimensão, "
+"isso desativa o uso dessa matriz com muitas funções intrínsecas, como `size` "
+"ou `shape`."
 
 #: ../../source/learn/best_practices/arrays.md:151
 msgid ""
@@ -3320,28 +3350,36 @@ msgid ""
 "`size` and `shape` intrinsic functions can be used to query for those "
 "properties"
 msgstr ""
+"Para checar o tamanho e formato correto de uma matriz _assumed-shape_ as "
+"funções intrínsecas `size` e `shape` podem ser usadas para consultas essas "
+"propriedades"
 
 #: ../../source/learn/best_practices/arrays.md:159
 msgid ""
 "Note that `size` returns the total size of all dimensions. To obtain the "
 "shape of a specific dimension add it as second argument to the function."
 msgstr ""
+"Note que `size` retorna o tamanho total de todas as dimensões. Para obter o "
+"formato de uma dimensão específica adicione essa dimensão como segundo "
+"argumento da função."
 
 #: ../../source/learn/best_practices/arrays.md:162
 msgid "Arrays can be initialized by using an array constructor"
-msgstr ""
+msgstr "Matrizes podem ser inicializadas usando construtor para matrizes"
 
 #: ../../source/learn/best_practices/arrays.md:169
 msgid "The array constructor can be annotated with the type of the constructed array"
-msgstr ""
+msgstr "O construtor de matriz pode ser anotado com o tipo da matriz construída"
 
 #: ../../source/learn/best_practices/arrays.md:176
 msgid "Implicit do loops can be used inside an array constructor as well"
 msgstr ""
+"Laços implícitos \"do\" podem também ser usados dentro de um construtor de "
+"matriz"
 
 #: ../../source/learn/best_practices/arrays.md:184
 msgid "In order for the array to start with different index than 1, do:"
-msgstr ""
+msgstr "Para que a matriz inicie com índice diferente de 1, faça:"
 
 #: ../../source/learn/best_practices/callbacks.md:1
 #: ../../source/learn/best_practices/index.md:12
@@ -3351,6 +3389,7 @@ msgstr "Callbacks"
 #: ../../source/learn/best_practices/callbacks.md:3
 msgid "A callback is a function that is passed as an argument to another function."
 msgstr ""
+"Um callback é uma função que é passada como argumento para outra função."
 
 #: ../../source/learn/best_practices/callbacks.md:5
 msgid ""
@@ -3358,28 +3397,38 @@ msgid ""
 "interface_ declaring the signature of the callback. This allows to use "
 "compile time checks for the passed callback."
 msgstr ""
+"A forma preferível de criar o callback é de prover uma _abstract interface_ "
+"declarando a assinatura do callback. Isso permite que use checagem em tempo "
+"de compilação para o callback passado."
 
 #: ../../source/learn/best_practices/callbacks.md:37
 msgid ""
 "The function can then be used with a callback by importing the module as "
 "shown in the following example"
 msgstr ""
+"A função pode então ser usada com um callback ao importar o módulo como "
+"mostrado no exemplo a seguir"
 
 #: ../../source/learn/best_practices/callbacks.md:66
 msgid ""
 "Exporting the abstract interface allows you to create procedure pointers with"
 " the correct signature and also to extend the callback further as shown here"
 msgstr ""
+"Exportando a interface abstrata permite que você crie ponteiros de "
+"procedimento com a assinatura correto e também estender o callback além como "
+"mostrado aqui"
 
 #: ../../source/learn/best_practices/element_operations.md:1
 msgid "Element-wise Operations on Arrays"
-msgstr ""
+msgstr "Operações sobre Elementos em Matrizes"
 
 #: ../../source/learn/best_practices/element_operations.md:3
 msgid ""
 "There are three approaches to perform element-wise operations on arrays when "
 "using subroutines and functions:"
 msgstr ""
+"Há três abordagens para realizar operações sobre elementos em matrizes "
+"quando usando subrotinas e funções:"
 
 #: ../../source/learn/best_practices/element_operations.md:5
 msgid "`elemental` procedures"
@@ -3390,22 +3439,28 @@ msgid ""
 "implementing the operation for vectors and write simple wrapper subroutines "
 "(that use `reshape` internally) for each array shape"
 msgstr ""
+"implementando a operação para vetores e escrevendo um empacotador simples de "
+"subrotinas (que use `reshape` internamente) para cada forma da matriz"
 
 #: ../../source/learn/best_practices/element_operations.md:10
 msgid ""
 "In the first approach, one uses the `elemental` keyword to create a function "
 "like this:"
 msgstr ""
+"Na primeira abordagem, usa-se a palavra-chave `elemental` para criar uma "
+"função como essa:"
 
 #: ../../source/learn/best_practices/element_operations.md:21
 msgid ""
 "All arguments (in and out) must be scalars. You can then use this function "
 "with arrays of any (compatible) shape, for example:"
 msgstr ""
+"Todos os argumentos (dentro e fora) devem ser escalares. Você pode então "
+"usar essa função com matrizes de qualquer tipo (compatível), por exemplo:"
 
 #: ../../source/learn/best_practices/element_operations.md:32
 msgid "The output will be:"
-msgstr ""
+msgstr "A saída será:"
 
 #: ../../source/learn/best_practices/element_operations.md:42
 msgid ""
@@ -3415,6 +3470,11 @@ msgid ""
 "arguments must be either arrays of the same shape or scalars). If it does "
 "not, you will get a compiler error."
 msgstr ""
+"No código acima, tipicamente `n` é um parâmetro e `x` é uma matriz de "
+"formato arbitrário, mas como pode ver, Fortran não se importa desde que a "
+"operação final faça sentido (se um argumento é uma matriz, então os outros "
+"argumentos devem ser matrizes do mesmo formato ou escalares). Se não for "
+"assim, você receberá um erro do compilador."
 
 #: ../../source/learn/best_practices/element_operations.md:48
 msgid ""
@@ -3422,6 +3482,9 @@ msgid ""
 "pure. It results that `elemental procedures` can only use `pure` procedures "
 "and have no side effects."
 msgstr ""
+"A palavra-chave `elemental` implica na palavra-chave `pure`, então o "
+"procedimento deve ser puro. Isso resulta que `elemental procedures` só podem "
+"usar procedimentos `pure` e não há efeitos colaterais."
 
 #: ../../source/learn/best_practices/element_operations.md:51
 msgid ""
@@ -3431,10 +3494,15 @@ msgid ""
 "make `nroot` operate on a vector and write a simple wrapper for other array "
 "shapes, e.g.:"
 msgstr ""
+"Se o algoritmo de procedimento elementar puder ser feito mais rápido usando "
+"operações de matrizes internamente, ou se por alguma razão os argumentos "
+"deverão ser matrizes de formatos incompatíveis, então deve-se usar uma das "
+"duas outras abordagens. Pode-se fazer o `nroot` operar em um vetor ou "
+"escrever um simples empacotador para os outros formatos das matrizes, p.ex.:"
 
 #: ../../source/learn/best_practices/element_operations.md:82
 msgid "And use as follows:"
-msgstr ""
+msgstr "E use da seguinte forma:"
 
 #: ../../source/learn/best_practices/element_operations.md:90
 msgid "This will print:"
@@ -3442,7 +3510,7 @@ msgstr "O que será mostrado na tela como:"
 
 #: ../../source/learn/best_practices/element_operations.md:98
 msgid "Or one can use _explicit-shape_ arrays as follows:"
-msgstr ""
+msgstr "Ou pode-se usar matrizes _explicite-shape_ como apresentado a seguir:"
 
 #: ../../source/learn/best_practices/element_operations.md:110
 msgid "Use as follows:"
@@ -3450,7 +3518,7 @@ msgstr "Use como se segue:"
 
 #: ../../source/learn/best_practices/element_operations.md:118
 msgid "The output is the same as before:"
-msgstr ""
+msgstr "A saída é a mesma que a anterior:"
 
 #: ../../source/learn/best_practices/file_io.md:1
 #: ../../source/learn/best_practices/index.md:12
@@ -3464,6 +3532,11 @@ msgid ""
 "procedures. Generally, the workflow is to open a file to a unit identifier, "
 "read and/or write to it and close it again."
 msgstr ""
+"Em Fortran, arquivos são gerenciados por identificadores unitários. "
+"Interações com o sistema de arquivos acontece principalmente através dos "
+"procedimentos integrados `open` e `inquire`. Geralmente, o fluxo de trabalho "
+"é abrir um arquivo para um identificador unitário, ler e/ou escrever nele e "
+"fechá-lo novamente."
 
 #: ../../source/learn/best_practices/file_io.md:15
 msgid ""
@@ -3471,36 +3544,50 @@ msgid ""
 "for both reading and writing. Writing to an existing file will start in the "
 "first record (line) and therefore overwrite the file by default."
 msgstr ""
+"Por padrão o arquivo será criado se já não existir e aberto tanto para ler "
+"quanto escrever. Escrever em um arquivo existente começará no primeiro "
+"registro (linha) e portanto sobrescreverá o arquivo por padrão."
 
 #: ../../source/learn/best_practices/file_io.md:19
 msgid ""
 "To create a read-only access to a file the `status` and `action` have to be "
 "specified with"
 msgstr ""
+"Para um acesso de somente leitura em um arquivo o `status` e a `action` tem "
+"que ser especificados com"
 
 #: ../../source/learn/best_practices/file_io.md:29
 msgid ""
 "In case the file is not present a runtime error will occur. To check for the "
 "existence of a file prior to opening it the `inquire` function can be used"
 msgstr ""
+"No caso do arquivo não estar presente um erro em tempo de execução ocorrerá. "
+"Para checar se o arquivo existe antes de abri-lo, a função `inquire` pode "
+"ser usada"
 
 #: ../../source/learn/best_practices/file_io.md:40
 msgid ""
 "Alternatively, the `open` procedure can return an optional _iostat_ and "
 "_iomsg_:"
 msgstr ""
+"Alternativamente, o procedimento `open` pode retornar opcionalmente _iostat_ "
+"e _iomsg_:"
 
 #: ../../source/learn/best_practices/file_io.md:52
 msgid ""
 "Note that _iomsg_ requires a fixed-length character variable with sufficient "
 "storage size to hold the error message."
 msgstr ""
+"Note que _iomsq_ requer uma variável de caracteres de tamanho fixado com "
+"espaço suficiente para obter a mensagem de erro."
 
 #: ../../source/learn/best_practices/file_io.md:55
 msgid ""
 "Similarly, writing to a file happens by using the _status_ and _action_ "
 "keyword. To create a new file use"
 msgstr ""
+"Similarmente, escrever em um arquivo ocorre quando usa as palavras-chave "
+"_status_ e _action_. Para criar um novo arquivo use"
 
 #: ../../source/learn/best_practices/file_io.md:65
 msgid ""
@@ -3509,6 +3596,10 @@ msgid ""
 "before deciding on the _status_ to use. To append to an output file the "
 "_position_ keyword can be specified explicitly with"
 msgstr ""
+"Alternativamente, `status=\"replace\"` pode ser usado para sobrescrever um "
+"arquivo existente. É altamente recomendado que primeiro cheque a existência "
+"do arquivo antes de decidir pelo uso do _status_. Para anexar em um arquivo "
+"de saída a palavra-chave _position_ pode ser especificada explicitamente com"
 
 #: ../../source/learn/best_practices/file_io.md:79
 msgid ""
@@ -3516,12 +3607,17 @@ msgid ""
 "`backspace` can be used. `rewind` will reset to the first record (line), "
 "while `backspace` will return to the previous record (line)."
 msgstr ""
+"Para reiniciar a posição em um arquivo, os procedimentos integrados `rewind` "
+"e `backspace` podem ser usados. `rewind` irá reiniciar no primeiro registro "
+"(linha), enquanto `backspace` irá retornar para o registro anterior (linha)."
 
 #: ../../source/learn/best_practices/file_io.md:83
 msgid ""
 "Finally, to delete a file the file has to be opened and can be deleted after "
 "closing with"
 msgstr ""
+"Finalmente, para deletar um arquivo o arquivo deve ser aberto e pode ser "
+"deletado após fechar com"
 
 #: ../../source/learn/best_practices/file_io.md:96
 msgid ""
@@ -3529,6 +3625,9 @@ msgid ""
 "`status=\"scratch\"`. They are automatically deleted after closing the unit "
 "identifier."
 msgstr ""
+"Uma funcionalidade útil de IO é arquivos de rascunho, que podem ser abertos "
+"com `status=\"scratch\"`. Eles serão automaticamente deletados após fechar o "
+"identificador unitário."
 
 #: ../../source/learn/best_practices/floating_point.md:1
 #: ../../source/learn/best_practices/index.md:12
@@ -3542,16 +3641,25 @@ msgid ""
 "precision is required. For this purpose a custom kind parameter can be "
 "defined. The recommended way of defining kind parameters is to use"
 msgstr ""
+"A representação padrão de números de ponto flutuante é usando precisão "
+"simples (usualmente 32 bits / 4 bytes). Para a maioria das aplicações uma "
+"precisão maior é necessária. Para esse propósito, um parâmetro de tipo "
+"específico pode ser definido. O meio recomendado para definir os tipos do "
+"parâmetros é usando"
 
 #: ../../source/learn/best_practices/floating_point.md:12
 msgid ""
 "For many purposes it also suffices to directly infer the kind parameter from "
 "a literal like here"
 msgstr ""
+"Para muitos propósitos, é possível inferir diretamente o tipo do parâmetro a "
+"partir de um literal como aqui"
 
 #: ../../source/learn/best_practices/floating_point.md:19
 msgid "or to rename the imported kind parameter from the `iso_fortran_env` module"
 msgstr ""
+"ou para renomear o tipo do parâmetro importado vindo do módulo "
+"`iso_fortran_dev`"
 
 #: ../../source/learn/best_practices/floating_point.md:25
 msgid ""
@@ -3560,6 +3668,10 @@ msgid ""
 "/doctor-fortran-in-it-takes-all-kinds/\">Doctor Fortran in it takes all "
 "KINDs</a>."
 msgstr ""
+"Para melhor conhecimento em tipos de parâmetros veja <a href=\"https://web."
+"archive.org/web/20200930090137/https://stevelionel.com/drfortran/2017/03/27/"
+"doctor-fortran-in-it-takes-all-kinds/\">Doctor Fortran in it takes all "
+"KINDs</a>."
 
 #: ../../source/learn/best_practices/floating_point.md:28
 msgid ""
@@ -3567,18 +3679,24 @@ msgid ""
 "include them with use as necessary. An example for such a module is given "
 "with"
 msgstr ""
+"É recomendado que haja um módulo central para definir os tipos de parâmetros "
+"e inclui-los à medida que usa. Um exemplo para tal módulo é dado abaixo"
 
 #: ../../source/learn/best_practices/floating_point.md:56
 msgid ""
 "Floating point constants should always be declared including a kind parameter"
 " suffix:"
 msgstr ""
+"Constantes de ponto flutuante devem sempre ser declaradas incluindo um "
+"sufixo de tipo de parâmetro:"
 
 #: ../../source/learn/best_practices/floating_point.md:65
 msgid ""
 "It is safe to assign integers to floating point numbers without losing "
 "accuracy:"
 msgstr ""
+"É seguro atribuir inteiros para números de ponto flutuante sem perder "
+"precisão:"
 
 #: ../../source/learn/best_practices/floating_point.md:72
 msgid ""
@@ -3586,10 +3704,15 @@ msgid ""
 "`3/4` equal to `0`), one can convert the integer to a floating point number "
 "by:"
 msgstr ""
+"Para forçar a divisão de ponto flutuante (em oposição à divisão de inteiro `"
+"3/4` igual a `0`), pode-se converter o inteiro para um número de ponto "
+"flutuante assim:"
 
 #: ../../source/learn/best_practices/floating_point.md:81
 msgid "or simply separate the integer division with multiplication by `1.0_dp`"
 msgstr ""
+"ou simplesmente separe a divisão de inteiros com uma multiplicação por `1."
+"0_dp`"
 
 #: ../../source/learn/best_practices/floating_point.md:88
 msgid ""
@@ -3597,6 +3720,9 @@ msgid ""
 "format specifier `(g0)` or the exponential representation `(es24.16e3)`, "
 "which will give you 17 significant digits of printout."
 msgstr ""
+"Para imprimir números de ponto flutuante sem perder precisão use o "
+"especificador de formato ilimitado `(g0)` ou a representação exponencial "
+"`(es24.16e3)`. o qual te dará 17 dígitos significativos na saída."
 
 #: ../../source/learn/best_practices/index.md:12
 #: ../../source/learn/best_practices/style_guide.md:1
@@ -3620,12 +3746,12 @@ msgstr "Arrays Multidimensionais"
 
 #: ../../source/learn/best_practices/index.md:12
 msgid "Element-wise Operations on Array"
-msgstr ""
+msgstr "Operações em Elementos em Matrizes"
 
 #: ../../source/learn/best_practices/index.md:12
 #: ../../source/learn/best_practices/type_casting.md:1
 msgid "Type Casting in Callbacks"
-msgstr ""
+msgstr "Conversão de Tipos em Callbacks"
 
 #: ../../source/learn/best_practices/index.md:4
 msgid "Fortran Best Practices"
@@ -3639,6 +3765,12 @@ msgid ""
 " discussed. It is meant for programmers with basic familiarity of the Fortran"
 " syntax and programming in general."
 msgstr ""
+"Esse mini-book contém um meio canônico moderno de fazer as coisas em "
+"Fortran. Ele serve como um guia de estilo e recomendação de boas práticas "
+"para tópicos populares e atividades comuns. Geralmente, uma solução "
+"canônica, ou padrão é apresentado e discutido. Ele é destinado para "
+"programadores com familiaridade básica na sintaxe Fortran e programação em "
+"geral."
 
 #: ../../source/learn/best_practices/integer_division.md:3
 msgid ""
@@ -3650,6 +3782,13 @@ msgid ""
 " left to right. Consider the following example for integer division of an odd"
 " number:"
 msgstr ""
+"Fortran faz distinção entre aritmética de ponto flutuante e inteiro. É "
+"importante notar que a divisão para inteiros é sempre usando aritmética de "
+"inteiros. Além disso, enquanto Fortran usa o padrão de ordem de operações ("
+"p.ex. multiplicação e divisão precede adição e subtração na ausência de "
+"parênteses), operações com a mesma precedência são avaliados da esquerda "
+"para a direita. Veja o seguinte exemplo para divisão de inteiros de um "
+"número impar:"
 
 #: ../../source/learn/best_practices/integer_division.md:21
 msgid ""
@@ -3658,6 +3797,11 @@ msgid ""
 "cast to reals before using the division operator, or separate the integers by"
 " multiplying by `1.0_dp`:"
 msgstr ""
+"Seja cuidadoso ao escolher quando quer utilizar a aritmética de inteiro "
+"nesse contexto. Se ao invés você quiser usar aritmética de ponteiro "
+"flutuante, garante que você tenha convertido os reais antes de usar o "
+"operador de divisão, ou separe os inteiros com uma multiplicação por `1."
+"0_dp`:"
 
 #: ../../source/learn/best_practices/modules_programs.md:3
 msgid ""
@@ -3668,10 +3812,16 @@ msgid ""
 "with the library name to avoid name clashes when used as dependency in other "
 "projects."
 msgstr ""
+"Módulos é o modo preferido para criar bibliotecas e aplicações Fortran "
+"modernas. Como uma convenção, um arquivo de fonte única deve sempre conter "
+"apenas um módulo, enquanto que o nome do módulo deve sempre corresponder ao "
+"caminho de arquivo para facilitar a navegação em projetos grandes. É também "
+"recomendado prefixar o nome dos módulos com o nome da biblioteca para evitar "
+"conflite de nomes quando usando como dependências em outros projetos."
 
 #: ../../source/learn/best_practices/modules_programs.md:9
 msgid "An example for such a module file is given here"
-msgstr ""
+msgstr "Um exemplo para tal arquivo de módulo é dado aqui"
 
 #: ../../source/learn/best_practices/modules_programs.md:45
 msgid ""
@@ -3682,6 +3832,12 @@ msgid ""
 "the most important parts of creating long-living software, regardless of "
 "language."
 msgstr ""
+"H[a algumas coisas nesse exemplo a destacar. Primeiro, cada módulo começa "
+"com comentários documentando o propósito e conteúdo do módulo. Semelhante, "
+"cada procedimento começa com um breve comentário descrevendo seu propósito e "
+"a intenção dos argumentos fictícios. Documentação é uma das partes mais "
+"importantes para a criação de software de longa duração, independente da "
+"linguagem."
 
 #: ../../source/learn/best_practices/modules_programs.md:51
 msgid ""
@@ -3693,12 +3849,21 @@ msgid ""
 " on a single line and explicitly listing all exported symbols in _public_ "
 "statements."
 msgstr ""
+"Segundo, imports (_use_) e exports (_public_) são passados explicitamente, "
+"isso permite uma visão da fonte do módulo para checar os procedimentos "
+"usados e disponíveis, tipos constantes e derivadas. Os imports são "
+"normalmente limitados ao escopo do módulo ao invés de reimportado em cada "
+"escopo de procedimento ou interface. Semelhante, exports são feitos "
+"explicitamente adicionando a declaração _private_ em uma única linha e "
+"explicitamente listando todos os símbolos exportados na declaração _public_."
 
 #: ../../source/learn/best_practices/modules_programs.md:59
 msgid ""
 "Finally, the `implicit none` statement works for the whole module and there "
 "is no need to repeat it within each procedure."
 msgstr ""
+"Finalmente, a declaração `implicit none` funciona para todo o módulo e não "
+"há necessidade de repetir dentro de cada procedimento."
 
 #: ../../source/learn/best_practices/modules_programs.md:62
 msgid ""
@@ -3707,6 +3872,10 @@ msgid ""
 "like parameters or enumerators only or export them as _protected_ rather than"
 " _public_."
 msgstr ""
+"Variáveis dentro de módulos são estáticos (_implicitly saved_). É altamente "
+"recomendado limitar o uso de variáveis de módulos para expressões "
+"constantes, como unicamente parâmetros ou enumeráveis, ou exportá-los como "
+"_protected_ ao invés de _public_."
 
 #: ../../source/learn/best_practices/modules_programs.md:67
 msgid ""
@@ -3715,18 +3884,26 @@ msgid ""
 "to provide specialized and optimized implementations without requiring the "
 "use of preprocessor."
 msgstr ""
+"Submódulos podem ser usar para quebrar longas cadeias de dependência e "
+"encurtar a cascata de recompilação em programas Fortran. Eles também "
+"oferecem a possibilidade de fornecer implementações especializadas e "
+"otimizadas sem necessidade de uso de pré-processador."
 
 #: ../../source/learn/best_practices/modules_programs.md:71
 msgid ""
 "An example from the Fortran standard library is the quadrature module, which "
 "only defines interfaces to module procedures, but no implementations"
 msgstr ""
+"Um exemplo da Fortran standard library é o módulo quadrature, que define "
+"somente interfaces para os procedimentos de módulo, mas sem implementações"
 
 #: ../../source/learn/best_practices/modules_programs.md:104
 msgid ""
 "While the implementation is provided in separate submodules like the one for "
 "the trapezoidal integration rule given here."
 msgstr ""
+"Enquanto que a implementação é fornecida em submódulos separados como esse "
+"para a regra de integração trapezoidal."
 
 #: ../../source/learn/best_practices/modules_programs.md:138
 msgid ""
@@ -3734,6 +3911,9 @@ msgid ""
 "submodule. Several submodules can be used to reduce the compilation load for "
 "huge modules."
 msgstr ""
+"Note que os procedimentos de módulos não tem que ser implementados no mesmo "
+"submódulo. Vários submódulos podem ser usados para reduzir a carga de "
+"compilação para módulos grandes."
 
 #: ../../source/learn/best_practices/modules_programs.md:141
 msgid ""
@@ -3742,6 +3922,11 @@ msgid ""
 "modules allows you to write reusable code and focus the program unit on "
 "conveying user input to the respective library functions and objects."
 msgstr ""
+"Finalmente, quando configurando um programa, é recomendado que mantenha as "
+"reais implementações no corpo programa ao mínimo. Reusar implementações de "
+"módulos permite que você escreva código reutilizável e foque a unidade do "
+"programa em transmitir o input do usuário para os respectivos objetos e "
+"funções da biblioteca."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:3
 msgid ""
@@ -3752,6 +3937,12 @@ msgid ""
 "the columns. This is important when passing array slices to procedures which "
 "expect to work on contiguous data."
 msgstr ""
+"Matrizes multidimensionais são armazenadas em ordem de maior coluna. Isso "
+"significa que o índice mais à esquerda (mais interno) endereça elementos "
+"continuamente. De um ponto de vista prático, isso significa que a parte da "
+"matriz `V(:,1)` é continua, enquanto que o passo entre os elementos da parte "
+"`V(1,:)` é a dimensão das colunas. Isso é importante ao passar pedaços da "
+"matriz para procedimentos que esperam trabalhar em dados contínuos."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:10
 msgid ""
@@ -3759,6 +3950,9 @@ msgid ""
 "application, usually when performing operations on a multidimensional the "
 "sequential access should always advance in unity strides."
 msgstr ""
+"É importante considerar a localização da memória na sua aplicação, "
+"normalmente quando realizando operações multidimensionais o acesso "
+"sequencial deve sempre avançar em passos unitários."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:14
 msgid ""
@@ -3767,12 +3961,18 @@ msgid ""
 "`xyz1`/`xyz2`, while the inner-most loop is advancing the left-most index of "
 "the matrix `a`."
 msgstr ""
+"No exemplo à seguir a distância inversa entre dois conjuntos de ponto é "
+"calculada. Note que os pontos são guardados continuamente nas matrizes "
+"`xyz1`/`xyz2`, enquanto que o laço mais interno está avançando o índice mais "
+"externo da matriz `a`."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:33
 msgid ""
 "Another example would be the contraction of the third dimension of a rank "
 "three array:"
 msgstr ""
+"Outro exemplo seria a contradição da terceira dimensão em uma matriz "
+"tridimensional:"
 
 #: ../../source/learn/best_practices/multidim_arrays.md:46
 msgid ""
@@ -3780,12 +3980,18 @@ msgid ""
 "of higher rank arrays as lower rank arrays without requiring to reshape and "
 "potentially create a temporary copy of the array."
 msgstr ""
+"Pedaços de matrizes contínuas podem ser usadas em remapeamento vinculados à "
+"matriz para permitir uso de matriz de ordem maior como matriz de ordem menor "
+"sem necessidade de remodelar e potencialmente criar uma cópia temporária da "
+"matriz."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:50
 msgid ""
 "For example this can be used to contract the third dimension of a rank three "
 "array using a matrix-vector operation:"
 msgstr ""
+"Por exemplo, isso pode ser usado para suprimir a terceira dimensão de uma "
+"matriz tridimensional usando uma operação matriz-vetor:"
 
 #: ../../source/learn/best_practices/style_guide.md:3
 msgid "Naming Convention"
@@ -3797,16 +4003,23 @@ msgid ""
 " and that seems to be prevalent in most scientific codes (as well as the "
 "Fortran standard library), and you are welcome to follow it."
 msgstr ""
+"Em última análise, isso é uma questão de preferência. Aqui está um guia de "
+"estilos que gostamos e que parece ter prevalência nos códigos científicos ("
+"assim como na Fortran standard library), e recomendamos segui-lo."
 
 #: ../../source/learn/best_practices/style_guide.md:9
 msgid "Use lowercase for all Fortran constructs (`do`, `subroutine`, `module`, ...)."
 msgstr ""
+"Use caixa baixa para todos os construtores Fortran (`do`, `subroutine`, "
+"`module`, ...)."
 
 #: ../../source/learn/best_practices/style_guide.md:11
 msgid ""
 "Follow short mathematical notation for mathematical variables/functions "
 "(`Ylm`, `Gamma`, `gamma`, `Enl`, `Rnl`, ...)."
 msgstr ""
+"Use notações matemáticas curtas para variáveis/funções matemáticas (`Ylm`, "
+"`Gamma`, `gamma`, `Enl`, `Rnl`, ...)."
 
 #: ../../source/learn/best_practices/style_guide.md:13
 msgid ""
@@ -3816,6 +4029,11 @@ msgid ""
 "`spline_interp`, `spline_interpolate`, `stoperr`, `stop_error`, "
 "`meshexp_der`)."
 msgstr ""
+"Para outros nomes use tudo em caixa baixa: tente manter os nomes em uma ou "
+"duas sílabas; se há necessidade de mais, use sublinha para manter claro "
+"(`sortpair`, `whitechar`, `meshexp`, `numstrings`, `linspace`, `meshgrid`, "
+"`argsort`, `spline`, `spline_interp`, `spline_interpolate`, `stoperr`, "
+"`stop_error`, `meshexp_der`)."
 
 #: ../../source/learn/best_practices/style_guide.md:19
 msgid ""
@@ -3826,6 +4044,12 @@ msgid ""
 "in contrast to `get_argument()` where `getarg()` is perfectly clean and "
 "clear."
 msgstr ""
+"Por exemplo \"spline interpolation\" pode ser definido por "
+"`spline_interpolation`, `spline_interpolate`, `spline_interp`, `spline`, mas "
+"não `splineint` (\"int\" pode significar integração, inteiro, etc. --- muita "
+"ambiguidade, até para um contexto claro de código computacional). Isso está "
+"em contraste com `get_argument()` onde `getarg()` é perfeitamente limpo "
+"eclaro."
 
 #: ../../source/learn/best_practices/style_guide.md:26
 msgid ""
@@ -3838,6 +4062,13 @@ msgid ""
 "collaboration and for one's own sanity when going back to some old code you "
 "haven't seen in while."
 msgstr ""
+"Acima são orientações gerais. Em geral, escolhe o nome correto certamente "
+"depende se a primeira sílaba da palavra truncada é suficiente. Normalmente é "
+"claro mas nem sempre. Portanto é necessário refletir sobre \"tentar manter "
+"nomes em 2 sílabas ou menos\" uma vez que pode afetar o significado e a "
+"simplicidade. Regras simples de nomeação consistente é uma boa ajuda nessa "
+"questão -- tanto para colaboração quando para a própria sanidade quando "
+"revisitar algum código antigo que não tenha visto há um tempo."
 
 #: ../../source/learn/best_practices/style_guide.md:35
 msgid "Indentation"
@@ -3849,10 +4080,13 @@ msgid ""
 "indentation is a matter of preference, the most common choices are two, three"
 " or four spaces."
 msgstr ""
+"Use uma indentação consistente para tornar seu código legível. A quantidade "
+"da indentação é uma questão de preferência, as escolhas mais comuns são "
+"duas, três ou quatro espaços."
 
 #: ../../source/learn/best_practices/style_guide.md:41
 msgid "Comparison to Other Languages"
-msgstr ""
+msgstr "Comparação com Outras Linguagens"
 
 #: ../../source/learn/best_practices/style_guide.md:43
 msgid ""
@@ -3866,12 +4100,23 @@ msgid ""
 " with their more general-purpose missions. But Fortran has a different "
 "mission (numerical scientific computing)."
 msgstr ""
+"Por outro lado, na maioria do resto do mundo da programação, em que o foco "
+"é, de uma forma ou outra, em definir e usar grandes conjuntos de objetos "
+"complexos, com várias propriedades e comportamentos, conhecidos apenas no "
+"código onde são definidas (em oposição a definido pela mesma notação em toda "
+"a literatura), nesse caso faz mais sentido usar nomes grandes e mais "
+"descritivos. A convenção de nomes vista em linguagens de propósito geral "
+"tais como C++ e Python, portanto, são perfeitamente consistente com suas "
+"missões de propósito geral. Mas Fortran tem uma missão diferente (computação "
+"científica numérica)."
 
 #: ../../source/learn/best_practices/type_casting.md:3
 msgid ""
 "There are essentially five different ways to do type casting, each with its "
 "own advantages and disadvantages."
 msgstr ""
+"Há essencialmente cinco jeitos diferentes de fazer a conversão de tipo, cada "
+"qual com suas vantagens e desvantagens."
 
 #: ../../source/learn/best_practices/type_casting.md:6
 msgid ""
@@ -3879,6 +4124,8 @@ msgid ""
 "and IV are only available in Fortran. The method VI is obsolete and should "
 "not be used."
 msgstr ""
+"Os métodos, I, II e V são usados em C e Fortran. Os métodos III e IV estão "
+"disponíveis somente em Fortran. O método VI é obsoleto e não deve ser usado."
 
 #: ../../source/learn/best_practices/type_casting.md:10
 msgid "Work Arrays"
@@ -3890,6 +4137,9 @@ msgid ""
 "and unpacked by the called routine. This is the old way -- e.g., how LAPACK "
 "does it."
 msgstr ""
+"Passar uma \"matriz de trabalho\" a qual é empacotada com tudo que é "
+"necessária pelo invocador e desempacotado pela rotina invocada. Esse é o "
+"modo antigo -- p.ex.:, como o LAPACK faz isso."
 
 #: ../../source/learn/best_practices/type_casting.md:16
 #: ../../source/learn/best_practices/type_casting.md:86
