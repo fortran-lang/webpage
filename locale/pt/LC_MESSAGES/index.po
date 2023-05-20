@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-29 16:02+0200\n"
-"PO-Revision-Date: 2023-05-19 22:12+0000\n"
+"PO-Revision-Date: 2023-05-21 13:52+0000\n"
 "Last-Translator: Nathan Gurgel <nathan_gurgel@hotmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pt/>\n"
@@ -4170,6 +4170,11 @@ msgid ""
 "need to change from passing, say, real numbers to, say, and instantiation of "
 "a text editor."
 msgstr ""
+"Define uma estrutura geral que engloba as variações que você de fato precisa "
+"(ou que irá precisar futuramente). Esse tipo de estrutura único pode então "
+"ser mudado caso necessário se futuras ideias/necessidades permitirem mas que "
+"não precise passar, digamos, números reais para, por exemplo, uma "
+"instanciação de um editor de texto."
 
 #: ../../source/learn/best_practices/type_casting.md:157
 msgid ""
@@ -4178,12 +4183,18 @@ msgid ""
 " Dirac. Each would then be sufficiently general and contain all the needed "
 "pieces with all the right labels."
 msgstr ""
+"Há apenas flexibilidade o suficiente à necessidade. Por exemplo, você pode "
+"definir dois tipos de estrutura para esse propósito, uma para Schroedinger e "
+"uma para Dirac. Cada qual seria suficientemente geral e conterá todas as "
+"peças necessárias com todos os rótulos corretos."
 
 #: ../../source/learn/best_practices/type_casting.md:162
 msgid ""
 "Point is: it needn't be \"one abstract type to encompass all\" or bust. There"
 " are natural and viable options between \"all\" and \"none\"."
 msgstr ""
+"O ponto é: não é necessário ser \"um tipo abstrato que engloba tudo\" ou "
+"tal. Há opções naturais e viáveis entre \"tudo\" e \"nada\"."
 
 #: ../../source/learn/best_practices/type_casting.md:165
 msgid "Private Module Variables"
@@ -4192,6 +4203,8 @@ msgstr "Variáveis Privadas do Módulo"
 #: ../../source/learn/best_practices/type_casting.md:167
 msgid "Hide the variable arguments completely by passing in module variables."
 msgstr ""
+"Esconde completamente os argumentos das variáveis ao passar variáveis de "
+"módulos."
 
 #: ../../source/learn/best_practices/type_casting.md:226
 msgid ""
@@ -4200,6 +4213,10 @@ msgid ""
 "way. However, with a bit of thought, usually there is a better, safer, more "
 "explicit way along the lines of II or IV."
 msgstr ""
+"Contudo é melhor evitar variáveis globais -- embora seja apenas semi-global "
+"-- se possível. Mas algumas vezes é a forma mais simples e limpa. Contudo, "
+"com um pouco de avaliação, há geralmente uma forma melhor, mais seguro e "
+"mais explícita ao longo das linhas II ou IV."
 
 #: ../../source/learn/best_practices/type_casting.md:231
 #: ../../source/news/2021/05-01-Fortran-Newsletter-May-2021.md:208
@@ -4208,13 +4225,15 @@ msgstr "Funções Aninhadas"
 
 #: ../../source/learn/best_practices/type_casting.md:279
 msgid "Using type(c_ptr) Pointer"
-msgstr ""
+msgstr "Usando Ponteiro type(c_ptr)"
 
 #: ../../source/learn/best_practices/type_casting.md:281
 msgid ""
 "In C, one would use the `void *` pointer. In Fortran, one can use "
 "`type(c_ptr)` for exactly the same purpose."
 msgstr ""
+"Em C, usa-se o ponteiro `void*`. Em Fortran, pode-se usar `type(c_ptr)` para "
+"o mesmo propósito."
 
 #: ../../source/learn/best_practices/type_casting.md:352
 msgid ""
@@ -4223,6 +4242,10 @@ msgid ""
 "time checks are possible to catch errors; and with that, inevitably more "
 "leaky, bug-prone code. So one always has to balance the costs and benefits."
 msgstr ""
+"Como sempre, com as vantagens de tal reconversão, como Fortran te permite "
+"fazer o que você quer fazer, vem as desvantagens que os checadores em tempo "
+"de compilação e execução conseguem capturar erros; e com isso, código com "
+"mais bugs. Então busque balancear os custos e os benefícios."
 
 #: ../../source/learn/best_practices/type_casting.md:358
 msgid ""
@@ -4232,6 +4255,11 @@ msgid ""
 "interface elements), simplest, least bug-prone, and fastest is to use one of "
 "the previous approaches."
 msgstr ""
+"Geralmente, no contexto de programação científica, onde o foco principal é "
+"representar e solucionar formulações matemáticas (em oposição à criar GUIs "
+"com vários butões, drop-downs, e outros elementos de interface), mais "
+"simples, menos suscetível a erros, e mais rápido é usar uma das abordagens "
+"anteriores."
 
 #: ../../source/learn/best_practices/type_casting.md:364
 msgid "transfer() Intrinsic Function"
@@ -4244,6 +4272,10 @@ msgid ""
 "verbose and more error prone. It is now obsolete and one should use the "
 "method V instead."
 msgstr ""
+"Antes do Fortran 2003, a única forma de realizar conversão de tipos era "
+"usando a função intrínseca `transfer`. É funcionalmente equivalente ao "
+"método V, mas mais verboso e mais suscetível à erros. Esse método é agora "
+"obsoleto e deve-se usar o método V."
 
 #: ../../source/learn/best_practices/type_casting.md:371
 msgid "Examples:"
@@ -4277,16 +4309,23 @@ msgid ""
 "eval type bound procedure and adding necessary context data as components of "
 "the extended type."
 msgstr ""
+"O tipo abstrato prescreve exatamente o que a rotina de integração necessita, "
+"isto é, um método que avalie a função, mas imponha mais nada ao usuário. O "
+"usuário estende esse tipo, provendo uma implementação concreta do "
+"procedimento vinculado ao tipo de avaliação e adicionando dados de contexto "
+"necessário como componentes do tipo estendido."
 
 #: ../../source/learn/best_practices/type_casting.md:463
 msgid "Complete Example of void \\* vs type(c_ptr) and transfer()"
-msgstr ""
+msgstr "Exemplo completo do void \\* vs type(c_ptr) e transfer()"
 
 #: ../../source/learn/best_practices/type_casting.md:465
 msgid ""
 "Here are three equivalent codes: one in C using `void *` and two codes in "
 "Fortran using `type(c_ptr)` and `transfer()`:"
 msgstr ""
+"Aqui há três códigos equivalente: um em C usando `void*` e dois códigos em "
+"Fortran usando `type(c_ptr)` e `transfer()`:"
 
 #: ../../source/learn/best_practices/type_casting.md
 msgid "Language &nbsp;"
@@ -4339,6 +4378,10 @@ msgid ""
 "same. The `type(c_ptr)` method is equivalent to the C version and that is the"
 " approach that should be used."
 msgstr ""
+"O código em C usa a abordagem do padrão C para escrever bibliotecas "
+"extensíveis que usam callbacks e contextos. O dois códigos Fortran mostram "
+"como fazer o mesmo. O método `type(c_ptr)` é equivalente à versão C e essa é "
+"a abordagem que deve ser usada."
 
 #: ../../source/learn/best_practices/type_casting.md:479
 msgid ""
@@ -4347,6 +4390,10 @@ msgid ""
 " create auxiliary conversion functions for each of his types. As such, the "
 "`type(c_ptr)` method should be used instead."
 msgstr ""
+"O método `transfer()` está aqui apenas para complementação (antes do Fortran "
+"2003, esse era o único jeito) e é um pouco complexo, porque o usuário "
+"precisa criar funções de conversão auxiliares para cada tipo. Assim sendo, o "
+"método `type(c_ptr)` deve ser usado."
 
 #: ../../source/learn/building_programs/build_tools.md:1
 #: ../../source/learn/building_programs/index.md:47
@@ -4361,12 +4408,19 @@ msgid ""
 "can become increasingly complicated unless the right tools are used to "
 "automatically perform those tasks."
 msgstr ""
+"Compilar seus projetos Fortran à mão pode ser um tanto complicado dependendo "
+"do número de arquivos fonte e as interdependências dentro do módulo. "
+"Suportar diferentes compiladores e linkers ou diferentes plataformas pode se "
+"tornar cada vez mais complicador a não ser que use ferramentas adequadas "
+"para automatizar essas tarefas."
 
 #: ../../source/learn/building_programs/build_tools.md:9
 msgid ""
 "Depending on the size of your project and the purpose of project different "
 "options for the build automation can be used."
 msgstr ""
+"Dependendo do tamanho do seu projeto e o propósito do projeto, diferentes "
+"opções para automatização de build podem ser usados."
 
 #: ../../source/learn/building_programs/build_tools.md:12
 msgid ""
@@ -4381,6 +4435,16 @@ msgid ""
 "rel=\"noopener\">Code::Blocks</a>. They offer a graphical user-interface, but"
 " are often very specific for the compiler and platform."
 msgstr ""
+"Primeiro, um ambiente de desenvolvimento integrado provavelmente fornece um "
+"meio de realizar o build do seu programa. Uma ferramenta popular de "
+"múltiplas plataformas é o Microsoft <a href=\"https://code.visualstudio.com/"
+"\" target=\"_blank\" rel=\"noopener\">Visual Studio Code</a>, mas outros "
+"existem, tais como <a href=\"https://atom.io/\" target=\"_blank\" rel="
+"\"noopener\">Atom</a>, <a href=\"https://www.eclipse.org/photran/\" target="
+"\"_blank\" rel=\"noopener\">Eclipse Photran</a>, e <a href=\"http://www."
+"codeblocks.org/\" target=\"_blank\" rel=\"noopener\">Code::Blocks</a>. Eles "
+"oferecem uma interface gráfica, mas muitas vezes específicas para compilador "
+"e plataforma."
 
 #: ../../source/learn/building_programs/build_tools.md:22
 msgid ""
@@ -4392,6 +4456,14 @@ msgid ""
 "intermediary object files or libraries and the actual source files. For a "
 "short introduction see [the guide on `make`](#using-make-as-build-tool)."
 msgstr ""
+"Para projetos menos, o sistema de geração de build baseada em regras `make` "
+"é a escolha comum. Baseadas em regras definidas, ele pode performar tarefas "
+"tais como (re)compilar arquivos de objetos a partir de arquivos fonte "
+"atualizados, criar bibliotecas e linkar executáveis. Para usar `make` no seu "
+"projeto é necessário que escreva as regras em um `Makefile`, o qual define "
+"as interdependências de todo o programa final, os arquivos objeto "
+"intermediários ou bibliotecas e os arquivos fonte atuais. Para um pequena "
+"introdução veja [o guia para `make`](#using-make-as-build-tool)."
 
 #: ../../source/learn/building_programs/build_tools.md:31
 msgid ""
@@ -4399,6 +4471,9 @@ msgid ""
 "Studio project files via a high-level description. They abstract away from "
 "the compiler and platform specifics."
 msgstr ""
+"Ferramentas de manutenção como autotools e CMake podem gerar Makefiles ou "
+"arquivos de projeto Visual Studio a partir de uma descrição de alto nível. "
+"Eles abstraem o compilador e plataformas específicas."
 
 #: ../../source/learn/building_programs/build_tools.md:35
 msgid ""
@@ -4408,6 +4483,11 @@ msgid ""
 "build tools than doing actual development work can quickly become "
 "frustrating."
 msgstr ""
+"Qual dessas ferramentas é a melhor escolha para seus projetos depende de "
+"muitos fatores. Escolha uma ferramenta de build que você fique confortável "
+"trabalhando com ela, e que não te atrapalhe durante o desenvolvimento. "
+"Gastar muito tempo trabalhando nas ferramentas de build ao invés de "
+"trabalhar no desenvolvimento de fato pode rapidamente se tornar frustrante."
 
 #: ../../source/learn/building_programs/build_tools.md:40
 msgid ""
@@ -4421,10 +4501,20 @@ msgid ""
 " are using, those you are depending on and those that use (or will use) your "
 "project as dependency."
 msgstr ""
+"Além disso, considere a acessibilidade das suas ferramentas de build. Se é "
+"restrita a um ambiente de desenvolvimento integrado específico, todos os "
+"desenvolvedores poderão acessá-la? Se você estiver usando um sistema de "
+"geração de build específico, ela funciona em todas as plataformas que você "
+"está desenvolvendo? Qual grande é a barreira de entrada das ferramentas de "
+"build? Considere a curva de aprendizado para as ferramentas de build, a "
+"ferramenta de build perfeita não terá uso, se você tiver que aprender uma "
+"linguagem de programação complexa para adicionar um arquivo fonte novo. "
+"Finalmente, considere o que outros projetos estão usando, aquelas que você "
+"depende e aqueles que você usa (ou usará) em seu projeto como dependência."
 
 #: ../../source/learn/building_programs/build_tools.md:51
 msgid "Using make as build tool"
-msgstr ""
+msgstr "Usando make como ferramenta de geração de build"
 
 #: ../../source/learn/building_programs/build_tools.md:53
 msgid ""
@@ -4433,6 +4523,10 @@ msgid ""
 "`Makefile` or `makefile`, which usually leads to compiling a program from the"
 " provided source code."
 msgstr ""
+"O sistema de geração de build mais conhecido e comumente usado é o `make`. "
+"Ele realiza ações seguindo regras em um arquivo de configuração chamado "
+"`Makefile` ou `makefile`, o qual geralmente leva à compilação do programa a "
+"partir de um código fonte fornecido."
 
 #: ../../source/learn/building_programs/build_tools.md:59
 msgid ""
@@ -4441,18 +4535,27 @@ msgid ""
 "href=\"https://www.gnu.org/software/make/manual/make.html\" target=\"_blank\""
 " rel=\"noopener\">info page</a>, available."
 msgstr ""
+"Para um tutorial mais aprofundado em `make` olhe a sua página de informação. "
+"Há uma versão online da sua <a href=\"https://www.gnu.org/software/make/"
+"manual/make.html\" target=\"_blank\" rel=\"noopener\">página de informações</"
+"a> disponível."
 
 #: ../../source/learn/building_programs/build_tools.md:62
 msgid ""
 "We will start with the basics from your clean source directory. Create and "
 "open the file `Makefile`, we start with a simple rule called _all_:"
 msgstr ""
+"Nós iremos começa com o básico a partir do seu diretório fonte limpo. Crie e "
+"abra um arquivo `Makefile`, nós começaremos com uma regra simples chamada "
+"_all_:"
 
 #: ../../source/learn/building_programs/build_tools.md:70
 msgid ""
 "After saving the `Makefile` run it by executing `make` in the same directory."
 " You should see the following output:"
 msgstr ""
+"Após salvar o `Makefile` execute-o com o comando `make` no mesmo diretório. "
+"Você deverá ver a seguinte saída:"
 
 #: ../../source/learn/building_programs/build_tools.md:76
 msgid ""
@@ -4460,12 +4563,18 @@ msgid ""
 " second thing to note is that `make` is always printing the command it is "
 "running, finally, we see the result of running `echo \"all\"`."
 msgstr ""
+"Primeiro, nós notamos que `make` está substituindo `$@` pelo nome da regra, "
+"a segunda coisa a notar é que `make` sempre está escrevendo o comando que "
+"está executando, finalmente, nós vemos o resultado de executar `echo \"all\""
+"`."
 
 #: ../../source/learn/building_programs/build_tools.md:81
 msgid ""
 "We call the entry point of our `Makefile` always _all_ by convention, but you"
 " can choose whatever name you like."
 msgstr ""
+"Nós sempre chamamos o ponto de entrada de nosso `Makefile` _all_ por "
+"convenção, mas você pode escolher qualquer nome que quiser."
 
 #: ../../source/learn/building_programs/build_tools.md:85
 msgid ""
@@ -4473,16 +4582,23 @@ msgid ""
 "have to indent the content of a rule with a tab character. In case you have "
 "problems running the above `Makefile` and see an error like"
 msgstr ""
+"Você pode não ter notado se seu editor está funcionando corretamente, mas "
+"você tem que indentar o conteúdo de uma regra com tab. Em caso de você ter "
+"problemas executando o `Makefile` e ver um erro do tipo"
 
 #: ../../source/learn/building_programs/build_tools.md:91
 msgid ""
 "The indentation is probably not correct. In this case replace the indentation"
 " in the second line with a tab character."
 msgstr ""
+"A indentação provavelmente não está correta. Nesse caso, substitua a "
+"indentação na segunda linha por um tab."
 
 #: ../../source/learn/building_programs/build_tools.md:96
 msgid "Now we want to make our rules more complicated, therefore we add another rule:"
 msgstr ""
+"Agora nós queremos nossas regras mais complicadas, portanto adicionamos "
+"outra regra:"
 
 #: ../../source/learn/building_programs/build_tools.md:108
 msgid ""
@@ -29162,7 +29278,6 @@ msgid "Conferences and papers"
 msgstr ""
 
 #: ../../source/news/2021/12-29-Fortran-lang-2021-in-review.md:271
-#, fuzzy
 msgid "FortranCon 2021"
 msgstr "FortranCon 2021"
 
@@ -29185,7 +29300,6 @@ msgid ""
 msgstr ""
 
 #: ../../source/news/2021/12-29-Fortran-lang-2021-in-review.md:288
-#, fuzzy
 msgid "PackagingCon 2021"
 msgstr "PackagingCon 2021"
 
@@ -29198,9 +29312,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/news/2021/12-29-Fortran-lang-2021-in-review.md:300
-#, fuzzy
 msgid "Papers"
-msgstr "Papers"
+msgstr "Artigos"
 
 #: ../../source/news/2021/12-29-Fortran-lang-2021-in-review.md:302
 msgid ""
@@ -29926,7 +30039,6 @@ msgstr ""
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:264
 #: ../../source/news/2022/05-05-Fortran-Newsletter-May-2022.md:384
 #: ../../source/news/2022/06-09-Fortran-Newsletter-June-2022.md:494
-#, fuzzy
 msgid "[fortran-lang/fpm-docs](https://github.com/fortran-lang/fpm-docs)"
 msgstr "[fortran-lang/fpm-docs](https://github.com/fortran-lang/fpm-docs)"
 
@@ -30418,28 +30530,23 @@ msgstr "**Colaboradores**"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:240
 #: ../../source/news/2022/05-05-Fortran-Newsletter-May-2022.md:360
-#, fuzzy
 msgid "[Ondřej Čertík](https://gitlab.com/certik)"
 msgstr "[Ondřej Čertík](https://gitlab.com/certik)"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:241
 #: ../../source/news/2022/05-05-Fortran-Newsletter-May-2022.md:359
-#, fuzzy
 msgid "[Gagandeep Singh](https://gitlab.com/czgdp18071)"
 msgstr "[Gagandeep Singh](https://gitlab.com/czgdp18071)"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:242
-#, fuzzy
 msgid "[Dominic Poerio](https://gitlab.com/dpoe)"
 msgstr "[Dominic Poerio](https://gitlab.com/dpoe)"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:243
-#, fuzzy
 msgid "[Tobias Loew](https://gitlab.com/tobias-loew)"
 msgstr "[Tobias Loew](https://gitlab.com/tobias-loew)"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:244
-#, fuzzy
 msgid "[Thirumalai Shaktivel](https://gitlab.com/Thirumalai-Shaktivel)"
 msgstr "[Thirumalai Shaktivel](https://gitlab.com/Thirumalai-Shaktivel)"
 
@@ -32327,7 +32434,6 @@ msgid ""
 msgstr ""
 
 #: ../../source/news/2022/05-05-Fortran-Newsletter-May-2022.md:338
-#, fuzzy
 msgid "**WASM**"
 msgstr "**WASM**"
 
@@ -32408,7 +32514,6 @@ msgid ""
 msgstr ""
 
 #: ../../source/news/2022/05-05-Fortran-Newsletter-May-2022.md:361
-#, fuzzy
 msgid "[Ubaid Shaikh](https://gitlab.com/shaikhubaid769)"
 msgstr "[Ubaid Shaikh](https://gitlab.com/shaikhubaid769)"
 
@@ -33540,7 +33645,6 @@ msgid "add: mkdocs: code syntax highlighting"
 msgstr ""
 
 #: ../../source/news/2022/06-09-Fortran-Newsletter-June-2022.md:442
-#, fuzzy
 msgid "Ubaid (24):"
 msgstr "Ubaid (24):"
 
@@ -33652,7 +33756,6 @@ msgid "We had our 26th Fortran Monthly call on May 16. Watch the recording below
 msgstr ""
 
 #: ../../source/news/2022/06-09-Fortran-Newsletter-June-2022.md:503
-#, fuzzy
 msgid ""
 "[fortran-lang/vscode-fortran-support](https://github.com/fortran-lang/vscode-"
 "fortran-support)"
@@ -34225,7 +34328,6 @@ msgstr "licença"
 #: ../../source/packages/scientific.md:1288 ../../source/packages/strings.md:13
 #: ../../source/packages/strings.md:34 ../../source/packages/strings.md:55
 #: ../../source/packages/strings.md:92 ../../source/packages/strings.md:129
-#, fuzzy
 msgid "stars"
 msgstr "stars"
 
@@ -34351,7 +34453,6 @@ msgstr "stars"
 #: ../../source/packages/strings.md:34 ../../source/packages/strings.md:55
 #: ../../source/packages/strings.md:73 ../../source/packages/strings.md:92
 #: ../../source/packages/strings.md:113 ../../source/packages/strings.md:129
-#, fuzzy
 msgid "forks"
 msgstr "forks"
 
@@ -34467,7 +34568,6 @@ msgstr "forks"
 #: ../../source/packages/scientific.md:1288 ../../source/packages/strings.md:13
 #: ../../source/packages/strings.md:34 ../../source/packages/strings.md:55
 #: ../../source/packages/strings.md:92 ../../source/packages/strings.md:129
-#, fuzzy
 msgid "last-commit"
 msgstr "last-commit"
 
@@ -34593,7 +34693,6 @@ msgstr "last-commit"
 #: ../../source/packages/strings.md:34 ../../source/packages/strings.md:55
 #: ../../source/packages/strings.md:73 ../../source/packages/strings.md:92
 #: ../../source/packages/strings.md:113 ../../source/packages/strings.md:129
-#, fuzzy
 msgid "issues"
 msgstr "issues"
 
@@ -36410,7 +36509,6 @@ msgstr ""
 
 #: ../../source/packages/programming.md:424
 #: ../../source/packages/programming.md:445
-#, fuzzy
 msgid "Tags:  {bdg-light}`interface-generator`  {bdg-light}`c++`"
 msgstr "Tags:  {bdg-light}`interface-generator`  {bdg-light}`c++`"
 
@@ -36447,7 +36545,6 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/scientific.md:43 ../../source/packages/scientific.md:1011
-#, fuzzy
 msgid ""
 "Tags:  {bdg-light}`electronic-structure`  {bdg-light}`quantum-chemistry`  "
 "{bdg-light}`physics`  {bdg-light}`molecular-dynamics`  {bdg-light}`mpi`"
@@ -36501,7 +36598,6 @@ msgid "fast, precise, and flexible DFT code for ab-initio atomistic simulation"
 msgstr ""
 
 #: ../../source/packages/scientific.md:120
-#, fuzzy
 msgid ""
 "Tags:  {bdg-light}`electronic-structure`  {bdg-light}`wavelets`  {bdg-light"
 "}`density-functional-theory`"
@@ -36545,7 +36641,6 @@ msgid "An adaptive mesh, astrophysical radiation hydrodynamics simulation code"
 msgstr ""
 
 #: ../../source/packages/scientific.md:179
-#, fuzzy
 msgid ""
 "Tags:  {bdg-light}`adaptive`  {bdg-light}`mesh`  {bdg-light}`astrophysics`  "
 "{bdg-light}`radiation`  {bdg-light}`hydrodynamics`"
@@ -36584,7 +36679,6 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/scientific.md:236
-#, fuzzy
 msgid ""
 "Tags:  {bdg-light}`quantum-chemistry`  {bdg-light}`physics`  {bdg-light"
 "}`molecular-dynamics`  {bdg-light}`metadynamics`  {bdg-light}`mpi`  {bdg-"
