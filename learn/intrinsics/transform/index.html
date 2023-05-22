@@ -1,0 +1,2440 @@
+
+<!DOCTYPE html>
+
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="generator" content="Docutils 0.19: https://docutils.sourceforge.io/" />
+    <link rel="icon" sizes="256x256" href="../../../_static/images/favicon.ico" type="image/x-icon">
+    <title>Matrix multiplication, dot product, and array shifts &#8212; Fortran Programming Language</title>
+<script>
+  document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+  document.documentElement.dataset.theme = localStorage.getItem("theme") || "light"
+</script>
+
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=92025949c220c2e29695" rel="stylesheet">
+
+
+  <link rel="stylesheet"
+    href="../../../_static/vendor/fontawesome/5.13.0/css/all.min.css">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-solid-900.woff2">
+  <link rel="preload" as="font" type="font/woff2" crossorigin
+    href="../../../_static/vendor/fontawesome/5.13.0/webfonts/fa-brands-400.woff2">
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/design-style.4045f2051d55cab465a707391d5b2007.min.css" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css" />
+
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695">
+
+    <script data-url_root="../../../" id="documentation_options" src="../../../_static/documentation_options.js"></script>
+    <script src="../../../_static/jquery.js"></script>
+    <script src="../../../_static/underscore.js"></script>
+    <script src="../../../_static/_sphinx_javascript_frameworks_compat.js"></script>
+    <script src="../../../_static/doctools.js"></script>
+    <script src="../../../_static/sphinx_highlight.js"></script>
+    <script src="../../../_static/clipboard.min.js"></script>
+    <script src="../../../_static/copybutton.js"></script>
+    <script src="../../../_static/design-tabs.js"></script>
+    <link rel="canonical" href="https://fortran-lang.org/en/learn/intrinsics/transform.html" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="Types and kinds" href="../type/" />
+    <link rel="prev" title="Accessing external system information" href="../system/" />
+
+<meta
+  name="description"
+  content="Fortran : High-performance parallel programming language"
+/>
+<meta
+  name="keywords"
+  content="High-performance, parallel, programming language"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div>
+
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+
+
+<link href="True" rel="stylesheet"/>
+
+
+  </head>
+  
+  
+  <body data-spy="scroll" data-target="#bd-toc-nav" data-offset="180" data-default-mode="">
+    <div class="bd-header-announcement container-fluid" id="banner">
+      
+
+    </div>
+
+    
+    <nav class="bd-header navbar navbar-light navbar-expand-lg bg-light fixed-top bd-navbar" id="navbar-main"><div class="bd-header__inner container-xl">
+
+  <div id="navbar-start">
+    
+    
+  
+
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Logo image">
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark" alt="Logo image">
+  
+  
+</a>
+    
+    <span id="theme-switch" class="btn btn-sm btn-outline-primary navbar-btn rounded-circle">
+    <a class="theme-switch" data-mode="light"><i class="fas fa-sun"></i></a>
+    <a class="theme-switch" data-mode="dark"><i class="far fa-moon"></i></a>
+    <a class="theme-switch" data-mode="auto"><i class="fas fa-adjust"></i></a>
+</span>
+    
+    <div class="dropdown" id="version_switcher">
+  <button
+    type="button"
+    class="btn btn-sm navbar-btn dropdown-toggle"
+    id="version_switcher_button"
+    data-toggle="dropdown"
+  >
+    en
+    <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div
+    id="version_switcher_menu"
+    class="dropdown-menu list-group-flush py-0"
+    aria-labelledby="version_switcher_button"
+  >
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div>
+
+<!-- NOTE: this JS must live here (not in our global JS file) because it relies
+     on being processed by Jinja before it is run (specifically for replacing
+     variables learn/intrinsics/transform and {'json_url': 'https://fortran-lang.org/', 'version_match': 'en'}.
+-->
+
+<script type="text/javascript">
+  // Check if corresponding page path exists in other version of docs
+  // and, if so, go there instead of the homepage of the other docs version
+  function checkPageExistsAndRedirect(event) {
+    const currentFilePath = "learn/intrinsics/transform",
+      tryUrl = event.target.getAttribute("href");
+    location.href = tryUrl;
+    // this prevents the browser from following the href of the clicked node
+    // (which is fine because this function takes care of redirecting)
+    return false;
+  }
+
+  // Populate the version switcher from the JSON config file
+  (function () {
+    const currentFilePath = "learn/intrinsics/transform";
+    const indexFilePath = "../../../";
+    let btn = document.getElementById("version_switcher_button");
+    // Set empty strings by default so that these attributes exist and can be used in CSS selectors
+    btn.dataset["activeVersionName"] = "";
+    btn.dataset["activeVersion"] = "";
+    // create links to the corresponding page in the other docs versions
+    data = [
+      {
+        name: "English",
+        version: "en",
+        url: "",
+      },
+      {
+        name: "bn",
+        version: "bn",
+        url: "bn/",
+      },
+      {
+        name: "cs",
+        version: "cs",
+        url: "cs/",
+      },
+      {
+        name: "Deutsch",
+        version: "de",
+        url: "de/",
+      },
+      {
+        name: "Español",
+        version: "es",
+        url: "es/",
+      },
+      {
+        name: "Français",
+        version: "fr",
+        url: "fr/",
+      },
+      {
+        name: "ja",
+        version: "ja",
+        url: "ja/",
+      },
+      {
+        name: "Nederlands",
+        version: "nl",
+        url: "nl/",
+      },
+      {
+        name: "pl",
+        version: "pl",
+        url: "pl/",
+      },
+      {
+        name: "Português",
+        version: "pt",
+        url: "pt/",
+      },
+      {
+        name: "Русский",
+        version: "ru",
+        url: "ru/",
+      },
+      {
+        name: "简体中文",
+        version: "zh_CN",
+        url: "zh_CN/",
+      },
+    ];
+    // console.log(data);
+    $.each(data, function (index, entry) {
+      // if no custom name specified (e.g., "latest"), use version string
+      if (!("name" in entry)) {
+        entry.name = entry.version;
+      }
+      // create the node
+      const node = document.createElement("a");
+      node.setAttribute("class", "list-group-item list-group-item-action py-1");
+      node.textContent = `${entry.name}`;
+
+
+      node.setAttribute(
+        "href",
+        `https://fortran-lang.org/${entry.url}${currentFilePath}`,
+      );
+
+      // on click, AJAX calls will check if the linked page exists before
+      // trying to redirect, and if not, will redirect to the homepage
+      // for that version of the docs.
+      node.onclick = checkPageExistsAndRedirect;
+      // Add dataset values for the version and name in case people want
+      // to apply CSS styling based on this information.
+      node.dataset["versionName"] = entry.name;
+      node.dataset["version"] = entry.version;
+
+      $("#version_switcher_menu").append(node);
+      // replace dropdown button text with the preferred display name of
+      // this version, rather than using sphinx's  variable.
+      // also highlight the dropdown entry for the currently-viewed
+      // version's entry
+      if (entry.version == "en") {
+        node.classList.add("active");
+        btn.innerText = btn.dataset["activeVersionName"] = entry.name;
+        btn.dataset["activeVersion"] = entry.version;
+      }
+    });
+  })();
+</script>
+    
+  </div>
+
+  <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbar-collapsible" aria-controls="navbar-collapsible" aria-expanded="false" aria-label="Toggle navigation">
+    <span class="fas fa-bars"></span>
+  </button>
+
+  
+  <div id="navbar-collapsible" class=" collapse navbar-collapse">
+    <div id="navbar-center" class="ml-auto">
+      
+      <div class="navbar-center-item">
+        <ul id="navbar-main-elements" class="navbar-nav">
+    <li class="toctree-l1 nav-item">
+ <a class="reference external nav-link" href="https://play.fortran-lang.org/">
+  Play
+ </a>
+</li>
+
+<li class="toctree-l1 current active nav-item">
+ <a class="reference internal nav-link" href="../../">
+  Learn
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../roadmap/">
+  Roadmap
+  <!-- omit in toc -->
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../compilers/">
+  Compilers
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../community/">
+  Community
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../packages/">
+  Packages
+ </a>
+</li>
+
+<li class="toctree-l1 nav-item">
+ <a class="reference internal nav-link" href="../../../news/">
+  News
+ </a>
+</li>
+
+    
+</ul>
+      </div>
+      
+    </div>
+
+    <div id="navbar-end">
+      
+      <div class="navbar-end-item">
+        <ul id="navbar-icon-links" class="navbar-nav" aria-label="Icon Links">
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.discourse.group/" rel="noopener" target="_blank" title="Discourse"><span><i class="fab fa-discourse"></i></span>
+            <label class="sr-only">Discourse</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://twitter.com/fortranlang" rel="noopener" target="_blank" title="Twitter"><span><i class="fab fa-twitter"></i></span>
+            <label class="sr-only">Twitter</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://github.com/fortran-lang" rel="noopener" target="_blank" title="GitHub"><span><i class="fab fa-github"></i></span>
+            <label class="sr-only">GitHub</label></a>
+        </li>
+        <li class="nav-item">
+          <a class="nav-link" href="https://fortran-lang.org/en/news/atom.xml" rel="noopener" target="_blank" title="RSS"><span><i class="fas fa-rss"></i></span>
+            <label class="sr-only">RSS</label></a>
+        </li>
+      </ul>
+      </div>
+      
+      <div class="navbar-end-item">
+        <form class="bd-search d-flex align-items-center" action="../../../search/" method="get">
+  <i class="icon fas fa-search"></i>
+  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search" aria-label="Search" autocomplete="off" >
+</form>
+      </div>
+      
+    </div>
+  </div>
+</div>
+    </nav>
+    
+
+    <div class="bd-container container-xl">
+      <div class="bd-container__inner row">
+          
+
+<!-- Only show if we have sidebars configured, else just a small margin  -->
+<div class="bd-sidebar-primary col-12 col-md-3 bd-sidebar">
+  <div class="sidebar-start-items"><nav class="bd-links" id="bd-docs-nav" aria-label="Main navigation">
+  <div class="bd-toc-item active">
+    <ul class="current nav bd-sidenav">
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../os_setup/">
+   Setting up your OS
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-1" name="toctree-checkbox-1" type="checkbox"/>
+  <label for="toctree-checkbox-1">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/choose_compiler/">
+     Choosing a compiler
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/install_gfortran/">
+     Installing GFortran
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/text_editors/">
+     Text Editors
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/ides/">
+     IDEs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../os_setup/tips/">
+     Smart Tips
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../quickstart/">
+   Quickstart tutorial
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-2" name="toctree-checkbox-2" type="checkbox"/>
+  <label for="toctree-checkbox-2">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/hello_world/">
+     Hello world
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/variables/">
+     Variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/arrays_strings/">
+     Arrays and strings
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/operators_control_flow/">
+     Operators and flow control
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/organising_code/">
+     Organising code structure
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../quickstart/derived_types/">
+     Derived Types
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../building_programs/">
+   Building programs
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-3" name="toctree-checkbox-3" type="checkbox"/>
+  <label for="toctree-checkbox-3">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/compiling_source/">
+     Compiling the source code
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/linking_pieces/">
+     Linking the objects
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/runtime_libraries/">
+     Run-time libraries
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/include_files/">
+     Include files and modules
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/managing_libraries/">
+     Managing libraries (static and dynamic libraries)
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/build_tools/">
+     Build tools
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/project_make/">
+     An introduction to make
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../building_programs/distributing/">
+     Distributing your programs
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 has-children">
+  <a class="reference internal" href="../../best_practices/">
+   Fortran Best Practices
+  </a>
+  <input class="toctree-checkbox" id="toctree-checkbox-4" name="toctree-checkbox-4" type="checkbox"/>
+  <label for="toctree-checkbox-4">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/style_guide/">
+     Fortran Style Guide
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/floating_point/">
+     Floating Point Numbers
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/integer_division/">
+     Integer Division
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/modules_programs/">
+     Modules and Programs
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/arrays/">
+     Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/multidim_arrays/">
+     Multidimensional Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/element_operations/">
+     Element-wise Operations on Array
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/allocatable_arrays/">
+     Allocatable Arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/file_io/">
+     File Input/Output
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/callbacks/">
+     Callbacks
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../../best_practices/type_casting/">
+     Type Casting in Callbacks
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toctree-l1 current active has-children">
+  <a class="reference internal" href="../">
+   Fortran Intrinsics
+  </a>
+  <input checked="" class="toctree-checkbox" id="toctree-checkbox-5" name="toctree-checkbox-5" type="checkbox"/>
+  <label for="toctree-checkbox-5">
+   <i class="fas fa-chevron-down">
+   </i>
+  </label>
+  <ul class="current">
+   <li class="toctree-l2">
+    <a class="reference internal" href="../array/">
+     Properties and attributes of arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../bit/">
+     Bit-level inquiry and manipulation
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../character/">
+     Basic procedures for manipulating
+     <em>
+      character
+     </em>
+     variables
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../compiler/">
+     Information about compiler and compiler options used for building
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../cfi/">
+     Procedures for binding to C interfaces
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../math/">
+     General mathematical functions
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../model/">
+     Controlling and querying the current numeric model
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../numeric/">
+     Manipulation and properties of numeric values
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../parallel/">
+     Parallel programming using co_arrays and co_indexed arrays
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../state/">
+     General and miscellaneous intrinsics
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../system/">
+     Accessing external system information
+    </a>
+   </li>
+   <li class="toctree-l2 current active">
+    <a class="current reference internal" href="#">
+     Matrix multiplication, dot product, and array shifts
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference internal" href="../type/">
+     Types and kinds
+    </a>
+   </li>
+   <li class="toctree-l2">
+    <a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">
+     GNU Free Documentation License
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+
+  </div>
+</nav>
+  </div>
+  <div class="sidebar-end-items">
+  </div>
+</div>
+
+
+          
+
+
+<div class="bd-sidebar-secondary d-none d-xl-block col-xl-2 bd-toc">
+  
+    
+    <div class="toc-item">
+        
+<br />
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#cshift">
+   cshift
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#name">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#synopsis">
+     <strong>
+      Synopsis
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#characteristics">
+     <strong>
+      Characteristics
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#description">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#options">
+     <strong>
+      Options
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#result">
+     <strong>
+      Result
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#id1">
+   cshift
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#examples">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#standard">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#see-also">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#dot-product">
+   dot_product
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id2">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id3">
+     <strong>
+      Synopsis
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id4">
+     <strong>
+      Characteristics
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id5">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id6">
+     <strong>
+      Options
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id7">
+     <strong>
+      Result
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id8">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id9">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id10">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#eoshift">
+   eoshift
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id11">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id12">
+     <strong>
+      Synopsis
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id13">
+     <strong>
+      Characteristics
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id14">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id15">
+     <strong>
+      Options
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id16">
+     <strong>
+      Result
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id17">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id18">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id19">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#matmul">
+   matmul
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id20">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id21">
+     <strong>
+      Synopsis
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id22">
+     <strong>
+      Characteristics
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id23">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id24">
+     <strong>
+      Options
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id25">
+     <strong>
+      Result
+     </strong>
+    </a>
+    <ul class="nav section-nav flex-column">
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#numeric-arguments">
+       <strong>
+        Numeric Arguments
+       </strong>
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#shape-and-rank">
+         <strong>
+          Shape and Rank
+         </strong>
+        </a>
+       </li>
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#values">
+         <strong>
+          Values
+         </strong>
+        </a>
+       </li>
+      </ul>
+     </li>
+     <li class="toc-h4 nav-item toc-entry">
+      <a class="reference internal nav-link" href="#logical-arguments">
+       <strong>
+        Logical Arguments
+       </strong>
+      </a>
+      <ul class="nav section-nav flex-column">
+       <li class="toc-h5 nav-item toc-entry">
+        <a class="reference internal nav-link" href="#id26">
+         <strong>
+          Values
+         </strong>
+        </a>
+       </li>
+      </ul>
+     </li>
+    </ul>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id27">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id28">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id29">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#resources">
+     <strong>
+      Resources
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#parity">
+   parity
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id30">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id31">
+     <strong>
+      Synopsis
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id32">
+     <strong>
+      Characteristics
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id33">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id34">
+     <strong>
+      Options
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id35">
+     <strong>
+      Result
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id36">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id37">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id38">
+     <strong>
+      See also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#null">
+   null
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id39">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id40">
+     <strong>
+      Synopsis
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id41">
+     <strong>
+      Characteristics
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id42">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id43">
+     <strong>
+      Options
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id44">
+     <strong>
+      Result
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id45">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id46">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id47">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+ <li class="toc-h2 nav-item toc-entry">
+  <a class="reference internal nav-link" href="#reduce">
+   reduce
+  </a>
+  <ul class="nav section-nav flex-column">
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id48">
+     <strong>
+      Name
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id49">
+     <strong>
+      Synopsis
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id50">
+     <strong>
+      Characteristics
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id51">
+     <strong>
+      Description
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id52">
+     <strong>
+      Options
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id53">
+     <strong>
+      Result
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id54">
+     <strong>
+      Examples
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id55">
+     <strong>
+      Standard
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id56">
+     <strong>
+      See Also
+     </strong>
+    </a>
+   </li>
+   <li class="toc-h3 nav-item toc-entry">
+    <a class="reference internal nav-link" href="#id57">
+     <strong>
+      Resources
+     </strong>
+    </a>
+   </li>
+  </ul>
+ </li>
+</ul>
+</nav> 
+    </div>
+    
+  
+</div>
+
+
+          
+          
+          <div class="bd-content col-12 col-md-9 col-xl-7">
+              
+              <article class="bd-article" role="main">
+                
+<section class="tex2jax_ignore mathjax_ignore" id="matrix-multiplication-dot-product-and-array-shifts">
+<h1>Matrix multiplication, dot product, and array shifts<a class="headerlink" href="#matrix-multiplication-dot-product-and-array-shifts" title="Permalink to this heading">#</a></h1>
+<section id="cshift">
+<h2>cshift<a class="headerlink" href="#cshift" title="Permalink to this heading">#</a></h2>
+<section id="name">
+<h3><strong>Name</strong><a class="headerlink" href="#name" title="Permalink to this heading">#</a></h3>
+<p><strong>cshift</strong>(3) - [TRANSFORMATIONAL] Circular shift elements of an array</p>
+</section>
+<section id="synopsis">
+<h3><strong>Synopsis</strong><a class="headerlink" href="#synopsis" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">cshift</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">shift</span><span class="w"> </span><span class="p">[,</span><span class="nb">dim</span><span class="p">])</span>
+</pre></div>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">,</span><span class="w"> </span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="k">function </span><span class="nb">cshift</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">shift</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="w"> </span><span class="p">)</span>
+
+<span class="w">     </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">,</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">array</span><span class="p">(..)</span>
+<span class="w">     </span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=**</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">shift</span>
+<span class="w">     </span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=**</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="nb">dim</span>
+</pre></div>
+</div>
+</section>
+<section id="characteristics">
+<h3><strong>Characteristics</strong><a class="headerlink" href="#characteristics" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>array</strong> may be any type and rank</p></li>
+<li><p><strong>shift</strong> an <em>integer</em> scalar if <strong>array</strong> has rank one.
+Otherwise, it shall be scalar or of rank n-1 and of shape [d1, d2,
+…, dDIM-1, dDIM+1, …, dn] where [d1, d2, …, dn] is the shape
+of <strong>array</strong>.</p></li>
+<li><p><strong>dim</strong> is an <em>integer</em> scalar with a value in the range 1 &lt;= <strong>dim</strong>
+&lt;= n, where n is the rank of <strong>array</strong>.
+If <strong>dim</strong> is absent, it is as if it were present with the value 1.</p></li>
+<li><p>the result will automatically be of the same type, kind and shape as <strong>array</strong>.</p></li>
+</ul>
+<p>NOTE:
+:a kind designated as ** may be any supported kind for the type</p>
+</section>
+<section id="description">
+<h3><strong>Description</strong><a class="headerlink" href="#description" title="Permalink to this heading">#</a></h3>
+<p><strong>cshift</strong>(3) performs a circular shift on elements
+of <strong>array</strong> along the dimension of <strong>dim</strong>. If <strong>dim</strong> is omitted it is
+taken to be <strong>1</strong>. <strong>dim</strong> is a scalar of type <em>integer</em> in the range of
+<strong>1 &lt;= dim &lt;= n</strong>, where “n” is the rank of <strong>array</strong>.</p>
+<p>If the rank of
+<strong>array</strong> is one, then all elements of <strong>array</strong> are shifted by <strong>shift</strong>
+places. If rank is greater than one, then all complete rank one sections
+of <strong>array</strong> along the given dimension are shifted. Elements shifted
+out one end of each rank one section are shifted back in the other end.</p>
+</section>
+<section id="options">
+<h3><strong>Options</strong><a class="headerlink" href="#options" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>array</strong></dt><dd><p>An array of any type which is to be shifted</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>shift</strong></dt><dd><p>the number of positions to circularly shift. A negative value produces
+a right shift, a positive value produces a left shift.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>dim</strong></dt><dd><p>the dimension along which to shift a multi-rank <strong>array</strong>. Defaults
+to 1.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="result">
+<h3><strong>Result</strong><a class="headerlink" href="#result" title="Permalink to this heading">#</a></h3>
+<p>Returns an array of same type and rank as the <strong>array</strong> argument.</p>
+<p>The rows of an array of rank two may all be shifted by the same amount
+or by different amounts.</p>
+</section>
+</section>
+<section id="id1">
+<h2>cshift<a class="headerlink" href="#id1" title="Permalink to this heading">#</a></h2>
+<section id="examples">
+<h3><strong>Examples</strong><a class="headerlink" href="#examples" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_cshift</span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">5</span><span class="p">)</span><span class="w">   </span><span class="kd">::</span><span class="w"> </span><span class="n">i1</span><span class="p">,</span><span class="n">i2</span><span class="p">,</span><span class="n">i3</span>
+<span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span>
+<span class="w">   </span><span class="c">!basics</span>
+<span class="w">    </span><span class="n">i1</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">,</span><span class="mi">50</span><span class="p">]</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;start with:&#39;</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(1x,5i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">i1</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;shift -2&#39;</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(1x,5i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">cshift</span><span class="p">(</span><span class="n">i1</span><span class="p">,</span><span class="o">-</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;shift +2&#39;</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(1x,5i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">cshift</span><span class="p">(</span><span class="n">i1</span><span class="p">,</span><span class="o">+</span><span class="mi">2</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;start with a matrix&#39;</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">reshape</span><span class="p">(</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">11</span><span class="p">,</span><span class="w"> </span><span class="mi">12</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">])</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(4i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(4i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(4i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;matrix shifted along rows, each by its own amount [-1,0,1]&#39;</span>
+<span class="w">    </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">cshift</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">SHIFT</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="nb">DIM</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(4i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(4i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(4i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span>
+<span class="k">end program </span><span class="n">demo_cshift</span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> &gt;  start with:
+ &gt;   10 20 30 40 50
+ &gt;  shift -2
+ &gt;   40 50 10 20 30
+ &gt;  shift +2
+ &gt;   30 40 50 10 20
+ &gt;  start with a matrix
+ &gt;   1  4  7 10
+ &gt;   2  5  8 11
+ &gt;   3  6  9 12
+ &gt;  matrix shifted along rows, each by its own amount
+ &gt;
+ &gt;   4  7 10  1
+ &gt;   2  5  8 11
+ &gt;  12  3  6  9
+</pre></div>
+</div>
+</section>
+<section id="standard">
+<h3><strong>Standard</strong><a class="headerlink" href="#standard" title="Permalink to this heading">#</a></h3>
+<p>Fortran 95</p>
+</section>
+<section id="see-also">
+<h3><strong>See Also</strong><a class="headerlink" href="#see-also" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="#eoshift"><strong>eoshift</strong>(3)</a> - End-off shift elements of an array</p></li>
+</ul>
+<!--
+- [**cshift**(3)](#cshift) - Circular shift elements of an array
+  -->
+<ul class="simple">
+<li><p><a class="reference internal" href="#sum"><span class="xref myst"><strong>sum</strong>(3)</span></a> - sum the elements of an array</p></li>
+<li><p><a class="reference internal" href="#product"><span class="xref myst"><strong>product</strong>(3)</span></a> - Product of array elements</p></li>
+<li><p><a class="reference internal" href="#findloc"><span class="xref myst"><strong>findloc</strong>(3)</span></a> - Location of first element of ARRAY identified by MASK along dimension DIM having a value</p></li>
+<li><p><a class="reference internal" href="#maxloc"><span class="xref myst"><strong>maxloc</strong>(3)</span></a> - Location of the maximum value within an array</p></li>
+</ul>
+<p><em>fortran-lang intrinsic descriptions</em></p>
+</section>
+</section>
+<section id="dot-product">
+<h2>dot_product<a class="headerlink" href="#dot-product" title="Permalink to this heading">#</a></h2>
+<section id="id2">
+<h3><strong>Name</strong><a class="headerlink" href="#id2" title="Permalink to this heading">#</a></h3>
+<p><strong>dot_product</strong>(3) - [TRANSFORMATIONAL] Dot product of two vectors</p>
+</section>
+<section id="id3">
+<h3><strong>Synopsis</strong><a class="headerlink" href="#id3" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">dot_product</span><span class="p">(</span><span class="n">vector_a</span><span class="p">,</span><span class="w"> </span><span class="n">vector_b</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="k">function </span><span class="nb">dot_product</span><span class="p">(</span><span class="n">vector_a</span><span class="p">,</span><span class="w"> </span><span class="n">vector_b</span><span class="p">)</span>
+
+<span class="w">      </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vector_a</span><span class="p">(:)</span>
+<span class="w">      </span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vector_b</span><span class="p">(:)</span>
+</pre></div>
+</div>
+</section>
+<section id="id4">
+<h3><strong>Characteristics</strong><a class="headerlink" href="#id4" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>vector_a</strong>, <strong>vector_b</strong> may be any numeric or logical type array
+of rank one of the same size</p></li>
+<li><p>the two vectors need not be of the same kind, but both must be logical
+or numeric for any given call.</p></li>
+<li><p>the result is the same type and kind of the vector that is the higher
+type that the other vector is optionally promoted to if they differ.</p></li>
+</ul>
+<p>The two vectors may be either numeric or logical and must be arrays
+of rank one and of equal size.</p>
+</section>
+<section id="id5">
+<h3><strong>Description</strong><a class="headerlink" href="#id5" title="Permalink to this heading">#</a></h3>
+<p><strong>dot_product</strong>(3) computes the dot product
+multiplication of two vectors <strong>vector_a</strong> and <strong>vector_b</strong>.</p>
+</section>
+<section id="id6">
+<h3><strong>Options</strong><a class="headerlink" href="#id6" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>vector_a</strong></dt><dd><p>A rank 1 vector of values</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>vector_b</strong></dt><dd><p>The type shall be numeric if <strong>vector_a</strong> is of numeric type
+or <em>logical</em> if vector<em>a is of type _logical</em>. vector_b shall be a
+rank-one array of the same size as <strong>vector_a</strong>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id7">
+<h3><strong>Result</strong><a class="headerlink" href="#id7" title="Permalink to this heading">#</a></h3>
+<p>If the arguments are numeric, the return value is a scalar of numeric
+type. If the arguments are <em>logical</em>, the
+return value is <em>.true.</em> or <em>.false.</em>.</p>
+<p>If the vectors are <em>integer</em> or <em>real</em>, the result is</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="nb">sum</span><span class="p">(</span><span class="n">vector_a</span><span class="o">*</span><span class="n">vector_b</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If the vectors are <em>complex</em>, the result is</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="nb">sum</span><span class="p">(</span><span class="nb">conjg</span><span class="p">(</span><span class="n">vector_a</span><span class="p">)</span><span class="o">*</span><span class="n">vector_b</span><span class="p">)</span><span class="o">**</span>
+</pre></div>
+</div>
+<p>If the vectors are <em>logical</em>, the result is</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="nb">any</span><span class="p">(</span><span class="n">vector_a</span><span class="w"> </span><span class="p">.</span><span class="nb">and</span><span class="p">.</span><span class="w"> </span><span class="n">vector_b</span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+<section id="id8">
+<h3><strong>Examples</strong><a class="headerlink" href="#id8" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_dot_prod</span>
+<span class="k">implicit none</span>
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="w"> </span><span class="p">]</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">b</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">dot_product</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="k">end program </span><span class="n">demo_dot_prod</span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  &gt;  1  2  3
+  &gt;
+  &gt;  4  5  6
+  &gt;
+  &gt;           32
+</pre></div>
+</div>
+</section>
+<section id="id9">
+<h3><strong>Standard</strong><a class="headerlink" href="#id9" title="Permalink to this heading">#</a></h3>
+<p>Fortran 95</p>
+</section>
+<section id="id10">
+<h3><strong>See Also</strong><a class="headerlink" href="#id10" title="Permalink to this heading">#</a></h3>
+<p><a class="reference internal" href="#sum"><span class="xref myst"><strong>sum</strong>(3)</span></a>,
+<a class="reference internal" href="#conjg"><span class="xref myst"><strong>conjg</strong>(3)</span></a>,
+<a class="reference internal" href="#any"><span class="xref myst"><strong>any</strong>(3)</span></a></p>
+<p><em>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost</em></p>
+</section>
+</section>
+<section id="eoshift">
+<h2>eoshift<a class="headerlink" href="#eoshift" title="Permalink to this heading">#</a></h2>
+<section id="id11">
+<h3><strong>Name</strong><a class="headerlink" href="#id11" title="Permalink to this heading">#</a></h3>
+<p><strong>eoshift</strong>(3) - [TRANSFORMATIONAL] End-off shift of elements of an array</p>
+</section>
+<section id="id12">
+<h3><strong>Synopsis</strong><a class="headerlink" href="#id12" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">eoshift</span><span class="p">(</span><span class="w"> </span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">shift</span><span class="w"> </span><span class="p">[,</span><span class="n">boundary</span><span class="p">]</span><span class="w"> </span><span class="p">[,</span><span class="nb">dim</span><span class="p">]</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">))</span><span class="w"> </span><span class="k">function </span><span class="nb">eoshift</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="n">shift</span><span class="p">,</span><span class="n">boundary</span><span class="p">,</span><span class="nb">dim</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">array</span><span class="p">(..)</span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=**</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">shift</span><span class="p">(..)</span>
+<span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">boundary</span><span class="p">(..)</span>
+<span class="w">    </span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=**</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="nb">dim</span>
+</pre></div>
+</div>
+</section>
+<section id="id13">
+<h3><strong>Characteristics</strong><a class="headerlink" href="#id13" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>array</strong> an array of any type</p></li>
+<li><p><strong>shift</strong> is an integer of any kind. It may be a scalar.
+If the rank of <strong>array</strong> is greater than one, and <strong>dim</strong> is
+specified it is the same shape as <strong>array</strong> reduced by removing
+dimension <strong>dim</strong>.</p></li>
+<li><p><strong>boundary</strong> May be a scalar of the same type and kind as <strong>array</strong>.
+It must be a scalar when <strong>array</strong> has a rank of one. Otherwise, it
+may be an array of the same shape as <strong>array</strong> reduced by dimension
+<strong>dim</strong>. It may only be absent for certain types, as described below.</p></li>
+<li><p><strong>dim</strong> is an integer of any kind. It defaults to one.</p></li>
+<li><p>the result has the same type, type parameters, and shape as <strong>array</strong>.</p></li>
+<li><p>a kind designated as ** may be any supported kind for the type</p></li>
+<li><p>The result is an array of same type, kind and rank as the <strong>array</strong>
+argument.</p></li>
+</ul>
+</section>
+<section id="id14">
+<h3><strong>Description</strong><a class="headerlink" href="#id14" title="Permalink to this heading">#</a></h3>
+<p><strong>eoshift</strong>(3) performs an end-off shift on elements of <strong>array</strong>
+along the dimension of <strong>dim</strong>.</p>
+<p>Elements shifted out one end of each rank one section are dropped.</p>
+<p>If <strong>boundary</strong> is present then the corresponding value from
+<strong>boundary</strong> is copied back in the other end, else default values
+are used.</p>
+</section>
+<section id="id15">
+<h3><strong>Options</strong><a class="headerlink" href="#id15" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>array</strong></dt><dd><p>array of any type whose elements are to be shifted.
+If the rank of <strong>array</strong> is one, then all elements of <strong>array</strong> are
+shifted by <strong>shift</strong> places. If rank is greater than one, then all
+complete rank one sections of <strong>array</strong> along the given dimension
+are shifted.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>shift</strong></dt><dd><p>the number of elements to shift. A negative value shifts to the
+right, a positive value to the left of the vector(s) being shifted.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>boundary</strong></dt><dd><p>the value to use to fill in the elements vacated by the shift.
+If <strong>boundary</strong> is not present then the following are copied in
+depending on the type of <strong>array</strong>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    Array Type    | Boundary Value
+    -----------------------------------------------------
+    Numeric       | 0, 0.0, or (0.0, 0.0) of the type and kind of &quot;array&quot;
+    Logical       | .false.
+    Character(len)|  LEN blanks
+</pre></div>
+</div>
+<p>These are the only types for which <strong>boundary</strong> may not be present.
+For these types the kind is converted as neccessary to the kind of
+<strong>array</strong>.</p>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>dim</strong></dt><dd><p><strong>dim</strong> is in the range of</p>
+</dd>
+</dl>
+</li>
+</ul>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="mi">1</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="nb">DIM</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">n</span>
+</pre></div>
+</div>
+<p>where <strong>“n”</strong> is the rank of <strong>array</strong>. If <strong>dim</strong> is omitted it
+is taken to be <strong>1</strong>.</p>
+</section>
+<section id="id16">
+<h3><strong>Result</strong><a class="headerlink" href="#id16" title="Permalink to this heading">#</a></h3>
+<p>Returns an array of the same characteristics as the input with the
+specified number of elements dropped off along the specified direction
+indicated, backfilling the vacated elements with a value indicated by
+the <strong>boundary</strong> value.</p>
+</section>
+<section id="id17">
+<h3><strong>Examples</strong><a class="headerlink" href="#id17" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_eoshift</span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">reshape</span><span class="p">(</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="w"> </span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="w"> </span><span class="p">])</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,:),</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span>
+
+<span class="w">    </span><span class="c">! shift it</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">eoshift</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">SHIFT</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">1</span><span class="p">],</span><span class="w"> </span><span class="n">BOUNDARY</span><span class="o">=-</span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="nb">DIM</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s1">&#39;(3i3)&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">,:),</span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">3</span><span class="p">)</span>
+
+<span class="k">end program </span><span class="n">demo_eoshift</span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>  &gt;  1  4  7
+  &gt;  2  5  8
+  &gt;  3  6  9
+  &gt;
+  &gt;  4  7 -5
+  &gt;  8 -5 -5
+  &gt;  6  9 -5
+</pre></div>
+</div>
+</section>
+<section id="id18">
+<h3><strong>Standard</strong><a class="headerlink" href="#id18" title="Permalink to this heading">#</a></h3>
+<p>Fortran 95</p>
+</section>
+<section id="id19">
+<h3><strong>See Also</strong><a class="headerlink" href="#id19" title="Permalink to this heading">#</a></h3>
+<p><a class="reference internal" href="#dshiftr"><span class="xref myst"><strong>dshiftr</strong>(3)</span></a>,
+<a class="reference internal" href="#dshiftl"><span class="xref myst"><strong>dshiftl</strong>(3)</span></a></p>
+<p><em>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost</em></p>
+</section>
+</section>
+<section id="matmul">
+<h2>matmul<a class="headerlink" href="#matmul" title="Permalink to this heading">#</a></h2>
+<section id="id20">
+<h3><strong>Name</strong><a class="headerlink" href="#id20" title="Permalink to this heading">#</a></h3>
+<p><strong>matmul</strong>(3) - [TRANSFORMATIONAL] Numeric or logical matrix
+multiplication</p>
+</section>
+<section id="id21">
+<h3><strong>Synopsis</strong><a class="headerlink" href="#id21" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">matmul</span><span class="p">(</span><span class="n">matrix_a</span><span class="p">,</span><span class="n">matrix_b</span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">function </span><span class="nb">matmul</span><span class="p">(</span><span class="n">matrix_a</span><span class="p">,</span><span class="w"> </span><span class="n">matrix_b</span><span class="p">)</span>
+
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="n">TYPE1</span><span class="p">(</span><span class="nb">kind</span><span class="o">=**</span><span class="p">)</span><span class="w">       </span><span class="kd">::</span><span class="w"> </span><span class="n">matrix_a</span><span class="p">(..)</span>
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="n">TYPE2</span><span class="p">(</span><span class="nb">kind</span><span class="o">=**</span><span class="p">)</span><span class="w">       </span><span class="kd">::</span><span class="w"> </span><span class="n">matrix_b</span><span class="p">(..)</span>
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">PROMOTED</span><span class="p">))</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">matmul</span><span class="p">(..)</span>
+</pre></div>
+</div>
+</section>
+<section id="id22">
+<h3><strong>Characteristics</strong><a class="headerlink" href="#id22" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>matrix_a</strong> is a numeric (<em>integer</em>, <em>real</em>, or <em>complex</em> ) or
+<em>logical</em> array of rank one two.</p></li>
+<li><p><strong>matrix_b</strong> is a numeric (<em>integer</em>, <em>real</em>, or <em>complex</em> ) or
+<em>logical</em> array of rank one two.</p></li>
+<li><p>At least one argument must be rank two.</p></li>
+<li><p>the size of the first dimension of <strong>matrix_b</strong> must equal the size
+of the last dimension of <strong>matrix_a</strong>.</p></li>
+<li><p>the type of the result is the same as if an element of each argument
+had been multiplied as a RHS expression (that is, if the arguments
+are not of the same type the result follows the same rules of promotion
+as a simple scalar multiplication of the two types would produce)</p></li>
+<li><p>If one argument is <em>logical</em>, both must be <em>logical</em>. For logicals
+the resulting type is as if the <em>.and.</em> operator has been used on
+elements from the arrays.</p></li>
+<li><p>The shape of the result depends on the shapes of the arguments
+as described below.</p></li>
+</ul>
+</section>
+<section id="id23">
+<h3><strong>Description</strong><a class="headerlink" href="#id23" title="Permalink to this heading">#</a></h3>
+<p><strong>matmul</strong>(3) performs a matrix multiplication on numeric or logical
+arguments.</p>
+</section>
+<section id="id24">
+<h3><strong>Options</strong><a class="headerlink" href="#id24" title="Permalink to this heading">#</a></h3>
+<ul>
+<li><dl class="simple myst">
+<dt><strong>matrix_a</strong></dt><dd><p>A numeric or logical array with a rank of one or two.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>matrix_b</strong></dt><dd><p>A numeric or logical array with a rank of one or two. The last
+dimension of <strong>matrix_a</strong> and the first dimension of <strong>matrix_b</strong>
+must be equal.</p>
+</dd>
+</dl>
+<p>Note that <strong>matrix_a</strong> and <strong>matrix_b</strong> may be different numeric
+types.</p>
+</li>
+</ul>
+</section>
+<section id="id25">
+<h3><strong>Result</strong><a class="headerlink" href="#id25" title="Permalink to this heading">#</a></h3>
+<section id="numeric-arguments">
+<h4><strong>Numeric Arguments</strong><a class="headerlink" href="#numeric-arguments" title="Permalink to this heading">#</a></h4>
+<p>If <strong>matrix_a</strong> and <strong>matrix_b</strong> are numeric the result is an
+array containing the conventional matrix product of <strong>matrix_a</strong>
+and <strong>matrix_b</strong>.</p>
+<p>First, for the numeric expression <strong>C=matmul(A,B)</strong></p>
+<ul class="simple">
+<li><p>Any vector <strong>A(n)</strong> is treated as a row vector <strong>A(1,n)</strong>.</p></li>
+<li><p>Any vector <strong>B(n)</strong> is treated as a column vector <strong>B(n,1)</strong>.</p></li>
+</ul>
+<section id="shape-and-rank">
+<h5><strong>Shape and Rank</strong><a class="headerlink" href="#shape-and-rank" title="Permalink to this heading">#</a></h5>
+<p>The shape of the result can then be determined as the number of rows
+of the first matrix and the number of columns of the second; but if
+any argument is of rank one (a vector) the result is also rank one.
+Conversely when both arguments are of rank two, the result has a rank
+of two. That is …</p>
+<ul class="simple">
+<li><p>If <strong>matrix_a</strong> has shape [n,m] and <strong>matrix_b</strong> has shape [m,k],
+the result has shape [n,k].</p></li>
+<li><p>If <strong>matrix_a</strong> has shape [m] and <strong>matrix_b</strong> has shape [m,k],
+the result has shape [k].</p></li>
+<li><p>If <strong>matrix_a</strong> has shape [n,m] and <strong>matrix_b</strong> has shape [m],
+the result has shape [n].</p></li>
+</ul>
+</section>
+<section id="values">
+<h5><strong>Values</strong><a class="headerlink" href="#values" title="Permalink to this heading">#</a></h5>
+<p>Then element <strong>C(i,j)</strong> of the product is obtained by multiplying
+term-by-term the entries of the ith row of <strong>A</strong> and the jth column
+of <strong>B</strong>, and summing these products. In other words, <strong>C(i,j)</strong>
+is the dot product of the ith row of <strong>A</strong> and the jth column of <strong>B</strong>.</p>
+</section>
+</section>
+<section id="logical-arguments">
+<h4><strong>Logical Arguments</strong><a class="headerlink" href="#logical-arguments" title="Permalink to this heading">#</a></h4>
+<section id="id26">
+<h5><strong>Values</strong><a class="headerlink" href="#id26" title="Permalink to this heading">#</a></h5>
+<p>If <strong>matrix_a</strong> and <strong>matrix_b</strong> are of type logical, the array elements
+of the result are instead:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">  </span><span class="n">Value_of_Element</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">,</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">  </span><span class="nb">ANY</span><span class="p">(</span><span class="w"> </span><span class="p">(</span><span class="n">row_i_of_MATRIX_A</span><span class="p">)</span><span class="w"> </span><span class="p">.</span><span class="nb">AND</span><span class="p">.</span><span class="w"> </span><span class="p">(</span><span class="n">column_j_of_MATRIX_B</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+</div>
+</section>
+</section>
+</section>
+<section id="id27">
+<h3><strong>Examples</strong><a class="headerlink" href="#id27" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_matmul</span>
+<span class="k">implicit none</span>
+<span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">c</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">d</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">e</span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">f</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="n">g</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">v1</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="n">v2</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+<span class="w">   </span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">])</span>
+<span class="w">   </span><span class="n">b</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">reshape</span><span class="p">([</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">20</span><span class="p">,</span><span class="w"> </span><span class="mi">30</span><span class="p">,</span><span class="w"> </span><span class="mi">40</span><span class="p">,</span><span class="w"> </span><span class="mi">50</span><span class="p">,</span><span class="w"> </span><span class="mi">60</span><span class="p">],</span><span class="w"> </span><span class="p">[</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">])</span>
+<span class="w">   </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">]</span>
+<span class="w">   </span><span class="n">d</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">]</span>
+<span class="w">   </span><span class="n">e</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">)</span>
+<span class="w">   </span><span class="n">f</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">matmul</span><span class="p">(</span><span class="n">c</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+<span class="w">   </span><span class="n">g</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+
+<span class="w">   </span><span class="k">call </span><span class="n">print_matrix_int</span><span class="p">(</span><span class="s1">&#39;A is &#39;</span><span class="p">,</span><span class="n">a</span><span class="p">)</span>
+<span class="w">   </span><span class="k">call </span><span class="n">print_matrix_int</span><span class="p">(</span><span class="s1">&#39;B is &#39;</span><span class="p">,</span><span class="n">b</span><span class="p">)</span>
+<span class="w">   </span><span class="k">call </span><span class="n">print_vector_int</span><span class="p">(</span><span class="s1">&#39;C is &#39;</span><span class="p">,</span><span class="n">c</span><span class="p">)</span>
+<span class="w">   </span><span class="k">call </span><span class="n">print_vector_int</span><span class="p">(</span><span class="s1">&#39;D is &#39;</span><span class="p">,</span><span class="n">d</span><span class="p">)</span>
+<span class="w">   </span><span class="k">call </span><span class="n">print_matrix_int</span><span class="p">(</span><span class="s1">&#39;E is matmul(A,B)&#39;</span><span class="p">,</span><span class="n">e</span><span class="p">)</span>
+<span class="w">   </span><span class="k">call </span><span class="n">print_vector_int</span><span class="p">(</span><span class="s1">&#39;F is matmul(C,A)&#39;</span><span class="p">,</span><span class="n">f</span><span class="p">)</span>
+<span class="w">   </span><span class="k">call </span><span class="n">print_vector_int</span><span class="p">(</span><span class="s1">&#39;G is matmul(A,D)&#39;</span><span class="p">,</span><span class="n">g</span><span class="p">)</span>
+
+<span class="w">   </span><span class="c">! look at argument shapes when one is a vector</span>
+<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(&quot; &gt; shape&quot;)&#39;</span><span class="p">)</span>
+<span class="w">   </span><span class="c">! at least one argument must be of rank two</span>
+<span class="w">   </span><span class="c">! so for two vectors at least one must be reshaped</span>
+<span class="w">   </span><span class="n">v1</span><span class="o">=</span><span class="p">[</span><span class="mi">11</span><span class="p">,</span><span class="mi">22</span><span class="p">,</span><span class="mi">33</span><span class="p">,</span><span class="mi">44</span><span class="p">]</span>
+<span class="w">   </span><span class="n">v2</span><span class="o">=</span><span class="p">[</span><span class="mi">10</span><span class="p">,</span><span class="mi">20</span><span class="p">,</span><span class="mi">30</span><span class="p">,</span><span class="mi">40</span><span class="p">]</span>
+
+<span class="w">   </span><span class="c">! these return a vector C(1:1)</span>
+<span class="w">   </span><span class="c">! treat A(1:n) as A(1:1,1:n)</span>
+<span class="w">   </span><span class="k">call </span><span class="n">print_vector_int</span><span class="p">(</span><span class="s1">&#39;Cd is a vector (not a scalar)&#39;</span><span class="p">,&amp;</span>
+<span class="w">   </span><span class="p">&amp;</span><span class="w"> </span><span class="nb">matmul</span><span class="p">(</span><span class="nb">reshape</span><span class="p">(</span><span class="n">v1</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">v1</span><span class="p">)]),</span><span class="n">v2</span><span class="p">))</span>
+<span class="w">   </span><span class="c">! or treat B(1:m) as B(1:m,1:1)</span>
+<span class="w">   </span><span class="k">call </span><span class="n">print_vector_int</span><span class="p">(</span><span class="s1">&#39;cD is a vector too&#39;</span><span class="p">,&amp;</span>
+<span class="w">   </span><span class="p">&amp;</span><span class="w"> </span><span class="nb">matmul</span><span class="p">(</span><span class="n">v1</span><span class="p">,</span><span class="nb">reshape</span><span class="p">(</span><span class="n">v2</span><span class="p">,[</span><span class="n">size</span><span class="p">(</span><span class="n">v2</span><span class="p">),</span><span class="mi">1</span><span class="p">])))</span>
+
+<span class="w">   </span><span class="c">! or treat A(1:n) as A(1:1,1:n) and B(1:m) as B(1:m,1:1)</span>
+<span class="w">   </span><span class="c">! but note this returns a matrix C(1:1,1:1) not a vector!</span>
+<span class="w">   </span><span class="k">call </span><span class="n">print_matrix_int</span><span class="p">(</span><span class="s1">&#39;CD is a matrix&#39;</span><span class="p">,</span><span class="nb">matmul</span><span class="p">(&amp;</span>
+<span class="w">   </span><span class="p">&amp;</span><span class="w"> </span><span class="nb">reshape</span><span class="p">(</span><span class="n">v1</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">v1</span><span class="p">)]),</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">   </span><span class="p">&amp;</span><span class="w"> </span><span class="nb">reshape</span><span class="p">(</span><span class="n">v2</span><span class="p">,[</span><span class="n">size</span><span class="p">(</span><span class="n">v2</span><span class="p">),</span><span class="mi">1</span><span class="p">])))</span>
+
+<span class="k">contains</span>
+
+<span class="c">! CONVENIENCE ROUTINES TO PRINT IN ROW-COLUMN ORDER</span>
+<span class="k">subroutine </span><span class="n">print_vector_int</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="n">arr</span><span class="p">)</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">title</span>
+<span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:)</span>
+<span class="w">   </span><span class="k">call </span><span class="n">print_matrix_int</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="nb">reshape</span><span class="p">(</span><span class="n">arr</span><span class="p">,[</span><span class="mi">1</span><span class="p">,</span><span class="nb">shape</span><span class="p">(</span><span class="n">arr</span><span class="p">)]))</span>
+<span class="k">end subroutine </span><span class="n">print_vector_int</span>
+
+<span class="k">subroutine </span><span class="n">print_matrix_int</span><span class="p">(</span><span class="n">title</span><span class="p">,</span><span class="n">arr</span><span class="p">)</span>
+<span class="c">!@(#) print small 2d integer arrays in row-column format</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">all</span><span class="o">=</span><span class="s1">&#39;(&quot; &gt; &quot;,*(g0,1x))&#39;</span><span class="w"> </span><span class="c">! a handy format</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">title</span>
+<span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:,:)</span>
+<span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">biggest</span>
+
+<span class="w">   </span><span class="k">print all</span>
+<span class="k">   print all</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">title</span><span class="p">)</span>
+<span class="w">   </span><span class="n">biggest</span><span class="o">=</span><span class="s1">&#39;           &#39;</span><span class="w">  </span><span class="c">! make buffer to write integer into</span>
+<span class="w">   </span><span class="c">! find how many characters to use for integers</span>
+<span class="w">   </span><span class="k">write</span><span class="p">(</span><span class="n">biggest</span><span class="p">,</span><span class="s1">&#39;(i0)&#39;</span><span class="p">)</span><span class="nb">ceiling</span><span class="p">(</span><span class="n">log10</span><span class="p">(</span><span class="kt">real</span><span class="p">(</span><span class="nb">maxval</span><span class="p">(</span><span class="nb">abs</span><span class="p">(</span><span class="n">arr</span><span class="p">)))))</span><span class="o">+</span><span class="mi">2</span>
+<span class="w">   </span><span class="c">! use this format to write a row</span>
+<span class="w">   </span><span class="n">biggest</span><span class="o">=</span><span class="s1">&#39;(&quot; &gt; [&quot;,*(i&#39;</span><span class="o">//</span><span class="nb">trim</span><span class="p">(</span><span class="n">biggest</span><span class="p">)</span><span class="o">//</span><span class="s1">&#39;:,&quot;,&quot;))&#39;</span>
+<span class="w">   </span><span class="c">! print one row of array at a time</span>
+<span class="w">   </span><span class="k">do </span><span class="n">i</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="n">size</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">fmt</span><span class="o">=</span><span class="n">biggest</span><span class="p">,</span><span class="n">advance</span><span class="o">=</span><span class="s1">&#39;no&#39;</span><span class="p">)</span><span class="n">arr</span><span class="p">(</span><span class="n">i</span><span class="p">,:)</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="s1">&#39;(&quot; ]&quot;)&#39;</span><span class="p">)</span>
+<span class="w">   </span><span class="k">enddo</span>
+
+<span class="k">end subroutine </span><span class="n">print_matrix_int</span>
+
+<span class="k">end program </span><span class="n">demo_matmul</span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    &gt;
+    &gt; A is
+    &gt; [  1,  3,  5 ]
+    &gt; [  2,  4,  6 ]
+    &gt;
+    &gt; B is
+    &gt; [  10,  40 ]
+    &gt; [  20,  50 ]
+    &gt; [  30,  60 ]
+    &gt;
+    &gt; C is
+    &gt; [  1,  2 ]
+    &gt;
+    &gt; D is
+    &gt; [  1,  2,  3 ]
+    &gt;
+    &gt; E is matmul(A,B)
+    &gt; [  220,  490 ]
+    &gt; [  280,  640 ]
+    &gt;
+    &gt; F is matmul(C,A)
+    &gt; [   5,  11,  17 ]
+    &gt;
+    &gt; G is matmul(A,D)
+    &gt; [  22,  28 ]
+    &gt; shape
+    &gt;
+    &gt; Cd is a vector (not a scalar)
+    &gt; [  3300 ]
+    &gt;
+    &gt; cD is a vector too
+    &gt; [  3300 ]
+    &gt;
+    &gt; CD is a matrix
+    &gt; [  3300 ]
+</pre></div>
+</div>
+</section>
+<section id="id28">
+<h3><strong>Standard</strong><a class="headerlink" href="#id28" title="Permalink to this heading">#</a></h3>
+<p>Fortran 95</p>
+</section>
+<section id="id29">
+<h3><strong>See Also</strong><a class="headerlink" href="#id29" title="Permalink to this heading">#</a></h3>
+<p><a class="reference internal" href="#product"><span class="xref myst"><strong>product</strong>(3)</span></a>,
+<a class="reference internal" href="#transpose"><span class="xref myst"><strong>transpose</strong>(3)</span></a></p>
+</section>
+<section id="resources">
+<h3><strong>Resources</strong><a class="headerlink" href="#resources" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Matrix_multiplication">Matrix multiplication : Wikipedia</a></p></li>
+<li><p>The Winograd variant of Strassen’s matrix-matrix multiply algorithm may
+be of interest for optimizing multiplication of very large matrices. See</p></li>
+</ul>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>    &quot;GEMMW: A portable level 3 BLAS Winograd variant of Strassen&#39;s
+    matrix-matrix multiply algorithm&quot;,
+
+    Douglas, C. C., Heroux, M., Slishman, G., and Smith, R. M.,
+    Journal of Computational Physics,
+    Vol. 110, No. 1, January 1994, pages 1-10.
+
+  The numerical instabilities of Strassen&#39;s method for matrix
+  multiplication requires special processing.
+</pre></div>
+</div>
+<p><em>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost</em></p>
+</section>
+</section>
+<section id="parity">
+<h2>parity<a class="headerlink" href="#parity" title="Permalink to this heading">#</a></h2>
+<section id="id30">
+<h3><strong>Name</strong><a class="headerlink" href="#id30" title="Permalink to this heading">#</a></h3>
+<p><strong>parity</strong>(3) - [ARRAY:REDUCTION] Array reduction by .NEQV. operation</p>
+</section>
+<section id="id31">
+<h3><strong>Synopsis</strong><a class="headerlink" href="#id31" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">parity</span><span class="p">(</span><span class="w"> </span><span class="n">mask</span><span class="w"> </span><span class="p">[,</span><span class="nb">dim</span><span class="p">]</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="kt">logical</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)</span><span class="w"> </span><span class="k">function </span><span class="nb">parity</span><span class="p">(</span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">)</span>
+
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="kt">logical</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">        </span><span class="kd">::</span><span class="w"> </span><span class="n">mask</span><span class="p">(..)</span>
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="kt">integer</span><span class="p">(</span><span class="nb">kind</span><span class="o">=**</span><span class="p">)),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">dim</span>
+</pre></div>
+</div>
+</section>
+<section id="id32">
+<h3><strong>Characteristics</strong><a class="headerlink" href="#id32" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>mask</strong> is a <em>logical</em> array</p></li>
+<li><p><strong>dim</strong> is an integer scalar</p></li>
+<li><p>the result is of type <em>logical</em> with the same kind type parameter as <strong>mask</strong>.
+It is a scalar if <strong>dim</strong> does not appear; otherwise it is the rank and shape
+of <strong>mask</strong> with the dimension specified by <strong>dim</strong> removed.</p></li>
+<li><p>a kind designated as ** may be any supported kind for the type</p></li>
+</ul>
+</section>
+<section id="id33">
+<h3><strong>Description</strong><a class="headerlink" href="#id33" title="Permalink to this heading">#</a></h3>
+<p><strong>parity</strong>(3) calculates the parity array (i.e. the reduction using .neqv.) of
+<strong>mask</strong> along dimension <strong>dim</strong> if <strong>dim</strong> is present and not 1. Otherwise, it
+returns the parity of the entire <strong>mask</strong> array as a scalar.</p>
+</section>
+<section id="id34">
+<h3><strong>Options</strong><a class="headerlink" href="#id34" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>mask</strong></dt><dd><p>Shall be an array of type <em>logical</em>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>dim</strong></dt><dd><p>(Optional) shall be a scalar of type <em>integer</em> with a value in the
+range from <em>1 to n</em>, where <em>n</em> equals the rank of <strong>mask</strong>.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id35">
+<h3><strong>Result</strong><a class="headerlink" href="#id35" title="Permalink to this heading">#</a></h3>
+<p>The result is of the same type as <strong>mask</strong>.</p>
+<p>If <strong>dim</strong> is absent, a scalar with the parity of all elements in <strong>mask</strong>
+is returned: <em>.true.</em> if an odd number of elements are <em>.true.</em>
+and <em>.false.</em> otherwise.</p>
+<p>If MASK has rank one, PARITY (MASK, DIM) is equal to PARITY (MASK). Otherwise, the
+result is an array of parity values with dimension <strong>dim</strong> dropped.</p>
+</section>
+<section id="id36">
+<h3><strong>Examples</strong><a class="headerlink" href="#id36" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">demo_parity</span>
+<span class="k">implicit none</span>
+<span class="kt">logical</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">T</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,</span><span class="w"> </span><span class="n">F</span><span class="o">=</span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+<span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">)</span>
+<span class="w">  </span><span class="c">! basics</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">parity</span><span class="p">([</span><span class="n">T</span><span class="p">,</span><span class="n">F</span><span class="p">])</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">parity</span><span class="p">([</span><span class="n">T</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">F</span><span class="p">])</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">parity</span><span class="p">([</span><span class="n">T</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">T</span><span class="p">])</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">parity</span><span class="p">([</span><span class="n">T</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">F</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">])</span>
+<span class="w">   </span><span class="n">x</span><span class="p">(</span><span class="mi">1</span><span class="p">,:)</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">]</span>
+<span class="w">   </span><span class="n">x</span><span class="p">(</span><span class="mi">2</span><span class="p">,:)</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">]</span>
+<span class="w">   </span><span class="n">x</span><span class="p">(</span><span class="mi">3</span><span class="p">,:)</span><span class="o">=</span><span class="p">[</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">,</span><span class="n">T</span><span class="p">]</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">parity</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">parity</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">   </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">parity</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="nb">dim</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span>
+<span class="k">end program </span><span class="n">demo_parity</span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span> &gt;  T
+ &gt;  T
+ &gt;  F
+ &gt;  T
+ &gt;  F
+ &gt;  T T T T
+ &gt;  F F F
+</pre></div>
+</div>
+</section>
+<section id="id37">
+<h3><strong>Standard</strong><a class="headerlink" href="#id37" title="Permalink to this heading">#</a></h3>
+<p>Fortran 2008</p>
+</section>
+<section id="id38">
+<h3><strong>See also</strong><a class="headerlink" href="#id38" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="#all"><span class="xref myst"><strong>all</strong>(3)</span></a> - Determines if all the values are true</p></li>
+<li><p><a class="reference internal" href="#any"><span class="xref myst"><strong>any</strong>(3)</span></a> - Determines if any of the values in the logical array are <em>.true.</em></p></li>
+<li><p><a class="reference internal" href="#count"><span class="xref myst"><strong>count</strong>(3)</span></a> - Count true values in an array</p></li>
+<li><p><a class="reference internal" href="#sum"><span class="xref myst"><strong>sum</strong>(3)</span></a> - Sum the elements of an array</p></li>
+<li><p><a class="reference internal" href="#maxval"><span class="xref myst"><strong>maxval</strong>(3)</span></a> - Determines the maximum value in an array or row</p></li>
+<li><p><a class="reference internal" href="#minval"><span class="xref myst"><strong>minval</strong>(3)</span></a> - Minimum value of an array</p></li>
+<li><p><a class="reference internal" href="#product"><span class="xref myst"><strong>product</strong>(3)</span></a> - Product of array elements</p></li>
+<li><p><a class="reference internal" href="#reduce"><strong>reduce</strong>(3)</a> - General array reduction</p></li>
+</ul>
+<p><em>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost</em></p>
+</section>
+</section>
+<section id="null">
+<h2>null<a class="headerlink" href="#null" title="Permalink to this heading">#</a></h2>
+<section id="id39">
+<h3><strong>Name</strong><a class="headerlink" href="#id39" title="Permalink to this heading">#</a></h3>
+<p><strong>null</strong>(3) - [TRANSFORMATIONAL] Function that returns a disassociated pointer</p>
+</section>
+<section id="id40">
+<h3><strong>Synopsis</strong><a class="headerlink" href="#id40" title="Permalink to this heading">#</a></h3>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="n">ptr</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">null</span><span class="p">(</span><span class="w"> </span><span class="p">[</span><span class="n">mold</span><span class="p">]</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">     </span><span class="k">function </span><span class="nb">null</span><span class="p">(</span><span class="n">mold</span><span class="p">)</span>
+
+<span class="w">      </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=**</span><span class="p">)),</span><span class="k">pointer</span><span class="p">,</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">mold</span>
+</pre></div>
+</div>
+</section>
+<section id="id41">
+<h3><strong>Characteristics</strong><a class="headerlink" href="#id41" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>mold</strong> is a pointer of any association status and of any type.</p></li>
+<li><p>The result is a disassociated pointer or an unallocated allocatable entity.</p></li>
+</ul>
+</section>
+<section id="id42">
+<h3><strong>Description</strong><a class="headerlink" href="#id42" title="Permalink to this heading">#</a></h3>
+<p><strong>null</strong>(3) returns a disassociated pointer.</p>
+<p>If <strong>mold</strong> is present, a disassociated pointer of the same type is
+returned, otherwise the type is determined by context.</p>
+<p>In <em>Fortran 95</em>, <strong>mold</strong> is optional. Please note that <em>Fortran 2003</em>
+includes cases where it is required.</p>
+</section>
+<section id="id43">
+<h3><strong>Options</strong><a class="headerlink" href="#id43" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><dl class="simple myst">
+<dt><strong>mold</strong></dt><dd><p>a pointer of any association status and of any
+type.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id44">
+<h3><strong>Result</strong><a class="headerlink" href="#id44" title="Permalink to this heading">#</a></h3>
+<p>A disassociated pointer or an unallocated allocatable entity.</p>
+</section>
+<section id="id45">
+<h3><strong>Examples</strong><a class="headerlink" href="#id45" title="Permalink to this heading">#</a></h3>
+<p>Sample program:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">!program demo_null</span>
+<span class="k">module </span><span class="n">showit</span>
+<span class="k">implicit none</span>
+<span class="k">private</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">g</span><span class="o">=</span><span class="s1">&#39;(*(g0,1x))&#39;</span>
+<span class="k">public </span><span class="n">gen</span>
+<span class="c">! a generic interface that only differs in the</span>
+<span class="c">! type of the pointer the second argument is</span>
+<span class="k">interface </span><span class="n">gen</span>
+<span class="w"> </span><span class="k">module procedure </span><span class="n">s1</span>
+<span class="w"> </span><span class="k">module procedure </span><span class="n">s2</span>
+<span class="k">end interface</span>
+
+<span class="k">contains</span>
+
+<span class="k">subroutine </span><span class="n">s1</span><span class="w"> </span><span class="p">(</span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">pi</span><span class="p">)</span>
+<span class="w"> </span><span class="kt">integer </span><span class="n">j</span>
+<span class="w"> </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pi</span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">pi</span><span class="p">))</span><span class="k">then</span>
+<span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">g</span><span class="p">)</span><span class="s1">&#39;Two integers in S1:,&#39;</span><span class="p">,</span><span class="n">j</span><span class="p">,</span><span class="s1">&#39;and&#39;</span><span class="p">,</span><span class="n">pi</span>
+<span class="w">   </span><span class="k">else</span>
+<span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">g</span><span class="p">)</span><span class="s1">&#39;One integer in S1:,&#39;</span><span class="p">,</span><span class="n">j</span>
+<span class="w">   </span><span class="k">endif</span>
+<span class="k">end subroutine </span><span class="n">s1</span>
+
+<span class="k">subroutine </span><span class="n">s2</span><span class="w"> </span><span class="p">(</span><span class="n">k</span><span class="p">,</span><span class="w"> </span><span class="n">pr</span><span class="p">)</span>
+<span class="w"> </span><span class="kt">integer </span><span class="n">k</span>
+<span class="w"> </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pr</span>
+<span class="w">   </span><span class="k">if</span><span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">pr</span><span class="p">))</span><span class="k">then</span>
+<span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">g</span><span class="p">)</span><span class="s1">&#39;integer and real in S2:,&#39;</span><span class="p">,</span><span class="n">k</span><span class="p">,</span><span class="s1">&#39;and&#39;</span><span class="p">,</span><span class="n">pr</span>
+<span class="w">   </span><span class="k">else</span>
+<span class="k">      write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">g</span><span class="p">)</span><span class="s1">&#39;One integer in S2:,&#39;</span><span class="p">,</span><span class="n">k</span>
+<span class="w">   </span><span class="k">endif</span>
+<span class="k">end subroutine </span><span class="n">s2</span>
+
+<span class="k">end module </span><span class="n">showit</span>
+
+<span class="k">program </span><span class="n">demo_null</span>
+<span class="k">use </span><span class="n">showit</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="n">gen</span>
+
+<span class="kt">real</span><span class="p">,</span><span class="k">target</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">20</span><span class="mf">0.0</span>
+<span class="kt">integer</span><span class="p">,</span><span class="k">target</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">real_ptr</span>
+<span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">integer_ptr</span>
+
+<span class="c">! so how do we call S1() or S2() with a disassociated pointer?</span>
+
+<span class="c">! the answer is the null() function with a mold value</span>
+
+<span class="c">! since s1() and s2() both have a first integer</span>
+<span class="c">! argument the NULL() pointer must be associated</span>
+<span class="c">! to a real or integer type via the mold option</span>
+<span class="c">! so the following can distinguish whether s1(1)</span>
+<span class="c">! or s2() is called, even though the pointers are</span>
+<span class="c">! not associated or defined</span>
+
+<span class="k">call </span><span class="n">gen</span><span class="w"> </span><span class="p">(</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="nb">null</span><span class="w"> </span><span class="p">(</span><span class="n">real_ptr</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">    </span><span class="c">! invokes s2</span>
+<span class="k">call </span><span class="n">gen</span><span class="w"> </span><span class="p">(</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="nb">null</span><span class="w"> </span><span class="p">(</span><span class="n">integer_ptr</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c">! invokes s1</span>
+<span class="n">real_ptr</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">x</span>
+<span class="n">integer_ptr</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">i</span>
+<span class="k">call </span><span class="n">gen</span><span class="w"> </span><span class="p">(</span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="n">real_ptr</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c">! invokes s2</span>
+<span class="k">call </span><span class="n">gen</span><span class="w"> </span><span class="p">(</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">integer_ptr</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="c">! invokes s1</span>
+
+<span class="k">end program </span><span class="n">demo_null</span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>   One integer in S2:, 1
+   One integer in S1:, 2
+   integer and real in S2:, 3 and 200.000000
+   Two integers in S1:, 4 and 100
+</pre></div>
+</div>
+</section>
+<section id="id46">
+<h3><strong>Standard</strong><a class="headerlink" href="#id46" title="Permalink to this heading">#</a></h3>
+<p>Fortran 95</p>
+</section>
+<section id="id47">
+<h3><strong>See Also</strong><a class="headerlink" href="#id47" title="Permalink to this heading">#</a></h3>
+<p><a class="reference internal" href="#associated"><span class="xref myst"><strong>associated</strong>(3)</span></a></p>
+<p><em>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost</em></p>
+</section>
+</section>
+<section id="reduce">
+<h2>reduce<a class="headerlink" href="#reduce" title="Permalink to this heading">#</a></h2>
+<section id="id48">
+<h3><strong>Name</strong><a class="headerlink" href="#id48" title="Permalink to this heading">#</a></h3>
+<p><strong>reduce</strong>(3) - [TRANSFORMATIONAL] General reduction of an array</p>
+</section>
+<section id="id49">
+<h3><strong>Synopsis</strong><a class="headerlink" href="#id49" title="Permalink to this heading">#</a></h3>
+<p>There are two forms to this function:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reduce</span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">operation</span><span class="w"> </span><span class="p">[,</span><span class="n">mask</span><span class="p">]</span><span class="w">  </span><span class="p">[,</span><span class="n">identity</span><span class="p">]</span><span class="w">  </span><span class="p">[,</span><span class="n">ordered</span><span class="p">]</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>or</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">result</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">reduce</span><span class="w"> </span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="w">  </span><span class="p">&amp;</span>
+<span class="w">   </span><span class="p">&amp;</span><span class="w"> </span><span class="p">[,</span><span class="n">mask</span><span class="p">]</span><span class="w"> </span><span class="p">[,</span><span class="n">identity</span><span class="p">]</span><span class="w"> </span><span class="p">[,</span><span class="n">ordered</span><span class="p">]</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+</div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">))</span><span class="w"> </span><span class="k">function </span><span class="n">reduce</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">    </span><span class="p">&amp;</span><span class="w"> </span><span class="p">(</span><span class="k">array</span><span class="p">,</span><span class="w"> </span><span class="n">operation</span><span class="p">,</span><span class="w"> </span><span class="nb">dim</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="p">,</span><span class="w"> </span><span class="n">identity</span><span class="p">,</span><span class="w"> </span><span class="n">ordered</span><span class="w"> </span><span class="p">)</span>
+
+<span class="w">     </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="nb">KIND</span><span class="p">)),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">array</span>
+<span class="k">     pure function</span><span class="w">                  </span><span class="kd">::</span><span class="w"> </span><span class="n">operation</span>
+<span class="w">     </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="nb">dim</span>
+<span class="nb">     </span><span class="kt">logical</span><span class="p">,</span><span class="k">optional</span><span class="w">               </span><span class="kd">::</span><span class="w"> </span><span class="n">mask</span>
+<span class="w">     </span><span class="k">type</span><span class="p">(</span><span class="k">TYPE</span><span class="p">),</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">identity</span>
+<span class="w">     </span><span class="kt">logical</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="k">optional</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="n">ordered</span>
+</pre></div>
+</div>
+</section>
+<section id="id50">
+<h3><strong>Characteristics</strong><a class="headerlink" href="#id50" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><strong>array</strong> is an array of any type</p></li>
+<li><p><strong>operation</strong> is a pure function with exactly two arguments</p>
+<ul>
+<li><p>each argument is scalar, non-allocatable, a nonpointer,
+nonpolymorphic and nonoptional with the same type and kind as array.</p></li>
+<li><p>if one argument has the asynchronous, target, or value attribute so
+shall the other.</p></li>
+</ul>
+</li>
+<li><p><strong>dim</strong> is an <em>integer</em> scalar</p></li>
+<li><p><strong>mask</strong> is a logical conformable with <strong>array</strong></p></li>
+<li><p><strong>identity</strong> is a scalar with the same type and type parameters as <strong>array</strong></p></li>
+<li><p><strong>ordered</strong> is a logical scalar</p></li>
+<li><p>the result is of the same type and type parameters as <strong>array</strong>.</p></li>
+</ul>
+</section>
+<section id="id51">
+<h3><strong>Description</strong><a class="headerlink" href="#id51" title="Permalink to this heading">#</a></h3>
+<p><strong>reduce</strong>(3) reduces a list of conditionally selected values from
+an array to a single value by iteratively applying a binary function.</p>
+<p>Common in functional programming, a <strong>reduce</strong> function applies a
+binary operator (a pure function with two arguments) to all elements
+cumulatively.</p>
+<p><strong>reduce</strong> is a “higher-order” function; ie. it is a function that
+receives other functions as arguments.</p>
+<p>The <strong>reduce</strong> function receives a binary operator (a function with
+two arguments, just like the basic arithmetic operators). It is first
+applied to two unused values in the list to generate an accumulator
+value which is subsequently used as the first argument to the function
+as the function is recursively applied to all the remaining selected
+values in the input array.</p>
+</section>
+<section id="id52">
+<h3><strong>Options</strong><a class="headerlink" href="#id52" title="Permalink to this heading">#</a></h3>
+<ul>
+<li><dl class="simple myst">
+<dt><strong>array</strong></dt><dd><p>An array of any type and allowed rank to select values from.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>operation</strong></dt><dd><p>shall be a pure function with exactly two arguments;
+each argument shall be a scalar, nonallocatable,
+nonpointer, nonpolymorphic, nonoptional dummy data object
+with the same type and type parameters as <strong>array</strong>. If
+one argument has the ASYNCHRONOUS, TARGET, or VALUE
+attribute, the other shall have that attribute. Its result
+shall be a nonpolymorphic scalar and have the same type
+and type parameters as <strong>array</strong>. <strong>operation</strong> should
+implement a mathematically associative operation. It
+need not be commutative.</p>
+</dd>
+</dl>
+<p>NOTE</p>
+<p>If <strong>operation</strong> is not computationally associative, REDUCE
+without ORDERED=.TRUE. with the same argument values
+might not always produce the same result, as the processor
+can apply the associative law to the evaluation.</p>
+<p>Many operations that mathematically are associative are
+not when applied to floating-point numbers. The order
+you sum values in may affect the result, for example.</p>
+</li>
+<li><dl class="simple myst">
+<dt><strong>dim</strong></dt><dd><p>An integer scalar with a value in the range
+1&lt;= <strong>dim</strong> &lt;= n, where n is the rank of <strong>array</strong>.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>mask</strong></dt><dd><p>(optional) shall be of type logical and shall be
+conformable with <strong>array</strong>.</p>
+</dd>
+</dl>
+<p>When present only those elements of <strong>array</strong> are passed
+to <strong>operation</strong> for which the corresponding elements
+of <strong>mask</strong> are true, as if **array* was filtered with
+**pack(3)**.</p>
+</li>
+<li><dl class="simple myst">
+<dt><strong>identity</strong></dt><dd><p>shall be scalar with the same type and type parameters as <strong>array</strong>.
+If the initial sequence is empty, the result has the value <strong>identify</strong>
+if <strong>identify</strong> is present, and otherwise, error termination is
+initiated.</p>
+</dd>
+</dl>
+</li>
+<li><dl class="simple myst">
+<dt><strong>ordered</strong></dt><dd><p>shall be a logical scalar. If <strong>ordered</strong> is present with the value
+<em>.true.</em>, the calls to the <strong>operator</strong> function begins with the first
+two elements of <strong>array</strong> and the process continues in row-column
+order until the sequence has only one element which is the value of the
+reduction. Otherwise, the compiler is free to assume that the operation
+is commutative and may evaluate the reduction in the most optimal way.</p>
+</dd>
+</dl>
+</li>
+</ul>
+</section>
+<section id="id53">
+<h3><strong>Result</strong><a class="headerlink" href="#id53" title="Permalink to this heading">#</a></h3>
+<p>The result is of the same type and type parameters as <strong>array</strong>. It is
+scalar if <strong>dim</strong> does not appear.</p>
+<p>If <strong>dim</strong> is present, it indicates the one dimension along which to
+perform the reduction, and the resultant array has a rank reduced by
+one relative to the input array.</p>
+</section>
+<section id="id54">
+<h3><strong>Examples</strong><a class="headerlink" href="#id54" title="Permalink to this heading">#</a></h3>
+<p>The following examples all use the function MY_MULT, which returns
+the product of its two real arguments.</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">   </span><span class="k">program </span><span class="n">demo_reduce</span>
+<span class="w">   </span><span class="k">implicit none</span>
+<span class="k">   </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">f</span><span class="o">=</span><span class="s1">&#39;(&quot;[&quot;,*(g0,&quot;,&quot;,1x),&quot;]&quot;)&#39;</span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">arr</span><span class="p">(:),</span><span class="w"> </span><span class="n">b</span><span class="p">(:,:)</span>
+
+<span class="w">   </span><span class="c">! Basic usage:</span>
+<span class="w">      </span><span class="c">! the product of the elements of an array</span>
+<span class="w">      </span><span class="n">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="w"> </span><span class="p">]</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">arr</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;product=&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">reduce</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">my_mult</span><span class="p">)</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;sum=&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">reduce</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">my_sum</span><span class="p">)</span>
+
+<span class="w">   </span><span class="c">! Examples of masking:</span>
+<span class="w">      </span><span class="c">! the product of only the positive elements of an array</span>
+<span class="w">      </span><span class="n">arr</span><span class="o">=</span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mi">3</span><span class="w"> </span><span class="p">]</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;positive value product=&#39;</span><span class="p">,</span><span class="n">reduce</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">my_mult</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="o">=</span><span class="n">arr</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+<span class="w">   </span><span class="c">! sum values ignoring negative values</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;sum positive values=&#39;</span><span class="p">,</span><span class="n">reduce</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">my_sum</span><span class="p">,</span><span class="w"> </span><span class="n">mask</span><span class="o">=</span><span class="n">arr</span><span class="o">&gt;</span><span class="mi">0</span><span class="p">)</span>
+
+<span class="w">   </span><span class="c">! a single-valued array returns the single value as the</span>
+<span class="w">   </span><span class="c">! calls to the operator stop when only one element remains</span>
+<span class="w">      </span><span class="n">arr</span><span class="o">=</span><span class="p">[</span><span class="w"> </span><span class="mi">1234</span><span class="w"> </span><span class="p">]</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;single value sum&#39;</span><span class="p">,</span><span class="n">reduce</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">my_sum</span><span class="w"> </span><span class="p">)</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;single value product&#39;</span><span class="p">,</span><span class="n">reduce</span><span class="p">(</span><span class="n">arr</span><span class="p">,</span><span class="w"> </span><span class="n">my_mult</span><span class="w"> </span><span class="p">)</span>
+
+<span class="w">   </span><span class="c">! Example of operations along a dimension:</span>
+<span class="w">   </span><span class="c">!  If B is the array   1 3 5</span>
+<span class="w">   </span><span class="c">!                      2 4 6</span>
+<span class="w">      </span><span class="n">b</span><span class="o">=</span><span class="nb">reshape</span><span class="p">([</span><span class="mi">1</span><span class="p">,</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">,</span><span class="mi">4</span><span class="p">,</span><span class="mi">5</span><span class="p">,</span><span class="mi">6</span><span class="p">],[</span><span class="mi">2</span><span class="p">,</span><span class="mi">3</span><span class="p">])</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="n">REDUCE</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">MY_MULT</span><span class="p">),</span><span class="s1">&#39;should be [720]&#39;</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="n">REDUCE</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">MY_MULT</span><span class="p">,</span><span class="w"> </span><span class="nb">DIM</span><span class="o">=</span><span class="mi">1</span><span class="p">),</span><span class="s1">&#39;should be [2,12,30]&#39;</span>
+<span class="w">      </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">f</span><span class="p">)</span><span class="w"> </span><span class="n">REDUCE</span><span class="p">(</span><span class="n">B</span><span class="p">,</span><span class="w"> </span><span class="n">MY_MULT</span><span class="p">,</span><span class="w"> </span><span class="nb">DIM</span><span class="o">=</span><span class="mi">2</span><span class="p">),</span><span class="s1">&#39;should be [15, 48]&#39;</span>
+
+<span class="w">   </span><span class="k">contains</span>
+
+<span class="k">   pure function </span><span class="n">my_mult</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span>
+<span class="w">   </span><span class="kt">integer</span><span class="w">            </span><span class="kd">::</span><span class="w"> </span><span class="n">c</span>
+<span class="w">      </span><span class="n">c</span><span class="o">=</span><span class="n">a</span><span class="o">*</span><span class="n">b</span>
+<span class="w">   </span><span class="k">end function </span><span class="n">my_mult</span>
+
+<span class="w">   </span><span class="k">pure function </span><span class="n">my_sum</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="n">b</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="w">   </span><span class="kt">integer</span><span class="p">,</span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span>
+<span class="w">   </span><span class="kt">integer</span><span class="w">            </span><span class="kd">::</span><span class="w"> </span><span class="n">c</span>
+<span class="w">      </span><span class="n">c</span><span class="o">=</span><span class="n">a</span><span class="o">+</span><span class="n">b</span>
+<span class="w">   </span><span class="k">end function </span><span class="n">my_sum</span>
+
+<span class="w">   </span><span class="k">end program </span><span class="n">demo_reduce</span>
+</pre></div>
+</div>
+<p>Results:</p>
+<div class="highlight-text notranslate"><div class="highlight"><pre><span></span>     &gt;  1 2 3 4
+     &gt;  product= 24
+     &gt;  sum=     10
+     &gt;  positive value sum= 6
+     &gt;  sum positive values= 6
+     &gt;  single value sum     1234
+     &gt;  single value product 1234
+     &gt; [720, should be [720],
+     &gt; [2, 12, 30, should be [2,12,30],
+     &gt; [15, 48, should be [15, 48],
+</pre></div>
+</div>
+</section>
+<section id="id55">
+<h3><strong>Standard</strong><a class="headerlink" href="#id55" title="Permalink to this heading">#</a></h3>
+<p>Fortran 2018</p>
+</section>
+<section id="id56">
+<h3><strong>See Also</strong><a class="headerlink" href="#id56" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference internal" href="#co_reduce"><span class="xref myst">co_reduce(3)</span></a></p></li>
+</ul>
+</section>
+<section id="id57">
+<h3><strong>Resources</strong><a class="headerlink" href="#id57" title="Permalink to this heading">#</a></h3>
+<ul class="simple">
+<li><p><a class="reference external" href="https://en.wikipedia.org/wiki/Associative_property">associative:wikipedia</a></p></li>
+</ul>
+<p><em>fortran-lang intrinsic descriptions (license: MIT) &#64;urbanjost</em></p>
+</section>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+  
+  
+</div>
+
+              </article>
+              
+
+              
+          </div>
+          
+      </div>
+    </div>
+
+  
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script src="../../../_static/scripts/pydata-sphinx-theme.js?digest=92025949c220c2e29695"></script>
+
+<footer class="bd-footer"><div class="bd-footer__inner container">
+  
+  <div class="footer-item">
+    <p class="copyright">
+    &copy; Copyright 2020-2022, Fortran Community.<br>
+</p>
+  </div>
+  
+</div>
+</footer>
+  </body>
+</html>

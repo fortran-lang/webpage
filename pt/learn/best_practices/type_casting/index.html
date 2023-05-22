@@ -192,62 +192,62 @@
       {
         name: "English",
         version: "en",
-        url: "../en/",
+        url: "",
       },
       {
         name: "bn",
         version: "bn",
-        url: "../bn/",
+        url: "bn/",
       },
       {
         name: "cs",
         version: "cs",
-        url: "../cs/",
+        url: "cs/",
       },
       {
         name: "Deutsch",
         version: "de",
-        url: "../de/",
+        url: "de/",
       },
       {
         name: "Español",
         version: "es",
-        url: "../es/",
+        url: "es/",
       },
       {
         name: "Français",
         version: "fr",
-        url: "../fr/",
+        url: "fr/",
       },
       {
         name: "ja",
         version: "ja",
-        url: "../ja/",
+        url: "ja/",
       },
       {
         name: "Nederlands",
         version: "nl",
-        url: "../nl/",
+        url: "nl/",
       },
       {
         name: "pl",
         version: "pl",
-        url: "../pl/",
+        url: "pl/",
       },
       {
         name: "Português",
         version: "pt",
-        url: "../pt/",
+        url: "pt/",
       },
       {
         name: "Русский",
         version: "ru",
-        url: "../ru/",
+        url: "ru/",
       },
       {
         name: "简体中文",
         version: "zh_CN",
-        url: "../zh_CN/",
+        url: "zh_CN/",
       },
     ];
     // console.log(data);
@@ -260,10 +260,13 @@
       const node = document.createElement("a");
       node.setAttribute("class", "list-group-item list-group-item-action py-1");
       node.textContent = `${entry.name}`;
+
+
       node.setAttribute(
         "href",
-        `${indexFilePath}${entry.url}${currentFilePath}`,
+        `https://fortran-lang.org/${entry.url}${currentFilePath}`,
       );
+
       // on click, AJAX calls will check if the linked page exists before
       // trying to redirect, and if not, will redirect to the homepage
       // for that version of the docs.
@@ -724,7 +727,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#using-type-c-ptr-pointer">
-   Using type(c_ptr) Pointer
+   Usando Ponteiro type(c_ptr)
   </a>
  </li>
  <li class="toc-h2 nav-item toc-entry">
@@ -739,7 +742,7 @@
  </li>
  <li class="toc-h2 nav-item toc-entry">
   <a class="reference internal nav-link" href="#complete-example-of-void-vs-type-c-ptr-and-transfer">
-   Complete Example of void * vs type(c_ptr) and transfer()
+   Exemplo completo do void * vs type(c_ptr) e transfer()
   </a>
  </li>
 </ul>
@@ -824,11 +827,7 @@
 </section>
 <section id="general-structure">
 <h2>Estrutura Geral<a class="headerlink" href="#general-structure" title="Permalink to this heading">#</a></h2>
-<p>Define a general structure which encompass the variations you
-actually need (or are even remotely likely to need going forward). This
-single structure type can then change if needed as future
-needs/ideas permit but won’t likely need to change from passing, say,
-real numbers to, say, and instantiation of a text editor.</p>
+<p>Define uma estrutura geral que engloba as variações que você de fato precisa (ou que irá precisar futuramente). Esse tipo de estrutura único pode então ser mudado caso necessário se futuras ideias/necessidades permitirem mas que não precise passar, digamos, números reais para, por exemplo, uma instanciação de um editor de texto.</p>
 <p>Cálculo de Integrais:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span>
@@ -896,16 +895,12 @@ real numbers to, say, and instantiation of a text editor.</p>
 <span class="k">end module</span>
 </pre></div>
 </div>
-<p>There is only so much flexibility really needed. For example, you could
-define two structure types for this purpose, one for Schroedinger and
-one for Dirac. Each would then be sufficiently general and contain all
-the needed pieces with all the right labels.</p>
-<p>Point is: it needn’t be «one abstract type to encompass all» or bust.
-There are natural and viable options between «all» and «none».</p>
+<p>Há apenas flexibilidade o suficiente à necessidade. Por exemplo, você pode definir dois tipos de estrutura para esse propósito, uma para Schroedinger e uma para Dirac. Cada qual seria suficientemente geral e conterá todas as peças necessárias com todos os rótulos corretos.</p>
+<p>O ponto é: não é necessário ser «um tipo abstrato que engloba tudo» ou tal. Há opções naturais e viáveis entre «tudo» e «nada».</p>
 </section>
 <section id="private-module-variables">
 <h2>Variáveis Privadas do Módulo<a class="headerlink" href="#private-module-variables" title="Permalink to this heading">#</a></h2>
-<p>Hide the variable arguments completely by passing in module variables.</p>
+<p>Esconde completamente os argumentos das variáveis ao passar variáveis de módulos.</p>
 <p>Cálculo de Integrais:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span>
@@ -959,10 +954,7 @@ There are natural and viable options between «all» and «none».</p>
 <span class="k">end module</span>
 </pre></div>
 </div>
-<p>However it is best to avoid such global variables – even though really
-just semi-global – if possible. But sometimes it may be the simplest
-cleanest way. However, with a bit of thought, usually there is a better,
-safer, more explicit way along the lines of II or IV.</p>
+<p>Contudo é melhor evitar variáveis globais – embora seja apenas semi-global – se possível. Mas algumas vezes é a forma mais simples e limpa. Contudo, com um pouco de avaliação, há geralmente uma forma melhor, mais seguro e mais explícita ao longo das linhas II ou IV.</p>
 </section>
 <section id="nested-functions">
 <h2>Funções Aninhadas<a class="headerlink" href="#nested-functions" title="Permalink to this heading">#</a></h2>
@@ -1010,9 +1002,8 @@ safer, more explicit way along the lines of II or IV.</p>
 </div>
 </section>
 <section id="using-type-c-ptr-pointer">
-<h2>Using type(c_ptr) Pointer<a class="headerlink" href="#using-type-c-ptr-pointer" title="Permalink to this heading">#</a></h2>
-<p>In C, one would use the <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*</span></code> pointer. In Fortran, one can use
-<code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> for exactly the same purpose.</p>
+<h2>Usando Ponteiro type(c_ptr)<a class="headerlink" href="#using-type-c-ptr-pointer" title="Permalink to this heading">#</a></h2>
+<p>Em C, usa-se o ponteiro <code class="docutils literal notranslate"><span class="pre">void*</span></code>. Em Fortran, pode-se usar <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> para o mesmo propósito.</p>
 <p>Cálculo de Integrais:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span>
@@ -1077,23 +1068,12 @@ safer, more explicit way along the lines of II or IV.</p>
 <span class="k">end module</span>
 </pre></div>
 </div>
-<p>As always, with the advantages of such re-casting, as Fortran lets you
-do if you really want to, come also the disadvantages that fewer
-compile- and run-time checks are possible to catch errors; and with
-that, inevitably more leaky, bug-prone code. So one always has to
-balance the costs and benefits.</p>
-<p>Usually, in the context of scientific programming, where the main thrust
-is to represent and solve precise mathematical formulations (as opposed
-to create a GUI with some untold number of buttons, drop-downs, and
-other interface elements), simplest, least bug-prone, and fastest is to
-use one of the previous approaches.</p>
+<p>Como sempre, com as vantagens de tal reconversão, como Fortran te permite fazer o que você quer fazer, vem as desvantagens que os checadores em tempo de compilação e execução conseguem capturar erros; e com isso, código com mais bugs. Então busque balancear os custos e os benefícios.</p>
+<p>Geralmente, no contexto de programação científica, onde o foco principal é representar e solucionar formulações matemáticas (em oposição à criar GUIs com vários butões, drop-downs, e outros elementos de interface), mais simples, menos suscetível a erros, e mais rápido é usar uma das abordagens anteriores.</p>
 </section>
 <section id="transfer-intrinsic-function">
 <h2>Função Intrínseca transfer()<a class="headerlink" href="#transfer-intrinsic-function" title="Permalink to this heading">#</a></h2>
-<p>Before Fortran 2003, the only way to do type casting was using the
-<code class="docutils literal notranslate"><span class="pre">transfer</span></code> intrinsic function. It is functionally equivalent to the
-method V, but more verbose and more error prone. It is now obsolete and
-one should use the method V instead.</p>
+<p>Antes do Fortran 2003, a única forma de realizar conversão de tipos era usando a função intrínseca <code class="docutils literal notranslate"><span class="pre">transfer</span></code>. É funcionalmente equivalente ao método V, mas mais verboso e mais suscetível à erros. Esse método é agora obsoleto e deve-se usar o método V.</p>
 <p>Exemplos:</p>
 <p><a class="reference external" href="http://jblevins.org/log/transfer">http://jblevins.org/log/transfer</a></p>
 <p><a class="reference external" href="http://jblevins.org/research/generic-list.pdf">http://jblevins.org/research/generic-list.pdf</a></p>
@@ -1136,11 +1116,7 @@ one should use the method V instead.</p>
 <span class="k">end module</span>
 </pre></div>
 </div>
-<p>The abstract type prescribes exactly what the integration routine needs,
-namely a method to evaluate the function, but imposes nothing else on
-the user. The user extends this type, providing a concrete
-implementation of the eval type bound procedure and adding necessary
-context data as components of the extended type.</p>
+<p>O tipo abstrato prescreve exatamente o que a rotina de integração necessita, isto é, um método que avalie a função, mas imponha mais nada ao usuário. O usuário estende esse tipo, provendo uma implementação concreta do procedimento vinculado ao tipo de avaliação e adicionando dados de contexto necessário como componentes do tipo estendido.</p>
 <p>Uso:</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">example_usage</span>
 
@@ -1180,9 +1156,8 @@ context data as components of the extended type.</p>
 </div>
 </section>
 <section id="complete-example-of-void-vs-type-c-ptr-and-transfer">
-<h2>Complete Example of void * vs type(c_ptr) and transfer()<a class="headerlink" href="#complete-example-of-void-vs-type-c-ptr-and-transfer" title="Permalink to this heading">#</a></h2>
-<p>Here are three equivalent codes: one in C using <code class="docutils literal notranslate"><span class="pre">void</span> <span class="pre">*</span></code> and two codes
-in Fortran using <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> and <code class="docutils literal notranslate"><span class="pre">transfer()</span></code>:</p>
+<h2>Exemplo completo do void * vs type(c_ptr) e transfer()<a class="headerlink" href="#complete-example-of-void-vs-type-c-ptr-and-transfer" title="Permalink to this heading">#</a></h2>
+<p>Aqui há três códigos equivalente: um em C usando <code class="docutils literal notranslate"><span class="pre">void*</span></code> e dois códigos em Fortran usando <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> e <code class="docutils literal notranslate"><span class="pre">transfer()</span></code>:</p>
 <table class="docutils align-default">
 <thead>
 <tr class="row-odd"><th class="head"><p>Linguagem  </p></th>
@@ -1205,14 +1180,8 @@ in Fortran using <code class="docutils literal notranslate"><span class="pre">ty
 </tr>
 </tbody>
 </table>
-<p>The C code uses the standard C approach for writing extensible libraries
-that accept callbacks and contexts. The two Fortran codes show how to do
-the same. The <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> method is equivalent to the C version and
-that is the approach that should be used.</p>
-<p>The <code class="docutils literal notranslate"><span class="pre">transfer()</span></code> method is here for completeness only (before Fortran
-2003, it was the only way) and it is a little cumbersome, because the
-user needs to create auxiliary conversion functions for each of his
-types. As such, the <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> method should be used instead.</p>
+<p>O código em C usa a abordagem do padrão C para escrever bibliotecas extensíveis que usam callbacks e contextos. O dois códigos Fortran mostram como fazer o mesmo. O método <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> é equivalente à versão C e essa é a abordagem que deve ser usada.</p>
+<p>O método <code class="docutils literal notranslate"><span class="pre">transfer()</span></code> está aqui apenas para complementação (antes do Fortran 2003, esse era o único jeito) e é um pouco complexo, porque o usuário precisa criar funções de conversão auxiliares para cada tipo. Assim sendo, o método <code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code> deve ser usado.</p>
 </section>
 </section>
 
