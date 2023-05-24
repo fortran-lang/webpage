@@ -36,17 +36,20 @@ WRITE() and PRINT() when each statement completes:
 ```
 
 produces:
-x=11
 
-    y=22
+```text
+   x=11
 
-````
+   y=22
+```
+
 Alternatively, a "/" descriptor in a format is used to generate a
 newline on the output. For example:
+
 ```fortran
    write(*,'(a,1x,i0,/,a)') 'x =',11,'is the answer'
    end
-````
+```
 
 produces:
 
