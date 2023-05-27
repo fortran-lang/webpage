@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-29 16:02+0200\n"
-"PO-Revision-Date: 2023-05-26 14:51+0000\n"
+"PO-Revision-Date: 2023-05-29 20:49+0000\n"
 "Last-Translator: Nathan Gurgel <nathan_gurgel@hotmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pt/>\n"
@@ -4779,6 +4779,12 @@ msgid ""
 "added a dependency for the object files on the `Makefile` itself, in case you"
 " change the compiler, this will allow you to safely rebuild."
 msgstr ""
+"Além disso, nós mudamos um pouco a regra de build para os arquivos de objeto "
+"para garantir a inserção do sufixo `.o` ao invés de substitui-lo. Perceba "
+"que nós ainda precisamos definir explicitamente as interdependências no "
+"`Makefile`. Nós também precisamos adicionar uma dependência para os arquivo "
+"de objeto no próprio `Makefile`, em caso de mudar o compilador, isso "
+"permitirá o rebuild com segurança."
 
 #: ../../source/learn/building_programs/build_tools.md:261
 msgid ""
@@ -4786,6 +4792,9 @@ msgid ""
 "you plan to use `make` more extensively, we have compiled a few tips for you "
 "as well."
 msgstr ""
+"Agora você sabe o suficiente sobre `make` para usá-lo na construção de "
+"pequenos projetos. Caso você planeje usar `make` de maneira mais extensiva, "
+"nós compilamos algumas dicas para você."
 
 #: ../../source/learn/building_programs/build_tools.md:266
 msgid ""
@@ -4795,6 +4804,11 @@ msgid ""
 "not feel confident working with `make`, but explicitly declare all variables "
 "and rules."
 msgstr ""
+"Nesse guia, evitamos e desabilitamos várias funcionalidades `make` comuns "
+"usadas que podem ser particularmente problemáticas se não usadas "
+"corretamente, nós recomendamos fortemente que se mantenha longe de regras "
+"internas e variáveis se você não se sentir confiante ao trabalhar com `make`"
+", mas explicitamente declarar todas as variáveis e regras."
 
 #: ../../source/learn/building_programs/build_tools.md:271
 msgid ""
@@ -4804,6 +4818,12 @@ msgid ""
 "therefore not used alone but combined with other tools to generate the "
 "`Makefile` completely or in parts."
 msgstr ""
+"Você descobrirá que o `make` é uma ferramenta capacitada para automatizar "
+"curtos fluxos de trabalho interdependentes e para realizar o build de "
+"pequenos projetos. Para projetos grandes, você provavelmente irá se "
+"encontrar com algumas limitações. Geralmente, `make` não é usada sozinha mas "
+"combinada com outras ferramentas para gerar o `Makefile` completamente ou em "
+"partes."
 
 #: ../../source/learn/building_programs/build_tools.md:278
 msgid "Recursively expanded variables"
@@ -4817,24 +4837,36 @@ msgid ""
 "defined as rules, which are expanded at runtime, rather than being defined "
 "while parsing."
 msgstr ""
+"Comumente visto em vários projetos são variáveis expandidas recursivamente ("
+"declaradas com `=` ao invés de `:=`). Expansão recursiva de suas variáveis "
+"permite declarações fora de ordem e outros truques legais com `make`, já que "
+"eles são definidas como regras, os quais são expandidas em tempo de "
+"execução, ao invés de serem definidas durante interpretação."
 
 #: ../../source/learn/building_programs/build_tools.md:285
 msgid ""
 "For example, declaring and using your Fortran flags with this snippet will "
 "work completely fine:"
 msgstr ""
+"Por exemplo, declarando e usando suas flags Fortran com esse trecho de "
+"código irá funcionar completamente bem:"
 
 #: ../../source/learn/building_programs/build_tools.md:297
 msgid ""
 "You should find the expected (or maybe unexpected) printout after running "
 "`make`"
 msgstr ""
+"Você deve ver a saída esperada (ou talvez inesperada) após usar o comando "
+"`make`"
 
 #: ../../source/learn/building_programs/build_tools.md:303
 msgid ""
 "appending with `+=` to an undefined variable will produce a recursively "
 "expanded variable with this state being inherited for all further appending."
 msgstr ""
+"adicionar com `+=` a uma variável indefinida irá produzir uma variável "
+"recursivamente expandida com esse estado sendo herdado para todas as futuras "
+"adições."
 
 #: ../../source/learn/building_programs/build_tools.md:306
 msgid ""
@@ -4843,16 +4875,21 @@ msgid ""
 "your compiler, there is little reason to actually use the recursive expansion"
 " at all."
 msgstr ""
+"Enquanto parece uma funcionalidade interessante de usar, ele leva a "
+"resultados surpreendes e inesperados. Geralmente, quando definindo variáveis "
+"como o seu compilador, há pouca razão para se utilizar a expansão recursiva."
 
 #: ../../source/learn/building_programs/build_tools.md:310
 msgid "The same can easily be achieved using the `:=` declaration:"
-msgstr ""
+msgstr "O mesmo pode ser facilmente obtido usando a declaração `:=`:"
 
 #: ../../source/learn/building_programs/build_tools.md:322
 msgid ""
 "always think of a `Makefile` as a whole set of rules, it must be parsed "
 "completely before any rule can be evaluated."
 msgstr ""
+"sempre pense no `Makefile` com um grande conjunto de regras, ele sempre deve "
+"ser interpretado completamente antes de qualquer regra ser avaliada."
 
 #: ../../source/learn/building_programs/build_tools.md:325
 msgid ""
@@ -4860,6 +4897,9 @@ msgid ""
 "done carefully, of course. It is important to be aware of the differences "
 "between the two kinds and the respective implications."
 msgstr ""
+"Você sempre pode usar qualquer tipo de variável que preferir, mesclá-las "
+"deve ser feito com parcimônia, claro. É importante estar atento às "
+"diferenças entre dois tipos e as respectivas implicações."
 
 #: ../../source/learn/building_programs/build_tools.md:329
 msgid "Comments and whitespace"
@@ -4874,6 +4914,12 @@ msgid ""
 "file names. If you encounter such case, renaming the file is possibly the "
 "easiest solution at hand."
 msgstr ""
+"Há algumas advertências com espaços em branco e comentários, os quais podem "
+"aparecer de tempos em tempos quando usando `make`. Primeiro `make` não "
+"conhece qualquer tipo de dado com exceção de strings e o separator padrão é "
+"só um espaço. Isso significa que `make` dará algumas dificuldades para fazer "
+"o build de um projetos que tem espaço no nome dos arquivos. Se você "
+"encontrar tal caso, renomear o arquivo provavelmente é a solução mais fácil."
 
 #: ../../source/learn/building_programs/build_tools.md:338
 msgid ""
@@ -4881,10 +4927,13 @@ msgid ""
 "`make` will happily carry it along and it does in fact make a difference when"
 " comparing strings in `make`."
 msgstr ""
+"Outro problema comum é buscar e encontrar espaços em branco, uma vez "
+"introduzido, `make` irá carregar isso por todo o caminho e isso de fato faz "
+"diferença quando comparando strings em `make`."
 
 #: ../../source/learn/building_programs/build_tools.md:342
 msgid "Those can be introduced by comments like"
-msgstr ""
+msgstr "Isso pode ser introduzido por comentários como"
 
 #: ../../source/learn/building_programs/build_tools.md:350
 msgid ""
@@ -4892,6 +4941,9 @@ msgid ""
 "spaces are now part of the variable content. Run `make` and check that this "
 "is indeed the case:"
 msgstr ""
+"Enquanto o comentário irá ser corretamente removido pelo `make`, os dois "
+"espaços agora são parte do conteúdo da variável. Use o comando `make` e "
+"cheque se esse é de fato o caso:"
 
 #: ../../source/learn/building_programs/build_tools.md:359
 msgid ""
@@ -4899,6 +4951,9 @@ msgid ""
 " with the `strip` function instead. Alternatively, you could try to `join` "
 "the strings."
 msgstr ""
+"Para resolver esse problema, você pode mover o comentário, ou cortar os "
+"espaços em branco com a função `strip`. Alternativamente, você pode tentar "
+"usar `join` nas strings."
 
 #: ../../source/learn/building_programs/build_tools.md:370
 msgid ""
@@ -4906,10 +4961,13 @@ msgid ""
 "therefore, it is prudent to pay extra attention to whitespace and comments "
 "when writing and using `make`."
 msgstr ""
+"Em todo caso, nenhuma dessas soluções fará o `Makefile` mais legível, "
+"portanto, é prudente de ter uma atenção extra à espaços em branco e "
+"comentário quando escrevendo e usando `make`."
 
 #: ../../source/learn/building_programs/build_tools.md:374
 msgid "The meson build system"
-msgstr ""
+msgstr "O sistema de build meson"
 
 #: ../../source/learn/building_programs/build_tools.md:376
 msgid ""
@@ -4920,6 +4978,14 @@ msgid ""
 "will deal for you with how and generate build files for a low-level build "
 "system."
 msgstr ""
+"Após ter aprendido o básico do `make`, o qual podemos chamar de sistema de "
+"geração de build de baixo nível, agora introduziremos `meson`, um sistema de "
+"geração de build de alto nível. Enquanto você especifica em um sistema de "
+"build de baixo nível para realizar o build do seu programa, você pode usar "
+"um sistema de build de alto nível para especificar o que irá para a geração. "
+"Um sistema de geração de build de alto nível irá lidar para você como gerar "
+"o arquivo de sistema de build para sistemas de geração de build de baixo "
+"nível."
 
 #: ../../source/learn/building_programs/build_tools.md:383
 msgid ""
@@ -4927,10 +4993,14 @@ msgid ""
 "`meson` because it is constructed to be particularly user friendly. The "
 "default low-level build-system of `meson` is called `ninja`."
 msgstr ""
+"Há vários sistemas de geração de build de alto nível disponíveis, mas iremos "
+"no `meson` porque ele é construído para ser particularmente \"user friendly\""
+". O sistema de geração de build de baixo nível padrão do `meson` é chamado "
+"de `ninja`."
 
 #: ../../source/learn/building_programs/build_tools.md:387
 msgid "Let's have a look at a complete `meson.build` file:"
-msgstr ""
+msgstr "Vamos olhar no arquivo `meson.build` completo:"
 
 #: ../../source/learn/building_programs/build_tools.md:396
 msgid ""
@@ -4938,6 +5008,9 @@ msgid ""
 "system with `meson setup build`, you should see output somewhat similar to "
 "this"
 msgstr ""
+"E agora estamos prontos, a próxima etapa é configurar o nosso sistema de "
+"geração de build de baixo nível com `meson setup build`, você deverá ver uma "
+"saída parecida com isso"
 
 #: ../../source/learn/building_programs/build_tools.md:414
 msgid ""
@@ -4945,6 +5018,9 @@ msgid ""
 " we could have provided in a `Makefile`, let's run the build with `ninja -C "
 "build`, which should show something like"
 msgstr ""
+"A informação provida até esse ponto já é mais detalhada do que qualquer "
+"coisa que provemos em um `Makefile`, agora vamos rodar o build com `ninja-C "
+"build`, o qual deve mostrar algo como"
 
 #: ../../source/learn/building_programs/build_tools.md:423
 msgid ""
@@ -4953,6 +5029,10 @@ msgid ""
 "`Makefile` (including the dependency), yet we did not have to specify them, "
 "have a look at your `meson.build` file again:"
 msgstr ""
+"Encontre e teste seu programa em `build/my_prog` para garantir que funciona "
+"corretamente. Notamos que os passos que `ninja` realizou são os mesmos que "
+"programaríamos em um `Makefile` (incluindo a dependência), ainda assim nós "
+"não tivemos que especificá-los, olhe o arquivo `meson.build` novamente:"
 
 #: ../../source/learn/building_programs/build_tools.md:433
 msgid ""
@@ -4962,6 +5042,11 @@ msgid ""
 "We had not to tell `meson` how to build the project, it figured this out by "
 "itself."
 msgstr ""
+"Nós especificamos somente que temos um projeto Fortran (que por sua vez "
+"requer uma certa versão do `meson` para suporte à Fortran) e dissemos ao "
+"`meson` para realizar o build do executável `my_prog` dos arquivos `tabulate."
+"f90` e `functions.f90`. Não dissemos ao `meson` como realizar o build do "
+"projeto, ele descobriu por si só."
 
 #: ../../source/learn/building_programs/build_tools.md:441
 msgid ""
@@ -4970,6 +5055,11 @@ msgid ""
 " or to cross-compile your project for other platforms. Similarly, the "
 "`meson.build` file is portable and will work on different platforms as well."
 msgstr ""
+"`meson` é um sistema de geração de build cross plataforma, o projeto que "
+"você especificou para o seu programa pode ser usado para compilar binários "
+"para o seu sistema operacional nativo ou cross compilar seu projeto para "
+"outras plataformas. Semelhante, o arquivo `meson.build` é portável e irá "
+"funcionar também em diferentes plataformas."
 
 #: ../../source/learn/building_programs/build_tools.md:448
 msgid ""
@@ -4977,16 +5067,20 @@ msgid ""
 "href=\"https://mesonbuild.com/\" target=\"_blank\" rel=\"noopener\">meson-"
 "build webpage</a>."
 msgstr ""
+"A documentação do `meson` pode ser encontrada em <a href=\"https://mesonbuild"
+".com/\" target=\"_blank\" rel=\"noopener\">meson-build webpage</a>."
 
 #: ../../source/learn/building_programs/build_tools.md:451
 msgid "Creating a CMake project"
-msgstr ""
+msgstr "Criando um projeto CMake"
 
 #: ../../source/learn/building_programs/build_tools.md:453
 msgid ""
 "Similar to `meson` CMake is a high-level build system as well and commonly "
 "used to build Fortran projects."
 msgstr ""
+"Semelhante ao `meson`, CMake é também um sistema de geração de build de alto "
+"nível e comumente usado para realizar o build de projetos Fortran."
 
 #: ../../source/learn/building_programs/build_tools.md:457
 msgid ""
@@ -4995,10 +5089,14 @@ msgid ""
 "that you can do almost everything with CMake, but your CMake build files can "
 "also become as complex as the program you are building."
 msgstr ""
+"CMake segue uma estratégia levemente diferente e te fornece uma linguagem de "
+"programação completa para criar seus arquivos de build. Isso tem a vantagem "
+"de que você pode fazer quase tudo com CMake, mas seus arquivos de build "
+"CMake poderá ficar tão complexo quanto o programa que você está construindo."
 
 #: ../../source/learn/building_programs/build_tools.md:464
 msgid "Start by creating the file `CMakeLists.txt` with the content"
-msgstr ""
+msgstr "Comece criando um arquivo `CMakeLists.txt` com o conteúdo"
 
 #: ../../source/learn/building_programs/build_tools.md:472
 msgid ""
@@ -5006,6 +5104,9 @@ msgid ""
 "configure our low-level build files with `cmake -B build -G Ninja`, you "
 "should see output similar to this"
 msgstr ""
+"Semelhante ao `meson` nós já terminamos com nosso arquivo de build CMake. "
+"Configuramos os arquivos de geração de build de baixo nível com `cmake -B "
+"build -G Ninja`, você deverá ver uma saída semelhante a isto"
 
 #: ../../source/learn/building_programs/build_tools.md:486
 msgid ""
@@ -5015,12 +5116,19 @@ msgid ""
 " environment variable `FC=gfortran` rerunning should show the correct "
 "compiler name now"
 msgstr ""
+"você pode ficar surpreso que o CMake tenta usar o compilador `f95`, por "
+"sorte isso é só um link simbólico para `gfortran` na maioria dos sistemas e "
+"não o compilador `f95` de fato. Para fazer o CMake dar melhor retorno você "
+"pode exportar a variável de ambiente `FC=gfortran` rodar novamente deverá "
+"mostrar o nome correto do compilador agora"
 
 #: ../../source/learn/building_programs/build_tools.md:502
 msgid ""
 "In a similar manner you could use your Intel Fortran compiler instead to "
 "build your project (set `FC=ifort`)."
 msgstr ""
+"De maneira similar, você pode usar o compilador Intel Fortran para realizar "
+"o build do seu projeto (use `FC=ifort`)."
 
 #: ../../source/learn/building_programs/build_tools.md:505
 msgid ""
@@ -5028,6 +5136,10 @@ msgid ""
 "is platform specific, we will just use `ninja` since we already used it "
 "together with `meson`. As before, build your project with `ninja -C build`:"
 msgstr ""
+"CMake dá suporte para diversos arquivos de geração de build de baixo nível, "
+"já que o padrão é específica de plataforma, iremos usar `ninja` já que já "
+"usamos com o `meson`. Como antes, realize o build do seu projeto com `ninja -"
+"C build`:"
 
 #: ../../source/learn/building_programs/build_tools.md:516
 msgid ""
@@ -5037,12 +5149,20 @@ msgid ""
 "of building a project. Fortunately, we do not have to concern ourselves but "
 "have our build system handle those details for us."
 msgstr ""
+"Encontre e teste seu programa em `build/my_prog` para garantir que está "
+"funcionando corretamente. Os passos que `ninja` executou são um tanto "
+"diferentes por que geralmente há mais de um jeito de escrever arquivos de "
+"build de baixo nível para realizar as tarefas de gerar o build do projeto. "
+"Felizmente, nós não precisamos nos preocupar já que o sistema de geração de "
+"build dá conta desses detalhes por nós."
 
 #: ../../source/learn/building_programs/build_tools.md:522
 msgid ""
 "Finally, we will shortly recap on our complete `CMakeLists.txt` to specify "
 "our project:"
 msgstr ""
+"Finalmente, vamos recapitular brevemente nosso `CMakeLists.txt` completo "
+"para especificar nosso projeto:"
 
 #: ../../source/learn/building_programs/build_tools.md:531
 msgid ""
@@ -5051,6 +5171,11 @@ msgid ""
 " knows the details how to build the executable from the specified sources, so"
 " we do not have to worry about the actual steps in the build process."
 msgstr ""
+"Nós especificamos que nós temos um projeto Fortran e dissemos ao CMake para "
+"criar um executável `my_prog` a partir dos arquivos `tabulate.f90` e "
+"`functions.f90`. CMake sabe os detalhes de como gerar o build do executável "
+"a partir das fontes especificadas, assim não precisamos nos preocupar sobre "
+"o passos no processo de geração de build."
 
 #: ../../source/learn/building_programs/build_tools.md:537
 msgid ""
@@ -5061,11 +5186,17 @@ msgid ""
 "While it covers all functionality of CMake, it sometimes covers them only "
 "very briefly."
 msgstr ""
+"Referência oficial do CMake pode ser encontrada na <a href=\"https://cmake."
+"org/cmake/help/latest/\", target=\"\\_blank\" rel=\"noopener\">CMake "
+"webpage</a>. Ela é organizada em manuais, as quais estão disponíveis também "
+"na sua instalação local do CMake, podendo ser acessada usando `man cmake`. "
+"Enquanto que cobre todas as funcionalidades do CMake, algumas vezes irá "
+"abordar de forma bem breve."
 
 #: ../../source/learn/building_programs/compiling_source.md:1
 #: ../../source/learn/building_programs/index.md:47
 msgid "Compiling the source code"
-msgstr ""
+msgstr "Compilando o código fonte"
 
 #: ../../source/learn/building_programs/compiling_source.md:3
 msgid ""
@@ -5075,6 +5206,11 @@ msgid ""
 "compilers will produce different object codes from the same source code and "
 "the naming conventions are different."
 msgstr ""
+"O primeiro passo no processo de build é compilar o código fonte. A saída "
+"nesse passo é geralmente conhecida como código objeto - um conjunto de "
+"instruções para o computador gerado a partir de código fonte legível por "
+"humanos. Compiladores diferentes irão produzir códigos objeto diferentes a "
+"partir do mesmo código fonte e as convenções de nomeação são diferentes."
 
 #: ../../source/learn/building_programs/compiling_source.md:9
 msgid "The consequences:"
@@ -5087,6 +5223,10 @@ msgid ""
 "program may be built from many different source files and the compiled pieces"
 " have to cooperate."
 msgstr ""
+"Se você usar um compilador em particular para um arquivo fonte, você "
+"precisará usar o mesmo compilador (ou um compatível) para todas as outras "
+"partes. Afinal de contas, um programa pode ser construído a partir de "
+"diferentes arquivos fonte e as partes compiladas devem cooperar."
 
 #: ../../source/learn/building_programs/compiling_source.md:15
 msgid ""
@@ -5094,6 +5234,9 @@ msgid ""
 "extension like \".o\" or \".obj\". It is these object files that are the "
 "input for the next step: the link process."
 msgstr ""
+"Cada arquivo fonte será compilador e o resultado é armazenado em um arquivo "
+"com a extensão \".o\" ou \".obj\". Esse é os arquivos objeto que são a "
+"entrada para o próximo passo: o processo de link."
 
 #: ../../source/learn/building_programs/compiling_source.md:19
 msgid ""
@@ -5103,6 +5246,11 @@ msgid ""
 "years they have been extended with numerous options to customise the "
 "compilation process and the final program that will be built."
 msgstr ""
+"Compiladores são pedaços complexos de software: eles tem que entender a "
+"linguagem em muito mais detalhes e profundidade que o programador médio. "
+"Eles também precisam entender o funcionamento interno do computador. E por "
+"fim, através de anos eles foram estendidos com numerosas opções para "
+"customizar o processo de compilação e o programa final ser construído."
 
 #: ../../source/learn/building_programs/compiling_source.md:26
 msgid ""
@@ -5111,12 +5259,18 @@ msgid ""
 "consists of one source file, you run the following command, assuming the "
 "source code is stored in the file \"hello.f90\":"
 msgstr ""
+"Mas os básicos são simples. Por exemplo, o compilador gfortran, parte da "
+"coleção de compiladores GNU. Para compilar um simples programa como o acima, "
+"que consiste de um arquivo fonte, você pode executar o seguinte comando, "
+"assumindo que o código fonte é armazenado no arquivo \"hello.f90\":"
 
 #: ../../source/learn/building_programs/compiling_source.md:35
 msgid ""
 "This results in a file \"hello.o\" (as the gfortran compiler uses \".o\" as "
 "the extension for the object files)."
 msgstr ""
+"Isso resultado em um arquivo \"hello.o\" (o compilador gfortran usa \".o\" "
+"como extensão dos arquivos objeto)."
 
 #: ../../source/learn/building_programs/compiling_source.md:38
 msgid ""
@@ -5124,10 +5278,15 @@ msgid ""
 "it out, then the default action of the compiler is to compile the source file"
 " and start the linker to build the actual executable program. The command:"
 msgstr ""
+"A opção \"-c\" significa: apenas compile os arquivos fonte. Se você não "
+"usar, a ação padrão do compilador é compilar o arquivo fonte e iniciar o "
+"linker para gerar a build do programa executável presente. O comando:"
 
 #: ../../source/learn/building_programs/compiling_source.md:47
 msgid "results in an executable file, \"a.out\" on Linux or \"a.exe\" on Windows."
 msgstr ""
+"resulta em um arquivo executável, \"a.out\" no Linux our \"a.exe\" no "
+"Windows."
 
 #: ../../source/learn/building_programs/compiling_source.md:50
 msgid "Some remarks:"
@@ -5141,10 +5300,17 @@ msgid ""
 "file or an executable program. For instance, if the word \"program\" was "
 "inadvertently typed as \"prgoram\":"
 msgstr ""
+"O compilador pode reclamar do conteúdo no arquivo fonte, se achar algo de "
+"errado com ele - um erro de digitação ou uma palavra chave não conhecida. "
+"Nesse caso, oo processo de compilação quebrará e você não conseguirá o "
+"arquivo objeto ou o programa executável. Por exemplo, se a palavra \"program"
+"\" for digitada erroneamente como \"prgoram\":"
 
 #: ../../source/learn/building_programs/compiling_source.md:73
 msgid "Using this compilation report you can correct the source code and try again."
 msgstr ""
+"Usando o relatório de compilação você pode corrigir o código fonte e tentar "
+"novamente."
 
 #: ../../source/learn/building_programs/compiling_source.md:76
 msgid ""
@@ -5153,12 +5319,18 @@ msgid ""
 "link step will complain about a missing \"symbol\", something along these "
 "lines:"
 msgstr ""
+"O passo sem \"-c\" só será sucedido se o código fonte contiver o programa "
+"principal - caracterizado pela declaração `program` no Fortran. Caso "
+"contrário o passo de link irá reclamar de um \"símbolo\" faltante, algo "
+"entre essas linhas:"
 
 #: ../../source/learn/building_programs/compiling_source.md:88
 msgid ""
 "The file \"hello2.f90\" is almost the same as the file \"hello.f90\", except "
 "that the keyword `program` has been replaced by the keyword `subroutine`."
 msgstr ""
+"O arquivo \"hello2.f90\" é quase igual ao arquivo \"hello.f90\", com exceção "
+"que a palavra chave `program` foi substituída pela palavra-chave `subrotina`."
 
 #: ../../source/learn/building_programs/compiling_source.md:91
 msgid ""
@@ -5166,16 +5338,22 @@ msgid ""
 "platform on which it runs. These examples come from the gfortran compiler "
 "running in a Cygwin environment on Windows."
 msgstr ""
+"Os exemplos acima de saída do compilador irão ser de diferentes de acordo "
+"com o compilador e a plataforma que roda. Esses exemplos vem do compilador "
+"gfortran executando em um ambiente Cygwin no Windows."
 
 #: ../../source/learn/building_programs/compiling_source.md:95
 msgid "Compilers also differ in the options they support, but in general:"
 msgstr ""
+"Compiladores irão diferir também nas opções que tem suporte, mas em geral:"
 
 #: ../../source/learn/building_programs/compiling_source.md:97
 msgid ""
 "Options for optimising the code — resulting in faster programs or smaller "
 "memory footprints;"
 msgstr ""
+"Opções para otimizar o código - resultando em programas mais rápidos ou com "
+"menor espaço em memória;"
 
 #: ../../source/learn/building_programs/compiling_source.md:99
 msgid ""
@@ -5183,10 +5361,12 @@ msgid ""
 "before it has been given a value, for instance or checks if some extension to"
 " the language is used;"
 msgstr ""
+"Opções para checar o código fonte - checa se a variável não é usada antes de "
+"dá-la um valor, ou checa se alguma extensão é usada;"
 
 #: ../../source/learn/building_programs/compiling_source.md:102
 msgid "Options for the location of include or module files, see below;"
-msgstr ""
+msgstr "Opções para a locação de arquivo de inclusão ou módulos, veja abaixo;"
 
 #: ../../source/learn/building_programs/compiling_source.md:103
 msgid "Options for debugging."
@@ -5202,22 +5382,24 @@ msgid ""
 "When you distribute your programs, there are a number of options you can "
 "choose from:"
 msgstr ""
+"Quando fornecer seus programas, há uma diversidade de opções que você pode "
+"optar:"
 
 #: ../../source/learn/building_programs/distributing.md:6
 msgid "Distribute the entire source code"
-msgstr ""
+msgstr "Distribuir o código fonte completo"
 
 #: ../../source/learn/building_programs/distributing.md:7
 msgid "Distribute a pre-built executable program"
-msgstr ""
+msgstr "Distribuir um programa executável já compilado"
 
 #: ../../source/learn/building_programs/distributing.md:8
 msgid "Distribute static or dynamic libraries that people can use"
-msgstr ""
+msgstr "Distribuir bibliotecas estáticas e dinâmicas que as pessoas podem usar"
 
 #: ../../source/learn/building_programs/distributing.md:10
 msgid "**Option 1: Distribute the entire source code**"
-msgstr ""
+msgstr "**Opção 1: Distribuir o código fonte completo**"
 
 #: ../../source/learn/building_programs/distributing.md:12
 msgid ""
@@ -5227,10 +5409,15 @@ msgid ""
 "have to have access to suitable compilers. For build systems: see the "
 "previous section."
 msgstr ""
+"De longe o mais - para você como programador - é essa: você deixar para o "
+"usuário realizar o build na própria máquina. Infelizmente, isso significa "
+"que você terá que fazer um sistema de build \"user-friendly\" e usuário terá "
+"que ter aceso aos compiladores adequados. Para sistemas de geração build: "
+"veja a seção anterior."
 
 #: ../../source/learn/building_programs/distributing.md:18
 msgid "**Option 2: Distribute a pre-built executable program**"
-msgstr ""
+msgstr "**Opção 2: Distribuir um programa executável já compilado**"
 
 #: ../../source/learn/building_programs/distributing.md:20
 msgid ""
@@ -5238,6 +5425,10 @@ msgid ""
 "input, will still need to come with the various run-time libraries and will "
 "be specific to the operating system/environment it was built for."
 msgstr ""
+"Um programa pré-compilado que não precisa ser customizado, a não ser através "
+"de suas entradas, ainda precisará ser distribuído com várias bibliotecas "
+"usadas em tempo de execução ou serão específicas ao sistema operacional/"
+"ambiente que foi gerado o build para ele."
 
 #: ../../source/learn/building_programs/distributing.md:24
 msgid ""
@@ -5246,34 +5437,51 @@ msgid ""
 "to ask the user to install that compiler on their system. In the case of "
 "Windows: the Cygwin environment may be called for."
 msgstr ""
+"O conjunto de bibliotecas executadas em tempo de execução diferem por "
+"sistema operacional e versão do compilador. Para uma compilador disponível "
+"gratuitamente como o fortran, a coisa mais fácil é solicitar ao usuário que "
+"instale o compilador no seu sistema. No caso do Windows: o ambiente Cygwin é "
+"uma opção."
 
 #: ../../source/learn/building_programs/distributing.md:29
 msgid ""
 "Alternatively, you can supply copies of the run-time libraries together with "
 "your program. Put them in the directory where they can be found at run-time."
 msgstr ""
+"Alternativamente, você pode fornecer cópias das bibliotecas usadas em tempo "
+"de execução junto com seu programa. Coloque-os no diretório onde podem ser "
+"encontradas em tempo de execução."
 
 #: ../../source/learn/building_programs/distributing.md:32
 msgid ""
 "Note: On Windows, the Intel Fortran comes with a set of _redistributable_ "
 "libraries. These will need to be made available."
 msgstr ""
+"Nota: No Windows, o Intel Fortran vem com um conjunto de bibliotecas "
+"_redistribuíveis_. Elas precisam estar disponíveis."
 
 #: ../../source/learn/building_programs/distributing.md:35
 msgid ""
 "In general: use a tool like \"ldd\" or \"dependency walker\" to find out what"
 " libraries are required and consult the documentation of the compiler."
 msgstr ""
+"No geral: usa uma ferramenta como \"Idd\" ou \"dependency walker\" para "
+"encontrar quais bibliotecas são requisitadas e consulte a documentação do "
+"compilador."
 
 #: ../../source/learn/building_programs/distributing.md:38
 msgid ""
 "If your program does allow customisation, consider using dynamic libraries "
 "for this. More is said about this below."
 msgstr ""
+"Se seu programa permite customização, considere usar bibliotecas dinâmicas "
+"para isso. Mais sobre isso é dito abaixo."
 
 #: ../../source/learn/building_programs/distributing.md:41
 msgid "**Option 3: Distribute static or dynamic libraries that people can use**"
 msgstr ""
+"**Opção 3: Distribuir bibliotecas estáticas ou dinâmicas que as pessoas "
+"possam usar**"
 
 #: ../../source/learn/building_programs/distributing.md:43
 msgid ""
@@ -5282,6 +5490,11 @@ msgid ""
 "routines in the proper way, but they do not need to know much about the build"
 " system you used. You will have to deal with the run-time libraries, though."
 msgstr ""
+"Essa opção é uma combinação das duas primeiras. Isso coloca algum trabalho "
+"para o usuário, já que eles precisam criar o programa principal que chama "
+"suas rotinas de um jeito apropriado, mas eles não precisam saber muito sobre "
+"o sistema de geração de build que você usou. De toda forma, você vai "
+"precisar lidar com as bibliotecas usadas em tempo de execução."
 
 #: ../../source/learn/building_programs/distributing.md:48
 msgid ""
@@ -5289,28 +5502,36 @@ msgid ""
 " to supply the module intermediate files. These files are compiler-specific, "
 "but so are the static libraries you build."
 msgstr ""
+"Se você escolher essa opção, além das bibliotecas compiladas, você precisará "
+"fornecer também os arquivos de módulo intermediários. Esses arquivos são "
+"específicos de compilador, mas suas bibliotecas estáticas também são."
 
 #: ../../source/learn/building_programs/distributing.md:52
 msgid "Distributing the tabulation program"
-msgstr ""
+msgstr "Distribuindo o programa de tabulação"
 
 #: ../../source/learn/building_programs/distributing.md:54
 msgid ""
 "As shown above, the tabulation program can be built with the user-defined "
 "function in a dynamic library. This enables you to:"
 msgstr ""
+"Como mostrado acima, o programa de tabulação pode ser construído com a "
+"função definida pelo usuário em uma biblioteca dinâmica. Isso permite que "
+"você:"
 
 #: ../../source/learn/building_programs/distributing.md:57
 msgid "Ship the executable (with the appropriate run-time libraries)"
 msgstr ""
+"Distribua o executável (com as bibliotecas usadas em tempo de execução "
+"apropriadas)"
 
 #: ../../source/learn/building_programs/distributing.md:58
 msgid "Provide a skeleton version of the module, something like:"
-msgstr ""
+msgstr "Forneça uma versão base do módulo, algo como:"
 
 #: ../../source/learn/building_programs/distributing.md:76
 msgid "Provide a basic build script with a command like:"
-msgstr ""
+msgstr "Forneça um script básico de geração de build com um comando como:"
 
 #: ../../source/learn/building_programs/distributing.md:82
 msgid "or:"
@@ -5322,16 +5543,21 @@ msgid ""
 "\"functions.dll\" with a function `f` would be accepted, but not necessarily "
 "lead to a successful run."
 msgstr ""
+"Como dito, você não pode garantir que o usuário fez a coisa certa - qualquer "
+"DLL \"functions.dll\" com a função `f` será aceita, mas não necessariamente "
+"levará a uma execução bem sucedida."
 
 #: ../../source/learn/building_programs/distributing.md:92
 msgid ""
 "An alternative set-up would be to change the main program into a subroutine "
 "and have the function as an argument:"
 msgstr ""
+"Uma alternativa de montagem seria trocar o programa principal por uma "
+"subrotina e transformar a função em um argumento:"
 
 #: ../../source/learn/building_programs/distributing.md:114
 msgid "Then provide a skeleton main program:"
-msgstr ""
+msgstr "Então forneça uma programa principal base:"
 
 #: ../../source/learn/building_programs/distributing.md:134
 msgid ""
@@ -5339,11 +5565,14 @@ msgid ""
 "that is passed and that the user has more freedom in the use of the "
 "functionality provided by your library."
 msgstr ""
+"A vantagem é que o compilador pode checar a interface da função que é "
+"passada e o usuário tem mais liberdade no uso da funcionalidade fornecida "
+"pela sua biblioteca."
 
 #: ../../source/learn/building_programs/include_files.md:1
 #: ../../source/learn/building_programs/index.md:47
 msgid "Include files and modules"
-msgstr ""
+msgstr "Incluir arquivos e módulos"
 
 #: ../../source/learn/building_programs/include_files.md:3
 msgid ""
@@ -5354,6 +5583,13 @@ msgid ""
 "directory structure is, you will encounter a situation where the compiler "
 "needs assistance in order to compile a particular source file:"
 msgstr ""
+"Se programa pode estar contido em vários arquivos fonte, todos armazenado no "
+"mesmo diretório ou organizados em alguma árvore de diretórios conveniente. "
+"Os detalhes da organização dependem de gosto pessoal, acordos feitos pelo "
+"grupo de desenvolvedores que você pertença, ou simplesmente a história do "
+"programa. Qualquer que seja a estrutura do diretório, você encontrará uma "
+"situação onde seu compilador precisa de assistência para compilador um "
+"arquivo fonte particular:"
 
 #: ../../source/learn/building_programs/include_files.md:11
 msgid ""
@@ -5364,6 +5600,12 @@ msgid ""
 "files, because they are used in several locations. Quite often the name of "
 "that directory is \"include\"."
 msgstr ""
+"Fortran (e outras linguagens) tem a possibilidade de incluir um arquivo "
+"externo. Enquanto que essa funcionalidade se torna um pouco menos útil com o "
+"advento de módulos, ainda há alguns usos. Frequentemente, \"include files\" "
+"são armazenados em um diretório separados dos diretórios contendo arquivos "
+"fonte, porque eles serão usados em diversos locais. Muito frequente, o nome "
+"desse diretório é \"include\"."
 
 #: ../../source/learn/building_programs/include_files.md:17
 msgid ""
@@ -5373,6 +5615,11 @@ msgid ""
 " able to read the interfaces and variables and what not, and based on this "
 "information, actually compile the source code that uses the various modules."
 msgstr ""
+"Como vimos, compilando o código fonte que define um ou mais módulo, leva ao "
+"compilar gerar os chamados \"arquivos módulo intermediários\" (com a "
+"extensão \".mod\"). O compilador precisa de acesso à esses arquivos para ser "
+"capaz de ler as interfaces e variáveis para assim, baseado nessa informação, "
+"compilar o código fonte que usa vários módulos."
 
 #: ../../source/learn/building_programs/include_files.md:23
 msgid ""
@@ -5380,20 +5627,27 @@ msgid ""
 " module intermediate files are to be found. Suppose we store the two files of"
 " our `tabulate` program in the following directory structure:"
 msgstr ""
+"Compiladores suportam opções como `-I` para indicar onde estão esses "
+"arquivos de inclusão e arquivos de módulo intermediários. Supondo que "
+"armazenamos dois arquivos do nosso programa `tabulate` na seguinte estrutura "
+"de diretórios:"
 
 #: ../../source/learn/building_programs/include_files.md:36
 msgid "Compiling the file \"functions.f90\" with the commands"
-msgstr ""
+msgstr "Compilando o arquivo \"functions.f90\" com os comandos"
 
 #: ../../source/learn/building_programs/include_files.md:43
 msgid "leads to this structure:"
-msgstr ""
+msgstr "leva a esta estrutura:"
 
 #: ../../source/learn/building_programs/include_files.md:55
 msgid ""
 "To successfully compile and subsequently build the program we need to tell "
 "the compiler where it can find the file \"user_functions.mod\":"
 msgstr ""
+"Para compilar com sucesso e subsequentemente realizar o build do programa "
+"nós precisamos dizer ao compilador onde encontrar o arquivo \"user_functions."
+"mod\":"
 
 #: ../../source/learn/building_programs/include_files.md:64
 msgid "The result:"
@@ -5409,6 +5663,9 @@ msgid ""
 " by a space and then the name of the directory, sometimes the directory "
 "should come consecutively."
 msgstr ""
+"Os detalhes diferem por compilador. Algumas vezes a opção `-l` deve ser "
+"seguida de um espaço e então o nome do diretório, outras vezes o diretório "
+"deve vir consecutivamente."
 
 #: ../../source/learn/building_programs/include_files.md:83
 msgid ""
@@ -5420,12 +5677,21 @@ msgid ""
 "`-J../include` (so that the .mod files could all appear in the same "
 "directory)"
 msgstr ""
+"Por padrão os arquivos de módulos intermediários (.mod) são guardados no "
+"mesmo diretórios que os arquivos de objeto. Quando seu código é organizado "
+"em diferentes subdiretórios, eles ficarão espalhados pela árvore de "
+"diretórios, complicando o processo de compilação. Por sorte, muitos "
+"compiladores permitem que você especifique a localização de saída desses "
+"arquivos. Para gfortran é `-J`, por exemplo: `-J../include` (para assim os "
+"arquivos .mod aparecerem no mesmo diretório)"
 
 #: ../../source/learn/building_programs/include_files.md:91
 msgid ""
 "For large programs, consisting of many source files, it is important to think"
 " through what organisation to use."
 msgstr ""
+"Para programas grandes, consistindo em vários arquivos fonte, é importante "
+"pensar qual organização usará."
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/linking_pieces.md:1
@@ -5440,12 +5706,12 @@ msgstr "Bibliotecas em Tempo de Execução"
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/managing_libraries.md:1
 msgid "Managing libraries (static and dynamic libraries)"
-msgstr ""
+msgstr "Gerenciando bibliotecas (bibliotecas estáticas e dinâmicas)"
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/project_make.md:1
 msgid "An introduction to make"
-msgstr ""
+msgstr "Um introdução ao make"
 
 #: ../../source/learn/building_programs/index.md:1
 msgid "Building programs"
@@ -5460,6 +5726,13 @@ msgid ""
 "direct instructions. Two very simple examples of that type of language: "
 "Windows batch files and Linux shell scripts."
 msgstr ""
+"Linguagens como Fortran, C, C++ e Java, para nomear algumas, compartilham "
+"certas características, você escreve o código na sua linguagem de "
+"preferência mas então faz o build do programa executável a partir do código "
+"fonte. Outras linguagens são interpretadas - o código fonte é analisado por "
+"um programa especial e é tomado como instruções diretas. Dois exemplos "
+"simples desse tipo de linguagem: Arquivos batch do Windows e shell scripts "
+"do Linux."
 
 #: ../../source/learn/building_programs/index.md:11
 msgid ""
@@ -5469,12 +5742,19 @@ msgid ""
 "the human-readable source code into an efficient program that can be run on "
 "the computer."
 msgstr ""
+"Nesse tutotiral nos concentraremos no primeiro tipo de linguagens, com "
+"Fortran como o principal exemplo. Uma vantagem de linguagens compiladas é "
+"que o processo de build necessário para o build do programa executável é "
+"usado para transformar o código fonte legível para humanos em um programa "
+"eficiente que pode ser usado para rodar no computador."
 
 #: ../../source/learn/building_programs/index.md:17
 msgid ""
 "Remark: this tutorial gives examples for the Windows and Linux operating "
 "systems, however the workflow and general principles still apply to macOS."
 msgstr ""
+"Observação: este tutorial dá exemplos para sistemas operacionais Windows e "
+"Linux, contudo o fluxo de trabalho e princípios gerais se aplicam ao macOS."
 
 #: ../../source/learn/building_programs/index.md:20
 msgid "Compiled languages"
@@ -5482,7 +5762,7 @@ msgstr "Linguagens compiladas"
 
 #: ../../source/learn/building_programs/index.md:22
 msgid "Let us have a look at a simple example:"
-msgstr ""
+msgstr "Vejamos um exemplo simples:"
 
 #: ../../source/learn/building_programs/index.md:30
 msgid ""
@@ -5491,6 +5771,10 @@ msgid ""
 "simple to express in source code, a lot of things actually happen when the "
 "executable that is built from this code runs:"
 msgstr ""
+"Esse é o programa mais simples que você pode escrever em Fortran e é "
+"certamente uma variação de um dos programas mais famosos. Apesar de sua "
+"simplicidade expressada no código fonte, várias coisas acontecem quando o "
+"executável construído desde código roda:"
 
 #: ../../source/learn/building_programs/index.md:35
 msgid ""
@@ -5498,18 +5782,25 @@ msgid ""
 "console — the window (DOS-box, xterm, ...) at which you type the program's "
 "name."
 msgstr ""
+"Um processo é iniciado no seu computador de tal forma que ele pode escrever "
+"no console - a tela (DOS-box, xterm, ...) onde você escreve o nome do "
+"programa."
 
 #: ../../source/learn/building_programs/index.md:38
 msgid ""
 "It writes the text \"Hello!\" to the console. To do so it must properly "
 "interact with the console."
 msgstr ""
+"Ele escreve o texto \"Hello!\" no console. Para isso, ele precisa interagir "
+"propriamente com o console."
 
 #: ../../source/learn/building_programs/index.md:40
 msgid ""
 "When done, it finishes, cleaning up all the resources (memory, connection to "
 "the console etc.) it took."
 msgstr ""
+"Quando completo, ele finaliza, limpando todos os recursos (memória, conexão "
+"ao console etc.) que ele usou."
 
 #: ../../source/learn/building_programs/index.md:43
 msgid ""
@@ -5517,22 +5808,29 @@ msgid ""
 "consider all these details. In fact, this is the sort of things that is taken"
 " care of by the build process: the compiler and the linker."
 msgstr ""
+"Por sorte, como programador em uma linguagem de alto nível você não precisa "
+"se atentar a todos esses detalhes. De fato, isso são coisas que são "
+"resolvidas pelo processo de geração de build: o compilador e o linker."
 
 #: ../../source/learn/building_programs/linking_pieces.md:3
 msgid ""
 "Almost all programs, except for the simplest, are built up from different "
 "pieces. We are going to examine such a situation in more detail."
 msgstr ""
+"Quase todos os programas, exceto os mais simples, são construídos por "
+"diferentes peças. Nós vamos examinar tal situação em detalhe."
 
 #: ../../source/learn/building_programs/linking_pieces.md:7
 msgid ""
 "Here is a general program for tabulating a function (source code in "
 "\"tabulate.f90\"):"
 msgstr ""
+"Aqui um programa geral para tabular uma função (código fonte em \"tabulate."
+"f90\"):"
 
 #: ../../source/learn/building_programs/linking_pieces.md:28
 msgid "Note the `use` statement — this will be where we define the function `f`."
-msgstr ""
+msgstr "Note a declaração `use` - ela estará onde definimos a função `f`."
 
 #: ../../source/learn/building_programs/linking_pieces.md:30
 msgid ""
@@ -5679,7 +5977,7 @@ msgstr ""
 
 #: ../../source/learn/building_programs/managing_libraries.md:57
 msgid "Static versus dynamic libraries"
-msgstr ""
+msgstr "bibliotecas estáticas versus dinâmicas"
 
 #: ../../source/learn/building_programs/managing_libraries.md:59
 msgid ""
@@ -5689,6 +5987,11 @@ msgid ""
 " routines incorporated in the program is by rebuilding the program with a new"
 " version of the library."
 msgstr ""
+"A discussão acima assume tacitamente que você está usando as chamadas "
+"bibliotecas estáticas. Bibliotecas estáticas (ou pelo menos parte dela) se "
+"torna uma parte integral do programa executável. A única forma de mudar as "
+"rotinas incorporadas no programa é realizando o rebuild do programa com uma "
+"nova versão da biblioteca."
 
 #: ../../source/learn/building_programs/managing_libraries.md:65
 msgid ""
