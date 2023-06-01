@@ -24,6 +24,18 @@ To install the dependencies of this project, use commamd:
 pip3 install --user -r requirements.txt
 ```
 
+To install sphinx (if system is not able to recognize sphinx-build after installing requirements) :
+
+First check :
+```
+sphinx-build --version
+```
+
+if not recognized then run:
+```
+pip install -U sphinx
+```
+
 Build the site by invoking
 
 ```
