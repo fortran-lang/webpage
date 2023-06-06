@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-29 16:02+0200\n"
-"PO-Revision-Date: 2023-06-06 22:50+0000\n"
+"PO-Revision-Date: 2023-06-07 23:50+0000\n"
 "Last-Translator: Nathan Gurgel <nathan_gurgel@hotmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pt/>\n"
@@ -6444,6 +6444,11 @@ msgid ""
 "dependencies are specified explicitly, which results in several additional "
 "lines even for such a simple project."
 msgstr ""
+"Há algumas coisas para notar aqui, o build `make` geralmente interlaça os "
+"artefatos do build e o código fonte, a não ser que você implemente o "
+"diretório de build. Além disso, os arquivos fonte e dependências são "
+"especificadas explicitamente, o que resulta em diversas linhas adicionais "
+"mesmo para tal projeto simples."
 
 #: ../../source/learn/building_programs/project_make.md:162
 msgid "Automatically generated dependencies"
@@ -6457,6 +6462,11 @@ msgid ""
 " compilers (like the Intel Fortran compiler) also offer to generate "
 "dependencies in `make` format."
 msgstr ""
+"A principal desvantagem do `make` para Fortran é a falta da capacidade de "
+"determinar dependências de módulo. Isso é geralmente resolvido seja "
+"adicionando à mão ou escaneando automaticamente o código fonte com uma "
+"ferramenta externa. Alguns compiladores (como o compilador Intel Fortran) "
+"também oferece a geração de dependências no formato `make`."
 
 #: ../../source/learn/building_programs/project_make.md:169
 msgid ""
@@ -6467,6 +6477,13 @@ msgid ""
 " the name of the source file and the module files are known, and no "
 "information on the object file names should be required."
 msgstr ""
+"Antes de aprofundar na geração de dependências, vamos delinear o conceito de "
+"uma medida robusta para o problema de dependência. Primeiro, queremos uma "
+"abordagem que consiga processar todos os arquivos fonte independentemente, "
+"enquanto cada arquivo fonte fornece (`module`) ou requer (`use`) módulos. "
+"Quando gerando as dependências apenas o nome do arquivo fonte e os arquivos "
+"módulo são conhecidos, e nenhuma informação dos nomes dos arquivos objeto "
+"deve ser necessária."
 
 #: ../../source/learn/building_programs/project_make.md:177
 msgid ""
@@ -6474,6 +6491,10 @@ msgid ""
 " are defined between object files rather than source files. To change this, "
 "we can generate a map from the source files their respective object files:"
 msgstr ""
+"Se você checar a seção de dependência acima você notará que todas as "
+"dependências são definidas entre arquivos objeto ao invés de arquivos fonte. "
+"Para mudar isso, podemos gerar uma relação dos arquivos fonte com seus "
+"respectivos arquivos objeto:"
 
 #: ../../source/learn/building_programs/project_make.md:187
 msgid ""
@@ -6483,24 +6504,35 @@ msgid ""
 "allows us to generate `make` statements and evaluate them for this "
 "`Makefile`."
 msgstr ""
+"Note a declaração do `obj` como uma variável recursivamente expandida, "
+"efetivamente usamos esse mecanismo para definir a função em `make`. A função "
+"`foreach` nos permite fazer um laço em todos os arquivos fonte, enquanto que "
+"a função `eval` nos permite gerar as declarações `make` e avalia-las para "
+"esse `Makefile`."
 
 #: ../../source/learn/building_programs/project_make.md:192
 msgid ""
 "We adjust the dependencies accordingly as we can now define the name of the "
 "object files through the source file names:"
 msgstr ""
+"Ajustamos as dependências de acordo como definimos o nome dos arquivos "
+"objeto através dos nomes dos arquivos fonte:"
 
 #: ../../source/learn/building_programs/project_make.md:212
 msgid ""
 "The same strategy of creating a map is already used for the module files, now"
 " it is just expanded to the object files as well."
 msgstr ""
+"A mesma estratégia de criar uma relação já é usada para os arquivos módulo, "
+"agora é apenas expandida para os arquivos objeto também."
 
 #: ../../source/learn/building_programs/project_make.md:215
 msgid ""
 "To generate the respective dependency map automatically we will use an `awk` "
 "script here"
 msgstr ""
+"Para gerar a respectiva relação de dependências automaticamente usaremos um "
+"script `awk` aqui"
 
 #: ../../source/learn/building_programs/project_make.md:277
 msgid ""
@@ -6508,6 +6540,9 @@ msgid ""
 "will not work with all Fortran code (namely submodules are not supported), "
 "but for this example it will suffice."
 msgstr ""
+"Esse script tem algumas premissas sobre o código fonte analisado, então não "
+"funcionará para todo código Fortran (declaradamente submódulos não são "
+"suportados), mas para esse exemplo bastará."
 
 #: ../../source/learn/building_programs/project_make.md:282
 msgid "Using awk"
@@ -6522,6 +6557,12 @@ msgid ""
 "href=\"https://en.wikipedia.org/wiki/Regular_expression\" target=\"_blank\" "
 "rel=\"noopener\"> regular expression</a>."
 msgstr ""
+"O script acima usa a linguagem `awk`, a qual é projetada com o propósito de "
+"processar fluxos de texto e usa uma síntaxe C-like. Em `awk` você pode "
+"definir grupos que são avaliados em certos eventos, _p.ex._ quando uma linha "
+"corresponde a um padrão específico, geralmente espressada por uma <a href="
+"\"https://en.wikipedia.org/wiki/Regular_expression\" target=\"_blank\" rel="
+"\"noopener\">expressão regular</a>."
 
 #: ../../source/learn/building_programs/project_make.md:290
 msgid ""
@@ -6532,6 +6573,12 @@ msgid ""
 "the special variable `FILENAME` to determine which file we are currently "
 "parsing and to allow processing multiple files at once."
 msgstr ""
+"O script `awk` define cinco grupos, dois usam o padrão especial `BEGIN` e "
+"`END` os quais rodam antes do script iniciar e depois do script finalizar, "
+"respectivamente. Antes do script iniciar fazemos o script insensitivo à "
+"caixa já que estamos lidando com código fonte Fortran aqui. Também usamos a "
+"variável especial `FILENAME` para determinar qual arquivo nós estamos "
+"avaliado atualmente e permitir processar múltiplos arquivos de uma vez."
 
 #: ../../source/learn/building_programs/project_make.md:298
 msgid ""
@@ -6540,12 +6587,19 @@ msgid ""
 "pattern not all valid Fortran code will be parsed correctly. A failing "
 "example would be:"
 msgstr ""
+"Com os três padrões definidos buscaremos as declarações `module`, `use` e "
+"`include` como as primeiras entradas delimitadas por espaço. Com o padrão "
+"usado nem todo código Fortran válido será avaliada corretamente. Um exemplo "
+"de falha seria:"
 
 #: ../../source/learn/building_programs/project_make.md:307
 msgid ""
 "To make this parsable by the `awk` script we can add another group directly "
 "after the `BEGIN` group, modifying the stream while processing it with"
 msgstr ""
+"Para faze-lo avaliável pelo script `awk` adicionaremos outro grupo "
+"diretamente depois do grupo `BEGIN`, modificando o fluxo enquanto processa "
+"ele com"
 
 #: ../../source/learn/building_programs/project_make.md:316
 msgid ""
@@ -6553,6 +6607,9 @@ msgid ""
 "lines and other difficulties. This might be possible to implement in `awk` "
 "but would require a huge script in the end."
 msgstr ""
+"Na teoria você precisaria de um avaliador Fortran completo para lidar com as "
+"linhas de continuação e outras dificuldades. Isso pode ser possível de "
+"implementar no `awk` mas iria requerer um script enorme no final."
 
 #: ../../source/learn/building_programs/project_make.md:320
 msgid ""
@@ -6562,6 +6619,11 @@ msgid ""
 "simplify and speed up this step, but also introduces an error source in your "
 "build tools."
 msgstr ""
+"Além disso, tenha em mente que gerar as dependências deve ser rápido, um "
+"avaliador caro pode produzir uma despesa adicional quando gerando "
+"dependências para uma base de código grande. Tomar premissas razoáveis pode "
+"simplificar e acelerar esse passo, mas também introduzir fontes de erro nas "
+"suas ferramentas de geração de build."
 
 #: ../../source/learn/building_programs/project_make.md:327
 msgid ""
@@ -29141,12 +29203,10 @@ msgid "fir.box_rank, fir.box_addr, fir.box_dims, fir.box_elesize"
 msgstr ""
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:177
-#, fuzzy
 msgid "fir.convert"
 msgstr "fir.convert"
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:178
-#, fuzzy
 msgid "fir.call"
 msgstr "fir.call"
 
@@ -29325,7 +29385,6 @@ msgid ""
 msgstr ""
 
 #: ../../source/news/2021/12-29-Fortran-lang-2021-in-review.md:7
-#, fuzzy
 msgid "=(Fortran-lang-2021-in-review)"
 msgstr "=(Fortran-lang-2021-in-review)"
 
@@ -29662,7 +29721,6 @@ msgid ""
 msgstr ""
 
 #: ../../source/news/2021/12-29-Fortran-lang-2021-in-review.md:195
-#, fuzzy
 msgid "fftpack"
 msgstr "fftpack"
 
@@ -34296,9 +34354,8 @@ msgstr ""
 "fortran-support)"
 
 #: ../../source/packages.md:5
-#, fuzzy
 msgid "Packages"
-msgstr "pack"
+msgstr "Pacotes"
 
 #: ../../source/packages.md:8
 msgid "Fortran Packages"
@@ -34494,9 +34551,8 @@ msgstr ""
 
 #: ../../source/packages/data-types.md:16 ../../source/packages/libraries.md:16
 #: ../../source/packages/programming.md:58 ../../source/packages/strings.md:16
-#, fuzzy
 msgid "coretran"
-msgstr "Fortran"
+msgstr "coretran"
 
 #: ../../source/packages/data-types.md:13 ../../source/packages/data-types.md:34
 #: ../../source/packages/data-types.md:55 ../../source/packages/data-types.md:76
@@ -35288,9 +35344,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/data-types.md:100
-#, fuzzy
 msgid "FyCollections"
-msgstr "Compiladores"
+msgstr "FyCollections"
 
 #: ../../source/packages/data-types.md:103
 msgid "generic collection templates for Fortran"
@@ -35328,9 +35383,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/data-types.md:170 ../../source/packages/numerical.md:727
-#, fuzzy
 msgid "PENF"
-msgstr "OpenMP"
+msgstr "PENF"
 
 #: ../../source/packages/data-types.md:178 ../../source/packages/numerical.md:735
 msgid "Provides portable kind-parameters and many useful procedures to deal with them"
@@ -35372,9 +35426,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/examples.md:17
-#, fuzzy
 msgid "Blocktran"
-msgstr "Fortran"
+msgstr "Blocktran"
 
 #: ../../source/packages/examples.md:25
 msgid "Object-oriented Fortran falling block game using Curses console graphics"
@@ -35385,9 +35438,8 @@ msgid "Tags:  {bdg-light}`game`"
 msgstr ""
 
 #: ../../source/packages/examples.md:38
-#, fuzzy
 msgid "Fortran 2018 examples"
-msgstr "Fortran 2008"
+msgstr "exemplos Fortran 2018"
 
 #: ../../source/packages/examples.md:46
 msgid ""
@@ -35403,9 +35455,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/examples.md:59
-#, fuzzy
 msgid "Fortran patterns"
-msgstr "Funções Intrínsecas do Fortran"
+msgstr "Padrões Fortran"
 
 #: ../../source/packages/examples.md:67
 msgid "Popular design patterns implemented in Fortran"
@@ -35434,9 +35485,8 @@ msgid "A minimal Fortran TCP client and server demonstrating c interoperability"
 msgstr ""
 
 #: ../../source/packages/examples.md:116
-#, fuzzy
 msgid "Tsunami"
-msgstr "sum"
+msgstr "Tsunami"
 
 #: ../../source/packages/examples.md:124
 msgid "A parallel shallow water equations solver"
@@ -35455,9 +35505,8 @@ msgid "Tags:  {bdg-light}`graphics`  {bdg-light}`interface`  {bdg-light}`opengl`
 msgstr ""
 
 #: ../../source/packages/graphics.md:32 ../../source/packages/interfaces.md:272
-#, fuzzy
 msgid "fortran-sdl2"
-msgstr "fortran-lang.org"
+msgstr "fortran-sdl2"
 
 #: ../../source/packages/graphics.md:40 ../../source/packages/interfaces.md:280
 msgid ""
@@ -35466,9 +35515,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/graphics.md:50 ../../source/packages/interfaces.md:290
-#, fuzzy
 msgid "fortran-xlib"
-msgstr "fortran-lang.org"
+msgstr "fortran-xlib"
 
 #: ../../source/packages/graphics.md:58 ../../source/packages/interfaces.md:298
 msgid "A collection of ISO C binding interfaces to Xlib for Fortran 2003"
@@ -35481,9 +35529,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/graphics.md:71 ../../source/packages/interfaces.md:366
-#, fuzzy
 msgid "gtk-fortran"
-msgstr "Fortran"
+msgstr "gtk-fortran"
 
 #: ../../source/packages/graphics.md:79 ../../source/packages/interfaces.md:374
 msgid "A cross-platform library to build Graphical User Interfaces (GUI)"
@@ -35530,9 +35577,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/graphics.md:152 ../../source/packages/interfaces.md:552
-#, fuzzy
 msgid "PLplot"
-msgstr "llt"
+msgstr "PLplot"
 
 #: ../../source/packages/graphics.md:155 ../../source/packages/interfaces.md:555
 msgid "Library for scientific plotting"
@@ -35559,9 +35605,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/interfaces.md:16
-#, fuzzy
 msgid "aotus"
-msgstr "acos"
+msgstr "aotus"
 
 #: ../../source/packages/interfaces.md:19
 msgid "Fortran wrapper around the C-API of the Lua scripting language"
@@ -35585,9 +35630,8 @@ msgid "Tags:  {bdg-light}`cpp`  {bdg-light}`gpu`  {bdg-light}`opencl`"
 msgstr ""
 
 #: ../../source/packages/interfaces.md:53
-#, fuzzy
 msgid "clfortran"
-msgstr "Fortran"
+msgstr "clfortran"
 
 #: ../../source/packages/interfaces.md:61
 msgid "Fortran interfaces to Khronos OpenCL 1.2 API"
@@ -35651,14 +35695,12 @@ msgid "Tags:  {bdg-light}`cpp`"
 msgstr ""
 
 #: ../../source/packages/interfaces.md:169
-#, fuzzy
 msgid "flook"
-msgstr "floor"
+msgstr "flook"
 
 #: ../../source/packages/interfaces.md:188
-#, fuzzy
 msgid "Focal"
-msgstr "logical"
+msgstr "Focal"
 
 #: ../../source/packages/interfaces.md:196
 msgid ""
@@ -35667,9 +35709,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/interfaces.md:209
-#, fuzzy
 msgid "forpy"
-msgstr "forks"
+msgstr "forpy"
 
 #: ../../source/packages/interfaces.md:217
 msgid "allows you to use Python features in Fortran"
@@ -35683,9 +35724,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/interfaces.md:230
-#, fuzzy
 msgid "fortran-curl"
-msgstr "fortran-lang.org"
+msgstr "fortran-curl"
 
 #: ../../source/packages/interfaces.md:238
 msgid "Fortran 2008 interface bindings to libcurl"
@@ -35698,9 +35738,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/interfaces.md:251
-#, fuzzy
 msgid "fortran-lua53"
-msgstr "fortran-lang.org"
+msgstr "fortran-lua53"
 
 #: ../../source/packages/interfaces.md:259
 msgid "Fortran 2008 interface bindings to Lua 5.3"
@@ -35708,9 +35747,8 @@ msgstr ""
 
 #: ../../source/packages/interfaces.md:311 ../../source/packages/io.md:179
 #: ../../source/packages/libraries.md:115 ../../source/packages/numerical.md:339
-#, fuzzy
 msgid "fortranlib"
-msgstr "Fortran"
+msgstr "fortranlib"
 
 #: ../../source/packages/interfaces.md:319 ../../source/packages/io.md:187
 #: ../../source/packages/libraries.md:123 ../../source/packages/numerical.md:347
@@ -35790,9 +35828,8 @@ msgid "Read and write lines to or from a process from Fortran via a C wrapper"
 msgstr ""
 
 #: ../../source/packages/interfaces.md:437
-#, fuzzy
 msgid "M_system"
-msgstr "system_clock"
+msgstr "M_system"
 
 #: ../../source/packages/interfaces.md:445
 msgid "Call C system routines from Fortran"
@@ -35807,9 +35844,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/interfaces.md:458
-#, fuzzy
 msgid "mpifx"
-msgstr "cmplx"
+msgstr "mpifx"
 
 #: ../../source/packages/interfaces.md:466
 msgid "Modern Fortran wrappers around MPI routines"
@@ -35820,27 +35856,24 @@ msgid "Tags:  {bdg-light}`mpi`  {bdg-light}`fypp`"
 msgstr ""
 
 #: ../../source/packages/interfaces.md:479
-#, fuzzy
 msgid "node-fortran"
-msgstr "Fortran"
+msgstr "node-fortran"
 
 #: ../../source/packages/interfaces.md:487
 msgid "Fortran bridge for Node.js which allows you to run Fortran code from Node.js"
 msgstr ""
 
 #: ../../source/packages/interfaces.md:497
-#, fuzzy
 msgid "node.fortran"
-msgstr "Fortran"
+msgstr "node.fortran"
 
 #: ../../source/packages/interfaces.md:505
 msgid "Execute Node.js in your Fortran programs"
 msgstr ""
 
 #: ../../source/packages/interfaces.md:536 ../../source/packages/numerical.md:669
-#, fuzzy
 msgid "OpenFFT"
-msgstr "popcnt"
+msgstr "OpenFFT"
 
 #: ../../source/packages/interfaces.md:539 ../../source/packages/numerical.md:672
 msgid ""
@@ -35883,9 +35916,8 @@ msgid "Tags:  {bdg-light}`sql`  {bdg-light}`database`"
 msgstr ""
 
 #: ../../source/packages/io.md:16
-#, fuzzy
 msgid "atomsk"
-msgstr "Watcom"
+msgstr "atomsk"
 
 #: ../../source/packages/io.md:24
 msgid "A Tool For Manipulating And Converting Atomic Data Files"
@@ -35920,9 +35952,8 @@ msgid ""
 msgstr ""
 
 #: ../../source/packages/io.md:76
-#, fuzzy
 msgid "FiNeR"
-msgstr "ieor"
+msgstr "FiNeR"
 
 #: ../../source/packages/io.md:84
 msgid "INI ParseR and generator"
@@ -35933,9 +35964,8 @@ msgid "Tags:  {bdg-light}`config`"
 msgstr ""
 
 #: ../../source/packages/io.md:97
-#, fuzzy
 msgid "FortJSON"
-msgstr "fraction"
+msgstr "FortJSON"
 
 #: ../../source/packages/io.md:104
 msgid "A JSON library designed with portability across HPC architectures in mind"
@@ -35946,9 +35976,8 @@ msgid "Tags:  {bdg-light}`json`  {bdg-light}`hpc`"
 msgstr ""
 
 #: ../../source/packages/io.md:116 ../../source/packages/strings.md:37
-#, fuzzy
 msgid "Fortran Equation Parser"
-msgstr "Tags: equation parser"
+msgstr "Fortran Equation Parser"
 
 #: ../../source/packages/io.md:124 ../../source/packages/strings.md:45
 msgid ""
