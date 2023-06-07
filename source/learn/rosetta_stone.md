@@ -669,36 +669,7 @@ end do
 :::::
 ::::::
 
-Loop between index  3   and    7   (inclusive):
-
-::::::{grid} 1 1 2 2
-:gutter: 0
-
-:::::{grid-item}
-```{code-block} Python
-:caption: Python
-
-r = 1                                     
-for i in range(3,8):            
-    r *= a[i]  
-
-```
-:::::
-
-:::::{grid-item}
-```{code-block} Fortran
-:caption: Fortran
-
-r = 1
-do i = 3, 7
-    r = r*a(i)
-end do
-
-```
-:::::
-::::::
-
-Loop between  3  -th and    7  -th elements (inclusive):
+Loop between  3-th and    7-th elements (inclusive):
 
 ::::::{grid} 1 1 2 2
 :gutter: 0
