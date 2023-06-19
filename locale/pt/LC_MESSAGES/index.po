@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-29 16:02+0200\n"
-"PO-Revision-Date: 2023-06-18 14:50+0000\n"
+"PO-Revision-Date: 2023-06-20 00:48+0000\n"
 "Last-Translator: Nathan Gurgel <nathan_gurgel@hotmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pt/>\n"
@@ -10146,6 +10146,8 @@ msgid ""
 "Location of the first element of **array** identified by **mask** along "
 "dimension **dim** having a value equal to **value**."
 msgstr ""
+"Localização do primeiro elemento de **array** identificado por **mask** ao "
+"longo da dimensão **dim** tendo o valor igual a **value**."
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:23
 msgid ""
@@ -10154,6 +10156,10 @@ msgid ""
 " with the == operator. If the value of the comparison is true, that element "
 "of **array** matches **value**."
 msgstr ""
+"Se ambos **array** e **value** forem do tipo logical, a comparação é feita "
+"com o operador **.eqv.**; caso contrário, a comparação é feita com o "
+"operador ==. Se o valor da comparação for true, o elemento de **array** "
+"corresponde a **value**."
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:28
 msgid ""
@@ -10164,6 +10170,13 @@ msgid ""
 " is present with the value true, the element whose subscripts are returned is"
 " the last such element, taken in array element order."
 msgstr ""
+"Se apenas um elemento corresponde à **value**, os subscritos daquele "
+"elemento são retornados. Caso contrário, se mais de um elemento corresponde "
+"à **value** e **back** estiver ausente ou presente com o valor false, o "
+"elemento cujo subscritos são retornados é o primeiro elemento obtido em "
+"ordem de elemento de matriz. Se **back** é presente com o valor true, o "
+"elemento cujo subscritos são retornados é o último elemento obtido em ordem "
+"de elemento de matriz."
 
 #: ../../source/learn/intrinsics/_pages/EXTENDS_TYPE_OF.md:19
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:36
@@ -10198,6 +10211,8 @@ msgid ""
 "shall be scalar and in type conformance with **array**, as specified in Table"
 " 7.3 for relational intrinsic operations 7.1.5.5.2)."
 msgstr ""
+"deve ser escalar e em concordância com o tipo de **array**, como "
+"especificado na Tabela 7.3 para operações intrínsecas relacionais 7.1.5.5.2)."
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:46
 msgid ""
@@ -10205,11 +10220,16 @@ msgid ""
 "the rank of **array**. The corresponding actual argument shall not be an "
 "optional dummy argument."
 msgstr ""
+"deve ser um escalar inteiro com um valor na faixa 1 **DIM** n, onde n é a "
+"ordem da matriz **aray**. O argumento correspondente atual não deve ser um "
+"argumento fictício opcional."
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:51
 #: ../../source/learn/intrinsics/_pages/REDUCE.md:80
 msgid "(optional) shall be of type logical and shall be conformable with **array**."
 msgstr ""
+"(opcional) deve ser do tipo logical e deve estar em concordância com "
+"**array**."
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:55
 msgid "(optional) shall be a scalar integer initialization expression."
@@ -10234,6 +10254,11 @@ msgid ""
 "result is an array of rank one and of size equal to the rank of **array**; "
 "otherwise, the result is of rank n - 1 and shape"
 msgstr ""
+"Características do resultado. Inteiro. Se **kind** estiver presente, o "
+"parâmetro do tipo kind é o especificado pelo valor de **kind**; caso contr["
+"ario o tipo do parâmetro kind é tipo inteiro padrão. Se **dim** não estiver "
+"presente, o resultado é uma matriz de primeira ordem e com tamanho igual à "
+"ordem de **array**; caso contrário, o resultado é de ordem n - 1 e forma"
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:72
 msgid "where"
@@ -10241,7 +10266,7 @@ msgstr "where"
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:78
 msgid "is the shape of **array**."
-msgstr ""
+msgstr "é a forma de **array**."
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:82
 msgid ""
@@ -10252,6 +10277,13 @@ msgid ""
 "ith dimension of **array**. If no elements match **value** or **array** has "
 "size zero, all elements of the result are zero."
 msgstr ""
+"**Caso (i):** O resultado de **findlock (array, value)** é uma matriz de "
+"primeira ordem cujo valores dos elementos são os valores dos subscritos de "
+"um elemento em **array** cujo valor corresponde à **value**. Se não houver "
+"tal valor, o i-ésimo subscrito retornado estará na faixa de 1 à ei, onde ei "
+"é a extensão da i-ésima dimensão de **array**. Se nenhum elemento "
+"corresponder à **value** ou **array** tiver tamanho zero, todos os elementos "
+"do resultado serão zero."
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:90
 msgid ""
@@ -10263,10 +10295,18 @@ msgid ""
 "**array**. If no elements match **value**, **array** has size zero, or every "
 "element of **mask** has the value false, all elements of the result are zero."
 msgstr ""
+"**Caso (ii):** O resultado de **findlock (array, value, mask = mask)** é uma "
+"matriz de primeira ordem cujos valores do elemento são os valores dos "
+"subscritos de um elemento de **array**, correspondente ao elemento "
+"verdadeiro de **mask**, cujo valor corresponde à **value**. Se não houver "
+"tal valor, o i-ésimo subscrito retornado estará na faixa de 1 a ei, onde ei "
+"é a extensão da i-ésima dimensão de **array**. Se nenhum elemento "
+"corresponde à **value**, **array** tiver tamanho zero, ou todo elemento de "
+"**mask** for falso, todos os elementos do resultado serão zero."
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:100
 msgid "**Case (iii):** If **array** has rank one, the result of"
-msgstr ""
+msgstr "**Caso (iii):** Se **array** tiver ordem um, o resultado de"
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:107
 msgid "is a scalar whose value is equal to that of the first element of"
@@ -10282,7 +10322,7 @@ msgstr "do resultado é igual a"
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:129
 msgid "**Case (i):** The value of"
-msgstr ""
+msgstr "**Caso (i)** O valor de"
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:136
 msgid "is \\[2\\], and the value of"
@@ -10294,11 +10334,11 @@ msgstr "é \\[4\\]."
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:144
 msgid "**Case (ii):** If **a** has the value"
-msgstr ""
+msgstr "**Caso (ii):** Se **a** tem o valor"
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:153
 msgid "and **m** has the value"
-msgstr ""
+msgstr "e **m** tem o valor"
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:163
 msgid "has the value \\[1, 4\\] and"
@@ -10309,18 +10349,20 @@ msgid ""
 "has the value \\[3, 4\\]. This is independent of the declared lower bounds "
 "for **a** ."
 msgstr ""
+"tem o valor \\[3, 4\\]. Isso é independente dos limites inferiores "
+"declarados para **a**."
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:172
 msgid "**Case (iii):** The value of"
-msgstr ""
+msgstr "**Caso (iii):** O valor de"
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:179
 msgid "is 2. If **b** has the value"
-msgstr ""
+msgstr "é 2. Se **b** tem o valor"
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:186
 msgid "findloc (b, **value** = 2, dim = 1)"
-msgstr ""
+msgstr "findloc (b, **value** = 2, dim = 1)"
 
 #: ../../source/learn/intrinsics/_pages/FINDLOC.md:188
 msgid "has the value \\[2, 1, 0\\] and"
@@ -10331,6 +10373,8 @@ msgid ""
 "has the value \\[2, 1\\]. This is independent of the declared lower bounds "
 "for **b**."
 msgstr ""
+"tem o valor \\[2, 1\\]. Isso é independente dos limites inferiores "
+"declarados para **b**."
 
 #: ../../source/learn/intrinsics/_pages/TRANSPOSE.md:2
 msgid "transpose"
@@ -10339,12 +10383,15 @@ msgstr "transpose"
 #: ../../source/learn/intrinsics/_pages/TRANSPOSE.md:6
 msgid "**transpose**(3) - \\[ARRAY MANIPULATION\\] Transpose an array of rank two"
 msgstr ""
+"**transpose**(3) - \\[ARRAY MANIPULATION\\] Transpõe uma matriz de ordem dois"
 
 #: ../../source/learn/intrinsics/_pages/TRANSPOSE.md:16
 msgid ""
 "Transpose an array of rank two. Element (i, j) of the result has the value "
 "**matrix(j, i)**, for all i, j."
 msgstr ""
+"Transpõe uma matriz de ordem dois. Elemento (i, j) do resultado tem o valor "
+"**matrix(j, i)** para todo i, j."
 
 #: ../../source/learn/intrinsics/_pages/TRANSPOSE.md:21
 msgid "**matrix**"
@@ -10359,6 +10406,8 @@ msgid ""
 "The result has the same type as **matrix**, and has shape \\[ m, n \\] if "
 "**matrix** has shape \\[ n, m \\]."
 msgstr ""
+"O resultado tem o mesmo tipo que **matrix** e formato \\[ m, n \\] se "
+"**matrix** tiver formato \\[ n, m \\]."
 
 #: ../../source/learn/intrinsics/_pages/ALL.md:2
 msgid "all"
@@ -10367,16 +10416,20 @@ msgstr "all"
 #: ../../source/learn/intrinsics/_pages/ALL.md:6
 msgid "**all**(3) - \\[ARRAY REDUCTION\\] determines if all the values are true"
 msgstr ""
+"**all**(3) - \\[ARRAY REDUCTION\\] determina se todos os valores são true"
 
 #: ../../source/learn/intrinsics/_pages/ALL.md:16
 msgid "Logical conjunction of elements of **mask** along dimension **dim**."
 msgstr ""
+"Conjunção lógica dos elementos de **mask** ao longo da dimensão **dim**."
 
 #: ../../source/learn/intrinsics/_pages/ALL.md:18
 msgid ""
 "\"**all(mask, dim)**\" determines if all the values are true in **mask** in "
 "the array along dimension **dim**."
 msgstr ""
+"\"**all(mask, dim)**\" determina se todos os valores são true em **mask** na "
+"matriz ao longo da dimensão **dim**."
 
 #: ../../source/learn/intrinsics/_pages/ALL.md:24
 msgid ""
@@ -10610,6 +10663,8 @@ msgid ""
 "(Optional) Shall be a scalar of type _integer_, with a value between one and "
 "the rank of ARRAY, inclusive. It may not be an optional dummy argument."
 msgstr ""
+"(Opcional) Deve ser um escalar do tipo _integer_, com um valor entre um e a "
+"ordem de ARRAY, inclusivo. Este não pode ser um argumento fictício opcional."
 
 #: ../../source/learn/intrinsics/_pages/MINVAL.md:42
 msgid ""
@@ -10664,7 +10719,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/PRODUCT.md:36
 #: ../../source/learn/intrinsics/_pages/SUM.md:23
 msgid "Shall be an array of type _integer_, _real_ or _complex_."
-msgstr ""
+msgstr "Deve ser uma matriz do tipo _integer_, _real_ ou _complexo_."
 
 #: ../../source/learn/intrinsics/_pages/PRODUCT.md:39
 msgid ""
@@ -10705,22 +10760,28 @@ msgid ""
 "Adds the elements of ARRAY along dimension DIM if the corresponding element "
 "in MASK is TRUE."
 msgstr ""
+"Adiciona os elementos de ARRAY ao longo da dimensão DIM se o elemento "
+"correspondente em MASK é TRUE."
 
 #: ../../source/learn/intrinsics/_pages/SUM.md:26
 msgid ""
 "(Optional) shall be a scalar of type _integer_ with a value in the range from"
 " 1 to n, where n equals the rank of ARRAY."
 msgstr ""
+"(Opcional) deve ser um escalar do tipo _integer_ com um valor na faixa de 1 "
+"a n, onde n é igual à ordem de ARRAY."
 
 #: ../../source/learn/intrinsics/_pages/SUM.md:30
 msgid ""
 "(Optional) shall be of type _logical_ and either be a scalar or an array of "
 "the same shape as ARRAY."
 msgstr ""
+"(Opcional) deve ser do tipo _logical_ e ser ou um escalar ou uma matriz do "
+"mesmo formato que ARRAY."
 
 #: ../../source/learn/intrinsics/_pages/SUM.md:35
 msgid "The result is of the same type as ARRAY."
-msgstr ""
+msgstr "O resultado é do mesmo tipo que ARRAY."
 
 #: ../../source/learn/intrinsics/_pages/SUM.md:37
 msgid ""
@@ -10731,7 +10792,7 @@ msgstr ""
 
 #: ../../source/learn/intrinsics/_pages/SUM.md:55
 msgid "Demonstrate Fortran 90 SUM function with MASK option"
-msgstr ""
+msgstr "Demonstra a função SUM do Fortran 90 com opção MASK"
 
 #: ../../source/learn/intrinsics/_pages/SUM.md:90
 msgid "intrinsics"
@@ -10754,7 +10815,7 @@ msgstr ""
 
 #: ../../source/learn/intrinsics/_pages/RESHAPE.md:23
 msgid "an array of any type."
-msgstr ""
+msgstr "uma matriz de qualquer tipo."
 
 #: ../../source/learn/intrinsics/_pages/C_F_POINTER.md:27
 #: ../../source/learn/intrinsics/_pages/RESHAPE.md:25
@@ -10764,6 +10825,8 @@ msgstr "**shape**"
 #: ../../source/learn/intrinsics/_pages/RESHAPE.md:26
 msgid "an array of rank one and type _integer_. Its values must be positive or zero."
 msgstr ""
+"uma matriz de primeira ordem e tipo _integer_. Seus valores devem ser "
+"positivos ou zero."
 
 #: ../../source/learn/intrinsics/_pages/RESHAPE.md:29
 msgid "**pad**"
@@ -10794,7 +10857,7 @@ msgstr "[**shape**(3)](#shape)"
 
 #: ../../source/learn/intrinsics/bit.md:1
 msgid "Bit-level inquiry and manipulation"
-msgstr ""
+msgstr "manipulação e consulta à nível de bit"
 
 #: ../../source/learn/intrinsics/_pages/BGE.md:2
 msgid "bge"
@@ -10806,7 +10869,7 @@ msgstr ""
 
 #: ../../source/learn/intrinsics/_pages/BGE.md:16
 msgid "Determines whether an integer is bitwise greater than or equal to another."
-msgstr ""
+msgstr "Determina se um inteiro é maior ou igual à outro bit a bit."
 
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:38
 #: ../../source/learn/intrinsics/_pages/BGE.md:21
@@ -10848,7 +10911,7 @@ msgstr "**i**"
 #: ../../source/learn/intrinsics/_pages/BLE.md:21
 #: ../../source/learn/intrinsics/_pages/BLT.md:21
 msgid "Shall be of _integer_ type."
-msgstr ""
+msgstr "Deve ser do tipo _integer_."
 
 #: ../../source/learn/intrinsics/_pages/BGE.md:24
 #: ../../source/learn/intrinsics/_pages/BGT.md:23
@@ -10873,7 +10936,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/BLE.md:28
 #: ../../source/learn/intrinsics/_pages/BLT.md:28
 msgid "The return value is of type _logical_ and of the default kind."
-msgstr ""
+msgstr "O valor retornado é do tipo _logical_ e do tipo padrão."
 
 #: ../../source/learn/intrinsics/_pages/BGE.md:37
 msgid "[**bgt**(3)](#bgt), [**ble**(3)](#ble), [**blt**(3)](#bit)"
@@ -10889,11 +10952,11 @@ msgstr ""
 
 #: ../../source/learn/intrinsics/_pages/BGT.md:16
 msgid "Determines whether an integer is bitwise greater than another."
-msgstr ""
+msgstr "Determina se um inteiro é maior que outro bit a bit."
 
 #: ../../source/learn/intrinsics/_pages/BGT.md:21
 msgid "Shall be of _integer_ type or a BOZ literal constant."
-msgstr ""
+msgstr "Deve ser do tipo _integer_ ou uma constante literal BOZ."
 
 #: ../../source/learn/intrinsics/_pages/BGT.md:24
 msgid ""
@@ -10907,6 +10970,10 @@ msgid ""
 "true if the sequence of bits represented by _i_ is greater than the sequence "
 "of bits represented by _j_, otherwise the result is false."
 msgstr ""
+"o valor retornado é do tipo _logical_ e do tipo padrão. O resultado é "
+"verdadeiro se a sequência de bits representada por _i_ é maior que a "
+"sequência de bits representada por _j_, caso contrário o resultado será "
+"falso."
 
 #: ../../source/learn/intrinsics/_pages/BGT.md:39
 msgid "[**bge**(3)](#bge), [**ble**(3)](#ble), [**blt**(3)](#blt)"
@@ -10922,7 +10989,7 @@ msgstr ""
 
 #: ../../source/learn/intrinsics/_pages/BLE.md:16
 msgid "Determines whether an integer is bitwise less than or equal to another."
-msgstr ""
+msgstr "Determina se um inteiro é menor ou igual à outro bit a bit."
 
 #: ../../source/learn/intrinsics/_pages/BLE.md:36
 msgid "[**bge**(3)](#bge), [**bgt**(3)](#bgt), [**blt**(3)](#blt)"
@@ -10938,7 +11005,7 @@ msgstr ""
 
 #: ../../source/learn/intrinsics/_pages/BLT.md:16
 msgid "Determines whether an integer is bitwise less than another."
-msgstr ""
+msgstr "Determina se um inteiro é menor que outro bit a bit."
 
 #: ../../source/learn/intrinsics/_pages/BLT.md:36
 msgid "[**bge**(3)](#bge), [**bgt**(3)](#bgt), [**ble**(3)](#ble)"
@@ -10964,6 +11031,9 @@ msgid ""
 "An _integer_ value of any kind to determine the size of in bits. Because only"
 " the type of the argument is examined, the argument need not be defined."
 msgstr ""
+"Um valor _integer_ de qualquer tipo para determinar o tamanho de bits in. "
+"Devido a apenas o tipo do argumento ser examinado, o argumento não precisa "
+"ser definido."
 
 #: ../../source/learn/intrinsics/_pages/BIT_SIZE.md:32
 msgid ""
@@ -11020,7 +11090,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/SHIFTR.md:24
 #: ../../source/learn/intrinsics/_pages/SHIFTR.md:27
 msgid "The type shall be _integer_."
-msgstr ""
+msgstr "O tipo deve ser _integer_."
 
 #: ../../source/learn/intrinsics/_pages/BTEST.md:29
 #: ../../source/learn/intrinsics/_pages/IBCLR.md:23
@@ -11037,7 +11107,7 @@ msgstr ""
 
 #: ../../source/learn/intrinsics/_pages/BTEST.md:33
 msgid "A value of zero refers to the least significant bit."
-msgstr ""
+msgstr "O valor zero se refere ao bit menos significativo."
 
 #: ../../source/learn/intrinsics/_pages/BTEST.md:37
 msgid ""
@@ -11068,11 +11138,11 @@ msgstr ""
 
 #: ../../source/learn/intrinsics/_pages/STORAGE_SIZE.md:21
 msgid "Shall be a scalar or array of any type."
-msgstr ""
+msgstr "Deve ser um escalar ou matriz de qualquer tipo."
 
 #: ../../source/learn/intrinsics/_pages/STORAGE_SIZE.md:24
 msgid "(Optional) shall be a scalar integer constant expression."
-msgstr ""
+msgstr "(Opcional) deve ser uma expressão de constante inteiro escalar."
 
 #: ../../source/learn/intrinsics/_pages/STORAGE_SIZE.md:28
 msgid ""
@@ -11108,7 +11178,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/SET_EXPONENT.md:25
 #: ../../source/learn/intrinsics/_pages/TRAILZ.md:22
 msgid "Shall be of type _integer_."
-msgstr ""
+msgstr "Deve ser do tipo _integer_."
 
 #: ../../source/learn/intrinsics/_pages/LEADZ.md:25
 msgid ""
@@ -17919,7 +17989,7 @@ msgstr ""
 
 #: ../../source/learn/intrinsics/_pages/REDUCE.md:47
 msgid "**options**"
-msgstr "**Opções**"
+msgstr "**opções**"
 
 #: ../../source/learn/intrinsics/_pages/REDUCE.md:50
 msgid "An array of any type and allowed rank to select values from."
@@ -18009,7 +18079,7 @@ msgstr ""
 
 #: ../../source/learn/intrinsics/_pages/REDUCE.md:111
 msgid "**examples**"
-msgstr "**Exemplos**"
+msgstr "**exemplos**"
 
 #: ../../source/learn/intrinsics/_pages/REDUCE.md:113
 msgid ""
@@ -31561,7 +31631,7 @@ msgstr ""
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:141
 msgid "Add lowering placeholders"
-msgstr ""
+msgstr "Adiciona campos de baixo nível"
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:142
 msgid "Add lowering for basic empty SUBROUTINE"
@@ -31577,7 +31647,7 @@ msgstr ""
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:145
 msgid "Lower PAUSE statement"
-msgstr ""
+msgstr "Declaração PAUSE de baixo nível"
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:146
 msgid "Add lowering for integer constant"
@@ -31667,7 +31737,7 @@ msgstr ""
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:167
 msgid "Lower scalar negation"
-msgstr ""
+msgstr "Negação escalar de baixo nível"
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:168
 msgid "Lower basic binary operation for scalars"
@@ -31679,11 +31749,11 @@ msgstr ""
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:170
 msgid "Lower real constant"
-msgstr ""
+msgstr "Constante real de baixo nível"
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:171
 msgid "Lower complex constant"
-msgstr ""
+msgstr "Constante complexa de baixo nível"
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:172
 msgid "Lower function and subroutine calls"
@@ -31723,7 +31793,7 @@ msgstr ""
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:181
 msgid "Lower power operations"
-msgstr ""
+msgstr "Operações de potência de baixo nível"
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:182
 msgid "Add complex operations lowering tests"
@@ -31807,7 +31877,7 @@ msgstr ""
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:204
 msgid "Accept INDEX(..., BACK=array)"
-msgstr ""
+msgstr "Aceita INDEX(..., BACK=array)"
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:205
 msgid "Fix OPEN/WRITE(SIGN='SUPPRESS')"
@@ -31815,7 +31885,7 @@ msgstr "Correção de OPEN/WRITE(SIGN='SUPPRESS')"
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:206
 msgid "Handle FLUSH(unknown unit)"
-msgstr ""
+msgstr "Lida com FLUSH(unknown unit)"
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:207
 msgid "Allow explicit '+' in NAMELIST input subscripts"
@@ -32000,7 +32070,7 @@ msgstr ""
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:255
 msgid "New ASR optimizations"
-msgstr ""
+msgstr "Novas otimizações ASR"
 
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:256
 msgid "Addes support for fma (fused-multiply add) in LLVM"
@@ -32198,7 +32268,7 @@ msgstr ""
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:156
 msgid "Lower sum intrinsic"
-msgstr ""
+msgstr "soma intrínseca de baixo nível"
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:157
 msgid "Lower computed and assigned goto"
@@ -32206,7 +32276,7 @@ msgstr ""
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:158
 msgid "Lower associate construct"
-msgstr ""
+msgstr "construção associada de baixo nível"
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:159
 msgid "Update ArrayValueCopy to support array_amend and array_access"
@@ -32222,7 +32292,7 @@ msgstr ""
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:162
 msgid "Lower where statement"
-msgstr ""
+msgstr "Declaração \"where\" de baixo nível"
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:163
 msgid "Lower general forall statement"
@@ -32246,19 +32316,19 @@ msgstr ""
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:168
 msgid "Lower elemental calls"
-msgstr ""
+msgstr "chamadas elementares de baixo nível"
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:169
 msgid "Lower ALL intrinsic"
-msgstr ""
+msgstr "intrínseco ALL de baixo nível"
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:170
 msgid "Lower common block"
-msgstr ""
+msgstr "bloco comum de baixo nível"
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:171
 msgid "Lower format statement"
-msgstr ""
+msgstr "Declaração \"format\" de baixo nível"
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:172
 msgid "Write a pass to annotate constant operands on FIR ops"
@@ -32266,7 +32336,7 @@ msgstr ""
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:173
 msgid "Lower ANY intrinsic"
-msgstr ""
+msgstr "intrínseco ANY de baixo nível"
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:174
 msgid "Add support for lowering the dot_product intrinsic"
@@ -32286,11 +32356,11 @@ msgstr ""
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:178
 msgid "Lower entry statement"
-msgstr ""
+msgstr "Declaração de entrada de baixo nível"
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:179
 msgid "Lower alternate return"
-msgstr ""
+msgstr "Retorno alternativo de baixo nível"
 
 #: ../../source/news/2022/04-07-Fortran-Newsletter-April-2022.md:180
 msgid "Lower allocated intrinsic"
