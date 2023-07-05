@@ -74,7 +74,7 @@ Characters are surrounded by either single (`'`) or double quotes (`"`).
 
 Logical or boolean values can be either `.true.` or `.false.`.
 
-> Watch out" content="for assignment at declaration: `integer :: amount = 1`.
+> Watch out for assignment at declaration: `integer :: amount = 1`.
 > **This is NOT a normal initialisation;** it implies the `save` attribute which means that the variable retains
 > its value between procedure calls. Good practice is to initialise your variables separately to their declaration.
 
