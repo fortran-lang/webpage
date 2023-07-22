@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-29 16:02+0200\n"
-"PO-Revision-Date: 2023-07-17 21:07+0000\n"
+"PO-Revision-Date: 2023-07-23 20:03+0000\n"
 "Last-Translator: Nathan Gurgel <nathan_gurgel@hotmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pt/>\n"
@@ -11515,6 +11515,11 @@ msgid ""
 "of the **mask** value to determine which of the input values to copy bits "
 "from."
 msgstr ""
+"Um operação gráfica comum em Operações de Varredura de Ternários é combinar "
+"bits de duas fontes diferentes, geralmente referida como bit-blending. "
+"**merge_bits** realiza um bit-blend mascarado de **i** e **j** usando os "
+"bits do valor **mask** para determinar quais dos valores de entrada copiar "
+"os bits."
 
 #: ../../source/learn/intrinsics/_pages/MERGE_BITS.md:30
 msgid ""
@@ -11522,10 +11527,14 @@ msgid ""
 " the k-th bit of **mask** is **1**; it is equal to the k-th bit of **j** "
 "otherwise (so all three input values must have the same number of bits)."
 msgstr ""
+"Especificamente, o k-ésimo bit do resultado é igual ao k-ésimo bit de **i** "
+"se o k-ésimo bit de **mask** for **1**; ser[a igual ao k-ésimo bit de **j** "
+"caso contrário (então todos os três valores de entrada devem ter o mesmo "
+"número de bits)."
 
 #: ../../source/learn/intrinsics/_pages/MERGE_BITS.md:35
 msgid "The resulting value is the same as would result from"
-msgstr ""
+msgstr "O valor resultante é o mesmo que resultaria de"
 
 #: ../../source/learn/intrinsics/_pages/MERGE_BITS.md:39
 msgid ""
@@ -11536,18 +11545,27 @@ msgid ""
 "intrinsic function **int()** with the kind of the non-BOZ value(s), so the "
 "BOZ values must be in the range of the type of the result."
 msgstr ""
+"Um exceção para todos os valores é o mesmo tipo _integer_ onde **i** ou **j**"
+" e/ou a máscara seja uma constante BOZ (Uma constante BOZ significa ser "
+"tanto uma constante literal Binária, Octal, ou Hexadecimal). Os valores BOZ "
+"são convertidos para o tipo _integer_ dos valores não BOZ como se fossem "
+"chamada pela função intrínseca **int()** com o tipo do(s) valor(es) não BOZ, "
+"então os valores BOZ devem estar dentro do limite do tipo do resultado."
 
 #: ../../source/learn/intrinsics/_pages/MERGE_BITS.md:49
 msgid "value to select bits from when the associated bit in the mask is **1**."
 msgstr ""
+"valor para selecionar bits onde quando o bit associado na máscara é **1**."
 
 #: ../../source/learn/intrinsics/_pages/MERGE_BITS.md:52
 msgid "value to select bits from when the associated bit in the mask is **0**."
-msgstr ""
+msgstr "valor para selecionar bits de onde o bit associado na máscara é **0**."
 
 #: ../../source/learn/intrinsics/_pages/MERGE_BITS.md:55
 msgid "a value whose bits are used as a mask to select bits from **i** and **j**"
 msgstr ""
+"um valor cujo bits são usados como uma máscara para selecionar bits de **i** "
+"e **j**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE_BITS.md:59
 msgid ""
@@ -11555,6 +11573,8 @@ msgid ""
 " type as **i** if **i** is of type _integer_, otherwise the same type as "
 "**j**."
 msgstr ""
+"Os bits mesclados de **i** e **j** usando a máscara **mask**. É do mesmo "
+"tipo que **i** se **i** é do tipo _integer_, se não do mesmo tipo que **j**."
 
 #: ../../source/learn/intrinsics/_pages/MASKR.md:40
 #: ../../source/learn/intrinsics/_pages/MERGE_BITS.md:63
@@ -11571,6 +11591,8 @@ msgid ""
 "**mvbits**(3) - \\[BIT:COPY\\] reproduce bit patterns found in one integer in"
 " another"
 msgstr ""
+"**mvbits**(3) - \\[BIT:COPY\\] reproduz os padrões de bit encontrar em um "
+"inteiro em outro"
 
 #: ../../source/learn/intrinsics/_pages/MVBITS.md:16
 msgid ""
@@ -11579,6 +11601,10 @@ msgid ""
 "is of the same kind as **from**). It otherwise leaves the bits in **to** as-"
 "is."
 msgstr ""
+"**mvbits(3f)** copia o padrão de bit encontrado em um espaço de bits "
+"adjacentes no _integer_ **from** para a posição especificada em outro "
+"integer **to** (o qual é do mesmo tipo de **from**). Se não deixa os bits de "
+"**to** como está."
 
 #: ../../source/learn/intrinsics/_pages/MVBITS.md:21
 msgid ""
@@ -11586,10 +11612,14 @@ msgid ""
 "the values of **frompos+len-1** and **topos+len-1** must be nonnegative and "
 "less than **bit_size**(from)."
 msgstr ""
+"As posições de bit copiadas devem existir dentro do valor de **from**. Isso "
+"é, os valores de **frompos+len-1** e **topos+len-1** deve ser não negativo e "
+"menor que **bit_size**(from)."
 
 #: ../../source/learn/intrinsics/_pages/MVBITS.md:25
 msgid "The bits are numbered **0** to **bit_size(i)-1**, from right to left."
 msgstr ""
+"Os bits são numerados de **0** à **bit_size(i)-1**, da direita para esquerda."
 
 #: ../../source/learn/intrinsics/_pages/MVBITS.md:29
 msgid "**from**"
@@ -11597,7 +11627,7 @@ msgstr "**from**"
 
 #: ../../source/learn/intrinsics/_pages/MVBITS.md:30
 msgid "An _integer_ to read bits from."
-msgstr ""
+msgstr "Um _integer_ para ler os bits."
 
 #: ../../source/learn/intrinsics/_pages/MVBITS.md:31
 msgid "**frompos**"
@@ -11608,6 +11638,8 @@ msgid ""
 "**frompos** is the position of the first bit to copy. It is a nonnegative "
 "_integer_ value < **bit_size(from)**."
 msgstr ""
+"**frompos** é a posição do primeiro bit para copiar. É um valor _integer_ "
+"não negativo menor que **bit_size(from)**."
 
 #: ../../source/learn/intrinsics/_pages/IBITS.md:30
 #: ../../source/learn/intrinsics/_pages/MVBITS.md:34
@@ -11620,6 +11652,9 @@ msgid ""
 "**from**. It must not specify copying bits past the end of **from**. That is,"
 " **frompos + len** must be less than or equal to **bit_size(from)**."
 msgstr ""
+"Um valor _integer_ não negativo que indica quantos bits copiar de **from**. "
+"Não deve especificar bits para copiar depois de **from**. Em outras "
+"palavras, **frompos + len** deve ser menor ou igual à **bit_size(from)**."
 
 #: ../../source/learn/intrinsics/_pages/MVBITS.md:39
 #: ../../source/learn/intrinsics/_pages/MVBITS.md:44
@@ -11631,6 +11666,8 @@ msgid ""
 "The _integer_ variable to place the copied bits into. It must be of the same "
 "kind as **from** and may even be the same variable as **from**."
 msgstr ""
+"A variável _integer_ para posicionar dentro os bits copiados. Deve ser do "
+"mesmo tipo que **from** e pode ser a mesma variável que **from**."
 
 #: ../../source/learn/intrinsics/_pages/MVBITS.md:45
 msgid ""
@@ -28424,7 +28461,7 @@ msgstr ""
 
 #: ../../source/news/2021/09-01-Fortran-Newsletter-September-2021.md:237
 msgid "Initial fixed-form parser (AST)"
-msgstr ""
+msgstr "Parser inicial de forma fixada (AST)"
 
 #: ../../source/news/2021/09-01-Fortran-Newsletter-September-2021.md:238
 msgid "Initial class support (ASR, LLVM)"
@@ -28436,7 +28473,7 @@ msgstr ""
 
 #: ../../source/news/2021/09-01-Fortran-Newsletter-September-2021.md:240
 msgid "Associate block (ASR, LLVM)"
-msgstr ""
+msgstr "Bloco associado (ASR, LLVM)"
 
 #: ../../source/news/2021/09-01-Fortran-Newsletter-September-2021.md:241
 msgid "Runtime library refactoring (ASR, LLVM)"
@@ -28549,7 +28586,7 @@ msgstr "[fortran-lang/fftpack](https://github.com/fortran-lang/fftpack)"
 
 #: ../../source/news/2021/10-01-Fortran-Newsletter-October-2021.md:7
 msgid "Fortran newsletter: October 2021"
-msgstr ""
+msgstr "Boletim Fortran: Outubro de 2021"
 
 #: ../../source/news/2021/10-01-Fortran-Newsletter-October-2021.md:9
 msgid ""
@@ -28563,6 +28600,8 @@ msgid ""
 "[#305](https://github.com/fortran-lang/fortran-lang.org/pull/305): September "
 "newsletter draft"
 msgstr ""
+"[#305](https://github.com/fortran-lang/fortran-lang.org/pull/305): Rascunho "
+"do boletim de setembro"
 
 #: ../../source/news/2021/10-01-Fortran-Newsletter-October-2021.md:19
 msgid ""
@@ -28647,6 +28686,8 @@ msgid ""
 "[#336](https://github.com/fortran-lang/fortran-lang.org/pull/336): One more "
 "package"
 msgstr ""
+"[#336](https://github.com/fortran-lang/fortran-lang.org/pull/336): Mais um "
+"pacote"
 
 #: ../../source/news/2021/10-01-Fortran-Newsletter-October-2021.md:50
 msgid ""
@@ -28677,6 +28718,8 @@ msgid ""
 "[#513](https://github.com/fortran-lang/stdlib/pull/513): Update issue "
 "templates"
 msgstr ""
+"[#513](https://github.com/fortran-lang/stdlib/pull/513): Atualização dos "
+"templates de issue"
 
 #: ../../source/news/2021/10-01-Fortran-Newsletter-October-2021.md:73
 msgid ""
@@ -28816,6 +28859,8 @@ msgstr ""
 #: ../../source/news/2021/10-01-Fortran-Newsletter-October-2021.md:160
 msgid "[#558](https://github.com/fortran-lang/fpm/pull/558): Add issue templates"
 msgstr ""
+"[#558](https://github.com/fortran-lang/fpm/pull/558): Adiciona templates de "
+"issue"
 
 #: ../../source/news/2021/10-01-Fortran-Newsletter-October-2021.md:162
 msgid ""
@@ -29076,7 +29121,7 @@ msgstr ""
 
 #: ../../source/news/2021/10-01-Fortran-Newsletter-October-2021.md:275
 msgid "Operator overloading (ASR, LLVM)"
-msgstr ""
+msgstr "Sobrecarga de operador (ASR, LLVM)"
 
 #: ../../source/news/2021/10-01-Fortran-Newsletter-October-2021.md:276
 msgid "Goto (ASR, LLVM)"
@@ -29126,7 +29171,7 @@ msgstr ""
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:7
 msgid "Fortran newsletter: November 2021"
-msgstr ""
+msgstr "Boletim Fortran: Novembro de 2021"
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:9
 msgid ""
@@ -29168,10 +29213,13 @@ msgstr ""
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:43
 msgid "[#543](https://github.com/fortran-lang/stdlib/pull/543): Fix string concat"
 msgstr ""
+"[#543](https://github.com/fortran-lang/stdlib/pull/543): Corrige concat de "
+"string"
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:48
 msgid "[#554](https://github.com/fortran-lang/stdlib/pull/554) (WIP): Hash functions"
 msgstr ""
+"[#554](https://github.com/fortran-lang/stdlib/pull/554) (WIP): Funções Hash"
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:50
 msgid ""
@@ -29347,7 +29395,7 @@ msgstr ""
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:163
 msgid "Add fir.convert canonicalization patterns"
-msgstr ""
+msgstr "Adiciona canonalização de padrões fir.convert"
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:164
 msgid "Add the DoLoopHelper"
@@ -29359,7 +29407,7 @@ msgstr ""
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:166
 msgid "Add FIRBuilder utility functions"
-msgstr ""
+msgstr "Adiciona funções utilitárias FIRBuilder"
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:167
 msgid "Add character utility functions in FIRBuilder"
@@ -29410,7 +29458,7 @@ msgstr "flang-omp-report"
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:177
 msgid "replace std::vector's with llvm::SmallVector"
-msgstr ""
+msgstr "substitui std::vector por llvm::SmallVector"
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:178
 msgid "Switch from std::string to StringRef (where possible)"
@@ -29418,7 +29466,7 @@ msgstr ""
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:179
 msgid "replace std::map with llvm::DenseMap"
-msgstr ""
+msgstr "substitui std::map por llvm::DenseMap"
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:180
 msgid "Make builtin types more easily accessible; use them"
@@ -29502,7 +29550,7 @@ msgstr ""
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:200
 msgid "Fix generic resolution case"
-msgstr ""
+msgstr "Corrige caso de resolução genérica"
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:201
 msgid "Speed common runtime cases of DOT_PRODUCT & MATMUL"
@@ -29518,7 +29566,7 @@ msgstr ""
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:204
 msgid "Fix DOT_PRODUCT for logical"
-msgstr ""
+msgstr "Corrige DOT_PRODUCT por logical"
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:205
 msgid "Fix NAMELIST input bug with multiple subscript triplets"
@@ -29538,7 +29586,7 @@ msgstr ""
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:214
 msgid "Many new intrinsics added"
-msgstr ""
+msgstr "Muitos intrínsecos novos adicionados"
 
 #: ../../source/news/2021/11-01-Fortran-Newsletter-November-2021.md:215
 msgid "Rust style error messages, add first warnings and style suggestions"
@@ -29594,7 +29642,7 @@ msgstr ""
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:7
 msgid "Fortran newsletter: December 2021"
-msgstr ""
+msgstr "Boletim Fortran: Dezembro de 2021"
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:9
 msgid ""
@@ -29626,6 +29674,8 @@ msgid ""
 "[#347](https://github.com/fortran-lang/fortran-lang.org/pull/347) (WIP): "
 "Fortran Intrinsics"
 msgstr ""
+"[#347](https://github.com/fortran-lang/fortran-lang.org/pull/347) (WIP): "
+"Intrínsecos Fortran"
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:37
 msgid ""
@@ -29726,6 +29776,8 @@ msgid ""
 "[v0.5.0](https://github.com/fortran-lang/fpm/releases/tag/v0.5.0): Alpha "
 "release update"
 msgstr ""
+"[v0.5.0](https://github.com/fortran-lang/fpm/releases/tag/v0.5.0): "
+"Atualização lançamento Alpha"
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:112
 msgid ""
@@ -29778,6 +29830,8 @@ msgid ""
 "[setup-fpm#7](https://github.com/fortran-lang/setup-fpm/pull/7): Fix Latest "
 "Option"
 msgstr ""
+"[setup-fpm#7](https://github.com/fortran-lang/setup-fpm/pull/7): Corrige "
+"Última Opção"
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:133
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:146
@@ -29841,7 +29895,7 @@ msgstr ""
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:176
 msgid "fir.box_rank, fir.box_addr, fir.box_dims, fir.box_elesize"
-msgstr ""
+msgstr "fir.box_rank, fir.box_addr, fir.box_dims, fir.box_elesize"
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:177
 msgid "fir.convert"
@@ -29885,7 +29939,7 @@ msgstr ""
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:188
 msgid "Read environment variables directly"
-msgstr ""
+msgstr "Lê variáveis de ambiente diretamente"
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:190
 msgid "Removed unnecessary comments in flang-omp-report plugin tests"
@@ -29897,7 +29951,7 @@ msgstr ""
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:192
 msgid "Add flang-omp-report summarising script"
-msgstr ""
+msgstr "Adiciona script de sumarização flang-omp-report"
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:193
 msgid "Checks for pointers to intrinsic functions"
@@ -29931,7 +29985,7 @@ msgstr ""
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:200
 msgid "Remove getModel<Fortran::ISO::CFI_dim_t> in DescriptorModel.h"
-msgstr ""
+msgstr "Remove getModel<Fortran::ISO::CFI_dim_t> em DescriptorModel.h"
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:201
 msgid "Set the addendum when establishing pointer section in descriptor"
@@ -29959,7 +30013,7 @@ msgstr ""
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:207
 msgid "Fix folding of EPSILON()"
-msgstr ""
+msgstr "Corrige dobragem de EPSILON()"
 
 #: ../../source/news/2021/12-01-Fortran-Newsletter-December-2021.md:213
 msgid "32 Merge Requests merged in November 2021"
@@ -30031,7 +30085,7 @@ msgstr "=(Fortran-lang-2021-in-review)"
 
 #: ../../source/news/2021/12-29-Fortran-lang-2021-in-review.md:9
 msgid "Fortran-lang: 2021 in review"
-msgstr ""
+msgstr "Fortran-lang: 2021 em revisão"
 
 #: ../../source/news/2021/12-29-Fortran-lang-2021-in-review.md:11
 msgid ""
@@ -30376,7 +30430,7 @@ msgstr ""
 
 #: ../../source/news/2021/12-29-Fortran-lang-2021-in-review.md:203
 msgid "A community-maintained FFT library"
-msgstr ""
+msgstr "Uma biblioteca FFT mantida pela comunidade"
 
 #: ../../source/news/2021/12-29-Fortran-lang-2021-in-review.md:204
 msgid "Bug fixes to the existing codebase"
@@ -30631,7 +30685,7 @@ msgstr ""
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:7
 msgid "Fortran newsletter: January 2022"
-msgstr ""
+msgstr "Boletim Fortran: Janeiro de 2022"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:9
 msgid ""
@@ -30687,6 +30741,8 @@ msgid ""
 "[#586](https://github.com/fortran-lang/stdlib/pull/586): Update of "
 "stdlib_stats.md"
 msgstr ""
+"[#586](https://github.com/fortran-lang/stdlib/pull/586): Atualização de "
+"stdlib_stats.md"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:50
 msgid ""
@@ -30770,6 +30826,8 @@ msgid ""
 "[#498](https://github.com/fortran-lang/stdlib/pull/498): [stdlib_math] add "
 "`arg/argd/argpi`"
 msgstr ""
+"[#498](https://github.com/fortran-lang/stdlib/pull/498): [stdlib_math] "
+"adiciona `arg/argd/argpi`"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:78
 msgid ""
@@ -30790,6 +30848,8 @@ msgid ""
 "[#609](https://github.com/fortran-lang/stdlib/pull/609): Consistent spec "
 "titles"
 msgstr ""
+"[#609](https://github.com/fortran-lang/stdlib/pull/609): Títulos de "
+"especificação consistentes"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:84
 msgid ""
@@ -30818,6 +30878,7 @@ msgstr ""
 #: ../../source/news/2022/06-09-Fortran-Newsletter-June-2022.md:65
 msgid "[#611](https://github.com/fortran-lang/stdlib/pull/611) (WIP): Hash maps"
 msgstr ""
+"[#611](https://github.com/fortran-lang/stdlib/pull/611) (WIP): Hash maps"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:95
 msgid ""
@@ -30874,7 +30935,7 @@ msgstr ""
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:179
 msgid "Add !fir.vector type conversion"
-msgstr ""
+msgstr "Adiciona conversão de tipo !fir.vector"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:180
 msgid "Add type conversion for `fir.boxchar`"
@@ -30894,11 +30955,11 @@ msgstr "Adiciona conversão fir.select_case"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:184
 msgid "Add !fir.field type conversion"
-msgstr ""
+msgstr "Adiciona conversão de tipo !fir.field"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:185
 msgid "Transform `IsPresentOpConversion` and `AbsentOpConversion`"
-msgstr ""
+msgstr "Transforma `IsPresentOpConversion` e `AbsentOpConversion`"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:186
 msgid "Add type conversion for FIR heap type"
@@ -30910,7 +30971,7 @@ msgstr ""
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:188
 msgid "Add !fir.len type conversion"
-msgstr ""
+msgstr "Adiciona conversão de tipo !fir.len"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:189
 msgid "Transform `fir.emboxchar` to a sequence of LLVM MLIR"
@@ -30918,7 +30979,7 @@ msgstr ""
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:190
 msgid "Add fir.select_type conversion placeholder"
-msgstr ""
+msgstr "Adiciona placeholder de conversão fir.select_type"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:191
 msgid "Remove extra return in SelectTypeOpConversion"
@@ -30930,7 +30991,7 @@ msgstr ""
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:193
 msgid "Add fir.global_len conversion placeholder"
-msgstr ""
+msgstr "Adiciona placeholder de conversão fir.global_len"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:194
 msgid "Add the FIR LLVMPointer Type"
@@ -30986,7 +31047,7 @@ msgstr ""
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:207
 msgid "Add `fir.end` conversion placeholder"
-msgstr ""
+msgstr "Adiciona placeholder de conversão `fir.end`"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:208
 msgid "Transform `fir.field_index` to a sequence of LLVM MLIR"
@@ -31026,7 +31087,7 @@ msgstr ""
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:217
 msgid "Add fir reduction builder"
-msgstr ""
+msgstr "Adiciona construtor de redução fir"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:218
 msgid "Add fir numeric intrinsic runtime call builder"
@@ -31042,7 +31103,7 @@ msgstr ""
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:221
 msgid "Add fir character builder"
-msgstr ""
+msgstr "Adicionar construtor de caracter fir"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:222
 msgid "Add fircg.ext_array_coor conversion"
@@ -31064,7 +31125,7 @@ msgstr ""
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:227
 msgid "Respect NO_STOP_MESSAGE=1 in runtime"
-msgstr ""
+msgstr "Respeita NO_STOP_MESSAGE=1 em tempo de execução"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:228
 msgid "Runtime performance improvements to real formatted input"
@@ -31160,7 +31221,7 @@ msgstr ""
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:251
 msgid "Add -fno-automatic, refine IsSaved()"
-msgstr ""
+msgstr "Adiciona -fno-automatic, refina IsSaved()"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:252
 msgid "Correct the argument keyword for AIMAG(Z=...)"
@@ -31184,7 +31245,7 @@ msgstr ""
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:257
 msgid "Correct INQUIRE(POSITION= & PAD=)"
-msgstr ""
+msgstr "Corrige INQUIRE(POSITION= & PAD=)"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:258
 msgid "Rearrange prototype & code placement of IsCoarray()"
@@ -31222,7 +31283,7 @@ msgstr ""
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:271
 msgid "generic procedure resolution fixes"
-msgstr ""
+msgstr "Correções de resolução de procedimentos genéricos"
 
 #: ../../source/news/2022/01-01-Fortran-Newsletter-January-2022.md:272
 msgid "FreeBSD fixes"
@@ -31289,7 +31350,7 @@ msgstr "[fortran-lang/test-drive](https://github.com/fortran-lang/test-drive)"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:7
 msgid "Fortran newsletter: February 2022"
-msgstr ""
+msgstr "Boletim Fortran: Fevereiro de 2022"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:9
 msgid ""
@@ -31305,6 +31366,8 @@ msgid ""
 "[#369](https://github.com/fortran-lang/fortran-lang.org/pull/369): Resolves "
 "Issue #217"
 msgstr ""
+"[#369](https://github.com/fortran-lang/fortran-lang.org/pull/369): Resolve "
+"Issue #217"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:19
 #: ../../source/news/2022/03-09-Fortran-Newsletter-March-2022.md:19
@@ -31335,6 +31398,8 @@ msgstr ""
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:45
 msgid "[#622](https://github.com/fortran-lang/stdlib/pull/622): Fix Gauss quadrature"
 msgstr ""
+"[#622](https://github.com/fortran-lang/stdlib/pull/622): Corrige quadratura "
+"de Gauss"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:90
 msgid ""
@@ -31376,6 +31441,8 @@ msgid ""
 "[fpm-docs#40](https://github.com/fortran-lang/fpm-docs/pull/40): Update "
 "Spanish translation"
 msgstr ""
+"[fpm-docs#40](https://github.com/fortran-lang/fpm-docs/pull/40): Atualiza "
+"tradução Espanhol"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:107
 msgid ""
@@ -31416,6 +31483,8 @@ msgid ""
 "[fpm-docs#42](https://github.com/fortran-lang/fpm-docs/issues/42) (WIP): "
 "Dutch translation"
 msgstr ""
+"[fpm-docs#42](https://github.com/fortran-lang/fpm-docs/issues/42) (WIP): "
+"tradução Alemão"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:131
 msgid ""
@@ -31543,7 +31612,7 @@ msgstr ""
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:187
 msgid "Legacy extension: non-character formats"
-msgstr ""
+msgstr "Extensão legado: formatos de não-caracteres"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:188
 msgid "Signal runtime error on WRITE after ENDFILE"
@@ -31564,7 +31633,7 @@ msgstr ""
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:197
 #: ../../source/news/2022/05-05-Fortran-Newsletter-May-2022.md:309
 msgid "**Compiling `stdlib` with `lfortran`**"
-msgstr ""
+msgstr "**Compilando `stdlib` com `lfortran`**"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:199
 msgid ""
@@ -31611,24 +31680,32 @@ msgid ""
 "[Move exception.h to "
 "libasr](https://gitlab.com/lfortran/lfortran/-/merge_requests/1621)"
 msgstr ""
+"[Move exception.h para libasr](https://gitlab.com/lfortran/lfortran/-/"
+"merge_requests/1621)"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:211
 msgid ""
 "[Move string_utils.h/cpp to "
 "libasr](https://gitlab.com/lfortran/lfortran/-/merge_requests/1622)"
 msgstr ""
+"[Move string_utils.h/cpp para libasr](https://gitlab.com/lfortran/lfortran/-/"
+"merge_requests/1622)"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:212
 msgid ""
 "[Move location.h to "
 "libasr](https://gitlab.com/lfortran/lfortran/-/merge_requests/1623)"
 msgstr ""
+"[Move location.h para libasr](https://gitlab.com/lfortran/lfortran/-/"
+"merge_requests/1623)"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:213
 msgid ""
 "[Move stacktrace.h/cpp to "
 "libasr](https://gitlab.com/lfortran/lfortran/-/merge_requests/1624)"
 msgstr ""
+"[Move stacktrace.h/cpp para libasr](https://gitlab.com/lfortran/lfortran/-/"
+"merge_requests/1624)"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:214
 msgid ""
@@ -31647,6 +31724,8 @@ msgid ""
 "[Move config.h to "
 "libasr](https://gitlab.com/lfortran/lfortran/-/merge_requests/1627)"
 msgstr ""
+"[Move config.h para libasr](https://gitlab.com/lfortran/lfortran/-/"
+"merge_requests/1627)"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:217
 msgid ""
@@ -31693,6 +31772,8 @@ msgid ""
 "[Expose rl_path from "
 "libasr](https://gitlab.com/lfortran/lfortran/-/merge_requests/1634)"
 msgstr ""
+"[Expõe rl_path de libasr](https://gitlab.com/lfortran/lfortran/-/"
+"merge_requests/1634)"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:224
 msgid ""
@@ -31735,6 +31816,8 @@ msgid ""
 "[Update ASR from "
 "LPython](https://gitlab.com/lfortran/lfortran/-/merge_requests/1646)"
 msgstr ""
+"[Atualiza ASR de LPython](https://gitlab.com/lfortran/lfortran/-/"
+"merge_requests/1646)"
 
 #: ../../source/news/2022/02-01-Fortran-Newsletter-February-2022.md:233
 msgid ""
