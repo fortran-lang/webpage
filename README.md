@@ -31,9 +31,14 @@ First check :
 sphinx-build --version
 ```
 
-if not recognized then run:
+if not recognized then run (in Windows):
 ```
 pip install -U sphinx
+```
+
+if not recognized then run (in Linux):
+```
+sudo apt install python3-sphinx
 ```
 
 Build the site by invoking
