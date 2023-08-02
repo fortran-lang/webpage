@@ -189,6 +189,7 @@ html_sidebars = {
     "packages": [],
     "community": [],
     "packages/**": [],
+    "community/governance":[],
 }
 html_title = "Fortran Programming Language"
 html_logo = "_static/images/fortran-logo-256x256.png"

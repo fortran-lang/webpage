@@ -143,6 +143,11 @@ on the project workflow and recommended practices.
 [Contributor guide for fpm](https://github.com/fortran-lang/fpm/blob/HEAD/CONTRIBUTING.md)<br>
 [Contributor guide for fortran-lang.org](community/contributing)
 
+:::{div} sd-text-left sd-fs-4
+Fortran-lang governance
+:::
+
+The [governance](community/governance) model used by the Fortran-lang community
 ::::
 ::::{grid-item-card}
 :shadow: none
