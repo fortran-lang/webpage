@@ -1,5 +1,5 @@
-Fortran gotchas
-===============
+Gotchas
+=======
 
 Fortran syntax is generally simple and consistent, but as with many languages it has some flaws. Sometimes because of legacy reasons (the evolution of the Fortran standard strongly emphasizes the backward compatibility because of the huge amount of legacy code that is still actively used), sometimes because of real flaws (poor choice at some point, which is difficult if not impossible to correct without breaking the backward compatibility), and sometimes just because Fortran is not C or C++ or Python or whatever: it has its own logic, with features that can sometimes be surprising to developers who are used to some other languages. 
 
