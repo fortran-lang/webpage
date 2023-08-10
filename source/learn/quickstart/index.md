@@ -15,4 +15,5 @@ Arrays and strings <arrays_strings>
 Operators and flow control <operators_control_flow>
 Organising code structure <organising_code>
 Derived Types <derived_types>
+Gotchas <gotchas>
 ```
