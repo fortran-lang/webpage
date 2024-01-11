@@ -56,10 +56,7 @@ What is the status of Fortran?
 
 Fortran is mature and under active development.
 The latest revision of the language is
-[Fortran 2018](https://isotc.iso.org/livelink/livelink?func=ll&objId=19441669&objAction=Open).
-The next revision,
-[Fortran 2023](https://wg5-fortran.org/N2151-N2200/N2194.pdf), is planned for
-release in 2023.
+[Fortran 2023](https://wg5-fortran.org/N2201-N2250/N2212.pdf).
 There are over a dozen open source and proprietary
 [Fortran compilers](compilers).
 Further, open source projects like the
