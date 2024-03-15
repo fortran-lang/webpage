@@ -123,15 +123,6 @@ OpenMP standards and tuned for leading server-class Arm-based platforms. Built
 on the open source Flang front-end, and the LLVM‑based optimization and code
 generation back-end. Available as part of the Arm Compiler for Linux package.
 
-<h4> <b> Absoft </b></h4>
-
-[Absoft compilers](https://www.absoft.com/products/) include Pro Fortran
-delivering Absoft’s exclusive AP load balancing, AVX, OpenMP 3.1,
-extended Fortran 95 compiler with F2003 and F2008 features, FX3 graphical debugger,
-native tool suite integration, AMDAL HPC scientific and engineering library, and more.
-Pro Fortran includes Fast Data Visualization, an Absoft exclusive technology for
-graphical rendering and data output.
-
 <h4> <b> Oracle / Sun </b></h4>
 
 [Oracle C, C++, Fortran Compiler](https://www.oracle.com/application-development/technologies/developerstudio-features.html)
@@ -140,15 +131,6 @@ is highly optimized for Oracle systems, on-premise and in the cloud
 - Advanced code generation technology for the latest Oracle SPARC and x86 based systems
 - Support for the latest industry standards, including C++14, C++11, C11 and OpenMP 4.0 and extensive GCC compatibility features
 - Automatic code analysis during compilation and automatic stack overflow protection at application runtime
-
-<h4> <b> Lahey / Fujitsu </b></h4>
-
-LF Professional v7.8 combines the 32/64-bit LGF Rainier compiler with the classic
-[Lahey/Fujitsu LF95](https://lahey.com/) compiler. LGF Rainier has full Fortran
-95/90/77 compliance with extensive support for the Fortran 2003 and 2008 standards.
-Lahey/Fujitsu LF95 offers best in class diagnostics.
-Includes the automatic-parallelizing GFortran compiler, Lahey/Fujitsu Fortran 95
-compiler, Visual Studio Fortran support, Winteracter WiSK Graphics package, and more.
 
 <h4> <b> Silverfrost FTN95 </b></h4>
 
@@ -180,9 +162,11 @@ for x86_64 architecture is available.
 The following is a list of Fortran compilers that seem discontinued, so we do
 not list them above:
 
+- Absoft
 - Apogee
 - Edinburgh Portable Compilers
 - Hewlett Packard
+- Lahey
 - Watcom
 - PathScale
 - G95
