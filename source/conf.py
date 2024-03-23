@@ -141,7 +141,7 @@ html_theme_options = {
     "show_prev_next": False,
     "show_nav_level": 1,
     "show_toc_level": 0,
-    "footer_items": ["copyright"],
+    "footer_start": ["copyright"],
     "navbar_align": "right",
     "navbar_start": ["navbar-logo","theme-switcher.html","version-switcher"],
     "switcher": {
