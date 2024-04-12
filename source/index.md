@@ -147,7 +147,7 @@ Or just write Fortran software for your research, business, or schoolwork. You c
 :::{toctree}
 :hidden:
 
-Play <https://play.fortran-lang.org/>
+Play <https://dev.lfortran.org/>
 learn
 roadmap
 compilers

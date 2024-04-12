@@ -79,7 +79,7 @@ Get a taste of Fortran in an interactive playground in the browser.
 
 ```{card}
 :link-type: url
-:link: https://play.fortran-lang.org/
+:link: https://dev.lfortran.org/
 :class-card: sd-btn
 :class-body: sd-p-1 sd-text-center sd-font-weight-bold sd-text-info sd-btn-primary sd-text-light sd-btn
 :shadow: none
