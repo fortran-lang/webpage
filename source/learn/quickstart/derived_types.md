@@ -223,7 +223,6 @@ end program test_employee
 `member-attributes` (optional):
 
 - `public` or `private` access attributes
-- `protected` access attribute
 - `allocatable` with or without `dimension` to specify a dynamic array
 - `pointer`, `codimension`, `contiguous`, `volatile`, `asynchronous`
 
@@ -236,12 +235,7 @@ type :: t_example
   ! private hides it from use outside of the t_example's scope.
   ! The default initialization [=0] is the [init] part.
 
-  ! 2nd case: protected
-  integer, protected :: i
-  ! In contrary to private, protected allows access to i assigned value outside of t_example
-  ! but is not definable, i.e. a value may be assigned to i only within t_example.
-
-  ! 3rd case: dynamic 1-D array
+  ! 2nd case: dynamic 1-D array
   real, allocatable, dimension(:) :: x
   ! the same as
   real, allocatable :: x(:)
