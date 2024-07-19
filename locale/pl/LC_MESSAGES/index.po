@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-01 14:47+0530\n"
-"PO-Revision-Date: 2024-07-16 11:09+0000\n"
+"PO-Revision-Date: 2024-07-20 19:09+0000\n"
 "Last-Translator: Agnieszka Ziora <agaxx02@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pl/>\n"
@@ -3109,18 +3109,28 @@ msgid ""
 "out-of-scope. Using `allocatable` variables removes the possibility to create"
 " memory leaks in an application."
 msgstr ""
+"Atrybut `allocatable` pozwala na bezpieczną obsługę pamięci. W porównaniu z "
+"atrybutem zmiennych `pointer` pamięć jest obsługiwana automatycznie i "
+"zostanie zwolniona w momencie, gdy zmienna wyjdzie poza zakres. Używanie "
+"atrybutu `allocatable` dla zmiennych zmniejsza prawdopodobieństwo powstania "
+"przecieków pamięci w aplikacji."
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:9
 msgid ""
 "They can be used in subroutines to create scratch or work arrays, where "
 "automatic arrays would become too large to fit on the stack."
 msgstr ""
+"Mogą być używane w podprogramach, aby stworzyć tablice podstawowe lub "
+"robocze, gdzie automatyczne tablice mogłyby stać się zbyt duże, aby zmieścić "
+"się na stosie."
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:17
 msgid ""
 "The allocation status can be checked using the `allocated` intrinsic to avoid"
 " uninitialized access"
 msgstr ""
+"Status przydziału można sprawdzić za pomocą funkcji `allocated`, aby uniknąć "
+"niezainicjowanego dostępu"
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:30
 msgid ""
@@ -3128,10 +3138,13 @@ msgid ""
 "`allocatable` attribute. Using it in combination with `intent(out)` will "
 "deallocate previous allocations before entering the procedure:"
 msgstr ""
+"Aby przydzielić zmienne wewnątrz procedury fikcyjny argument musi posiadać "
+"atrybut `allocatable`. Użycie go w połączeniu z `intent(out)` zwolni "
+"poprzednie przydziały zanim rozpocznie się wykonywanie procedury:"
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:41
 msgid "The allocated array can be used afterwards like a normal array"
-msgstr ""
+msgstr "Przydzielona tablica może być później używana jak normalna tablica"
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:48
 msgid ""
@@ -3139,12 +3152,18 @@ msgid ""
 "deallocation. Similarly, deallocation can only be invoked for allocated "
 "arrays. To reallocate an array use"
 msgstr ""
+"Przydzielona już tablica nie może zostać przydzielona ponownie bez "
+"wcześniejszego zwolnienia przydziału. Zwolnienie przydziału również może być "
+"rozpoczęte tylko dla przydzielonych już tablic. Aby zmienić przydział "
+"tablicy użyj"
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:57
 msgid ""
 "Passing allocated arrays to procedures does not require the `allocatable` "
 "attribute for the dummy arguments anymore."
 msgstr ""
+"Przekazywanie przydzielonych tablic do procedur nie wymaga już użycia "
+"atrybutu `allocatable` dla fikcyjnego argumentu."
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:80
 msgid ""
@@ -3154,12 +3173,21 @@ msgid ""
 "attribute is not limited to arrays and can also be associated with scalars, "
 "which can be useful in combination with `optional` dummy arguments."
 msgstr ""
+"Przekazywanie nieprzydzielonej tablicy w tym kontekście doprowadzi do "
+"niepoprawnego dostępu do pamięci. Przydzielone tablice mogą być przekazywane "
+"do opcjonalnych (`optional`) argumentów fikcyjnych - w przypadku "
+"nieprzydzielenia tablicy argument nie będzie obecny. Atrybut `allocatable` "
+"nie jest ograniczony tylko do tablic i może być używany również do wielkości "
+"skalarnych, co może być przydatne w połączeniu z opcjonalnymi ( `optional`) "
+"argumentami fikcyjnymi."
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:86
 msgid ""
 "Allocations can be moved between different arrays with `allocatable` "
 "attribute using the `move_alloc` intrinsic subroutine."
 msgstr ""
+"Przydziały mogą być zmieniane pomiędzy różnymi tablicami przy użyciu "
+"atrybutu `allocatable` oraz wewnętrznego podprogramu `move_alloc`."
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:118
 msgid ""
@@ -3168,15 +3196,19 @@ msgid ""
 "at the respective address. The allocation supports initialization using the "
 "source attribute:"
 msgstr ""
+"Na koniec, przydziały nie inicjują tablic. Zawartością niezainicjowanej "
+"tablicy są prawdopodobnie bajty tego, co poprzednio znajdowało się pod tym "
+"adresem. Przydziały obsługują inicjalizację przy użyciu atrybutu source:"
 
 #: ../../source/learn/best_practices/allocatable_arrays.md:127
 msgid "The `source` keyword supports scalar and array valued variables and constants."
 msgstr ""
+"Słowo kluczowe `source` obsługuje wartości skalarne, zmienne oraz stałe."
 
 #: ../../source/learn/best_practices/arrays.md:1
 #: ../../source/learn/best_practices/index.md:12
 msgid "Arrays"
-msgstr ""
+msgstr "Tablice"
 
 #: ../../source/learn/best_practices/arrays.md:3
 msgid ""
