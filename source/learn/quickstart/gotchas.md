@@ -78,17 +78,15 @@ c = 0
 ```
 `integer :: c=0` is actually a one-shot **compile time initialization**, and it makes the variable persistent between calls to `foo()`. It is actually equivalent to: 
 ```
-integer, save :: c=0
+integer, save :: c=0   ! "save" can be omitted, but it's clearer with it
 ```
-The `save` attribute is equivalent to the C `static` attribute to make a variable persistent, and it is *implied* in the case the variable is initialized. This is a modernized syntax (introduced in Fortran 90) compared to the legacy (and still valid) syntax:
+The `save` attribute is equivalent to the C `static` attribute used inside a function to make a variable persistent, and it is *implied* in the case the variable is initialized. This is a modernized syntax (introduced in Fortran 90) compared to the legacy (and still valid) syntax:
 ```
 integer c
 data c /0/
+save c
 ```
-Old fortraners just know that the modernized syntax is equivalent to the legacy one, even when `save` is not specified. But as a matter of fact the *implied save* can be misleading to newcomers who are used to the C logic. That's why it is generally recommended to **always** specify the `save` attribute:
-```
-integer, save :: c=0   ! save could be omitted, but it's clearer with it
-```
+Old fortraners just know that the modernized syntax is equivalent to the legacy one, even when `save` is not specified. But as a matter of fact the *implied save* can be misleading to newcomers who are used to the C logic. That's why it is generally recommended to **always** specify the `save` attribute.
 
 *Note: an initialization expression of a derived type component is a fully different case:*
 ```
