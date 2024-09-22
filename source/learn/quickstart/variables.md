@@ -111,7 +111,7 @@ program read_value
   print *, 'Please enter your age: '
   read(*,*) age
 
-  print *, 'Your age is: ', age
+  print *, 'In ten years, your age will be ', age + 10
 
 end program read_value
 ```
