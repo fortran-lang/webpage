@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-01 14:47+0530\n"
-"PO-Revision-Date: 2024-09-27 13:15+0000\n"
+"PO-Revision-Date: 2024-09-28 17:15+0000\n"
 "Last-Translator: Agnieszka Ziora <agaxx02@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pl/>\n"
@@ -3891,6 +3891,8 @@ msgid ""
 "Finally, the `implicit none` statement works for the whole module and there "
 "is no need to repeat it within each procedure."
 msgstr ""
+"Na koniec, instrukcja `implicit none` działa w zakresie całego modułu i nie "
+"ma potrzeby powtarzania jej w każdej procedurze."
 
 #: ../../source/learn/best_practices/modules_programs.md:62
 msgid ""
@@ -3899,6 +3901,10 @@ msgid ""
 "like parameters or enumerators only or export them as _protected_ rather than"
 " _public_."
 msgstr ""
+"Zmienne wewnątrz modułu są statyczne (_niejawnie zapisane_). Zdecydowanie "
+"poleca się ograniczenie stosowania w module zmiennych na rzecz wyrażeń "
+"stałych, takich jak parametry lub enumeratory oraz eksportowanie ich jako "
+"_protected_, a nie _public_."
 
 #: ../../source/learn/best_practices/modules_programs.md:67
 msgid ""
@@ -3907,18 +3913,26 @@ msgid ""
 "to provide specialized and optimized implementations without requiring the "
 "use of preprocessor."
 msgstr ""
+"Podmoduły mogą być używane do łamania długich łańcuchów zależności oraz "
+"skracania kaskad rekompilacji w programach Fortran. Oferują również "
+"możliwość dostarczania specjalistycznych i zoptymalizowanych implementacji "
+"bez konieczności używania preprocesora."
 
 #: ../../source/learn/best_practices/modules_programs.md:71
 msgid ""
 "An example from the Fortran standard library is the quadrature module, which "
 "only defines interfaces to module procedures, but no implementations"
 msgstr ""
+"Przykładem ze standardowej biblioteki Fortran jest moduł kwadraturowy, który "
+"definiuje tylko interfejsy procedur modułu, a nie implementacje"
 
 #: ../../source/learn/best_practices/modules_programs.md:104
 msgid ""
 "While the implementation is provided in separate submodules like the one for "
 "the trapezoidal integration rule given here."
 msgstr ""
+"Implementacja jest zapewniona w osobnym podmodule, takim jak przedstawiona "
+"poniżej reguła całkowania trapezowego."
 
 #: ../../source/learn/best_practices/modules_programs.md:138
 msgid ""
@@ -3926,6 +3940,9 @@ msgid ""
 "submodule. Several submodules can be used to reduce the compilation load for "
 "huge modules."
 msgstr ""
+"Zauważ, że procedury modułu nie muszą być zaimplementowane w tym samym "
+"podmodule. Wiele podmodułów może zostać użytych, aby zmniejszyć obciążenie "
+"kompilacji dla ogromnych modułów."
 
 #: ../../source/learn/best_practices/modules_programs.md:141
 msgid ""
@@ -3934,6 +3951,11 @@ msgid ""
 "modules allows you to write reusable code and focus the program unit on "
 "conveying user input to the respective library functions and objects."
 msgstr ""
+"Na koniec, podczas konfigurowania programu zaleca się zachowanie jak "
+"najmniejszej liczby implementacji w programie. Ponowne używanie "
+"implementacji z modułów pozwala na pisanie kodu wielokrotnego użytku oraz "
+"skupieniu jednostki programu na przekazywaniu danych wejściowych użytkownika "
+"do odpowiednich funkcji biblioteki i obiektów."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:3
 msgid ""
@@ -3944,6 +3966,12 @@ msgid ""
 "the columns. This is important when passing array slices to procedures which "
 "expect to work on contiguous data."
 msgstr ""
+"Tablice wielowymiarowe są przechowywane w kolejności kolumnowej. Oznacza to, "
+"że najbardziej lewy (najbardziej wewnętrzny) indeks adresuje elementy w "
+"sposób ciągły. Z praktycznego punktu widzenia oznacza to, że wycinek tablicy "
+"`V(:, 1)` jest ciągły, podczas gdy odstęp między elementami w wycinku `V(1, "
+":)` jest wymiarem kolumn. Jest to ważne podczas przekazywania wycinków "
+"tablicy do procedur, które mają działać na danych ciągłych."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:10
 msgid ""
@@ -3951,6 +3979,9 @@ msgid ""
 "application, usually when performing operations on a multidimensional the "
 "sequential access should always advance in unity strides."
 msgstr ""
+"Lokalność pamięci jest ważnym czynnikiem, który należy wziąć pod uwagę w "
+"zależności od aplikacji. Zazwyczaj podczas wykonywania operacji na pamięci "
+"wielowymiarowej dostęp sekwencyjny powinien zawsze następować jednostajnie."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:14
 msgid ""
@@ -3959,12 +3990,17 @@ msgid ""
 "`xyz1`/`xyz2`, while the inner-most loop is advancing the left-most index of "
 "the matrix `a`."
 msgstr ""
+"W poniższym przykładzie oceniana jest odwrotna odległość między dwoma "
+"zbiorami punktów. Zauważ, że punkty są przechowywane w sposób ciągły w "
+"tablicach `xyz1`/`xyz2`, podczas gdy najbardziej wewnętrzna pętla przesuwa "
+"najbardziej lewy indeks macierzy `a`."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:33
 msgid ""
 "Another example would be the contraction of the third dimension of a rank "
 "three array:"
 msgstr ""
+"Innym przykładem może być redukcja trzeciego wymiaru tablicy rzędu trzeciego:"
 
 #: ../../source/learn/best_practices/multidim_arrays.md:46
 msgid ""
@@ -3972,16 +4008,22 @@ msgid ""
 "of higher rank arrays as lower rank arrays without requiring to reshape and "
 "potentially create a temporary copy of the array."
 msgstr ""
+"Ciągłe wycinki tablic mogą być użyte do ponownego mapowania tablicy, co "
+"pozwala na używanie tablic o wyższej randze jako tablic o niższej randze, "
+"bez konieczności przekształcania i potencjalnego tworzenia tymczasowej kopii "
+"tablicy."
 
 #: ../../source/learn/best_practices/multidim_arrays.md:50
 msgid ""
 "For example this can be used to contract the third dimension of a rank three "
 "array using a matrix-vector operation:"
 msgstr ""
+"Na przykład można użyć tej funkcji do zmniejszenia trzeciego wymiaru tablicy "
+"rzędu trzeciego za pomocą operacji macierzowo-wektorowej:"
 
 #: ../../source/learn/best_practices/style_guide.md:3
 msgid "Naming Convention"
-msgstr ""
+msgstr "Nazewnictwo"
 
 #: ../../source/learn/best_practices/style_guide.md:5
 msgid ""
@@ -3989,16 +4031,24 @@ msgid ""
 " and that seems to be prevalent in most scientific codes (as well as the "
 "Fortran standard library), and you are welcome to follow it."
 msgstr ""
+"Koniec końców, jest to kwestia preferencji. Oto poradnik stylu, który nam "
+"się podoba i wydaje się być powszechny w większości kodów naukowych (jak "
+"również standardowej bibliotece Fortran), dlatego ty również możesz go "
+"stosować."
 
 #: ../../source/learn/best_practices/style_guide.md:9
 msgid "Use lowercase for all Fortran constructs (`do`, `subroutine`, `module`, ...)."
 msgstr ""
+"Używaj małych liter do wszystkich konstruktów Fortran (`do`, `subroutine`, "
+"`module`, ...)."
 
 #: ../../source/learn/best_practices/style_guide.md:11
 msgid ""
 "Follow short mathematical notation for mathematical variables/functions "
 "(`Ylm`, `Gamma`, `gamma`, `Enl`, `Rnl`, ...)."
 msgstr ""
+"Stosuj krótką notację matematyczną dla zmiennych/funkcji matematycznych "
+"(`Ylm`, `Gamma`, `gamma`, `Enl`, `Rnl`, ...)."
 
 #: ../../source/learn/best_practices/style_guide.md:13
 msgid ""
@@ -4008,6 +4058,11 @@ msgid ""
 "`spline_interp`, `spline_interpolate`, `stoperr`, `stop_error`, "
 "`meshexp_der`)."
 msgstr ""
+"Dla innych nazw używaj wyłącznie małych liter: postaraj się ograniczać do "
+"jednej lub dwóch sylab; jeśli wymagana jest dłuższa nazwa używaj "
+"podkreślników dla lepszego wyjaśnienia (`sortpair`, `whitechar`, `meshexp`, "
+"`numstrings`, `linspace`, `meshgrid`, `argsort`, `spline`, `spline_interp`, "
+"`spline_interpolate`, `stoperr`, `stop_error`, `meshexp_der`)."
 
 #: ../../source/learn/best_practices/style_guide.md:19
 msgid ""
