@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-01 14:47+0530\n"
-"PO-Revision-Date: 2024-10-31 08:00+0000\n"
+"PO-Revision-Date: 2024-11-01 09:00+0000\n"
 "Last-Translator: Agnieszka Ziora <agaxx02@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pl/>\n"
@@ -4642,6 +4642,9 @@ msgid ""
 " variables with `:=`. To access the content of a variable we use the "
 "`$(...)`, note that we have to enclose the variable name in parenthesis."
 msgstr ""
+"Zauważmy jak deklarujemy zmienne w `make`. Zmienne lokalne powinny być "
+"zawsze zadeklarowane poprzez `:=`. Aby zdobyć dostęp do zawartości zmiennej "
+"używamy `$(...)`, nazwa zmienniej musi być zawarta w nawiasach."
 
 #: ../../source/learn/building_programs/build_tools.md:113
 msgid ""
@@ -4650,6 +4653,11 @@ msgid ""
 "first kind of declaration is wanted, as they are more predictable and do not "
 "have a runtime overhead from the recursive expansion."
 msgstr ""
+"Deklaracja zmiennych zazwyczaj odbywa się za pomocą `:=`, jednak `make` "
+"pozwala zarówno na zmienne `=`, jak i na zmienne _rekursywnie rozbudowane_. "
+"Zwykle, pierwszy typ deklaracji jest bardziej pożądany, ponieważ jest "
+"bardziej przewidywalny i nie mają narzutu czasu wykonania wynikającego z "
+"rekurencyjnej rozbudowy."
 
 #: ../../source/learn/building_programs/build_tools.md:119
 msgid ""
@@ -4660,10 +4668,16 @@ msgid ""
 "same thing we did before for the rule _all_, note how the value of `$@` is "
 "dependent on the rule it is used in."
 msgstr ""
+"Wprowadziliśmy zależność dla reguły all, a mianowicie zawartość zmiennej "
+"`PROG`, zmodyfikowaliśmy również wydruk, a teraz chcemy zobaczyć wszystkie "
+"zależności tej reguły, które są przechowywane w zmiennej `$^`. Teraz dla "
+"nowej reguły, której nadajemy nazwę po wartości zmiennej `PROG`, która robi "
+"to samo, co zrobiliśmy wcześniej dla reguły _all_. Zwróćmy uwagę, jak "
+"wartość `$@` jest zależna od reguły, w której jest używana."
 
 #: ../../source/learn/building_programs/build_tools.md:126
 msgid "Again check by running the `make`, you should see:"
-msgstr ""
+msgstr "Ponownie sprawdzamy poprzez wykonanie `make` i powinniśmy zobaczyć:"
 
 #: ../../source/learn/building_programs/build_tools.md:133
 msgid ""
@@ -4671,12 +4685,18 @@ msgid ""
 "any action on the rule _all_. Let's run only the second rule: type `make "
 "my_prog` and you will only find the first two lines in your terminal."
 msgstr ""
+"Zależność została poprawnie rozwiązana i określona zanim jakakolwiek akcja "
+"na reguły _all_ została wykonana. Teraz wykonajmy tylko drugą regułę: "
+"wpiszmy `make my_prog`, a zobaczymy tylko dwa pierwsze wersy w terminalu."
 
 #: ../../source/learn/building_programs/build_tools.md:138
 msgid ""
 "The next step is to perform some real actions with `make`, we take the source"
 " code from the previous chapter here and add new rules to our `Makefile`:"
 msgstr ""
+"Następnym krokiem jest wykonanie prawdziwych akcji z `make`, weźmy kod "
+"źródłowy z poprzedniego rozdziału i dodajmy nowe reguły do naszego "
+"`Makefile`:"
 
 #: ../../source/learn/building_programs/build_tools.md:155
 msgid ""
@@ -4689,34 +4709,53 @@ msgid ""
 "object file, we do not create an executable yet due to the `-c` flag. Note "
 "the usage of the `$<` for the first element of the dependencies here."
 msgstr ""
+"Definiujemy `OBJS`, które jest skrótem od object files (pliki obiektów). "
+"Nasz program zależy od `OBJS` i dla każdego pliku obiektu tworzymy regułę, "
+"aby stworzyć je z pliku źródłowego. Ostatnia reguła, którą wprowadziliśmy to "
+"reguła dopasowania wzorca, `%` jest wspólnym wzorcem dla `tabulate.o` i "
+"`tabulate.f90`, który łączy nasz plik obiektu `tabulate.o` z plikiem "
+"źródłowym `tabulate.f90`. Mając to ustawione, uruchamiamy nasz kompilator ( "
+"`gfortran` ) i tłumaczymy plik źródłowy na plik obiektu, nie tworzymy "
+"jeszcze pliku wykonywalnego z powodu flagi `-c`. Zwróćmy uwagę na użycie `$<`"
+" dla pierwszego elementu zależności tutaj."
 
 #: ../../source/learn/building_programs/build_tools.md:166
 msgid ""
 "After compiling all the object files we attempt to link the program, we do "
 "not use a linker directly, but `gfortran` to produce the executable."
 msgstr ""
+"Po skompilowaniu wszystkich plików obiektowych próbujemy połączyć program. "
+"Nie używamy bezpośredniego linkera, ale `gfortran` do wygenerowania pliku "
+"wykonywalnego."
 
 #: ../../source/learn/building_programs/build_tools.md:169
 msgid "Now we run the build script with `make`:"
-msgstr ""
+msgstr "Teraz uruchamiamy skrypt kompilacji poleceniem `make`:"
 
 #: ../../source/learn/building_programs/build_tools.md:180
 msgid ""
 "We remember that we have dependencies between our source files, therefore we "
 "add this dependency explicitly to the `Makefile` with"
 msgstr ""
+"Pamiętamy, że mamy zależności pomiędzy naszymi plikami źródłowymi, dlatego "
+"dodajemy zależność jawnie do pliku `Makefile` za pomocą"
 
 #: ../../source/learn/building_programs/build_tools.md:187
 msgid ""
 "Now we can retry and find that the build is working correctly. The output "
 "should look like"
 msgstr ""
+"Teraz możemy ponowić próbę i zobaczyć, że kompilacja przebiegła pomyślnie. "
+"Rezultat powinien być następujący"
 
 #: ../../source/learn/building_programs/build_tools.md:194
 msgid ""
 "You should find _four_ new files in the directory now. Run `my_prog` to make "
 "sure everything works as expected. Let's run `make` again:"
 msgstr ""
+"Powinieneś teraz znaleźć _cztery_ nowe pliki w twoim folderze. Uruchom "
+"`my_prog`, aby upewnić się, że wszystko działa zgodnie z oczekiwaniami. "
+"Teraz wykonajmy ponownie `make` :"
 
 #: ../../source/learn/building_programs/build_tools.md:200
 msgid ""
@@ -4725,10 +4764,14 @@ msgid ""
 "`tabulate.f90` and `functions.f90`. Therefore, the program is already up-to-"
 "date with the latest code and no action has to be performed."
 msgstr ""
+"Korzystając z sygnatur czasowych pliku wykonywalnego `make` udało się nam "
+"ustalić, że jest on nowszy niż `tabulate.o` i `functions.o`, które z kolei "
+"są nowsze niż `tabulate.f90` i `functions.f90`. Dlatego program jest już "
+"aktualny, zawiera najnowszy kod i nie trzeba wykonywać żadnych działań."
 
 #: ../../source/learn/building_programs/build_tools.md:206
 msgid "In the end, we will have a look at a complete `Makefile`."
-msgstr ""
+msgstr "Na koniec, spójrzmy na kompletny plik `Makefile`."
 
 #: ../../source/learn/building_programs/build_tools.md:240
 msgid ""
