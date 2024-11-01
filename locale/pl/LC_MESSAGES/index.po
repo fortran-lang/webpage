@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-01 14:47+0530\n"
-"PO-Revision-Date: 2024-11-01 09:00+0000\n"
+"PO-Revision-Date: 2024-11-02 10:00+0000\n"
 "Last-Translator: Agnieszka Ziora <agaxx02@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pl/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.8.2-dev\n"
+"X-Generator: Weblate 5.8.2\n"
 "Generated-By: Babel 2.10.3\n"
 
 #: ../../source/community.md:10
@@ -4779,6 +4779,10 @@ msgid ""
 "first line, like with Fortran's `implicit none` we do not want to have "
 "implicit rules messing up our `Makefile` in surprising and harmful ways."
 msgstr ""
+"Jako że zaczynasz od `make`, zdecydowanie zalecamy, aby zawsze zawierać "
+"pierwszy wiersz, podobnie jak w przypadku `implicit none` języka Fortran, "
+"nie chcemy, aby niejawne reguły zakłócały działanie naszego `Makefile` w "
+"zaskakujący i szkodliwy sposób."
 
 #: ../../source/learn/building_programs/build_tools.md:244
 msgid ""
@@ -4792,6 +4796,15 @@ msgid ""
 "deletes all the build artifacts again such that we indeed start with a clean "
 "directory."
 msgstr ""
+"Następnie, mamy sekcję konfiguracji, gdzie definiujemy zmienne, w przypadku "
+"jeśli chcemy zmienić nasz kompilator może to być z łatwością zrobione tutaj. "
+"Wprowadzamy także zmienną `SRCS` do przechowywania wszystkich plików "
+"źródłowych, co jest bardziej intuicyjne niż określanie plików obiektowych. "
+"Możemy z łatwością stworzyć plik obiektowy poprzez dodanie sufiksu `.o` przy "
+"użyciu funkcji `addsuffix`. `.PHONY` jest specjalną regułą. która powinna "
+"być używana dla każdego punktu wejścia w `Makefile`, tutaj definiujemy dwa "
+"punkty wejścia, _all_, już znamy, a nowa reguła _clean_ usuwa ponownie "
+"wszystkie artefakty kompilacji, tak że zaczynamy od czystego folderu."
 
 #: ../../source/learn/building_programs/build_tools.md:255
 msgid ""
@@ -4801,6 +4814,11 @@ msgid ""
 "added a dependency for the object files on the `Makefile` itself, in case you"
 " change the compiler, this will allow you to safely rebuild."
 msgstr ""
+"Ponadto, zmieniliśmy odrobinę regułę budowania dla plików obiektowych, aby "
+"uwzględnić dodanie sufiksu `.o` zamiast go zastępować. Zwróćmy uwagę, że "
+"nadal musimy jawnie zadeklarować zależności w `Makefile`. Dodaliśmy również "
+"zależność dla plików obiektowych w samym `Makefile`, w przypadku zmiany "
+"kompilatora pozwoli to na bezpieczną rekompilację."
 
 #: ../../source/learn/building_programs/build_tools.md:261
 msgid ""
@@ -4808,6 +4826,9 @@ msgid ""
 "you plan to use `make` more extensively, we have compiled a few tips for you "
 "as well."
 msgstr ""
+"Teraz wiemy już wystarczająco o `make`, aby używać go do kompilowania "
+"mniejszych projektów. Jeśli planujesz używać `make` bardziej szczegółowo, "
+"zebraliśmy dla ciebie parę wskazówek."
 
 #: ../../source/learn/building_programs/build_tools.md:266
 msgid ""
@@ -4817,6 +4838,11 @@ msgid ""
 "not feel confident working with `make`, but explicitly declare all variables "
 "and rules."
 msgstr ""
+"W tym poradniku pominęliśmy lub wyłączyliśmy wiele z powszechnie używanych "
+"funkcji `make`, które mogą być szczególnie kłopotliwe jeśli zostaną użyte "
+"niewłaściwie. Zalecamy unikanie wbudowanych reguł i zmiennych, jeśli nie "
+"czujesz się pewnie pracując z `make`, a jawne deklarowanie wszystkich "
+"zmiennych i reguł."
 
 #: ../../source/learn/building_programs/build_tools.md:271
 msgid ""
@@ -4826,10 +4852,16 @@ msgid ""
 "therefore not used alone but combined with other tools to generate the "
 "`Makefile` completely or in parts."
 msgstr ""
+"Przekonasz się, że `make` jest dobrym narzędziem do zautomatyzowania "
+"krótkich współzależnych przepływów pracy i kompilowania mniejszych "
+"projektów. Jednak dla większych projektów, prawdopodobnie szybko zetkniesz "
+"się z jego ograniczeniami. Z tego powodu, `make` nie jest używane "
+"samodzielnie, ale połączone z innymi narzędziami, aby wygenerować `Makefile` "
+"w całości lub częściowo."
 
 #: ../../source/learn/building_programs/build_tools.md:278
 msgid "Recursively expanded variables"
-msgstr ""
+msgstr "Zmienne rozszerzane rekurencyjnie"
 
 #: ../../source/learn/building_programs/build_tools.md:280
 msgid ""
@@ -4839,24 +4871,35 @@ msgid ""
 "defined as rules, which are expanded at runtime, rather than being defined "
 "while parsing."
 msgstr ""
+"Często w wielu projektach można zobaczyć zmienne rozszerzane rekurencyjnie ("
+"zadeklarowane za pomocą `=` zamiast `:=`). Rozszerzanie rekurencyjne "
+"zmiennych pozwala na deklarowanie poza kolejnością i inne sprytne sztuczki z "
+"`make`, ponieważ są one zdefiniowane jako reguły, które są rozszerzane w "
+"czasie wykonania , a nie definiowane podczas przetwarzania."
 
 #: ../../source/learn/building_programs/build_tools.md:285
 msgid ""
 "For example, declaring and using your Fortran flags with this snippet will "
 "work completely fine:"
 msgstr ""
+"Na przykład zadeklarowanie i użycie flag Fortranu za pomocą tego fragmentu "
+"kodu będzie działać całkowicie poprawnie:"
 
 #: ../../source/learn/building_programs/build_tools.md:297
 msgid ""
 "You should find the expected (or maybe unexpected) printout after running "
 "`make`"
 msgstr ""
+"Powinieneś znaleźć oczekiwany (lub może nieoczekiwany) rezultat po wykonaniu "
+"`make`"
 
 #: ../../source/learn/building_programs/build_tools.md:303
 msgid ""
 "appending with `+=` to an undefined variable will produce a recursively "
 "expanded variable with this state being inherited for all further appending."
 msgstr ""
+"dołączenie `+=` do niezdefiniowanej zmiennej stworzy zmienną rozszerzoną "
+"rekurencyjnie, a ten stan będzie dziedziczony przy każdym dalszym dołączeniu."
 
 #: ../../source/learn/building_programs/build_tools.md:306
 msgid ""
@@ -4865,16 +4908,22 @@ msgid ""
 "your compiler, there is little reason to actually use the recursive expansion"
 " at all."
 msgstr ""
+"Podczas gdy może się wydawać to interesującą funkcją, czasem prowadzi do "
+"niespodziewanych i nieoczekiwanych rezultatów. Zwykle, podczas definiowania "
+"zmiennych jak twój kompilator, nie ma powodu, aby w ogóle używać "
+"rozszerzenia rekurencyjnego."
 
 #: ../../source/learn/building_programs/build_tools.md:310
 msgid "The same can easily be achieved using the `:=` declaration:"
-msgstr ""
+msgstr "To samo może być z łatwością osiągnięte poprzez użycie deklaracji `:=`:"
 
 #: ../../source/learn/building_programs/build_tools.md:322
 msgid ""
 "always think of a `Makefile` as a whole set of rules, it must be parsed "
 "completely before any rule can be evaluated."
 msgstr ""
+"zawsze myśl o `Makefile` jako o całym zbiorze reguł, musi być przetworzony w "
+"całości zanim jakakolwiek zasada zostanie określona."
 
 #: ../../source/learn/building_programs/build_tools.md:325
 msgid ""
@@ -4882,10 +4931,13 @@ msgid ""
 "done carefully, of course. It is important to be aware of the differences "
 "between the two kinds and the respective implications."
 msgstr ""
+"Możesz używać jakichkolwiek zmiennych, które lubisz, jednak powinieneś być "
+"ostrożny przy mieszaniu ich. Ważnym jest, aby być świadomym różnic pomiędzy "
+"tymi dwoma typami i ich konsekwencjami."
 
 #: ../../source/learn/building_programs/build_tools.md:329
 msgid "Comments and whitespace"
-msgstr ""
+msgstr "Komentarze i znaki białe"
 
 #: ../../source/learn/building_programs/build_tools.md:331
 msgid ""
@@ -4896,6 +4948,13 @@ msgid ""
 "file names. If you encounter such case, renaming the file is possibly the "
 "easiest solution at hand."
 msgstr ""
+"Istnieją pewne zastrzeżenia dotyczące znaków białych i komentarzy, które "
+"mogą się od czasu do czasu pojawiać podczas używania `make`. Po pierwsze, "
+"`make` nie zna żadnego typu danych poza ciągami znaków, a domyślnym "
+"separatorem jest po prostu spacja. Oznacza to, że `make` będzie miał "
+"trudności ze zbudowaniem projektu, który ma spacje w nazwach plików. Jeśli "
+"napotkasz taki przypadek, zmiana nazwy pliku jest prawdopodobnie "
+"najłatwiejszym rozwiązaniem."
 
 #: ../../source/learn/building_programs/build_tools.md:338
 msgid ""
@@ -4903,10 +4962,13 @@ msgid ""
 "`make` will happily carry it along and it does in fact make a difference when"
 " comparing strings in `make`."
 msgstr ""
+"Kolejnym powszechnym problemem są spacje na początku i na końcu. Po ich "
+"wprowadzeniu `make` bez problemu je zachowa, co ma znaczenie przy "
+"porównywaniu ciągów znaków w `make`."
 
 #: ../../source/learn/building_programs/build_tools.md:342
 msgid "Those can be introduced by comments like"
-msgstr ""
+msgstr "Można je wprowadzić przy pomocy komentarzy tak jak tutaj"
 
 #: ../../source/learn/building_programs/build_tools.md:350
 msgid ""
@@ -4914,6 +4976,9 @@ msgid ""
 "spaces are now part of the variable content. Run `make` and check that this "
 "is indeed the case:"
 msgstr ""
+"Podczas gdy komentarz zostanie poprawnie usunięty przez `make`, dwie spacje "
+"na końcu są teraz częścią zawartości zmiennej. Wykonaj `make` i sprawdź czy "
+"tak jest w rzeczywistości:"
 
 #: ../../source/learn/building_programs/build_tools.md:359
 msgid ""
@@ -4921,6 +4986,9 @@ msgid ""
 " with the `strip` function instead. Alternatively, you could try to `join` "
 "the strings."
 msgstr ""
+"Aby rozwiązać ten problem, możesz przesunąć komentarz lub usunąć spację za "
+"pomocą funkcji `strip`. Alternatywnym rozwiązaniem może być spróbowanie na "
+"złączenie ciągu znaków przy użyciu `join`."
 
 #: ../../source/learn/building_programs/build_tools.md:370
 msgid ""
@@ -4928,6 +4996,9 @@ msgid ""
 "therefore, it is prudent to pay extra attention to whitespace and comments "
 "when writing and using `make`."
 msgstr ""
+"Koniec końców, żadne z tych rozwiązań nie sprawią, że twój `Makefile` będzie "
+"bardziej czytelny, dlatego rozsądnym jest, aby zwracać uwagę na znaki białe "
+"i komentarze podczas robienia i używania `make`."
 
 #: ../../source/learn/building_programs/build_tools.md:374
 msgid "The meson build system"
