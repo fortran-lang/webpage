@@ -21,7 +21,11 @@ To exemplify the extendability of CMake we will build a small yet fun project.
 
 ## A simple example 
 
-Start by git cloning the following Github repository: 
+Start by git cloning the following Github repository: git@github.com:JorgeG94/fortran_cmake_hello.git 
+
+```
+git clone git@github.com:JorgeG94/fortran_cmake_hello.git 
+```
 
 We will do a example that compiles a project that contains both fixed and free format files, this will let us showcase some of CMake's cool features. 
 Our directory structure is simple:
