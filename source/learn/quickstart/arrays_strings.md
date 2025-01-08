@@ -57,7 +57,7 @@ program array_slice
   array1(1:5) = 1  ! Set first five elements to one
   array1(6:) = 1  ! Set all elements after five to one
 
-  print *, array1(1:10:2)  ! Print out elements at odd indices
+  print *, array1(1:10:2)  ! Print out elements at odd indices, start at element 1, go up to element 10, in strides of 2
   print *, array2(:,1)  ! Print out the first column in a 2D array
   print *, array1(10:1:-1)  ! Print an array in reverse
 
