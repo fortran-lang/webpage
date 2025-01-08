@@ -21,7 +21,7 @@ To exemplify the extendability of CMake we will build a small yet fun project.
 
 ## A simple example 
 
-Start by git cloning the following Github repository: git@github.com:JorgeG94/fortran_cmake_hello.git 
+Start by git cloning the following [Github repository](https://github.com/JorgeG94/fortran_cmake_hello)
 
 ```
 git clone git@github.com:JorgeG94/fortran_cmake_hello.git 
