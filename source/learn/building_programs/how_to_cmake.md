@@ -37,7 +37,7 @@ Our directory structure is simple:
         ├── main.f90
         └── f90
             ├── CMakeLists.txt        
-            ├── module1.f90
+            ├── module.f90
             ├── module2.f90
             ├── module3.f90
         └── f77
@@ -110,7 +110,7 @@ by doing `add_subdirectory(xyz)`. Now, each directory, which now contains source
 # this is source/f90
 # add the f90 file
 # add the *.f90 sources we've chosen to the target static library we've created
-target_sources(f90_lib PRIVATE module1.f90 module2.f90 module3.f90)
+target_sources(f90_lib PRIVATE module.f90 module2.f90 module3.f90)
 ```
 
 Similarly, the f77...
