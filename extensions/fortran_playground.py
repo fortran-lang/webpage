@@ -1,5 +1,6 @@
-from sphinx.directives.code import CodeBlock, parselinenos, dedent_lines, container_wrapper, logger
+from sphinx.directives.code import CodeBlock, dedent_lines, container_wrapper, logger
 import urllib.parse
+from sphinx.util._lines import parse_line_num_spec
 from docutils import nodes
 import subprocess
 
@@ -43,7 +44,7 @@ class PlayCodeBlock(CodeBlock):
         if linespec:
             try:
                 nlines = len(self.content)
-                hl_lines = parselinenos(linespec, nlines)
+                hl_lines = parse_line_num_spec(linespec, nlines)
                 if any(i >= nlines for i in hl_lines):
                     logger.warning(__('line number spec is out of range(1-%d): %r') %
                                    (nlines, self.options['emphasize-lines']),

@@ -29,12 +29,12 @@ jobs:
         with:
           python-version: "3.10"
 
-      - name: Install GFortran (Linux)
-        run: |
-          sudo update-alternatives \
-            --install /usr/bin/gcc gcc /usr/bin/gcc-${{ matrix.gcc }} 100 \
-            --slave /usr/bin/gfortran gfortran /usr/bin/gfortran-${{ matrix.gcc }} \
-            --slave /usr/bin/gcov gcov /usr/bin/gcov-${{ matrix.gcc }}
+      - name: Setup Fortran compiler
+        uses: fortran-lang/setup-fortran@v1.6.1
+        id: setup-fortran
+        with:
+          compiler: gcc
+          version: 10
 
       - name: Install sphinx
         run: pip3 install --user -r requirements.txt
@@ -60,7 +60,7 @@ jobs:
           BING_TOKEN: ${{ secrets.BING_TOKEN }}
 
       - name: Deploy documentation sphinx
-        uses: JamesIves/github-pages-deploy-action@v4.6.4
+        uses: JamesIves/github-pages-deploy-action@v4.7.2
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages
