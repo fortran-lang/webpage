@@ -3,6 +3,8 @@ import urllib.parse
 from sphinx.util._lines import parse_line_num_spec
 from docutils import nodes
 import subprocess
+import hashlib
+import os
 
 
 comp_error = ["<ERROR>","Error","app/main.f90","<h1>Bad Request</h1>"]
@@ -10,31 +12,45 @@ comp_error = ["<ERROR>","Error","app/main.f90","<h1>Bad Request</h1>"]
 
 class PlayCodeBlock(CodeBlock):
 
-    def compile_and_execute_fortran(self,fortran_code, filename="code.f90"):
+    def compile_and_execute_fortran(self,fortran_code):
+        code_hash = hashlib.md5(fortran_code.encode('utf-8')).hexdigest()
+        cache_filename = f"build/fortran_output_{code_hash}.txt"
+        filename=f"build/code_{code_hash}.f90"
+
+        # Check if the output is already cached
+        if os.path.exists(cache_filename):
+            with open(cache_filename, "r") as f:
+                return f.read()
+
         with open(filename, "w") as f:
             f.write(fortran_code)
 
-        compile_command = ["gfortran", filename]
+        compile_command = ["gfortran", filename, "-o", f"./build/{code_hash}.out"]
         compile_result = subprocess.run(compile_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
 
-        if compile_result.returncode == 0:
-            print("Compilation successful!")
+        with open(cache_filename, "w") as f:
             
-            execute_command = ["./a.out"]
-            execute_result = subprocess.run(execute_command, input="", stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+            if compile_result.returncode == 0:
+                print("Compilation successful!")
+                
+                execute_command = [f"./build/{code_hash}.out"]
+                execute_result = subprocess.run(execute_command, input="", stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
 
-            if execute_result.returncode == 0:
-                print("Execution successful!")
-                print(execute_result.stdout)
-                return execute_result.stdout
+                if execute_result.returncode == 0:
+                    print("Execution successful!")
+                    print(execute_result.stdout)
+                    f.write(str(execute_result.stdout))
+                    return execute_result.stdout
+                else:
+                    print("Execution failed.")
+                    print(execute_result.stderr)
+                    f.write(str(execute_result.stderr))
+                    return execute_result.stderr
             else:
-                print("Execution failed.")
-                print(execute_result.stderr)
-                return execute_result.stderr
-        else:
-            print("Compilation failed.")
-            print(compile_result.stderr)
-            return compile_result.stderr
+                print("Compilation failed.")
+                print(compile_result.stderr)
+                f.write(str(compile_result.stderr))
+                return compile_result.stderr
 
     def run(self):
         document = self.state.document

@@ -22,20 +22,27 @@ jobs:
       - name: Iterate and Check PRs
         id: pr_check
         run: |
-          pr_folders=($(cd pr && ls -d */))
+          # Get the list of PR folders inside 'pr/' (e.g., pr/123, pr/456)
+          pr_folders=($(find pr -mindepth 1 -maxdepth 1 -type d -printf "%f\n"))
           closed_pr=()
+
           for pr_folder in "${pr_folders[@]}"; do
-            pr_status=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
-              -X GET "https://api.github.com/repos/${{ github.repository }}/pulls/${pr_folder::-1}" \
-              | jq -r '.state')
-            echo "PR ${pr_folder::-1} is $pr_status"
-            if [ "$pr_status" != "open" ]; then
-              rm -rf "pr/${pr_folder::-1}"
-              closed_pr+=("${pr_folder::-1}")
-              echo "Removed folder pr/${pr_folder::-1} for closed PR ${pr_folder::-1}"
-            fi
+              # Fetch PR status from GitHub API
+              pr_status=$(curl -s -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}" \
+                  -X GET "https://api.github.com/repos/${{ github.repository }}/pulls/$pr_folder" | jq -r '.state')
+
+              echo "PR $pr_folder is $pr_status"
+
+              # Remove the folder if PR is closed
+              if [[ "$pr_status" != "open" ]]; then
+                  rm -rf "pr/$pr_folder"
+                  closed_pr+=("$pr_folder")
+                  echo "Removed folder pr/$pr_folder for closed PR $pr_folder"
+              fi
           done
-          echo "${closed_pr[*]}" >> $GITHUB_STATE
+
+          # Store closed PRs in GITHUB_STATE for later use
+          echo "${closed_pr[*]}" >> "$GITHUB_STATE"
       
       - name: Commit and push to gh-pages
         uses: EndBug/add-and-commit@v9.1.4
