@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-01 14:47+0530\n"
-"PO-Revision-Date: 2025-02-28 08:12+0000\n"
+"PO-Revision-Date: 2025-03-01 21:09+0000\n"
 "Last-Translator: Agnieszka Ziora <agaxx02@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pl/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.10.2-rc\n"
+"X-Generator: Weblate 5.10.3-dev\n"
 "Generated-By: Babel 2.10.3\n"
 
 #: ../../source/community.md:10
@@ -887,7 +887,7 @@ msgstr "Fortran jest szybki, fajny i sławny."
 
 #: ../../source/community/minibooks.md:1
 msgid "Mini-book Tutorials on fortran-lang.org"
-msgstr "Poradniki do mini-książek na fortran-lang.org"
+msgstr "Poradniki w formie mini-książek na fortran-lang.org"
 
 #: ../../source/community/minibooks.md:3
 msgid ""
@@ -2471,7 +2471,7 @@ msgstr ""
 
 #: ../../source/learn.md:73
 msgid "Mini-book Tutorials"
-msgstr "Poradniki mini-książek"
+msgstr "Poradniki w formie mini-książek"
 
 #: ../../source/learn.md:80 ../../source/learn/building_programs/project_make.md:33
 msgid "Getting started"
@@ -5276,7 +5276,7 @@ msgid ""
 msgstr ""
 "Każdy plik źródłowy będzie skompilowany, a rezultat przechowywany w pliku o "
 "rozszerzeniu \".o\" lub \".obj\". Te pliki będą również danymi wejściowymi "
-"dla następnego kroku: procesu konsolidacji (ang. the link process)."
+"dla następnego kroku: procesu łączenia (ang. the link process)."
 
 #: ../../source/learn/building_programs/compiling_source.md:19
 msgid ""
@@ -5883,6 +5883,8 @@ msgstr ""
 #: ../../source/learn/building_programs/linking_pieces.md:28
 msgid "Note the `use` statement — this will be where we define the function `f`."
 msgstr ""
+"Zwróć uwagę na wyrażenie `use` - będzie to miejsce, gdzie zdefiniujemy "
+"funkcję `f`."
 
 #: ../../source/learn/building_programs/linking_pieces.md:30
 msgid ""
@@ -5892,12 +5894,19 @@ msgid ""
 "source file. We can give the general program to a user and they provide a "
 "specific source code."
 msgstr ""
+"Chcemy, aby program był ogólny, dlatego oddzielimy szczegółowy kod źródłowy -"
+" np. implementację funkcji `f` - od głównego kodu źródłowego. Istnieje kilka "
+"różnych sposobów na osiągniecie tego, ale jednym z nich jest umieszczenie go "
+"w innym pliku źródłowym. Możemy wtedy dać ogólny program użytkownikowi, a on "
+"dostarczy mu szczegółowy kod źródłowy."
 
 #: ../../source/learn/building_programs/linking_pieces.md:36
 msgid ""
 "Assume for the sake of the example that the function is implemented in a "
 "source file \"functions.f90\" as:"
 msgstr ""
+"Na potrzebę tego przykładu przyjmijmy, że funkcja jest zaimplementowana w "
+"pliku źródłowym \"functions.f90\" jako:"
 
 #: ../../source/learn/building_programs/linking_pieces.md:52
 msgid ""
@@ -5907,6 +5916,11 @@ msgid ""
 "to compile the source file containing our module first. A sequence of "
 "commands to do this is:"
 msgstr ""
+"Aby stworzyć program z tą specyficzną funkcją, musimy skompilować dwa pliki "
+"źródłowe i połączyć je za pomocą procesu łączenia w jeden wykonywalny "
+"program. Ponieważ program \"tabulate\" jest zależny od modułu \"function\", "
+"musimy najpierw skompilować plik źródłowy zawierający nasz moduł. Sekwencja "
+"komend, która to zrobi wygląda następująco:"
 
 #: ../../source/learn/building_programs/linking_pieces.md:63
 msgid ""
@@ -5919,14 +5933,23 @@ msgid ""
 " function with two arguments instead of one. If the compiler does not know "
 "anything about the function's interface, then it cannot check anything."
 msgstr ""
+"Pierwszym krokiem jest skompilowanie modułu, którego wynikiem jest plik "
+"obiektowy \"functions.o\" oraz plik pośredni modułu \"user_functions.mod\". "
+"Ten plik modułu zawiera wszystkie informacje, które potrzebuje kompilator do "
+"określenia, że funkcja `f` jest zdefiniowana w tym module i jaki jest jej "
+"interfejs. Ta informacja jest ważna: pozwala ona kompilatorowi na "
+"sprawdzenie czy funkcja jest wywoływana w prawidłowy sposób. Możliwym jest, "
+"że popełniłeś błąd i wywołałeś funkcję z dwoma argumentami zamiast jednego. "
+"Jeśli kompilator nie wie niczego o interfejsie funkcji, nie może tego "
+"sprawdzić."
 
 #: ../../source/learn/building_programs/linking_pieces.md:73
 msgid "The second step invokes the compiler in such a way that:"
-msgstr ""
+msgstr "Kolejny krok to wywołuje kompilator w taki sposób, że:"
 
 #: ../../source/learn/building_programs/linking_pieces.md:75
 msgid "it compiles the file \"tabulate.f90\" (using the module file);"
-msgstr ""
+msgstr "kompiluje on plik \"tabulate.f90\" (używając pliku modułu);"
 
 #: ../../source/learn/building_programs/linking_pieces.md:76
 msgid ""
@@ -5934,6 +5957,9 @@ msgid ""
 "into an executable program — with the default name \"a.out\" or \"a.exe\" (if"
 " you want a different name, use the option \"-o\")."
 msgstr ""
+"wywołuje program łączący, aby połączyć pliki obiektowe tabulate.o i "
+"functions.o w jeden wykonywalny program - używając domyślnej nazwy \"a.out\" "
+"lub \"a.exe\" (jeśli chcesz użyć innej nazwy, zastosuj opcję \"-o\")."
 
 #: ../../source/learn/building_programs/linking_pieces.md:80
 msgid ""
@@ -5942,12 +5968,19 @@ msgid ""
 "contain all the \"standard\" stuff — low-level routines that do the input and"
 " output to screen, the `sin` function and much more."
 msgstr ""
+"To, co zazwyczaj nie jest pokazywane to fakt, że program łączący dodaje "
+"dodatkowe pliki podczas procesu łączenia, a mianowicie biblioteki środowiska "
+"wykonawczego. Biblioteki te zawierają wszystkie \"standardowe\" rzeczy - "
+"procedury niskiego poziomu odpowiedzialne za dane wejściowe i wyjściowa, "
+"funkcję `sin` i wiele więcej."
 
 #: ../../source/learn/building_programs/linking_pieces.md:85
 msgid ""
 "If you want to see the gory details, add the option \"-v\". This instructs "
 "the compiler to report all the steps that are in detail."
 msgstr ""
+"Aby zobaczyć wszystkie szczegóły, dodaj opcję \"-v\". To zleci kompilatorowi "
+"szczegółowe raportowanie wszystkich kroków."
 
 #: ../../source/learn/building_programs/linking_pieces.md:88
 msgid ""
@@ -5957,6 +5990,11 @@ msgid ""
 "objects or shared libraries). Without these run-time libraries the program "
 "will not start."
 msgstr ""
+"Wynik końcowy, wykonywalny program, zawiera skompilowany kod źródłowy oraz "
+"różne procedury pomocnicze, które sprawiają, że działa. Zawiera również "
+"odniesienia do tak zwanych dynamicznych bibliotek środowiska wykonawczego ("
+"na Windowsie: DLL, na Linuksie: obiekty lub biblioteki współdzielone). Bez "
+"tych bibliotek środowiska wykonawczego program nie uruchomi się."
 
 #: ../../source/learn/building_programs/managing_libraries.md:3
 msgid ""
@@ -5965,12 +6003,19 @@ msgid ""
 "be very long indeed. This soon becomes tedious or even impossible to "
 "maintain. So a different solution is called for: create your own libraries."
 msgstr ""
+"Jeśli potrzebujesz zarządzać programem złożonym z dziesiątek plików "
+"źródłowych (a nie jest to rzadkie!), komendy potrzebne do sprecyzowania "
+"wszystkich plików obiektowych będą bardzo długie. To szybko staje się żmudne "
+"lub nawet niewykonalne. Potrzebne jest więc inne rozwiązanie: stworzenie "
+"własnych bibliotek."
 
 #: ../../source/learn/building_programs/managing_libraries.md:9
 msgid ""
 "Libraries contain any number of object files in a compact form, so that the "
 "command-line becomes far shorter:"
 msgstr ""
+"Biblioteki zawierają pewną ilość plików obiektowych w kompaktowej formie, "
+"tak że komendy stają się o wiele krótsze:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:16
 msgid ""
@@ -5978,20 +6023,26 @@ msgid ""
 "compiled and then put into a library. The extension \".a\" is used by Linux "
 "and Linux-like platforms. On Windows the extension \".lib\" is used."
 msgstr ""
+"\"supportlib.a\" jest kolekcją jednej, dwóch lub wielu plików obiektowych, "
+"wszystkich skompilowanych i dodanych do biblioteki. Rozszerzenie \".a\" jest "
+"używane na systemie operacyjnym Linux i innych platformach stworzonych na "
+"jego wzór. Na Windowsie używane jest rozszerzenie \".lib\"."
 
 #: ../../source/learn/building_programs/managing_libraries.md:20
 msgid ""
 "Creating your own libraries is not that complicated: on Linux, you can "
 "achieve this using a utility like `ar`:"
 msgstr ""
+"Tworzenie własnych bibliotek nie jest takie skomplikowane: na Linuksie, "
+"możesz tego dokonać za pomocą funkcji takich jak `ar`:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:30
 msgid "or on Windows using the `lib` utility:"
-msgstr ""
+msgstr "lub na Windowsie używając funkcji `lib`:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:39
 msgid "Note:"
-msgstr ""
+msgstr "Uwaga:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:41
 msgid ""
@@ -5999,6 +6050,9 @@ msgid ""
 "appears after the option) or adds new object files to the library (or "
 "replaces any existing ones)."
 msgstr ""
+"Komenda `ar` razem z opcją `r` albo tworzy bibliotekę (nazwa powinna być po "
+"opcji) albo dodaje nowy plik obiektowy do biblioteki (lub zastępuje już "
+"istniejące)."
 
 #: ../../source/learn/building_programs/managing_libraries.md:44
 msgid ""
@@ -6006,6 +6060,9 @@ msgid ""
 "`/out:` with the name of the new library next to it. To add object files to "
 "an existing library, leave out the `/out:` bit."
 msgstr ""
+"Komenda `lib` stworzy nową bibliotekę jeśli określisz opcję `/out:` z nazwą "
+"nowej biblioteki zaraz po niej. Aby dodać plik obiektowy do istniejącej już "
+"biblioteki, pomiń część `/out:`."
 
 #: ../../source/learn/building_programs/managing_libraries.md:47
 msgid ""
@@ -6013,6 +6070,10 @@ msgid ""
 "If you name your library like \"libname.a\" (note the \"lib\" prefix), then "
 "you can refer to it as `-lname` in the link step."
 msgstr ""
+"Na platformach takich jak Linux istnieje szczegółowa praktyka nazywania "
+"bibliotek. Jeśli nazwiesz swoją bibliotekę \"libname.a\" (zwróć uwagę na "
+"prefiks \"lib\"), możesz wtedy odnosić się do niej jako `-lname` podczas "
+"procesu łączenia."
 
 #: ../../source/learn/building_programs/managing_libraries.md:50
 msgid ""
@@ -6020,16 +6081,21 @@ msgid ""
 "`/LIBPATH`. This saves you from having to specify the exact path for every "
 "library."
 msgstr ""
+"Biblioteki znajdują się zazwyczaj w folderach określonych przez opcję `-L` "
+"lub `/LIBPATH`. Dzięki temu nie musisz za każdym razem precyzować dokładnej "
+"ścieżki dla każdej biblioteki."
 
 #: ../../source/learn/building_programs/managing_libraries.md:54
 msgid ""
 "Using libraries you can build very large programs without having to resort to"
 " extremely long command lines."
 msgstr ""
+"Używanie własnych bibliotek do bardzo dużych programów może uratować cię "
+"przed używaniem bardzo długich komend."
 
 #: ../../source/learn/building_programs/managing_libraries.md:57
 msgid "Static versus dynamic libraries"
-msgstr ""
+msgstr "Statyczne kontra dynamiczne biblioteki"
 
 #: ../../source/learn/building_programs/managing_libraries.md:59
 msgid ""
@@ -6039,6 +6105,11 @@ msgid ""
 " routines incorporated in the program is by rebuilding the program with a new"
 " version of the library."
 msgstr ""
+"Powyższa dyskusja zakłada, że używasz tak zwanych bibliotek statycznych. "
+"Statyczne biblioteki (lub przynajmniej części ich zawartości) stają się "
+"nieodłączną częścią wykonywalnego programu. Jedynym sposobem na zmienienie "
+"tych wkomponowanych procedur jest przez stworzenie programu na nowo z "
+"użyciem nowej wersji danej biblioteki."
 
 #: ../../source/learn/building_programs/managing_libraries.md:65
 msgid ""
@@ -6049,30 +6120,42 @@ msgid ""
 "consider dynamic libraries as a sort of executable programs that need a bit "
 "of help to be run."
 msgstr ""
+"Elastyczną alternatywą jest użycie tak zwanych dynamicznych bibliotek. Te "
+"biblioteki znajdują się na zewnątrz wykonywalnego programu i wskutek tego "
+"mogą być zastąpione bez konieczności tworzenia całego programu od nowa. "
+"Kompilatory oraz same systemy operacyjne w znacznym stopniu zależą od "
+"dynamicznych bibliotek. Możesz myśleć o dynamicznych bibliotekach jak o "
+"rodzaju wykonywalnych programów, które potrzebują trochę pomocy, aby mogły "
+"zostać uruchomione."
 
 #: ../../source/learn/building_programs/managing_libraries.md:72
 msgid ""
 "Building dynamic libraries works slightly differently from building static "
 "libraries: you use the compiler/linker instead of a tool like `ar` or `lib`."
 msgstr ""
+"Tworzenie dynamicznych bibliotek działa trochę inaczej niż tworzenie "
+"bibliotek statycznych: należy użyć kompilatora/programu łączącego zamiast "
+"funkcji takich jak `ar` lub `lib`."
 
 #: ../../source/learn/building_programs/managing_libraries.md:76
 msgid "On Linux:"
-msgstr ""
+msgstr "Na a Linuksie:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:84
 msgid "On Windows, with the Intel Fortran compiler:"
-msgstr ""
+msgstr "Na Windowsie, z kompilatorem Intel Fortran:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:92
 msgid "The differences are that:"
-msgstr ""
+msgstr "Różnice polegają na tym, że:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:94
 msgid ""
 "You need to specify a compile option on Linux, for gfortran that is `-fpic`, "
 "because the object code is slightly different."
 msgstr ""
+"Musisz określić opcje kompilacji na Linuksie, dla gfortran jest to `-fpic`, "
+"ponieważ kod obiektowy troszkę się różni."
 
 #: ../../source/learn/building_programs/managing_libraries.md:96
 msgid ""
@@ -6080,6 +6163,9 @@ msgid ""
 "a shared object/library, hence the extension \".so\"; on Windows: a dynamic "
 "link library)"
 msgstr ""
+"Musisz określić w programie łączącym, że chcesz stworzyć dynamiczną "
+"bibliotekę (na Linuksie: bibliotekę/obiekt współdzielony, z rozszerzeniem "
+"\".so\"; na Windowsie: dynamiczną bibliotekę łączącą)"
 
 #: ../../source/learn/building_programs/managing_libraries.md:100
 msgid ""
