@@ -4,6 +4,13 @@
 :maxdepth: 2
 :hidden:
 Language elements <language_elements>
+Expressions and assignments <expressions_and_assignments>
+Control statements <control_statements>
+Program units and procedures <program_units_and_procedures>
+Array handling <array_handling>
+Pointers <pointers>
+Intrinsic procedures <intrinsic_procedures>
+Data transfer <data_transfer>
 :::
 
 This is an overview of **Fortran 95 language features** which is based
