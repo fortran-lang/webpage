@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-01 14:47+0530\n"
-"PO-Revision-Date: 2025-03-01 21:09+0000\n"
+"PO-Revision-Date: 2025-03-10 09:05+0000\n"
 "Last-Translator: Agnieszka Ziora <agaxx02@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pl/>\n"
@@ -6174,14 +6174,21 @@ msgid ""
 "library. There are several ways — depending on the compiler you use — to "
 "achieve this. One method is via a so-called compiler directive:"
 msgstr ""
+"Istnieje jeszcze jedna rzecz, której musisz być świadomy. Na Windowsie "
+"musisz dokładnie sprecyzować, że procedura ma zostać _wyeksportowana_, np. "
+"widoczna w dynamicznej bibliotece. Jest kilka sposobów na osiągnięcie tego w "
+"zależności jakiego kompilatora używasz. Jedną z metod jest zrobienie tego "
+"poprzez tak zwaną dyrektywę kompilatora:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:111
 msgid "Or, with the Intel Fortran compiler:"
-msgstr ""
+msgstr "Lub, przez kompilator Intel Fortran:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:118
 msgid "Besides a dynamic library (DLL), a so-called import library may be generated."
 msgstr ""
+"Oprócz dynamicznej biblioteki (DLL), tak zwane biblioteki importowane mogą "
+"zostać wygenerowane."
 
 #: ../../source/learn/building_programs/managing_libraries.md:121
 msgid ""
@@ -6189,10 +6196,14 @@ msgid ""
 "Cygwin and Intel Fortran on Windows. In both cases we look at the `tabulate` "
 "program in the file \"tabulate.f90\"."
 msgstr ""
+"Z uwagi na to, że detale różnią się w zależności od kompilatora, "
+"zamieszczone są tutaj dwa przykłady: gfortran na Cygwinie oraz Intel Fortran "
+"na Windowsie. W obu przypadkach pokazujemy program `tabulate` w pliku "
+"\"tabulate.f90\"."
 
 #: ../../source/learn/building_programs/managing_libraries.md:125
 msgid "GNU/Linux and gfortran"
-msgstr ""
+msgstr "GNU/Linux i gfortran"
 
 #: ../../source/learn/building_programs/managing_libraries.md:127
 msgid ""
@@ -6201,6 +6212,11 @@ msgid ""
 " implementation of the function by putting another dynamic library in the "
 "directory. No need to rebuild the program as such."
 msgstr ""
+"Program `tabulate` wymaga zdefiniowanej przez użytkownika procedury `f`. "
+"Jeśli pozwolimy na przechowywanie jej w dynamicznej bibliotece, jak "
+"\"functions.dll\", możemy łatwo zamienić implementację funkcji poprzez "
+"dodanie innej dynamicznej biblioteki do folderu. Nie ma potrzeby ponownej "
+"kompilacji programu."
 
 #: ../../source/learn/building_programs/managing_libraries.md:132
 msgid ""
@@ -6208,28 +6224,38 @@ msgid ""
 "publically visible routines are exported when you build a dynamic library. "
 "Also, no import library is generated."
 msgstr ""
+"Na systemie Cygwin nie jest konieczne jawne eksportowanie procedury - "
+"wszystkie publicznie widoczne rutyny są eksportowane podczas tworzenia "
+"dynamicznej biblioteki. Ponadto, nie jest generowana żadna biblioteki "
+"importowana."
 
 #: ../../source/learn/building_programs/managing_libraries.md:136
 msgid ""
 "Since our dynamic library can be built from a single source file, we can take"
 " a shortcut:"
 msgstr ""
+"Ponieważ nasza dynamiczna biblioteki może być stworzona z jednego pliku "
+"źródłowego, możemy zrobić to szybciej:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:143
 msgid ""
 "This produces the files \"functions.dll\" and \"user_functions.mod\". The "
 "utility `nm` tells us the exact name of the function `f`:"
 msgstr ""
+"Dzięki temu zostały stworzone pliki \"functions.dll\" i "
+"\"user_functions.mod\". Funkcja `nm` daje nam dokładną nazwę funkcji `f`:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:158
 msgid ""
 "It has received a prefix `__function_MOD_` to distinguish it from any other "
 "routine \"f\" that might be defined in another module."
 msgstr ""
+"Otrzymała ona prefiks `__function_MOD_`, aby rozróżnić ją od inny rutyn \"f\""
+", które mogą być zdefiniowane w innym module."
 
 #: ../../source/learn/building_programs/managing_libraries.md:161
 msgid "The next step is to build the program:"
-msgstr ""
+msgstr "Następnym krokiem jest kompilacja programu:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:167
 msgid ""
@@ -6237,6 +6263,9 @@ msgid ""
 "checks on the function's interface, the right name and the reference to \"a\""
 " DLL, called \"functions.dll\"."
 msgstr ""
+"DLL oraz plik .mod będą używane do skompilowania programu wykonywalnego ze "
+"sprawdzeniami interfejsu funkcji, poprawną nazwą oraz odniesieniem do "
+"\"jakiegoś\" DLL'a, nazwanego \"functions.dll\"."
 
 #: ../../source/learn/building_programs/managing_libraries.md:171
 msgid ""
@@ -6245,10 +6274,14 @@ msgid ""
 " use the correct interface for this function. The compiler/linker are not "
 "invoked anymore, so they can do no checking."
 msgstr ""
+"Możesz zamienić bibliotekę współdzieloną \"functions.dll\" na inną, "
+"implementując inną funkcję \"f\". Oczywiście, musisz być ostrożnym i "
+"zastosować poprawny interfejs dla tej funkcji. Kompilator/program łączący "
+"nie jest uruchamiany, dlatego nie może tego sprawdzić."
 
 #: ../../source/learn/building_programs/managing_libraries.md:176
 msgid "Windows and Intel Fortran"
-msgstr ""
+msgstr "Windows i Intel Fortran"
 
 #: ../../source/learn/building_programs/managing_libraries.md:178
 msgid ""
@@ -6256,16 +6289,21 @@ msgid ""
 "explicitly export the routines. And an import library is generated — this is "
 "the library that should be used in the link step."
 msgstr ""
+"Konfiguracja jest taka sama jak na Linuksie, jednak na Windowsie konieczne "
+"jest jawne eksportowanie rutyn. Tworzona jest również biblioteki importowana "
+"- jest to biblioteki, która powinna zostać użyta w procesie łączenia."
 
 #: ../../source/learn/building_programs/managing_libraries.md:182
 msgid ""
 "The source file must contain the compiler directive, otherwise the function "
 "`f` is not exported:"
 msgstr ""
+"Plik źródłowy musi zawierać dyrektywę kompilatora, inaczej funkcja `f` nie "
+"zostanie wyeksportowana:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:190
 msgid "Again we take a shortcut:"
-msgstr ""
+msgstr "Ponownie możemy to zrobić szybciej:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:196
 msgid ""
@@ -6275,16 +6313,24 @@ msgid ""
 "\"f\" is `FUNCTION_mp_F`. It is also exported, so that it can be found by the"
 " linker in the next step:"
 msgstr ""
+"Dzięki temu zostały stworzone pliki \"functions.dll\", \"user_functions.mod\""
+" oraz \"functions.lib\" (dwa pozostałe pliki nie są tutaj ważne). Program "
+"\"dependency walker\" daje nam dokładną nazwę funkcji \"f\", czyli "
+"`FUNCTION_mp_F`. Jest ona również eksportowana, żeby mogła być znaleziona "
+"przez program łączący w kolejnym kroku:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:205
 msgid "Note that we need to specify the name of the export library, not the DLL!"
 msgstr ""
+"Zauważ, że musimy sprecyzować nazwę eksportowanej biblioteki, nie DLL'a!"
 
 #: ../../source/learn/building_programs/managing_libraries.md:207
 msgid ""
 "(Note also: the Intel Fortran compiler uses the name of the first source file"
 " as the name for the executable — here we do without the `-exe` option.)"
 msgstr ""
+"(Zauważ również: kompilator Intel Fortran używa nazwy pierwszego pliku "
+"źródłowego jaki nazwy pliku wykonywalnego - tutaj bez opcji `-exe`.)"
 
 #: ../../source/learn/building_programs/managing_libraries.md:210
 msgid ""
@@ -6292,6 +6338,9 @@ msgid ""
 "executable program with checks on the function's interface, the right name "
 "and the reference to \"a\" DLL, called \"functions.dll\"."
 msgstr ""
+"Tak samo jak na Cygwinie, DLL plik .mod są używane do skompilowanie programu "
+"wykonywalnego ze sprawdzeniem interfejsu funkcji, poprawną nazwą oraz "
+"odniesieniem do \"jakiegoś\" DLL'a, nazwanego \"functions.dll\"."
 
 #: ../../source/learn/building_programs/managing_libraries.md:214
 msgid ""
@@ -6299,6 +6348,9 @@ msgid ""
 "same caution is required: while the implementation can be quite different, "
 "the function's interface must be the same."
 msgstr ""
+"Możesz zastąpić bibliotekę współdzieloną \"functions.dll\" inną, ale musisz "
+"być ostrożnym: mimo tego, że implementacja może być inna, interfejs funkcji "
+"musi pozostać taki sam."
 
 #: ../../source/learn/building_programs/project_make.md:3
 msgid ""
