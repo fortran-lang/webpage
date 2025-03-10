@@ -2,15 +2,15 @@
 
 ## Scalar numeric
 
-The usual arithmetic operators are available `+, -, *, /, **` (given
-here in increasing order of precedence).
+The usual arithmetic operators are available `+`, `-`, `*`, `/`, and
+`**` (given here in increasing order of precedence).
 
 Parentheses are used to indicate the order of evaluation where
 necessary:
 
 ```f90
-a*b + c     ! * first
-a*(b + c)   ! + first
+a*b + c    ! * first
+a*(b + c)  ! + first
 ```
 
 The rules for *scalar numeric* expressions and assignments accommodate
@@ -44,7 +44,7 @@ of real numbers to integers:
 For *scalar relational* operations of numeric types, there is a set of
 built-in operators:
 
-`<    <=    ==   /=   >   >=`  
+`<    <=    ==   /=   >   >=`
 `.lt. .le. .eq. .ne. .gt. .ge.`
 
 (the forms above are new to Fortran-90, and older equivalent forms are
@@ -57,12 +57,7 @@ flag = a == b       ! for logical variable flags
 
 ### Scalar characters
 
-In the case of *scalar characters* and given
-
-```f90
-character(8) result
-```
-
+In the case of *scalar characters* and given `character(8) result`
 it is legal to write
 
 ```f90
@@ -86,12 +81,12 @@ be (re)defined though:
 
 ```f90
 type string80
-  integer length
-  character(80) value
+  integer       :: length
+  character(80) :: value
 end type string80
 
-character::      char1, char2, char3
-type(string80):: str1, str2, str3
+character      :: char1, char2, char3
+type(string80) :: str1, str2, str3
 ```
 
 we can write
@@ -123,7 +118,8 @@ procedures defining the operator and assignment, and corresponding
 operator-procedure association, as follows:
 
 ```f90
-interface operator(//)  ! Overloads the // operator as invoking string_concat procedure
+interface operator(//)  ! Overloads the // operator as
+                        ! invoking string_concat procedure
   module procedure string_concat
 end interface
 ```
@@ -143,7 +139,7 @@ module string_type
 
   type string80
     integer length
-    character(LEN=80)   :: string_data
+    character(len=80) :: string_data
   end type string80
 
   interface assignment(=)
@@ -156,31 +152,33 @@ module string_type
 
 contains
   subroutine c_to_s_assign(s, c)
-    type(string80), intent(OUT)    :: s
-    character(LEN=*), intent(IN)   :: c
+    type(string80), intent(out)  :: s
+    character(LEN=*), intent(in) :: c
     s%string_data = c
     s%length = len(c)
   end subroutine c_to_s_assign
 
   subroutine s_to_c_assign(c, s)
-    type(string80), intent(IN)     :: s
-    character(LEN=*), intent(OUT)  :: c
+    type(string80), intent(in)    :: s
+    character(len=*), intent(out) :: c
     c = s%string_data(1:s%length)
   end subroutine s_to_c_assign
 
   type(string80) function string_concat(s1, s2)
-    type(string80), intent(IN) :: s1, s2
+    type(string80), intent(in) :: s1, s2
     type(string80) :: s
     integer :: n1, n2
     character(160) :: ctot
     n1 = len_trim(s1%string_data)
     n2 = len_trim(s2%string_data)
+
     if (n1 + n2 <= 80) then
       s%string_data = s1%string_data(1:n1)//s2%string_data(1:n2)
     else  ! This is an error condition which should be handled - for now just truncate
       ctot = s1%string_data(1:n1)//s2%string_data(1:n2)
       s%string_data = ctot(1:80)
     end if
+
     s%length = len_trim(s%string_data)
     string_concat = s
   end function string_concat
@@ -199,7 +197,7 @@ end program
 
 Defined operators such as these are required for the expressions that
 are allowed also in structure constructors (see
-[Derived-data types](Derived-data_types):
+[Derived-data types](derived-data-types)):
 
 ```f90
 str1 = string(2, char1//char2)  ! structure constructor
@@ -214,7 +212,7 @@ way, on an element-by-element basis. For example, given declarations of
 ```f90
 real, dimension(10, 20) :: a, b, c
 real, dimension(5)      :: v, w
-logical                    flag(10, 20)
+logical                 :: flag(10, 20)
 ```
 
 it can be written:
@@ -249,7 +247,7 @@ are
 - `scale`
 - `set_exponent`
 
-These are array valued for array arguments (elemental), like all
+These are array valued for array arguments (`elemental`), like all
 [FORTRAN 77](https://en.wikipedia.org/wiki/FORTRAN_77)
 functions (except `len`):
 
@@ -266,7 +264,7 @@ functions (except `len`):
 - `max`
 - `min`
 
-Powers, logarithms, and trigonometric functions
+Powers, logarithms, and trigonometric functions:
 
 - `sqrt`
 - `exp`

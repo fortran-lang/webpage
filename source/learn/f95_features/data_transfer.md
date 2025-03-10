@@ -3,8 +3,7 @@
 ## Formatted input/output
 
 These examples illustrate various forms of I/O lists with some simple
-formats (see
-<a href="#Edit_descriptors" class="wikilink" title="below">below</a>):
+formats (see [below](edit_descriptors)):
 
 ```f90
 integer             :: i
@@ -60,8 +59,7 @@ print form, q
 ```
 
 or as an asterisk this is a type of I/O known as *list-directed* I/O
-(see
-<a href="#List-directed_I/O" class="wikilink" title="below">below</a>),
+(see [below](list-directed-i/o),
 in which the format is defined by the computer system:
 
 ```f90
@@ -75,27 +73,26 @@ do not reference any unit number: this is referred to as terminal I/O.
 Otherwise the form is:
 
 ```f90
-read (UNIT=4, FMT="(f10.3)") q
-read (UNIT=newunit, FMT="(f10.3)") q
-read (UNIT=4 * i + j, FMT="(f10.3)") a
+read (unit=4, fmt="(f10.3)") q
+read (unit=newunit, fmt="(f10.3)") q
+read (unit=4 * i + j, fmt="(f10.3)") a
 ```
 
 where `unit=` is optional. The value may be any nonnegative integer
-allowed by the system for this purpose (but `0`, `5` and `6` often denote the
-error, keyboard and terminal, respectively).
+allowed by the system for this purpose (but `0`, `5` and `6` often
+denote the error, keyboard and terminal, respectively).
 
 An asterisk is a variantagain from the keyboard:
 
 ```f90
-read (UNIT=*, FMT="(f10.3)") q
+read (unit=*, fmt="(f10.3)") q
 ```
 
 A read with a unit specifier allows
-<a href="exception_handling" class="wikilink"
-title="exception handling">exception handling</a>:
+[exception handling](https://en.wikipedia.org/wiki/Exception_handling):
 
 ```f90
-read (UNIT=NUNIT, FMT="(3f10.3)", IOSTAT=ios) a, b, c
+read (unit=nunit, fmt="(3f10.3)", iostat=ios) a, b, c
 if (ios == 0) then
   ! Successful read - continue execution.
   :
@@ -105,11 +102,11 @@ else
 end if
 ```
 
-There a second type of formatted output statement, the `write`
+There is a second type of formatted output statement, the `write`
 statement:
 
 ```f90
-write (UNIT=nout, FMT="(10f10.3)", IOSTAT=ios) a
+write (unit=nout, fmt="(10f10.3)", iostat=ios) a
 ```
 
 ## Internal files
@@ -121,11 +118,12 @@ itself.
 ```f90
 integer, dimension(30)         :: ival
 integer                        :: key
-character(LEN=30)              :: buffer
-character(LEN=6), dimension(3), parameter :: form = (/"(30i1)", "(15i2)", "(10i3)"/)
+character(len=30)              :: buffer
+character(len=6), dimension(3), parameter :: form = (/"(30i1)", &
+                                                    "(15i2)", "(10i3)"/)
 
-read (UNIT=*, FMT="(a30,i1)") buffer, key
-read (UNIT=buffer, FMT=form(key)) ival(1:30 / key)
+read (unit=*, fmt="(a30,i1)") buffer, key
+read (unit=buffer, fmt=form(key)) ival(1:30 / key)
 ```
 
 If an internal file is a scalar, it has a single record whose length is
@@ -140,11 +138,11 @@ An example using a `write` statement is
 ```f90
 integer           :: day
 real              :: cash
-character(LEN=50) :: line
+character(len=50) :: line
 :
 ! write into line
-write (UNIT=line, FMT="(a, i2, a, f8.2, a)") "Takings for day ", day, &
-  & " are ", cash, " dollars"
+write (unit=line, fmt="(a, i2, a, f8.2, a)") "Takings for day ", day, &
+  " are ", cash, " dollars"
 ```
 
 that might write
@@ -162,8 +160,8 @@ integer               :: i
 real                  :: a
 complex, dimension(2) :: field
 logical               :: flag
-character(LEN=12)     :: title
-character(LEN=4)      :: word
+character(len=12)     :: title
+character(len=4)      :: word
 :
 read *,i, a, field, flag, title, word
 ```
@@ -191,10 +189,10 @@ non-advancing I/O statement performs no such repositioning and may
 therefore leave the file positioned within a record.
 
 ```f90
-character(LEN=3)  :: key
+character(len=3)  :: key
 integer           :: u, s, ios
 :
-read (UNIT=u, FMT="(a3)", ADVANCE="no", SIZE=s, IOSTAT=ios) key
+read (unit=u, fmt="(a3)", advance="no", size=s, iostat=ios) key
 if (ios == 0) then
   :
 else
@@ -212,8 +210,8 @@ next character position on the screen without an intervening line-feed,
 we can write
 
 ```f90
-write (UNIT=*, FMT="(a)", ADVANCE="no") "enter next prime number:"
-read (UNIT=*, FMT="(i10)") prime_number
+write (unit=*, fmt="(a)", advance="no") "enter next prime number:"
+read (unit=*, fmt="(i10)") prime_number
 ```
 
 Non-advancing I/O is for external files, and is not available for
@@ -225,8 +223,8 @@ It is possible to specify that an edit descriptor be repeated a
 specified number of times, using a *repeat count*: `10f12.3`
 
 The slash edit descriptor (see
-<a href="#Control_edit_descriptors" class="wikilink"
-title="below">below</a>) may have a repeat count, and a repeat count can
+[below](control-edit-descriptors))
+may have a repeat count, and a repeat count can
 also apply to a group of edit descriptors, enclosed in parentheses, with
 nesting:
 
@@ -258,9 +256,9 @@ computer or another computer using the same internal number
 representations:
 
 ```f90
-open (UNIT=4, FILE='test', FORM='unformatted')
-read (UNIT=4) q
-write (UNIT=nout, IOSTAT=ios) a  ! no fmt=
+open (unit=4, file='test', form='unformatted')
+read (unit=4) q
+write (unit=nout, iostat=ios) a  ! no fmt=
 ```
 
 ## Direct-access files
@@ -276,21 +274,22 @@ real, dimension(length)              :: a
 real, dimension(length + 1:2*length) :: b
 integer                              :: i, rec_length
 :
-inquire (IOLENGTH=rec_length) a
-open (UNIT=nunit, ACCESS="direct", RECL=rec_length, STATUS="scratch", ACTION="readwrite")
+inquire (iolength=rec_length) a
+open (unit=nunit, access="direct", recl=rec_length, status="scratch", &
+      action="readwrite")
 :
 ! Write array b to direct-access file in record 14
-write (UNIT=nunit, REC=14) b
+write (unit=nunit, rec=14) b
 :
 ! Read the array back into array a
-read (UNIT=nunit, REC=14) a
+read (unit=nunit, rec=14) a
 
 do i = 1, length / 2
   a(i) = i
 end do
 
 ! Replace modified record
-write (UNIT=nunit, REC=14) a
+write (unit=nunit, rec=14) a
 ```
 
 The file must be an external file and list-directed formatting and

@@ -13,7 +13,7 @@ They are conceptually a descriptor listing the attributes of the objects
 (targets) that the pointer may point to, and the address, if any, of a
 target. They have no associated storage until it is allocated or
 otherwise associated (by pointer assignment, see
-[Pointers in expressions and assignments](Pointers_in_expressions_and_assignments):
+[Pointers in expressions and assignments](pointers_in_expressions_and_assignments)):
 
 ```f90
 allocate (var)
@@ -59,7 +59,7 @@ A pointer can be a component of a derived type:
 
 ```f90
 type entry  ! type for sparse matrix
-  real :: value
+  real    :: value
   integer :: index
   type(entry), pointer :: next  ! note recursion
 end type entry
@@ -122,7 +122,7 @@ by other means):
 ```f90
 real, target  :: b(10, 10), c(10, 10), r(10), s(10), z(10)
 real, pointer :: a(:, :), x(:), y(:)
-integer mult
+integer       :: mult
 :
 do mult = 1, 2
   if (mult == 1) then
@@ -195,23 +195,23 @@ in
 
 ```f90
 use data_handler
-real x(100)
+real          :: x(100)
 real, pointer :: y(:)
 :
 y => compact(x)
 ```
 
-where the module data_handler contains
+where the module `data_handler` contains
 
 ```f90
 function compact(x)
   real, pointer :: compact(:)
-  real x(:)
+  real          :: x(:)
   ! A procedure to remove duplicates from the array x
   integer n
-  :               ! Find the number of distinct values, n
+  :  ! Find the number of distinct values, n
   allocate (compact(n))
-  :               ! Copy the distinct values into compact
+  :  ! Copy the distinct values into compact
 end function compact
 ```
 
@@ -282,7 +282,7 @@ table(m:n, p:q)
 these references may be replaced by
 
 ```f90
-REAL, DIMENSION(:, :), POINTER :: window
+real, dimension(:, :), pointer :: window
    :
 window => table(m:n, p:q)
 ```
@@ -318,8 +318,8 @@ shape array dummy arguments):
 
 ```f90
 function remap_bounds2(lb1, lb2, array) result(ptr)
-  integer, intent(IN)                             :: lb1, lb2
-  real, dimension(lb1:, lb2:), intent(IN), target :: array
+  integer, intent(in)                             :: lb1, lb2
+  real, dimension(lb1:, lb2:), intent(in), target :: array
   real, dimension(:, :), pointer                  :: ptr
   ptr => array
 end function

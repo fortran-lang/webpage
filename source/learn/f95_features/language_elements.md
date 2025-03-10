@@ -27,13 +27,14 @@ that
 have a syntactic meaning to the compiler are built from those
 components. There are six classes of tokens:
 
-| Label     | `123`                                                |
-|-----------|------------------------------------------------------|
-| Constant  | `123.456789_long`                                    |
-| Keyword   | `allocatable`                                        |
-| Operator  | `.add.`                                              |
-| Name      | `solve_equation` (up to 31 characters, including \_) |
-| Separator | `/ ( ) (/ /) [ ] , = => : :: ; %`                    |
+```{csv-table}
+Label, "`123`"
+Constant, "`123.456789_long`"
+Keyword, "`allocatable`"
+Operator, "`.add.`"
+Name, "`solve_equation` (up to 31 characters, including \_)"
+Separator, "`/ ( ) (/ /) [ ] , = => : :: ; %`"
+```
 
 From the tokens,
 [statements](https://en.wikipedia.org/wiki/Statement_(programming))
@@ -43,8 +44,8 @@ column structure:
 
 ```f90
 function string_concat(s1, s2)  ! This is a comment
-  type(string), intent(IN) :: s1, s2
-  type(string) string_concat
+  type(string), intent(in) :: s1, s2
+  type(string)             :: string_concat
   string_concat%string_data = s1%string_data(1:s1%length) // &
     s2%string_data(1:s2%length)  ! This is a continuation
   string_concat%length = s1%length + s2%length
@@ -107,7 +108,8 @@ that allows subsequent definition of constants of the form
 ```
 
 Here, `two_bytes` is the kind type parameter; it can also be an explicit
-default integer literal constant, like `-1234_2` but such use is non-portable.
+default integer literal constant, like `-1234_2` but such use is
+non-portable.
 
 The `kind` function supplies the value of a kind type parameter:
 
@@ -124,9 +126,8 @@ range(1_two_bytes)
 
 Also, in
 [`data` (initialization) statements](data_statement),
-binary (B), octal (O) and hexadecimal
-(Z) constants may be used (often informally referred to as "BOZ
-constants"):
+binary (`B`), octal (`O`) and hexadecimal (`Z`) constants
+may be used (often informally referred to as "BOZ constants"):
 
 ```f90
 B'01010101'   O'01234567'   Z'10fa'
@@ -198,7 +199,7 @@ but not widely supported by compilers. Again, the kind value is given by
 the `kind` function:
 
 ```f90
-KIND('ASCII')
+kind('ASCII')
 ```
 
 ### Number model and intrinsic functions
@@ -208,16 +209,17 @@ functions (whose values are independent of the values of their
 arguments; arguments are used only to provide kind). These functions are
 important for portable numerical software:
 
-| `digits(x)`      | Number of significant digits             |
-|------------------|------------------------------------------|
-| `epsilon(x)`     | Almost negligible compared to one (real) |
-| `huge(x)`        | Largest number                           |
-| `maxexponent(x)` | Maximum model exponent (real)            |
-| `minexponent(x)` | Minimum model exponent (real)            |
-| `precision(x)`   | Decimal precision (real, complex)        |
-| `radix(x)`       | Base of the model                        |
-| `range(x)`       | Decimal exponent range                   |
-| `tiny(x)`        | Smallest positive number (real)          |
+```{csv-table}
+`digits(x)`, "Number of significant digits"
+`epsilon(x)`, "Almost negligible compared to one (real)"
+`huge(x)`, "Largest number"
+`maxexponent(x)`, "Maximum model exponent (real)"
+`minexponent(x)`, "Minimum model exponent (real)"
+`precision(x)`, "Decimal precision (real, complex)"
+`radix(x)`, "Base of the model"
+`range(x)`, "Decimal exponent range"
+`tiny(x)`, "Smallest positive number (real)"
+```
 
 ## Scalar variables
 
@@ -244,12 +246,12 @@ While it is not required in above examples (as there are no additional
 attributes and initialization), most Fortran-90 programmers acquire the
 habit to use it everywhere.
 
-The `len=` specifier is applicable only to `character`s and specifies the string
-length (replacing the older `*len` form). The explicit `kind=` and
-`len=` specifiers are optional:
+The `len=` specifier is applicable only to `character`s and specifies
+the string length (replacing the older `*len` form). The explicit
+`kind=` and `len=` specifiers are optional:
 
 ```f90
-CHARACTER(2, Kanji) :: kanji_word
+character(2, kanji) :: kanji_word
 ```
 
 works just as well.
@@ -259,7 +261,7 @@ as in
 
 ```f90
 character(80) :: line
-... = line(i:i)                     ! substring
+... = line(i:i)  ! substring
 ```
 
 was previously possible, so now is the substring
@@ -271,17 +273,18 @@ was previously possible, so now is the substring
 Also, zero-length strings are allowed:
 
 ```f90
-line(i:i-1)       ! zero-length string
+line(i:i-1)  ! zero-length string
 ```
 
 Finally, there is a set of intrinsic character functions, examples being
 
-| `achar`    | `iachar` (for ASCII set)     |
-|------------|------------------------------|
-| `adjustl`  | `adjustr`                    |
-| `len_trim` | `index(s1, s2, back=.true.)` |
-| `repeat`   | `scan`(for one of a set)     |
-| `trim`     | `verify`(for all of a set)   |
+```{csv-table}
+`achar`, "`iachar` (for ASCII set)"
+`adjustl`, "`adjustr`"
+`len_trim`, "`index(s1, s2, back=.true.)`"
+`repeat`, "`scan`(for one of a set)"
+`trim`, "`verify`(for all of a set)"
+```
 
 ## Derived data types
 
@@ -289,15 +292,15 @@ For derived data types, the form of the type must be defined first:
 
 ```f90
 type person
-  character(10) name
-  real          age
+  character(10) :: name
+  real          :: age
 end type person
 ```
 
 and then, variables of that type can be defined:
 
 ```f90
-type(person) you, me
+type(person) :: you, me
 ```
 
 To select components of a derived type, `%` qualifier is used:
@@ -318,17 +321,18 @@ previously defined type:
 
 ```f90
 type point
-  real x, y
+  real :: x, y
 end type point
+
 type triangle
-  type(point) a, b, c
+  type(point) :: a, b, c
 end type triangle
 ```
 
 and for a variable of `type triangle`, as in
 
 ```f90
-type(triangle) t
+type(triangle) :: t
 ```
 
 each component of type `point` is accessed as
@@ -340,19 +344,20 @@ t%a   t%b   t%c
 which, in turn, have ultimate components of `type real`:
 
 ```f90
-t%a%x   t%a%y   t%b%x   etc.
+t%a%x   t%a%y   t%b%
 ```
 
-(Note that the `%` qualifier was chosen rather than dot (`.`) because of
-potential ambiguity with operator notation, like `.OR.`).
+etc. (Note that the `%` qualifier was chosen rather than dot (`.`)
+because of potential ambiguity with operator notation, like `.OR.`).
 
 ## Implicit and explicit typing
 
-Unless specified otherwise, all variables starting with letters `i`, `j`, `k`,
-`l`, `m` and `n`are default `integer`s, and all others are default `real`;
+Unless specified otherwise, all variables starting with letters `i`,
+`j`, `k`, `l`, `m` and `n` default to `integer`, and all others are
+default `real`;
 other data types must be explicitly declared. This is known as *implicit
 typing* and is a heritage of early FORTRAN days. Those defaults can be
-overridden by *`IMPLICIT TypeName (CharacterRange)`* statements, like:
+overridden by `implicit TypeName (CharacterRange)` statements, like:
 
 ```f90
 implicit complex(z)
@@ -361,13 +366,8 @@ implicit real(c-h,n-y)
 ```
 
 However, it is a good practice to explicitly type all variables, and
-this can be forced by inserting the statement
-
-```f90
-implicit none
-```
-
-at the beginning of each program unit.
+this can be forced by inserting the statement `implicit none` at the
+beginning of each program unit.
 
 ## Arrays
 
@@ -382,7 +382,7 @@ optional and considered an attribute; if omitted, the array shape must
 be specified after array-variable name. For example,
 
 ```f90
-real:: a(10)
+real :: a(10)
 integer, dimension(0:100, -50:50) :: map
 ```
 
@@ -399,10 +399,10 @@ and are scalars. The subscripts may be any scalar integer expression.
 *Sections* are parts of the array variables, and are arrays themselves:
 
 ```f90
-a(i:j)               ! rank one
-map(i:j, k:l:m)      ! rank two
-a(map(i, k:l))       ! vector subscript
-a(3:2)               ! zero length
+a(i:j)           ! rank one
+map(i:j, k:l:m)  ! rank two
+a(map(i, k:l))   ! vector subscript
+a(3:2)           ! zero length
 ```
 
 Whole arrays and array sections are array-valued objects. Array-valued
@@ -464,10 +464,10 @@ This declaration is equivalent to
 real, dimension(3), save :: point = (/0.0, 1.0, -1.0/)
 ```
 
-for local variables within a subroutine or function. The SAVE attribute
-causes local variables to retain their value after a procedure call and
-then to initialize the variable to the saved value upon returning to the
-procedure.
+for local variables within a subroutine or function. The `save`
+attribute causes local variables to retain their value after a procedure
+call and then to initialize the variable to the saved value upon
+returning to the procedure.
 
 ### `parameter` attribute
 
@@ -476,9 +476,9 @@ attribute and the constant values to a type statement:
 
 ```f90
 real, dimension(3), parameter :: field = (/0., 1., 2./)
-type(triplet), parameter :: t = triplet((/0., 0., 0./))
+type(triplet), parameter      :: t = triplet((/0., 0., 0./))
 ```
-
+(data_statement)=
 ### `data` statement
 
 The `data` statement can be used for scalars and also for arrays and
@@ -499,13 +499,13 @@ The values used in `data` and `parameter` statements, or with these
 attributes, are constant expressions that may include references to:
 array and structure constructors, elemental intrinsic functions with
 integer or character arguments and results, and the six transformational
-functions `repeat, selected_int_kind, trim, selected_real_kind, reshape`
-and `transfer` (see
-[Intrinsic procedures](intrinsic_procedures):
+functions `repeat`, `selected_int_kind`, `trim`, `selected_real_kind`,
+`reshape`, and `transfer` (see
+[Intrinsic procedures](intrinsic_procedures)):
 
 ```f90
 integer, parameter :: long = selected_real_kind(12), &
-                      array(3) = (/1, 2, 3/)
+                        array(3) = (/1, 2, 3/)
 ```
 
 ## Specification expressions
@@ -520,8 +520,8 @@ subroutine s(b, m, c)
   real, dimension(:, :)             :: b
   real, dimension(ubound(b, 1) + 5) :: x
   integer                           :: m
-  character(LEN=*)                  :: c
-  character(LEN=m + len(c))         :: cc
+  character(len=*)                  :: c
+  character(len=m + len(c))         :: cc
   real(selected_real_kind(2*precision(a))) :: z
 end subroutine
 ```

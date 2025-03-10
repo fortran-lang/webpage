@@ -24,22 +24,24 @@ The procedures not already introduced are
 
 Bit inquiry
 
-| `bit_size` | Number of bits in the model |
-|------------|-----------------------------|
+```{csv-table}
+`bit_size`, "Number of bits in the model"
+```
 
 Bit manipulation
 
-| `btest`  | Bit testing        |
-|----------|--------------------|
-| `iand`   | Logical AND        |
-| `ibclr`  | Clear bit          |
-| `ibits`  | Bit extraction     |
-| `ibset`  | Set bit            |
-| `ieor`   | Exclusive OR       |
-| `ior`    | Inclusive OR       |
-| `ishft`  | Logical shift      |
-| `ishftc` | Circular shift     |
-| `not`    | Logical complement |
+```{csv-table}
+`btest`, "Bit testing"
+`iand`, "Logical AND"
+`ibclr`, "Clear bit"
+`ibits`, "Bit extraction"
+`ibset`, "Set bit"
+`ieor`, "Exclusive OR"
+`ior`, "Inclusive OR"
+`ishft`, "Logical shift"
+`ishftc`, "Circular shift"
+`not`, "Logical complement"
+```
 
 Transfer function, as in
 
@@ -51,10 +53,11 @@ integer :: i = transfer('abcd', 0)
 
 Subroutines
 
-| `date_and_time` | Obtain date and/or time           |
-|-----------------|-----------------------------------|
-| `mvbits`        | Copies bits                       |
-| `random_number` | Returns pseudorandom numbers      |
-| `random_seed`   | Access to seed                    |
-| `system_clock`  | Access to system clock            |
-| `cpu_time`      | Returns processor time in seconds |
+```{csv-table}
+`date_and_time`, "Obtain date and/or time"
+`mvbits`, "Copies bits"
+`random_number`, "Returns pseudorandom numbers"
+`random_seed`, "Access to seed"
+`system_clock`, "Access to system clock"
+`cpu_time`, "Returns processor time in seconds"
+```

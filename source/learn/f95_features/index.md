@@ -11,6 +11,8 @@ Array handling <array_handling>
 Pointers <pointers>
 Intrinsic procedures <intrinsic_procedures>
 Data transfer <data_transfer>
+Operations on external files <operations_on_external_files>
+Bibliography <bibliography>
 :::
 
 This is an overview of **Fortran 95 language features** which is based
@@ -25,11 +27,12 @@ The additional features of subsequent standards, up to Fortran 2023, are
 described in the Fortran 2023 standard document, ISO/IEC
 1539-1:2023.[^iso_1539_2023] Some of its new features are still being
 implemented in compilers.[^Fortran_plus] Details can also be found in a
-range of textbooks, for instance[^OOPvF][^OOPC][^Chapman] and see the\
+range of textbooks, for instance[^OOPvF][^OOPC][^Chapman] and see the
 list at Fortran Resources.[^Fortran_plus_18] Sources for the description
 in the sections below can be found in the standards
 documents,[^iso_1539_2023] textbooks[^OOPvF][^OOPC][^Chapman] as well as
-the **Bibliography**.
+the
+[bibliography](bibliography).
 
 The booklet is based on Wikipedia's article
 [Fortran 95 language
@@ -68,4 +71,4 @@ last edit by February 25, 2025 16:08 UTC.
 
 [^Fortran_plus_18]:
     [Fortranplus | Fortran information](http://www.fortranplus.co.uk/fortran-information/),
-p. 18
+    p. 18

@@ -44,11 +44,7 @@ function name(arg1, arg2)  ! zero or more arguments
 end function name
 ```
 
-The form of reference of a function is
-
-```f90
-x = name(a, b)
-```
+The form of reference of a function is `x = name(a, b)`.
 
 ## Internal procedures
 
@@ -80,16 +76,17 @@ The names of program units and external procedures are *global*, and the
 names of implied-DO variables have a scope of the statement that
 contains them.
 
+(modules)=
 ## Modules
 
 Modules are used to package
 
-- global data (replaces COMMON and BLOCK DATA from Fortran 77);
+- global data (replaces `COMMON` and `BLOCK DATA` from FORTRAN 77);
 - type definitions (themselves a scoping unit);
-- subprograms (which among other things replaces the use of ENTRY from
-  Fortran 77);
+- subprograms (which among other things replaces the use of `ENTRY` from
+  FORTRAN 77);
 - interface blocks (another scoping unit, see
-  [Interface blocks](interface_blocks);
+  [Interface blocks](interface-blocks));
 - namelist groups (see any textbook).
 
 An example of a module containing a type definition, interface block and
@@ -151,9 +148,10 @@ public  :: only_this
 ```
 
 For derived types there are three possibilities: the type and its
-components are all `public`, the type is `public` and its components `private`
-(the type only is visible and one can change its details easily), or all
-of it is `private` (for internal use in the module only):
+components are all `public`, the type is `public` and its components
+`private` (the type only is visible and one can change its details
+easily), or all of it is `private` (for internal use in the module
+only):
 
 ```f90
 module mine
@@ -193,17 +191,18 @@ We may specify the intent of dummy arguments:
 
 ```f90
 subroutine shuffle(ncards, cards)
-  integer, intent(IN)  :: ncards
-  integer, intent(OUT), dimension(ncards) :: cards
+  integer, intent(in) :: ncards
+  integer, intent(out), dimension(ncards) :: cards
 ```
 
-Also, `INOUT` is possible: here the actual argument must be a variable
+Also, `inout` is possible: here the actual argument must be a variable
 (unlike the default case where it may be a constant).
 
 Arguments may be optional:
 
 ```f90
-subroutine mincon(n, f, x, upper, lower, equalities, inequalities, convex, xstart)
+subroutine mincon(n, f, x, upper, lower, equalities, inequalities, & 
+  convex, xstart)
   real, optional, dimension :: upper, lower
   :
   if (present(lower)) then  ! test for presence of actual argument
@@ -232,7 +231,7 @@ interface that is 'explicit' (that is, the compiler can see all the
 details). A reference to an external (or dummy) procedure is usually
 'implicit' (the compiler assumes the details). However, we can provide
 an explicit interface in this case too. It is a copy of the header,
-specifications and END statement of the procedure concerned, either
+specifications and `end` statement of the procedure concerned, either
 placed in a module or inserted directly:
 
 ```f90
@@ -242,7 +241,7 @@ real function minimum(a, b, func)
   real, intent(in) :: a, b
   interface
     real function func(x)
-      real, intent(IN) :: x
+      real, intent(in) :: x
     end function func
   end interface
   real f, x
@@ -256,10 +255,10 @@ An explicit interface is obligatory for
 
 - optional and keyword arguments;
 - `pointer` and `target` arguments (see
-  [Pointers](Pointers);
+  [Pointers](pointers));
 - `pointer` function result;
 - new-style array arguments and array functions
-  ([Array handling](Array_handling)).
+  ([Array handling](array_handling)).
 
 It allows full checks at compile time between actual and dummy
 arguments.
@@ -299,7 +298,7 @@ correct association.
 
 We have already seen the use of interface blocks for defined operators
 and assignment (see
-[Modules](Modules).
+[Modules](Modules)).
 
 ## Recursion
 
@@ -320,7 +319,7 @@ recursive function integrate(f, bounds)
       real f, x
     end function f
   end interface
-  real, dimension(2), intent(IN) :: bounds
+  real, dimension(2), intent(in) :: bounds
   :
 end function integrate
 ```
@@ -356,7 +355,7 @@ Here, we note the `result` clause and termination test.
 This is a feature for parallel computing.
 
 In
-[the `forall` statement and construct](forall_statement_and_construct),
+[the `forall` statement and construct](forall-statement),
 any side effects in a function can impede optimization on
 a parallel processor the order of execution of the assignments could
 affect the results. To control this situation, we add the `pure` keyword

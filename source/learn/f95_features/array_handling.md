@@ -52,7 +52,7 @@ call sub(a)
 the corresponding dummy argument specification defines only the type and
 rank of the array, not its shape. This information has to be made
 available by an explicit interface, often using an interface block (see
-[Interface blocks](interface_blocks).
+[Interface blocks](interface_blocks)).
 Thus we write just
 
 ```f90
@@ -60,8 +60,8 @@ subroutine sub(da)
   real, dimension(:, :) :: da
 ```
 
-and this is as if `da` were dimensioned `(11,21)`. However, we can specify
-any lower bound and the array maps accordingly.
+and this is as if `da` were dimensioned `(11,21)`. However, we can
+specify any lower bound and the array maps accordingly.
 
 ```f90
 real, dimension(0:, 0:) :: da
@@ -102,7 +102,7 @@ end module
 program main
   use work_array
   read (input, *) n
-  allocate (work(n, 2 * n, 3 * n), STAT=status)
+  allocate (work(n, 2 * n, 3 * n), stat=status)
   :
   deallocate (work)
 ```
@@ -159,7 +159,7 @@ parallel processors. An elemental procedure must be pure.
 
 ```f90
 elemental subroutine swap(a, b)
-  real, intent(INOUT)  :: a, b
+  real, intent(inout)  :: a, b
   real                 :: work
   work = a
   a = b
@@ -313,9 +313,7 @@ always has a subscript or subscripts qualifying at least the last name.
 ## Array subobjects (sections)
 
 The general form of subscript for an array section is
-
-`      [`*`lower`*`] : [`*`upper`*`] [:`*`stride`*`]`
-
+`[lower]:[upper][:stride]`
 (where `[...]` indicates an optional item) as in
 
 ```f90
@@ -366,52 +364,59 @@ tar(1, 1)%u  !  component of an array element
 
 ### Vector and matrix multiply
 
-| `dot_product` | Dot product of 2 rank-one arrays |
-|---------------|----------------------------------|
-| `matmul`      | Matrix multiplication            |
+```{csv-table}
+`dot_product`, "Dot product of 2 rank-one arrays"
+`matmul`, "Matrix multiplication"
+```
 
 ### Array reduction
 
-| `all`     | True if all values are true                                 |
-|-----------|-------------------------------------------------------------|
-| `any`     | True if any value is true. Example: `if (any( a > b)) then` |
-| `count`   | Number of true elements in array                            |
-| `maxval`  | Maximum value in an array                                   |
-| `minval`  | Minimum value in an array                                   |
-| `product` | Product of array elements                                   |
-| `sum`     | Sum of array elements                                       |
+```{csv-table}
+`all`, "True if all values are true"
+`any`, "True if any value is true. Example: `if (any( a > b)) then`"
+`count`, "Number of true elements in array"
+`maxval`, "Maximum value in an array"
+`minval`, "Minimum value in an array"
+`product`, "Product of array elements"
+`sum`, "Sum of array elements"
+```
 
 ### Array inquiry
 
-| `allocated` | Array allocation status              |
-|-------------|--------------------------------------|
-| `lbound`    | Lower dimension bounds of an array   |
-| `shape`     | Shape of an array (or scalar)        |
-| `size`      | Total number of elements in an array |
-| `ubound`    | Upper dimension bounds of an array   |
+```{csv-table}
+`allocated`, "Array allocation status"
+`lbound`, "Lower dimension bounds of an array"
+`shape`, "Shape of an array (or scalar)"
+`size`, "Total number of elements in an array"
+`ubound`, "Upper dimension bounds of an array"
+```
 
 ### Array construction
 
-| `merge`  | Merge under mask                                     |
-|----------|------------------------------------------------------|
-| `pack`   | Pack an array into an array of rank one under a mask |
-| `spread` | Replicate array by adding a dimension                |
-| `unpack` | Unpack an array of rank one into an array under mask |
+```{csv-table}
+`merge`, "Merge under mask"
+`pack`, "Pack an array into an array of rank one under a mask"
+`spread`, "Replicate array by adding a dimension"
+`unpack`, "Unpack an array of rank one into an array under mask"
+```
 
 ### Array reshape
 
-| `reshape` | Reshape an array |
-|-----------|------------------|
+```{csv-table}
+`reshape`, "Reshape an array"
+```
 
 ### Array manipulation
 
-| `cshift`    | Circular shift                    |
-|-------------|-----------------------------------|
-| `eoshift`   | End-off shift                     |
-| `transpose` | Transpose of an array of rank two |
+```{csv-table}
+`cshift`, "Circular shift"
+`eoshift`, "End-off shift"
+`transpose`, "Transpose of an array of rank two"
+```
 
 ### Array location
 
-| `maxloc` | Location of first maximum value in an array |
-|----------|---------------------------------------------|
-| `minloc` | Location of first minimum value in an array |
+```{csv-table}
+`maxloc`, "Location of first maximum value in an array"
+`minloc`, "Location of first minimum value in an array"
+```
