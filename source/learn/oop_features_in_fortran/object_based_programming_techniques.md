@@ -152,8 +152,8 @@ to be aware of:
    is **opaque** (not a Fortran term), it can only be used if the type
    declaration is accessed by host association (this is the same as for
    nonallocatable/nonpointer components);
-2. especially for container-like types, its semantics may be
-   incompatible with the programmers intentions for how the objects
+2. ESPECIALLY for container-like types, its semantics may be
+   incompatible with the programmer's intentions for how the objects
    should be used.
 
 Item 2 is illustrated by the above object setups, specifically:
@@ -479,7 +479,7 @@ case of polymorphic objects.
 ### Implementing move semantics
 
 Sometimes it may be necessary to make use of move instead of copy
-semantics i.e., create a copy of an object and then getting rid of the
+semantics i.e., create a copy of an object and then get rid of the
 original. The simplest way of doing this is to make use of allocatable
 (scalar or array) objects,
 
