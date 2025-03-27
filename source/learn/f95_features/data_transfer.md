@@ -3,7 +3,9 @@
 ## Formatted input/output
 
 These examples illustrate various forms of I/O lists with some simple
-formats (see [below](edit_descriptors)):
+formats (see
+[Edit descriptors](edit_descriptors)
+below):
 
 ```f90
 integer             :: i
@@ -59,7 +61,8 @@ print form, q
 ```
 
 or as an asterisk this is a type of I/O known as *list-directed* I/O
-(see [below](list-directed-i/o),
+(see
+[below](list-directed-i-o)),
 in which the format is defined by the computer system:
 
 ```f90
@@ -223,10 +226,10 @@ It is possible to specify that an edit descriptor be repeated a
 specified number of times, using a *repeat count*: `10f12.3`
 
 The slash edit descriptor (see
-[below](control-edit-descriptors))
-may have a repeat count, and a repeat count can
-also apply to a group of edit descriptors, enclosed in parentheses, with
-nesting:
+[Control edit descriptors](control-edit-descriptors)
+below) may have a great count, and
+a repeat count can also apply to a group of edit descriptors,
+enclosed in parentheses, with nesting:
 
 ```f90
 print "(2(2i5,2f8.2))", i(1),i(2),a(1),a(2), i(3),i(4),a(3),a(4)

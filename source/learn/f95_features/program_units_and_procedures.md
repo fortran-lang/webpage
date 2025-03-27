@@ -76,7 +76,6 @@ The names of program units and external procedures are *global*, and the
 names of implied-DO variables have a scope of the statement that
 contains them.
 
-(modules)=
 ## Modules
 
 Modules are used to package
@@ -201,7 +200,7 @@ Also, `inout` is possible: here the actual argument must be a variable
 Arguments may be optional:
 
 ```f90
-subroutine mincon(n, f, x, upper, lower, equalities, inequalities, & 
+subroutine mincon(n, f, x, upper, lower, equalities, inequalities, &
   convex, xstart)
   real, optional, dimension :: upper, lower
   :
@@ -255,10 +254,10 @@ An explicit interface is obligatory for
 
 - optional and keyword arguments;
 - `pointer` and `target` arguments (see
-  [Pointers](pointers));
+  [Pointers](pointers.md));
 - `pointer` function result;
 - new-style array arguments and array functions
-  ([Array handling](array_handling)).
+  ([Array handling](array_handling.md)).
 
 It allows full checks at compile time between actual and dummy
 arguments.
@@ -293,12 +292,12 @@ interface gamma
 end interface
 ```
 
-We can use existing names, e.g. SIN, and the compiler sorts out the
+We can use existing names, e.g. `sin`, and the compiler sorts out the
 correct association.
 
 We have already seen the use of interface blocks for defined operators
 and assignment (see
-[Modules](Modules)).
+[Modules](modules)).
 
 ## Recursion
 
@@ -355,7 +354,7 @@ Here, we note the `result` clause and termination test.
 This is a feature for parallel computing.
 
 In
-[the `forall` statement and construct](forall-statement),
+[the `forall` statement and construct](array_handling.md#the-forall-statement-and-construct),
 any side effects in a function can impede optimization on
 a parallel processor the order of execution of the assignments could
 affect the results. To control this situation, we add the `pure` keyword

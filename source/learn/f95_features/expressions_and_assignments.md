@@ -44,8 +44,10 @@ of real numbers to integers:
 For *scalar relational* operations of numeric types, there is a set of
 built-in operators:
 
-`<    <=    ==   /=   >   >=`
-`.lt. .le. .eq. .ne. .gt. .ge.`
+```f90
+ <    <=   ==   /=   >    >=
+.lt. .le. .eq. .ne. .gt. .ge.
+```
 
 (the forms above are new to Fortran-90, and older equivalent forms are
 given below them). Example expressions:
@@ -113,7 +115,7 @@ vector3 =(matrix .times. vector1) + vector2
 
 the two expressions are equivalent only if appropriate parentheses are
 added as shown. In each case there must be defined, in a
-[module](modules),
+[module](program_units_and_procedures.md#modules),
 procedures defining the operator and assignment, and corresponding
 operator-procedure association, as follows:
 
@@ -126,7 +128,7 @@ end interface
 
 The string concatenation function is a more elaborated version of that
 shown already in
-[Basics](Basics).
+[Basics](language_elements.md#basics).
 Note that
 in order to handle the error condition that arises when the two strings
 together exceed the preset 80-character limit, it would be safer to use

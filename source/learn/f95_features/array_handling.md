@@ -10,10 +10,11 @@ Array handling is included in Fortran for two main reasons:
 
 At the same time, major extensions of the functionality in this area
 have been added. We have already met whole arrays above
-<a href="#Arrays" class="wikilink" title="#Arrays 1">#Arrays 1</a> and
-here
-<a href="#Arrays_2" class="wikilink" title="#Arrays 2">#Arrays 2</a> -
-now we develop the theme.
+(see corresponding sections in
+[Language elements](language_elements.md#arrays)
+and
+[Expressions and assignments](expressions_and_assignments.md#arrays))
+and continue to develop the theme.
 
 ## Zero-sized arrays
 
@@ -52,7 +53,7 @@ call sub(a)
 the corresponding dummy argument specification defines only the type and
 rank of the array, not its shape. This information has to be made
 available by an explicit interface, often using an interface block (see
-[Interface blocks](interface_blocks)).
+[Interface blocks](program_units_and_procedures.md#interface-blocks)).
 Thus we write just
 
 ```f90
@@ -168,10 +169,12 @@ end subroutine swap
 ```
 
 The dummy arguments cannot be used in specification expressions (see
-<a href="#Specification_expressions" class="wikilink"
-title="above">above</a>) except as arguments to certain intrinsic
-functions (`bit_size`, `kind`, `len`, and the numeric inquiry ones, (see
-<a href="#Intrinsic_data_types" class="wikilink" title="below">below</a>).
+[Specification expressions](language_elements.md#specification-expressions)
+mentioned earlier in Language elements)
+except as arguments to certain intrinsic
+functions (`bit_size`, `kind`, `len`, and the numeric inquiry ones (see
+[Intrinsic data types](language_elements.md#intrinsic-data-types),
+and below).
 
 ## `where`
 
@@ -289,26 +292,11 @@ we can declare an array of that type:
 type(fun_del), dimension(10, 20) :: tar
 ```
 
-and a reference like
-
-```f90
-tar(n, 2)
-```
-
-is an element (a scalar!) of type `fun_del`, but
-
-```f90
-tar(n, 2)%du
-```
-
-is an array of type `real`, and
-
-```f90
-tar(n, 2)%du(2)
-```
-
-is an element of it. The basic rule to remember is that an array element
-always has a subscript or subscripts qualifying at least the last name.
+A reference like `tar(n, 2)` is an element (a scalar!) of type
+`fun_del`, but `tar(n, 2)%du` is an array of type `real`, and
+`tar(n, 2)%du(2)` is an element of it.  The basic rule to remember
+is that an array element always has a subscript or subscripts
+qualifying at least the last name.
 
 ## Array subobjects (sections)
 

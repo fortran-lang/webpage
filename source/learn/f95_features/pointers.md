@@ -13,7 +13,8 @@ They are conceptually a descriptor listing the attributes of the objects
 (targets) that the pointer may point to, and the address, if any, of a
 target. They have no associated storage until it is allocated or
 otherwise associated (by pointer assignment, see
-[Pointers in expressions and assignments](pointers_in_expressions_and_assignments)):
+[Pointers in expressions and assignments](pointers-in-expressions-and-assignments)
+below):
 
 ```f90
 allocate (var)
@@ -289,7 +290,8 @@ window => table(m:n, p:q)
 
 The subscripts of window are `1:n - m + 1, 1:q - p + 1`.
 Similarly, for `tar%u` (as defined in
-[Array elements](array_elements)),
+[Array elements](array_handling.md#array-elements)
+of section Array handling),
 we can use, say, `taru => tar%u`
 to point at all the u components of tar, and subscript it as
 `taru(1, 2)`.
