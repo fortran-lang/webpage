@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-01 14:47+0530\n"
-"PO-Revision-Date: 2025-03-27 21:01+0000\n"
+"PO-Revision-Date: 2025-04-09 20:01+0000\n"
 "Last-Translator: Agnieszka Ziora <agaxx02@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pl/>\n"
@@ -6420,6 +6420,12 @@ msgid ""
 "`make`. This guide should present a general recommended style to write "
 "`make`, but also serve as demonstration of useful and interesting features."
 msgstr ""
+"Jeśli myślisz, że `make` jest odpowiedni dla twoich potrzeb, możesz zacząć "
+"pisać swój plik `Makefile`. W tym kursie użyjemy rzeczywistych przykładów z "
+"indeksu pakietów, który (w czasie pisania tego kursu) używa innych systemów "
+"kompilacji niż `make`. Ten poradnik przedstawia ogólny rekomendowany styl "
+"pisania `make` oraz powinien służyć jako demonstracja użytecznych i "
+"interesujących funkcji."
 
 #: ../../source/learn/building_programs/project_make.md:30
 msgid ""
@@ -6427,6 +6433,9 @@ msgid ""
 " automate workflows defined by files. Maybe you can leverage its power in a "
 "different context."
 msgstr ""
+"Nawet jeśli `make` nie wydaje ci się odpowiedni do kompilacji twojego "
+"projektu, jest to _narzędzie_ do automatyzacji przepływu pracy zdefiniowanej "
+"przez pliki. Może uda ci się wykorzystać jego moc w innym kontekście."
 
 #: ../../source/learn/building_programs/project_make.md:35
 msgid ""
@@ -6435,6 +6444,11 @@ msgid ""
 "Fortran CSV module (v1.2.0)</a>. Our goal is to write a `Makefile` to compile"
 " this project to a static library. Start by cloning the repository"
 msgstr ""
+"W tej części będziemy pracowali z <a href="
+"\"https://github.com/jacobwilliams/fortran-csv-module/tree/1.2.0\" target="
+"\"_blank\" rel=\"noopener\"> modułem Fortran CSV (v1.2.0)</a>. Naszym celem "
+"jest napisanie `Makefile`, aby skompilować ten projekt do biblioteki "
+"statycznej. Zacznij od sklonowania repozytorium"
 
 #: ../../source/learn/building_programs/project_make.md:46
 msgid ""
@@ -6442,6 +6456,9 @@ msgid ""
 "reproducible as possible. Feel free to use the latest version or another "
 "project instead."
 msgstr ""
+"W tej części będziemy pracowali z kodem o tagu `1.2.0`, aby mógł być z "
+"łatwością odtworzony. Jednak możesz użyć też najnowszej wersji lub "
+"całkowicie innego projektu."
 
 #: ../../source/learn/building_programs/project_make.md:49
 msgid ""
@@ -6449,6 +6466,10 @@ msgid ""
 " options used with FoBiS. We are about to write a `Makefile` for this "
 "project. First, we check the directory structure and the source files"
 msgstr ""
+"Ten projekt używa FoBiS jako swojego systemu kompilacji, możesz więc "
+"sprawdzić `build.sh` aby zobaczyć opcje użyte dla FoBiS. My jednak napiszemy "
+"`Makefile` dla tego projektu. Na początek sprawdzamy strukturę folderów oraz "
+"pliki źródłowe"
 
 #: ../../source/learn/building_programs/project_make.md:71
 msgid ""
@@ -6456,16 +6477,22 @@ msgid ""
 "compiled and added to a static library while the three in `src/tests` contain"
 " individual programs that depend on this static library."
 msgstr ""
+"Znaleźliśmy siedem różnych plików źródłowych Fortran; cztery w `src` powinny "
+"być skompilowane i dodane do biblioteki statycznej, a trzy pliki w `src/"
+"tests` zawierają osobne indywidualne programy, które zależą od tej "
+"statycznej biblioteki."
 
 #: ../../source/learn/building_programs/project_make.md:75
 msgid "Start by creating a simple `Makefile`:"
-msgstr ""
+msgstr "Zacznij od stworzenia prostego `Makefile`:"
 
 #: ../../source/learn/building_programs/project_make.md:141
 msgid ""
 "Invoking `make` should build the static library and the test executables as "
 "expected:"
 msgstr ""
+"Wywołanie `make` powinno zbudować bibliotekę statyczną oraz sprawdzić pliki "
+"wykonywalne:"
 
 #: ../../source/learn/building_programs/project_make.md:156
 msgid ""
@@ -6475,10 +6502,15 @@ msgid ""
 "dependencies are specified explicitly, which results in several additional "
 "lines even for such a simple project."
 msgstr ""
+"Należy zwrócić tutaj uwagę na kilka rzeczy. Kompilacja za pomocą `make` "
+"zazwyczaj przeplata artefakty kompilacji z kodem źródłowym, chyba że włożysz "
+"dodatkowy wysiłek w zaimplementowanie folderu kompilacji. Dodatkowo, teraz "
+"pliki źródłowe i zależności są określane jawnie, co skutkuje kilkoma "
+"dodatkowymi linijkami nawet dla tak małego projektu."
 
 #: ../../source/learn/building_programs/project_make.md:162
 msgid "Automatically generated dependencies"
-msgstr ""
+msgstr "Automatyczne wygenerowane zależności"
 
 #: ../../source/learn/building_programs/project_make.md:164
 msgid ""
@@ -6488,6 +6520,11 @@ msgid ""
 " compilers (like the Intel Fortran compiler) also offer to generate "
 "dependencies in `make` format."
 msgstr ""
+"Największa wadą `make` przy kompilacji Fortrana jest brak możliwości "
+"określenia zależności modułu. Jest to zwykle rozwiązywane przez dodanie ich "
+"ręcznie lub automatycznie skanowanie kodu źródłowego za pomocą narzędzi "
+"zewnętrznych. Niektóre kompilatory (tak jak Intel Fortran) oferują również "
+"generowanie zależności w formacie `make`."
 
 #: ../../source/learn/building_programs/project_make.md:169
 msgid ""
@@ -6498,6 +6535,13 @@ msgid ""
 " the name of the source file and the module files are known, and no "
 "information on the object file names should be required."
 msgstr ""
+"Zanim jednak zanurzymy się w generowanie zależności, zarysujmy solidną "
+"koncepcję podejścia do problemu zależności. Po pierwsze, chcemy sposobu, "
+"który pozwoli na przetworzenie wszystkich plików źródłowych oddzielnie, "
+"kiedy każdy plik źródłowy zapewnia (`module`) lub wymaga (`use`) modułów. "
+"Podczas generowania zależności tylko nazwy plików źródłowych oraz pliki "
+"modułów są znane i żadne informacje o nazwach plików obiektowych nie powinny "
+"być wymagane."
 
 #: ../../source/learn/building_programs/project_make.md:177
 msgid ""
@@ -6505,6 +6549,10 @@ msgid ""
 " are defined between object files rather than source files. To change this, "
 "we can generate a map from the source files their respective object files:"
 msgstr ""
+"Jeśli sprawdzisz powyższą sekcję zależności zauważysz, że wszystkie "
+"zależności są zdefiniowane pomiędzy plikami obiektowymi a nie plikami "
+"źródłowymi. Aby to zmienić, możemy wygenerować mapę z plików źródłowych do "
+"odpowiednich plików obiektowych:"
 
 #: ../../source/learn/building_programs/project_make.md:187
 msgid ""
@@ -6514,24 +6562,34 @@ msgid ""
 "allows us to generate `make` statements and evaluate them for this "
 "`Makefile`."
 msgstr ""
+"Zauważ deklarację `obj` jako rekursywnie rozszerzaną zmienną. Używany tego "
+"mechanizmu do efektywnego definiowania funkcji w `make`. Funkcja `foreach` "
+"pozwala nam na wykonanie pętli po wszystkich plikach źródłowych, a funkcja "
+"`eval` na wygenerowanie instrukcji `make` oraz określenie ich dla `Makefile`."
 
 #: ../../source/learn/building_programs/project_make.md:192
 msgid ""
 "We adjust the dependencies accordingly as we can now define the name of the "
 "object files through the source file names:"
 msgstr ""
+"Odpowiednio dostosowujemy zależności, ponieważ możemy teraz zdefiniować "
+"nazwy plików obiektowych poprzez nazwy plików źródłowych:"
 
 #: ../../source/learn/building_programs/project_make.md:212
 msgid ""
 "The same strategy of creating a map is already used for the module files, now"
 " it is just expanded to the object files as well."
 msgstr ""
+"Ta sama strategia tworzenia mapy jest już używana dla plików modułowych, "
+"teraz jest ona poszerzona też do plików obiektowych."
 
 #: ../../source/learn/building_programs/project_make.md:215
 msgid ""
 "To generate the respective dependency map automatically we will use an `awk` "
 "script here"
 msgstr ""
+"Aby automatycznie wygenerować mapę poszczególnych zależności użyjemy skryptu "
+"`awk`"
 
 #: ../../source/learn/building_programs/project_make.md:277
 msgid ""
@@ -6539,10 +6597,13 @@ msgid ""
 "will not work with all Fortran code (namely submodules are not supported), "
 "but for this example it will suffice."
 msgstr ""
+"Skrypt ten zakłada kilka rzeczy na temat kodu źródłowego, który analizuje, "
+"dlatego nie będzie działał poprawnie z każdym kodem Fortran (submoduły nie "
+"są wspierane), ale dla tego przykładu jest to wystarczające."
 
 #: ../../source/learn/building_programs/project_make.md:282
 msgid "Using awk"
-msgstr ""
+msgstr "Używanie awk"
 
 #: ../../source/learn/building_programs/project_make.md:284
 msgid ""
