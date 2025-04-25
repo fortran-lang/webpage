@@ -1,3 +1,4 @@
+(same_type_as)=
 ## same_type_as
 
 ### **Name**

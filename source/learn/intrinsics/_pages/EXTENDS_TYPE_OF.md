@@ -1,3 +1,4 @@
+(extends_type_of)=
 ## extends_type_of
 
 ### **Name**

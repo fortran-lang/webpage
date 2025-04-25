@@ -173,7 +173,7 @@ The following people contributed code in May 2021:
   [Chetan Karwa](https://github.com/chetankarwa),
   [Thirumalai Shaktivel](https://gitlab.com/Thirumalai-Shaktivel), and
   [Gagandeep Singh](https://github.com/czgdp1807).
-  Read the full post [here](https://fortran-lang.org/newsletter/2021/05/18/Welcome-GSoC-students/).
+  Read the full post [here](https://fortran-lang.org/news/2021/05-18-Welcome-GSoC-students/).
 
 As usual, subscribe to the [mailing list](https://groups.io/g/fortran-lang) and/or
 join the [Discourse](https://fortran-lang.discourse.group) to stay tuned with the future meetings.

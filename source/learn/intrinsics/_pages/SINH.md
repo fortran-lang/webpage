@@ -1,3 +1,4 @@
+(sinh)=
 ## sinh
 
 ### **Name**

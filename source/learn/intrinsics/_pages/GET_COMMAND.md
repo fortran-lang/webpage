@@ -1,3 +1,4 @@
+(get_command)=
 ## get_command
 
 ### **Name**

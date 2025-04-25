@@ -1,3 +1,4 @@
+(tanh)=
 ## tanh
 
 ### **Name**

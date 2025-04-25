@@ -1,3 +1,4 @@
+(merge_bits)=
 ## merge_bits
 
 ### **Name**

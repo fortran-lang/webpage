@@ -1,3 +1,4 @@
+(atomic_add)=
 ## atomic_add
 
 ### **Name**

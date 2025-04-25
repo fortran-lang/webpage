@@ -1,3 +1,4 @@
+(cosh)=
 ## cosh
 
 ### **Name**

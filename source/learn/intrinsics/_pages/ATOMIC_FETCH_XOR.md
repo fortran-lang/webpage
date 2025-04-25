@@ -1,3 +1,4 @@
+(atomic_fetch_xor)=
 ## atomic_fetch_xor
 
 ### **Name**

@@ -1,3 +1,4 @@
+(hypot)=
 ## hypot
 
 ### **Name**

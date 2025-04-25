@@ -1,3 +1,4 @@
+(atan)=
 ## atan
 
 ### **Name**

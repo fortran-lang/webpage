@@ -1,3 +1,4 @@
+(is_contiguous)=
 ## is_contiguous
 
 ### **Name**
