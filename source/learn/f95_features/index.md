@@ -16,7 +16,7 @@ Bibliography <bibliography>
 :::
 
 This is an overview of **Fortran 95 language features** which is based
-upon the standards document[^iso_1539_1997] which has been replaced byi
+upon the standards document[^iso_1539_1997] which has been replaced by
 a newer version.[^iso_1539_2023] Included are the additional features of
 TR-15581:Enhanced Data Type Facilities, which have been universally
 implemented. Old features that have been superseded by new ones are not

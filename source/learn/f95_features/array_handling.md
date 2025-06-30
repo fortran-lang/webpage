@@ -223,7 +223,7 @@ Further:
 ## The `forall` statement and construct
 
 When a `do` construct is executed, each successive iteration is
-performed in order and one after the otheran impediment to optimization
+performed in order and one after the other is an impediment to optimization
 on a parallel processor.
 
 ```f90

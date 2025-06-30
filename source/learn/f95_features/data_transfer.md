@@ -85,7 +85,7 @@ where `unit=` is optional. The value may be any nonnegative integer
 allowed by the system for this purpose (but `0`, `5` and `6` often
 denote the error, keyboard and terminal, respectively).
 
-An asterisk is a variantagain from the keyboard:
+An asterisk is a variant again from the keyboard:
 
 ```f90
 read (unit=*, fmt="(f10.3)") q
