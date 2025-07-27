@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-01 14:47+0530\n"
-"PO-Revision-Date: 2025-07-21 10:12+0000\n"
+"PO-Revision-Date: 2025-07-28 08:01+0000\n"
 "Last-Translator: Agnieszka Ziora <agaxx02@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pl/>\n"
@@ -6139,7 +6139,7 @@ msgstr ""
 
 #: ../../source/learn/building_programs/managing_libraries.md:76
 msgid "On Linux:"
-msgstr "Na a Linuksie:"
+msgstr "Na Linuksie:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:84
 msgid "On Windows, with the Intel Fortran compiler:"
@@ -6761,12 +6761,16 @@ msgid ""
 "Once the dependency files are generated, `make` will only update them if the "
 "source changes and not require to rebuild them again for every invocation."
 msgstr ""
+"Kiedy pliki zależności są już wygenerowane `make` będzie je aktualizował "
+"tylko w przypadku zmiany źródła, a nie przy każdym wywołaniu."
 
 #: ../../source/learn/building_programs/project_make.md:466
 msgid ""
 "With correct dependencies you can leverage parallel execution of your "
 "`Makefile`, just use the `-j` flag to create multiple `make` processes."
 msgstr ""
+"Stosując prawidłowe zależności możesz wykorzystać równolegle wykonywanie "
+"pliku `Makefile` używając flagi `-j`, aby stworzyć wiele procesów `make`."
 
 #: ../../source/learn/building_programs/project_make.md:469
 msgid ""
@@ -6774,6 +6778,9 @@ msgid ""
 "specify the source files explicitly, the `wildcard` function can be used to "
 "determine them dynamically:"
 msgstr ""
+"Ponieważ zależności mogą teraz być generowane automatycznie, nie ma potrzeby "
+"jawnego określania plików źródłowych. Aby określić je dynamicznie, możesz "
+"użyć funkcji `wildcard`:"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:3
 msgid ""
@@ -6781,6 +6788,9 @@ msgid ""
 "libraries, here is the output from the `ldd` utility that reports such "
 "dependencies:"
 msgstr ""
+"Aby zobrazować, że nawet proste programy zależą od zewnętrznych bibliotek "
+"środowiska wykonawczego, spójrz na dane wyjściowe narzędzia `ldd`, który "
+"raportuje takie zależności:"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:18
 msgid ""
@@ -6790,6 +6800,12 @@ msgid ""
 " no problem. However, when such a library cannot be found, you will get "
 "(hopefully) an error message and the program stops immediately."
 msgstr ""
+"Inne kompilatory lub inne wersje tego samego kompilatora będą prawdopodobnie "
+"wymagały innych dynamicznych bibliotek. Dopóki program działa na tym samym "
+"komputerze — lub, bardziej precyzyjnie, w tym samym środowisku — nie powinno "
+"być żadnego problemu. Jeśli jednak taka biblioteka nie może zostać "
+"odnaleziona, otrzymasz (miejmy nadzieję) komunikat o błędzie, a program "
+"natychmiast się zatrzyma."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:25
 msgid ""
@@ -6799,6 +6815,11 @@ msgid ""
 "nicely with Windows 10, is found here: "
 "<https://github.com/lucasg/Dependencies>)"
 msgstr ""
+"Dlatego dobrze jest wiedzieć jakie biblioteki są wymagane. Na Linuksie oraz "
+"środowiskach linuksowych, narzędzie `ldd` jest bardzo pomocne. Na Windowsie "
+"natomiast warto skorzystać z narzędzia `dependency walker` (najnowszą "
+"wersję, która działa bardzo dobrze na Windowsie 10 możesz znaleźć tutaj: "
+"<https://github.com/lucasg/Dependencies>)"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:30
 msgid ""
@@ -6806,10 +6827,13 @@ msgid ""
 "libraries. That is a vast subject in its own right and full of complications "
 "and history. Here we merely scratch the surface:"
 msgstr ""
+"Kolejną rzeczą, którą powinieneś wiedzieć jest to, gdzie program próbuje "
+"znaleźć te biblioteki. Jest to obszerny temat sam w sobie, pełen zawiłości i "
+"historii. Tutaj go tylko szybko wspomnimy:"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:34
 msgid "_On Linux:_"
-msgstr ""
+msgstr "_Na Linuksie:_"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:36
 msgid ""
@@ -6817,36 +6841,46 @@ msgid ""
 "directories to be searched, each directory separated via colons (:) from the "
 "others. For instance: `/usr/lib:/usr/local/lib` — typical system directories."
 msgstr ""
+"Używana jest zmienna środowiskowa `LD_LIBRARY_PATH`. Składa się z listy "
+"katalogów do przeszukania, każdy z nich oddzielony jest dwukropkiem (:) od "
+"pozostałych. Na przykład: `/usr/lib:/usr/local/lib` - typowe katalogi "
+"systemowe."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:40
 msgid ""
 "At the link step you can also use an option to set `RPATH`, a list of "
 "directories that is put into the executable file itself."
 msgstr ""
+"W procesie łączenie możesz również skorzystać z opcji określenia `RPATH`, "
+"listy katalogów umieszczanej w samym pliku wykonywalnym."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:42
 msgid "Then there are several system directories that are searched."
-msgstr ""
+msgstr "Następnie przeszukiwanych jest kilka katalogów systemowych."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:44
 msgid "_On Windows:_"
-msgstr ""
+msgstr "_Na Windowsie:_"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:46
 msgid ""
 "The directory containing the executable program may also contain dynamic "
 "libraries."
 msgstr ""
+"Katalog zawierający program wykonywalny może również zawierać biblioteki "
+"dynamiczne."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:48
 msgid ""
 "The environment variable \"PATH\" is used. Again a list of directories to be "
 "searched, but now the separating character is the semicolon (;)."
 msgstr ""
+"Używana jest zmienna środowiskowa \"PATH\". Ponownie lista katalogów do "
+"przeszukania, jednak teraz znakiem rozdzielającym jest średnik (;)."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:50
 msgid "A set of system directories is searched."
-msgstr ""
+msgstr "Przeszukiwane są katalogi systemowe."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:52
 msgid ""
@@ -6855,6 +6889,10 @@ msgid ""
 "\"ldd\" or \"dependency walker\" to find out what libraries are loaded and "
 "where they are found."
 msgstr ""
+"Niestety, szczegóły tego procesu mogą się różnić w zależności od wersji "
+"systemu operacyjnego. Powyższe informacje mogą służyć jedynie za wskazówkę — "
+"używaj narzędzi takich jak \"ldd\" lub \"dependency walker\", aby dokładnie "
+"dowiedzieć się jakie biblioteki są ładowane i gdzie się znajdują."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:57
 msgid ""
@@ -6863,10 +6901,14 @@ msgid ""
 " also distribute the libraries it depends on. For more information: see "
 "below."
 msgstr ""
+"Jeśli chcesz udostępnić swój program współpracownikom, klientom, a nawet "
+"użytkownikom na całym świecie, musisz zadbać o to, aby oprócz samego "
+"programu, udostępnić również biblioteki, od których jest on zależny. Więcej "
+"informacji znajdziesz poniżej."
 
 #: ../../source/learn/intrinsics/array.md:1
 msgid "Properties and attributes of arrays"
-msgstr ""
+msgstr "Właściwości i atrybuty tablic"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:2
 msgid "merge"
