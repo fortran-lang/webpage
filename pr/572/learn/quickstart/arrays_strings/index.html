@@ -1,0 +1,977 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" sizes="256x256" href="../../../_static/images/favicon.ico" type="image/x-icon">
+    <title>Arrays and strings &#8212; Fortran Programming Language</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=eaa92f49" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=51fd25b1"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'learn/quickstart/arrays_strings';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '_static/data.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'en';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="canonical" href="https://fortran-lang.org/en/learn/quickstart/arrays_strings/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="Operators and flow control" href="../operators_control_flow/" />
+    <link rel="prev" title="Variables" href="../variables/" /> 
+<meta
+  name="description"
+  content="Fortran : High-performance parallel programming language"
+/>
+<meta
+  name="keywords"
+  content="High-performance, parallel, programming language"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+ 
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search"
+         aria-label="Search"
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Fortran Programming Language - Home"/>
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark pst-js-only" alt="Fortran Programming Language - Home"/>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="ms-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community/">
+    Community
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../news/">
+    News
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/en/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community/">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../news/">
+    News
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/en/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../os_setup/">Setting up your OS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/choose_compiler/">Choosing a compiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/install_gfortran/">Installing GFortran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/text_editors/">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/ides/">IDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/tips/">Smart Tips</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../">Quickstart tutorial</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../hello_world/">Hello world</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../variables/">Variables</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Arrays and strings</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../operators_control_flow/">Operators and flow control</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../organising_code/">Organising code structure</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../derived_types/">Derived Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gotchas/">Gotchas</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../building_programs/">Building programs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/compiling_source/">Compiling the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/linking_pieces/">Linking the objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/runtime_libraries/">Run-time libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/include_files/">Include files and modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/managing_libraries/">Managing libraries (static and dynamic libraries)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/build_tools/">Build tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/project_make/">An introduction to make</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/distributing/">Distributing your programs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../best_practices/">Fortran Best Practices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/style_guide/">Fortran Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/floating_point/">Floating Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/integer_division/">Integer Division</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/modules_programs/">Modules and Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/arrays/">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/multidim_arrays/">Multidimensional Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/element_operations/">Element-wise Operations on Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/allocatable_arrays/">Allocatable Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/file_io/">File Input/Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/callbacks/">Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/type_casting/">Type Casting in Callbacks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../intrinsics/">Fortran Intrinsics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/array/">Properties and attributes of arrays</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/bit/">Bit-level inquiry and manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/character/">Basic procedures for manipulating <em>character</em> variables</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/compiler/">Information about compiler and compiler options used for building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/cfi/">Procedures for binding to C interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/math/">General mathematical functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/model/">Controlling and querying the current numeric model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/numeric/">Manipulation and properties of numeric values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/parallel/">Parallel programming using co_arrays and co_indexed arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/state/">General and miscellaneous intrinsics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/system/">Accessing external system information</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/transform/">Matrix multiplication, dot product, and array shifts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/type/">Types and kinds</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">GNU Free Documentation License</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rosetta_stone/">Python Fortran Rosetta Stone</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../oop_features_in_fortran/">Putting Fortran’s object-related features to practical use</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../oop_features_in_fortran/object_based_programming_techniques/">Object-based programming techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oop_features_in_fortran/object_oriented_programming_techniques/">Object-oriented programming techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oop_features_in_fortran/performance_and_ease_of_use/">Performance and ease of use</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../" class="nav-link">Learn</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../" class="nav-link">Quickstart tutorial</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Arrays and strings</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="arrays-and-strings">
+<h1>Arrays and strings<a class="headerlink" href="#arrays-and-strings" title="Link to this heading">#</a></h1>
+<p>More often than not, we need to store and operate on long lists of numbers as opposed to just the single scalar variables
+that we have been using so far; in computer programming such lists are called <em>arrays</em>.</p>
+<p>Arrays are <em>multidimensional</em> variables that contain more than one value
+where each value is accessed using one or more indices.</p>
+<blockquote>
+<div><p>Arrays in Fortran are <em>one-based</em> by default; this means
+that the first element along any dimension is at index 1.</p>
+</div></blockquote>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="array-declaration">
+<h1>Array declaration<a class="headerlink" href="#array-declaration" title="Link to this heading">#</a></h1>
+<p>We can declare arrays of any type. There are two common notations for declaring array variables:
+using the <code class="docutils literal notranslate"><span class="pre">dimension</span></code> attribute or by appending the array dimensions in parentheses to the variable name.</p>
+<p><strong>Example:</strong> static array declaration</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20arrays%0A%20%20implicit%20none%0A%0A%20%20%21%201D%20integer%20array%0A%20%20integer%2C%20dimension%2810%29%20%3A%3A%20array1%0A%0A%20%20%21%20An%20equivalent%20array%20declaration%0A%20%20integer%20%3A%3A%20array2%2810%29%0A%0A%20%20%21%202D%20real%20array%0A%20%20real%2C%20dimension%2810%2C%2010%29%20%3A%3A%20array3%0A%0A%20%20%21%20Custom%20lower%20and%20upper%20index%20bounds%0A%20%20real%20%3A%3A%20array4%280%3A9%29%0A%20%20real%20%3A%3A%20array5%28-5%3A5%29%0A%0Aend%20program%20arrays' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">arrays</span>
+<span class="w">  </span><span class="k">implicit none</span>
+
+<span class="w">  </span><span class="c">! 1D integer array</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span>
+
+<span class="w">  </span><span class="c">! An equivalent array declaration</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+
+<span class="w">  </span><span class="c">! 2D real array</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array3</span>
+
+<span class="w">  </span><span class="c">! Custom lower and upper index bounds</span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array4</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="mi">9</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array5</span><span class="p">(</span><span class="o">-</span><span class="mi">5</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span>
+
+<span class="k">end program </span><span class="n">arrays</span>
+</pre></div>
+</div>
+</div>
+<section id="array-slicing">
+<h2>Array slicing<a class="headerlink" href="#array-slicing" title="Link to this heading">#</a></h2>
+<p>A powerful feature of the Fortran language is its built-in support for array operations;
+we can perform operations on all or part of an array using array <em>slicing</em> notation:</p>
+<p><strong>Example:</strong> array slicing</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20array_slice%0A%20%20implicit%20none%0A%0A%20%20integer%20%3A%3A%20i%0A%20%20integer%20%3A%3A%20array1%2810%29%20%20%21%201D%20integer%20array%20of%2010%20elements%0A%0A%20%20integer%20%3A%3A%20array2%2810%2C%2010%29%20%20%21%202D%20integer%20array%20of%20100%20elements%0A%0A%20%20array1%20%3D%20%5B1%2C%202%2C%203%2C%204%2C%205%2C%206%2C%207%2C%208%2C%209%2C%2010%5D%20%20%21%20Array%20constructor%0A%20%20print%20%2A%2C%20%22Array%20at%20odd%20indices%22%0A%20%20print%20%2A%2C%20array1%281%3A10%3A2%29%20%20%21%20Print%20out%20elements%20at%20odd%20indices%2C%20start%20at%20element%201%2C%20go%20up%20to%20element%2010%2C%20in%20strides%20of%202%0A%0A%20%20print%20%2A%2C%20%22Array%20in%20reverse%21%22%0A%20%20print%20%2A%2C%20array1%2810%3A1%3A-1%29%20%20%21%20Print%20an%20array%20in%20reverse%0A%0A%20%20array1%28%3A%29%20%3D%200%20%20%21%20Set%20all%20elements%20to%20zero%0A%20%20print%20%2A%2C%20%22Reset%20array%20to%200%21%22%0A%20%20print%20%2A%2C%20array1%0A%0A%20%20array1%20%3D%20%5B%28i%2C%20i%20%3D%201%2C%2010%29%5D%20%20%21%20Implied%20do%20loop%20constructor%0A%20%20print%20%2A%2C%20%22Now%20back%20to%201%20to%2010%21%22%0A%20%20print%20%2A%2C%20array1%0A%0A%0A%20%20array1%281%3A5%29%20%3D%201%20%20%21%20Set%20first%20five%20elements%20to%20one%0A%20%20print%20%2A%2C%20%22Set%20first%20five%20elements%20to%201%22%0A%20%20print%20%2A%2C%20array1%0A%0A%20%20array1%286%3A%29%20%3D%202%20%20%21%20Set%20all%20elements%20after%20five%20to%20two%0A%20%20print%20%2A%2C%20%22Set%20all%20elements%20after%205%20to%202%22%0A%20%20print%20%2A%2C%20array1%0A%0A%0A%20%20print%20%2A%2C%20%22First%20column%20of%202d%20array%22%0A%20%20print%20%2A%2C%20array2%28%3A%2C1%29%20%20%21%20Print%20out%20the%20first%20column%20in%20a%202D%20array%0A%0A%0Aend%20program%20array_slice' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">array_slice</span>
+<span class="w">  </span><span class="k">implicit none</span>
+
+<span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w">  </span><span class="c">! 1D integer array of 10 elements</span>
+
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)</span><span class="w">  </span><span class="c">! 2D integer array of 100 elements</span>
+
+<span class="w">  </span><span class="n">array1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="mi">3</span><span class="p">,</span><span class="w"> </span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span><span class="p">,</span><span class="w"> </span><span class="mi">6</span><span class="p">,</span><span class="w"> </span><span class="mi">7</span><span class="p">,</span><span class="w"> </span><span class="mi">8</span><span class="p">,</span><span class="w"> </span><span class="mi">9</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">]</span><span class="w">  </span><span class="c">! Array constructor</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Array at odd indices&quot;</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">10</span><span class="p">:</span><span class="mi">2</span><span class="p">)</span><span class="w">  </span><span class="c">! Print out elements at odd indices, start at element 1, go up to element 10, in strides of 2</span>
+
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Array in reverse!&quot;</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="o">-</span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="c">! Print an array in reverse</span>
+
+<span class="w">  </span><span class="n">array1</span><span class="p">(:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="w">  </span><span class="c">! Set all elements to zero</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Reset array to 0!&quot;</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span>
+
+<span class="w">  </span><span class="n">array1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[(</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">)]</span><span class="w">  </span><span class="c">! Implied do loop constructor</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Now back to 1 to 10!&quot;</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span>
+
+
+<span class="w">  </span><span class="n">array1</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="w">  </span><span class="c">! Set first five elements to one</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Set first five elements to 1&quot;</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span>
+
+<span class="w">  </span><span class="n">array1</span><span class="p">(</span><span class="mi">6</span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="w">  </span><span class="c">! Set all elements after five to two</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Set all elements after 5 to 2&quot;</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array1</span>
+
+
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;First column of 2d array&quot;</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">array2</span><span class="p">(:,</span><span class="mi">1</span><span class="p">)</span><span class="w">  </span><span class="c">! Print out the first column in a 2D array</span>
+
+
+<span class="k">end program </span><span class="n">array_slice</span>
+</pre></div>
+</div>
+</div>
+<blockquote>
+<div><p>Fortran arrays are stored in <em>column-major</em> order; the first
+index varies fastest.</p>
+</div></blockquote>
+</section>
+<section id="allocatable-dynamic-arrays">
+<h2>Allocatable (dynamic) arrays<a class="headerlink" href="#allocatable-dynamic-arrays" title="Link to this heading">#</a></h2>
+<p>So far we have specified the size of our array in our program code—this
+type of array is known as a <em>static</em> array since its size is fixed when
+we compile our program.</p>
+<p>Quite often, we do not know how big our array needs to be until we run our program, for example, if we are reading data from a file of unknown size.</p>
+<p>For this problem, we need <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> arrays.
+These are <em>allocated</em> while the program is running once we know how big the array needs to be.</p>
+<p><strong>Example:</strong> allocatable arrays</p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20allocatable%0A%20%20implicit%20none%0A%0A%20%20integer%2C%20allocatable%20%3A%3A%20array1%28%3A%29%0A%20%20integer%2C%20allocatable%20%3A%3A%20array2%28%3A%2C%3A%29%0A%0A%20%20allocate%28array1%2810%29%29%0A%20%20allocate%28array2%2810%2C10%29%29%0A%0A%20%20%21%20...%0A%0A%20%20deallocate%28array1%29%0A%20%20deallocate%28array2%29%0A%0Aend%20program%20allocatable' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program allocatable</span>
+<span class="k">  implicit none</span>
+
+<span class="k">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array1</span><span class="p">(:)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">array2</span><span class="p">(:,:)</span>
+
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">array1</span><span class="p">(</span><span class="mi">10</span><span class="p">))</span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="n">array2</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="mi">10</span><span class="p">))</span>
+
+<span class="w">  </span><span class="c">! ...</span>
+
+<span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">array1</span><span class="p">)</span>
+<span class="w">  </span><span class="k">deallocate</span><span class="p">(</span><span class="n">array2</span><span class="p">)</span>
+
+<span class="k">end program allocatable</span>
+</pre></div>
+</div>
+</div>
+<p>Allocatable local arrays are deallocated automatically
+when they go out of scope.</p>
+</section>
+<section id="character-strings">
+<h2>Character strings<a class="headerlink" href="#character-strings" title="Link to this heading">#</a></h2>
+<p><strong>Example:</strong> static character string</p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20string%0A%20%20implicit%20none%0A%0A%20%20character%28len%3D4%29%20%3A%3A%20first_name%0A%20%20character%28len%3D5%29%20%3A%3A%20last_name%0A%20%20character%2810%29%20%3A%3A%20full_name%0A%0A%20%20first_name%20%3D%20%27John%27%0A%20%20last_name%20%3D%20%27Smith%27%0A%0A%20%20%21%20String%20concatenation%0A%20%20full_name%20%3D%20first_name//%27%20%27//last_name%0A%0A%20%20print%20%2A%2C%20full_name%0A%0Aend%20program%20string' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string</span>
+<span class="w">  </span><span class="k">implicit none</span>
+
+<span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">5</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">last_name</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">full_name</span>
+
+<span class="w">  </span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span>
+<span class="w">  </span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span>
+
+<span class="w">  </span><span class="c">! String concatenation</span>
+<span class="w">  </span><span class="n">full_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">first_name</span><span class="o">//</span><span class="s1">&#39; &#39;</span><span class="o">//</span><span class="n">last_name</span>
+
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">full_name</span>
+
+<span class="k">end program </span><span class="n">string</span>
+</pre></div>
+</div>
+</div>
+<p><strong>Example:</strong> allocatable character string</p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20allocatable_string%0A%20%20implicit%20none%0A%0A%20%20character%28%3A%29%2C%20allocatable%20%3A%3A%20first_name%0A%20%20character%28%3A%29%2C%20allocatable%20%3A%3A%20last_name%0A%0A%20%20%21%20Explicit%20allocation%20statement%0A%20%20allocate%28character%284%29%20%3A%3A%20first_name%29%0A%20%20first_name%20%3D%20%27John%27%0A%0A%20%20%21%20Allocation%20on%20assignment%0A%20%20last_name%20%3D%20%27Smith%27%0A%0A%20%20print%20%2A%2C%20first_name//%27%20%27//last_name%0A%0Aend%20program%20allocatable_string' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">allocatable_string</span>
+<span class="w">  </span><span class="k">implicit none</span>
+
+<span class="k">  </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">last_name</span>
+
+<span class="w">  </span><span class="c">! Explicit allocation statement</span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="kt">character</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first_name</span><span class="p">)</span>
+<span class="w">  </span><span class="n">first_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;John&#39;</span>
+
+<span class="w">  </span><span class="c">! Allocation on assignment</span>
+<span class="w">  </span><span class="n">last_name</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;Smith&#39;</span>
+
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">first_name</span><span class="o">//</span><span class="s1">&#39; &#39;</span><span class="o">//</span><span class="n">last_name</span>
+
+<span class="k">end program </span><span class="n">allocatable_string</span>
+</pre></div>
+</div>
+</div>
+</section>
+<section id="array-of-strings">
+<h2>Array of strings<a class="headerlink" href="#array-of-strings" title="Link to this heading">#</a></h2>
+<p>An array of strings can be expressed in Fortran as an array of <code class="docutils literal notranslate"><span class="pre">character</span></code> variables.
+All elements in a <code class="docutils literal notranslate"><span class="pre">character</span></code> array have equal length.
+However, strings of varying lengths can be provided as input to the array constructor, as shown in the example below.
+They will be truncated or right-padded with spaces if they are longer or shorter, respectively, than the declared length of the <code class="docutils literal notranslate"><span class="pre">character</span></code> array.
+Finally, we use the intrinsic function <code class="docutils literal notranslate"><span class="pre">trim</span></code> to remove any excess spaces when printing the values to the standard output.</p>
+<p><strong>Example:</strong> string array</p>
+<div class="literal-block-wrapper docutils container" id="id6">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20string_array%0A%20%20implicit%20none%0A%20%20character%28len%3D10%29%2C%20dimension%282%29%20%3A%3A%20keys%2C%20vals%0A%0A%20%20keys%20%3D%20%5Bcharacter%28len%3D10%29%20%3A%3A%20%22user%22%2C%20%22dbname%22%5D%0A%20%20vals%20%3D%20%5Bcharacter%28len%3D10%29%20%3A%3A%20%22ben%22%2C%20%22motivation%22%5D%0A%0A%20%20call%20show%28keys%2C%20vals%29%0A%0A%20%20contains%0A%0A%20%20subroutine%20show%28akeys%2C%20avals%29%0A%20%20%20%20character%28len%3D%2A%29%2C%20intent%28in%29%20%3A%3A%20akeys%28%3A%29%2C%20avals%28%3A%29%0A%20%20%20%20integer%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%20%3A%3A%20i%0A%0A%20%20%20%20do%20i%20%3D%201%2C%20size%28akeys%29%0A%20%20%20%20%20%20print%20%2A%2C%20trim%28akeys%28i%29%29%2C%20%22%3A%20%22%2C%20trim%28avals%28i%29%29%0A%20%20%20%20end%20do%0A%0A%20%20end%20subroutine%20show%0A%0Aend%20program%20string_array' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id6" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">string_array</span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span>
+
+<span class="w">  </span><span class="n">keys</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="s2">&quot;user&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;dbname&quot;</span><span class="p">]</span>
+<span class="w">  </span><span class="n">vals</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">[</span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="s2">&quot;ben&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;motivation&quot;</span><span class="p">]</span>
+
+<span class="w">  </span><span class="k">call </span><span class="n">show</span><span class="p">(</span><span class="n">keys</span><span class="p">,</span><span class="w"> </span><span class="n">vals</span><span class="p">)</span>
+
+<span class="w">  </span><span class="k">contains</span>
+
+<span class="k">  subroutine </span><span class="n">show</span><span class="p">(</span><span class="n">akeys</span><span class="p">,</span><span class="w"> </span><span class="n">avals</span><span class="p">)</span>
+<span class="w">    </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">akeys</span><span class="p">(:),</span><span class="w"> </span><span class="n">avals</span><span class="p">(:)</span>
+<span class="w">    </span><span class="kt">integer</span><span class="w">                      </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+
+<span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">akeys</span><span class="p">)</span>
+<span class="w">      </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">akeys</span><span class="p">(</span><span class="n">i</span><span class="p">)),</span><span class="w"> </span><span class="s2">&quot;: &quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">avals</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+<span class="w">    </span><span class="k">end do</span>
+
+<span class="k">  end subroutine </span><span class="n">show</span>
+
+<span class="k">end program </span><span class="n">string_array</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">  
+<br />
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc"><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Arrays and strings</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#array-declaration">Array declaration</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-slicing">Array slicing</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#allocatable-dynamic-arrays">Allocatable (dynamic) arrays</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#character-strings">Character strings</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#array-of-strings">Array of strings</a></li>
+</ul>
+</li>
+</ul>
+</nav> </div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2020-2024, Fortran Community.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

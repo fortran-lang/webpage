@@ -1,0 +1,1459 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" sizes="256x256" href="../../../_static/images/favicon.ico" type="image/x-icon">
+    <title>Object-based programming techniques &#8212; Fortran Programming Language</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=eaa92f49" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=51fd25b1"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'learn/oop_features_in_fortran/object_based_programming_techniques';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '_static/data.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'en';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="canonical" href="https://fortran-lang.org/en/learn/oop_features_in_fortran/object_based_programming_techniques/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="Object-oriented programming techniques" href="../object_oriented_programming_techniques/" />
+    <link rel="prev" title="Putting Fortran’s object-related features to practical use" href="../" /> 
+<meta
+  name="description"
+  content="Fortran : High-performance parallel programming language"
+/>
+<meta
+  name="keywords"
+  content="High-performance, parallel, programming language"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+ 
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search"
+         aria-label="Search"
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Fortran Programming Language - Home"/>
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark pst-js-only" alt="Fortran Programming Language - Home"/>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="ms-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community/">
+    Community
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../news/">
+    News
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/en/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community/">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../news/">
+    News
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/en/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../os_setup/">Setting up your OS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/choose_compiler/">Choosing a compiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/install_gfortran/">Installing GFortran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/text_editors/">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/ides/">IDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/tips/">Smart Tips</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../quickstart/">Quickstart tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/hello_world/">Hello world</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/variables/">Variables</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/arrays_strings/">Arrays and strings</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/operators_control_flow/">Operators and flow control</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/organising_code/">Organising code structure</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/derived_types/">Derived Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/gotchas/">Gotchas</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../building_programs/">Building programs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/compiling_source/">Compiling the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/linking_pieces/">Linking the objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/runtime_libraries/">Run-time libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/include_files/">Include files and modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/managing_libraries/">Managing libraries (static and dynamic libraries)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/build_tools/">Build tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/project_make/">An introduction to make</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/distributing/">Distributing your programs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../best_practices/">Fortran Best Practices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/style_guide/">Fortran Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/floating_point/">Floating Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/integer_division/">Integer Division</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/modules_programs/">Modules and Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/arrays/">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/multidim_arrays/">Multidimensional Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/element_operations/">Element-wise Operations on Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/allocatable_arrays/">Allocatable Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/file_io/">File Input/Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/callbacks/">Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/type_casting/">Type Casting in Callbacks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../intrinsics/">Fortran Intrinsics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/array/">Properties and attributes of arrays</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/bit/">Bit-level inquiry and manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/character/">Basic procedures for manipulating <em>character</em> variables</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/compiler/">Information about compiler and compiler options used for building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/cfi/">Procedures for binding to C interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/math/">General mathematical functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/model/">Controlling and querying the current numeric model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/numeric/">Manipulation and properties of numeric values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/parallel/">Parallel programming using co_arrays and co_indexed arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/state/">General and miscellaneous intrinsics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/system/">Accessing external system information</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/transform/">Matrix multiplication, dot product, and array shifts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/type/">Types and kinds</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">GNU Free Documentation License</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rosetta_stone/">Python Fortran Rosetta Stone</a></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../">Putting Fortran’s object-related features to practical use</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Object-based programming techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../object_oriented_programming_techniques/">Object-oriented programming techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../performance_and_ease_of_use/">Performance and ease of use</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../" class="nav-link">Learn</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../" class="nav-link">Putting Fortran’s object-related features to practical use</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Object-based programming techniques</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="object-based-programming-techniques">
+<h1>Object-based programming techniques<a class="headerlink" href="#object-based-programming-techniques" title="Link to this heading">#</a></h1>
+<section id="introduction-container-like-types">
+<h2>Introduction: Container-like types<a class="headerlink" href="#introduction-container-like-types" title="Link to this heading">#</a></h2>
+<p>The word “Container-like” is not a Fortran term, but used in the context
+of this article to designate types with components whose size (or type,
+to be discussed later) is not known when the type is declared. For
+deferred sizing of array objects, this can be achieved by using either
+the <code class="docutils literal notranslate"><span class="pre">pointer</span></code> or the <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute for the component’s
+specification.</p>
+<p>The language features and programming techniques will be shown using two
+examples introduced in the following section. The demonstration codes
+for this chapter can be found in the <code class="docutils literal notranslate"><span class="pre">object_based</span></code> folder of the
+<a class="reference external" href="https://github.com/reinh-bader/object_fortran">Github repository</a>.</p>
+</section>
+<section id="examples-for-definitions-of-container-like-types">
+<h2>Examples for definitions of container-like types<a class="headerlink" href="#examples-for-definitions-of-container-like-types" title="Link to this heading">#</a></h2>
+<section id="allocatable-components">
+<h3>Allocatable components<a class="headerlink" href="#allocatable-components" title="Link to this heading">#</a></h3>
+<p>As an example for the type definition of a <strong>value container</strong> (not a
+Fortran term) with an <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> component consider</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">polynomial</span>
+<span class="w">  </span><span class="k">private</span>
+<span class="k">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">(:)</span>
+<span class="k">end type</span>
+</pre></div>
+</div>
+<p>An object declared to be of this type</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="n">polynomial</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span>
+</pre></div>
+</div>
+<p>is suitable for characterization of a polynomial</p>
+<p><span class="math notranslate nohighlight">\(p(x) = \sum_{k=0}^{\text{degree}} a_{k} \cdot x^k \quad (x \in \Re)\)</span></p>
+<p>once it has been created and subsequently supplied with values of the
+coefficients:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">degree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span><span class="w"> </span><span class="c">! integer value known at run time only</span>
+<span class="k">allocate</span><span class="p">(</span><span class="w"> </span><span class="n">p</span><span class="p">%</span><span class="n">a</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">degree</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+<span class="n">p</span><span class="p">%</span><span class="n">a</span><span class="p">(</span><span class="mi">0</span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
+</pre></div>
+</div>
+</section>
+<section id="pointer-components">
+<h3>Pointer components<a class="headerlink" href="#pointer-components" title="Link to this heading">#</a></h3>
+<p>As an example for the type definition of a <strong>reference container</strong> (not
+a Fortran term) with a <code class="docutils literal notranslate"><span class="pre">pointer</span></code> component consider</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sorted_list</span>
+<span class="w">  </span><span class="k">private</span>
+<span class="k">  type</span><span class="p">(</span><span class="n">sortable</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">data</span>
+<span class="k">  type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">),</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">null</span><span class="p">()</span>
+<span class="k">end type</span>
+</pre></div>
+</div>
+<p>Note that referencing the type itself when declaring a component is
+permitted if that component has the <code class="docutils literal notranslate"><span class="pre">pointer</span></code> or <code class="docutils literal notranslate"><span class="pre">allocatable</span></code>
+attribute; such types are generally known as <strong>recursive</strong>. They are
+used to represent information structures (lists, trees, …), often with
+specific relationships between the individual data entries stored in
+each node. In this example, the assumption is that entries of type
+<code class="docutils literal notranslate"><span class="pre">data</span></code> in subsequent list items fulfill an ordering condition, based on
+the functionality supplied with that type:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">,</span><span class="w"> </span><span class="k">public</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sortable</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">string</span>
+<span class="k">end type</span>
+
+<span class="k">interface </span><span class="n">operator</span><span class="p">(</span><span class="o">&lt;</span><span class="p">)</span><span class="w">         </span><span class="c">! compare two objects of type sortable</span>
+<span class="w">  </span><span class="k">module procedure </span><span class="n">less_than</span><span class="w">  </span><span class="c">! implementation not shown here</span>
+<span class="k">end interface</span>
+</pre></div>
+</div>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Given that Fortran supports arrays, use of simple linked lists is
+in most cases inappropriate. The example is presented here as being the
+simplest that permits illustrating the language features of
+interest.</p>
+</div>
+<p>An object declared to be</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_list</span>
+</pre></div>
+</div>
+<p>is suitable as starting point for building a linked list with node
+entries of type <code class="docutils literal notranslate"><span class="pre">data</span></code>. In the simplest case, inserting a data item into
+the object is done by executing the following statements:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="n">sortable</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_data</span>
+<span class="p">:</span>
+<span class="n">my_data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">...</span>
+<span class="n">my_list</span><span class="p">%</span><span class="k">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">my_data</span><span class="w">  </span><span class="c">! only compiles if type definition is accessible in host</span>
+</pre></div>
+</div>
+<p>However, as we shall see below, setting up a complete and valid
+<code class="docutils literal notranslate"><span class="pre">sorted_list</span></code> object in a reliable manner needs additional work.</p>
+</section>
+</section>
+<section id="constructing-objects-of-container-like-type">
+<h2>Constructing objects of container-like type<a class="headerlink" href="#constructing-objects-of-container-like-type" title="Link to this heading">#</a></h2>
+<p>The semantics of the default structure constructor for container-like
+objects needs to account for any additional <code class="docutils literal notranslate"><span class="pre">pointer</span></code> or <code class="docutils literal notranslate"><span class="pre">allocatable</span></code>
+attribute specified for type components.</p>
+<p>For the first example type from the last section, the executable
+statements in</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="n">polynomial</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">q</span><span class="p">,</span><span class="w"> </span><span class="n">r</span>
+<span class="p">:</span>
+<span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">polynomial</span><span class="p">(</span><span class="w"> </span><span class="p">[</span><span class="mf">2.</span><span class="p">,</span><span class="w"> </span><span class="mf">3.</span><span class="p">,</span><span class="w"> </span><span class="mf">1.</span><span class="p">]</span><span class="w"> </span><span class="p">)</span>
+<span class="n">r</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">polynomial</span><span class="p">(</span><span class="w"> </span><span class="nb">null</span><span class="p">()</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>result in an object <code class="docutils literal notranslate"><span class="pre">q</span></code> auto-allocated to the value
+<code class="docutils literal notranslate"><span class="pre">q%a(1:3)</span> <span class="pre">==</span> <span class="pre">[2.,</span> <span class="pre">3.,</span> <span class="pre">1.]</span></code>, and an object <code class="docutils literal notranslate"><span class="pre">r</span></code> with <code class="docutils literal notranslate"><span class="pre">r%a</span></code> unallocated.</p>
+<p>For the second example type from the last section, the executable
+statements in</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sl1</span>
+<span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">),</span><span class="w"> </span><span class="k">target</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sl2</span>
+<span class="k">type</span><span class="p">(</span><span class="n">sortable</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">d2</span>
+<span class="p">:</span>
+<span class="n">sl1</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sorted_list</span><span class="p">(</span><span class="w"> </span><span class="k">data</span><span class="o">=</span><span class="n">d1</span><span class="p">,</span><span class="w"> </span><span class="n">next</span><span class="o">=</span><span class="n">sl2</span><span class="w"> </span><span class="p">)</span><span class="w">  </span><span class="c">! use keyword notation</span>
+<span class="n">sl2</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sorted_list</span><span class="p">(</span><span class="w"> </span><span class="n">d2</span><span class="p">,</span><span class="w"> </span><span class="nb">null</span><span class="p">()</span><span class="w"> </span><span class="p">)</span>
+</pre></div>
+</div>
+<p>result in an object <code class="docutils literal notranslate"><span class="pre">sl1</span></code> with <code class="docutils literal notranslate"><span class="pre">sl1%next</span></code> pointer associated with <code class="docutils literal notranslate"><span class="pre">sl2</span></code>,
+and an object <code class="docutils literal notranslate"><span class="pre">sl2</span></code> with <code class="docutils literal notranslate"><span class="pre">sl2%next</span></code> disassociated; the <code class="docutils literal notranslate"><span class="pre">data</span></code> components
+of both objects have values, <code class="docutils literal notranslate"><span class="pre">d1</span></code> and <code class="docutils literal notranslate"><span class="pre">d2</span></code>, respectively. Note that an
+argument that matches with a <code class="docutils literal notranslate"><span class="pre">pointer</span></code> component must have either the
+<code class="docutils literal notranslate"><span class="pre">pointer</span></code> or the <code class="docutils literal notranslate"><span class="pre">target</span></code> attribute. Also, <strong>keyword notation</strong> can
+be used in structure constructors in the same manner as for procedure
+arguments.</p>
+<p>The default constructor’s behaviour has some properties that one needs
+to be aware of:</p>
+<ol class="arabic simple">
+<li><p>If all type components have the <code class="docutils literal notranslate"><span class="pre">private</span></code> attribute i.e., the type
+is <strong>opaque</strong> (not a Fortran term), it can only be used if the type
+declaration is accessed by host association (this is the same as for
+nonallocatable/nonpointer components).</p></li>
+<li><p>Especially for container-like types, its semantics may be
+incompatible with the programmer’s intentions for how the objects
+should be used.</p></li>
+</ol>
+<p>Item 2 is illustrated by the above object setups, specifically:</p>
+<ul class="simple">
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">polynomial</span></code> example given above, the lower bound of <code class="docutils literal notranslate"><span class="pre">q%a</span></code> is
+set to 1, contrary to the expectation that it should be 0. One could
+account for this by calculating index offsets in any module procedures
+that process <code class="docutils literal notranslate"><span class="pre">polynomial</span></code> objects, but this makes the code harder to
+understand and maintain. Also, the degree of the polynomial should be
+determined by the last nonzero entry of the coefficient array, but the
+language can of course not be aware of this.</p></li>
+<li><p>In the <code class="docutils literal notranslate"><span class="pre">sorted_list</span></code> example given above, the ordering requirement for
+entries in subsequent nodes is not checked, so will usually be not
+fulfilled. Also, if <code class="docutils literal notranslate"><span class="pre">sl2</span></code> goes out of scope before <code class="docutils literal notranslate"><span class="pre">sl1</span></code> does, the
+list structure is torn to bits.</p></li>
+</ul>
+<p>The programmer can enforce appropriate semantics by overloading the
+structure constructor. In this case, it is usually a good idea to
+declare the types as being opaque.</p>
+<p>Overloading the structure constructor is done by</p>
+<ul class="simple">
+<li><p>creating a named interface (i.e., a generic function) with the same
+name as the type of interest;</p></li>
+<li><p>creating at least one specific function (a subroutine is not
+permitted), usually returning a scalar result of the type of interest.</p></li>
+</ul>
+<p>For the <code class="docutils literal notranslate"><span class="pre">polynomial</span></code> type the interface block (placed in the
+specification section of the module containing the type definition)
+might read</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">interface </span><span class="n">polynomial</span>
+<span class="c">! overload to assure correct lower bound when creating a polynomial object</span>
+<span class="w">  </span><span class="k">module procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">create_polynomial</span>
+<span class="w">  </span><span class="p">...</span><span class="w"> </span><span class="c">! further specifics as needed</span>
+<span class="k">end interface</span>
+</pre></div>
+</div>
+<p>and the implementation of <code class="docutils literal notranslate"><span class="pre">create_polynomial</span></code> (in the <code class="docutils literal notranslate"><span class="pre">contains</span></code> part of
+the module) might read</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">pure type</span><span class="p">(</span><span class="n">polynomial</span><span class="p">)</span><span class="w"> </span><span class="k">function </span><span class="n">create_polynomial</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">0</span><span class="p">:)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">degree</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+
+<span class="w">  </span><span class="n">degree</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">findloc</span><span class="p">(</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">/=</span><span class="w"> </span><span class="mf">0.0</span><span class="p">,</span><span class="w"> </span><span class="k">value</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.,</span><span class="w"> </span><span class="n">back</span><span class="o">=</span><span class="p">.</span><span class="n">true</span><span class="p">.</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="o">-</span><span class="w"> </span><span class="mi">1</span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="w"> </span><span class="n">create_polynomial</span><span class="p">%</span><span class="n">a</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">degree</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span><span class="w"> </span><span class="p">)</span>
+<span class="w">  </span><span class="n">create_polynomial</span><span class="p">%</span><span class="n">a</span><span class="p">(</span><span class="mi">0</span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">degree</span><span class="p">(</span><span class="mi">1</span><span class="p">))</span>
+<span class="k">end function</span>
+</pre></div>
+</div>
+<p>Because its signature matches the default structure constructor’s, the
+function actually overrides the default constructor, making it generally
+unavailable.</p>
+<p>For the <code class="docutils literal notranslate"><span class="pre">sorted_list</span></code> type the interface block might read</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">interface </span><span class="n">sorted_list</span>
+<span class="c">! the default constructor is unavailable because the type is opaque</span>
+<span class="c">! the specific has a different signature than the structure constructor</span>
+<span class="w">  </span><span class="k">module procedure</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">create_sorted_list</span>
+<span class="w">  </span><span class="p">...</span><span class="w"> </span><span class="c">! further specifics as needed</span>
+<span class="k">end interface</span>
+</pre></div>
+</div>
+<p>with the implementation of <code class="docutils literal notranslate"><span class="pre">create_sorted_list</span></code> as follows:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">pure function </span><span class="n">create_sorted_list</span><span class="p">(</span><span class="n">item_array</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">head</span><span class="p">)</span>
+<span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">sortable</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">item_array</span><span class="p">(:)</span>
+<span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">head</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+
+<span class="w">  </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="p">(</span><span class="n">item_array</span><span class="p">)</span>
+<span class="w">    </span><span class="k">call </span><span class="n">add_to_sorted_list</span><span class="p">(</span><span class="n">head</span><span class="p">,</span><span class="w"> </span><span class="n">item_array</span><span class="p">(</span><span class="n">i</span><span class="p">))</span>
+<span class="w">    </span><span class="c">! handles tedious details of pointer fiddling</span>
+<span class="w">  </span><span class="k">end do</span>
+<span class="k">end function</span>
+</pre></div>
+</div>
+<p>The constructor has a signature that differs from that of the default
+one, but the latter is unavailable outside the host scope of the type
+definition anyway, due to the opacity of <code class="docutils literal notranslate"><span class="pre">sorted_list</span></code>.</p>
+</section>
+<section id="copying-objects-of-container-like-type">
+<h2>Copying objects of container-like type<a class="headerlink" href="#copying-objects-of-container-like-type" title="Link to this heading">#</a></h2>
+<p>Default assignment extends to container-like objects. For objects
+declared as</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="n">polynomial</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">q</span>
+<span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">slp</span><span class="p">,</span><span class="w"> </span><span class="n">slq</span>
+
+<span class="p">...</span><span class="w"> </span><span class="c">! code that defines p, slp</span>
+</pre></div>
+</div>
+<p>and after defining values for prospective right-hand sides, execution of
+the statement</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">q</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span>
+</pre></div>
+</div>
+<p>produces the same result as</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">allocated</span><span class="p">(</span><span class="n">q</span><span class="p">%</span><span class="n">a</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">deallocate</span><span class="p">(</span><span class="w"> </span><span class="n">q</span><span class="p">%</span><span class="n">a</span><span class="w"> </span><span class="p">)</span>
+<span class="n">q</span><span class="p">%</span><span class="n">a</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">%</span><span class="n">a</span><span class="w">  </span><span class="c">! performs auto-allocation using the RHS&#39;s bounds, then copies the value</span>
+</pre></div>
+</div>
+<p>and execution of the statement</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">slq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">slp</span>
+</pre></div>
+</div>
+<p>produces the same result as</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">slq</span><span class="p">%</span><span class="k">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">slp</span><span class="p">%</span><span class="k">data</span>
+<span class="n">slq</span><span class="p">%</span><span class="n">next</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">slp</span><span class="p">%</span><span class="n">next</span><span class="w">  </span><span class="c">! creates a reference between list objects without copying any value</span>
+</pre></div>
+</div>
+<p>The terms <strong>deep copy</strong> and <strong>shallow copy</strong> (neither are Fortran terms)
+are sometimes used to describe the above behaviour for <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> and
+<code class="docutils literal notranslate"><span class="pre">pointer</span></code> components, respectively. Note that - different from the
+default structure constructor - having <code class="docutils literal notranslate"><span class="pre">private</span></code> components does not
+affect the use of default assigment. However, the semantics of default
+assignment might not be what is needed from the programmer’s point of
+view.</p>
+<p>Specifically, consider the case where the object <code class="docutils literal notranslate"><span class="pre">slq</span></code> above has
+previously been set up by invoking the overloaded constructor. The
+assignment above would then have the following effects:</p>
+<ol class="arabic simple">
+<li><p>The list elements of the original <code class="docutils literal notranslate"><span class="pre">slq</span></code>, beginning with <code class="docutils literal notranslate"><span class="pre">slq%next</span></code>,
+would become inaccessible (“orphaned”), effectively causing a memory
+leak;</p></li>
+<li><p>after the assignment statement, <code class="docutils literal notranslate"><span class="pre">slq%next</span></code> references into
+<code class="docutils literal notranslate"><span class="pre">slp%next</span></code>, resulting in aliasing.</p></li>
+</ol>
+<p>To avoid 2., it is possible to <a class="reference external" href="https://en.wikipedia.org/wiki/Fortran_95_language_features#Derived-data_types"><strong>overload</strong> the assignment
+operator</a>
+for reference containers to create a deep copy. Note that in the case
+where defined unary or binary operations are introduced, the functions
+that define these need to create deep copies to create the result
+variable anyway, otherwise things simply don’t work. The downside of
+this is that in code like</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">slq</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">slp</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="n">slq</span>
+</pre></div>
+</div>
+<p>– with the overloaded concatenation operator meaning that the argument
+lists are joined – multiple deep copies need to be done (the
+implementation of the module procedure <code class="docutils literal notranslate"><span class="pre">join_lists</span></code> that supplies the
+necessary specific for <code class="docutils literal notranslate"><span class="pre">//</span></code> is not shown here; see the source
+<code class="docutils literal notranslate"><span class="pre">code</span> <span class="pre">sorted_list.f90</span></code> for details). It turns out that some of these
+exist only intermediately.</p>
+<p>Here an implementation of the specific procedure for the overloaded
+assignment of <code class="docutils literal notranslate"><span class="pre">sorted_list</span></code> objects:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">assign_sorted_list</span><span class="p">(</span><span class="n">to</span><span class="p">,</span><span class="w"> </span><span class="n">from</span><span class="p">)</span>
+<span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">target</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">from</span>
+<span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">),</span><span class="w"> </span><span class="k">target</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">to</span><span class="w">  </span><span class="c">! finalizer is executed on entry,</span>
+<span class="w">                                                </span><span class="c">! see below for discussion of this.</span>
+<span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">),</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">q</span>
+
+<span class="w">  </span><span class="n">p</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">from</span><span class="p">;</span><span class="w"> </span><span class="n">q</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">to</span>
+
+<span class="w">  </span><span class="n">deep_copy</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">do</span>
+<span class="k">    if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">associated</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">      </span><span class="n">q</span><span class="p">%</span><span class="k">data</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">p</span><span class="p">%</span><span class="k">data</span>
+<span class="k">    else</span>
+<span class="k">      exit </span><span class="n">deep_copy</span>
+<span class="w">    </span><span class="k">end if</span>
+<span class="k">    </span><span class="n">p</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">p</span><span class="p">%</span><span class="n">next</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">associated</span><span class="p">(</span><span class="n">p</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">allocate</span><span class="p">(</span><span class="w"> </span><span class="n">q</span><span class="p">%</span><span class="n">next</span><span class="w"> </span><span class="p">)</span>
+<span class="w">    </span><span class="n">q</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">q</span><span class="p">%</span><span class="n">next</span>
+<span class="w">  </span><span class="k">end do </span><span class="n">deep_copy</span>
+<span class="k">end subroutine</span>
+</pre></div>
+</div>
+<p>Avoiding 1. is usually done by means of finalizers, to be discussed in
+the next section. This is because assignment is not the only possible
+cause for orphaning of <code class="docutils literal notranslate"><span class="pre">pointer</span></code>-related memory (or indeed other
+resource leaks).</p>
+</section>
+<section id="finalization-and-conclusions">
+<h2>Finalization and conclusions<a class="headerlink" href="#finalization-and-conclusions" title="Link to this heading">#</a></h2>
+<p>To deal with resource leaks that are otherwise not within the
+programmer’s means to avoid, a type definition can be connected with a
+user-defined <strong>final procedure</strong> that is automatically invoked in
+certain situations. For the <code class="docutils literal notranslate"><span class="pre">sorted_list</span></code> type, this would look like</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sorted_list</span>
+<span class="w">  </span><span class="k">private</span>
+<span class="k">  type</span><span class="p">(</span><span class="n">sortable</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">data</span>
+<span class="k">  type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">),</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">next</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">null</span><span class="p">()</span>
+<span class="k">contains</span>
+<span class="k">  final</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">delete_sorted_list</span>
+<span class="k">end type</span>
+</pre></div>
+</div>
+<p>Note that the <code class="docutils literal notranslate"><span class="pre">final</span></code> statement appears after a <code class="docutils literal notranslate"><span class="pre">contains</span></code> statement in
+the type definition; this implies that <code class="docutils literal notranslate"><span class="pre">delete_sorted_list</span></code> is not a
+regular type component. The module procedure’s implementation might then
+be as follows:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">pure recursive subroutine </span><span class="n">delete_sorted_list</span><span class="p">(</span><span class="n">list</span><span class="p">)</span>
+<span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">list</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">associated</span><span class="p">(</span><span class="n">list</span><span class="p">%</span><span class="n">next</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">    deallocate</span><span class="p">(</span><span class="w"> </span><span class="n">list</span><span class="p">%</span><span class="n">next</span><span class="w"> </span><span class="p">)</span><span class="w">  </span><span class="c">! invokes the finalizer recursively</span>
+<span class="w">  </span><span class="k">end if</span>
+<span class="k">end subroutine</span>
+</pre></div>
+</div>
+<p>It must be a subroutine that takes a single argument of the type to be
+finalized. Most additional attributes are not permitted for that dummy
+argument; for the case of finalizing array arguments it is possible to
+have a set of finalizers (all listed in the type definition), each of
+which declares the dummy argument with an appropriate rank.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The <code class="docutils literal notranslate"><span class="pre">pure</span></code> and <code class="docutils literal notranslate"><span class="pre">recursive</span></code> properties specified above reflect the
+specific needs for the <code class="docutils literal notranslate"><span class="pre">sorted_list</span></code> type and its associated procedures.
+The <code class="docutils literal notranslate"><span class="pre">recursive</span></code> specification is optional (i.e., procedures can be
+called recursively by default), but a <code class="docutils literal notranslate"><span class="pre">non_recursive</span></code> specification can
+be supplied if the implementation’s semantics does not permit correct
+behaviour in recursive calls.</p>
+</div>
+<p>The finalizer will be automatically invoked on an object if</p>
+<ol class="arabic simple">
+<li><p>it appears on the left-hand side of an intrinsic assignment
+statement (before the assignment is performed),</p></li>
+<li><p>on invocation of a procedure call where it is argument associated
+with an <code class="docutils literal notranslate"><span class="pre">intent(out)</span></code> dummy,</p></li>
+<li><p>it is a non-saved variable and program execution ends its scope, or</p></li>
+<li><p>it is deallocated.</p></li>
+</ol>
+<p>Nonpointer nonallocatable function results fall into the third category
+above; however, finalization does not apply for the default structure
+constructor.</p>
+<p>Note that if a finalizer is defined and the constructor is overloaded,
+but the assignment operator is <em>not</em>, then the assignment statement
+<code class="docutils literal notranslate"><span class="pre">slq</span> <span class="pre">=</span> <span class="pre">sorted_list(...)</span></code> (which then translates into a single function
+call to the <code class="docutils literal notranslate"><span class="pre">create_sorted_list()</span></code> function shown earlier) will result
+in a mutilated left-hand side, because the finalizer will be executed on
+the function that overloads the constructor, resulting in <code class="docutils literal notranslate"><span class="pre">slq%next</span></code>
+being disassociated. For this reason, the following guideline applies:</p>
+<blockquote>
+<div><p>Recommendation: <br />
+Finalizers, overloads for the default constructor, and overload of the
+assignment operation should usually be jointly implemented.</p>
+</div></blockquote>
+<p>See also the article “<a class="reference external" href="https://en.wikipedia.org/wiki/Rule_of_three_(C%2B%2B_programming)">Rule of
+three</a>”
+for the analogous situation in C++.</p>
+</section>
+<section id="further-language-features-useful-for-object-based-programming">
+<h2>Further language features useful for object-based programming<a class="headerlink" href="#further-language-features-useful-for-object-based-programming" title="Link to this heading">#</a></h2>
+<section id="extended-semantics-for-allocatable-objects">
+<h3>Extended semantics for allocatable objects<a class="headerlink" href="#extended-semantics-for-allocatable-objects" title="Link to this heading">#</a></h3>
+<p>Scalars can have the <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_string</span>
+<span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_list</span>
+</pre></div>
+</div>
+<p>Allocation then can be done explicitly; the following examples
+illustrate applications of the <code class="docutils literal notranslate"><span class="pre">allocate</span></code> statement that are useful or
+even necessary in this context:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">allocate</span><span class="p">(</span><span class="w"> </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">13</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_string</span><span class="w"> </span><span class="p">)</span><span class="w">                  </span><span class="c">! typed allocation</span>
+<span class="k">allocate</span><span class="p">(</span><span class="w"> </span><span class="n">my_list</span><span class="p">,</span><span class="w"> </span><span class="n">source</span><span class="o">=</span><span class="n">sorted_list</span><span class="p">(</span><span class="n">array_of_sortable</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">  </span><span class="c">! sourced allocation</span>
+</pre></div>
+</div>
+<p><strong>Typed allocation</strong> is necessary for the string variable, because the
+length parameter of a string is part of its type; we will later see that
+derived types can also appear in the type specification. <strong>Sourced
+allocation</strong> permits the creation of an allocated object that is a clone
+of the specified source object or expression.</p>
+<p>Alternatively, allocatable objects (be they scalar or arrays) can be
+auto-allocated by appearing on the left-hand side of an <em>intrinsic</em>
+assignment statement:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">my_string</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;anything goes&quot;</span><span class="w">  </span><span class="c">! auto-allocated to RHS length before value is transferred</span>
+<span class="c">! my_list = sorted_list(array_of_sortable)</span>
+<span class="c">! the above statement would fail for an unallocated object, because the assignment</span>
+<span class="c">! has been overloaded using a nonallocatable first dummy argument</span>
+</pre></div>
+</div>
+<p>A caveat is that for <em>overloaded</em> assignment, this will usually not
+work - either one needs to explicitly allocate the object before
+assigning to it, or sourced allocation must be used, which bypasses the
+overloaded assignment.</p>
+<p>Note that for allocatable objects with deferred-size entries (e.g.,
+strings, arrays) a non-conformable left-hand side in an assignment
+statement will be deallocated before being allocated to the right length
+or shape, respectively.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>The features discussed in this subsection are also useful for
+object-oriented programming, with additional semantics applying for the
+case of polymorphic objects.</p>
+</div>
+</section>
+<section id="implementing-move-semantics">
+<h3>Implementing move semantics<a class="headerlink" href="#implementing-move-semantics" title="Link to this heading">#</a></h3>
+<p>Sometimes it may be necessary to make use of move instead of copy
+semantics i.e., create a copy of an object and then get rid of the
+original. The simplest way of doing this is to make use of allocatable
+(scalar or array) objects,</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_list</span><span class="p">,</span><span class="w"> </span><span class="n">your_list</span>
+</pre></div>
+</div>
+<p>After <code class="docutils literal notranslate"><span class="pre">your_list</span></code> has been set up, the object’s content can then be
+transferred to <code class="docutils literal notranslate"><span class="pre">my_list</span></code> by using the <code class="docutils literal notranslate"><span class="pre">move_alloc</span></code> intrinsic,</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">call </span><span class="nb">move_alloc</span><span class="p">(</span><span class="n">your_list</span><span class="p">,</span><span class="w"> </span><span class="n">my_list</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>which will deallocate <code class="docutils literal notranslate"><span class="pre">my_list</span></code> if necessary, before doing the transfer.
+After the invocation, <code class="docutils literal notranslate"><span class="pre">my_list</span></code> will have the value formerly stored in
+<code class="docutils literal notranslate"><span class="pre">your_list</span></code>, and <code class="docutils literal notranslate"><span class="pre">your_list</span></code> will end up in the deallocated state. Note
+that the latter does not involve a regular object deallocation
+(effectively, a descriptor for the object is moved), so any existing
+finalizer will not be invoked.</p>
+</section>
+<section id="the-block-construct">
+<h3>The <code class="docutils literal notranslate"><span class="pre">block</span></code> construct<a class="headerlink" href="#the-block-construct" title="Link to this heading">#</a></h3>
+<p>The above rules on finalization imply that variables declared in the
+specification part of the main program are not finalizable, since they
+by default have the <code class="docutils literal notranslate"><span class="pre">save</span></code> attribute. One could argue this is not
+necessary since all assigned memory is reclaimed when program execution
+ends. However, excessive memory consumption or the use of other
+resources may cause issues for reliable program execution. To work
+around these, the <code class="docutils literal notranslate"><span class="pre">block</span></code> construct can be used:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">test_sorted_list</span>
+<span class="w">  </span><span class="k">use </span><span class="n">mod_sortable</span>
+<span class="w">  </span><span class="k">use </span><span class="n">mod_sorted_list</span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="w">  </span><span class="p">:</span>
+<span class="w">  </span><span class="n">work</span><span class="w"> </span><span class="p">:</span><span class="w"> </span><span class="k">block</span>
+<span class="k">    type</span><span class="p">(</span><span class="n">sortable</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">array</span><span class="p">(</span><span class="n">items</span><span class="p">)</span>
+<span class="w">    </span><span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_list</span><span class="p">,</span><span class="w"> </span><span class="p">...</span>
+<span class="w">    </span><span class="p">:</span><span class="w"> </span><span class="c">! initialize array</span>
+
+<span class="w">    </span><span class="n">my_list</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">sorted_list</span><span class="p">(</span><span class="k">array</span><span class="p">)</span>
+<span class="w">    </span><span class="p">:</span>
+<span class="w">  </span><span class="k">end block </span><span class="n">work</span><span class="w">  </span><span class="c">! finalizer is executed on my_list, ...</span>
+<span class="w">  </span><span class="p">:</span>
+<span class="k">end program</span>
+</pre></div>
+</div>
+<p>The construct (as the only one in Fortran) permits declaration of
+non-saved variables in its specification part. Their lifetime ends when
+program execution reaches the <code class="docutils literal notranslate"><span class="pre">end</span> <span class="pre">block</span></code> statement, and they therefore
+are finalized at this point, if applicable. Named variables declared
+outside the construct are accessible inside it, unless a block-local
+declaration with the same name exists.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Note that the construct’s execution flow can be modified by
+executing an <code class="docutils literal notranslate"><span class="pre">exit</span></code> statement in its body; this can, for example, be
+used for structured error handling and finally permits sending <code class="docutils literal notranslate"><span class="pre">go</span> <span class="pre">to</span></code>
+to retirement.</p>
+</div>
+</section>
+<section id="the-associate-construct">
+<h3>The <code class="docutils literal notranslate"><span class="pre">associate</span></code> construct<a class="headerlink" href="#the-associate-construct" title="Link to this heading">#</a></h3>
+<p>With the introduction of deeply nested derived types, code that needs
+access to ultimate components can become quite hard to read. An
+<code class="docutils literal notranslate"><span class="pre">associate</span></code> block construct that enables the use of auto-typed aliases
+can be used. This is illustrated by a procedure that is used to
+implement the multiplication of two polynomials:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">pure type</span><span class="p">(</span><span class="n">polynomial</span><span class="p">)</span><span class="w"> </span><span class="k">function </span><span class="n">multiply_polynomial</span><span class="p">(</span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span><span class="p">)</span>
+<span class="w">  </span><span class="k">type</span><span class="p">(</span><span class="n">polynomial</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p1</span><span class="p">,</span><span class="w"> </span><span class="n">p2</span>
+<span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">,</span><span class="w"> </span><span class="n">lmax</span>
+
+<span class="w">  </span><span class="n">lmax</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">ubound</span><span class="p">(</span><span class="n">p1</span><span class="p">%</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="nb">ubound</span><span class="p">(</span><span class="n">p2</span><span class="p">%</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span>
+<span class="w">  </span><span class="k">allocate</span><span class="p">(</span><span class="w"> </span><span class="n">multiply_polynomial</span><span class="p">%</span><span class="n">a</span><span class="p">(</span><span class="mi">0</span><span class="p">:</span><span class="n">lmax</span><span class="p">)</span><span class="w"> </span><span class="p">)</span>
+
+<span class="w">  </span><span class="k">associate</span><span class="p">(</span><span class="w"> </span><span class="n">a</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">p1</span><span class="p">%</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">p2</span><span class="p">%</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">multiply_polynomial</span><span class="p">%</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">    </span><span class="n">jmax</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">ubound</span><span class="p">(</span><span class="n">p1</span><span class="p">%</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">kmax</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">ubound</span><span class="p">(</span><span class="n">p2</span><span class="p">%</span><span class="n">a</span><span class="p">,</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w">  </span><span class="c">! association list</span>
+<span class="w">    </span><span class="k">do </span><span class="n">l</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">lmax</span>
+<span class="w">      </span><span class="n">c</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="w">      </span><span class="k">do </span><span class="n">j</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">max</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="o">-</span><span class="n">kmax</span><span class="p">),</span><span class="w"> </span><span class="nb">min</span><span class="p">(</span><span class="n">jmax</span><span class="p">,</span><span class="w"> </span><span class="n">l</span><span class="p">)</span>
+<span class="w">        </span><span class="n">c</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="p">(</span><span class="n">l</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="n">j</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="n">l</span><span class="o">-</span><span class="n">j</span><span class="p">)</span>
+<span class="w">      </span><span class="k">end do</span>
+<span class="k">    end do</span>
+<span class="k">  end associate</span>
+<span class="k">end function</span>
+</pre></div>
+</div>
+<p>For the duration of execution of the construct, the associate names can
+be used to refer to their selectors (i.e., the right-hand sides in the
+association list). If the selectors are variables, so are the associate
+names (<code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">b</span></code>, <code class="docutils literal notranslate"><span class="pre">c</span></code> in the above example), and can be assigned to. If
+the selectors are expressions, so are the associate names (<code class="docutils literal notranslate"><span class="pre">jmax</span></code>,
+<code class="docutils literal notranslate"><span class="pre">kmax</span></code> in the above example).</p>
+<p>Associated entities that refer to variables inherit the <code class="docutils literal notranslate"><span class="pre">dimension</span></code>,
+<code class="docutils literal notranslate"><span class="pre">codimension</span></code>, <code class="docutils literal notranslate"><span class="pre">target</span></code>, <code class="docutils literal notranslate"><span class="pre">asynchronous</span></code> and <code class="docutils literal notranslate"><span class="pre">volatile</span></code> attributes from
+their selectors, but no others. An associate name can only refer to an
+<code class="docutils literal notranslate"><span class="pre">optional</span></code> dummy argument if the latter is present. Associate names can
+also appear in other block constructs (<code class="docutils literal notranslate"><span class="pre">select</span> <span class="pre">type</span></code>, <code class="docutils literal notranslate"><span class="pre">change</span> <span class="pre">team</span></code>),
+which will be discussed where appropriate.</p>
+</section>
+</section>
+<section id="performing-i-o-with-objects-of-container-like-type">
+<h2>Performing I/O with objects of container-like type<a class="headerlink" href="#performing-i-o-with-objects-of-container-like-type" title="Link to this heading">#</a></h2>
+<p>For objects of container-like type, a data transfer statement</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_list</span>
+<span class="p">:</span><span class="w"> </span><span class="c">! set up my_list</span>
+<span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">my_list</span>
+</pre></div>
+</div>
+<p>would fail to compile, since the run-time library is incapable of
+dealing with the irregular structures that are hiding behind the
+innocuous variable. Language features for user-defined derived type I/O
+(<strong>UDDTIO</strong>) permit the programmer to control the data transfer in an
+appropriate manner. This is achieved by binding an I/O statement on a
+derived-type object to a user-defined procedure, for example through a
+suitably written named interface:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">interface write</span><span class="p">(</span><span class="n">formatted</span><span class="p">)</span>
+<span class="w">  </span><span class="k">module procedure </span><span class="n">write_fmt_list</span>
+<span class="k">end interface</span>
+</pre></div>
+</div>
+<p>Note that this also applies to data types for which the above
+stand-alone statement is permitted, and then overloads the default I/O
+mechanism.</p>
+<p>Once the binding is properly defined, the above I/O statement is
+accepted by the compiler, and its execution causes the user-defined
+procedure to be invoked. Therefore it is called the <strong>parent</strong> I/O
+statement. The actual data transfer statements that are issued inside
+the user-defined procedure are called <strong>child</strong> I/O statements.</p>
+<p>The following interface variants are permitted, with the obvious
+interpretation:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">write(formatted)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read(formatted)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">write(unformatted)</span></code></p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">read(unformatted)</span></code></p></li>
+</ul>
+<p>The self-defined procedure is restricted with respect to its interfaces’
+characteristics, which are described in the following:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine</span><span class="w"> </span><span class="o">&lt;</span><span class="n">formatted_io</span><span class="o">&gt;</span><span class="w">   </span><span class="p">(</span><span class="n">dtv</span><span class="p">,</span><span class="w"> </span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">iotype</span><span class="p">,</span><span class="w"> </span><span class="n">v_list</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="p">,</span><span class="w"> </span><span class="n">iomsg</span><span class="p">)</span>
+<span class="k">subroutine</span><span class="w"> </span><span class="o">&lt;</span><span class="n">unformatted_io</span><span class="o">&gt;</span><span class="w"> </span><span class="p">(</span><span class="n">dtv</span><span class="p">,</span><span class="w"> </span><span class="n">unit</span><span class="p">,</span><span class="w">                 </span><span class="n">iostat</span><span class="p">,</span><span class="w"> </span><span class="n">iomsg</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The placeholders <code class="docutils literal notranslate"><span class="pre">&lt;formatted_io&gt;</span></code> and <code class="docutils literal notranslate"><span class="pre">&lt;unformatted_io&gt;</span></code> must be replaced by
+a specific procedure name referenced in the generic interface.</p>
+<p>The dummy arguments’ declarations and meaning are:</p>
+<ul>
+<li><p><code class="docutils literal notranslate"><span class="pre">dtv</span></code>: Must be declared to be a nonpointer nonallocatable scalar
+of the type in question. If the type is extensible (to be explained
+later), the declaration must be polymorphic (i.e. using <code class="docutils literal notranslate"><span class="pre">class</span></code>),
+otherwise non-polymorphic (using <code class="docutils literal notranslate"><span class="pre">type</span></code>). Its <code class="docutils literal notranslate"><span class="pre">intent</span></code> must be <code class="docutils literal notranslate"><span class="pre">in</span></code>
+for <code class="docutils literal notranslate"><span class="pre">write(...)</span></code>, and “<code class="docutils literal notranslate"><span class="pre">out</span></code>” or “<code class="docutils literal notranslate"><span class="pre">inout</span></code>” for <code class="docutils literal notranslate"><span class="pre">read(...)</span></code>. It
+represents the object on which data transfer statements are to be
+executed.</p>
+<div class="admonition tip">
+<p class="admonition-title">Tip</p>
+<p>Note: For the examples in this chapter, we need to
+use <code class="docutils literal notranslate"><span class="pre">class</span></code>, but the behaviour is as if <code class="docutils literal notranslate"><span class="pre">type</span></code> were used, as long as
+the actual arguments are non-polymorphic and the procedure-based
+interface is used for the invocation.</p>
+</div>
+</li>
+<li><p><code class="docutils literal notranslate"><span class="pre">unit</span></code>: An <code class="docutils literal notranslate"><span class="pre">integer</span></code> scalar with <code class="docutils literal notranslate"><span class="pre">intent(in)</span></code>. Its value is that
+of the unit used for data transfer statements. Use of other unit
+values is not permitted (except, perhaps, <code class="docutils literal notranslate"><span class="pre">error_unit</span></code> for debugging
+purposes).</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iotype</span></code>: A <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code> string with <code class="docutils literal notranslate"><span class="pre">intent(in)</span></code>. This can
+only appear in procedures for formatted I/O. The following table
+describes how the incoming value relates to the parent I/O transfer
+statement:</p></li>
+</ul>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head"><p>Value</p></th>
+<th class="head"><p>Caused by parent I/O statement</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;LISTDIRECTED&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">write(unit,</span> <span class="pre">fmt=*)</span> <span class="pre">my_list</span></code></p></td>
+</tr>
+<tr class="row-odd"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;NAMELIST&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">write(unit,</span> <span class="pre">nml=my_namelist)</span></code> <strong>Note:</strong> Referring to the example, at least one <code class="docutils literal notranslate"><span class="pre">sorted_list</span></code> object must be a member of <code class="docutils literal notranslate"><span class="pre">my_namelist</span></code>.</p></td>
+</tr>
+<tr class="row-even"><td><p><code class="docutils literal notranslate"><span class="pre">&quot;DTsorted_list_fmt&quot;</span></code></p></td>
+<td><p><code class="docutils literal notranslate"><span class="pre">write(unit,</span> <span class="pre">fmt='(DT&quot;sorted_list_fmt&quot;(10,2))')</span> <span class="pre">my_list</span></code> <strong>Note:</strong> <code class="docutils literal notranslate"><span class="pre">DT</span></code> is the “derived type” edit descriptor that is needed in format-driven editing to trigger execution of the UDDTIO routine. The string following the <code class="docutils literal notranslate"><span class="pre">DT</span></code> edit descriptor can be freely chosen (even to be zero length); it is recommended that the UDDTIO procedure pay attention to any possible values supplied in the parent I/O statement if it supports DT editing.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">v_list</span></code>: A rank-1 assumed-shape <code class="docutils literal notranslate"><span class="pre">integer</span></code> array with <code class="docutils literal notranslate"><span class="pre">intent(in)</span></code>
+. This can only appear in procedures for formatted I/O. The incoming
+value is taken from the final part of the <code class="docutils literal notranslate"><span class="pre">DT</span></code> edit descriptor; in the
+example from the table above it would have the value <code class="docutils literal notranslate"><span class="pre">[10,2]</span></code>. Free
+use can be made of the value for the disposition (formatting,
+controlling) of I/O transfer statements inside the procedure. The
+array’s size may be zero; specifically, it will be of size zero for
+the listdirected or namelist cases.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iostat</span></code>: An <code class="docutils literal notranslate"><span class="pre">integer</span></code> scalar with <code class="docutils literal notranslate"><span class="pre">intent(out)</span></code>. It must be given
+a value consistent with those produced by non-UDTTIO statements in
+case of an error. Successful execution of the I/O must result in a
+zero value. Unsuccessful execution must result in either a positive
+value, or one of the values <code class="docutils literal notranslate"><span class="pre">iostat_end</span></code> or <code class="docutils literal notranslate"><span class="pre">iostat_eor</span></code> from the
+<code class="docutils literal notranslate"><span class="pre">iso_fortran_env</span></code> intrinsic module.</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">iomsg</span></code>: A <code class="docutils literal notranslate"><span class="pre">character(len=*)</span></code> string with <code class="docutils literal notranslate"><span class="pre">intent(inout)</span></code>. It must
+be given a value if a non-zero <code class="docutils literal notranslate"><span class="pre">iostat</span></code> is returned.</p></li>
+</ul>
+<p>Additional properties and restrictions for UDDTIO are:</p>
+<ul class="simple">
+<li><p>All data transfers are executed in non-advancing mode. Any <code class="docutils literal notranslate"><span class="pre">advance=</span></code>
+specifier will be ignored;</p></li>
+<li><p>asynchronous I/O is not supported;</p></li>
+<li><p>Inside the user-defined routine, no file positioning statements are
+permitted.</p></li>
+</ul>
+<p>The following demonstrates a partial implementation of formatted writing
+on <code class="docutils literal notranslate"><span class="pre">sorted_list</span></code> objects:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">recursive subroutine </span><span class="n">write_fmt_list</span><span class="p">(</span><span class="n">dtv</span><span class="p">,</span><span class="w"> </span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">iotype</span><span class="p">,</span><span class="w"> </span><span class="n">v_list</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="p">,</span><span class="w"> </span><span class="n">iomsg</span><span class="p">)</span>
+<span class="w">  </span><span class="k">class</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dtv</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">v_list</span><span class="p">(:)</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iotype</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">out</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iostat</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">inout</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iomsg</span>
+<span class="w">  </span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">next_component</span>
+
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">associated</span><span class="p">(</span><span class="n">dtv</span><span class="p">%</span><span class="n">next</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">    write</span><span class="p">(</span><span class="n">next_component</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;(&quot;t,&quot;)&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="k">    write</span><span class="p">(</span><span class="n">next_component</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s1">&#39;(&quot;f&quot;)&#39;</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end if</span>
+<span class="k">  select case</span><span class="w"> </span><span class="p">(</span><span class="n">iotype</span><span class="p">)</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;listdirected&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=*</span><span class="p">,</span><span class="w"> </span><span class="n">delim</span><span class="o">=</span><span class="s1">&#39;quote&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">iostat</span><span class="p">,</span><span class="w"> </span><span class="n">iomsg</span><span class="o">=</span><span class="n">iomsg</span><span class="p">)</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">      </span><span class="n">dtv</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">string</span>
+<span class="w">  </span><span class="k">case</span><span class="w"> </span><span class="p">(</span><span class="s1">&#39;namelist&#39;</span><span class="p">)</span>
+<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=*</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">iostat</span><span class="p">,</span><span class="w"> </span><span class="n">iomsg</span><span class="o">=</span><span class="n">iomsg</span><span class="p">)</span><span class="w"> </span><span class="s1">&#39;&quot;&#39;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">      </span><span class="n">dtv</span><span class="p">%</span><span class="k">data</span><span class="p">%</span><span class="n">string</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;&quot;,&#39;</span><span class="p">,</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">next_component</span><span class="p">)</span>
+<span class="w">  </span><span class="k">case </span><span class="n">default</span>
+<span class="w">    </span><span class="n">iostat</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">129</span>
+<span class="w">    </span><span class="n">iomsg</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;iotype &#39;</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="nb">trim</span><span class="p">(</span><span class="n">iotype</span><span class="p">)</span><span class="w"> </span><span class="o">//</span><span class="w"> </span><span class="s1">&#39; not implemented&#39;</span>
+<span class="w">    </span><span class="k">return</span>
+<span class="k">  end select</span>
+<span class="k">  if</span><span class="w"> </span><span class="p">(</span><span class="w"> </span><span class="nb">associated</span><span class="p">(</span><span class="n">dtv</span><span class="p">%</span><span class="n">next</span><span class="p">)</span><span class="w"> </span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">    call </span><span class="n">write_fmt_list</span><span class="p">(</span><span class="n">dtv</span><span class="p">%</span><span class="n">next</span><span class="p">,</span><span class="w"> </span><span class="n">unit</span><span class="p">,</span><span class="w"> </span><span class="n">iotype</span><span class="p">,</span><span class="w"> </span><span class="n">v_list</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="p">,</span><span class="w"> </span><span class="n">iomsg</span><span class="p">)</span>
+<span class="w">  </span><span class="k">end if</span>
+<span class="k">end subroutine</span>
+</pre></div>
+</div>
+<p><strong>Notes:</strong></p>
+<ul class="simple">
+<li><p>The namelist itself is inaccessible from the procedure; it is not
+needed since the procedure only needs to write the list values in a
+suitably formatted way. Termination of the list is indicated by a
+final logical value of <code class="docutils literal notranslate"><span class="pre">F</span></code> in the list entry of the namelist file; the
+termination information must be appropriately processed in the
+corresponding namelist case of the read procedure.</p></li>
+<li><p>The example implementation does not support <code class="docutils literal notranslate"><span class="pre">DT</span></code> editing; invoking the
+parent I/O statement from the above table would therefore cause error
+termination unless an <code class="docutils literal notranslate"><span class="pre">iostat=</span></code> argument is added to it.</p></li>
+</ul>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">  
+<br />
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#introduction-container-like-types">Introduction: Container-like types</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#examples-for-definitions-of-container-like-types">Examples for definitions of container-like types</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#allocatable-components">Allocatable components</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#pointer-components">Pointer components</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#constructing-objects-of-container-like-type">Constructing objects of container-like type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#copying-objects-of-container-like-type">Copying objects of container-like type</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#finalization-and-conclusions">Finalization and conclusions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#further-language-features-useful-for-object-based-programming">Further language features useful for object-based programming</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#extended-semantics-for-allocatable-objects">Extended semantics for allocatable objects</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#implementing-move-semantics">Implementing move semantics</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-block-construct">The <code class="docutils literal notranslate"><span class="pre">block</span></code> construct</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#the-associate-construct">The <code class="docutils literal notranslate"><span class="pre">associate</span></code> construct</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#performing-i-o-with-objects-of-container-like-type">Performing I/O with objects of container-like type</a></li>
+</ul></nav> </div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2020-2024, Fortran Community.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

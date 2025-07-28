@@ -1,0 +1,1071 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" sizes="256x256" href="../../_static/images/favicon.ico" type="image/x-icon">
+    <title>Libraries that interface with other systems, languages, or devices &#8212; Fortran Programming Language</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=eaa92f49" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=51fd25b1"></script>
+    <script src="../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'packages/interfaces';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '_static/data.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'en';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="canonical" href="https://fortran-lang.org/en/packages/interfaces/" />
+    <link rel="index" title="Index" href="../../genindex/" />
+    <link rel="search" title="Search" href="../../search/" />
+    <link rel="next" title="Fortran libraries for general programming tasks" href="../libraries/" />
+    <link rel="prev" title="Libraries for advanced data types and container classes" href="../data-types/" /> 
+<meta
+  name="description"
+  content="Fortran : High-performance parallel programming language"
+/>
+<meta
+  name="keywords"
+  content="High-performance, parallel, programming language"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+ 
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search"
+         aria-label="Search"
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Fortran Programming Language - Home"/>
+    <img src="../../_static/fortran-logo-256x256.png" class="logo__image only-dark pst-js-only" alt="Fortran Programming Language - Home"/>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="ms-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../learn/">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../community/">
+    Community
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" current active">
+  <a class="nav-link dropdown-item nav-internal" href="../">
+    Packages
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../news/">
+    News
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/en/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../learn/">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../community/">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../news/">
+    News
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/en/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../" class="nav-link">Packages</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Libraries that interface with other systems, languages, or devices</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <div class="sd-text-center sd-fs-2 sd-font-weight-bold sd-text-primary docutils">
+<p>Featured Open Source Projects</p>
+</div>
+<div class="sd-text-center sd-fs-3 docutils">
+<p>A rich ecosystem of high-performance code</p>
+</div>
+<section id="libraries-that-interface-with-other-systems-languages-or-devices">
+<h1>Libraries that interface with other systems, languages, or devices<a class="headerlink" href="#libraries-that-interface-with-other-systems-languages-or-devices" title="Link to this heading">#</a></h1>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="aotus"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/apes-suite/aotus">aotus</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/apes-suite/aotus?color=green" />
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<img alt="stars" src="https://img.shields.io/github/stars/apes-suite/aotus" />
+<img alt="forks" src="https://img.shields.io/github/forks/apes-suite/aotus" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/apes-suite/aotus?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/apes-suite/aotus?color=yellow" />
+<p>Advanced Options and Tables in Universal Scripting</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">lua</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">configuration</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="arrayfire-fortran"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/arrayfire/arrayfire-fortran">arrayfire-fortran</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/arrayfire/arrayfire-fortran?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/arrayfire/arrayfire-fortran" />
+<img alt="stars" src="https://img.shields.io/github/stars/arrayfire/arrayfire-fortran" />
+<img alt="forks" src="https://img.shields.io/github/forks/arrayfire/arrayfire-fortran" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/arrayfire/arrayfire-fortran?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/arrayfire/arrayfire-fortran?color=yellow" />
+<p>Fortran binding to the ArrayFire general purpose GPU library</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">cpp</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">gpu</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">opencl</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="clfortran"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/cass-support/clfortran">clfortran</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/cass-support/clfortran?color=green" />
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<img alt="stars" src="https://img.shields.io/github/stars/cass-support/clfortran" />
+<img alt="forks" src="https://img.shields.io/github/forks/cass-support/clfortran" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/cass-support/clfortran?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/cass-support/clfortran?color=yellow" />
+<p>Fortran interfaces to Khronos OpenCL 1.2 API</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">gpu</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">compute</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">accelerator</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="elsi"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/elsi_project/elsi_interface">ELSI</a></p>
+<img alt="Release" src="https://img.shields.io/gitlab/v/release/elsi_project/elsi_interface?date_order_by=created_at&amp;sort=date&amp;color=green" />
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<img alt="forks" src="https://img.shields.io/gitlab/forks/elsi_project/elsi_interface" />
+<img alt="issues" src="https://img.shields.io/gitlab/issues/all/elsi_project/elsi_interface?color=yellow" />
+<p>A software interface designed for electronic structure codes to connect with ELPA, libOMM, PEXSI, EigenExa, SLEPc, NTPoly, BSEPACK, LAPACK, MAGMA, and other solver libraries.</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">electronic-structure</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">mpi</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">gpu</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="f03gl"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="http://www-stone.ch.cam.ac.uk/pub/f03gl/index.xhtml">f03gl</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<p>Fortran 2003 interface to OpenGL</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">graphics</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">interface</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">opengl</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fgsl"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/reinh-bader/fgsl">fgsl</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/reinh-bader/fgsl?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/reinh-bader/fgsl" />
+<img alt="stars" src="https://img.shields.io/github/stars/reinh-bader/fgsl" />
+<img alt="forks" src="https://img.shields.io/github/forks/reinh-bader/fgsl" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/reinh-bader/fgsl?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/reinh-bader/fgsl?color=yellow" />
+<p>Fortran interface to the GNU Scientific Library</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fkb"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/scientific-computing/FKB">FKB</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/scientific-computing/FKB?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/scientific-computing/FKB" />
+<img alt="stars" src="https://img.shields.io/github/stars/scientific-computing/FKB" />
+<img alt="forks" src="https://img.shields.io/github/forks/scientific-computing/FKB" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/scientific-computing/FKB?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/scientific-computing/FKB?color=yellow" />
+<p>Fortran Keras Bridge - A two-way deep learning bridge between Keras and Fortran</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">deep-learning</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">data-science</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">machine-learning</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">neural-networks</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="flibcpp"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/swig-fortran/flibcpp">flibcpp</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/swig-fortran/flibcpp?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/swig-fortran/flibcpp" />
+<img alt="stars" src="https://img.shields.io/github/stars/swig-fortran/flibcpp" />
+<img alt="forks" src="https://img.shields.io/github/forks/swig-fortran/flibcpp" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/swig-fortran/flibcpp?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/swig-fortran/flibcpp?color=yellow" />
+<p>Fortran bindings to the C++ Standard Library</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">cpp</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="flook"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/ElectronicStructureLibrary/flook">flook</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/ElectronicStructureLibrary/flook?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/ElectronicStructureLibrary/flook" />
+<img alt="stars" src="https://img.shields.io/github/stars/ElectronicStructureLibrary/flook" />
+<img alt="forks" src="https://img.shields.io/github/forks/ElectronicStructureLibrary/flook" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/ElectronicStructureLibrary/flook?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/ElectronicStructureLibrary/flook?color=yellow" />
+<p>Library for running an embedded Lua interpreter</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">lua</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="focal"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/LKedward/focal">Focal</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/LKedward/focal?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/LKedward/focal" />
+<img alt="stars" src="https://img.shields.io/github/stars/LKedward/focal" />
+<img alt="forks" src="https://img.shields.io/github/forks/LKedward/focal" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/LKedward/focal?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/LKedward/focal?color=yellow" />
+<p>A module library which wraps calls to the OpenCL runtime API with a higher abstraction level</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">gpu</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">compute</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">accelerator</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="forpy"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/ylikx/forpy">forpy</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/ylikx/forpy?color=green" />
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<img alt="stars" src="https://img.shields.io/github/stars/ylikx/forpy" />
+<img alt="forks" src="https://img.shields.io/github/forks/ylikx/forpy" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/ylikx/forpy?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/ylikx/forpy?color=yellow" />
+<p>allows you to use Python features in Fortran</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">dict</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">list</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">tuple</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">numpy</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">python</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">matplotlib</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">scipy</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortran-curl"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/interkosmos/fortran-curl">fortran-curl</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/interkosmos/fortran-curl?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/interkosmos/fortran-curl" />
+<img alt="stars" src="https://img.shields.io/github/stars/interkosmos/fortran-curl" />
+<img alt="forks" src="https://img.shields.io/github/forks/interkosmos/fortran-curl" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/interkosmos/fortran-curl?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/interkosmos/fortran-curl?color=yellow" />
+<p>Fortran 2008 interface bindings to libcurl</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">https</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">curl</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">imap</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">libcurl</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">smtp</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">gopher</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortran-lua53"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/interkosmos/fortran-lua53">fortran-lua53</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/interkosmos/fortran-lua53?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/interkosmos/fortran-lua53" />
+<img alt="stars" src="https://img.shields.io/github/stars/interkosmos/fortran-lua53" />
+<img alt="forks" src="https://img.shields.io/github/forks/interkosmos/fortran-lua53" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/interkosmos/fortran-lua53?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/interkosmos/fortran-lua53?color=yellow" />
+<p>Fortran 2008 interface bindings to Lua 5.3</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">lua</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortran-motif"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/interkosmos/fortran-motif">fortran-motif</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/interkosmos/fortran-motif?color=green" />
+<img alt="license" src="https://img.shields.io/badge/license-ISC-blue" />
+<img alt="stars" src="https://img.shields.io/github/stars/interkosmos/fortran-motif" />
+<img alt="forks" src="https://img.shields.io/github/forks/interkosmos/fortran-motif" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/interkosmos/fortran-motif?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/interkosmos/fortran-motif?color=yellow" />
+<p>Fortran 2008 interface bindings to X/Motif</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">x11</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">gui</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">unix</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortran-pcre2"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/interkosmos/fortran-pcre2">fortran-pcre2</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/interkosmos/fortran-pcre2?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/interkosmos/fortran-pcre2" />
+<img alt="stars" src="https://img.shields.io/github/stars/interkosmos/fortran-pcre2" />
+<img alt="forks" src="https://img.shields.io/github/forks/interkosmos/fortran-pcre2" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/interkosmos/fortran-pcre2?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/interkosmos/fortran-pcre2?color=yellow" />
+<p>Fortran 2018 interface bindings to PCRE2</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">pcre</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">pcre2</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">regex</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortran-sdl2"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/interkosmos/fortran-sdl2">fortran-sdl2</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/interkosmos/fortran-sdl2?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/interkosmos/fortran-sdl2" />
+<img alt="stars" src="https://img.shields.io/github/stars/interkosmos/fortran-sdl2" />
+<img alt="forks" src="https://img.shields.io/github/forks/interkosmos/fortran-sdl2" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/interkosmos/fortran-sdl2?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/interkosmos/fortran-sdl2?color=yellow" />
+<p>A collection of ISO C binding interfaces to Simple DirectMedia Layer 2.0 (SDL 2.0), for multimedia and game programming in Fortran</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">graphics</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">opengl</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">games</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortran-sqlite3"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/interkosmos/fortran-sqlite3">fortran-sqlite3</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/interkosmos/fortran-sqlite3?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/interkosmos/fortran-sqlite3" />
+<img alt="stars" src="https://img.shields.io/github/stars/interkosmos/fortran-sqlite3" />
+<img alt="forks" src="https://img.shields.io/github/forks/interkosmos/fortran-sqlite3" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/interkosmos/fortran-sqlite3?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/interkosmos/fortran-sqlite3?color=yellow" />
+<p>Fortran 2018 interface bindings to SQLite 3</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">sql</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">sqlite</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">database</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortran-tcl86"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/interkosmos/fortran-tcl86">fortran-tcl86</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/interkosmos/fortran-tcl86?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/interkosmos/fortran-tcl86" />
+<img alt="stars" src="https://img.shields.io/github/stars/interkosmos/fortran-tcl86" />
+<img alt="forks" src="https://img.shields.io/github/forks/interkosmos/fortran-tcl86" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/interkosmos/fortran-tcl86?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/interkosmos/fortran-tcl86?color=yellow" />
+<p>Fortran 2018 interface bindings to Tcl/Tk 8.6</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">tcl</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">tk</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">gui</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortran-unix"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/interkosmos/fortran-unix">fortran-unix</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/interkosmos/fortran-unix?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/interkosmos/fortran-unix" />
+<img alt="stars" src="https://img.shields.io/github/stars/interkosmos/fortran-unix" />
+<img alt="forks" src="https://img.shields.io/github/forks/interkosmos/fortran-unix" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/interkosmos/fortran-unix?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/interkosmos/fortran-unix?color=yellow" />
+<p>Fortran 2008 interface bindings to selected POSIX and SysV types, functions, and routines on 64-bit Unix-like operating systems</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">unix</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">linux</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">freebsd</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">os</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">posix</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">system</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortran-xlib"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/interkosmos/fortran-xlib">fortran-xlib</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/interkosmos/fortran-xlib?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/interkosmos/fortran-xlib" />
+<img alt="stars" src="https://img.shields.io/github/stars/interkosmos/fortran-xlib" />
+<img alt="forks" src="https://img.shields.io/github/forks/interkosmos/fortran-xlib" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/interkosmos/fortran-xlib?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/interkosmos/fortran-xlib?color=yellow" />
+<p>A collection of ISO C binding interfaces to Xlib for Fortran 2003</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">x11</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">xlib</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">gui</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">mandelbrot</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">raycast</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">wireframe</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortran-zlib"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/interkosmos/fortran-zlib">fortran-zlib</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/interkosmos/fortran-zlib?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/interkosmos/fortran-zlib" />
+<img alt="stars" src="https://img.shields.io/github/stars/interkosmos/fortran-zlib" />
+<img alt="forks" src="https://img.shields.io/github/forks/interkosmos/fortran-zlib" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/interkosmos/fortran-zlib?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/interkosmos/fortran-zlib?color=yellow" />
+<p>Fortran 2018 interface bindings to selected zlib functions</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">zlib</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">compression</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">deflate</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortranlib"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/astrofrog/fortranlib">fortranlib</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/astrofrog/fortranlib?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/astrofrog/fortranlib" />
+<img alt="stars" src="https://img.shields.io/github/stars/astrofrog/fortranlib" />
+<img alt="forks" src="https://img.shields.io/github/forks/astrofrog/fortranlib" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/astrofrog/fortranlib?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/astrofrog/fortranlib?color=yellow" />
+<p>Collection of personal scientific routines in Fortran</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">solver</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">integral</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">integrate</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">interpolation</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">histogram</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">constants</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">hdf5</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">error</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">random</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">posix</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">angles</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">probability</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">stokes</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">vectors</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortyxima"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="https://bitbucket.org/aradi/fortyxima/src/develop/">fortyxima</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--2--clause-blue" />
+<p>File system manipulation and unit testing framework</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">posix</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">libc</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="ftorch"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/Cambridge-ICCS/FTorch">FTorch</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/Cambridge-ICCS/FTorch?color=green" />
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<img alt="stars" src="https://img.shields.io/github/stars/Cambridge-ICCS/FTorch" />
+<img alt="forks" src="https://img.shields.io/github/forks/Cambridge-ICCS/FTorch" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/Cambridge-ICCS/FTorch?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/Cambridge-ICCS/FTorch?color=yellow" />
+<p>Allows users to interface into the PyTorch machine learning library</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">machine-learning</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="futility"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/CASL/Futility">Futility</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/CASL/Futility?color=green" />
+<img alt="license" src="https://img.shields.io/badge/license-Apachev2.0-blue" />
+<img alt="stars" src="https://img.shields.io/github/stars/CASL/Futility" />
+<img alt="forks" src="https://img.shields.io/github/forks/CASL/Futility" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/CASL/Futility?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/CASL/Futility?color=yellow" />
+<p>Fortran utilities including unit test harness, arbitrary length strings, parameter list objects, timers, geometry definitions, file wrappers, linear algebra tools, and parallel computing support</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="gtk-fortran"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/vmagnin/gtk-fortran">gtk-fortran</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/vmagnin/gtk-fortran?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/vmagnin/gtk-fortran" />
+<img alt="stars" src="https://img.shields.io/github/stars/vmagnin/gtk-fortran" />
+<img alt="forks" src="https://img.shields.io/github/forks/vmagnin/gtk-fortran" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/vmagnin/gtk-fortran?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/vmagnin/gtk-fortran?color=yellow" />
+<p>A cross-platform library to build Graphical User Interfaces (GUI)</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">gui</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">gtk</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">graphical</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">user</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">interface</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="librsb"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="http://librsb.sourceforge.net/">librsb</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0--or--later-blue" />
+<p>A shared memory parallel sparse matrix computations library for the Recursive Sparse Blocks format implementing the Sparse BLAS standard</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">linear-algebra</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">openmp</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="luaf"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="https://chiselapp.com/user/vadimz/repository/luaf/">LuaF</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<p>Fortran 2003/2008 bindings to Lua 5.1</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">lua</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="m-process"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/urbanjost/M_process">M_process</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/urbanjost/M_process?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/urbanjost/M_process" />
+<img alt="stars" src="https://img.shields.io/github/stars/urbanjost/M_process" />
+<img alt="forks" src="https://img.shields.io/github/forks/urbanjost/M_process" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/urbanjost/M_process?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/urbanjost/M_process?color=yellow" />
+<p>Read and write lines to or from a process from Fortran via a C wrapper</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="m-system"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/urbanjost/M_system">M_system</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/urbanjost/M_system?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/urbanjost/M_system" />
+<img alt="stars" src="https://img.shields.io/github/stars/urbanjost/M_system" />
+<img alt="forks" src="https://img.shields.io/github/forks/urbanjost/M_system" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/urbanjost/M_system?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/urbanjost/M_system?color=yellow" />
+<p>Call C system routines from Fortran</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">posix</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">putenv</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">getenv</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">setenv</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">environment</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">file</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">system</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">mkdir</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">rename</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">rmdir</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">chmod</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">rand</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">uname</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="mpifx"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/dftbplus/mpifx">mpifx</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/dftbplus/mpifx?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/dftbplus/mpifx" />
+<img alt="stars" src="https://img.shields.io/github/stars/dftbplus/mpifx" />
+<img alt="forks" src="https://img.shields.io/github/forks/dftbplus/mpifx" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/dftbplus/mpifx?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/dftbplus/mpifx?color=yellow" />
+<p>Modern Fortran wrappers around MPI routines</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">mpi</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">fypp</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="node-fortran"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/IonicaBizau/node-fortran">node-fortran</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/IonicaBizau/node-fortran?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/IonicaBizau/node-fortran" />
+<img alt="stars" src="https://img.shields.io/github/stars/IonicaBizau/node-fortran" />
+<img alt="forks" src="https://img.shields.io/github/forks/IonicaBizau/node-fortran" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/IonicaBizau/node-fortran?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/IonicaBizau/node-fortran?color=yellow" />
+<p>Fortran bridge for Node.js which allows you to run Fortran code from Node.js</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="id1"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/IonicaBizau/node.fortran">node.fortran</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/IonicaBizau/node.fortran?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/IonicaBizau/node.fortran" />
+<img alt="stars" src="https://img.shields.io/github/stars/IonicaBizau/node.fortran" />
+<img alt="forks" src="https://img.shields.io/github/forks/IonicaBizau/node.fortran" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/IonicaBizau/node.fortran?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/IonicaBizau/node.fortran?color=yellow" />
+<p>Execute Node.js in your Fortran programs</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="ogpf"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/kookma/ogpf">ogpf</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/kookma/ogpf?color=green" />
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<img alt="stars" src="https://img.shields.io/github/stars/kookma/ogpf" />
+<img alt="forks" src="https://img.shields.io/github/forks/kookma/ogpf" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/kookma/ogpf?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/kookma/ogpf?color=yellow" />
+<p>Object based interface to GnuPlot for Fortran</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">animation</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">plot</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">surface</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">contour</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="openfft"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="http://www.openmx-square.org/openfft/">OpenFFT</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue" />
+<p>Open source parallel package for computing multi-dimensional Fast Fourier Transforms (3-D and 4-D FFTs)</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">fft</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">openmpi</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">domain-decomposition-method</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="plplot"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="http://plplot.sourceforge.net/">PLplot</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0-blue" />
+<p>Library for scientific plotting</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">plot</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">surface</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">contour</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">interface</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="precice"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/precice/precice">preCICE</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/precice/precice?color=green" />
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0-blue" />
+<img alt="stars" src="https://img.shields.io/github/stars/precice/precice" />
+<img alt="forks" src="https://img.shields.io/github/forks/precice/precice" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/precice/precice?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/precice/precice?color=yellow" />
+<p>A coupling library for partitioned multi-physics simulations, including, but not restricted to fluid-structure interaction and conjugate heat transfer simulations.</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">cpp</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">c</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">python</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">julia</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">matlab</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">rust</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">mpi</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="pyplot-fortran"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/jacobwilliams/pyplot-fortran">pyplot-fortran</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/jacobwilliams/pyplot-fortran?color=green" />
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<img alt="stars" src="https://img.shields.io/github/stars/jacobwilliams/pyplot-fortran" />
+<img alt="forks" src="https://img.shields.io/github/forks/jacobwilliams/pyplot-fortran" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/jacobwilliams/pyplot-fortran?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/jacobwilliams/pyplot-fortran?color=yellow" />
+<p>For generating plots from Fortran using Python’s matplotlib.pyplot</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">pyplot</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">matplotlib</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">contour</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">histogram</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="scalapackfx"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/dftbplus/scalapackfx">scalapackfx</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/dftbplus/scalapackfx?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/dftbplus/scalapackfx" />
+<img alt="stars" src="https://img.shields.io/github/stars/dftbplus/scalapackfx" />
+<img alt="forks" src="https://img.shields.io/github/forks/dftbplus/scalapackfx" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/dftbplus/scalapackfx?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/dftbplus/scalapackfx?color=yellow" />
+<p>Modern Fortran wrappers around ScaLAPACK routines</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">mpi</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">fypp</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">pblas</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">blacs</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="sqliteff"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/everythingfunctional/sqliteff">sqliteff</a></p>
+<img alt="Release" src="https://img.shields.io/gitlab/v/release/everythingfunctional/sqliteff?date_order_by=created_at&amp;sort=date&amp;color=green" />
+<img alt="license" src="https://img.shields.io/gitlab/license/everythingfunctional/sqliteff" />
+<img alt="forks" src="https://img.shields.io/gitlab/forks/everythingfunctional/sqliteff" />
+<img alt="issues" src="https://img.shields.io/gitlab/issues/all/everythingfunctional/sqliteff?color=yellow" />
+<p>A thin wrapper around the SQLite library</p>
+<p>Tags:  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">sql</span>  <span class="sd-sphinx-override sd-badge sd-bg-light sd-bg-text-light">database</span></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="tcp-client-server"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/modern-fortran/tcp-client-server">tcp-client-server</a></p>
+<img alt="Release" src="https://img.shields.io/github/v/release/modern-fortran/tcp-client-server?color=green" />
+<img alt="license" src="https://img.shields.io/github/license/modern-fortran/tcp-client-server" />
+<img alt="stars" src="https://img.shields.io/github/stars/modern-fortran/tcp-client-server" />
+<img alt="forks" src="https://img.shields.io/github/forks/modern-fortran/tcp-client-server" />
+<img alt="last-commit" src="https://img.shields.io/github/last-commit/modern-fortran/tcp-client-server?color=blue" />
+<img alt="issues" src="https://img.shields.io/github/issues/modern-fortran/tcp-client-server?color=yellow" />
+<p>A minimal Fortran TCP client and server demonstrating C interoperability</p>
+</div>
+<p>See <a class="reference internal" href="../../community/packages/"><span class="doc std std-doc">package index guidelines</span></a> for how to get your project listed.</p>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2020-2024, Fortran Community.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

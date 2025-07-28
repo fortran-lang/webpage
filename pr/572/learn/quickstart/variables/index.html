@@ -1,0 +1,1005 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" sizes="256x256" href="../../../_static/images/favicon.ico" type="image/x-icon">
+    <title>Variables &#8212; Fortran Programming Language</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=eaa92f49" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=51fd25b1"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'learn/quickstart/variables';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = '_static/data.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'en';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="canonical" href="https://fortran-lang.org/en/learn/quickstart/variables/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="Arrays and strings" href="../arrays_strings/" />
+    <link rel="prev" title="Hello world" href="../hello_world/" /> 
+<meta
+  name="description"
+  content="Fortran : High-performance parallel programming language"
+/>
+<meta
+  name="keywords"
+  content="High-performance, parallel, programming language"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+ 
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search"
+         aria-label="Search"
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Fortran Programming Language - Home"/>
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark pst-js-only" alt="Fortran Programming Language - Home"/>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="ms-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community/">
+    Community
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../news/">
+    News
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/en/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community/">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../news/">
+    News
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/en/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../os_setup/">Setting up your OS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/choose_compiler/">Choosing a compiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/install_gfortran/">Installing GFortran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/text_editors/">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/ides/">IDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/tips/">Smart Tips</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../">Quickstart tutorial</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../hello_world/">Hello world</a></li>
+
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Variables</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../arrays_strings/">Arrays and strings</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../operators_control_flow/">Operators and flow control</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../organising_code/">Organising code structure</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../derived_types/">Derived Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../gotchas/">Gotchas</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../building_programs/">Building programs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/compiling_source/">Compiling the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/linking_pieces/">Linking the objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/runtime_libraries/">Run-time libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/include_files/">Include files and modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/managing_libraries/">Managing libraries (static and dynamic libraries)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/build_tools/">Build tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/project_make/">An introduction to make</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/distributing/">Distributing your programs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../best_practices/">Fortran Best Practices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/style_guide/">Fortran Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/floating_point/">Floating Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/integer_division/">Integer Division</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/modules_programs/">Modules and Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/arrays/">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/multidim_arrays/">Multidimensional Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/element_operations/">Element-wise Operations on Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/allocatable_arrays/">Allocatable Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/file_io/">File Input/Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/callbacks/">Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/type_casting/">Type Casting in Callbacks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../intrinsics/">Fortran Intrinsics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/array/">Properties and attributes of arrays</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/bit/">Bit-level inquiry and manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/character/">Basic procedures for manipulating <em>character</em> variables</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/compiler/">Information about compiler and compiler options used for building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/cfi/">Procedures for binding to C interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/math/">General mathematical functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/model/">Controlling and querying the current numeric model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/numeric/">Manipulation and properties of numeric values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/parallel/">Parallel programming using co_arrays and co_indexed arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/state/">General and miscellaneous intrinsics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/system/">Accessing external system information</a></li>
+
+
+
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/transform/">Matrix multiplication, dot product, and array shifts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/type/">Types and kinds</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">GNU Free Documentation License</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rosetta_stone/">Python Fortran Rosetta Stone</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../oop_features_in_fortran/">Putting Fortran’s object-related features to practical use</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../oop_features_in_fortran/object_based_programming_techniques/">Object-based programming techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oop_features_in_fortran/object_oriented_programming_techniques/">Object-oriented programming techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oop_features_in_fortran/performance_and_ease_of_use/">Performance and ease of use</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../" class="nav-link">Learn</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../" class="nav-link">Quickstart tutorial</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Variables</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="variables">
+<h1>Variables<a class="headerlink" href="#variables" title="Link to this heading">#</a></h1>
+<p>Variables store information that can be manipulated by the program.
+Fortran is a <em>strongly typed</em> language, which means that each variable
+must have a type.</p>
+<p>There are 5 built-in data types in Fortran:</p>
+<ul class="simple">
+<li><p><code class="docutils literal notranslate"><span class="pre">integer</span></code> – for data that represent whole numbers, positive or negative</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">real</span></code> – for floating-point data (not a whole number)</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">complex</span></code> – pair consisting of a real part and an imaginary part</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">character</span></code> – for text data</p></li>
+<li><p><code class="docutils literal notranslate"><span class="pre">logical</span></code> – for data that represent boolean (true or false) values</p></li>
+</ul>
+<p>Before we can use a variable, we must <em>declare</em> it; this tells the compiler
+the variable type and any other variable attributes.</p>
+<blockquote>
+<div><p>Fortran is a <em>statically typed</em> language, which means the type of each
+variable is fixed when the program is compiled—variable types cannot change while the program is running.</p>
+</div></blockquote>
+</section>
+<section class="tex2jax_ignore mathjax_ignore" id="declaring-variables">
+<h1>Declaring variables<a class="headerlink" href="#declaring-variables" title="Link to this heading">#</a></h1>
+<p>The syntax for declaring variables is:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">&lt;</span><span class="n">variable_type</span><span class="o">&gt;</span> <span class="p">::</span> <span class="o">&lt;</span><span class="n">variable_name</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">&lt;</span><span class="n">variable_name</span><span class="o">&gt;</span><span class="p">,</span> <span class="o">...</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">&lt;variable_type&gt;</span></code> is one of the built-in variable types listed above and
+<code class="docutils literal notranslate"><span class="pre">&lt;variable_name&gt;</span></code> is the name that you would like to call your variable.</p>
+<p>Variable names must start with a letter and can consist of letters, numbers and underscores.
+In the following example we declare a variable for each of the built-in types.</p>
+<p><strong>Example:</strong> variable declaration</p>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20variables%0A%20%20implicit%20none%0A%0A%20%20integer%20%3A%3A%20amount%0A%20%20real%20%3A%3A%20pi%2C%20e%20%21%20two%20%60real%60%20variables%20declared%0A%20%20complex%20%3A%3A%20frequency%0A%20%20character%20%3A%3A%20initial%0A%20%20logical%20%3A%3A%20isOkay%0A%0Aend%20program%20variables' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">variables</span>
+<span class="w">  </span><span class="k">implicit none</span>
+
+<span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">amount</span>
+<span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pi</span><span class="p">,</span><span class="w"> </span><span class="n">e</span><span class="w"> </span><span class="c">! two `real` variables declared</span>
+<span class="w">  </span><span class="kt">complex</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">frequency</span>
+<span class="w">  </span><span class="kt">character</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">initial</span>
+<span class="w">  </span><span class="kt">logical</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">isOkay</span>
+
+<span class="k">end program </span><span class="n">variables</span>
+</pre></div>
+</div>
+</div>
+<blockquote>
+<div><p>Fortran code is <strong>case-insensitive</strong>; you don’t have to worry about the
+capitalisation of your variable names, but it’s good practice to keep it consistent.</p>
+</div></blockquote>
+<p>Note the additional statement at the beginning of the program: <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code>.
+This statement tells the compiler that all variables will be explicitly declared; without
+this statement variables will be implicitly typed according to the letter they begin with.</p>
+<blockquote>
+<div><p>Always use the <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code> statement at
+the beginning of each program and procedure. Implicit typing is considered bad practice in
+modern programming since it hides information leading to more program errors.</p>
+</div></blockquote>
+<p>Once we have declared a variable, we can assign and reassign values to it using the assignment operator <code class="docutils literal notranslate"><span class="pre">=</span></code>.</p>
+<p><strong>Example:</strong> variable assignment</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="n">amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+<span class="n">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.1415927</span>
+<span class="n">frequency</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="o">-</span><span class="mf">0.5</span><span class="p">)</span>
+<span class="n">initial</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s1">&#39;A&#39;</span>
+<span class="n">isOkay</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">.</span><span class="n">false</span><span class="p">.</span>
+</pre></div>
+</div>
+<p>Characters are surrounded by either single (<code class="docutils literal notranslate"><span class="pre">'</span></code>) or double quotes (<code class="docutils literal notranslate"><span class="pre">&quot;</span></code>).</p>
+<p>Logical or boolean values can be either <code class="docutils literal notranslate"><span class="pre">.true.</span></code> or <code class="docutils literal notranslate"><span class="pre">.false.</span></code>.</p>
+<div class="admonition important">
+<p class="admonition-title">Important</p>
+<p>Watch out for assignment at declaration:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">amount</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
+</pre></div>
+</div>
+<p><strong>This is NOT a normal initialisation;</strong> it implies the <code class="docutils literal notranslate"><span class="pre">save</span></code> attribute, which means that the variable retains
+its value between procedure calls. Good practice is to initialise your variables separately to their declaration.</p>
+</div>
+<section id="standard-input-output">
+<h2>Standard input / output<a class="headerlink" href="#standard-input-output" title="Link to this heading">#</a></h2>
+<p>In our <em>Hello World</em> example, we printed text to the command window.
+This is commonly referred to as writing to <code class="docutils literal notranslate"><span class="pre">standard</span> <span class="pre">output</span></code> or <code class="docutils literal notranslate"><span class="pre">stdout</span></code>.</p>
+<p>We can use the <code class="docutils literal notranslate"><span class="pre">print</span></code> statement introduced earlier to print variable values to <code class="docutils literal notranslate"><span class="pre">stdout</span></code>:</p>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=print%20%2A%2C%20%27The%20value%20of%20amount%20%28integer%29%20is%3A%20%27%2C%20amount%0Aprint%20%2A%2C%20%27The%20value%20of%20pi%20%28real%29%20is%3A%20%27%2C%20pi%0Aprint%20%2A%2C%20%27The%20value%20of%20frequency%20%28complex%29%20is%3A%20%27%2C%20frequency%0Aprint%20%2A%2C%20%27The%20value%20of%20initial%20%28character%29%20is%3A%20%27%2C%20initial%0Aprint%20%2A%2C%20%27The%20value%20of%20isOkay%20%28logical%29%20is%3A%20%27%2C%20isOkay' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The value of amount (integer) is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">amount</span>
+<span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The value of pi (real) is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">pi</span>
+<span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The value of frequency (complex) is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">frequency</span>
+<span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The value of initial (character) is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">initial</span>
+<span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The value of isOkay (logical) is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">isOkay</span>
+</pre></div>
+</div>
+</div>
+<p>In a similar way, we can read values from the command window
+using the <code class="docutils literal notranslate"><span class="pre">read</span></code> statement:</p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">read_values</span>
+<span class="w">  </span><span class="k">implicit none</span>
+<span class="k">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>
+
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Please enter two numbers. &#39;</span>
+<span class="w">  </span><span class="k">read</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>
+
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;The sum and product of the numbers are &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">+</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="o">*</span><span class="n">y</span>
+
+<span class="k">end program </span><span class="n">read_values</span>
+</pre></div>
+</div>
+<p>This input source is commonly referred to as <code class="docutils literal notranslate"><span class="pre">standard</span> <span class="pre">input</span></code> or <code class="docutils literal notranslate"><span class="pre">stdin</span></code>.</p>
+</section>
+<section id="expressions">
+<h2>Expressions<a class="headerlink" href="#expressions" title="Link to this heading">#</a></h2>
+<p>The usual set of arithmetic operators are available, listed in order of precedence:</p>
+<div class="pst-scrollable-table-container"><table class="table">
+<thead>
+<tr class="row-odd"><th class="head text-center"><p>Operator  </p></th>
+<th class="head"><p>Description</p></th>
+</tr>
+</thead>
+<tbody>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">**</span></code></p></td>
+<td><p>Exponent</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">*</span></code></p></td>
+<td><p>Multiplication</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">/</span> </code></p></td>
+<td><p>Division</p></td>
+</tr>
+<tr class="row-odd"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">+</span></code></p></td>
+<td><p>Addition</p></td>
+</tr>
+<tr class="row-even"><td class="text-center"><p><code class="docutils literal notranslate"><span class="pre">-</span></code></p></td>
+<td><p>Subtraction</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<br>
+<p><strong>Example:</strong></p>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">arithmetic</span>
+<span class="w">  </span><span class="k">implicit none</span>
+
+<span class="k">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pi</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span><span class="p">,</span><span class="w"> </span><span class="n">height</span><span class="p">,</span><span class="w"> </span><span class="n">area</span><span class="p">,</span><span class="w"> </span><span class="n">volume</span>
+
+<span class="w">  </span><span class="n">pi</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">3.1415927</span>
+
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Enter cylinder base radius:&#39;</span>
+<span class="w">  </span><span class="k">read</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">radius</span>
+
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Enter cylinder height:&#39;</span>
+<span class="w">  </span><span class="k">read</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="w"> </span><span class="n">height</span>
+
+<span class="w">  </span><span class="n">area</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">pi</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">radius</span><span class="o">**</span><span class="mi">2</span>
+<span class="w">  </span><span class="n">volume</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">area</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">height</span>
+
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Cylinder radius is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">radius</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Cylinder height is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">height</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Cylinder base area is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">area</span>
+<span class="w">  </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s1">&#39;Cylinder volume is: &#39;</span><span class="p">,</span><span class="w"> </span><span class="n">volume</span>
+
+<span class="k">end program </span><span class="n">arithmetic</span>
+</pre></div>
+</div>
+</section>
+<section id="floating-point-precision">
+<h2>Floating-point precision<a class="headerlink" href="#floating-point-precision" title="Link to this heading">#</a></h2>
+<p>The desired floating-point precision can be explicitly declared using a <code class="docutils literal notranslate"><span class="pre">kind</span></code> parameter.
+The <code class="docutils literal notranslate"><span class="pre">iso_fortran_env</span></code> intrinsic module provides <code class="docutils literal notranslate"><span class="pre">kind</span></code> parameters for the common 32-bit and 64-bit floating-point types.</p>
+<p><strong>Example:</strong> explicit real <code class="docutils literal notranslate"><span class="pre">kind</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20float%0A%20%20use%2C%20intrinsic%20%3A%3A%20iso_fortran_env%2C%20only%3A%20sp%3D%3Ereal32%2C%20dp%3D%3Ereal64%0A%20%20implicit%20none%0A%0A%20%20real%28sp%29%20%3A%3A%20float32%0A%20%20real%28dp%29%20%3A%3A%20float64%0A%0A%20%20float32%20%3D%201.0_sp%20%20%21%20Explicit%20suffix%20for%20literal%20constants%0A%20%20float64%20%3D%201.0_dp%0A%20%20print%2A%2C%20float32%2C%20float64%0Aend%20program%20float' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="nb">float</span>
+<span class="nb">  </span><span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">iso_fortran_env</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">sp</span><span class="o">=&gt;</span><span class="n">real32</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="n">real64</span>
+<span class="w">  </span><span class="k">implicit none</span>
+
+<span class="k">  </span><span class="kt">real</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">float32</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">float64</span>
+
+<span class="w">  </span><span class="n">float32</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0_sp</span><span class="w">  </span><span class="c">! Explicit suffix for literal constants</span>
+<span class="w">  </span><span class="n">float64</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0_dp</span>
+<span class="w">  </span><span class="k">print</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">float32</span><span class="p">,</span><span class="w"> </span><span class="n">float64</span>
+<span class="k">end program </span><span class="nb">float</span>
+</pre></div>
+</div>
+</div>
+<blockquote>
+<div><p>Always use a <code class="docutils literal notranslate"><span class="pre">kind</span></code> suffix for floating-point literal constants.</p>
+</div></blockquote>
+<p><strong>Example:</strong> C-interoperable <code class="docutils literal notranslate"><span class="pre">kind</span></code></p>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20float%0A%20%20use%2C%20intrinsic%20%3A%3A%20iso_c_binding%2C%20only%3A%20sp%3D%3Ec_float%2C%20dp%3D%3Ec_double%0A%20%20implicit%20none%0A%0A%20%20real%28sp%29%20%3A%3A%20float32%0A%20%20real%28dp%29%20%3A%3A%20float64%0A%0Aend%20program%20float' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="nb">float</span>
+<span class="nb">  </span><span class="k">use</span><span class="p">,</span><span class="w"> </span><span class="k">intrinsic</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">sp</span><span class="o">=&gt;</span><span class="kt">c_float</span><span class="p">,</span><span class="w"> </span><span class="n">dp</span><span class="o">=&gt;</span><span class="kt">c_double</span>
+<span class="kt">  </span><span class="k">implicit none</span>
+
+<span class="k">  </span><span class="kt">real</span><span class="p">(</span><span class="n">sp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">float32</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">float64</span>
+
+<span class="k">end program </span><span class="nb">float</span>
+</pre></div>
+</div>
+</div>
+<p>In the next part we will learn how to use arrays for storing more than one
+value in a variable.</p>
+</section>
+<section id="local-scope-variables-with-block-construct">
+<h2>Local scope variables with <code class="docutils literal notranslate"><span class="pre">block</span></code> construct<a class="headerlink" href="#local-scope-variables-with-block-construct" title="Link to this heading">#</a></h2>
+<p>The 2008 Fortran standard introduced the notion of <code class="docutils literal notranslate"><span class="pre">block</span></code> which enables using local scope variables within a program or procedure.</p>
+<p><strong>Example:</strong></p>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20your_module%0A%20%20%20%20implicit%20none%0A%20%20%20%20integer%20%3A%3A%20n%20%3D%202%0Aend%20module%0A%0Aprogram%20main%0A%20%20%20%20implicit%20none%0A%20%20%20%20real%20%3A%3A%20x%0A%0A%20%20%20%20block%0A%20%20%20%20%20%20%20%20use%20your_module%2C%20only%3A%20n%20%21%20you%20can%20import%20modules%20within%20blocks%0A%20%20%20%20%20%20%20%20real%20%3A%3A%20y%20%21%20local%20scope%20variable%0A%20%20%20%20%20%20%20%20y%20%3D%202.0%0A%20%20%20%20%20%20%20%20x%20%3D%20y%20%2A%2A%20n%0A%20%20%20%20%20%20%20%20print%20%2A%2C%20y%0A%20%20%20%20end%20block%0A%20%20%20%20%21%20print%20%2A%2C%20y%20%21%20this%20is%20not%20allowed%20as%20y%20only%20exists%20during%20the%20block%27s%20scope%0A%20%20%20%20print%20%2A%2C%20x%20%20%21%20prints%204.00000000%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">your_module</span>
+<span class="w">    </span><span class="k">implicit none</span>
+<span class="k">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+<span class="k">end module</span>
+
+<span class="k">program </span><span class="n">main</span>
+<span class="w">    </span><span class="k">implicit none</span>
+<span class="k">    </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span>
+
+<span class="w">    </span><span class="k">block</span>
+<span class="k">        use </span><span class="n">your_module</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">n</span><span class="w"> </span><span class="c">! you can import modules within blocks</span>
+<span class="w">        </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="c">! local scope variable</span>
+<span class="w">        </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">2.0</span>
+<span class="w">        </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">y</span><span class="w"> </span><span class="o">**</span><span class="w"> </span><span class="n">n</span>
+<span class="w">        </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">y</span>
+<span class="w">    </span><span class="k">end block</span>
+<span class="w">    </span><span class="c">! print *, y ! this is not allowed as y only exists during the block&#39;s scope</span>
+<span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="w">  </span><span class="c">! prints 4.00000000</span>
+<span class="k">end program</span>
+</pre></div>
+</div>
+</div>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">  
+<br />
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc"><ul class="visible nav section-nav flex-column">
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#">Variables</a></li>
+<li class="toc-h1 nav-item toc-entry"><a class="reference internal nav-link" href="#declaring-variables">Declaring variables</a><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#standard-input-output">Standard input / output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#expressions">Expressions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#floating-point-precision">Floating-point precision</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#local-scope-variables-with-block-construct">Local scope variables with <code class="docutils literal notranslate"><span class="pre">block</span></code> construct</a></li>
+</ul>
+</li>
+</ul>
+</nav> </div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2020-2024, Fortran Community.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
