@@ -590,7 +590,7 @@
 </ul>
 </details></li>
 <li class="toctree-l1 has-children"><a class="reference internal" href="../../intrinsics/">Fortran Intrinsics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
-<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/array/">Properties and attributes of arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/array/">Właściwości i atrybuty tablic</a></li>
 
 <li class="toctree-l2"><a class="reference internal" href="../../intrinsics/bit/">Bit-level inquiry and manipulation</a></li>
 <li class="toctree-l2"><a class="reference internal" href="../../intrinsics/character/">Basic procedures for manipulating <em>character</em> variables</a></li>
@@ -904,14 +904,10 @@ gfortran -o src/tests/csv_write_test.exe src/tests/csv_write_test.f90.o libcsv.a
 <span class="p">}</span>
 </pre></div>
 </div>
-<p>Teoretycznie potrzebny byłby pełny parser Fortran, aby poradzić sobie z kontynuacjami wierszy oraz innymi trudnościami. Mogłoby być to możliwe do zaimplementowania w <code class="docutils literal notranslate"><span class="pre">awk</span></code>, ale ostatecznie wymagałoby ogromnego skryptu.</p>
-<p>Also, keep in mind that generating the dependencies should be fast, an expensive
-parser can produce a significant overhead when generating dependencies for a large
-code base. Making reasonable assumptions can simplify and speed up this step, but
-also introduces an error source in your build tools.</p>
+<p>Teoretycznie potrzebny byłby pełny parser Fortran, aby poradzić sobie z kontynuacjami wierszy oraz innymi trudnościami. Byłoby to możliwe do zaimplementowania w <code class="docutils literal notranslate"><span class="pre">awk</span></code>, ale ostatecznie wymagałoby ogromnego skryptu.</p>
+<p>Należy również pamiętać, że generowanie zależności powinno być szybkie. Wymagający parser może stwarzać duże koszty ogólne podczas generowania zależności dla dużych baz kodu. Rozsądne założenia mogą uprościć i przyspieszyć ten krok, ale także wprowadzić źródło błędów w narzędziach do kompilacji.</p>
 </div>
-<p>Make the script executable (<code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">gen-deps.awk</span></code>) and test it with
-<code class="docutils literal notranslate"><span class="pre">./gen-deps.awk</span> <span class="pre">$(find</span> <span class="pre">src</span> <span class="pre">-name</span> <span class="pre">'*.[fF]90')</span></code>. You should see output like this:</p>
+<p>Spraw, aby skrypt był wykonalny (<code class="docutils literal notranslate"><span class="pre">chmod</span> <span class="pre">+x</span> <span class="pre">gen-deps.awk</span></code>) oraz przetestuj go za pomocą <code class="docutils literal notranslate"><span class="pre">./gen-deps.awk</span> <span class="pre">$(find</span> <span class="pre">src</span> <span class="pre">-name</span> <span class="pre">'*.[fF]90')</span></code>. Powinnieneś zobaczyć taki wynik:</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>csv_utilities.mod = $(src/csv_utilities.f90)
 csv_kinds.mod = $(src/csv_kinds.f90)
 csv_parameters.mod = $(src/csv_parameters.f90)
@@ -932,15 +928,8 @@ $(src/csv_module.F90) += $(csv_parameters.mod)
 $(src/csv_module.F90) += $(iso_fortran_env.mod)
 </pre></div>
 </div>
-<p>Note that the scripts output will use recursively expanded variables and not
-define any dependencies yet, because out-of-order declaration of variables
-might be necessary and we do not want to create any target by accident.
-You can verify that the same information as in the above handwritten snippet is
-present. The only exception is the additional dependency on the
-<code class="docutils literal notranslate"><span class="pre">iso_fortran_env.mod</span></code>, since it is an undefined variable it will just expand
-to an empty string and not introduce any further dependencies.</p>
-<p>Now, you can finally include this piece in your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> to automate the
-dependency generation:</p>
+<p>Należy pamiętać, że skrypty będą używać zmiennych rozszerzanych rekurencyjnie i nie będą jeszcze definiować żadnych zależności, ponieważ deklaracja zmiennych w nieuporządkowanej kolejności może być konieczna, a nie chcemy przypadkowo utworzyć żadnego docelowego elementu. Możesz także sprawdzić, czy obecne są te same informacje, co w powyższym, ręcznie napisanym fragmencie kodu. Jedynym wyjątkiem jest dodatkowa zależność pliku <code class="docutils literal notranslate"><span class="pre">iso_fortran_env.mod</span></code>. Jest to zmienna niezdefiniowana, dlatego zostanie ona po prostu rozwinięta do pustego ciągu znaków i nie wprowadzi żadnych dalszych zależności.</p>
+<p>Teraz możesz wprowadzić ten fragment w twoim <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, aby zautomatyzować generowanie zależności:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable the default rules</span>
 <span class="nv">MAKEFLAGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>--no-builtin-rules<span class="w"> </span>--no-builtin-variables
 
@@ -1008,18 +997,9 @@ dependency generation:</p>
 <span class="w">	</span><span class="k">$(</span>RM<span class="k">)</span><span class="w"> </span><span class="k">$(</span>filter<span class="w"> </span>%.o,<span class="w"> </span><span class="k">$(</span>OBJS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>TEST_OBJS<span class="k">))</span><span class="w"> </span><span class="k">$(</span>filter<span class="w"> </span>%.d,<span class="w"> </span><span class="k">$(</span>DEPS<span class="k">)</span><span class="w"> </span><span class="k">$(</span>TEST_DEPS<span class="k">))</span><span class="w"> </span><span class="k">$(</span>filter<span class="w"> </span>%.exe,<span class="w"> </span><span class="k">$(</span>TEST_EXE<span class="k">))</span><span class="w"> </span><span class="k">$(</span>LIB<span class="k">)</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>*.mod<span class="k">)</span>
 </pre></div>
 </div>
-<p>Here additional dependency files are generated for each source file individually
-and than included into the main <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>.
-Also, the dependency files are added as dependency to the object files to ensure
-they are generated before the object is compiled. The pipe character in
-the dependencies defines an order of the rules without a timestamp dependency,
-because it is not necessary to recompile an object file in case dependencies are
-regenerated and potentially unchanged.</p>
-<p>Again, we make use of the <code class="docutils literal notranslate"><span class="pre">eval</span></code> function to generate the dependencies in a
-<code class="docutils literal notranslate"><span class="pre">foreach</span></code> loop over all object files. Note that we created a map between
-the object files in the dependency files, expanding <code class="docutils literal notranslate"><span class="pre">dep</span></code> once yields the
-object file name, expanding it again yields the object files it depends on.</p>
-<p>Building your project with <code class="docutils literal notranslate"><span class="pre">make</span></code> should give an output similar to</p>
+<p>Tutaj dodatkowe pliki zależności są generowane indywidualnie dla każdego pliku źródłowego, a później zawarte w głównym <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>. Ponadto, pliki zależności są dodawane jako zależności do plików obiektowych, aby upewnić się, że są generowane zanim obiekt jest skompilowany. Kreska pionowa (ang. pipe) umieszczona w zależnościach definiuje kolejność zasad bez zależności czasowej, ponieważ rekompilacja pliku obiektowego w przypadku, kiedy zależności są odnawiane i potencjalnie niezmienione nie jest konieczna.</p>
+<p>Ponownie, wykorzystaj funkcję <code class="docutils literal notranslate"><span class="pre">eval</span></code> do wygenerowania zależności w pętli <code class="docutils literal notranslate"><span class="pre">foreach</span></code> wykonanej na wszystkich plikach obiektowych. Zauważ, że utworzyliśmy mapę między plikami obiektów w plikach zależności. Rozwinięcie <code class="docutils literal notranslate"><span class="pre">dep</span></code> raz daje nazwę pliku obiektu, a jego ponowne rozwinięcie daje pliki obiektów, od których jest on zależny.</p>
+<p>Kompilacja twojego projektu z użyciem <code class="docutils literal notranslate"><span class="pre">make</span></code> powinna dać podobne wyniki</p>
 <div class="highlight-none notranslate"><div class="highlight"><pre><span></span>./gen-deps.awk src/csv_utilities.f90 &gt; src/csv_utilities.f90.d
 ./gen-deps.awk src/csv_parameters.f90 &gt; src/csv_parameters.f90.d
 ./gen-deps.awk src/csv_module.F90 &gt; src/csv_module.F90.d
@@ -1040,15 +1020,12 @@ gfortran -c -o src/tests/csv_write_test.f90.o src/tests/csv_write_test.f90
 gfortran -o src/tests/csv_write_test.exe src/tests/csv_write_test.f90.o libcsv.a
 </pre></div>
 </div>
-<p>Once the dependency files are generated, <code class="docutils literal notranslate"><span class="pre">make</span></code> will only update them if the
-source changes and not require to rebuild them again for every invocation.</p>
+<p>Kiedy pliki zależności są już wygenerowane <code class="docutils literal notranslate"><span class="pre">make</span></code> będzie je aktualizował tylko w przypadku zmiany źródła, a nie przy każdym wywołaniu.</p>
 <div class="admonition tip">
 <p class="admonition-title">Wskazówka</p>
-<p>With correct dependencies you can leverage parallel execution of your <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>, just use the <code class="docutils literal notranslate"><span class="pre">-j</span></code> flag to create multiple <code class="docutils literal notranslate"><span class="pre">make</span></code> processes.</p>
+<p>Stosując prawidłowe zależności możesz wykorzystać równolegle wykonywanie pliku <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> używając flagi <code class="docutils literal notranslate"><span class="pre">-j</span></code>, aby stworzyć wiele procesów <code class="docutils literal notranslate"><span class="pre">make</span></code>.</p>
 </div>
-<p>Since dependencies can now be generated automatically, there is no need to specify
-the source files explicitly, the <code class="docutils literal notranslate"><span class="pre">wildcard</span></code> function can be used to determine
-them dynamically:</p>
+<p>Ponieważ zależności mogą teraz być generowane automatycznie, nie ma potrzeby jawnego określania plików źródłowych. Aby określić je dynamicznie, możesz użyć funkcji <code class="docutils literal notranslate"><span class="pre">wildcard</span></code>:</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># List of all source files</span>
 <span class="nv">SRCS</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span><span class="k">$(</span>wildcard<span class="w"> </span>src/*.f90<span class="k">)</span><span class="w"> </span><span class="se">\</span>
 <span class="w">        </span><span class="k">$(</span>wildcard<span class="w"> </span>src/*.F90<span class="k">)</span>
