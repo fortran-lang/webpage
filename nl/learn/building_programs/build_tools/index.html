@@ -706,6 +706,11 @@ away from the compiler and platform specifics.</p>
 Choose a build tool you are comfortable working with, it should not get in your
 way while developing. Spending more time on working against your build tools
 than doing actual development work can quickly become frustrating.</p>
+<p>In recent years, the <a class="reference external" href="https://fpm.fortran-lang.org/">Fortran Package Manager</a> tool
+has been in development. The FPM is a package manager and build system for Fortran
+applications. The user interface for the FPM is inspired by Rust’s cargo. The main
+goal of the FPM is to nurture and grow the ecosystem of modern Fortran applications
+and libraries.</p>
 <p>Also, consider the accessibility of your build tools.
 If it is restricted to a specific integrated development environment, can all
 developers on your project access it?
@@ -716,6 +721,55 @@ for the build tools, the perfect build tool will be of no use, if you have to
 learn a complex programming language first to add a new source file.
 Finally, consider what other project are using, those you are depending on and
 those that use (or will use) your project as dependency.</p>
+<section id="using-the-fpm-as-a-build-tool">
+<h2>Using the FPM as a build tool<a class="headerlink" href="#using-the-fpm-as-a-build-tool" title="Link to this heading">#</a></h2>
+<p>First, we have to install the FPM to our system. Click <a class="reference external" href="https://fpm.fortran-lang.org/install/index.html">here</a>
+for detailed instructions. For simplicity, on Linux (or WSL2)</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">fortran</span><span class="o">-</span><span class="n">lang</span><span class="o">/</span><span class="n">fpm</span>
+<span class="n">cd</span> <span class="n">fpm</span>
+<span class="o">./</span><span class="n">install</span><span class="o">.</span><span class="n">sh</span> 
+</pre></div>
+</div>
+<p>FPM will be installed in ~/.local/bin/fpm. We will start by creating a simple project using the FPM itself
+by doing <code class="docutils literal notranslate"><span class="pre">fpm</span> <span class="pre">new</span> <span class="pre">first_steps</span></code>. This will create a project with a fpm.toml file that will look like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;first_steps&quot;</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
+<span class="n">license</span> <span class="o">=</span> <span class="s2">&quot;license&quot;</span>
+<span class="n">author</span> <span class="o">=</span> <span class="s2">&quot;T. Rex.&quot;</span>
+<span class="n">maintainer</span> <span class="o">=</span> <span class="s2">&quot;t.rex@example.com&quot;</span>
+<span class="n">copyright</span> <span class="o">=</span> <span class="s2">&quot;Copyright 2021, T. Rex.&quot;</span>
+<span class="p">[</span><span class="n">build</span><span class="p">]</span>
+<span class="n">auto</span><span class="o">-</span><span class="n">executables</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">auto</span><span class="o">-</span><span class="n">tests</span> <span class="o">=</span> <span class="n">true</span>
+<span class="n">auto</span><span class="o">-</span><span class="n">examples</span> <span class="o">=</span> <span class="n">true</span>
+<span class="p">[</span><span class="n">install</span><span class="p">]</span>
+<span class="n">library</span> <span class="o">=</span> <span class="n">false</span>
+</pre></div>
+</div>
+<p>The <code class="docutils literal notranslate"><span class="pre">fpm.toml</span></code> file is our main control for how our application will be built, also known as our “package manifest”.
+Our sample project looks like this:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>├── README.md
+├── app
+│   └── main.f90
+├── fpm.toml
+├── src
+│   └── first_steps.f90
+└── test
+    └── check.f90
+</pre></div>
+</div>
+<p>The FPM allows us to easily add tests and gracefully separate our main subroutines from the main program by creating
+the <code class="docutils literal notranslate"><span class="pre">app/main.f90</span></code> directory and file. It is a good practice to separate this since your <code class="docutils literal notranslate"><span class="pre">main.f90</span></code> file should be a
+simple fail that is mostly in charged of launching the program. This is a good practice in case your project grows
+to become quite large! You will see that the <code class="docutils literal notranslate"><span class="pre">first_steps.f90</span></code> file contains a module and a subroutine to basically
+say “hello!” from your Fortan program. <em>Grosso modo</em>:</p>
+<ul class="simple">
+<li><p>How to build <code class="docutils literal notranslate"><span class="pre">fpm</span> <span class="pre">build</span></code></p></li>
+<li><p>To run <code class="docutils literal notranslate"><span class="pre">fpm</span> <span class="pre">run</span></code></p></li>
+<li><p>To install <code class="docutils literal notranslate"><span class="pre">fpm</span> <span class="pre">install</span></code> the default install location is <code class="docutils literal notranslate"><span class="pre">~/local/bin</span></code></p></li>
+<li><p>To install the executable to a custom location <code class="docutils literal notranslate"><span class="pre">fpm</span> <span class="pre">install</span> <span class="pre">--prefix</span> <span class="pre">/a/path/to/custom/location</span></code></p></li>
+</ul>
+</section>
 <section id="using-make-as-build-tool">
 <h2>Using make as build tool<a class="headerlink" href="#using-make-as-build-tool" title="Link to this heading">#</a></h2>
 <p>The most well-known and commonly used build system is called <code class="docutils literal notranslate"><span class="pre">make</span></code>.
@@ -1278,6 +1332,7 @@ with extended description of various aspects how to handle the build process,
 </div>
 
 <nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-the-fpm-as-a-build-tool">Using the FPM as a build tool</a></li>
 <li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#using-make-as-build-tool">Using make as build tool</a><ul class="nav section-nav flex-column">
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#recursively-expanded-variables">Recursively expanded variables</a></li>
 <li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#comments-and-whitespace">Comments and whitespace</a></li>

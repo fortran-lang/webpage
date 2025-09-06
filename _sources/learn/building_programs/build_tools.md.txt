@@ -37,6 +37,12 @@ Choose a build tool you are comfortable working with, it should not get in your
 way while developing. Spending more time on working against your build tools
 than doing actual development work can quickly become frustrating.
 
+In recent years, the [Fortran Package Manager](https://fpm.fortran-lang.org/) tool 
+has been in development. The FPM is a package manager and build system for Fortran 
+applications. The user interface for the FPM is inspired by Rust's cargo. The main 
+goal of the FPM is to nurture and grow the ecosystem of modern Fortran applications 
+and libraries. 
+
 Also, consider the accessibility of your build tools.
 If it is restricted to a specific integrated development environment, can all
 developers on your project access it?
@@ -47,6 +53,61 @@ for the build tools, the perfect build tool will be of no use, if you have to
 learn a complex programming language first to add a new source file.
 Finally, consider what other project are using, those you are depending on and
 those that use (or will use) your project as dependency.
+
+## Using the FPM as a build tool 
+
+First, we have to install the FPM to our system. Click [here](https://fpm.fortran-lang.org/install/index.html)
+for detailed instructions. For simplicity, on Linux (or WSL2) 
+
+```
+git clone https://github.com/fortran-lang/fpm
+cd fpm
+./install.sh 
+```
+
+FPM will be installed in ~/.local/bin/fpm. We will start by creating a simple project using the FPM itself
+by doing `fpm new first_steps`. This will create a project with a fpm.toml file that will look like this:
+
+```
+name = "first_steps"
+version = "0.1.0"
+license = "license"
+author = "T. Rex."
+maintainer = "t.rex@example.com"
+copyright = "Copyright 2021, T. Rex."
+[build]
+auto-executables = true
+auto-tests = true
+auto-examples = true
+[install]
+library = false
+```
+
+The `fpm.toml` file is our main control for how our application will be built, also known as our "package manifest". 
+Our sample project looks like this:
+
+```
+├── README.md
+├── app
+│   └── main.f90
+├── fpm.toml
+├── src
+│   └── first_steps.f90
+└── test
+    └── check.f90
+```
+
+The FPM allows us to easily add tests and gracefully separate our main subroutines from the main program by creating 
+the `app/main.f90` directory and file. It is a good practice to separate this since your `main.f90` file should be a 
+simple fail that is mostly in charged of launching the program. This is a good practice in case your project grows
+to become quite large! You will see that the `first_steps.f90` file contains a module and a subroutine to basically 
+say "hello!" from your Fortan program. _Grosso modo_: 
+
+- How to build `fpm build`
+- To run `fpm run`
+- To install `fpm install` the default install location is `~/local/bin`
+- To install the executable to a custom location `fpm install --prefix /a/path/to/custom/location` 
+
 
 ## Using make as build tool
 
