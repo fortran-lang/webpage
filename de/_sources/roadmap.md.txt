@@ -188,7 +188,7 @@ using Sphinx and MyST Markdown. The documentation should include:
 
 ### Extension Localizations
 
-The aim of the project is to localize the Modern Fortran for Visual Studio Code extension into other languages. There is already extensive documentation on how to localize Visual Studio Code extensions, and we already have tools in place to help with the process, see for example [fortran-lang.org](https://fortran-lang.org/en/).
+The aim of the project is to localize the Modern Fortran for Visual Studio Code extension into other languages. There is already extensive documentation on how to localize Visual Studio Code extensions, and we already have tools in place to help with the process, see for example [fortran-lang.org](https://fortran-lang.org).
 
 **Related issues:**
 
