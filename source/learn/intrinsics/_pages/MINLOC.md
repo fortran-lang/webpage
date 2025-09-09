@@ -1,3 +1,4 @@
+(minloc)=
 ## minloc
 
 ### **Name**

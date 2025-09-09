@@ -78,7 +78,7 @@ Community support is available at the [HPC compiler forum](https://forums.develo
 
 <h4> <b> HPE / Cray</b></h4>
 
-The [Cray Compiling Environment (CCE)]([https://www.cray.com/sites/default/files/SB-Cray-Programming-Environment.pdf](https://developer.hpe.com/platform/hpe-cray-programming-environment/home/))
+The [Cray Compiling Environment (CCE)](https://developer.hpe.com/platform/hpe-cray-programming-environment/home/)
 is the cornerstone innovation of Cray's adaptive computing paradigm. CCE builds
 on a well-developed and sophisticated Cray technology base that identifies
 regions of computation that are either sequential scalar, vector parallel or

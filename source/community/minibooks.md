@@ -40,7 +40,7 @@ The steps required for publishing a single-page mini-book are:
 
 - Write your tutorial content
 
-- Add an entry to [data/learning.yml](./data/learning.yml) for your new mini-book
+- Add an entry to [data/learning.yml][learning_yml] for your new mini-book
 
 - Open a pull request
 
@@ -118,7 +118,7 @@ In markdown, headings can be written as:
 ### 1.3 Add your mini-book to the Learn page
 
 To add your new mini-book to the _Learn_ page, you need to add a new entry
-in the [data/learning.yml](./data/learning.yml) datafile.
+in the [data/learning.yml][learning_yml] datafile.
 
 Open this file and create a new entry under the `books:` field in the following format:
 
@@ -153,7 +153,7 @@ Save the modified `learning.yml` data file and run fortran_package.py and rebuil
 If successful, a new link should appear on the \_Learn* page with the title of your new mini-book.
 
 Once you have completed your mini-book and added an entry to the `learning.yml` data file, open a pull request
-at <https://github.com/fortran-lang/webpage> (see [CONTRIBUTING](./CONTRIBUTING.md)).
+at <https://github.com/fortran-lang/webpage> (see [CONTRIBUTING][contributing_md]).
 
 ## 2. Multi-page mini-books
 
@@ -165,7 +165,7 @@ The steps required for publishing a multi-page mini-book are:
 
 - Write your tutorial content in markdown files in your new folder
 
-- Add an entry to [data/learning.yml](./data/learning.yml) for your new mini-book
+- Add an entry to [data/learning.yml][learning_yml] for your new mini-book
 
 - Open a pull request
 
@@ -218,7 +218,7 @@ Each heading on the current page will show up in the inpage table-of-contents.
 ### 2.3 Add your mini-book to the Learn page
 
 To add your new mini-book to the _Learn_ page, you need to add a new entry
-in the [data/learning.yml](./data/learning.yml) datafile.
+in the [data/learning.yml][learning_yml] datafile.
 
 Open this file and create a new entry under the `books:` field in the following format:
 
@@ -263,4 +263,7 @@ Save the modified `learning.yml` data file and run fortran*package.py and rebuil
 If successful, a new link should appear on the \_Learn* page with the title of your new mini-book.
 
 Once you have completed your mini-book and added an entry to the `learning.yml` data file, open a pull request
-at <https://github.com/fortran-lang/fortran-lang.org> (see [CONTRIBUTING](./CONTRIBUTING.md)).
+at <https://github.com/fortran-lang/fortran-lang.org> (see [CONTRIBUTING][contributing_md]).
+
+[learning_yml]: https://github.com/fortran-lang/webpage/blob/main/data/learning.yml
+[contributing_md]: https://github.com/fortran-lang/webpage/blob/main/CONTRIBUTING.md

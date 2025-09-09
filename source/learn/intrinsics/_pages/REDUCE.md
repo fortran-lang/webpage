@@ -1,3 +1,4 @@
+(reduce)=
 ## reduce
 
 ### **Name**

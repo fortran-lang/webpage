@@ -94,13 +94,13 @@ There are two candidates:
 - [OpenTeams](https://openteams.com) and [QuanSight](https://quansight.com) hosted Ondřej Čertík and Milan Curcic
   in the Episode 40 of the Open Source Directions Webinar.
   They talked about the current state and future of Fortran, as well as about building the Fortran community and developer tools.
-  Read more about it and watch the video [here](/newsletter/2020/04/18/Fortran-Webinar/).
+  Read more about it and watch the video [here](/news/2020/04-18-Fortran-Webinar/).
 - [FortranCon 2020](https://tcevents.chem.uzh.ch/event/12) will take place on July 2-4 in Zurich, Switzerland.
   Virtual participation is enabled for both attendees and speakers.
   Registration is free and due by June 1, 2020.
 - J3/WG5 joint meeting will take place on October 12-16 in Las Vegas, Nevada.
   You can submit a proposal for the Standards committee [here](https://github.com/j3-fortran/fortran_proposals).
-  For reference, you can read the [notes from the February meeting](/newsletter/2020/02/28/J3-february-meeting).
+  For reference, you can read the [notes from the February meeting](/news/2020/02-28-J3-february-meeting).
 
 ## Who's hiring?
 

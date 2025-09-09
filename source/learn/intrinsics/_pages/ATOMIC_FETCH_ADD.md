@@ -1,3 +1,4 @@
+(atomic_fetch_add)=
 ## atomic_fetch_add
 
 ### **Name**

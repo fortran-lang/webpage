@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-01 14:47+0530\n"
-"PO-Revision-Date: 2024-11-01 09:00+0000\n"
+"PO-Revision-Date: 2025-08-19 17:02+0000\n"
 "Last-Translator: Agnieszka Ziora <agaxx02@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pl/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.8.2-dev\n"
+"X-Generator: Weblate 5.13\n"
 "Generated-By: Babel 2.10.3\n"
 
 #: ../../source/community.md:10
@@ -887,7 +887,7 @@ msgstr "Fortran jest szybki, fajny i sławny."
 
 #: ../../source/community/minibooks.md:1
 msgid "Mini-book Tutorials on fortran-lang.org"
-msgstr "Poradniki do mini-książek na fortran-lang.org"
+msgstr "Poradniki w formie mini-książek na fortran-lang.org"
 
 #: ../../source/community/minibooks.md:3
 msgid ""
@@ -2471,7 +2471,7 @@ msgstr ""
 
 #: ../../source/learn.md:73
 msgid "Mini-book Tutorials"
-msgstr "Poradniki mini-książek"
+msgstr "Poradniki w formie mini-książek"
 
 #: ../../source/learn.md:80 ../../source/learn/building_programs/project_make.md:33
 msgid "Getting started"
@@ -4779,6 +4779,10 @@ msgid ""
 "first line, like with Fortran's `implicit none` we do not want to have "
 "implicit rules messing up our `Makefile` in surprising and harmful ways."
 msgstr ""
+"Jako że zaczynasz od `make`, zdecydowanie zalecamy, aby zawsze zawierać "
+"pierwszy wiersz, podobnie jak w przypadku `implicit none` języka Fortran, "
+"nie chcemy, aby niejawne reguły zakłócały działanie naszego `Makefile` w "
+"zaskakujący i szkodliwy sposób."
 
 #: ../../source/learn/building_programs/build_tools.md:244
 msgid ""
@@ -4792,6 +4796,15 @@ msgid ""
 "deletes all the build artifacts again such that we indeed start with a clean "
 "directory."
 msgstr ""
+"Następnie, mamy sekcję konfiguracji, gdzie definiujemy zmienne, w przypadku "
+"jeśli chcemy zmienić nasz kompilator może to być z łatwością zrobione tutaj. "
+"Wprowadzamy także zmienną `SRCS` do przechowywania wszystkich plików "
+"źródłowych, co jest bardziej intuicyjne niż określanie plików obiektowych. "
+"Możemy z łatwością stworzyć plik obiektowy poprzez dodanie sufiksu `.o` przy "
+"użyciu funkcji `addsuffix`. `.PHONY` jest specjalną regułą. która powinna "
+"być używana dla każdego punktu wejścia w `Makefile`, tutaj definiujemy dwa "
+"punkty wejścia, _all_, już znamy, a nowa reguła _clean_ usuwa ponownie "
+"wszystkie artefakty kompilacji, tak że zaczynamy od czystego folderu."
 
 #: ../../source/learn/building_programs/build_tools.md:255
 msgid ""
@@ -4801,6 +4814,11 @@ msgid ""
 "added a dependency for the object files on the `Makefile` itself, in case you"
 " change the compiler, this will allow you to safely rebuild."
 msgstr ""
+"Ponadto, zmieniliśmy odrobinę regułę budowania dla plików obiektowych, aby "
+"uwzględnić dodanie sufiksu `.o` zamiast go zastępować. Zwróćmy uwagę, że "
+"nadal musimy jawnie zadeklarować zależności w `Makefile`. Dodaliśmy również "
+"zależność dla plików obiektowych w samym `Makefile`, w przypadku zmiany "
+"kompilatora pozwoli to na bezpieczną rekompilację."
 
 #: ../../source/learn/building_programs/build_tools.md:261
 msgid ""
@@ -4808,6 +4826,9 @@ msgid ""
 "you plan to use `make` more extensively, we have compiled a few tips for you "
 "as well."
 msgstr ""
+"Teraz wiemy już wystarczająco o `make`, aby używać go do kompilowania "
+"mniejszych projektów. Jeśli planujesz używać `make` bardziej szczegółowo, "
+"zebraliśmy dla ciebie parę wskazówek."
 
 #: ../../source/learn/building_programs/build_tools.md:266
 msgid ""
@@ -4817,6 +4838,11 @@ msgid ""
 "not feel confident working with `make`, but explicitly declare all variables "
 "and rules."
 msgstr ""
+"W tym poradniku pominęliśmy lub wyłączyliśmy wiele z powszechnie używanych "
+"funkcji `make`, które mogą być szczególnie kłopotliwe jeśli zostaną użyte "
+"niewłaściwie. Zalecamy unikanie wbudowanych reguł i zmiennych, jeśli nie "
+"czujesz się pewnie pracując z `make`, a jawne deklarowanie wszystkich "
+"zmiennych i reguł."
 
 #: ../../source/learn/building_programs/build_tools.md:271
 msgid ""
@@ -4826,10 +4852,16 @@ msgid ""
 "therefore not used alone but combined with other tools to generate the "
 "`Makefile` completely or in parts."
 msgstr ""
+"Przekonasz się, że `make` jest dobrym narzędziem do zautomatyzowania "
+"krótkich współzależnych przepływów pracy i kompilowania mniejszych "
+"projektów. Jednak dla większych projektów, prawdopodobnie szybko zetkniesz "
+"się z jego ograniczeniami. Z tego powodu, `make` nie jest używane "
+"samodzielnie, ale połączone z innymi narzędziami, aby wygenerować `Makefile` "
+"w całości lub częściowo."
 
 #: ../../source/learn/building_programs/build_tools.md:278
 msgid "Recursively expanded variables"
-msgstr ""
+msgstr "Zmienne rozszerzane rekurencyjnie"
 
 #: ../../source/learn/building_programs/build_tools.md:280
 msgid ""
@@ -4839,24 +4871,35 @@ msgid ""
 "defined as rules, which are expanded at runtime, rather than being defined "
 "while parsing."
 msgstr ""
+"Często w wielu projektach można zobaczyć zmienne rozszerzane rekurencyjnie ("
+"zadeklarowane za pomocą `=` zamiast `:=`). Rozszerzanie rekurencyjne "
+"zmiennych pozwala na deklarowanie poza kolejnością i inne sprytne sztuczki z "
+"`make`, ponieważ są one zdefiniowane jako reguły, które są rozszerzane w "
+"czasie wykonania , a nie definiowane podczas przetwarzania."
 
 #: ../../source/learn/building_programs/build_tools.md:285
 msgid ""
 "For example, declaring and using your Fortran flags with this snippet will "
 "work completely fine:"
 msgstr ""
+"Na przykład zadeklarowanie i użycie flag Fortranu za pomocą tego fragmentu "
+"kodu będzie działać całkowicie poprawnie:"
 
 #: ../../source/learn/building_programs/build_tools.md:297
 msgid ""
 "You should find the expected (or maybe unexpected) printout after running "
 "`make`"
 msgstr ""
+"Powinieneś znaleźć oczekiwany (lub może nieoczekiwany) rezultat po wykonaniu "
+"`make`"
 
 #: ../../source/learn/building_programs/build_tools.md:303
 msgid ""
 "appending with `+=` to an undefined variable will produce a recursively "
 "expanded variable with this state being inherited for all further appending."
 msgstr ""
+"dołączenie `+=` do niezdefiniowanej zmiennej stworzy zmienną rozszerzoną "
+"rekurencyjnie, a ten stan będzie dziedziczony przy każdym dalszym dołączeniu."
 
 #: ../../source/learn/building_programs/build_tools.md:306
 msgid ""
@@ -4865,16 +4908,22 @@ msgid ""
 "your compiler, there is little reason to actually use the recursive expansion"
 " at all."
 msgstr ""
+"Podczas gdy może się wydawać to interesującą funkcją, czasem prowadzi do "
+"niespodziewanych i nieoczekiwanych rezultatów. Zwykle, podczas definiowania "
+"zmiennych jak twój kompilator, nie ma powodu, aby w ogóle używać "
+"rozszerzenia rekurencyjnego."
 
 #: ../../source/learn/building_programs/build_tools.md:310
 msgid "The same can easily be achieved using the `:=` declaration:"
-msgstr ""
+msgstr "To samo może być z łatwością osiągnięte poprzez użycie deklaracji `:=`:"
 
 #: ../../source/learn/building_programs/build_tools.md:322
 msgid ""
 "always think of a `Makefile` as a whole set of rules, it must be parsed "
 "completely before any rule can be evaluated."
 msgstr ""
+"zawsze myśl o `Makefile` jako o całym zbiorze reguł, musi być przetworzony w "
+"całości zanim jakakolwiek zasada zostanie określona."
 
 #: ../../source/learn/building_programs/build_tools.md:325
 msgid ""
@@ -4882,10 +4931,13 @@ msgid ""
 "done carefully, of course. It is important to be aware of the differences "
 "between the two kinds and the respective implications."
 msgstr ""
+"Możesz używać jakichkolwiek zmiennych, które lubisz, jednak powinieneś być "
+"ostrożny przy mieszaniu ich. Ważnym jest, aby być świadomym różnic pomiędzy "
+"tymi dwoma typami i ich konsekwencjami."
 
 #: ../../source/learn/building_programs/build_tools.md:329
 msgid "Comments and whitespace"
-msgstr ""
+msgstr "Komentarze i znaki białe"
 
 #: ../../source/learn/building_programs/build_tools.md:331
 msgid ""
@@ -4896,6 +4948,13 @@ msgid ""
 "file names. If you encounter such case, renaming the file is possibly the "
 "easiest solution at hand."
 msgstr ""
+"Istnieją pewne zastrzeżenia dotyczące znaków białych i komentarzy, które "
+"mogą się od czasu do czasu pojawiać podczas używania `make`. Po pierwsze, "
+"`make` nie zna żadnego typu danych poza ciągami znaków, a domyślnym "
+"separatorem jest po prostu spacja. Oznacza to, że `make` będzie miał "
+"trudności ze zbudowaniem projektu, który ma spacje w nazwach plików. Jeśli "
+"napotkasz taki przypadek, zmiana nazwy pliku jest prawdopodobnie "
+"najłatwiejszym rozwiązaniem."
 
 #: ../../source/learn/building_programs/build_tools.md:338
 msgid ""
@@ -4903,10 +4962,13 @@ msgid ""
 "`make` will happily carry it along and it does in fact make a difference when"
 " comparing strings in `make`."
 msgstr ""
+"Kolejnym powszechnym problemem są spacje na początku i na końcu. Po ich "
+"wprowadzeniu `make` bez problemu je zachowa, co ma znaczenie przy "
+"porównywaniu ciągów znaków w `make`."
 
 #: ../../source/learn/building_programs/build_tools.md:342
 msgid "Those can be introduced by comments like"
-msgstr ""
+msgstr "Można je wprowadzić przy pomocy komentarzy tak jak tutaj"
 
 #: ../../source/learn/building_programs/build_tools.md:350
 msgid ""
@@ -4914,6 +4976,9 @@ msgid ""
 "spaces are now part of the variable content. Run `make` and check that this "
 "is indeed the case:"
 msgstr ""
+"Podczas gdy komentarz zostanie poprawnie usunięty przez `make`, dwie spacje "
+"na końcu są teraz częścią zawartości zmiennej. Wykonaj `make` i sprawdź czy "
+"tak jest w rzeczywistości:"
 
 #: ../../source/learn/building_programs/build_tools.md:359
 msgid ""
@@ -4921,6 +4986,9 @@ msgid ""
 " with the `strip` function instead. Alternatively, you could try to `join` "
 "the strings."
 msgstr ""
+"Aby rozwiązać ten problem, możesz przesunąć komentarz lub usunąć spację za "
+"pomocą funkcji `strip`. Alternatywnym rozwiązaniem może być spróbowanie na "
+"złączenie ciągu znaków przy użyciu `join`."
 
 #: ../../source/learn/building_programs/build_tools.md:370
 msgid ""
@@ -4928,10 +4996,13 @@ msgid ""
 "therefore, it is prudent to pay extra attention to whitespace and comments "
 "when writing and using `make`."
 msgstr ""
+"Koniec końców, żadne z tych rozwiązań nie sprawią, że twój `Makefile` będzie "
+"bardziej czytelny, dlatego rozsądnym jest, aby zwracać uwagę na znaki białe "
+"i komentarze podczas robienia i używania `make`."
 
 #: ../../source/learn/building_programs/build_tools.md:374
 msgid "The meson build system"
-msgstr ""
+msgstr "System kompilacji Meson"
 
 #: ../../source/learn/building_programs/build_tools.md:376
 msgid ""
@@ -4942,6 +5013,13 @@ msgid ""
 "will deal for you with how and generate build files for a low-level build "
 "system."
 msgstr ""
+"Po tym jak nauczyliśmy się już podstaw `make`, które nazywamy systemem "
+"kompilacji niskiego poziomu, teraz możemy zapoznać się z systemem kompilacji "
+"wysokiego poziomu jakim jest `meson`. Podczas gdy w systemie niskiego "
+"poziomu musimy sprecyzować jak skompilować nasz program, w systemie "
+"wysokiego poziomu precyzujemy co skompilować. System wysokiego poziomu "
+"zajmie się sposobem i wygeneruje pliki kompilacji dla systemu kompilacji "
+"niskiego poziomu."
 
 #: ../../source/learn/building_programs/build_tools.md:383
 msgid ""
@@ -4949,10 +5027,14 @@ msgid ""
 "`meson` because it is constructed to be particularly user friendly. The "
 "default low-level build-system of `meson` is called `ninja`."
 msgstr ""
+"Istnieje wiele systemów kompilacji wysokiego poziomu, ale tutaj skupimy się "
+"na systemie `meson`, ponieważ jest skonstruowany w sposób przyjazny dla "
+"użytkownika. Domyślny, niskopoziomowy system kompilacji `meson` nazywa się "
+"`ninja`."
 
 #: ../../source/learn/building_programs/build_tools.md:387
 msgid "Let's have a look at a complete `meson.build` file:"
-msgstr ""
+msgstr "Spójrzmy na kompletny plik `meson.build`:"
 
 #: ../../source/learn/building_programs/build_tools.md:396
 msgid ""
@@ -4960,6 +5042,9 @@ msgid ""
 "system with `meson setup build`, you should see output somewhat similar to "
 "this"
 msgstr ""
+"I już skończyliśmy, następnym krokiem jest skonfigurowanie naszego systemu "
+"kompilacji niskiego poziomu za pomocą `meson setup build`, powinieneś "
+"zobaczyć dane wyjściowe nieco podobne do tego"
 
 #: ../../source/learn/building_programs/build_tools.md:414
 msgid ""
@@ -4967,6 +5052,10 @@ msgid ""
 " we could have provided in a `Makefile`, let's run the build with `ninja -C "
 "build`, which should show something like"
 msgstr ""
+"Informacje przedstawione tutaj są już w tym momencie dużo bardziej "
+"szczegółowe niż cokolwiek, co moglibyśmy zobaczyć w `Makefile`, teraz "
+"rozpocznijmy kompilację przy pomocy `ninja -C build`, która powinna pokazać "
+"coś takiego"
 
 #: ../../source/learn/building_programs/build_tools.md:423
 msgid ""
@@ -4975,6 +5064,10 @@ msgid ""
 "`Makefile` (including the dependency), yet we did not have to specify them, "
 "have a look at your `meson.build` file again:"
 msgstr ""
+"Znajdź i przetestuj swój program w `build/my_prog`, aby upewnić się, że "
+"działa prawidłowo. Możemy zauważyć, że kroki, które wykonał `ninja` są takie "
+"same, jak te, które zakodowalibyśmy w `Makefile` (w tym zależności), ale nie "
+"musieliśmy ich określać, spójrz ponownie na swój plik `meson.build`:"
 
 #: ../../source/learn/building_programs/build_tools.md:433
 msgid ""
@@ -4984,6 +5077,10 @@ msgid ""
 "We had not to tell `meson` how to build the project, it figured this out by "
 "itself."
 msgstr ""
+"Sprecyzowaliśmy tylko, że program jest projektem Fortran (który wymaga "
+"odpowiedniej wersji `meson`) i kazaliśmy `meson` zbudować plik wykonywalny "
+"`my_prog` z plików `tabulate.f90` i `functions.f90`. Nie musieliśmy "
+"precyzować jak zbudować projekt, `meson` zrobił to sam."
 
 #: ../../source/learn/building_programs/build_tools.md:441
 msgid ""
@@ -4992,6 +5089,11 @@ msgid ""
 " or to cross-compile your project for other platforms. Similarly, the "
 "`meson.build` file is portable and will work on different platforms as well."
 msgstr ""
+"`meson` jest międzyplatformowym systemem kompilacji, projekt, który właśnie "
+"określiłeś dla swojego programu, może być użyty do kompilacji plików "
+"binarnych dla twojego natywnego systemu operacyjnego lub do cross-kompilacji "
+"twojego projektu dla innych platform. Podobnie, plik `meson.build` jest "
+"przenośny i będzie działał również na różnych platformach."
 
 #: ../../source/learn/building_programs/build_tools.md:448
 msgid ""
@@ -4999,16 +5101,22 @@ msgid ""
 "href=\"https://mesonbuild.com/\" target=\"_blank\" rel=\"noopener\">meson-"
 "build webpage</a>."
 msgstr ""
+"Dokumentację systemu `meson` można znaleźć na <a href=\"https://mesonbuild."
+"com/\" target=\"_blank\" rel=\"noopener\">stronie internetowej kompilatora "
+"meson</a>."
 
 #: ../../source/learn/building_programs/build_tools.md:451
 msgid "Creating a CMake project"
-msgstr ""
+msgstr "Tworzenie projektu CMake"
 
 #: ../../source/learn/building_programs/build_tools.md:453
 msgid ""
 "Similar to `meson` CMake is a high-level build system as well and commonly "
 "used to build Fortran projects."
 msgstr ""
+"Podobnie jak `meson` CMake jest również wysokopoziomowym systemem "
+"kompilacji, który jest powszechnie używany do kompilowania projektów w "
+"języku Fortran."
 
 #: ../../source/learn/building_programs/build_tools.md:457
 msgid ""
@@ -5017,10 +5125,15 @@ msgid ""
 "that you can do almost everything with CMake, but your CMake build files can "
 "also become as complex as the program you are building."
 msgstr ""
+"CMake stosuję nieco inna strategię i zapewnia kompletny język programowania "
+"do tworzenia twoich plików kompilacji. Największą zaletą tego rozwiązania "
+"jest to, że możesz zrobić prawie wszystko za pomocą CMake, ale twoje pliki "
+"kompilacji CMake mogą stać się bardzo złożone tak samo jak program, który "
+"kompilujesz."
 
 #: ../../source/learn/building_programs/build_tools.md:464
 msgid "Start by creating the file `CMakeLists.txt` with the content"
-msgstr ""
+msgstr "Rozpocznij przez stworzenie pliku `CMakeLists.txt` z taką zawartością"
 
 #: ../../source/learn/building_programs/build_tools.md:472
 msgid ""
@@ -5028,6 +5141,10 @@ msgid ""
 "configure our low-level build files with `cmake -B build -G Ninja`, you "
 "should see output similar to this"
 msgstr ""
+"Podobnie jak w systemie `meson` już skończyliśmy z naszymi plikami "
+"kompilacji CMake. Konfigurujemy nasze niskopoziomowe pliki kompilacji przy "
+"pomocy `cmake -B build -G Ninja` i powinniśmy zobaczyć rezultat podobny do "
+"tego"
 
 #: ../../source/learn/building_programs/build_tools.md:486
 msgid ""
@@ -5037,12 +5154,19 @@ msgid ""
 " environment variable `FC=gfortran` rerunning should show the correct "
 "compiler name now"
 msgstr ""
+"Możesz być zaskoczony tym, że CMake próbuje używać kompilatora `f95`, na "
+"szczęście jest to tylko symboliczny link do `gfortran` w większości "
+"systemów, a nie rzeczywisty kompilator `f95`. Aby dać CMake lepszą "
+"podpowiedź, możesz wyeksportować zmienną środowiskową `FC=gfortran`, a po "
+"ponownym uruchomieniu powinien teraz pokazać poprawną nazwę kompilatora"
 
 #: ../../source/learn/building_programs/build_tools.md:502
 msgid ""
 "In a similar manner you could use your Intel Fortran compiler instead to "
 "build your project (set `FC=ifort`)."
 msgstr ""
+"W podobny sposób możesz użyć kompilatora Intel Fortran do skompilowania "
+"swojego projektu (ustaw `FC=ifort` )."
 
 #: ../../source/learn/building_programs/build_tools.md:505
 msgid ""
@@ -5050,6 +5174,10 @@ msgid ""
 "is platform specific, we will just use `ninja` since we already used it "
 "together with `meson`. As before, build your project with `ninja -C build`:"
 msgstr ""
+"CMake wspiera kilka plików kompilacyjnych niskiego poziomu. Jako, że "
+"standardowy jest używany dla konkretnych platform, użyjemy po prostu `ninja`"
+", ponieważ już wcześniej użyliśmy go razem z `meson`. Tak jak wcześniej, "
+"kompilujemy nasz program za pomocą `ninja -C build`:"
 
 #: ../../source/learn/building_programs/build_tools.md:516
 msgid ""
@@ -5059,12 +5187,20 @@ msgid ""
 "of building a project. Fortunately, we do not have to concern ourselves but "
 "have our build system handle those details for us."
 msgstr ""
+"Znajdź i przetestuj swój program za pomocą `build/my_prog`, aby upewnić się, "
+"że działa prawidłowo. Kroki, które wykonał `ninja` są w pewnym sensie inne, "
+"ponieważ zazwyczaj istnieje więcej niż jeden sposób na napisanie plików "
+"kompilacyjnych niskiego poziomu, aby skompilować program. Na szczęście, nie "
+"musimy się tym martwić, ponieważ nas system kompilacji może zająć się tymi "
+"detalami za nas."
 
 #: ../../source/learn/building_programs/build_tools.md:522
 msgid ""
 "Finally, we will shortly recap on our complete `CMakeLists.txt` to specify "
 "our project:"
 msgstr ""
+"Na koniec szybko podsumujemy nasz skończony `CMakeLists.txt` żeby "
+"sprecyzować nasz projekt:"
 
 #: ../../source/learn/building_programs/build_tools.md:531
 msgid ""
@@ -5073,6 +5209,11 @@ msgid ""
 " knows the details how to build the executable from the specified sources, so"
 " we do not have to worry about the actual steps in the build process."
 msgstr ""
+"Sprecyzowaliśmy już, że projekt jest projektem Fortran i powiedzieliśmy "
+"CMake, aby stworzył plik wykonywalny `my_prog` z plików `tabulate.f90` i "
+"`functions.f90`. CMake sam wie jak skompilować plik wykonywalny ze "
+"wskazanych źródeł, dlatego nie musimy się martwić żadnymi właściwymi krokami "
+"procesu kompilacji."
 
 #: ../../source/learn/building_programs/build_tools.md:537
 msgid ""
@@ -5083,11 +5224,17 @@ msgid ""
 "While it covers all functionality of CMake, it sometimes covers them only "
 "very briefly."
 msgstr ""
+"Szczegółowe informacje na temat narzędzia CMake znajdują się na oficjalnej "
+"stronie internetowej <a href=\"https://cmake.org/cmake/help/latest/\", "
+"target=\"\\_blank\" rel=\"noopener\">CMake</a>. Strona składa się ze stron "
+"podręcznika ekranowego (manpage), które są dostępne również w lokalnej "
+"wersji CMake po użyciu `man cmake`. Pomimo tego, że opisane są tam wszystkie "
+"funkcje CMake, są one czasami opisane bardzo powierzchownie."
 
 #: ../../source/learn/building_programs/compiling_source.md:1
 #: ../../source/learn/building_programs/index.md:47
 msgid "Compiling the source code"
-msgstr ""
+msgstr "Kompilowanie kodu źródłowego"
 
 #: ../../source/learn/building_programs/compiling_source.md:3
 msgid ""
@@ -5097,10 +5244,16 @@ msgid ""
 "compilers will produce different object codes from the same source code and "
 "the naming conventions are different."
 msgstr ""
+"Pierwszym krokiem procesu tworzenia programów jest skompilowane kodu "
+"źródłowego. Wynikiem tego kroku jest stworzenie pliku obiektowego - "
+"zawierającego zbiór instrukcji dla komputera wygenerowanego z kodu "
+"źródłowego czytelnego dla człowieka. Różne kompilatory mogą tworzyć różne "
+"pliki obiektowe z tego samego kodu źródłowego. Ponadto, nazewnictwo pomiędzy "
+"nimi również może się różnić."
 
 #: ../../source/learn/building_programs/compiling_source.md:9
 msgid "The consequences:"
-msgstr ""
+msgstr "Konsekwencje:"
 
 #: ../../source/learn/building_programs/compiling_source.md:11
 msgid ""
@@ -5109,6 +5262,11 @@ msgid ""
 "program may be built from many different source files and the compiled pieces"
 " have to cooperate."
 msgstr ""
+"Jeśli używasz konkretnego kompilatora dla jednego pliku źródłowego, należy "
+"użyć tego samego kompilatora (lub innego kompatybilnego z nim) dla "
+"pozostałych części kodu. Program może przecież być stworzony z wielu różnych "
+"plików źródłowych, gdzie wszystkie skompilowane pliki muszą ze sobą "
+"współgrać."
 
 #: ../../source/learn/building_programs/compiling_source.md:15
 msgid ""
@@ -5116,6 +5274,9 @@ msgid ""
 "extension like \".o\" or \".obj\". It is these object files that are the "
 "input for the next step: the link process."
 msgstr ""
+"Każdy plik źródłowy będzie skompilowany, a rezultat przechowywany w pliku o "
+"rozszerzeniu \".o\" lub \".obj\". Te pliki będą również danymi wejściowymi "
+"dla następnego kroku: procesu łączenia (ang. the link process)."
 
 #: ../../source/learn/building_programs/compiling_source.md:19
 msgid ""
@@ -5125,6 +5286,11 @@ msgid ""
 "years they have been extended with numerous options to customise the "
 "compilation process and the final program that will be built."
 msgstr ""
+"Kompilatory to skomplikowane programy: muszą znać dany język programowania "
+"dużo bardziej szczegółowo i dokładniej niż przeciętny programista. Muszą "
+"również zrozumieć wewnętrzne działanie komputera. Przez lata były one "
+"rozszerzane wieloma opcjami pozwalającymi na dostosowanie do własnych "
+"potrzeb procesu kompilacji oraz finałowego programu."
 
 #: ../../source/learn/building_programs/compiling_source.md:26
 msgid ""
@@ -5133,12 +5299,19 @@ msgid ""
 "consists of one source file, you run the following command, assuming the "
 "source code is stored in the file \"hello.f90\":"
 msgstr ""
+"Jednak podstawy są dość proste. Weźmy na przykład kompilator gfortran, który "
+"jest częścią kolekcji kompilatorów GNU. Aby skompilować prosty program jak "
+"ten przedstawiony powyżej, który składa się z jednego pliku źródłowego, "
+"należy uruchomić następującą komendę, zakładając że kod źródłowy zapisany "
+"jest w pliku \"hello.f90\":"
 
 #: ../../source/learn/building_programs/compiling_source.md:35
 msgid ""
 "This results in a file \"hello.o\" (as the gfortran compiler uses \".o\" as "
 "the extension for the object files)."
 msgstr ""
+"Wyniki w pliku \"hello.o\" (kompilator gfortran używa \".o\" jako "
+"rozszerzenia plików obiektowych)."
 
 #: ../../source/learn/building_programs/compiling_source.md:38
 msgid ""
@@ -5146,14 +5319,20 @@ msgid ""
 "it out, then the default action of the compiler is to compile the source file"
 " and start the linker to build the actual executable program. The command:"
 msgstr ""
+"Opcja \"-c\" oznacza: skompiluj tylko pliki źródłowe. W wypadku nie "
+"zastosowania tej opcji, domyślnie kompilator skompilował by plik źródłowy "
+"oraz zainicjował program łączący, aby zbudował właściwy wykonywalny program. "
+"Komenda:"
 
 #: ../../source/learn/building_programs/compiling_source.md:47
 msgid "results in an executable file, \"a.out\" on Linux or \"a.exe\" on Windows."
 msgstr ""
+"będzie skutkowała stworzeniem pliku wykonywalnego , \"a.out\" na systemie "
+"operacyjnym Linux lub \"a.exe\" na Windowsie."
 
 #: ../../source/learn/building_programs/compiling_source.md:50
 msgid "Some remarks:"
-msgstr ""
+msgstr "Kilka uwag:"
 
 #: ../../source/learn/building_programs/compiling_source.md:52
 msgid ""
@@ -5163,10 +5342,18 @@ msgid ""
 "file or an executable program. For instance, if the word \"program\" was "
 "inadvertently typed as \"prgoram\":"
 msgstr ""
+"Kompilator może zwracać uwagę na zawartość plików źródłowych jeśli znajdzie "
+"w nim jakiś błąd - np. literówkę lub nieznane słowo kluczowe. W tym "
+"przypadku proces kompilacji jest zakończony, a rezultatem nie będzie "
+"stworzenie żadnego pliku obiektowego lub wykonywalnego programu. Na "
+"przykład, jeśli słowo \"program\" zostało przez przypadek zapisane jako "
+"\"prgoram\":"
 
 #: ../../source/learn/building_programs/compiling_source.md:73
 msgid "Using this compilation report you can correct the source code and try again."
 msgstr ""
+"Używając tego raportu z kompilacji możesz poprawić kod źródłowy i spróbować "
+"jeszcze raz skompilować program."
 
 #: ../../source/learn/building_programs/compiling_source.md:76
 msgid ""
@@ -5175,12 +5362,19 @@ msgid ""
 "link step will complain about a missing \"symbol\", something along these "
 "lines:"
 msgstr ""
+"Komenda kompilacji bez \"-c\" może zadziałać tylko jeśli plik źródłowy "
+"zawiera główny program - charakteryzujący się instrukcją `program` w "
+"Fortranie. W innym przypadku zainicjowany program łączący będzie skarżył się "
+"na brakujący \"symbol\". Może to wyglądać następująco:"
 
 #: ../../source/learn/building_programs/compiling_source.md:88
 msgid ""
 "The file \"hello2.f90\" is almost the same as the file \"hello.f90\", except "
 "that the keyword `program` has been replaced by the keyword `subroutine`."
 msgstr ""
+"Plik \"hello2.f90\" jest praktycznie taki sam jak plik \"hello.f90\", z "
+"wyjątkiem tego, że słowo kluczowe `program` zostało zastąpione słowem "
+"kluczowym `subroutine`."
 
 #: ../../source/learn/building_programs/compiling_source.md:91
 msgid ""
@@ -5188,16 +5382,23 @@ msgid ""
 "platform on which it runs. These examples come from the gfortran compiler "
 "running in a Cygwin environment on Windows."
 msgstr ""
+"Powyższe przykłady wyników kompilatora będą się różniły w zależności od "
+"kompilatora oraz platformy, na której działa. Te przykłady pochodzą z "
+"kompilatora gfortran działającego w środowisku Cygwin na systemie Windows."
 
 #: ../../source/learn/building_programs/compiling_source.md:95
 msgid "Compilers also differ in the options they support, but in general:"
 msgstr ""
+"Kompilatory różnią się również pod względem obsługiwanych opcji, jednak "
+"ogólnie rzecz biorąc:"
 
 #: ../../source/learn/building_programs/compiling_source.md:97
 msgid ""
 "Options for optimising the code — resulting in faster programs or smaller "
 "memory footprints;"
 msgstr ""
+"Opcje optymalizowania kodu - skutkujące szybszymi programami i mniejszym "
+"zużyciem pamięci;"
 
 #: ../../source/learn/building_programs/compiling_source.md:99
 msgid ""
@@ -5205,41 +5406,49 @@ msgid ""
 "before it has been given a value, for instance or checks if some extension to"
 " the language is used;"
 msgstr ""
+"Opcję sprawdzania kodu źródłowego - na przykład sprawdzanie czy zmienna nie "
+"jest użyta zanim nadana jest jej wartość lub sprawdzanie czy jakieś "
+"rozszerzenie języka jest użyte;"
 
 #: ../../source/learn/building_programs/compiling_source.md:102
 msgid "Options for the location of include or module files, see below;"
 msgstr ""
+"Opcje dotyczące lokalizacji plików lub modułów załączanych, zobacz poniżej;"
 
 #: ../../source/learn/building_programs/compiling_source.md:103
 msgid "Options for debugging."
-msgstr ""
+msgstr "Opcje debugowania."
 
 #: ../../source/learn/building_programs/distributing.md:1
 #: ../../source/learn/building_programs/index.md:47
 msgid "Distributing your programs"
-msgstr ""
+msgstr "Dystrybucja programów"
 
 #: ../../source/learn/building_programs/distributing.md:3
 msgid ""
 "When you distribute your programs, there are a number of options you can "
 "choose from:"
 msgstr ""
+"Kiedy chcesz dystrybuować swój program, istnieje wiele opcji, z których "
+"możesz wybrać:"
 
 #: ../../source/learn/building_programs/distributing.md:6
 msgid "Distribute the entire source code"
-msgstr ""
+msgstr "Dystrybucja całego kodu źródłowego"
 
 #: ../../source/learn/building_programs/distributing.md:7
 msgid "Distribute a pre-built executable program"
-msgstr ""
+msgstr "Dystrybucja gotowego wykonywalnego programu"
 
 #: ../../source/learn/building_programs/distributing.md:8
 msgid "Distribute static or dynamic libraries that people can use"
 msgstr ""
+"Dystrybucja statycznych lub dynamicznych bibliotek, których mogą używać "
+"ludzie"
 
 #: ../../source/learn/building_programs/distributing.md:10
 msgid "**Option 1: Distribute the entire source code**"
-msgstr ""
+msgstr "**Opcja 1: Dystrybucja całego kodu źródłowego**"
 
 #: ../../source/learn/building_programs/distributing.md:12
 msgid ""
@@ -5249,10 +5458,16 @@ msgid ""
 "have to have access to suitable compilers. For build systems: see the "
 "previous section."
 msgstr ""
+"Jak dotąd najprostsze rozwiązanie - dla ciebie jako programisty: "
+"pozostawiasz kompilację programu na ich własnej maszynie użytkownikom. "
+"Niestety, oznacza to również, że musisz mieć przyjazny dla użytkowników "
+"system kompilacji oraz będą oni musieli mieć dostęp do odpowiednich "
+"kompilatorów. Aby przeczytać więcej o systemach kompilacji: zobacz "
+"poprzednią sekcję."
 
 #: ../../source/learn/building_programs/distributing.md:18
 msgid "**Option 2: Distribute a pre-built executable program**"
-msgstr ""
+msgstr "**Opcja 2: Dystrybucja gotowego wykonywalnego programu**"
 
 #: ../../source/learn/building_programs/distributing.md:20
 msgid ""
@@ -5260,6 +5475,10 @@ msgid ""
 "input, will still need to come with the various run-time libraries and will "
 "be specific to the operating system/environment it was built for."
 msgstr ""
+"Gotowy wykonywalny program, który nie musi być zmieniany, oprócz danych "
+"wejściowych, i tak będzie musiał zawierać różne biblioteki środowiska "
+"wykonawczego oraz będzie specyficzny dla systemu operacyjnego/środowiska dla "
+"którego został stworzony."
 
 #: ../../source/learn/building_programs/distributing.md:24
 msgid ""
@@ -5268,34 +5487,52 @@ msgid ""
 "to ask the user to install that compiler on their system. In the case of "
 "Windows: the Cygwin environment may be called for."
 msgstr ""
+"Zestaw bibliotek środowiska wykonawczego różni się w zależności od systemu "
+"operacyjnego i wersji kompilatora. Dla darmowych dostępnych kompilatorów, "
+"takich jak gfortran, najłatwiejszym rozwiązaniem jest zasugerowanie "
+"użytkownikom, aby zainstalowali ten kompilator w ich systemie. W przypadku "
+"Windowsa: środowisko Cygwin może być wymagane."
 
 #: ../../source/learn/building_programs/distributing.md:29
 msgid ""
 "Alternatively, you can supply copies of the run-time libraries together with "
 "your program. Put them in the directory where they can be found at run-time."
 msgstr ""
+"Alternatywnie, możesz dołączyć kopie bibliotek środowiska wykonawczego razem "
+"z twoim programem. Umieść je w folderze, w którym mogą być znalezione w "
+"czasie uruchomienia programu."
 
 #: ../../source/learn/building_programs/distributing.md:32
 msgid ""
 "Note: On Windows, the Intel Fortran comes with a set of _redistributable_ "
 "libraries. These will need to be made available."
 msgstr ""
+"Uwaga: W systemie Windows Intel Fortran jest dostarczany z zestawem "
+"bibliotek _redystrybuowalnych_. Będą one musiały zostać udostępnione."
 
 #: ../../source/learn/building_programs/distributing.md:35
 msgid ""
 "In general: use a tool like \"ldd\" or \"dependency walker\" to find out what"
 " libraries are required and consult the documentation of the compiler."
 msgstr ""
+"Ogólnie mówiąc: używaj narzędzi takich jak \"ldd\" lub \"dependency walker\""
+", aby dowiedzieć się jakie biblioteki są wymagane oraz zapoznaj się z "
+"dokumentacją kompilatora."
 
 #: ../../source/learn/building_programs/distributing.md:38
 msgid ""
 "If your program does allow customisation, consider using dynamic libraries "
 "for this. More is said about this below."
 msgstr ""
+"Jeśli twój program pozwala na dostosowywanie go do własnych potrzeb, rozważ "
+"użycie dynamicznych bibliotek w tym celu. Więcej o tym możesz przeczytać "
+"poniżej."
 
 #: ../../source/learn/building_programs/distributing.md:41
 msgid "**Option 3: Distribute static or dynamic libraries that people can use**"
 msgstr ""
+"**Opcja 3: Dystrybucja statycznych lub dynamicznych bibliotek, których mogą "
+"używać ludzie**"
 
 #: ../../source/learn/building_programs/distributing.md:43
 msgid ""
@@ -5304,6 +5541,11 @@ msgid ""
 "routines in the proper way, but they do not need to know much about the build"
 " system you used. You will have to deal with the run-time libraries, though."
 msgstr ""
+"Ta opcja to połączenie dwóch pierwszych opcji. Jest to obciążenie dla "
+"użytkowników, ponieważ muszą oni stworzyć program główny, który będzie "
+"wywoływał twoje procedury w odpowiedni sposób, jednak nie muszą oni wiedzieć "
+"wiele o używanym procesie kompilacji. Jednak będziesz musiał radzić sobie z "
+"bibliotekami środowiska wykonawczego."
 
 #: ../../source/learn/building_programs/distributing.md:48
 msgid ""
@@ -5311,32 +5553,40 @@ msgid ""
 " to supply the module intermediate files. These files are compiler-specific, "
 "but so are the static libraries you build."
 msgstr ""
+"Jeśli wybierzesz tę opcję, oprócz skompilowanych bibliotek będziesz musiał "
+"dołączyć również pliki pośrednie modułu. Te pliki są specyficzne dla danego "
+"kompilatora, ale tak samo jest ze statycznymi bibliotekami, które tworzysz."
 
 #: ../../source/learn/building_programs/distributing.md:52
 msgid "Distributing the tabulation program"
-msgstr ""
+msgstr "Dystrybucjaprogramu tabelarycznego"
 
 #: ../../source/learn/building_programs/distributing.md:54
 msgid ""
 "As shown above, the tabulation program can be built with the user-defined "
 "function in a dynamic library. This enables you to:"
 msgstr ""
+"Jak pokazano powyżej, program tabelaryczny może zostać stworzony za pomocą "
+"funkcji stworzonej przez użytkownika w bibliotece dynamicznej. To pozwala ci "
+"na:"
 
 #: ../../source/learn/building_programs/distributing.md:57
 msgid "Ship the executable (with the appropriate run-time libraries)"
 msgstr ""
+"Dostarczyć plik wykonywalny (razem z odpowienimi bibliotekami środowiska "
+"wykonawczego)"
 
 #: ../../source/learn/building_programs/distributing.md:58
 msgid "Provide a skeleton version of the module, something like:"
-msgstr ""
+msgstr "Udostępnić szkielet modułu, taki jak:"
 
 #: ../../source/learn/building_programs/distributing.md:76
 msgid "Provide a basic build script with a command like:"
-msgstr ""
+msgstr "Zapewnić podstawowy skrypt kompilacji za pomocą komendy takiej jak:"
 
 #: ../../source/learn/building_programs/distributing.md:82
 msgid "or:"
-msgstr ""
+msgstr "lub:"
 
 #: ../../source/learn/building_programs/distributing.md:88
 msgid ""
@@ -5344,16 +5594,22 @@ msgid ""
 "\"functions.dll\" with a function `f` would be accepted, but not necessarily "
 "lead to a successful run."
 msgstr ""
+"Tak jak zaznaczono już wcześniej, nie możesz kontrolować czy użytkownik "
+"wykonał wszystko poprawnie - dowolna biblioteka współdzielona (DLL) "
+"\"functions.dll\" z funkcją `f` zostanie zaakceptowana, jednak niekoniecznie "
+"doprowadzi do jej poprawnego uruchomienia."
 
 #: ../../source/learn/building_programs/distributing.md:92
 msgid ""
 "An alternative set-up would be to change the main program into a subroutine "
 "and have the function as an argument:"
 msgstr ""
+"Alternatywnym rozwiązaniem byłoby zamienienie głównego programu na "
+"podprogram i przekazanie funkcji jako argument:"
 
 #: ../../source/learn/building_programs/distributing.md:114
 msgid "Then provide a skeleton main program:"
-msgstr ""
+msgstr "Następnie dostarcz szkielet programu głównego:"
 
 #: ../../source/learn/building_programs/distributing.md:134
 msgid ""
@@ -5361,11 +5617,14 @@ msgid ""
 "that is passed and that the user has more freedom in the use of the "
 "functionality provided by your library."
 msgstr ""
+"Jedną z zalet jest fakt, że kompilator może sprawdzić interfejs funkcji, "
+"która jest przekazywana, a ponadto użytkownik ma większą dowolność w użyciu "
+"funkcjonalności zapewnioną przez twoją bibliotekę."
 
 #: ../../source/learn/building_programs/include_files.md:1
 #: ../../source/learn/building_programs/index.md:47
 msgid "Include files and modules"
-msgstr ""
+msgstr "Dołącz pliki i moduły"
 
 #: ../../source/learn/building_programs/include_files.md:3
 msgid ""
@@ -5376,6 +5635,13 @@ msgid ""
 "directory structure is, you will encounter a situation where the compiler "
 "needs assistance in order to compile a particular source file:"
 msgstr ""
+"Twój program może być zapisany w wielu plikach źródłowych, które wszystkie "
+"są przechowywane w jednym folderze lub są zorganizowane w praktyczny sposób "
+"w twoim drzewie katalogów. Szczegóły organizacji zależą od indywidualnych "
+"preferencji, ustaleń grupy deweloperów do których należysz, lub po prostu "
+"historii programu. Niezależnie od twojej struktury zapewne napotkasz "
+"sytuację, w której twój kompilator będzie potrzebował pomocy, aby "
+"skompilować dany plik źródłowy:"
 
 #: ../../source/learn/building_programs/include_files.md:11
 msgid ""
@@ -5386,6 +5652,12 @@ msgid ""
 "files, because they are used in several locations. Quite often the name of "
 "that directory is \"include\"."
 msgstr ""
+"Fortran (oraz inne języki) ma możliwość dołączania plików zewnętrznych. "
+"Pomimo tego, że fukcja ta nie jest już tak często używana ze względu na "
+"nastanie modułów, wciąż ma jednak swoje zastosowania. Dosyć często, takie "
+"\"pliki zawarte\" są przechowywane w folderze oddzielonym od folderów "
+"zawierających pliki źródłowe, ponieważ są używane w wielu miejscach. Często "
+"folder ten ma nazwę \"include\"."
 
 #: ../../source/learn/building_programs/include_files.md:17
 msgid ""
@@ -5395,6 +5667,12 @@ msgid ""
 " able to read the interfaces and variables and what not, and based on this "
 "information, actually compile the source code that uses the various modules."
 msgstr ""
+"Jak już widzieliśmy, kompilowanie kodu źródłowego, który definiuje jeden lub "
+"więcej modułów prowadzi do generowania przez kompilator tak zwanych "
+"\"plików pośrednich modułów\" (zawierających rozszerzenie \".mod\"). "
+"Kompilator potrzebuje mieć dostęp do tych plików, aby być w stanie odczytać "
+"interfejsy, zmienne, itd. i na podstawie tych informacji kompiluje właściwy "
+"kod źródłowy, który używa różnych modułów."
 
 #: ../../source/learn/building_programs/include_files.md:23
 msgid ""
@@ -5402,28 +5680,34 @@ msgid ""
 " module intermediate files are to be found. Suppose we store the two files of"
 " our `tabulate` program in the following directory structure:"
 msgstr ""
+"Kompilatory zapewniają opcje takie jak `-I`, aby wskazać, gdzie takie pliki "
+"zawarte oraz pliki pośrednie modułów mogą być znalezione. Przyjmijmy, że "
+"przechowywamy dwa pliki naszego programu `tabulate` w następującej "
+"strukturze folderów:"
 
 #: ../../source/learn/building_programs/include_files.md:36
 msgid "Compiling the file \"functions.f90\" with the commands"
-msgstr ""
+msgstr "Skompilowane pliku \"functions.f90\" za pomocą komendy"
 
 #: ../../source/learn/building_programs/include_files.md:43
 msgid "leads to this structure:"
-msgstr ""
+msgstr "prowadzi do takiej struktury:"
 
 #: ../../source/learn/building_programs/include_files.md:55
 msgid ""
 "To successfully compile and subsequently build the program we need to tell "
 "the compiler where it can find the file \"user_functions.mod\":"
 msgstr ""
+"Aby poprawnie skompilować, a następnie utworzyć program musimy powiedzieć "
+"kompilatorowi, gfzie może znaleźć plik \"user_functions.mod\":"
 
 #: ../../source/learn/building_programs/include_files.md:64
 msgid "The result:"
-msgstr ""
+msgstr "Rezultat:"
 
 #: ../../source/learn/building_programs/include_files.md:78
 msgid "Notes:"
-msgstr ""
+msgstr "Uwagi:"
 
 #: ../../source/learn/building_programs/include_files.md:80
 msgid ""
@@ -5431,6 +5715,9 @@ msgid ""
 " by a space and then the name of the directory, sometimes the directory "
 "should come consecutively."
 msgstr ""
+"Szczegóły różnią się w zależności od kompilatora. Czasami po opcji `-I` "
+"powinna być dodana spacja oraz nazwa folderu, a czasami foldery powinny "
+"występować jeden po drugim."
 
 #: ../../source/learn/building_programs/include_files.md:83
 msgid ""
@@ -5442,36 +5729,45 @@ msgid ""
 "`-J../include` (so that the .mod files could all appear in the same "
 "directory)"
 msgstr ""
+"Domyślnie pliki pośrednie modułów (.mod) są zapisane w tym samym folderze co "
+"pliki obiektowe. Kiedy kod twojego programu jest zapisany w różnych "
+"podfolderach, zostaną one rozrzucone po drzewie katalogów tym samym "
+"komplikując proces kompilacji. Na szczęście, wiele kompilatowów pozwala na "
+"sprecyzowanie lokalizacji wyjściowej tych plików. Dla gfortran jest to `-J`, "
+"na przykład: `-J../include` (aby wszystkie pliki .mod pojawiły się w tym "
+"samym folderze)"
 
 #: ../../source/learn/building_programs/include_files.md:91
 msgid ""
 "For large programs, consisting of many source files, it is important to think"
 " through what organisation to use."
 msgstr ""
+"Dla większych programów, które składają się z wielu plików źródłowych, "
+"ważnym jest, aby dokładnie przemyśleć jaką strukturę organizacji wybrać."
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/linking_pieces.md:1
 msgid "Linking the objects"
-msgstr ""
+msgstr "Łączenie obiektów"
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/runtime_libraries.md:1
 msgid "Run-time libraries"
-msgstr ""
+msgstr "Biblioteki środowiska wykonawczego"
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/managing_libraries.md:1
 msgid "Managing libraries (static and dynamic libraries)"
-msgstr ""
+msgstr "Zarządzanie bibliotekami (statyczne i dynamiczne biblioteki)"
 
 #: ../../source/learn/building_programs/index.md:47
 #: ../../source/learn/building_programs/project_make.md:1
 msgid "An introduction to make"
-msgstr ""
+msgstr "Wstęp do make"
 
 #: ../../source/learn/building_programs/index.md:1
 msgid "Building programs"
-msgstr ""
+msgstr "Tworzenie programów"
 
 #: ../../source/learn/building_programs/index.md:3
 msgid ""
@@ -5482,6 +5778,13 @@ msgid ""
 "direct instructions. Two very simple examples of that type of language: "
 "Windows batch files and Linux shell scripts."
 msgstr ""
+"Języki takie jak Fortran, C, C++ i Java, żeby wymienić tylko kilka, dzielą "
+"wspólne cechy: piszesz kod w swoim wybranym języku, ale później musisz "
+"stworzyć program wykonywalny do twojego kodu źródłowego. Inne języki są "
+"interpretowane - kod źródłowy jest analizowany przez specjalny program i "
+"rozumiany jako bezpośrednie instrukcje. Dwa bardzo proste przykłady takich "
+"języków to pliki wsadowe Windows (Windows batch files) oraz skrypty powłoki "
+"Linux (Linux shell scripts)."
 
 #: ../../source/learn/building_programs/index.md:11
 msgid ""
@@ -5491,20 +5794,27 @@ msgid ""
 "the human-readable source code into an efficient program that can be run on "
 "the computer."
 msgstr ""
+"W tym poradniku koncentrujemy się na pierwszym typie języków, z Fortranem "
+"jako głównym przykładem. Jedną z zalet języków kompilowanych jest to, że "
+"proces kompilacji potrzebny do stworzenia programu wykonywalnego służy "
+"przekształceniu zrozumiałego dla człowieka kodu źródłowego w wydajny "
+"program, który można uruchomić na komputerze."
 
 #: ../../source/learn/building_programs/index.md:17
 msgid ""
 "Remark: this tutorial gives examples for the Windows and Linux operating "
 "systems, however the workflow and general principles still apply to macOS."
 msgstr ""
+"Uwaga: ten poradnik daje przykłady dla systemów operacyjnych Windows oraz "
+"Linux, jednak przepływ pracy oraz główne zasady obowiązują również w macOS."
 
 #: ../../source/learn/building_programs/index.md:20
 msgid "Compiled languages"
-msgstr ""
+msgstr "Języki kompilowane"
 
 #: ../../source/learn/building_programs/index.md:22
 msgid "Let us have a look at a simple example:"
-msgstr ""
+msgstr "Spójrzmy na prosty przykład:"
 
 #: ../../source/learn/building_programs/index.md:30
 msgid ""
@@ -5513,6 +5823,10 @@ msgid ""
 "simple to express in source code, a lot of things actually happen when the "
 "executable that is built from this code runs:"
 msgstr ""
+"Jest to jeden z najprostszych programów jakie możesz napisać w języku "
+"Fortran i jest jedną z wariacji jednego z najbardziej popularnych programów. "
+"Pomimo tego, że wydaje się prosty do napisania, wiele rzeczy dzieje się, "
+"kiedy plik wykonywalny stworzony z tego kodu jest uruchamiany:"
 
 #: ../../source/learn/building_programs/index.md:35
 msgid ""
@@ -5520,18 +5834,25 @@ msgid ""
 "console — the window (DOS-box, xterm, ...) at which you type the program's "
 "name."
 msgstr ""
+"Proces jest uruchamiany na komputerze w taki sposób, że może on zapisywać "
+"dane w konsoli — oknie (DOS-box, xterm, ...), w którym wpisujesz nazwę "
+"programu."
 
 #: ../../source/learn/building_programs/index.md:38
 msgid ""
 "It writes the text \"Hello!\" to the console. To do so it must properly "
 "interact with the console."
 msgstr ""
+"Zapisuje on tekst \"Hello!\" w konsoli. Aby to zrobić musi poprawnie "
+"współpracować z konsolą."
 
 #: ../../source/learn/building_programs/index.md:40
 msgid ""
 "When done, it finishes, cleaning up all the resources (memory, connection to "
 "the console etc.) it took."
 msgstr ""
+"Kiedy to jest zrobione, kończy swoje działanie czyszcząc wszystkie zasoby ("
+"pamięć, połączenie z konsolą etc.)."
 
 #: ../../source/learn/building_programs/index.md:43
 msgid ""
@@ -5539,22 +5860,31 @@ msgid ""
 "consider all these details. In fact, this is the sort of things that is taken"
 " care of by the build process: the compiler and the linker."
 msgstr ""
+"Na szczęście, jako programista języka wysokiego poziomu nie musisz brać pod "
+"uwagę tych wszystkich detali. Właściwie, są to rzeczy, którymi będzie się "
+"zajmował proces kompilacji: kompilator oraz program łączący."
 
 #: ../../source/learn/building_programs/linking_pieces.md:3
 msgid ""
 "Almost all programs, except for the simplest, are built up from different "
 "pieces. We are going to examine such a situation in more detail."
 msgstr ""
+"Prawie wszystkie programy, za wyjątkiem tych najprostszych, są zbudowane z "
+"różnych części. Przyjrzymy się takiej sytuacji bardziej szczegółowo."
 
 #: ../../source/learn/building_programs/linking_pieces.md:7
 msgid ""
 "Here is a general program for tabulating a function (source code in "
 "\"tabulate.f90\"):"
 msgstr ""
+"Tutaj znajduje się ogólny program służący do ujmowania funkcji w tabeli (kod "
+"źródłowy znajduje się w \"tabulate.f90\"):"
 
 #: ../../source/learn/building_programs/linking_pieces.md:28
 msgid "Note the `use` statement — this will be where we define the function `f`."
 msgstr ""
+"Zwróć uwagę na wyrażenie `use` - będzie to miejsce, gdzie zdefiniujemy "
+"funkcję `f`."
 
 #: ../../source/learn/building_programs/linking_pieces.md:30
 msgid ""
@@ -5564,12 +5894,19 @@ msgid ""
 "source file. We can give the general program to a user and they provide a "
 "specific source code."
 msgstr ""
+"Chcemy, aby program był ogólny, dlatego oddzielimy szczegółowy kod źródłowy -"
+" np. implementację funkcji `f` - od głównego kodu źródłowego. Istnieje kilka "
+"różnych sposobów na osiągniecie tego, ale jednym z nich jest umieszczenie go "
+"w innym pliku źródłowym. Możemy wtedy dać ogólny program użytkownikowi, a on "
+"dostarczy mu szczegółowy kod źródłowy."
 
 #: ../../source/learn/building_programs/linking_pieces.md:36
 msgid ""
 "Assume for the sake of the example that the function is implemented in a "
 "source file \"functions.f90\" as:"
 msgstr ""
+"Na potrzebę tego przykładu przyjmijmy, że funkcja jest zaimplementowana w "
+"pliku źródłowym \"functions.f90\" jako:"
 
 #: ../../source/learn/building_programs/linking_pieces.md:52
 msgid ""
@@ -5579,6 +5916,11 @@ msgid ""
 "to compile the source file containing our module first. A sequence of "
 "commands to do this is:"
 msgstr ""
+"Aby stworzyć program z tą specyficzną funkcją, musimy skompilować dwa pliki "
+"źródłowe i połączyć je za pomocą procesu łączenia w jeden wykonywalny "
+"program. Ponieważ program \"tabulate\" jest zależny od modułu \"function\", "
+"musimy najpierw skompilować plik źródłowy zawierający nasz moduł. Sekwencja "
+"komend, która to zrobi wygląda następująco:"
 
 #: ../../source/learn/building_programs/linking_pieces.md:63
 msgid ""
@@ -5591,14 +5933,23 @@ msgid ""
 " function with two arguments instead of one. If the compiler does not know "
 "anything about the function's interface, then it cannot check anything."
 msgstr ""
+"Pierwszym krokiem jest skompilowanie modułu, którego wynikiem jest plik "
+"obiektowy \"functions.o\" oraz plik pośredni modułu \"user_functions.mod\". "
+"Ten plik modułu zawiera wszystkie informacje, które potrzebuje kompilator do "
+"określenia, że funkcja `f` jest zdefiniowana w tym module i jaki jest jej "
+"interfejs. Ta informacja jest ważna: pozwala ona kompilatorowi na "
+"sprawdzenie czy funkcja jest wywoływana w prawidłowy sposób. Możliwym jest, "
+"że popełniłeś błąd i wywołałeś funkcję z dwoma argumentami zamiast jednego. "
+"Jeśli kompilator nie wie niczego o interfejsie funkcji, nie może tego "
+"sprawdzić."
 
 #: ../../source/learn/building_programs/linking_pieces.md:73
 msgid "The second step invokes the compiler in such a way that:"
-msgstr ""
+msgstr "Kolejny krok to wywołuje kompilator w taki sposób, że:"
 
 #: ../../source/learn/building_programs/linking_pieces.md:75
 msgid "it compiles the file \"tabulate.f90\" (using the module file);"
-msgstr ""
+msgstr "kompiluje on plik \"tabulate.f90\" (używając pliku modułu);"
 
 #: ../../source/learn/building_programs/linking_pieces.md:76
 msgid ""
@@ -5606,6 +5957,9 @@ msgid ""
 "into an executable program — with the default name \"a.out\" or \"a.exe\" (if"
 " you want a different name, use the option \"-o\")."
 msgstr ""
+"wywołuje program łączący, aby połączyć pliki obiektowe tabulate.o i "
+"functions.o w jeden wykonywalny program - używając domyślnej nazwy \"a.out\" "
+"lub \"a.exe\" (jeśli chcesz użyć innej nazwy, zastosuj opcję \"-o\")."
 
 #: ../../source/learn/building_programs/linking_pieces.md:80
 msgid ""
@@ -5614,12 +5968,19 @@ msgid ""
 "contain all the \"standard\" stuff — low-level routines that do the input and"
 " output to screen, the `sin` function and much more."
 msgstr ""
+"To, co zazwyczaj nie jest pokazywane to fakt, że program łączący dodaje "
+"dodatkowe pliki podczas procesu łączenia, a mianowicie biblioteki środowiska "
+"wykonawczego. Biblioteki te zawierają wszystkie \"standardowe\" rzeczy - "
+"procedury niskiego poziomu odpowiedzialne za dane wejściowe i wyjściowa, "
+"funkcję `sin` i wiele więcej."
 
 #: ../../source/learn/building_programs/linking_pieces.md:85
 msgid ""
 "If you want to see the gory details, add the option \"-v\". This instructs "
 "the compiler to report all the steps that are in detail."
 msgstr ""
+"Aby zobaczyć wszystkie szczegóły, dodaj opcję \"-v\". To zleci kompilatorowi "
+"szczegółowe raportowanie wszystkich kroków."
 
 #: ../../source/learn/building_programs/linking_pieces.md:88
 msgid ""
@@ -5629,6 +5990,11 @@ msgid ""
 "objects or shared libraries). Without these run-time libraries the program "
 "will not start."
 msgstr ""
+"Wynik końcowy, wykonywalny program, zawiera skompilowany kod źródłowy oraz "
+"różne procedury pomocnicze, które sprawiają, że działa. Zawiera również "
+"odniesienia do tak zwanych dynamicznych bibliotek środowiska wykonawczego ("
+"na Windowsie: DLL, na Linuksie: obiekty lub biblioteki współdzielone). Bez "
+"tych bibliotek środowiska wykonawczego program nie uruchomi się."
 
 #: ../../source/learn/building_programs/managing_libraries.md:3
 msgid ""
@@ -5637,12 +6003,19 @@ msgid ""
 "be very long indeed. This soon becomes tedious or even impossible to "
 "maintain. So a different solution is called for: create your own libraries."
 msgstr ""
+"Jeśli potrzebujesz zarządzać programem złożonym z dziesiątek plików "
+"źródłowych (a nie jest to rzadkie!), komendy potrzebne do sprecyzowania "
+"wszystkich plików obiektowych będą bardzo długie. To szybko staje się żmudne "
+"lub nawet niewykonalne. Potrzebne jest więc inne rozwiązanie: stworzenie "
+"własnych bibliotek."
 
 #: ../../source/learn/building_programs/managing_libraries.md:9
 msgid ""
 "Libraries contain any number of object files in a compact form, so that the "
 "command-line becomes far shorter:"
 msgstr ""
+"Biblioteki zawierają pewną ilość plików obiektowych w kompaktowej formie, "
+"tak że komendy stają się o wiele krótsze:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:16
 msgid ""
@@ -5650,20 +6023,26 @@ msgid ""
 "compiled and then put into a library. The extension \".a\" is used by Linux "
 "and Linux-like platforms. On Windows the extension \".lib\" is used."
 msgstr ""
+"\"supportlib.a\" jest kolekcją jednej, dwóch lub wielu plików obiektowych, "
+"wszystkich skompilowanych i dodanych do biblioteki. Rozszerzenie \".a\" jest "
+"używane na systemie operacyjnym Linux i innych platformach stworzonych na "
+"jego wzór. Na Windowsie używane jest rozszerzenie \".lib\"."
 
 #: ../../source/learn/building_programs/managing_libraries.md:20
 msgid ""
 "Creating your own libraries is not that complicated: on Linux, you can "
 "achieve this using a utility like `ar`:"
 msgstr ""
+"Tworzenie własnych bibliotek nie jest takie skomplikowane: na Linuksie, "
+"możesz tego dokonać za pomocą funkcji takich jak `ar`:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:30
 msgid "or on Windows using the `lib` utility:"
-msgstr ""
+msgstr "lub na Windowsie używając funkcji `lib`:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:39
 msgid "Note:"
-msgstr ""
+msgstr "Uwaga:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:41
 msgid ""
@@ -5671,6 +6050,9 @@ msgid ""
 "appears after the option) or adds new object files to the library (or "
 "replaces any existing ones)."
 msgstr ""
+"Komenda `ar` razem z opcją `r` albo tworzy bibliotekę (nazwa powinna być po "
+"opcji) albo dodaje nowy plik obiektowy do biblioteki (lub zastępuje już "
+"istniejące)."
 
 #: ../../source/learn/building_programs/managing_libraries.md:44
 msgid ""
@@ -5678,6 +6060,9 @@ msgid ""
 "`/out:` with the name of the new library next to it. To add object files to "
 "an existing library, leave out the `/out:` bit."
 msgstr ""
+"Komenda `lib` stworzy nową bibliotekę jeśli określisz opcję `/out:` z nazwą "
+"nowej biblioteki zaraz po niej. Aby dodać plik obiektowy do istniejącej już "
+"biblioteki, pomiń część `/out:`."
 
 #: ../../source/learn/building_programs/managing_libraries.md:47
 msgid ""
@@ -5685,6 +6070,10 @@ msgid ""
 "If you name your library like \"libname.a\" (note the \"lib\" prefix), then "
 "you can refer to it as `-lname` in the link step."
 msgstr ""
+"Na platformach takich jak Linux istnieje szczegółowa praktyka nazywania "
+"bibliotek. Jeśli nazwiesz swoją bibliotekę \"libname.a\" (zwróć uwagę na "
+"prefiks \"lib\"), możesz wtedy odnosić się do niej jako `-lname` podczas "
+"procesu łączenia."
 
 #: ../../source/learn/building_programs/managing_libraries.md:50
 msgid ""
@@ -5692,16 +6081,21 @@ msgid ""
 "`/LIBPATH`. This saves you from having to specify the exact path for every "
 "library."
 msgstr ""
+"Biblioteki znajdują się zazwyczaj w folderach określonych przez opcję `-L` "
+"lub `/LIBPATH`. Dzięki temu nie musisz za każdym razem precyzować dokładnej "
+"ścieżki dla każdej biblioteki."
 
 #: ../../source/learn/building_programs/managing_libraries.md:54
 msgid ""
 "Using libraries you can build very large programs without having to resort to"
 " extremely long command lines."
 msgstr ""
+"Używanie własnych bibliotek do bardzo dużych programów może uratować cię "
+"przed używaniem bardzo długich komend."
 
 #: ../../source/learn/building_programs/managing_libraries.md:57
 msgid "Static versus dynamic libraries"
-msgstr ""
+msgstr "Statyczne kontra dynamiczne biblioteki"
 
 #: ../../source/learn/building_programs/managing_libraries.md:59
 msgid ""
@@ -5711,6 +6105,11 @@ msgid ""
 " routines incorporated in the program is by rebuilding the program with a new"
 " version of the library."
 msgstr ""
+"Powyższa dyskusja zakłada, że używasz tak zwanych bibliotek statycznych. "
+"Statyczne biblioteki (lub przynajmniej części ich zawartości) stają się "
+"nieodłączną częścią wykonywalnego programu. Jedynym sposobem na zmienienie "
+"tych wkomponowanych procedur jest przez stworzenie programu na nowo z "
+"użyciem nowej wersji danej biblioteki."
 
 #: ../../source/learn/building_programs/managing_libraries.md:65
 msgid ""
@@ -5721,30 +6120,42 @@ msgid ""
 "consider dynamic libraries as a sort of executable programs that need a bit "
 "of help to be run."
 msgstr ""
+"Elastyczną alternatywą jest użycie tak zwanych dynamicznych bibliotek. Te "
+"biblioteki znajdują się na zewnątrz wykonywalnego programu i wskutek tego "
+"mogą być zastąpione bez konieczności tworzenia całego programu od nowa. "
+"Kompilatory oraz same systemy operacyjne w znacznym stopniu zależą od "
+"dynamicznych bibliotek. Możesz myśleć o dynamicznych bibliotekach jak o "
+"rodzaju wykonywalnych programów, które potrzebują trochę pomocy, aby mogły "
+"zostać uruchomione."
 
 #: ../../source/learn/building_programs/managing_libraries.md:72
 msgid ""
 "Building dynamic libraries works slightly differently from building static "
 "libraries: you use the compiler/linker instead of a tool like `ar` or `lib`."
 msgstr ""
+"Tworzenie dynamicznych bibliotek działa trochę inaczej niż tworzenie "
+"bibliotek statycznych: należy użyć kompilatora/programu łączącego zamiast "
+"funkcji takich jak `ar` lub `lib`."
 
 #: ../../source/learn/building_programs/managing_libraries.md:76
 msgid "On Linux:"
-msgstr ""
+msgstr "Na Linuksie:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:84
 msgid "On Windows, with the Intel Fortran compiler:"
-msgstr ""
+msgstr "Na Windowsie, z kompilatorem Intel Fortran:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:92
 msgid "The differences are that:"
-msgstr ""
+msgstr "Różnice polegają na tym, że:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:94
 msgid ""
 "You need to specify a compile option on Linux, for gfortran that is `-fpic`, "
 "because the object code is slightly different."
 msgstr ""
+"Musisz określić opcje kompilacji na Linuksie, dla gfortran jest to `-fpic`, "
+"ponieważ kod obiektowy troszkę się różni."
 
 #: ../../source/learn/building_programs/managing_libraries.md:96
 msgid ""
@@ -5752,6 +6163,9 @@ msgid ""
 "a shared object/library, hence the extension \".so\"; on Windows: a dynamic "
 "link library)"
 msgstr ""
+"Musisz określić w programie łączącym, że chcesz stworzyć dynamiczną "
+"bibliotekę (na Linuksie: bibliotekę/obiekt współdzielony, z rozszerzeniem "
+"\".so\"; na Windowsie: dynamiczną bibliotekę łączącą)"
 
 #: ../../source/learn/building_programs/managing_libraries.md:100
 msgid ""
@@ -5760,14 +6174,21 @@ msgid ""
 "library. There are several ways — depending on the compiler you use — to "
 "achieve this. One method is via a so-called compiler directive:"
 msgstr ""
+"Istnieje jeszcze jedna rzecz, której musisz być świadomy. Na Windowsie "
+"musisz dokładnie sprecyzować, że procedura ma zostać _wyeksportowana_, np. "
+"widoczna w dynamicznej bibliotece. Jest kilka sposobów na osiągnięcie tego w "
+"zależności jakiego kompilatora używasz. Jedną z metod jest zrobienie tego "
+"poprzez tak zwaną dyrektywę kompilatora:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:111
 msgid "Or, with the Intel Fortran compiler:"
-msgstr ""
+msgstr "Lub, przez kompilator Intel Fortran:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:118
 msgid "Besides a dynamic library (DLL), a so-called import library may be generated."
 msgstr ""
+"Oprócz dynamicznej biblioteki (DLL), tak zwane biblioteki importowane mogą "
+"zostać wygenerowane."
 
 #: ../../source/learn/building_programs/managing_libraries.md:121
 msgid ""
@@ -5775,10 +6196,14 @@ msgid ""
 "Cygwin and Intel Fortran on Windows. In both cases we look at the `tabulate` "
 "program in the file \"tabulate.f90\"."
 msgstr ""
+"Z uwagi na to, że detale różnią się w zależności od kompilatora, "
+"zamieszczone są tutaj dwa przykłady: gfortran na Cygwinie oraz Intel Fortran "
+"na Windowsie. W obu przypadkach pokazujemy program `tabulate` w pliku "
+"\"tabulate.f90\"."
 
 #: ../../source/learn/building_programs/managing_libraries.md:125
 msgid "GNU/Linux and gfortran"
-msgstr ""
+msgstr "GNU/Linux i gfortran"
 
 #: ../../source/learn/building_programs/managing_libraries.md:127
 msgid ""
@@ -5787,6 +6212,11 @@ msgid ""
 " implementation of the function by putting another dynamic library in the "
 "directory. No need to rebuild the program as such."
 msgstr ""
+"Program `tabulate` wymaga zdefiniowanej przez użytkownika procedury `f`. "
+"Jeśli pozwolimy na przechowywanie jej w dynamicznej bibliotece, jak "
+"\"functions.dll\", możemy łatwo zamienić implementację funkcji poprzez "
+"dodanie innej dynamicznej biblioteki do folderu. Nie ma potrzeby ponownej "
+"kompilacji programu."
 
 #: ../../source/learn/building_programs/managing_libraries.md:132
 msgid ""
@@ -5794,28 +6224,38 @@ msgid ""
 "publically visible routines are exported when you build a dynamic library. "
 "Also, no import library is generated."
 msgstr ""
+"Na systemie Cygwin nie jest konieczne jawne eksportowanie procedury - "
+"wszystkie publicznie widoczne rutyny są eksportowane podczas tworzenia "
+"dynamicznej biblioteki. Ponadto, nie jest generowana żadna biblioteki "
+"importowana."
 
 #: ../../source/learn/building_programs/managing_libraries.md:136
 msgid ""
 "Since our dynamic library can be built from a single source file, we can take"
 " a shortcut:"
 msgstr ""
+"Ponieważ nasza dynamiczna biblioteki może być stworzona z jednego pliku "
+"źródłowego, możemy zrobić to szybciej:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:143
 msgid ""
 "This produces the files \"functions.dll\" and \"user_functions.mod\". The "
 "utility `nm` tells us the exact name of the function `f`:"
 msgstr ""
+"Dzięki temu zostały stworzone pliki \"functions.dll\" i "
+"\"user_functions.mod\". Funkcja `nm` daje nam dokładną nazwę funkcji `f`:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:158
 msgid ""
 "It has received a prefix `__function_MOD_` to distinguish it from any other "
 "routine \"f\" that might be defined in another module."
 msgstr ""
+"Otrzymała ona prefiks `__function_MOD_`, aby rozróżnić ją od inny rutyn \"f\""
+", które mogą być zdefiniowane w innym module."
 
 #: ../../source/learn/building_programs/managing_libraries.md:161
 msgid "The next step is to build the program:"
-msgstr ""
+msgstr "Następnym krokiem jest kompilacja programu:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:167
 msgid ""
@@ -5823,6 +6263,9 @@ msgid ""
 "checks on the function's interface, the right name and the reference to \"a\""
 " DLL, called \"functions.dll\"."
 msgstr ""
+"DLL oraz plik .mod będą używane do skompilowania programu wykonywalnego ze "
+"sprawdzeniami interfejsu funkcji, poprawną nazwą oraz odniesieniem do "
+"\"jakiegoś\" DLL'a, nazwanego \"functions.dll\"."
 
 #: ../../source/learn/building_programs/managing_libraries.md:171
 msgid ""
@@ -5831,10 +6274,14 @@ msgid ""
 " use the correct interface for this function. The compiler/linker are not "
 "invoked anymore, so they can do no checking."
 msgstr ""
+"Możesz zamienić bibliotekę współdzieloną \"functions.dll\" na inną, "
+"implementując inną funkcję \"f\". Oczywiście, musisz być ostrożnym i "
+"zastosować poprawny interfejs dla tej funkcji. Kompilator/program łączący "
+"nie jest uruchamiany, dlatego nie może tego sprawdzić."
 
 #: ../../source/learn/building_programs/managing_libraries.md:176
 msgid "Windows and Intel Fortran"
-msgstr ""
+msgstr "Windows i Intel Fortran"
 
 #: ../../source/learn/building_programs/managing_libraries.md:178
 msgid ""
@@ -5842,16 +6289,21 @@ msgid ""
 "explicitly export the routines. And an import library is generated — this is "
 "the library that should be used in the link step."
 msgstr ""
+"Konfiguracja jest taka sama jak na Linuksie, jednak na Windowsie konieczne "
+"jest jawne eksportowanie rutyn. Tworzona jest również biblioteki importowana "
+"- jest to biblioteki, która powinna zostać użyta w procesie łączenia."
 
 #: ../../source/learn/building_programs/managing_libraries.md:182
 msgid ""
 "The source file must contain the compiler directive, otherwise the function "
 "`f` is not exported:"
 msgstr ""
+"Plik źródłowy musi zawierać dyrektywę kompilatora, inaczej funkcja `f` nie "
+"zostanie wyeksportowana:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:190
 msgid "Again we take a shortcut:"
-msgstr ""
+msgstr "Ponownie możemy to zrobić szybciej:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:196
 msgid ""
@@ -5861,16 +6313,24 @@ msgid ""
 "\"f\" is `FUNCTION_mp_F`. It is also exported, so that it can be found by the"
 " linker in the next step:"
 msgstr ""
+"Dzięki temu zostały stworzone pliki \"functions.dll\", \"user_functions.mod\""
+" oraz \"functions.lib\" (dwa pozostałe pliki nie są tutaj ważne). Program "
+"\"dependency walker\" daje nam dokładną nazwę funkcji \"f\", czyli "
+"`FUNCTION_mp_F`. Jest ona również eksportowana, żeby mogła być znaleziona "
+"przez program łączący w kolejnym kroku:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:205
 msgid "Note that we need to specify the name of the export library, not the DLL!"
 msgstr ""
+"Zauważ, że musimy sprecyzować nazwę eksportowanej biblioteki, nie DLL'a!"
 
 #: ../../source/learn/building_programs/managing_libraries.md:207
 msgid ""
 "(Note also: the Intel Fortran compiler uses the name of the first source file"
 " as the name for the executable — here we do without the `-exe` option.)"
 msgstr ""
+"(Zauważ również: kompilator Intel Fortran używa nazwy pierwszego pliku "
+"źródłowego jaki nazwy pliku wykonywalnego - tutaj bez opcji `-exe`.)"
 
 #: ../../source/learn/building_programs/managing_libraries.md:210
 msgid ""
@@ -5878,6 +6338,9 @@ msgid ""
 "executable program with checks on the function's interface, the right name "
 "and the reference to \"a\" DLL, called \"functions.dll\"."
 msgstr ""
+"Tak samo jak na Cygwinie, DLL plik .mod są używane do skompilowanie programu "
+"wykonywalnego ze sprawdzeniem interfejsu funkcji, poprawną nazwą oraz "
+"odniesieniem do \"jakiegoś\" DLL'a, nazwanego \"functions.dll\"."
 
 #: ../../source/learn/building_programs/managing_libraries.md:214
 msgid ""
@@ -5885,16 +6348,21 @@ msgid ""
 "same caution is required: while the implementation can be quite different, "
 "the function's interface must be the same."
 msgstr ""
+"Możesz zastąpić bibliotekę współdzieloną \"functions.dll\" inną, ale musisz "
+"być ostrożnym: mimo tego, że implementacja może być inna, interfejs funkcji "
+"musi pozostać taki sam."
 
 #: ../../source/learn/building_programs/project_make.md:3
 msgid ""
 "We briefly discussed the basics of `make`. This chapter gives ideas and "
 "strategies to scale `make` for larger projects."
 msgstr ""
+"Omówiliśmy już podstawy `make`. W tym rozdziale zaprezentujemy pomysły i "
+"strategie skalowania `make` w większych projektach."
 
 #: ../../source/learn/building_programs/project_make.md:6
 msgid "Before going into detail with `make`, consider a few points:"
-msgstr ""
+msgstr "Zanim przejdziemy do szczegółów `make`, rozważmy kilka punktów:"
 
 #: ../../source/learn/building_programs/project_make.md:8
 msgid ""
@@ -5902,6 +6370,9 @@ msgid ""
 " platforms. That said, there are also different flavors of `make` available, "
 "not all might support the features you want to use."
 msgstr ""
+"`make` jest narzędziem Unix i może sprawiać ci problemy podczas przenoszenia "
+"na platformy inne niż Unix. Oprócz tego, są również dostępne różne odmiany "
+"`make`, nie wszystkie mogą obsługiwać funkcje, których chcesz użyć."
 
 #: ../../source/learn/building_programs/project_make.md:11
 msgid ""
@@ -5911,6 +6382,11 @@ msgid ""
 "significant amount of time writing and maintaining your `Makefile` instead of"
 " developing your source code."
 msgstr ""
+"`make` daje ci pełną kontrolę nad procesem kompilacji, oznacza to również, "
+"że to ty jesteś za niego odpowiedzialny oraz musisz sprecyzować zasady dla "
+"każdego szczegółu twojego projektu. Może okazać się, że przeznaczysz znaczną "
+"część swojego czasu na pisanie i utrzymywanie twojego `Makefile` zamiast na "
+"pisanie kodu źródłowego."
 
 #: ../../source/learn/building_programs/project_make.md:15
 msgid ""
@@ -5919,6 +6395,10 @@ msgid ""
 " to spend learning your `Makefile` and would they be able to debug or add "
 "features?"
 msgstr ""
+"Możesz pracować ze swoim `Makefile`, jednak pomysł również o innych "
+"deweloperach w twoim projekcie, którzy mogą być niezaznajomieni z `make`. "
+"Jak dużo czasu będą musieli poświęcić na nauczenie się twojego `Makefile` i "
+"czy będą w stanie go debugować i dodawać własne funkcje?"
 
 #: ../../source/learn/building_programs/project_make.md:18
 msgid ""
@@ -5927,6 +6407,10 @@ msgid ""
 "dependencies and possible sources of errors. The effort needed to test and "
 "document those tools should not be underestimated."
 msgstr ""
+"Czysty `make` nie będzie się skalował. Wkrótce dodasz programy posiłkowe, "
+"aby dynamicznie lub statycznie generować twój `Makefile`. Te z kolei "
+"wprowadzają zależności i prawdopodobne źródła błędów. Wysiłek włożony w "
+"testowanie i dokumentowanie tych narzędzi powinien być wzięty pod uwagę."
 
 #: ../../source/learn/building_programs/project_make.md:23
 msgid ""
@@ -5936,6 +6420,12 @@ msgid ""
 "`make`. This guide should present a general recommended style to write "
 "`make`, but also serve as demonstration of useful and interesting features."
 msgstr ""
+"Jeśli myślisz, że `make` jest odpowiedni dla twoich potrzeb, możesz zacząć "
+"pisać swój plik `Makefile`. W tym kursie użyjemy rzeczywistych przykładów z "
+"indeksu pakietów, który (w czasie pisania tego kursu) używa innych systemów "
+"kompilacji niż `make`. Ten poradnik przedstawia ogólny rekomendowany styl "
+"pisania `make` oraz powinien służyć jako demonstracja użytecznych i "
+"interesujących funkcji."
 
 #: ../../source/learn/building_programs/project_make.md:30
 msgid ""
@@ -5943,6 +6433,9 @@ msgid ""
 " automate workflows defined by files. Maybe you can leverage its power in a "
 "different context."
 msgstr ""
+"Nawet jeśli `make` nie wydaje ci się odpowiedni do kompilacji twojego "
+"projektu, jest to _narzędzie_ do automatyzacji przepływu pracy zdefiniowanej "
+"przez pliki. Może uda ci się wykorzystać jego moc w innym kontekście."
 
 #: ../../source/learn/building_programs/project_make.md:35
 msgid ""
@@ -5951,6 +6444,11 @@ msgid ""
 "Fortran CSV module (v1.2.0)</a>. Our goal is to write a `Makefile` to compile"
 " this project to a static library. Start by cloning the repository"
 msgstr ""
+"W tej części będziemy pracowali z <a href="
+"\"https://github.com/jacobwilliams/fortran-csv-module/tree/1.2.0\" target="
+"\"_blank\" rel=\"noopener\"> modułem Fortran CSV (v1.2.0)</a>. Naszym celem "
+"jest napisanie `Makefile`, aby skompilować ten projekt do biblioteki "
+"statycznej. Zacznij od sklonowania repozytorium"
 
 #: ../../source/learn/building_programs/project_make.md:46
 msgid ""
@@ -5958,6 +6456,9 @@ msgid ""
 "reproducible as possible. Feel free to use the latest version or another "
 "project instead."
 msgstr ""
+"W tej części będziemy pracowali z kodem o tagu `1.2.0`, aby mógł być z "
+"łatwością odtworzony. Jednak możesz użyć też najnowszej wersji lub "
+"całkowicie innego projektu."
 
 #: ../../source/learn/building_programs/project_make.md:49
 msgid ""
@@ -5965,6 +6466,10 @@ msgid ""
 " options used with FoBiS. We are about to write a `Makefile` for this "
 "project. First, we check the directory structure and the source files"
 msgstr ""
+"Ten projekt używa FoBiS jako swojego systemu kompilacji, możesz więc "
+"sprawdzić `build.sh` aby zobaczyć opcje użyte dla FoBiS. My jednak napiszemy "
+"`Makefile` dla tego projektu. Na początek sprawdzamy strukturę folderów oraz "
+"pliki źródłowe"
 
 #: ../../source/learn/building_programs/project_make.md:71
 msgid ""
@@ -5972,16 +6477,22 @@ msgid ""
 "compiled and added to a static library while the three in `src/tests` contain"
 " individual programs that depend on this static library."
 msgstr ""
+"Znaleźliśmy siedem różnych plików źródłowych Fortran; cztery w `src` powinny "
+"być skompilowane i dodane do biblioteki statycznej, a trzy pliki w `src/"
+"tests` zawierają osobne indywidualne programy, które zależą od tej "
+"statycznej biblioteki."
 
 #: ../../source/learn/building_programs/project_make.md:75
 msgid "Start by creating a simple `Makefile`:"
-msgstr ""
+msgstr "Zacznij od stworzenia prostego `Makefile`:"
 
 #: ../../source/learn/building_programs/project_make.md:141
 msgid ""
 "Invoking `make` should build the static library and the test executables as "
 "expected:"
 msgstr ""
+"Wywołanie `make` powinno zbudować bibliotekę statyczną oraz sprawdzić pliki "
+"wykonywalne:"
 
 #: ../../source/learn/building_programs/project_make.md:156
 msgid ""
@@ -5991,10 +6502,15 @@ msgid ""
 "dependencies are specified explicitly, which results in several additional "
 "lines even for such a simple project."
 msgstr ""
+"Należy zwrócić tutaj uwagę na kilka rzeczy. Kompilacja za pomocą `make` "
+"zazwyczaj przeplata artefakty kompilacji z kodem źródłowym, chyba że włożysz "
+"dodatkowy wysiłek w zaimplementowanie folderu kompilacji. Dodatkowo, teraz "
+"pliki źródłowe i zależności są określane jawnie, co skutkuje kilkoma "
+"dodatkowymi linijkami nawet dla tak małego projektu."
 
 #: ../../source/learn/building_programs/project_make.md:162
 msgid "Automatically generated dependencies"
-msgstr ""
+msgstr "Automatyczne wygenerowane zależności"
 
 #: ../../source/learn/building_programs/project_make.md:164
 msgid ""
@@ -6004,6 +6520,11 @@ msgid ""
 " compilers (like the Intel Fortran compiler) also offer to generate "
 "dependencies in `make` format."
 msgstr ""
+"Największa wadą `make` przy kompilacji Fortrana jest brak możliwości "
+"określenia zależności modułu. Jest to zwykle rozwiązywane przez dodanie ich "
+"ręcznie lub automatycznie skanowanie kodu źródłowego za pomocą narzędzi "
+"zewnętrznych. Niektóre kompilatory (tak jak Intel Fortran) oferują również "
+"generowanie zależności w formacie `make`."
 
 #: ../../source/learn/building_programs/project_make.md:169
 msgid ""
@@ -6014,6 +6535,13 @@ msgid ""
 " the name of the source file and the module files are known, and no "
 "information on the object file names should be required."
 msgstr ""
+"Zanim jednak zanurzymy się w generowanie zależności, zarysujmy solidną "
+"koncepcję podejścia do problemu zależności. Po pierwsze, chcemy sposobu, "
+"który pozwoli na przetworzenie wszystkich plików źródłowych oddzielnie, "
+"kiedy każdy plik źródłowy zapewnia (`module`) lub wymaga (`use`) modułów. "
+"Podczas generowania zależności tylko nazwy plików źródłowych oraz pliki "
+"modułów są znane i żadne informacje o nazwach plików obiektowych nie powinny "
+"być wymagane."
 
 #: ../../source/learn/building_programs/project_make.md:177
 msgid ""
@@ -6021,6 +6549,10 @@ msgid ""
 " are defined between object files rather than source files. To change this, "
 "we can generate a map from the source files their respective object files:"
 msgstr ""
+"Jeśli sprawdzisz powyższą sekcję zależności zauważysz, że wszystkie "
+"zależności są zdefiniowane pomiędzy plikami obiektowymi a nie plikami "
+"źródłowymi. Aby to zmienić, możemy wygenerować mapę z plików źródłowych do "
+"odpowiednich plików obiektowych:"
 
 #: ../../source/learn/building_programs/project_make.md:187
 msgid ""
@@ -6030,24 +6562,34 @@ msgid ""
 "allows us to generate `make` statements and evaluate them for this "
 "`Makefile`."
 msgstr ""
+"Zauważ deklarację `obj` jako rekursywnie rozszerzaną zmienną. Używany tego "
+"mechanizmu do efektywnego definiowania funkcji w `make`. Funkcja `foreach` "
+"pozwala nam na wykonanie pętli po wszystkich plikach źródłowych, a funkcja "
+"`eval` na wygenerowanie instrukcji `make` oraz określenie ich dla `Makefile`."
 
 #: ../../source/learn/building_programs/project_make.md:192
 msgid ""
 "We adjust the dependencies accordingly as we can now define the name of the "
 "object files through the source file names:"
 msgstr ""
+"Odpowiednio dostosowujemy zależności, ponieważ możemy teraz zdefiniować "
+"nazwy plików obiektowych poprzez nazwy plików źródłowych:"
 
 #: ../../source/learn/building_programs/project_make.md:212
 msgid ""
 "The same strategy of creating a map is already used for the module files, now"
 " it is just expanded to the object files as well."
 msgstr ""
+"Ta sama strategia tworzenia mapy jest już używana dla plików modułowych, "
+"teraz jest ona poszerzona też do plików obiektowych."
 
 #: ../../source/learn/building_programs/project_make.md:215
 msgid ""
 "To generate the respective dependency map automatically we will use an `awk` "
 "script here"
 msgstr ""
+"Aby automatycznie wygenerować mapę poszczególnych zależności użyjemy skryptu "
+"`awk`"
 
 #: ../../source/learn/building_programs/project_make.md:277
 msgid ""
@@ -6055,10 +6597,13 @@ msgid ""
 "will not work with all Fortran code (namely submodules are not supported), "
 "but for this example it will suffice."
 msgstr ""
+"Skrypt ten zakłada kilka rzeczy na temat kodu źródłowego, który analizuje, "
+"dlatego nie będzie działał poprawnie z każdym kodem Fortran (submoduły nie "
+"są wspierane), ale dla tego przykładu jest to wystarczające."
 
 #: ../../source/learn/building_programs/project_make.md:282
 msgid "Using awk"
-msgstr ""
+msgstr "Używanie awk"
 
 #: ../../source/learn/building_programs/project_make.md:284
 msgid ""
@@ -6069,6 +6614,13 @@ msgid ""
 "href=\"https://en.wikipedia.org/wiki/Regular_expression\" target=\"_blank\" "
 "rel=\"noopener\"> regular expression</a>."
 msgstr ""
+"Powyższy skrypt używa języka `awk`, który został stworzony w celu "
+"przetwarzania strumieniowego tekstu (ang. text stream processing) i używa "
+"składni podobnej do C. W `awk` możesz definować grupy, które są ewaluowane "
+"na podstawie pewnych zdarzeń _np. _ kiedy dany wiersz pasuje do określonego "
+"wzorca, zazwyczaj wyrażonego <a href="
+"\"https://en.wikipedia.org/wiki/Regular_expression\" target=\"_blank\" rel="
+"\"noopener\">wyrażeniem regularnym</a>."
 
 #: ../../source/learn/building_programs/project_make.md:290
 msgid ""
@@ -6079,6 +6631,13 @@ msgid ""
 "the special variable `FILENAME` to determine which file we are currently "
 "parsing and to allow processing multiple files at once."
 msgstr ""
+"Ten skrypt `awk` definiuje pięć grup, dwie z nich używają specjalnego wzorca "
+"`BEGIN` oraz `END`, które są uruchamiane odpowiednio zanim skrypt się "
+"rozpocznie oraz po skończeniu skryptu. Zanim skrypt się rozpocznie "
+"sprawiamy, aby nieuwzględniał wielkości liter, ponieważ mamy tutaj do "
+"czynienia z kodem źródłowym Fortran. Używamy również specjalnej zmiennej "
+"`FILENAME`, aby określić, który plik jest aktualnie poddawany analizie oraz "
+"aby umożliwić przetwarzanie kilku plików na raz."
 
 #: ../../source/learn/building_programs/project_make.md:298
 msgid ""
@@ -6087,12 +6646,19 @@ msgid ""
 "pattern not all valid Fortran code will be parsed correctly. A failing "
 "example would be:"
 msgstr ""
+"Mając określone trzy wzorce, szukamy nimi poleceń`module`, `use` oraz "
+"`include` jako pierwszego wpisu rozdzielonego spacją. Przy tym zastosowanym "
+"wzorze nie każdy kod Fortran zostanie poprawnie przeanalizowany. Przykładem "
+"błędu może być:"
 
 #: ../../source/learn/building_programs/project_make.md:307
 msgid ""
 "To make this parsable by the `awk` script we can add another group directly "
 "after the `BEGIN` group, modifying the stream while processing it with"
 msgstr ""
+"Aby ten kod mógł zostać przeanalizowany przez `awk` możemy dodać jeszcze "
+"jedną grupę zaraz po grupie `BEGIN` modyfikując tym samym strumień podczas "
+"jego przetwarzania za pomocą"
 
 #: ../../source/learn/building_programs/project_make.md:316
 msgid ""
@@ -6100,6 +6666,9 @@ msgid ""
 "lines and other difficulties. This might be possible to implement in `awk` "
 "but would require a huge script in the end."
 msgstr ""
+"Teoretycznie potrzebny byłby pełny parser Fortran, aby poradzić sobie z "
+"kontynuacjami wierszy oraz innymi trudnościami. Byłoby to możliwe do "
+"zaimplementowania w `awk`, ale ostatecznie wymagałoby ogromnego skryptu."
 
 #: ../../source/learn/building_programs/project_make.md:320
 msgid ""
@@ -6109,12 +6678,20 @@ msgid ""
 "simplify and speed up this step, but also introduces an error source in your "
 "build tools."
 msgstr ""
+"Należy również pamiętać, że generowanie zależności powinno być szybkie. "
+"Wymagający parser może stwarzać duże koszty ogólne podczas generowania "
+"zależności dla dużych baz kodu. Rozsądne założenia mogą uprościć i "
+"przyspieszyć ten krok, ale także wprowadzić źródło błędów w narzędziach do "
+"kompilacji."
 
 #: ../../source/learn/building_programs/project_make.md:327
 msgid ""
 "Make the script executable (`chmod +x gen-deps.awk`) and test it with `./gen-"
 "deps.awk $(find src -name '*.[fF]90')`. You should see output like this:"
 msgstr ""
+"Spraw, aby skrypt był wykonalny (`chmod +x gen-deps.awk`) oraz przetestuj go "
+"za pomocą `./gen-deps.awk $(find src -name '*.[fF]90')`. Powinnieneś "
+"zobaczyć taki wynik:"
 
 #: ../../source/learn/building_programs/project_make.md:349
 msgid ""
@@ -6126,12 +6703,23 @@ msgid ""
 "`iso_fortran_env.mod`, since it is an undefined variable it will just expand "
 "to an empty string and not introduce any further dependencies."
 msgstr ""
+"Należy pamiętać, że skrypty będą używać zmiennych rozszerzanych "
+"rekurencyjnie i nie będą jeszcze definiować żadnych zależności, ponieważ "
+"deklaracja zmiennych w nieuporządkowanej kolejności może być konieczna, a "
+"nie chcemy przypadkowo utworzyć żadnego docelowego elementu. Możesz także "
+"sprawdzić, czy obecne są te same informacje, co w powyższym, ręcznie "
+"napisanym fragmencie kodu. Jedynym wyjątkiem jest dodatkowa zależność pliku "
+"`iso_fortran_env.mod`. Jest to zmienna niezdefiniowana, dlatego zostanie ona "
+"po prostu rozwinięta do pustego ciągu znaków i nie wprowadzi żadnych "
+"dalszych zależności."
 
 #: ../../source/learn/building_programs/project_make.md:357
 msgid ""
 "Now, you can finally include this piece in your `Makefile` to automate the "
 "dependency generation:"
 msgstr ""
+"Teraz możesz wprowadzić ten fragment w twoim `Makefile`, aby zautomatyzować "
+"generowanie zależności:"
 
 #: ../../source/learn/building_programs/project_make.md:428
 msgid ""
@@ -6143,6 +6731,13 @@ msgid ""
 "because it is not necessary to recompile an object file in case dependencies "
 "are regenerated and potentially unchanged."
 msgstr ""
+"Tutaj dodatkowe pliki zależności są generowane indywidualnie dla każdego "
+"pliku źródłowego, a później zawarte w głównym `Makefile`. Ponadto, pliki "
+"zależności są dodawane jako zależności do plików obiektowych, aby upewnić "
+"się, że są generowane zanim obiekt jest skompilowany. Kreska pionowa (ang. "
+"pipe) umieszczona w zależnościach definiuje kolejność zasad bez zależności "
+"czasowej, ponieważ rekompilacja pliku obiektowego w przypadku, kiedy "
+"zależności są odnawiane i potencjalnie niezmienione nie jest konieczna."
 
 #: ../../source/learn/building_programs/project_make.md:436
 msgid ""
@@ -6151,22 +6746,31 @@ msgid ""
 "object files in the dependency files, expanding `dep` once yields the object "
 "file name, expanding it again yields the object files it depends on."
 msgstr ""
+"Ponownie, wykorzystaj funkcję `eval` do wygenerowania zależności w pętli "
+"`foreach` wykonanej na wszystkich plikach obiektowych. Zauważ, że "
+"utworzyliśmy mapę między plikami obiektów w plikach zależności. Rozwinięcie "
+"`dep` raz daje nazwę pliku obiektu, a jego ponowne rozwinięcie daje pliki "
+"obiektów, od których jest on zależny."
 
 #: ../../source/learn/building_programs/project_make.md:441
 msgid "Building your project with `make` should give an output similar to"
-msgstr ""
+msgstr "Kompilacja twojego projektu z użyciem `make` powinna dać podobne wyniki"
 
 #: ../../source/learn/building_programs/project_make.md:462
 msgid ""
 "Once the dependency files are generated, `make` will only update them if the "
 "source changes and not require to rebuild them again for every invocation."
 msgstr ""
+"Kiedy pliki zależności są już wygenerowane `make` będzie je aktualizował "
+"tylko w przypadku zmiany źródła, a nie przy każdym wywołaniu."
 
 #: ../../source/learn/building_programs/project_make.md:466
 msgid ""
 "With correct dependencies you can leverage parallel execution of your "
 "`Makefile`, just use the `-j` flag to create multiple `make` processes."
 msgstr ""
+"Stosując prawidłowe zależności możesz wykorzystać równolegle wykonywanie "
+"pliku `Makefile` używając flagi `-j`, aby stworzyć wiele procesów `make`."
 
 #: ../../source/learn/building_programs/project_make.md:469
 msgid ""
@@ -6174,6 +6778,9 @@ msgid ""
 "specify the source files explicitly, the `wildcard` function can be used to "
 "determine them dynamically:"
 msgstr ""
+"Ponieważ zależności mogą teraz być generowane automatycznie, nie ma potrzeby "
+"jawnego określania plików źródłowych. Aby określić je dynamicznie, możesz "
+"użyć funkcji `wildcard`:"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:3
 msgid ""
@@ -6181,6 +6788,9 @@ msgid ""
 "libraries, here is the output from the `ldd` utility that reports such "
 "dependencies:"
 msgstr ""
+"Aby zobrazować, że nawet proste programy zależą od zewnętrznych bibliotek "
+"środowiska wykonawczego, spójrz na dane wyjściowe narzędzia `ldd`, który "
+"raportuje takie zależności:"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:18
 msgid ""
@@ -6190,6 +6800,12 @@ msgid ""
 " no problem. However, when such a library cannot be found, you will get "
 "(hopefully) an error message and the program stops immediately."
 msgstr ""
+"Inne kompilatory lub inne wersje tego samego kompilatora będą prawdopodobnie "
+"wymagały innych dynamicznych bibliotek. Dopóki program działa na tym samym "
+"komputerze — lub, bardziej precyzyjnie, w tym samym środowisku — nie powinno "
+"być żadnego problemu. Jeśli jednak taka biblioteka nie może zostać "
+"odnaleziona, otrzymasz (miejmy nadzieję) komunikat o błędzie, a program "
+"natychmiast się zatrzyma."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:25
 msgid ""
@@ -6199,6 +6815,11 @@ msgid ""
 "nicely with Windows 10, is found here: "
 "<https://github.com/lucasg/Dependencies>)"
 msgstr ""
+"Dlatego dobrze jest wiedzieć jakie biblioteki są wymagane. Na Linuksie oraz "
+"środowiskach linuksowych, narzędzie `ldd` jest bardzo pomocne. Na Windowsie "
+"natomiast warto skorzystać z narzędzia `dependency walker` (najnowszą "
+"wersję, która działa bardzo dobrze na Windowsie 10 możesz znaleźć tutaj: "
+"<https://github.com/lucasg/Dependencies>)"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:30
 msgid ""
@@ -6206,10 +6827,13 @@ msgid ""
 "libraries. That is a vast subject in its own right and full of complications "
 "and history. Here we merely scratch the surface:"
 msgstr ""
+"Kolejną rzeczą, którą powinieneś wiedzieć jest to, gdzie program próbuje "
+"znaleźć te biblioteki. Jest to obszerny temat sam w sobie, pełen zawiłości i "
+"historii. Tutaj go tylko szybko wspomnimy:"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:34
 msgid "_On Linux:_"
-msgstr ""
+msgstr "_Na Linuksie:_"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:36
 msgid ""
@@ -6217,36 +6841,46 @@ msgid ""
 "directories to be searched, each directory separated via colons (:) from the "
 "others. For instance: `/usr/lib:/usr/local/lib` — typical system directories."
 msgstr ""
+"Używana jest zmienna środowiskowa `LD_LIBRARY_PATH`. Składa się z listy "
+"katalogów do przeszukania, każdy z nich oddzielony jest dwukropkiem (:) od "
+"pozostałych. Na przykład: `/usr/lib:/usr/local/lib` - typowe katalogi "
+"systemowe."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:40
 msgid ""
 "At the link step you can also use an option to set `RPATH`, a list of "
 "directories that is put into the executable file itself."
 msgstr ""
+"W procesie łączenie możesz również skorzystać z opcji określenia `RPATH`, "
+"listy katalogów umieszczanej w samym pliku wykonywalnym."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:42
 msgid "Then there are several system directories that are searched."
-msgstr ""
+msgstr "Następnie przeszukiwanych jest kilka katalogów systemowych."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:44
 msgid "_On Windows:_"
-msgstr ""
+msgstr "_Na Windowsie:_"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:46
 msgid ""
 "The directory containing the executable program may also contain dynamic "
 "libraries."
 msgstr ""
+"Katalog zawierający program wykonywalny może również zawierać biblioteki "
+"dynamiczne."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:48
 msgid ""
 "The environment variable \"PATH\" is used. Again a list of directories to be "
 "searched, but now the separating character is the semicolon (;)."
 msgstr ""
+"Używana jest zmienna środowiskowa \"PATH\". Ponownie lista katalogów do "
+"przeszukania, jednak teraz znakiem rozdzielającym jest średnik (;)."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:50
 msgid "A set of system directories is searched."
-msgstr ""
+msgstr "Przeszukiwane są katalogi systemowe."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:52
 msgid ""
@@ -6255,6 +6889,10 @@ msgid ""
 "\"ldd\" or \"dependency walker\" to find out what libraries are loaded and "
 "where they are found."
 msgstr ""
+"Niestety, szczegóły tego procesu mogą się różnić w zależności od wersji "
+"systemu operacyjnego. Powyższe informacje mogą służyć jedynie za wskazówkę — "
+"używaj narzędzi takich jak \"ldd\" lub \"dependency walker\", aby dokładnie "
+"dowiedzieć się jakie biblioteki są ładowane i gdzie się znajdują."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:57
 msgid ""
@@ -6263,14 +6901,18 @@ msgid ""
 " also distribute the libraries it depends on. For more information: see "
 "below."
 msgstr ""
+"Jeśli chcesz udostępnić swój program współpracownikom, klientom, a nawet "
+"użytkownikom na całym świecie, musisz zadbać o to, aby oprócz samego "
+"programu, udostępnić również biblioteki, od których jest on zależny. Więcej "
+"informacji znajdziesz poniżej."
 
 #: ../../source/learn/intrinsics/array.md:1
 msgid "Properties and attributes of arrays"
-msgstr ""
+msgstr "Właściwości i atrybuty tablic"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:2
 msgid "merge"
-msgstr ""
+msgstr "scalanie"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:4
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:4
@@ -6472,11 +7114,11 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:4
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:4
 msgid "**Name**"
-msgstr ""
+msgstr "**Nazwa**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:6
 msgid "**merge**(3) - \\[ARRAY CONSTRUCTION\\] Merge variables"
-msgstr ""
+msgstr "**merge**(3) - \\[KONSTRUKCJA TABLICY\\] Zmienne do scalenia"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:8
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:8
@@ -6678,7 +7320,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:9
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:8
 msgid "**Syntax**"
-msgstr ""
+msgstr "**Składnia**"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:26
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:21
@@ -6879,7 +7521,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:19
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:21
 msgid "**Description**"
-msgstr ""
+msgstr "**Opis**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:16
 msgid ""
@@ -6888,10 +7530,14 @@ msgid ""
 "**tsource** where the corresponding element of **mask** is **.true.**, or an "
 "element of **fsource** when it is .false. ."
 msgstr ""
+"Funkcja elementarna **merge**(3) wybiera wartości z dwóch tablic lub "
+"wielkości skalarnych zgodnie z maską logiczną. Wynik jest równy elementowi "
+"**tsource**, gdzie odpowiadający mu element **mask** ma wartość **true** lub "
+"elementowi **fsource**, gdy ma wartość .false.."
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:21
 msgid "Multi-dimensional arrays are supported."
-msgstr ""
+msgstr "Wielowymiarowe tablice są obsługiwane."
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:23
 msgid ""
@@ -6901,22 +7547,33 @@ msgid ""
 "being generated; as **1.0/x** may be evaluated for all values of **x** before"
 " the mask is used to select which value to retain:"
 msgstr ""
+"Zauważ, że wyrażenia argumentów dla **merge**(3) nie muszą być zawarte, "
+"dlatego (na przykład) jeśli tablica **x** zawiera wartości zerowe w "
+"poniższym wyrażeniu, standard nie zapobiega przed generowaniem dzielenia "
+"zmiennoprzecinkowego przez zero; ponieważ **1.0/x** może być obliczone dla "
+"wszystkich wartości **x** zanim maska zostanie użyta do wybrania wartości do "
+"zachowania:"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:33
 msgid ""
 "Note the compiler is also free to short-circuit or to generate an infinity so"
 " this may work in many programming environments but is not recommended."
 msgstr ""
+"Zauważ, że kompilator może także powodować zwarcia lub generować "
+"nieskończoność, dlatego takie rozwiązanie może działać w wielu środowiskach "
+"programistycznych, ale nie jest zalecane."
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:37
 msgid ""
 "For cases like this one may instead use masked assignment via the **where** "
 "construct:"
 msgstr ""
+"Do przypadków takich jak ten możesz zamiast tego użyć przypisania maskowego "
+"za pomocą konstrukcji **where**:"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:48
 msgid "instead of the more obscure"
-msgstr ""
+msgstr "zamiast bardziej niejasnego"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:37
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:36
@@ -7111,23 +7768,24 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:28
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:43
 msgid "**Arguments**"
-msgstr ""
+msgstr "**Argumenty**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:56
 msgid "**tsource**"
-msgstr ""
+msgstr "**tsource**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:57
 msgid "May be of any type, including user-defined."
-msgstr ""
+msgstr "Może być dowolnego typu, również zdefiniowanego przez użytkownika."
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:59
 msgid "**fsource**"
-msgstr ""
+msgstr "**fsource**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:60
 msgid "Shall be of the same type and type parameters as **tsource**."
 msgstr ""
+"Powinien być tego samego typu i mieć takie same parametry jak **tsource**."
 
 #: ../../source/learn/intrinsics/_pages/ALL.md:23
 #: ../../source/learn/intrinsics/_pages/ANY.md:21
@@ -7148,15 +7806,16 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/SUM.md:29
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:34
 msgid "**mask**"
-msgstr ""
+msgstr "**mask**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:63
 msgid "Shall be of type _logical_."
-msgstr ""
+msgstr "Powinien być typu _logicznego_."
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:65
 msgid "Note that (currently) _character_ values must be of the same length."
 msgstr ""
+"Zauważ, że (obecnie) wartości _character_ muszą być takiej samej długości."
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:43
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:46
@@ -7330,7 +7989,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:42
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:58
 msgid "**Returns**"
-msgstr ""
+msgstr "**Zwracanie**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:69
 msgid ""
@@ -7338,6 +7997,9 @@ msgid ""
 "element the result is **tsource** if **mask** is true and **fsource** "
 "otherwise."
 msgstr ""
+"Wynik oraz parametry mają ten sam typ, co **tsource**. Dla dowolnego "
+"elementu wynik to **tsource** jeśli **mask** ma wartość true, w przeciwnym "
+"wypadku wynik to **fsource**."
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:52
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:52
@@ -7512,22 +8174,22 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:58
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:63
 msgid "**Examples**"
-msgstr ""
+msgstr "**Przykłady**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:74
 msgid "The value of"
-msgstr ""
+msgstr "Wartość"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:80
 msgid "is 1.0 for K=5 and 0.0 for K=**-2**."
-msgstr ""
+msgstr "to 1.0 dla K=5 i 0.0 dla K=**-2**."
 
 #: ../../source/learn/intrinsics/_pages/COUNT.md:69
 #: ../../source/learn/intrinsics/_pages/INDEX.md:67
 #: ../../source/learn/intrinsics/_pages/MERGE.md:130
 #: ../../source/learn/intrinsics/_pages/MINEXPONENT.md:44
 msgid "Expected Results:"
-msgstr ""
+msgstr "Oczekiwane Wyniki:"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:119
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:159
@@ -7726,7 +8388,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:107
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:253
 msgid "**Standard**"
-msgstr ""
+msgstr "**Standard**"
 
 #: ../../source/learn/intrinsics/_pages/ADJUSTL.md:66
 #: ../../source/learn/intrinsics/_pages/ADJUSTR.md:77
@@ -7792,7 +8454,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/TRIM.md:57
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:109
 msgid "Fortran 95 and later"
-msgstr ""
+msgstr "Fortran 95 i nowsze"
 
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:163
 #: ../../source/learn/intrinsics/_pages/ACOS.md:72
@@ -7954,13 +8616,15 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:111
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:257
 msgid "**See Also**"
-msgstr ""
+msgstr "**Zobacz także**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:156
 msgid ""
 "[**pack**(3)](#pack), [**unpack**(3)](#unpack), [**pack**(3)](#pack), "
 "[**spread**(3)](#spread), [**unpack**(3)](#unpack)"
 msgstr ""
+"[**pack**(3)](#pack), [**unpack**(3)](#unpack), [**pack**(3)](#pack), "
+"[**spread**(3)](#spread), [**unpack**(3)](#unpack)"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:123
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:174
@@ -8010,15 +8674,17 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/TRAILZ.md:118
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:275
 msgid "fortran-lang intrinsic descriptions (license: MIT) @urbanjost"
-msgstr ""
+msgstr "Opisy fortran-lang (licencja: MIT) @urbanjost"
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:2
 msgid "pack"
-msgstr ""
+msgstr "pack"
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:6
 msgid "**pack**(3) - \\[ARRAY CONSTRUCTION\\] Pack an array into an array of rank one"
 msgstr ""
+"**pack** (3) - \\[KONSTRUKCJA TABLICY\\] - Spakuj tablicę w tablicę rangi "
+"pierwszej"
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:19
 msgid ""
@@ -8026,10 +8692,13 @@ msgid ""
 " returned value must by of the same type. **mask** may be a scalar as well an"
 " an array."
 msgstr ""
+"gdzie TYPE(kind=KIND) może być dowolnym typem, gdzie **tablica** i **wektor**"
+" oraz zwracana wartość musi być tego samego typu. **mask** może być "
+"wielkością skalarną tak samo jak tablica."
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:25
 msgid "Stores the elements of ARRAY in an array of rank one."
-msgstr ""
+msgstr "Przechowuje elementy tablicy (ARRAY) w tablicy rangi pierwszej."
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:27
 msgid ""
@@ -8037,6 +8706,9 @@ msgid ""
 "equals **.true.**. Afterwards, positions are filled with elements taken from "
 "**vector**."
 msgstr ""
+"Początek otrzymanej tablicy składa się z elementów, których **mask** jest "
+"równe **.true**. Następnie pozycje są wypełnianie elementami pobranymi z "
+"wektora."
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:27
 #: ../../source/learn/intrinsics/_pages/CO_LBOUND.md:21
@@ -8060,23 +8732,25 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/SUM.md:22
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:21
 msgid "**array**"
-msgstr ""
+msgstr "**tablica (array)**"
 
 #: ../../source/learn/intrinsics/_pages/CSHIFT.md:28
 #: ../../source/learn/intrinsics/_pages/PACK.md:34
 msgid "Shall be an array of any type."
-msgstr ""
+msgstr "Może być tablicą dowolnego typu."
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:37
 msgid ""
 "Shall be an array of type _logical_ and of the same size as **array**. "
 "Alternatively, it may be a _logical_ scalar."
 msgstr ""
+"Powinna być tablicą typu _logicznego_ oraz takiej samej wielkości jak "
+"**tablica**. Alternatywnie może być skalarem _logicznym_."
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:40
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:30
 msgid "**vector**"
-msgstr ""
+msgstr "**wektor**"
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:41
 msgid ""
@@ -8086,6 +8760,11 @@ msgid ""
 "number of elements in **vector** shall be equal to or greater than the number"
 " of elements in **array**."
 msgstr ""
+"(Opcjonalnie) powinien być tablicą tego samego typu jak **tablica** oraz być "
+"rangi pierwszej. Jeśli występuje, liczba elementów **wektora** powinna być "
+"równa lub większa niż liczba elementów true w **mask**. Jeśli **mask** jest "
+"wielkością skalarną, liczba elementów **wektora** powinna być równa lub "
+"większa niż liczba elementów **tablicy**."
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:49
 msgid ""
@@ -8093,6 +8772,9 @@ msgid ""
 " **vector** is present, the result size is that of **vector**, the number of "
 "**.true.** values in **mask** otherwise."
 msgstr ""
+"Wynikiem jest tablica rangi pierwszej oraz tego samego typu co **tablica**. "
+"Jeśli obecny jest **wektor**, rozmiar wyniku jest taki sam jak **wektora**, "
+"a w przeciwnym razie jak liczba wartości **.true** w **mask**."
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:54
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:54
@@ -8252,7 +8934,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/TRIM.md:30
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:84
 msgid "Sample program:"
-msgstr ""
+msgstr "Przykładowy program:"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:105
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:100
@@ -8392,44 +9074,52 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:189
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:246
 msgid "Results:"
-msgstr ""
+msgstr "Wynik:"
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:111
 msgid ""
 "[**unpack**(3)](#unpack), [**merge**(3)](#merge), [**pack**(3)](#pack), "
 "[**spread**(3)](#spread), [**unpack**(3)](#unpack)"
 msgstr ""
+"[**unpack**(3)](#unpack), [**merge**(3)](#merge), [**pack**(3)](#pack), "
+"[**spread**(3)](#spread), [**unpack**(3)](#unpack)"
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:2
 msgid "spread"
-msgstr ""
+msgstr "spread"
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:6
 msgid "**spread**(3) - \\[ARRAY CONSTRUCTION\\] Add a dimension to an array"
-msgstr ""
+msgstr "**spread**(3) - \\[KONSTRUKCJA TABLICY\\] Dodaj wymiar do tablicy"
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:22
 msgid ""
 "Replicates a **source** array **ncopies** times along a specified dimension "
 "**dim**."
 msgstr ""
+"Replikuje tablice **źródła** **ncopies** razy wzdłuż określonego wymiaru "
+"**dim**."
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:25
 msgid ""
 "If **source** is scalar, the shape of the result is (MAX (NCOPIES, 0)). and "
 "each element of the result has a value equal to **source**."
 msgstr ""
+"Jeśli **źródło** jest wielkością wynik to (MAX (NCOPIES, 0))., a każdy "
+"element wyniku ma wartość równą **źródłowi**."
 
 #: ../../source/learn/intrinsics/_pages/RESHAPE.md:22
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:20
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:30
 #: ../../source/learn/intrinsics/_pages/TRANSFER.md:25
 msgid "**source**"
-msgstr ""
+msgstr "**źródło**"
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:31
 msgid "Shall be a scalar or an array of any type and a rank less than fifteen."
 msgstr ""
+"Powinien być wielkością skalarną lub tablicą dowolnego typu oraz mieć rangę "
+"mniejszą niż piętnaście."
 
 #: ../../source/learn/intrinsics/_pages/ALL.md:27
 #: ../../source/learn/intrinsics/_pages/ANY.md:25
@@ -8456,34 +9146,41 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:36
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:24
 msgid "**dim**"
-msgstr ""
+msgstr "**dim**"
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:35
 msgid ""
 "Shall be a scalar of type _integer_ with a value in the range from **1** to "
 "**n+1**, where **n** equals the rank of **source**."
 msgstr ""
+"Powinien być wielkością skalarną typu _liczba całkowita (integer)_ z "
+"wartością z przedziału od **1** do **n+1**, gdzie **n** jest równe randze "
+"**źródła**."
 
 #: ../../source/learn/intrinsics/_pages/REPEAT.md:28
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:38
 msgid "**ncopies**"
-msgstr ""
+msgstr "**ncopies**"
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:39
 msgid "Shall be a scalar of type _integer_."
-msgstr ""
+msgstr "Powinien być wielkością skalarną typu _liczba całkowita_."
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:43
 msgid ""
 "The result is an array of the same type as **source** and has rank **n+1** "
 "where **n** equals the rank of **source**."
 msgstr ""
+"Wynikiem jest tablica tego samego typu co **źródło** i ma rangę **n+1**, "
+"gdzie **n** jest równe randze **źródła**."
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:123
 msgid ""
 "[**pack**(3)](#pack), [**unpack**(3)](#unpack), [**merge**(3)](#merge), "
 "[**pack**(3)](#pack), [**unpack**(3)](#unpack)"
 msgstr ""
+"[**pack**(3)](#pack), [**unpack**(3)](#unpack), [**merge**(3)](#merge), "
+"[**pack**(3)](#pack), [**unpack**(3)](#unpack)"
 
 #: ../../source/learn/intrinsics/_pages/AIMAG.md:69
 #: ../../source/learn/intrinsics/_pages/AINT.md:99
@@ -8637,17 +9334,19 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:123
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:119
 msgid "fortran-lang intrinsic descriptions"
-msgstr ""
+msgstr "Opisy fortran-lang"
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:2
 msgid "unpack"
-msgstr ""
+msgstr "unpack"
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:6
 msgid ""
 "**unpack**(3) - \\[ARRAY CONSTRUCTION\\] scatter the elements of a vector "
 "into an array using a mask"
 msgstr ""
+"**unpack** (3) - \\[ARRAY CONSTRUCTION\\] rozprasza elementy wektora w "
+"tablicę za pomocą maski"
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:21
 msgid ""
@@ -8655,39 +9354,50 @@ msgid ""
 "rank using _.true._ values from **mask** in array element order to specify "
 "placement of the **vector** values."
 msgstr ""
+"Rozprosza elementy **wektora** do kopii **pola** tablicy dowolnej rangi "
+"używając wartości _.true._ z **maski** w kolejności elementów tablicy, aby "
+"określić położenie wartości **wektora**."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:25
 msgid ""
 "So a copy of **field** is generated with select elements replaced with values"
 " from **vector**."
 msgstr ""
+"Więc generowana jest kopia **pola** z wybranymi elementami zastąpionymi "
+"wartościami **wektora**."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:31
 msgid ""
 "Shall be an array of any type and rank one. It shall have at least as many "
 "elements as **mask** has **.true.** values."
 msgstr ""
+"Powinna być tablicą dowolnego typu oraz rangi pierwszej. Powinna mieć co "
+"najmniej tyle elementów ile wartości **.true.** ma **maska**."
 
 #: ../../source/learn/intrinsics/_pages/PARITY.md:30
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:35
 msgid "Shall be an array of type _logical_."
-msgstr ""
+msgstr "Powinna być tablicą typu _logicznego_."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:37
 msgid "**field**"
-msgstr ""
+msgstr "**pole**"
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:38
 msgid ""
 "Shall be of the same type and type parameters as **vector** and shall be "
 "conformable with **mask**."
 msgstr ""
+"Powinien być tego samego typu i mieć takie same parametry typu jak **wektor**"
+" oraz powinno być zgodne z **maską**."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:44
 msgid ""
 "The result is an array of the same type and type parameters as **vector** and"
 " the same shape as **mask**."
 msgstr ""
+"Wynikiem jest tablica tego samego typu i parametrów typu co **wektor** i "
+"tego samego kształtu co **maska**."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:47
 msgid ""
@@ -8697,32 +9407,44 @@ msgid ""
 "equal to FIELD if FIELD is scalar or to the corresponding element of FIELD if"
 " it is an array."
 msgstr ""
+"Element wyniku odpowiadający i-temu prawdziwemu elementowi MASK, w "
+"kolejności elementów tablicy, ma wartość VECTOR (i) dla i = 1, 2, . . ., t, "
+"gdzie t to liczba prawdziwych wartości w MASK. Każdy pozostały element ma "
+"wartość równą POLU, jeśli POLE jest skalarne, lub odpowiadającemu mu "
+"elementowi POLA, jeśli jest tablicą."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:53
 msgid ""
 "The resulting array corresponds to **field** with **.true.** elements of "
 "**mask** replaced by values from **vector** in array element order."
 msgstr ""
+"Powstała tablica odpowiada **polu** z elementami **.true.** **maski** "
+"zamienionymi na wartości **wektora** w kolejności elementów tablicy."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:59
 msgid ""
 "Particular values may be \"scattered\" to particular positions in an array by"
 " using"
 msgstr ""
+"Poszczególne wartości mogą być „rozrzucane” na określone pozycje w tablicy "
+"za pomocą"
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:113
 msgid ""
 "[**pack**(3)](#pack), [**merge**(3)](#merge), [**pack**(3)](#pack), "
 "[**spread**(3)](#spread), [**unpack**(3)](#unpack)"
 msgstr ""
+"[**pack**(3)](#pack), [**merge**(3)](#merge), [**pack**(3)](#pack), "
+"[**spread**(3)](#spread), [**unpack**(3)](#unpack)"
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:2
 msgid "allocated"
-msgstr ""
+msgstr "allocated"
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:6
 msgid "**allocated**(3) - \\[ARRAY INQUIRY\\] Status of an allocatable entity"
 msgstr ""
+"**allocated**(3) - \\[ZAPYTANIE TABLICY\\] Status przydzielanej jednostki"
 
 #: ../../source/learn/intrinsics/_pages/AINT.md:18
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:14
@@ -8731,25 +9453,27 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:13
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:18
 msgid "or"
-msgstr ""
+msgstr "lub"
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:22
 msgid ""
 "**allocated(array)** and **allocated(scalar)** check the allocation status of"
 " **array** and **scalar**, respectively."
 msgstr ""
+"**allocated(tablica)** oraz **allocated(wielkość skalarna)** sprawdzają "
+"status przydzielonej **tablicy** lub **wielkości skalarnej**."
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:28
 msgid "the argument shall be an _allocatable_ array."
-msgstr ""
+msgstr "argumentem powinna być _możliwa do przydzielenia_ tablica."
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:30
 msgid "**scalar**"
-msgstr ""
+msgstr "**wielkość skalarna**"
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:31
 msgid "the argument shall be an _allocatable_ scalar."
-msgstr ""
+msgstr "argumentem powinna być _możliwa do przydzielenia_ wielkość skalarna."
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:35
 msgid ""
@@ -8757,118 +9481,137 @@ msgid ""
 "parameter. If the argument is allocated then the result is .true.; otherwise,"
 " it returns .false.."
 msgstr ""
+"Wartością zwracaną jest wielkość skalarna _logiczna_ z domyślnym parametrem "
+"typu logicznego. Jeśli argument jest przydzielony, wynikiem jest .true.; w "
+"przeciwnym razie zwraca .false."
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:86
 msgid ""
 "Fortran 95 and later. Note, the scalar= keyword and allocatable scalar "
 "entities are available in Fortran 2003 and later."
 msgstr ""
+"Fortran 95 i nowszy. Uwaga, słowo kluczowe scalar= jest dostępne w wersjach "
+"Fortran 2003 i nowszych."
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:91
 msgid "[**move_alloc**(3)](#move_alloc)"
-msgstr ""
+msgstr "[**move_alloc**(3)](#move_alloc)"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:2
 msgid "is_contiguous"
-msgstr ""
+msgstr "is_contiguous"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:6
 msgid "**is_contiguous**(3) - \\[ARRAY INQUIRY\\] test if object is contiguous"
 msgstr ""
+"**is_contiguous**(3) - \\[ZAPYTANIE TABLICY\\] test sprawdzający czy obiekt "
+"jest ciągły"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:16
 msgid "True if and only if an object is contiguous."
-msgstr ""
+msgstr "Prawda wtedy i tylko wtedy, gdy obiekt jest ciągły."
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:18
 msgid "An object is contiguous if it is"
-msgstr ""
+msgstr "Obiekt jest ciągły jeśli jest"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:20
 msgid "**(1)** an object with the CONTIGUOUS attribute,"
-msgstr ""
+msgstr "**(1)** obiektem z atrybutem CONTIGUOUS,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:23
 msgid "**(2)** a nonpointer whole array that is not assumed-shape,"
 msgstr ""
+"**(2)** całą tablicą niebędącą wskaźnikiem, która nie ma przyjętego kształtu,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:26
 msgid ""
 "**(3)** an assumed-shape array that is argument associated with an array that"
 " is contiguous,"
 msgstr ""
+"**(3)** tablicą o założonym kształcie, której argument jest powiązany z "
+"tablicą ciągłą,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:30
 msgid "**(4)** an array allocated by an ALLOCATE statement,"
-msgstr ""
+msgstr "**(4)** tablicą przydzieloną wyrażeniem ALLOCATE,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:33
 msgid "**(5)** a pointer associated with a contiguous target, or"
-msgstr ""
+msgstr "**(5)** wskaźnikiem powiązanym z celem ciągłym lub"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:36
 msgid "**(6)** a nonzero-sized array section provided that"
-msgstr ""
+msgstr "**(6)** sekcją tablicy o rozmiarze różnym od zera, pod warunkiem, że"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:39
 msgid "**(a)** its base object is contiguous,"
-msgstr ""
+msgstr "**(a)** jej obiekt bazowy jest ciągły,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:42
 msgid "**(b)** it does not have a vector subscript,"
-msgstr ""
+msgstr "**(b)** nie posiada indeksu wektorowego,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:45
 msgid ""
 "**(c)** the elements of the section, in array element order, are a subset of "
 "the base object elements that are consecutive in array element order,"
 msgstr ""
+"**(c)** elementy sekcji, w kolejności elementów tablicy, są podzbiorem "
+"elementów obiektu bazowego, które są następujące po sobie w kolejności "
+"elementów tablicy,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:50
 msgid ""
 "**(d)** if the array is of type character and a substring-range appears, the "
 "substring-range specifies all of the characters of the parent-string,"
 msgstr ""
+"**(d)** jeśli tablica jest typu znakowego i pojawia się zakres podciągów "
+"znaków, zakres podciągów określa wszystkie znaki ciągu nadrzędnego,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:55
 msgid "**(e)** only its final part-ref has nonzero rank, and"
-msgstr ""
+msgstr "**(e)** tylko jej końcowa część ma rangę różną od zera, a"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:58
 msgid "**(f)** it is not the real or imaginary part of an array of type complex."
-msgstr ""
+msgstr "**(f)** nie jest częścią rzeczywistą ani urojoną tablicy typu complex."
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:62
 msgid "An object is not contiguous if it is an array subobject, and"
-msgstr ""
+msgstr "Obiekt nie jest ciągły jeśli jest podobiektem tablicy oraz"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:64
 msgid "the object has two or more elements,"
-msgstr ""
+msgstr "obiekt ma dwa lub więcej elementów,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:66
 msgid ""
 "the elements of the object in array element order are not consecutive in the "
 "elements of the base object,"
 msgstr ""
+"elementy obiektu w kolejności elementów tablicy nie następują po sobie w "
+"elementach obiektu bazowego,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:69
 msgid "the object is not of type character with length zero, and"
-msgstr ""
+msgstr "obiekt nie jest typu znakowego (type character) o długości zerowej i"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:71
 msgid ""
 "the object is not of a derived type that has no ultimate components other "
 "than zero-sized arrays and"
 msgstr ""
+"obiekt nie jest typu pochodnego, który nie posiada żadnych ostatecznych "
+"komponentów poza tablicami o zerowym rozmiarze i"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:74
 msgid "characters with length zero."
-msgstr ""
+msgstr "znaków o długości zero."
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:76
 msgid "It is processor-dependent whether any other object is contiguous."
-msgstr ""
+msgstr "To, czy jakikolwiek inny obiekt jest ciągły, zależy od procesora."
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:39
 #: ../../source/learn/intrinsics/_pages/ANINT.md:20
@@ -8891,23 +9634,27 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/SIGN.md:34
 #: ../../source/learn/intrinsics/_pages/STORAGE_SIZE.md:20
 msgid "**a**"
-msgstr ""
+msgstr "**a**"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:81
 msgid ""
 "may be of any type. It shall be an array. If it is a pointer it shall be "
 "associated."
 msgstr ""
+"może być dowolnego typu. Powinien być tablicą. Jeśli jest wskaźnikiem, "
+"powinien być powiązany."
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:86
 msgid "**Result**"
-msgstr ""
+msgstr "**Wynik**"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:87
 msgid ""
 "of type Default logical scalar. The result has the value true if **a** is "
 "contiguous, and false otherwise."
 msgstr ""
+"logiczna wielkość skalarna typu Default. Wynikiem jest wartość true jeśli "
+"**a** jest ciągle, w przeciwnym wypadku false."
 
 #: ../../source/learn/intrinsics/_pages/ACOSH.md:60
 #: ../../source/learn/intrinsics/_pages/ASINH.md:58
@@ -8952,30 +9699,32 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/STORAGE_SIZE.md:60
 #: ../../source/learn/intrinsics/_pages/TRAILZ.md:109
 msgid "Fortran 2008 and later"
-msgstr ""
+msgstr "Fortran 2008 i nowszy"
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:2
 msgid "lbound"
-msgstr ""
+msgstr "lbound"
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:6
 msgid "**lbound**(3) - \\[ARRAY INQUIRY\\] Lower dimension bounds of an array"
 msgstr ""
+"**lbound**(3) - \\[ZAPYTANIE TABLICY\\] zmniejsza granice wymiarów tablicy"
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:21
 msgid ""
 "Returns the lower bounds of an array, or a single lower bound along the "
 "**dim** dimension."
 msgstr ""
+"Zwraca dolną granicę tablicy lub pojedynczą dolną granicę wymiaru **dim**."
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:27
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:22
 msgid "Shall be an array, of any type."
-msgstr ""
+msgstr "Powinien być tablicą dowolnego typu."
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:30
 msgid "Shall be a scalar _integer_."
-msgstr ""
+msgstr "Powinien być wielkością skalarną _integer_."
 
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:42
 #: ../../source/learn/intrinsics/_pages/AINT.md:38
@@ -9006,7 +9755,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:27
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:54
 msgid "**kind**"
-msgstr ""
+msgstr "**kind**"
 
 #: ../../source/learn/intrinsics/_pages/CEILING.md:28
 #: ../../source/learn/intrinsics/_pages/INDEX.md:39
@@ -9018,7 +9767,7 @@ msgstr ""
 msgid ""
 "An _integer_ initialization expression indicating the kind parameter of the "
 "result."
-msgstr ""
+msgstr "Wyrażenie inicjujące _integer_ wskazujące rodzaj parametru wyniku."
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:38
 msgid ""
@@ -9030,6 +9779,14 @@ msgid ""
 "array or array structure component, or if it has a zero extent along the "
 "relevant dimension, the lower bound is taken to be 1."
 msgstr ""
+"Wartość zwrotna jest typu _integer_ oraz rodzaju **kind**. Jeśli **kind** "
+"jest nieobecny zwracana wartość jest domyślnie typem liczba całkowita "
+"(integer). Jeśli **dim** jest nieobecny, wynikiem jest tablica dolnych "
+"granic dolnej **array**. Jeśli **dim** jest obecny, wynikiem jest wielkość "
+"skalarna odpowiadająca dolnej granicy tablicy tego wymiaru. Jeśli **array** "
+"jest wyrażeniem, a nie całą tablicą lub elementem struktury tablicy, lub "
+"jeśli ma zerowy zasięg wzdłuż odpowiedniego wymiaru, dolna granica "
+"przyjmowana jest jako 1."
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:48
 msgid ""
@@ -9037,6 +9794,9 @@ msgid ""
 "arrays or in any function without an explicit interface. Errors can occur if "
 "there is no interface defined."
 msgstr ""
+"Należy pamiętać, że moim zdaniem funkcja ta nie powinna być używana na "
+"tablicach o określonym rozmiarze ani w żadnej funkcji bez jawnego "
+"interfejsu. W przypadku niezdefiniowanego interfejsu mogą wystąpić błędy."
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:52
 #: ../../source/learn/intrinsics/_pages/LEN.md:52
@@ -9047,62 +9807,69 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/STORAGE_SIZE.md:35
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:53
 msgid "Sample program"
-msgstr ""
+msgstr "Przykładowy program"
 
 #: ../../source/learn/intrinsics/_pages/COUNT.md:90
 #: ../../source/learn/intrinsics/_pages/IACHAR.md:76
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:114
 #: ../../source/learn/intrinsics/_pages/SCAN.md:66
 msgid "Fortran 95 and later, with KIND argument - Fortran 2003 and later"
-msgstr ""
+msgstr "Fortran 95 i nowszy, z argumentem KIND - Fortran 2003 i nowszy"
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:118
 msgid "[**ubound**(3)](#ubound), [**co_lbound**(3)](#co_lbound)"
-msgstr ""
+msgstr "[**ubound**(3)](#ubound), [**co_lbound**(3)](#co_lbound)"
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:2
 msgid "rank"
-msgstr ""
+msgstr "rank"
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:6
 msgid "**rank**(3) - \\[ARRAY INQUIRY\\] Rank of a data object"
-msgstr ""
+msgstr "**rank**(3) - \\[ZAPYTANIE TABLICY\\] Ranga obiektu danych"
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:16
 msgid "**rank(a)** returns the rank of a scalar or array data object."
 msgstr ""
+"**rank(a)** zwraca rangę wielkości skalarnej lub tablicy obiektu danych."
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:21
 msgid "can be of any type"
-msgstr ""
+msgstr "może być dowolnego typu"
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:25
 msgid ""
 "The return value is of type _integer_ and of the default integer kind. For "
 "arrays, their rank is returned; for scalars zero is returned."
 msgstr ""
+"Wartość zwracana jest typu _integer_ oraz domyślnie jest liczbą całkowitą. W "
+"przypadku tablic zwracana jest ich ranga; dla wielkości skalarnych zwracane "
+"jest zero."
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:50
 msgid "TS 29113"
-msgstr ""
+msgstr "TS 29113"
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:2
 msgid "shape"
-msgstr ""
+msgstr "shape"
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:6
 msgid "**shape**(3) - \\[ARRAY INQUIRY\\] Determine the shape of an array"
-msgstr ""
+msgstr "**shape**(3) - \\[ZAPYTANIE TABLICY\\] Określ kształt tablicy"
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:16
 msgid "Determines the shape of an array."
-msgstr ""
+msgstr "Określa kształt tablicy."
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:21
 msgid ""
 "Shall be an array or scalar of any type. If **source** is a pointer it must "
 "be associated and allocatable arrays must be allocated."
 msgstr ""
+"Powinien być tablicą lub wielkością skalarną dowolnego typu. Jeśli **source**"
+" jest wskaźnikiem, musi być powiązany, a tablice możliwe do przydzielenia "
+"przydzielone."
 
 #: ../../source/learn/intrinsics/_pages/CHAR.md:28
 #: ../../source/learn/intrinsics/_pages/COUNT.md:30
@@ -9120,6 +9887,8 @@ msgid ""
 "(Optional) An _integer_ initialization expression indicating the kind "
 "parameter of the result."
 msgstr ""
+"(Opcjonalnie) Wyrażenie inicjujące _integer_ wskazujące rodzaj parametru "
+"wyniku."
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:30
 msgid ""
@@ -9129,40 +9898,52 @@ msgid ""
 "result is the rank one array of size zero. If **kind** is absent, the return "
 "value has the default integer kind otherwise the specified kind."
 msgstr ""
+"Tablica _integer_ rangi pierwszej, zawierająca tyle samo elementów, co "
+"**source**, ma wymiary. Elementy zwracanej tablicy odpowiadają wielkości "
+"**source** w odpowiednich wymiarach. Jeśli **source** jest wielkością "
+"skalarną, wynikiem jest tablica rangi pierwszej o rozmiarze zero. Jeśli "
+"**kind** jest nieobecny, wartość zwracana jest domyślnie liczbą całkowitą, w "
+"przeciwnym razie jest tego samego typu co określony rodzaj."
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:65
 msgid "Fortran 95 and later; with KIND argument Fortran 2003 and later"
-msgstr ""
+msgstr "Fortran 95 i nowszy; z argumentem KIND Fortran 2003 i nowszy"
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:69
 msgid "[**reshape**(3)](#reshape), [**size**(3)](#size)"
-msgstr ""
+msgstr "[**reshape**(3)](#reshape), [**size**(3)](#size)"
 
 #: ../../source/learn/intrinsics/_pages/SIZE.md:2
 msgid "size"
-msgstr ""
+msgstr "size"
 
 #: ../../source/learn/intrinsics/_pages/SIZE.md:6
 msgid "**size**(3) - \\[ARRAY INQUIRY\\] Determine the size of an array"
-msgstr ""
+msgstr "**size**(3) - \\[ZAPYTANIE TABLICY\\] Określa wielkość tablicy"
 
 #: ../../source/learn/intrinsics/_pages/SIZE.md:16
 msgid ""
 "Determine the extent of **array** along a specified dimension **dim**, or the"
 " total number of elements in **array** if **dim** is absent."
 msgstr ""
+"Określ wielkość **tablicy** wzdłuż określonego wymiaru **dim**, lub łączną "
+"liczbą elementów **tablicy** jeśli **dim** jest nieobecny."
 
 #: ../../source/learn/intrinsics/_pages/SIZE.md:22
 msgid ""
 "be an array of any type. If **array** is a pointer it must be associated and "
 "allocatable arrays must be allocated."
 msgstr ""
+"jest tablicą dowolnego typu. Jeśli **tablica** jest wskaźnikiem, musi być "
+"powiązana, a wszystkie tablice możliwe do przydzielenia przydzielone."
 
 #: ../../source/learn/intrinsics/_pages/SIZE.md:26
 msgid ""
 "shall be a scalar of type _integer_ and its value shall be in the range from "
 "1 to n, where n equals the rank of **array**."
 msgstr ""
+"powinien być wielkością skalarną typu _integer_, a jego wartość powinna być "
+"w zakresie od 1 do n, gdzie n jest równe randze **tablicy**."
 
 #: ../../source/learn/intrinsics/_pages/ICHAR.md:39
 #: ../../source/learn/intrinsics/_pages/LEN_TRIM.md:35
@@ -9171,36 +9952,39 @@ msgid ""
 "The return value is of type _integer_ and of kind **kind**. If **kind** is "
 "absent, the return value is of default _integer_ kind."
 msgstr ""
+"Wartość zwrotna jest typu _integer_ oraz rodzaju **kind**. Jeśli **kind** "
+"jest nieobecny, wartość zwrotna jest domyślnie rodzajem _integer_."
 
 #: ../../source/learn/intrinsics/_pages/LEN_TRIM.md:75
 #: ../../source/learn/intrinsics/_pages/SIZE.md:186
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:255
 msgid "Fortran 95 and later, with **kind** argument - Fortran 2003 and later"
-msgstr ""
+msgstr "Fortran 95 i nowszy, z argumentem **kind** - Fortran 2003 i nowszy"
 
 #: ../../source/learn/intrinsics/_pages/SIZE.md:190
 msgid "[**shape**(3)](#shape), [__reshape__(3)])(RESHAPE)"
-msgstr ""
+msgstr "[**shape**(3)](#shape), [__reshape__(3)])(RESHAPE)"
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:2
 msgid "ubound"
-msgstr ""
+msgstr "ubound"
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:6
 msgid "**ubound**(3) - \\[ARRAY INQUIRY\\] Upper dimension bounds of an array"
-msgstr ""
+msgstr "**ubound**(3) - \\[ZAPYTANIE TABLICY\\] Górna granica wymiaru tablicy"
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:16
 msgid ""
 "Returns the upper bounds of an array, or a single upper bound along the "
 "**dim** dimension."
 msgstr ""
+"Zwraca górną granicę tablicy lub pojedynczą górną granicę wymiaru **dim**."
 
 #: ../../source/learn/intrinsics/_pages/CO_LBOUND.md:25
 #: ../../source/learn/intrinsics/_pages/CO_UBOUND.md:25
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:25
 msgid "(Optional) Shall be a scalar _integer_."
-msgstr ""
+msgstr "(Opcjonalnie) Powinien być wielkością skalarną _integer_."
 
 #: ../../source/learn/intrinsics/_pages/IACHAR.md:30
 #: ../../source/learn/intrinsics/_pages/INDEX.md:45
@@ -9212,16 +9996,22 @@ msgid ""
 "The return value is of type _integer_ and of kind **kind**. If **kind** is "
 "absent, the return value is of default integer kind."
 msgstr ""
+"Wartość zwrotna jest typu _integer_ oraz rodzaju **kind**. Jeśli **kind** "
+"jest nieobecny, wartość zwrotna jest domyślnie liczbą całkowitą."
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:36
 msgid "If **dim** is absent, the result is an array of the upper bounds of **array**."
 msgstr ""
+"Jeśli **dim** jest nieobecny, wynikiem jest tablica o górnych granicach "
+"**tablicy**."
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:39
 msgid ""
 "If **dim** is present, the result is a scalar corresponding to the upper "
 "bound of the array along that dimension."
 msgstr ""
+"Jeśli **dim** jest obecny, wynikiem jest wielkość skalarna odpowiadająca "
+"górnej granicy tablicy wzdłuż tego wymiaru."
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:42
 msgid ""
@@ -9229,6 +10019,9 @@ msgid ""
 "component, or if it has a zero extent along the relevant dimension, the upper"
 " bound is taken to be the number of elements along the relevant dimension."
 msgstr ""
+"Jeśli **tablica** jest wyrażeniem, a nie całą tablicą lub elementem "
+"struktury tablicy, lub jeśli ma zerowy zasięg wzdłuż odpowiedniego wymiaru, "
+"za górną granicę przyjmuje się liczbę elementów wzdłuż odpowiedniego wymiaru."
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:49
 msgid ""
@@ -9236,26 +10029,33 @@ msgid ""
 "function without an explicit interface. Errors can occur if there is no "
 "interface defined."
 msgstr ""
+"Zauważ, że funkcja ta nie powinna być używana na tablicach o określonych "
+"wielkościach lub w funkcjach bez jawnego interfejsu. Jeśli interfejs nie "
+"jest zdefiniowany mogą wystąpić błędy."
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:114
 msgid "Fortran 95 and later, with KIND argument Fortran 2003 and later"
-msgstr ""
+msgstr "Fortran 95 i nowszy, z argumentem KIND Fortran 2003 i nowszy"
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:119
 msgid ""
 "[**lbound**(3)](#lbound), [**co_ubound**(3)](#co_ubound), "
 "[__co\\_lbound__(3)(co_lbound)]"
 msgstr ""
+"[**lbound**(3)](#lbound), [**co_ubound**(3)](#co_ubound), "
+"[__co\\_lbound__(3)(co_lbound)]"
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:2
 msgid "maxloc"
-msgstr ""
+msgstr "maxloc"
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:6
 msgid ""
 "**maxloc**(3) - \\[ARRAY:LOCATION\\] Location of the maximum value within an "
 "array"
 msgstr ""
+"**maxloc**(3) - \\[TABLICA:LOKALIZACJA\\] Lokalizacja największej wartości w "
+"tablicy"
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:16
 msgid ""
@@ -9270,13 +10070,23 @@ msgid ""
 "all of the elements of **mask** along a given row are zero, the result value "
 "for that row is zero."
 msgstr ""
+"Określa położenie elementu w tablicy o największej wartości lub, jeśli "
+"podano argument **dim**, określa położenie największego elementu wzdłuż "
+"każdego wiersza tablicy w kierunku **dim**. Jeśli występuje argument **mask**"
+", brane są pod uwagę tylko elementy, dla których **mask** ma wartość "
+"**.true.**. Jeśli więcej niż jeden element w tablicy ma największą wartość, "
+"zwracana jest lokalizacja pierwszego takiego elementu w kolejności elementów "
+"tablicy. Jeśli tablica ma rozmiar zerowy lub wszystkie elementy **mask** "
+"mają wartość .false., wynik jest tablicą zer. Podobnie, jeśli podano "
+"argument **dim** i wszystkie elementy **mask** w danym wierszu mają wartość "
+"zero, wartość wyniku dla tego wiersza wynosi zero."
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:30
 #: ../../source/learn/intrinsics/_pages/MAXVAL.md:33
 #: ../../source/learn/intrinsics/_pages/MINLOC.md:36
 #: ../../source/learn/intrinsics/_pages/MINVAL.md:30
 msgid "Shall be an array of type _integer_, _real_, or _character_."
-msgstr ""
+msgstr "Powinien być tablicą typu _integer_, _real_ lub _character_."
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:33
 #: ../../source/learn/intrinsics/_pages/MAXVAL.md:36
@@ -9285,12 +10095,15 @@ msgid ""
 "(Optional) Shall be a scalar of type _integer_, with a value between one and "
 "the rank of **array**, inclusive. It may not be an optional dummy argument."
 msgstr ""
+"(Opcjonalnie) Powinien być wielkością skalarną typu _integer_, z wartością "
+"pomiędzy jeden a rangą **tablicy** włącznie. Nie może być opcjonalnym "
+"argumentem fikcyjnym."
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:38
 #: ../../source/learn/intrinsics/_pages/MINLOC.md:44
 #: ../../source/learn/intrinsics/_pages/MINVAL.md:38
 msgid "Shall be an array of type _logical_, and conformable with **array**."
-msgstr ""
+msgstr "Powinien być typu _logical_ zgodny z **tablicą**."
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:42
 #: ../../source/learn/intrinsics/_pages/MINLOC.md:48
@@ -9302,6 +10115,12 @@ msgid ""
 "and **array** has a rank of one, the result is a scalar. In all cases, the "
 "result is of default _integer_ type."
 msgstr ""
+"Jeśli **dim** jest nieobecny, wynikiem jest tablica rangi pierwszej z "
+"długością równą randze **tablicy**. Jeśli **dim** jest obecny, wynikiem jest "
+"tablica o randze o jeden mniejszej niż ranga **tablicy** oraz o wielkości "
+"odpowiadającej wielkości **tablicy** bez wymiaru **dim**. Jeśli **dim** jest "
+"obecny oraz **tablica** ma rangę pierwszą, wynikiem jest wielkość skalarna. "
+"We wszystkich przypadkach, wynik jest domyślnie typem _integer_."
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:49
 msgid ""

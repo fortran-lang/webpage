@@ -1,3 +1,4 @@
+(gamma)=
 ## gamma
 
 ### **Name**

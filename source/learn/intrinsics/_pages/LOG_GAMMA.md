@@ -1,3 +1,4 @@
+(log_gamma)=
 ## log_gamma
 
 ### **Name**

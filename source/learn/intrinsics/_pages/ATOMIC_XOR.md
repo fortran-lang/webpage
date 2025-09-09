@@ -1,3 +1,4 @@
+(atomic_xor)=
 ## atomic_xor
 
 ### **Name**

@@ -1,3 +1,4 @@
+(atomic_fetch_or)=
 ## atomic_fetch_or
 
 ### **Name**

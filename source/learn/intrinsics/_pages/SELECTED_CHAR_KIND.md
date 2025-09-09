@@ -1,3 +1,4 @@
+(selected_char_kind)=
 ## selected_char_kind
 
 ### **Name**

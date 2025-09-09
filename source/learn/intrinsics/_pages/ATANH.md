@@ -1,3 +1,4 @@
+(atanh)=
 ## atanh
 
 ### **Name**

@@ -1,3 +1,4 @@
+(parity)=
 ## parity
 
 ### **Name**

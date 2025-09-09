@@ -1,3 +1,4 @@
+(atomic_define)=
 ## atomic_define
 
 ### **Name**
