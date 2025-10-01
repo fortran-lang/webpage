@@ -9,7 +9,7 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-10-01 14:47+0530\n"
-"PO-Revision-Date: 2025-04-17 08:01+0000\n"
+"PO-Revision-Date: 2025-08-19 17:02+0000\n"
 "Last-Translator: Agnieszka Ziora <agaxx02@gmail.com>\n"
 "Language-Team: Polish <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pl/>\n"
@@ -19,7 +19,7 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=n==1 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 "
 "|| n%100>=20) ? 1 : 2;\n"
-"X-Generator: Weblate 5.11.1-dev\n"
+"X-Generator: Weblate 5.13\n"
 "Generated-By: Babel 2.10.3\n"
 
 #: ../../source/community.md:10
@@ -6139,7 +6139,7 @@ msgstr ""
 
 #: ../../source/learn/building_programs/managing_libraries.md:76
 msgid "On Linux:"
-msgstr "Na a Linuksie:"
+msgstr "Na Linuksie:"
 
 #: ../../source/learn/building_programs/managing_libraries.md:84
 msgid "On Windows, with the Intel Fortran compiler:"
@@ -6667,7 +6667,7 @@ msgid ""
 "but would require a huge script in the end."
 msgstr ""
 "Teoretycznie potrzebny byłby pełny parser Fortran, aby poradzić sobie z "
-"kontynuacjami wierszy oraz innymi trudnościami. Mogłoby być to możliwe do "
+"kontynuacjami wierszy oraz innymi trudnościami. Byłoby to możliwe do "
 "zaimplementowania w `awk`, ale ostatecznie wymagałoby ogromnego skryptu."
 
 #: ../../source/learn/building_programs/project_make.md:320
@@ -6678,12 +6678,20 @@ msgid ""
 "simplify and speed up this step, but also introduces an error source in your "
 "build tools."
 msgstr ""
+"Należy również pamiętać, że generowanie zależności powinno być szybkie. "
+"Wymagający parser może stwarzać duże koszty ogólne podczas generowania "
+"zależności dla dużych baz kodu. Rozsądne założenia mogą uprościć i "
+"przyspieszyć ten krok, ale także wprowadzić źródło błędów w narzędziach do "
+"kompilacji."
 
 #: ../../source/learn/building_programs/project_make.md:327
 msgid ""
 "Make the script executable (`chmod +x gen-deps.awk`) and test it with `./gen-"
 "deps.awk $(find src -name '*.[fF]90')`. You should see output like this:"
 msgstr ""
+"Spraw, aby skrypt był wykonalny (`chmod +x gen-deps.awk`) oraz przetestuj go "
+"za pomocą `./gen-deps.awk $(find src -name '*.[fF]90')`. Powinnieneś "
+"zobaczyć taki wynik:"
 
 #: ../../source/learn/building_programs/project_make.md:349
 msgid ""
@@ -6695,12 +6703,23 @@ msgid ""
 "`iso_fortran_env.mod`, since it is an undefined variable it will just expand "
 "to an empty string and not introduce any further dependencies."
 msgstr ""
+"Należy pamiętać, że skrypty będą używać zmiennych rozszerzanych "
+"rekurencyjnie i nie będą jeszcze definiować żadnych zależności, ponieważ "
+"deklaracja zmiennych w nieuporządkowanej kolejności może być konieczna, a "
+"nie chcemy przypadkowo utworzyć żadnego docelowego elementu. Możesz także "
+"sprawdzić, czy obecne są te same informacje, co w powyższym, ręcznie "
+"napisanym fragmencie kodu. Jedynym wyjątkiem jest dodatkowa zależność pliku "
+"`iso_fortran_env.mod`. Jest to zmienna niezdefiniowana, dlatego zostanie ona "
+"po prostu rozwinięta do pustego ciągu znaków i nie wprowadzi żadnych "
+"dalszych zależności."
 
 #: ../../source/learn/building_programs/project_make.md:357
 msgid ""
 "Now, you can finally include this piece in your `Makefile` to automate the "
 "dependency generation:"
 msgstr ""
+"Teraz możesz wprowadzić ten fragment w twoim `Makefile`, aby zautomatyzować "
+"generowanie zależności:"
 
 #: ../../source/learn/building_programs/project_make.md:428
 msgid ""
@@ -6712,6 +6731,13 @@ msgid ""
 "because it is not necessary to recompile an object file in case dependencies "
 "are regenerated and potentially unchanged."
 msgstr ""
+"Tutaj dodatkowe pliki zależności są generowane indywidualnie dla każdego "
+"pliku źródłowego, a później zawarte w głównym `Makefile`. Ponadto, pliki "
+"zależności są dodawane jako zależności do plików obiektowych, aby upewnić "
+"się, że są generowane zanim obiekt jest skompilowany. Kreska pionowa (ang. "
+"pipe) umieszczona w zależnościach definiuje kolejność zasad bez zależności "
+"czasowej, ponieważ rekompilacja pliku obiektowego w przypadku, kiedy "
+"zależności są odnawiane i potencjalnie niezmienione nie jest konieczna."
 
 #: ../../source/learn/building_programs/project_make.md:436
 msgid ""
@@ -6720,22 +6746,31 @@ msgid ""
 "object files in the dependency files, expanding `dep` once yields the object "
 "file name, expanding it again yields the object files it depends on."
 msgstr ""
+"Ponownie, wykorzystaj funkcję `eval` do wygenerowania zależności w pętli "
+"`foreach` wykonanej na wszystkich plikach obiektowych. Zauważ, że "
+"utworzyliśmy mapę między plikami obiektów w plikach zależności. Rozwinięcie "
+"`dep` raz daje nazwę pliku obiektu, a jego ponowne rozwinięcie daje pliki "
+"obiektów, od których jest on zależny."
 
 #: ../../source/learn/building_programs/project_make.md:441
 msgid "Building your project with `make` should give an output similar to"
-msgstr ""
+msgstr "Kompilacja twojego projektu z użyciem `make` powinna dać podobne wyniki"
 
 #: ../../source/learn/building_programs/project_make.md:462
 msgid ""
 "Once the dependency files are generated, `make` will only update them if the "
 "source changes and not require to rebuild them again for every invocation."
 msgstr ""
+"Kiedy pliki zależności są już wygenerowane `make` będzie je aktualizował "
+"tylko w przypadku zmiany źródła, a nie przy każdym wywołaniu."
 
 #: ../../source/learn/building_programs/project_make.md:466
 msgid ""
 "With correct dependencies you can leverage parallel execution of your "
 "`Makefile`, just use the `-j` flag to create multiple `make` processes."
 msgstr ""
+"Stosując prawidłowe zależności możesz wykorzystać równolegle wykonywanie "
+"pliku `Makefile` używając flagi `-j`, aby stworzyć wiele procesów `make`."
 
 #: ../../source/learn/building_programs/project_make.md:469
 msgid ""
@@ -6743,6 +6778,9 @@ msgid ""
 "specify the source files explicitly, the `wildcard` function can be used to "
 "determine them dynamically:"
 msgstr ""
+"Ponieważ zależności mogą teraz być generowane automatycznie, nie ma potrzeby "
+"jawnego określania plików źródłowych. Aby określić je dynamicznie, możesz "
+"użyć funkcji `wildcard`:"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:3
 msgid ""
@@ -6750,6 +6788,9 @@ msgid ""
 "libraries, here is the output from the `ldd` utility that reports such "
 "dependencies:"
 msgstr ""
+"Aby zobrazować, że nawet proste programy zależą od zewnętrznych bibliotek "
+"środowiska wykonawczego, spójrz na dane wyjściowe narzędzia `ldd`, który "
+"raportuje takie zależności:"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:18
 msgid ""
@@ -6759,6 +6800,12 @@ msgid ""
 " no problem. However, when such a library cannot be found, you will get "
 "(hopefully) an error message and the program stops immediately."
 msgstr ""
+"Inne kompilatory lub inne wersje tego samego kompilatora będą prawdopodobnie "
+"wymagały innych dynamicznych bibliotek. Dopóki program działa na tym samym "
+"komputerze — lub, bardziej precyzyjnie, w tym samym środowisku — nie powinno "
+"być żadnego problemu. Jeśli jednak taka biblioteka nie może zostać "
+"odnaleziona, otrzymasz (miejmy nadzieję) komunikat o błędzie, a program "
+"natychmiast się zatrzyma."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:25
 msgid ""
@@ -6768,6 +6815,11 @@ msgid ""
 "nicely with Windows 10, is found here: "
 "<https://github.com/lucasg/Dependencies>)"
 msgstr ""
+"Dlatego dobrze jest wiedzieć jakie biblioteki są wymagane. Na Linuksie oraz "
+"środowiskach linuksowych, narzędzie `ldd` jest bardzo pomocne. Na Windowsie "
+"natomiast warto skorzystać z narzędzia `dependency walker` (najnowszą "
+"wersję, która działa bardzo dobrze na Windowsie 10 możesz znaleźć tutaj: "
+"<https://github.com/lucasg/Dependencies>)"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:30
 msgid ""
@@ -6775,10 +6827,13 @@ msgid ""
 "libraries. That is a vast subject in its own right and full of complications "
 "and history. Here we merely scratch the surface:"
 msgstr ""
+"Kolejną rzeczą, którą powinieneś wiedzieć jest to, gdzie program próbuje "
+"znaleźć te biblioteki. Jest to obszerny temat sam w sobie, pełen zawiłości i "
+"historii. Tutaj go tylko szybko wspomnimy:"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:34
 msgid "_On Linux:_"
-msgstr ""
+msgstr "_Na Linuksie:_"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:36
 msgid ""
@@ -6786,36 +6841,46 @@ msgid ""
 "directories to be searched, each directory separated via colons (:) from the "
 "others. For instance: `/usr/lib:/usr/local/lib` — typical system directories."
 msgstr ""
+"Używana jest zmienna środowiskowa `LD_LIBRARY_PATH`. Składa się z listy "
+"katalogów do przeszukania, każdy z nich oddzielony jest dwukropkiem (:) od "
+"pozostałych. Na przykład: `/usr/lib:/usr/local/lib` - typowe katalogi "
+"systemowe."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:40
 msgid ""
 "At the link step you can also use an option to set `RPATH`, a list of "
 "directories that is put into the executable file itself."
 msgstr ""
+"W procesie łączenie możesz również skorzystać z opcji określenia `RPATH`, "
+"listy katalogów umieszczanej w samym pliku wykonywalnym."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:42
 msgid "Then there are several system directories that are searched."
-msgstr ""
+msgstr "Następnie przeszukiwanych jest kilka katalogów systemowych."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:44
 msgid "_On Windows:_"
-msgstr ""
+msgstr "_Na Windowsie:_"
 
 #: ../../source/learn/building_programs/runtime_libraries.md:46
 msgid ""
 "The directory containing the executable program may also contain dynamic "
 "libraries."
 msgstr ""
+"Katalog zawierający program wykonywalny może również zawierać biblioteki "
+"dynamiczne."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:48
 msgid ""
 "The environment variable \"PATH\" is used. Again a list of directories to be "
 "searched, but now the separating character is the semicolon (;)."
 msgstr ""
+"Używana jest zmienna środowiskowa \"PATH\". Ponownie lista katalogów do "
+"przeszukania, jednak teraz znakiem rozdzielającym jest średnik (;)."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:50
 msgid "A set of system directories is searched."
-msgstr ""
+msgstr "Przeszukiwane są katalogi systemowe."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:52
 msgid ""
@@ -6824,6 +6889,10 @@ msgid ""
 "\"ldd\" or \"dependency walker\" to find out what libraries are loaded and "
 "where they are found."
 msgstr ""
+"Niestety, szczegóły tego procesu mogą się różnić w zależności od wersji "
+"systemu operacyjnego. Powyższe informacje mogą służyć jedynie za wskazówkę — "
+"używaj narzędzi takich jak \"ldd\" lub \"dependency walker\", aby dokładnie "
+"dowiedzieć się jakie biblioteki są ładowane i gdzie się znajdują."
 
 #: ../../source/learn/building_programs/runtime_libraries.md:57
 msgid ""
@@ -6832,14 +6901,18 @@ msgid ""
 " also distribute the libraries it depends on. For more information: see "
 "below."
 msgstr ""
+"Jeśli chcesz udostępnić swój program współpracownikom, klientom, a nawet "
+"użytkownikom na całym świecie, musisz zadbać o to, aby oprócz samego "
+"programu, udostępnić również biblioteki, od których jest on zależny. Więcej "
+"informacji znajdziesz poniżej."
 
 #: ../../source/learn/intrinsics/array.md:1
 msgid "Properties and attributes of arrays"
-msgstr ""
+msgstr "Właściwości i atrybuty tablic"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:2
 msgid "merge"
-msgstr ""
+msgstr "scalanie"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:4
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:4
@@ -7041,11 +7114,11 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:4
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:4
 msgid "**Name**"
-msgstr ""
+msgstr "**Nazwa**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:6
 msgid "**merge**(3) - \\[ARRAY CONSTRUCTION\\] Merge variables"
-msgstr ""
+msgstr "**merge**(3) - \\[KONSTRUKCJA TABLICY\\] Zmienne do scalenia"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:8
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:8
@@ -7247,7 +7320,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:9
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:8
 msgid "**Syntax**"
-msgstr ""
+msgstr "**Składnia**"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:26
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:21
@@ -7448,7 +7521,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:19
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:21
 msgid "**Description**"
-msgstr ""
+msgstr "**Opis**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:16
 msgid ""
@@ -7457,10 +7530,14 @@ msgid ""
 "**tsource** where the corresponding element of **mask** is **.true.**, or an "
 "element of **fsource** when it is .false. ."
 msgstr ""
+"Funkcja elementarna **merge**(3) wybiera wartości z dwóch tablic lub "
+"wielkości skalarnych zgodnie z maską logiczną. Wynik jest równy elementowi "
+"**tsource**, gdzie odpowiadający mu element **mask** ma wartość **true** lub "
+"elementowi **fsource**, gdy ma wartość .false.."
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:21
 msgid "Multi-dimensional arrays are supported."
-msgstr ""
+msgstr "Wielowymiarowe tablice są obsługiwane."
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:23
 msgid ""
@@ -7470,22 +7547,33 @@ msgid ""
 "being generated; as **1.0/x** may be evaluated for all values of **x** before"
 " the mask is used to select which value to retain:"
 msgstr ""
+"Zauważ, że wyrażenia argumentów dla **merge**(3) nie muszą być zawarte, "
+"dlatego (na przykład) jeśli tablica **x** zawiera wartości zerowe w "
+"poniższym wyrażeniu, standard nie zapobiega przed generowaniem dzielenia "
+"zmiennoprzecinkowego przez zero; ponieważ **1.0/x** może być obliczone dla "
+"wszystkich wartości **x** zanim maska zostanie użyta do wybrania wartości do "
+"zachowania:"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:33
 msgid ""
 "Note the compiler is also free to short-circuit or to generate an infinity so"
 " this may work in many programming environments but is not recommended."
 msgstr ""
+"Zauważ, że kompilator może także powodować zwarcia lub generować "
+"nieskończoność, dlatego takie rozwiązanie może działać w wielu środowiskach "
+"programistycznych, ale nie jest zalecane."
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:37
 msgid ""
 "For cases like this one may instead use masked assignment via the **where** "
 "construct:"
 msgstr ""
+"Do przypadków takich jak ten możesz zamiast tego użyć przypisania maskowego "
+"za pomocą konstrukcji **where**:"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:48
 msgid "instead of the more obscure"
-msgstr ""
+msgstr "zamiast bardziej niejasnego"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:37
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:36
@@ -7680,23 +7768,24 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:28
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:43
 msgid "**Arguments**"
-msgstr ""
+msgstr "**Argumenty**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:56
 msgid "**tsource**"
-msgstr ""
+msgstr "**tsource**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:57
 msgid "May be of any type, including user-defined."
-msgstr ""
+msgstr "Może być dowolnego typu, również zdefiniowanego przez użytkownika."
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:59
 msgid "**fsource**"
-msgstr ""
+msgstr "**fsource**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:60
 msgid "Shall be of the same type and type parameters as **tsource**."
 msgstr ""
+"Powinien być tego samego typu i mieć takie same parametry jak **tsource**."
 
 #: ../../source/learn/intrinsics/_pages/ALL.md:23
 #: ../../source/learn/intrinsics/_pages/ANY.md:21
@@ -7717,15 +7806,16 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/SUM.md:29
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:34
 msgid "**mask**"
-msgstr ""
+msgstr "**mask**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:63
 msgid "Shall be of type _logical_."
-msgstr ""
+msgstr "Powinien być typu _logicznego_."
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:65
 msgid "Note that (currently) _character_ values must be of the same length."
 msgstr ""
+"Zauważ, że (obecnie) wartości _character_ muszą być takiej samej długości."
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:43
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:46
@@ -7899,7 +7989,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:42
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:58
 msgid "**Returns**"
-msgstr ""
+msgstr "**Zwracanie**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:69
 msgid ""
@@ -7907,6 +7997,9 @@ msgid ""
 "element the result is **tsource** if **mask** is true and **fsource** "
 "otherwise."
 msgstr ""
+"Wynik oraz parametry mają ten sam typ, co **tsource**. Dla dowolnego "
+"elementu wynik to **tsource** jeśli **mask** ma wartość true, w przeciwnym "
+"wypadku wynik to **fsource**."
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:52
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:52
@@ -8081,22 +8174,22 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:58
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:63
 msgid "**Examples**"
-msgstr ""
+msgstr "**Przykłady**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:74
 msgid "The value of"
-msgstr ""
+msgstr "Wartość"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:80
 msgid "is 1.0 for K=5 and 0.0 for K=**-2**."
-msgstr ""
+msgstr "to 1.0 dla K=5 i 0.0 dla K=**-2**."
 
 #: ../../source/learn/intrinsics/_pages/COUNT.md:69
 #: ../../source/learn/intrinsics/_pages/INDEX.md:67
 #: ../../source/learn/intrinsics/_pages/MERGE.md:130
 #: ../../source/learn/intrinsics/_pages/MINEXPONENT.md:44
 msgid "Expected Results:"
-msgstr ""
+msgstr "Oczekiwane Wyniki:"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:119
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:159
@@ -8295,7 +8388,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:107
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:253
 msgid "**Standard**"
-msgstr ""
+msgstr "**Standard**"
 
 #: ../../source/learn/intrinsics/_pages/ADJUSTL.md:66
 #: ../../source/learn/intrinsics/_pages/ADJUSTR.md:77
@@ -8361,7 +8454,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/TRIM.md:57
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:109
 msgid "Fortran 95 and later"
-msgstr ""
+msgstr "Fortran 95 i nowsze"
 
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:163
 #: ../../source/learn/intrinsics/_pages/ACOS.md:72
@@ -8523,13 +8616,15 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:111
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:257
 msgid "**See Also**"
-msgstr ""
+msgstr "**Zobacz także**"
 
 #: ../../source/learn/intrinsics/_pages/MERGE.md:156
 msgid ""
 "[**pack**(3)](#pack), [**unpack**(3)](#unpack), [**pack**(3)](#pack), "
 "[**spread**(3)](#spread), [**unpack**(3)](#unpack)"
 msgstr ""
+"[**pack**(3)](#pack), [**unpack**(3)](#unpack), [**pack**(3)](#pack), "
+"[**spread**(3)](#spread), [**unpack**(3)](#unpack)"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:123
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:174
@@ -8579,15 +8674,17 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/TRAILZ.md:118
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:275
 msgid "fortran-lang intrinsic descriptions (license: MIT) @urbanjost"
-msgstr ""
+msgstr "Opisy fortran-lang (licencja: MIT) @urbanjost"
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:2
 msgid "pack"
-msgstr ""
+msgstr "pack"
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:6
 msgid "**pack**(3) - \\[ARRAY CONSTRUCTION\\] Pack an array into an array of rank one"
 msgstr ""
+"**pack** (3) - \\[KONSTRUKCJA TABLICY\\] - Spakuj tablicę w tablicę rangi "
+"pierwszej"
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:19
 msgid ""
@@ -8595,10 +8692,13 @@ msgid ""
 " returned value must by of the same type. **mask** may be a scalar as well an"
 " an array."
 msgstr ""
+"gdzie TYPE(kind=KIND) może być dowolnym typem, gdzie **tablica** i **wektor**"
+" oraz zwracana wartość musi być tego samego typu. **mask** może być "
+"wielkością skalarną tak samo jak tablica."
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:25
 msgid "Stores the elements of ARRAY in an array of rank one."
-msgstr ""
+msgstr "Przechowuje elementy tablicy (ARRAY) w tablicy rangi pierwszej."
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:27
 msgid ""
@@ -8606,6 +8706,9 @@ msgid ""
 "equals **.true.**. Afterwards, positions are filled with elements taken from "
 "**vector**."
 msgstr ""
+"Początek otrzymanej tablicy składa się z elementów, których **mask** jest "
+"równe **.true**. Następnie pozycje są wypełnianie elementami pobranymi z "
+"wektora."
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:27
 #: ../../source/learn/intrinsics/_pages/CO_LBOUND.md:21
@@ -8629,23 +8732,25 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/SUM.md:22
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:21
 msgid "**array**"
-msgstr ""
+msgstr "**tablica (array)**"
 
 #: ../../source/learn/intrinsics/_pages/CSHIFT.md:28
 #: ../../source/learn/intrinsics/_pages/PACK.md:34
 msgid "Shall be an array of any type."
-msgstr ""
+msgstr "Może być tablicą dowolnego typu."
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:37
 msgid ""
 "Shall be an array of type _logical_ and of the same size as **array**. "
 "Alternatively, it may be a _logical_ scalar."
 msgstr ""
+"Powinna być tablicą typu _logicznego_ oraz takiej samej wielkości jak "
+"**tablica**. Alternatywnie może być skalarem _logicznym_."
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:40
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:30
 msgid "**vector**"
-msgstr ""
+msgstr "**wektor**"
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:41
 msgid ""
@@ -8655,6 +8760,11 @@ msgid ""
 "number of elements in **vector** shall be equal to or greater than the number"
 " of elements in **array**."
 msgstr ""
+"(Opcjonalnie) powinien być tablicą tego samego typu jak **tablica** oraz być "
+"rangi pierwszej. Jeśli występuje, liczba elementów **wektora** powinna być "
+"równa lub większa niż liczba elementów true w **mask**. Jeśli **mask** jest "
+"wielkością skalarną, liczba elementów **wektora** powinna być równa lub "
+"większa niż liczba elementów **tablicy**."
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:49
 msgid ""
@@ -8662,6 +8772,9 @@ msgid ""
 " **vector** is present, the result size is that of **vector**, the number of "
 "**.true.** values in **mask** otherwise."
 msgstr ""
+"Wynikiem jest tablica rangi pierwszej oraz tego samego typu co **tablica**. "
+"Jeśli obecny jest **wektor**, rozmiar wyniku jest taki sam jak **wektora**, "
+"a w przeciwnym razie jak liczba wartości **.true** w **mask**."
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:54
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:54
@@ -8821,7 +8934,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/TRIM.md:30
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:84
 msgid "Sample program:"
-msgstr ""
+msgstr "Przykładowy program:"
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:105
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:100
@@ -8961,44 +9074,52 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:189
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:246
 msgid "Results:"
-msgstr ""
+msgstr "Wynik:"
 
 #: ../../source/learn/intrinsics/_pages/PACK.md:111
 msgid ""
 "[**unpack**(3)](#unpack), [**merge**(3)](#merge), [**pack**(3)](#pack), "
 "[**spread**(3)](#spread), [**unpack**(3)](#unpack)"
 msgstr ""
+"[**unpack**(3)](#unpack), [**merge**(3)](#merge), [**pack**(3)](#pack), "
+"[**spread**(3)](#spread), [**unpack**(3)](#unpack)"
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:2
 msgid "spread"
-msgstr ""
+msgstr "spread"
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:6
 msgid "**spread**(3) - \\[ARRAY CONSTRUCTION\\] Add a dimension to an array"
-msgstr ""
+msgstr "**spread**(3) - \\[KONSTRUKCJA TABLICY\\] Dodaj wymiar do tablicy"
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:22
 msgid ""
 "Replicates a **source** array **ncopies** times along a specified dimension "
 "**dim**."
 msgstr ""
+"Replikuje tablice **źródła** **ncopies** razy wzdłuż określonego wymiaru "
+"**dim**."
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:25
 msgid ""
 "If **source** is scalar, the shape of the result is (MAX (NCOPIES, 0)). and "
 "each element of the result has a value equal to **source**."
 msgstr ""
+"Jeśli **źródło** jest wielkością wynik to (MAX (NCOPIES, 0))., a każdy "
+"element wyniku ma wartość równą **źródłowi**."
 
 #: ../../source/learn/intrinsics/_pages/RESHAPE.md:22
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:20
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:30
 #: ../../source/learn/intrinsics/_pages/TRANSFER.md:25
 msgid "**source**"
-msgstr ""
+msgstr "**źródło**"
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:31
 msgid "Shall be a scalar or an array of any type and a rank less than fifteen."
 msgstr ""
+"Powinien być wielkością skalarną lub tablicą dowolnego typu oraz mieć rangę "
+"mniejszą niż piętnaście."
 
 #: ../../source/learn/intrinsics/_pages/ALL.md:27
 #: ../../source/learn/intrinsics/_pages/ANY.md:25
@@ -9025,34 +9146,41 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:36
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:24
 msgid "**dim**"
-msgstr ""
+msgstr "**dim**"
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:35
 msgid ""
 "Shall be a scalar of type _integer_ with a value in the range from **1** to "
 "**n+1**, where **n** equals the rank of **source**."
 msgstr ""
+"Powinien być wielkością skalarną typu _liczba całkowita (integer)_ z "
+"wartością z przedziału od **1** do **n+1**, gdzie **n** jest równe randze "
+"**źródła**."
 
 #: ../../source/learn/intrinsics/_pages/REPEAT.md:28
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:38
 msgid "**ncopies**"
-msgstr ""
+msgstr "**ncopies**"
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:39
 msgid "Shall be a scalar of type _integer_."
-msgstr ""
+msgstr "Powinien być wielkością skalarną typu _liczba całkowita_."
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:43
 msgid ""
 "The result is an array of the same type as **source** and has rank **n+1** "
 "where **n** equals the rank of **source**."
 msgstr ""
+"Wynikiem jest tablica tego samego typu co **źródło** i ma rangę **n+1**, "
+"gdzie **n** jest równe randze **źródła**."
 
 #: ../../source/learn/intrinsics/_pages/SPREAD.md:123
 msgid ""
 "[**pack**(3)](#pack), [**unpack**(3)](#unpack), [**merge**(3)](#merge), "
 "[**pack**(3)](#pack), [**unpack**(3)](#unpack)"
 msgstr ""
+"[**pack**(3)](#pack), [**unpack**(3)](#unpack), [**merge**(3)](#merge), "
+"[**pack**(3)](#pack), [**unpack**(3)](#unpack)"
 
 #: ../../source/learn/intrinsics/_pages/AIMAG.md:69
 #: ../../source/learn/intrinsics/_pages/AINT.md:99
@@ -9206,17 +9334,19 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:123
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:119
 msgid "fortran-lang intrinsic descriptions"
-msgstr ""
+msgstr "Opisy fortran-lang"
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:2
 msgid "unpack"
-msgstr ""
+msgstr "unpack"
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:6
 msgid ""
 "**unpack**(3) - \\[ARRAY CONSTRUCTION\\] scatter the elements of a vector "
 "into an array using a mask"
 msgstr ""
+"**unpack** (3) - \\[ARRAY CONSTRUCTION\\] rozprasza elementy wektora w "
+"tablicę za pomocą maski"
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:21
 msgid ""
@@ -9224,39 +9354,50 @@ msgid ""
 "rank using _.true._ values from **mask** in array element order to specify "
 "placement of the **vector** values."
 msgstr ""
+"Rozprosza elementy **wektora** do kopii **pola** tablicy dowolnej rangi "
+"używając wartości _.true._ z **maski** w kolejności elementów tablicy, aby "
+"określić położenie wartości **wektora**."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:25
 msgid ""
 "So a copy of **field** is generated with select elements replaced with values"
 " from **vector**."
 msgstr ""
+"Więc generowana jest kopia **pola** z wybranymi elementami zastąpionymi "
+"wartościami **wektora**."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:31
 msgid ""
 "Shall be an array of any type and rank one. It shall have at least as many "
 "elements as **mask** has **.true.** values."
 msgstr ""
+"Powinna być tablicą dowolnego typu oraz rangi pierwszej. Powinna mieć co "
+"najmniej tyle elementów ile wartości **.true.** ma **maska**."
 
 #: ../../source/learn/intrinsics/_pages/PARITY.md:30
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:35
 msgid "Shall be an array of type _logical_."
-msgstr ""
+msgstr "Powinna być tablicą typu _logicznego_."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:37
 msgid "**field**"
-msgstr ""
+msgstr "**pole**"
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:38
 msgid ""
 "Shall be of the same type and type parameters as **vector** and shall be "
 "conformable with **mask**."
 msgstr ""
+"Powinien być tego samego typu i mieć takie same parametry typu jak **wektor**"
+" oraz powinno być zgodne z **maską**."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:44
 msgid ""
 "The result is an array of the same type and type parameters as **vector** and"
 " the same shape as **mask**."
 msgstr ""
+"Wynikiem jest tablica tego samego typu i parametrów typu co **wektor** i "
+"tego samego kształtu co **maska**."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:47
 msgid ""
@@ -9266,32 +9407,44 @@ msgid ""
 "equal to FIELD if FIELD is scalar or to the corresponding element of FIELD if"
 " it is an array."
 msgstr ""
+"Element wyniku odpowiadający i-temu prawdziwemu elementowi MASK, w "
+"kolejności elementów tablicy, ma wartość VECTOR (i) dla i = 1, 2, . . ., t, "
+"gdzie t to liczba prawdziwych wartości w MASK. Każdy pozostały element ma "
+"wartość równą POLU, jeśli POLE jest skalarne, lub odpowiadającemu mu "
+"elementowi POLA, jeśli jest tablicą."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:53
 msgid ""
 "The resulting array corresponds to **field** with **.true.** elements of "
 "**mask** replaced by values from **vector** in array element order."
 msgstr ""
+"Powstała tablica odpowiada **polu** z elementami **.true.** **maski** "
+"zamienionymi na wartości **wektora** w kolejności elementów tablicy."
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:59
 msgid ""
 "Particular values may be \"scattered\" to particular positions in an array by"
 " using"
 msgstr ""
+"Poszczególne wartości mogą być „rozrzucane” na określone pozycje w tablicy "
+"za pomocą"
 
 #: ../../source/learn/intrinsics/_pages/UNPACK.md:113
 msgid ""
 "[**pack**(3)](#pack), [**merge**(3)](#merge), [**pack**(3)](#pack), "
 "[**spread**(3)](#spread), [**unpack**(3)](#unpack)"
 msgstr ""
+"[**pack**(3)](#pack), [**merge**(3)](#merge), [**pack**(3)](#pack), "
+"[**spread**(3)](#spread), [**unpack**(3)](#unpack)"
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:2
 msgid "allocated"
-msgstr ""
+msgstr "allocated"
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:6
 msgid "**allocated**(3) - \\[ARRAY INQUIRY\\] Status of an allocatable entity"
 msgstr ""
+"**allocated**(3) - \\[ZAPYTANIE TABLICY\\] Status przydzielanej jednostki"
 
 #: ../../source/learn/intrinsics/_pages/AINT.md:18
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:14
@@ -9300,25 +9453,27 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:13
 #: ../../source/learn/intrinsics/_pages/THIS_IMAGE.md:18
 msgid "or"
-msgstr ""
+msgstr "lub"
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:22
 msgid ""
 "**allocated(array)** and **allocated(scalar)** check the allocation status of"
 " **array** and **scalar**, respectively."
 msgstr ""
+"**allocated(tablica)** oraz **allocated(wielkość skalarna)** sprawdzają "
+"status przydzielonej **tablicy** lub **wielkości skalarnej**."
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:28
 msgid "the argument shall be an _allocatable_ array."
-msgstr ""
+msgstr "argumentem powinna być _możliwa do przydzielenia_ tablica."
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:30
 msgid "**scalar**"
-msgstr ""
+msgstr "**wielkość skalarna**"
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:31
 msgid "the argument shall be an _allocatable_ scalar."
-msgstr ""
+msgstr "argumentem powinna być _możliwa do przydzielenia_ wielkość skalarna."
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:35
 msgid ""
@@ -9326,118 +9481,137 @@ msgid ""
 "parameter. If the argument is allocated then the result is .true.; otherwise,"
 " it returns .false.."
 msgstr ""
+"Wartością zwracaną jest wielkość skalarna _logiczna_ z domyślnym parametrem "
+"typu logicznego. Jeśli argument jest przydzielony, wynikiem jest .true.; w "
+"przeciwnym razie zwraca .false."
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:86
 msgid ""
 "Fortran 95 and later. Note, the scalar= keyword and allocatable scalar "
 "entities are available in Fortran 2003 and later."
 msgstr ""
+"Fortran 95 i nowszy. Uwaga, słowo kluczowe scalar= jest dostępne w wersjach "
+"Fortran 2003 i nowszych."
 
 #: ../../source/learn/intrinsics/_pages/ALLOCATED.md:91
 msgid "[**move_alloc**(3)](#move_alloc)"
-msgstr ""
+msgstr "[**move_alloc**(3)](#move_alloc)"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:2
 msgid "is_contiguous"
-msgstr ""
+msgstr "is_contiguous"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:6
 msgid "**is_contiguous**(3) - \\[ARRAY INQUIRY\\] test if object is contiguous"
 msgstr ""
+"**is_contiguous**(3) - \\[ZAPYTANIE TABLICY\\] test sprawdzający czy obiekt "
+"jest ciągły"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:16
 msgid "True if and only if an object is contiguous."
-msgstr ""
+msgstr "Prawda wtedy i tylko wtedy, gdy obiekt jest ciągły."
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:18
 msgid "An object is contiguous if it is"
-msgstr ""
+msgstr "Obiekt jest ciągły jeśli jest"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:20
 msgid "**(1)** an object with the CONTIGUOUS attribute,"
-msgstr ""
+msgstr "**(1)** obiektem z atrybutem CONTIGUOUS,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:23
 msgid "**(2)** a nonpointer whole array that is not assumed-shape,"
 msgstr ""
+"**(2)** całą tablicą niebędącą wskaźnikiem, która nie ma przyjętego kształtu,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:26
 msgid ""
 "**(3)** an assumed-shape array that is argument associated with an array that"
 " is contiguous,"
 msgstr ""
+"**(3)** tablicą o założonym kształcie, której argument jest powiązany z "
+"tablicą ciągłą,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:30
 msgid "**(4)** an array allocated by an ALLOCATE statement,"
-msgstr ""
+msgstr "**(4)** tablicą przydzieloną wyrażeniem ALLOCATE,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:33
 msgid "**(5)** a pointer associated with a contiguous target, or"
-msgstr ""
+msgstr "**(5)** wskaźnikiem powiązanym z celem ciągłym lub"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:36
 msgid "**(6)** a nonzero-sized array section provided that"
-msgstr ""
+msgstr "**(6)** sekcją tablicy o rozmiarze różnym od zera, pod warunkiem, że"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:39
 msgid "**(a)** its base object is contiguous,"
-msgstr ""
+msgstr "**(a)** jej obiekt bazowy jest ciągły,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:42
 msgid "**(b)** it does not have a vector subscript,"
-msgstr ""
+msgstr "**(b)** nie posiada indeksu wektorowego,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:45
 msgid ""
 "**(c)** the elements of the section, in array element order, are a subset of "
 "the base object elements that are consecutive in array element order,"
 msgstr ""
+"**(c)** elementy sekcji, w kolejności elementów tablicy, są podzbiorem "
+"elementów obiektu bazowego, które są następujące po sobie w kolejności "
+"elementów tablicy,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:50
 msgid ""
 "**(d)** if the array is of type character and a substring-range appears, the "
 "substring-range specifies all of the characters of the parent-string,"
 msgstr ""
+"**(d)** jeśli tablica jest typu znakowego i pojawia się zakres podciągów "
+"znaków, zakres podciągów określa wszystkie znaki ciągu nadrzędnego,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:55
 msgid "**(e)** only its final part-ref has nonzero rank, and"
-msgstr ""
+msgstr "**(e)** tylko jej końcowa część ma rangę różną od zera, a"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:58
 msgid "**(f)** it is not the real or imaginary part of an array of type complex."
-msgstr ""
+msgstr "**(f)** nie jest częścią rzeczywistą ani urojoną tablicy typu complex."
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:62
 msgid "An object is not contiguous if it is an array subobject, and"
-msgstr ""
+msgstr "Obiekt nie jest ciągły jeśli jest podobiektem tablicy oraz"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:64
 msgid "the object has two or more elements,"
-msgstr ""
+msgstr "obiekt ma dwa lub więcej elementów,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:66
 msgid ""
 "the elements of the object in array element order are not consecutive in the "
 "elements of the base object,"
 msgstr ""
+"elementy obiektu w kolejności elementów tablicy nie następują po sobie w "
+"elementach obiektu bazowego,"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:69
 msgid "the object is not of type character with length zero, and"
-msgstr ""
+msgstr "obiekt nie jest typu znakowego (type character) o długości zerowej i"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:71
 msgid ""
 "the object is not of a derived type that has no ultimate components other "
 "than zero-sized arrays and"
 msgstr ""
+"obiekt nie jest typu pochodnego, który nie posiada żadnych ostatecznych "
+"komponentów poza tablicami o zerowym rozmiarze i"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:74
 msgid "characters with length zero."
-msgstr ""
+msgstr "znaków o długości zero."
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:76
 msgid "It is processor-dependent whether any other object is contiguous."
-msgstr ""
+msgstr "To, czy jakikolwiek inny obiekt jest ciągły, zależy od procesora."
 
 #: ../../source/learn/intrinsics/_pages/ABS.md:39
 #: ../../source/learn/intrinsics/_pages/ANINT.md:20
@@ -9460,23 +9634,27 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/SIGN.md:34
 #: ../../source/learn/intrinsics/_pages/STORAGE_SIZE.md:20
 msgid "**a**"
-msgstr ""
+msgstr "**a**"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:81
 msgid ""
 "may be of any type. It shall be an array. If it is a pointer it shall be "
 "associated."
 msgstr ""
+"może być dowolnego typu. Powinien być tablicą. Jeśli jest wskaźnikiem, "
+"powinien być powiązany."
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:86
 msgid "**Result**"
-msgstr ""
+msgstr "**Wynik**"
 
 #: ../../source/learn/intrinsics/_pages/IS_CONTIGUOUS.md:87
 msgid ""
 "of type Default logical scalar. The result has the value true if **a** is "
 "contiguous, and false otherwise."
 msgstr ""
+"logiczna wielkość skalarna typu Default. Wynikiem jest wartość true jeśli "
+"**a** jest ciągle, w przeciwnym wypadku false."
 
 #: ../../source/learn/intrinsics/_pages/ACOSH.md:60
 #: ../../source/learn/intrinsics/_pages/ASINH.md:58
@@ -9521,30 +9699,32 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/STORAGE_SIZE.md:60
 #: ../../source/learn/intrinsics/_pages/TRAILZ.md:109
 msgid "Fortran 2008 and later"
-msgstr ""
+msgstr "Fortran 2008 i nowszy"
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:2
 msgid "lbound"
-msgstr ""
+msgstr "lbound"
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:6
 msgid "**lbound**(3) - \\[ARRAY INQUIRY\\] Lower dimension bounds of an array"
 msgstr ""
+"**lbound**(3) - \\[ZAPYTANIE TABLICY\\] zmniejsza granice wymiarów tablicy"
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:21
 msgid ""
 "Returns the lower bounds of an array, or a single lower bound along the "
 "**dim** dimension."
 msgstr ""
+"Zwraca dolną granicę tablicy lub pojedynczą dolną granicę wymiaru **dim**."
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:27
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:22
 msgid "Shall be an array, of any type."
-msgstr ""
+msgstr "Powinien być tablicą dowolnego typu."
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:30
 msgid "Shall be a scalar _integer_."
-msgstr ""
+msgstr "Powinien być wielkością skalarną _integer_."
 
 #: ../../source/learn/intrinsics/_pages/ACHAR.md:42
 #: ../../source/learn/intrinsics/_pages/AINT.md:38
@@ -9575,7 +9755,7 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:27
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:54
 msgid "**kind**"
-msgstr ""
+msgstr "**kind**"
 
 #: ../../source/learn/intrinsics/_pages/CEILING.md:28
 #: ../../source/learn/intrinsics/_pages/INDEX.md:39
@@ -9587,7 +9767,7 @@ msgstr ""
 msgid ""
 "An _integer_ initialization expression indicating the kind parameter of the "
 "result."
-msgstr ""
+msgstr "Wyrażenie inicjujące _integer_ wskazujące rodzaj parametru wyniku."
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:38
 msgid ""
@@ -9599,6 +9779,14 @@ msgid ""
 "array or array structure component, or if it has a zero extent along the "
 "relevant dimension, the lower bound is taken to be 1."
 msgstr ""
+"Wartość zwrotna jest typu _integer_ oraz rodzaju **kind**. Jeśli **kind** "
+"jest nieobecny zwracana wartość jest domyślnie typem liczba całkowita "
+"(integer). Jeśli **dim** jest nieobecny, wynikiem jest tablica dolnych "
+"granic dolnej **array**. Jeśli **dim** jest obecny, wynikiem jest wielkość "
+"skalarna odpowiadająca dolnej granicy tablicy tego wymiaru. Jeśli **array** "
+"jest wyrażeniem, a nie całą tablicą lub elementem struktury tablicy, lub "
+"jeśli ma zerowy zasięg wzdłuż odpowiedniego wymiaru, dolna granica "
+"przyjmowana jest jako 1."
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:48
 msgid ""
@@ -9606,6 +9794,9 @@ msgid ""
 "arrays or in any function without an explicit interface. Errors can occur if "
 "there is no interface defined."
 msgstr ""
+"Należy pamiętać, że moim zdaniem funkcja ta nie powinna być używana na "
+"tablicach o określonym rozmiarze ani w żadnej funkcji bez jawnego "
+"interfejsu. W przypadku niezdefiniowanego interfejsu mogą wystąpić błędy."
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:52
 #: ../../source/learn/intrinsics/_pages/LEN.md:52
@@ -9616,62 +9807,69 @@ msgstr ""
 #: ../../source/learn/intrinsics/_pages/STORAGE_SIZE.md:35
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:53
 msgid "Sample program"
-msgstr ""
+msgstr "Przykładowy program"
 
 #: ../../source/learn/intrinsics/_pages/COUNT.md:90
 #: ../../source/learn/intrinsics/_pages/IACHAR.md:76
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:114
 #: ../../source/learn/intrinsics/_pages/SCAN.md:66
 msgid "Fortran 95 and later, with KIND argument - Fortran 2003 and later"
-msgstr ""
+msgstr "Fortran 95 i nowszy, z argumentem KIND - Fortran 2003 i nowszy"
 
 #: ../../source/learn/intrinsics/_pages/LBOUND.md:118
 msgid "[**ubound**(3)](#ubound), [**co_lbound**(3)](#co_lbound)"
-msgstr ""
+msgstr "[**ubound**(3)](#ubound), [**co_lbound**(3)](#co_lbound)"
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:2
 msgid "rank"
-msgstr ""
+msgstr "rank"
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:6
 msgid "**rank**(3) - \\[ARRAY INQUIRY\\] Rank of a data object"
-msgstr ""
+msgstr "**rank**(3) - \\[ZAPYTANIE TABLICY\\] Ranga obiektu danych"
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:16
 msgid "**rank(a)** returns the rank of a scalar or array data object."
 msgstr ""
+"**rank(a)** zwraca rangę wielkości skalarnej lub tablicy obiektu danych."
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:21
 msgid "can be of any type"
-msgstr ""
+msgstr "może być dowolnego typu"
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:25
 msgid ""
 "The return value is of type _integer_ and of the default integer kind. For "
 "arrays, their rank is returned; for scalars zero is returned."
 msgstr ""
+"Wartość zwracana jest typu _integer_ oraz domyślnie jest liczbą całkowitą. W "
+"przypadku tablic zwracana jest ich ranga; dla wielkości skalarnych zwracane "
+"jest zero."
 
 #: ../../source/learn/intrinsics/_pages/RANK.md:50
 msgid "TS 29113"
-msgstr ""
+msgstr "TS 29113"
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:2
 msgid "shape"
-msgstr ""
+msgstr "shape"
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:6
 msgid "**shape**(3) - \\[ARRAY INQUIRY\\] Determine the shape of an array"
-msgstr ""
+msgstr "**shape**(3) - \\[ZAPYTANIE TABLICY\\] Określ kształt tablicy"
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:16
 msgid "Determines the shape of an array."
-msgstr ""
+msgstr "Określa kształt tablicy."
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:21
 msgid ""
 "Shall be an array or scalar of any type. If **source** is a pointer it must "
 "be associated and allocatable arrays must be allocated."
 msgstr ""
+"Powinien być tablicą lub wielkością skalarną dowolnego typu. Jeśli **source**"
+" jest wskaźnikiem, musi być powiązany, a tablice możliwe do przydzielenia "
+"przydzielone."
 
 #: ../../source/learn/intrinsics/_pages/CHAR.md:28
 #: ../../source/learn/intrinsics/_pages/COUNT.md:30
@@ -9689,6 +9887,8 @@ msgid ""
 "(Optional) An _integer_ initialization expression indicating the kind "
 "parameter of the result."
 msgstr ""
+"(Opcjonalnie) Wyrażenie inicjujące _integer_ wskazujące rodzaj parametru "
+"wyniku."
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:30
 msgid ""
@@ -9698,40 +9898,52 @@ msgid ""
 "result is the rank one array of size zero. If **kind** is absent, the return "
 "value has the default integer kind otherwise the specified kind."
 msgstr ""
+"Tablica _integer_ rangi pierwszej, zawierająca tyle samo elementów, co "
+"**source**, ma wymiary. Elementy zwracanej tablicy odpowiadają wielkości "
+"**source** w odpowiednich wymiarach. Jeśli **source** jest wielkością "
+"skalarną, wynikiem jest tablica rangi pierwszej o rozmiarze zero. Jeśli "
+"**kind** jest nieobecny, wartość zwracana jest domyślnie liczbą całkowitą, w "
+"przeciwnym razie jest tego samego typu co określony rodzaj."
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:65
 msgid "Fortran 95 and later; with KIND argument Fortran 2003 and later"
-msgstr ""
+msgstr "Fortran 95 i nowszy; z argumentem KIND Fortran 2003 i nowszy"
 
 #: ../../source/learn/intrinsics/_pages/SHAPE.md:69
 msgid "[**reshape**(3)](#reshape), [**size**(3)](#size)"
-msgstr ""
+msgstr "[**reshape**(3)](#reshape), [**size**(3)](#size)"
 
 #: ../../source/learn/intrinsics/_pages/SIZE.md:2
 msgid "size"
-msgstr ""
+msgstr "size"
 
 #: ../../source/learn/intrinsics/_pages/SIZE.md:6
 msgid "**size**(3) - \\[ARRAY INQUIRY\\] Determine the size of an array"
-msgstr ""
+msgstr "**size**(3) - \\[ZAPYTANIE TABLICY\\] Określa wielkość tablicy"
 
 #: ../../source/learn/intrinsics/_pages/SIZE.md:16
 msgid ""
 "Determine the extent of **array** along a specified dimension **dim**, or the"
 " total number of elements in **array** if **dim** is absent."
 msgstr ""
+"Określ wielkość **tablicy** wzdłuż określonego wymiaru **dim**, lub łączną "
+"liczbą elementów **tablicy** jeśli **dim** jest nieobecny."
 
 #: ../../source/learn/intrinsics/_pages/SIZE.md:22
 msgid ""
 "be an array of any type. If **array** is a pointer it must be associated and "
 "allocatable arrays must be allocated."
 msgstr ""
+"jest tablicą dowolnego typu. Jeśli **tablica** jest wskaźnikiem, musi być "
+"powiązana, a wszystkie tablice możliwe do przydzielenia przydzielone."
 
 #: ../../source/learn/intrinsics/_pages/SIZE.md:26
 msgid ""
 "shall be a scalar of type _integer_ and its value shall be in the range from "
 "1 to n, where n equals the rank of **array**."
 msgstr ""
+"powinien być wielkością skalarną typu _integer_, a jego wartość powinna być "
+"w zakresie od 1 do n, gdzie n jest równe randze **tablicy**."
 
 #: ../../source/learn/intrinsics/_pages/ICHAR.md:39
 #: ../../source/learn/intrinsics/_pages/LEN_TRIM.md:35
@@ -9740,36 +9952,39 @@ msgid ""
 "The return value is of type _integer_ and of kind **kind**. If **kind** is "
 "absent, the return value is of default _integer_ kind."
 msgstr ""
+"Wartość zwrotna jest typu _integer_ oraz rodzaju **kind**. Jeśli **kind** "
+"jest nieobecny, wartość zwrotna jest domyślnie rodzajem _integer_."
 
 #: ../../source/learn/intrinsics/_pages/LEN_TRIM.md:75
 #: ../../source/learn/intrinsics/_pages/SIZE.md:186
 #: ../../source/learn/intrinsics/_pages/VERIFY.md:255
 msgid "Fortran 95 and later, with **kind** argument - Fortran 2003 and later"
-msgstr ""
+msgstr "Fortran 95 i nowszy, z argumentem **kind** - Fortran 2003 i nowszy"
 
 #: ../../source/learn/intrinsics/_pages/SIZE.md:190
 msgid "[**shape**(3)](#shape), [__reshape__(3)])(RESHAPE)"
-msgstr ""
+msgstr "[**shape**(3)](#shape), [__reshape__(3)])(RESHAPE)"
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:2
 msgid "ubound"
-msgstr ""
+msgstr "ubound"
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:6
 msgid "**ubound**(3) - \\[ARRAY INQUIRY\\] Upper dimension bounds of an array"
-msgstr ""
+msgstr "**ubound**(3) - \\[ZAPYTANIE TABLICY\\] Górna granica wymiaru tablicy"
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:16
 msgid ""
 "Returns the upper bounds of an array, or a single upper bound along the "
 "**dim** dimension."
 msgstr ""
+"Zwraca górną granicę tablicy lub pojedynczą górną granicę wymiaru **dim**."
 
 #: ../../source/learn/intrinsics/_pages/CO_LBOUND.md:25
 #: ../../source/learn/intrinsics/_pages/CO_UBOUND.md:25
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:25
 msgid "(Optional) Shall be a scalar _integer_."
-msgstr ""
+msgstr "(Opcjonalnie) Powinien być wielkością skalarną _integer_."
 
 #: ../../source/learn/intrinsics/_pages/IACHAR.md:30
 #: ../../source/learn/intrinsics/_pages/INDEX.md:45
@@ -9781,16 +9996,22 @@ msgid ""
 "The return value is of type _integer_ and of kind **kind**. If **kind** is "
 "absent, the return value is of default integer kind."
 msgstr ""
+"Wartość zwrotna jest typu _integer_ oraz rodzaju **kind**. Jeśli **kind** "
+"jest nieobecny, wartość zwrotna jest domyślnie liczbą całkowitą."
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:36
 msgid "If **dim** is absent, the result is an array of the upper bounds of **array**."
 msgstr ""
+"Jeśli **dim** jest nieobecny, wynikiem jest tablica o górnych granicach "
+"**tablicy**."
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:39
 msgid ""
 "If **dim** is present, the result is a scalar corresponding to the upper "
 "bound of the array along that dimension."
 msgstr ""
+"Jeśli **dim** jest obecny, wynikiem jest wielkość skalarna odpowiadająca "
+"górnej granicy tablicy wzdłuż tego wymiaru."
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:42
 msgid ""
@@ -9798,6 +10019,9 @@ msgid ""
 "component, or if it has a zero extent along the relevant dimension, the upper"
 " bound is taken to be the number of elements along the relevant dimension."
 msgstr ""
+"Jeśli **tablica** jest wyrażeniem, a nie całą tablicą lub elementem "
+"struktury tablicy, lub jeśli ma zerowy zasięg wzdłuż odpowiedniego wymiaru, "
+"za górną granicę przyjmuje się liczbę elementów wzdłuż odpowiedniego wymiaru."
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:49
 msgid ""
@@ -9805,26 +10029,33 @@ msgid ""
 "function without an explicit interface. Errors can occur if there is no "
 "interface defined."
 msgstr ""
+"Zauważ, że funkcja ta nie powinna być używana na tablicach o określonych "
+"wielkościach lub w funkcjach bez jawnego interfejsu. Jeśli interfejs nie "
+"jest zdefiniowany mogą wystąpić błędy."
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:114
 msgid "Fortran 95 and later, with KIND argument Fortran 2003 and later"
-msgstr ""
+msgstr "Fortran 95 i nowszy, z argumentem KIND Fortran 2003 i nowszy"
 
 #: ../../source/learn/intrinsics/_pages/UBOUND.md:119
 msgid ""
 "[**lbound**(3)](#lbound), [**co_ubound**(3)](#co_ubound), "
 "[__co\\_lbound__(3)(co_lbound)]"
 msgstr ""
+"[**lbound**(3)](#lbound), [**co_ubound**(3)](#co_ubound), "
+"[__co\\_lbound__(3)(co_lbound)]"
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:2
 msgid "maxloc"
-msgstr ""
+msgstr "maxloc"
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:6
 msgid ""
 "**maxloc**(3) - \\[ARRAY:LOCATION\\] Location of the maximum value within an "
 "array"
 msgstr ""
+"**maxloc**(3) - \\[TABLICA:LOKALIZACJA\\] Lokalizacja największej wartości w "
+"tablicy"
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:16
 msgid ""
@@ -9839,13 +10070,23 @@ msgid ""
 "all of the elements of **mask** along a given row are zero, the result value "
 "for that row is zero."
 msgstr ""
+"Określa położenie elementu w tablicy o największej wartości lub, jeśli "
+"podano argument **dim**, określa położenie największego elementu wzdłuż "
+"każdego wiersza tablicy w kierunku **dim**. Jeśli występuje argument **mask**"
+", brane są pod uwagę tylko elementy, dla których **mask** ma wartość "
+"**.true.**. Jeśli więcej niż jeden element w tablicy ma największą wartość, "
+"zwracana jest lokalizacja pierwszego takiego elementu w kolejności elementów "
+"tablicy. Jeśli tablica ma rozmiar zerowy lub wszystkie elementy **mask** "
+"mają wartość .false., wynik jest tablicą zer. Podobnie, jeśli podano "
+"argument **dim** i wszystkie elementy **mask** w danym wierszu mają wartość "
+"zero, wartość wyniku dla tego wiersza wynosi zero."
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:30
 #: ../../source/learn/intrinsics/_pages/MAXVAL.md:33
 #: ../../source/learn/intrinsics/_pages/MINLOC.md:36
 #: ../../source/learn/intrinsics/_pages/MINVAL.md:30
 msgid "Shall be an array of type _integer_, _real_, or _character_."
-msgstr ""
+msgstr "Powinien być tablicą typu _integer_, _real_ lub _character_."
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:33
 #: ../../source/learn/intrinsics/_pages/MAXVAL.md:36
@@ -9854,12 +10095,15 @@ msgid ""
 "(Optional) Shall be a scalar of type _integer_, with a value between one and "
 "the rank of **array**, inclusive. It may not be an optional dummy argument."
 msgstr ""
+"(Opcjonalnie) Powinien być wielkością skalarną typu _integer_, z wartością "
+"pomiędzy jeden a rangą **tablicy** włącznie. Nie może być opcjonalnym "
+"argumentem fikcyjnym."
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:38
 #: ../../source/learn/intrinsics/_pages/MINLOC.md:44
 #: ../../source/learn/intrinsics/_pages/MINVAL.md:38
 msgid "Shall be an array of type _logical_, and conformable with **array**."
-msgstr ""
+msgstr "Powinien być typu _logical_ zgodny z **tablicą**."
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:42
 #: ../../source/learn/intrinsics/_pages/MINLOC.md:48
@@ -9871,6 +10115,12 @@ msgid ""
 "and **array** has a rank of one, the result is a scalar. In all cases, the "
 "result is of default _integer_ type."
 msgstr ""
+"Jeśli **dim** jest nieobecny, wynikiem jest tablica rangi pierwszej z "
+"długością równą randze **tablicy**. Jeśli **dim** jest obecny, wynikiem jest "
+"tablica o randze o jeden mniejszej niż ranga **tablicy** oraz o wielkości "
+"odpowiadającej wielkości **tablicy** bez wymiaru **dim**. Jeśli **dim** jest "
+"obecny oraz **tablica** ma rangę pierwszą, wynikiem jest wielkość skalarna. "
+"We wszystkich przypadkach, wynik jest domyślnie typem _integer_."
 
 #: ../../source/learn/intrinsics/_pages/MAXLOC.md:49
 msgid ""

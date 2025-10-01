@@ -67,8 +67,6 @@ Returns an array of same type and rank as the **array** argument.
 The rows of an array of rank two may all be shifted by the same amount
 or by different amounts.
 
-## cshift
-
 ### **Examples**
 
 Sample program:

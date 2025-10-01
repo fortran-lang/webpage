@@ -170,7 +170,7 @@ html_theme_options = {
         },
         {
             "name": "RSS",
-            "url": "https://fortran-lang.org/en/news/atom.xml",
+            "url": "https://fortran-lang.org/news/atom.xml",
             "icon": "fas fa-rss",
         },
     ],
@@ -205,8 +205,8 @@ fontawesome_link_cdn = True
 
 blog_path = "news"
 blog_post_pattern = "news/**"
-blog_baseurl = "https://fortran-lang.org/en/"
-html_baseurl = "https://fortran-lang.org/en/"
+blog_baseurl = "https://fortran-lang.org"
+html_baseurl = "https://fortran-lang.org"
 sitemap_url_scheme = "{link}"
 post_redirect_refresh = 1
 post_auto_image = 1
