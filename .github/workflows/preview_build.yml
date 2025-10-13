@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout pr/${{github.event.issue.number}}
-        uses: actions/checkout@v4
+        uses: actions/checkout@v5
 
       - name: Fetch pr/${{github.event.issue.number}}
         run: |
@@ -23,7 +23,7 @@ jobs:
           git checkout pr-${{github.event.issue.number}}
 
       - name: Setup Python
-        uses: actions/setup-python@v5
+        uses: actions/setup-python@v6
         with:
           python-version: "3.11"
 
@@ -55,7 +55,7 @@ jobs:
           git-config-name: Fortran
 
       - name: Comment on pull request
-        uses: peter-evans/create-or-update-comment@v4
+        uses: peter-evans/create-or-update-comment@v5
         with:
           issue-number: ${{github.event.issue.number}}
           body: "This PR has been built with Sphinx and can be previewed at: https://fortran-lang.github.io/webpage/pr/${{github.event.issue.number}}"
