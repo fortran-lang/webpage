@@ -344,7 +344,7 @@ t%a   t%b   t%c
 which, in turn, have ultimate components of `type real`:
 
 ```f90
-t%a%x   t%a%y   t%b%
+t%a%x   t%a%y   t%b%x   t%b%y   t%c%x   t%c%y 
 ```
 
 etc. (Note that the `%` qualifier was chosen rather than dot (`.`)

@@ -213,7 +213,7 @@ Further:
 - a `where` construct may contain any number of masked `elsewhere`
   statements but at most one `elsewhere` statement without a mask, and
   that must be the final one;
-- `where` constructs may be nested within one another, just `forall`
+- `where` constructs may be nested within one another, just like `forall`
   constructs;
 - a `where` assignment statement is permitted to be a defined
   assignment, provided that it is elemental;

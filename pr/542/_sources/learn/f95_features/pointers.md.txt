@@ -86,7 +86,7 @@ instance, the first and current entries in the list.
 
 ## Association
 
-A pointer's association status is one of Some care has to be taken not
+A pointer's association status is one of: associated, disassociated (nullified), or undefined. Some care has to be taken not
 to leave a pointer 'dangling' by use of `deallocate` on its target
 without nullifying any other pointer referring to it.
 
