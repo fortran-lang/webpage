@@ -165,5 +165,3 @@ Results:
 - [**btest**(3)](#btest) - Tests a bit of an _integer_ value.
 
 _fortran-lang intrinsic descriptions (license: MIT) \@urbanjost_
-
-#
