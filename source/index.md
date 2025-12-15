@@ -89,10 +89,6 @@ the latest news.
 Join the discussion about all things Fortran on the
 <a href="https://fortran-lang.discourse.group" target="_blank">fortran-lang discourse.</a>
 </p>
-<h4><i class="fab fa-twitter"></i> Twitter</h4>
-<a href="https://twitter.com/fortranlang" class="twitter-follow-button" data-show-count="true"
-data-size="large">@fortranlang</a>
-<script async src="https://platform.twitter.com/widgets.js" charset="utf-8"></script>
 <h4><i class="fas fa-rss"></i> RSS feed</h4>
 <p>RSS clients can follow the <a href="news/atom.xml" target="_blank">RSS feed</a>.</p>
 <h4><i class="fab fa-github"></i> Open source</h4>
