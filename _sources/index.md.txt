@@ -46,6 +46,12 @@ Natively parallel
 
 Fortran is a natively parallel programming language with intuitive array-like syntax to communicate data between CPUs. You can run almost the same code on a single CPU, on a shared-memory multicore system, or on a distributed-memory HPC or cloud-based system. Coarrays, teams, events, and collective subroutines allow you to express different parallel programming patterns that best fit your problem at hand.
 
+:::{div} sd-fs-5 sd-font-weight-bold
+Interoperable
+:::
+
+Fortran's standardized C interoperability enables seamless integration into multi-language projects, enabling the optimization of performance-critical components.
+
 :::{div} sd-fs-3 sd-font-weight-bold sd-text-primary
 FAQ
 :::
