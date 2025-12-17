@@ -149,10 +149,10 @@ Or just write Fortran software for your research, business, or schoolwork. You c
 
 Play <https://dev.lfortran.org/>
 learn
-roadmap
 compilers
-community
 packages
+community
+roadmap
 news
 history
 
