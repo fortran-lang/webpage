@@ -45,7 +45,7 @@
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../_static/translations.js?v=beaedd51"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/building_programs/managing_libraries';</script>
@@ -685,22 +685,22 @@
 <h1>Gerenciando bibliotecas (bibliotecas estáticas e dinâmicas)<a class="headerlink" href="#managing-libraries-static-and-dynamic-libraries" title="Link to this heading">#</a></h1>
 <p>Se você precisa gerenciar um programa com dúzias de arquivos fonte (e isso não é incomum!), o comando em linha necessário para especificar todos os arquivos objeto será bem grande. Isso logo fica tedioso ou até mesmo impossível de manter. Então uma solução diferente é necessária: criar suas próprias bibliotecas.</p>
 <p>Bibliotecas contêm qualquer quantidade de arquivos objeto de uma forma compactada, para que os comandos em linha se tornem bem menores:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-o<span class="w"> </span>tabulate<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.o<span class="w"> </span>supportlib.a
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>-o<span class="w"> </span>tabulate<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.o<span class="w"> </span>supportlib.a
 </pre></div>
 </div>
 <p>onde «supportlib.a» é uma coleção de um, dois ou mais arquivos objetos, todos compilados e adicionados em uma biblioteca. A extensão «.a» é usa no Linux e plataformas semelhantes. No Windows é usada a extensão «.lib».</p>
 <p>Criar suas próprias bibliotecas não é complicado: no Linux, você consegue usando um utilitário como <code class="docutils literal notranslate"><span class="pre">ar</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
-$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
-$<span class="w"> </span>ar<span class="w"> </span>r<span class="w"> </span>supportlib.a<span class="w"> </span>file1.o<span class="w"> </span>file2.o
-$<span class="w"> </span>ar<span class="w"> </span>r<span class="w"> </span>supportlib.a<span class="w"> </span>file3.o<span class="w"> </span>...
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+<span class="gp">$ </span>gfortran<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+<span class="gp">$ </span>ar<span class="w"> </span>r<span class="w"> </span>supportlib.a<span class="w"> </span>file1.o<span class="w"> </span>file2.o
+<span class="gp">$ </span>ar<span class="w"> </span>r<span class="w"> </span>supportlib.a<span class="w"> </span>file3.o<span class="w"> </span>...
 </pre></div>
 </div>
 <p>ou no Windows usando o utilitário <code class="docutils literal notranslate"><span class="pre">lib</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>c:<span class="se">\.</span>..&gt;<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
-c:<span class="se">\.</span>..&gt;<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
-c:<span class="se">\.</span>..&gt;<span class="w"> </span>lib<span class="w"> </span>/out:supportlib.lib<span class="w"> </span>file1.obj<span class="w"> </span>file2.obj
-c:<span class="se">\.</span>..&gt;<span class="w"> </span>lib<span class="w"> </span>supportlib.lib<span class="w"> </span>file3.obj<span class="w"> </span>...
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="go">c:\...&gt; ifort -c file1.f90 file2.f90</span>
+<span class="go">c:\...&gt; ifort -c file3.f90 ...</span>
+<span class="go">c:\...&gt; lib /out:supportlib.lib file1.obj file2.obj</span>
+<span class="go">c:\...&gt; lib supportlib.lib file3.obj ...</span>
 </pre></div>
 </div>
 <p>Nota:</p>
@@ -717,15 +717,15 @@ c:<span class="se">\.</span>..&gt;<span class="w"> </span>lib<span class="w"> </
 <p>Uma alternativa flexível é usar as chamadas bibliotecas dinâmicas. Essas bibliotecas permanecem fora do código executável e como consequência podem ser substituídas sem refazer o build do programa completamente. Compiladores e o próprio sistema operacional são altamente dependentes de bibliotecas dinâmicas. Você pode considerar bibliotecas dinâmicas como programas executáveis que precisam de um pouco de ajuda para rodar.</p>
 <p>Construir bibliotecas dinâmicas funciona de forma ligeiramente diferente de construir bibliotecas estáticas: você usa o compilador/linker ao invés de uma ferramenta como <code class="docutils literal notranslate"><span class="pre">ar</span></code> ou <code class="docutils literal notranslate"><span class="pre">lib</span></code>.</p>
 <p>No Linux:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-fpic<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
-$<span class="w"> </span>gfortran<span class="w"> </span>-fpic<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
-$<span class="w"> </span>gfortran<span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span>supportlib.so<span class="w"> </span>file1.o<span class="w"> </span>file2.o<span class="w"> </span>file3.o<span class="w"> </span>...
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>-fpic<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+<span class="gp">$ </span>gfortran<span class="w"> </span>-fpic<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+<span class="gp">$ </span>gfortran<span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span>supportlib.so<span class="w"> </span>file1.o<span class="w"> </span>file2.o<span class="w"> </span>file3.o<span class="w"> </span>...
 </pre></div>
 </div>
 <p>No Windows, com o compilador Intel Fortran:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
-$<span class="w"> </span>ifort<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
-$<span class="w"> </span>ifort<span class="w"> </span>-dll<span class="w"> </span>-exe:supportlib.dll<span class="w"> </span>file1.obj<span class="w"> </span>file2.obj<span class="w"> </span>file3.obj<span class="w"> </span>...
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ifort<span class="w"> </span>-c<span class="w"> </span>file1.f90<span class="w"> </span>file2.f90
+<span class="gp">$ </span>ifort<span class="w"> </span>-c<span class="w"> </span>file3.f90<span class="w"> </span>...
+<span class="gp">$ </span>ifort<span class="w"> </span>-dll<span class="w"> </span>-exe:supportlib.dll<span class="w"> </span>file1.obj<span class="w"> </span>file2.obj<span class="w"> </span>file3.obj<span class="w"> </span>...
 </pre></div>
 </div>
 <p>As diferenças são que:</p>
@@ -751,24 +751,24 @@ $<span class="w"> </span>ifort<span class="w"> </span>-dll<span class="w"> </spa
 <p>O programa <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> requer uma rotina definida pelo usuário <code class="docutils literal notranslate"><span class="pre">f</span></code>. Se deixarmos numa biblioteca dinâmica, digamos «functions.dll», nós podemos simplesmente substituir a implementação da função colocando outra biblioteca dinâmica no diretório. Não precisa refazer o build do programa.</p>
 <p>No Cygwin não é necessário exportar explicitamente um procedimento - todas as rotinas publicamente visíveis são exportadas quando você constrói uma biblioteca dinâmica. Além disso, nenhuma biblioteca de importação é gerada.</p>
 <p>Já que nossa biblioteca dinâmica pode ser construída de um único arquivo fonte, nós podemos tomar um atalho:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span>functions.dll<span class="w"> </span>functions.f90
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>-shared<span class="w"> </span>-o<span class="w"> </span>functions.dll<span class="w"> </span>functions.f90
 </pre></div>
 </div>
 <p>Isso produz os arquivos «functions.dll» e «user_functions.mod». O utilitário <code class="docutils literal notranslate"><span class="pre">nm</span></code> nos diz o nome exato da função <code class="docutils literal notranslate"><span class="pre">f</span></code>:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>nm<span class="w"> </span>functions.dll
-...
-000000054f9d7000<span class="w"> </span>B<span class="w"> </span>__dynamically_loaded
-<span class="w">                 </span>U<span class="w"> </span>__end__
-<span class="m">0000000000000200</span><span class="w"> </span>A<span class="w"> </span>__file_alignment__
-000000054f9d1030<span class="w"> </span>T<span class="w"> </span>__function_MOD_f
-000000054f9d1020<span class="w"> </span>T<span class="w"> </span>__gcc_deregister_frame
-000000054f9d1000<span class="w"> </span>T<span class="w"> </span>__gcc_register_frame
-...
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>nm<span class="w"> </span>functions.dll
+<span class="go">...</span>
+<span class="go">000000054f9d7000 B __dynamically_loaded</span>
+<span class="go">                 U __end__</span>
+<span class="go">0000000000000200 A __file_alignment__</span>
+<span class="go">000000054f9d1030 T __function_MOD_f</span>
+<span class="go">000000054f9d1020 T __gcc_deregister_frame</span>
+<span class="go">000000054f9d1000 T __gcc_register_frame</span>
+<span class="go">...</span>
 </pre></div>
 </div>
 <p>Ele recebeu um prefixo <code class="docutils literal notranslate"><span class="pre">__function_MOD_</span></code> para distingui-lo de qualquer outra rotina «f» que possa ser definida em outro módulo.</p>
 <p>O próximo passo é realizar o build do programa:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-o<span class="w"> </span>tabulate<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.dll
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>-o<span class="w"> </span>tabulate<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.dll
 </pre></div>
 </div>
 <p>O DLL é o arquivo .mod são usadas para realizar o build do programa executável com checagem na interface da função, o nome correto e a referência para «uma» DLL, chamada «functions.dll».</p>
@@ -783,7 +783,7 @@ $<span class="w"> </span>ifort<span class="w"> </span>-dll<span class="w"> </spa
 </pre></div>
 </div>
 <p>De novo, tomamos um atalho:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>ifort<span class="w"> </span>-exe:functions.dll<span class="w"> </span>functions.f90<span class="w"> </span>-dll
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>ifort<span class="w"> </span>-exe:functions.dll<span class="w"> </span>functions.f90<span class="w"> </span>-dll
 </pre></div>
 </div>
 <p>Isso produz os arquivos «functions.dll», «user_functions.mod» assim como «functions.lib» (e outros dois arquivos sem importância para cá). O programa «andador de dependências» nos diz que o nome exato da função «f» é <code class="docutils literal notranslate"><span class="pre">FUNCTION_mp_F</span></code>. Isso também é exportado para que também possa ser encontrado pelo linker na próxima fase:</p>

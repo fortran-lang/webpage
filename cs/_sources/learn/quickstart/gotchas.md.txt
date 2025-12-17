@@ -8,7 +8,7 @@ All code snippets are compiled with gfortran 13.
 Implicit typing
 ---------------
 
-```
+```{play-code-block} fortran
 program foo
     integer :: nbofchildrenperwoman, nbofchildren, nbofwomen
     nbofwomen = 10
@@ -25,7 +25,7 @@ Wait... Fortran is unable to multiply two integer numbers?? Of course not... The
 
 Implicit typing is as old as Fortran, in times where there was no explicit typing. Although it can still be convenient for quickly writing some test code, this practice is highly error prone and is discouraged. The strongly recommended good practice is to always disable implicit typing by stating `implicit none` (introduced in Fortran 90) at the beginning of all program units (main program, modules, and standalone routines):
 
-```
+```{play-code-block} fortran
 program foo
 implicit none
     integer :: nbofchildrenperwoman, nbofchildren, nbofwomen
@@ -45,7 +45,7 @@ Error: Symbol 'nbofchildrem' at (1) has no IMPLICIT type; did you mean 'nbofchil
 Implied save
 ------------
 
-```
+```{play-code-block} fortran
 subroutine foo()
 implicit none
     integer :: c=0
@@ -64,7 +64,7 @@ implicit none
 end program
 ```
 People used to C/C++ expect this program to print 5 times `1`, because they interpret `integer :: c=0` as the concatenation of a declaration and an assignment, as if it was:
-```
+```fortran
 integer :: c
 c = 0
 ```
@@ -77,11 +77,11 @@ c = 0
 5
 ```
 `integer :: c=0` is actually a one-shot **compile time initialization**, and it makes the variable persistent between calls to `foo()`. It is actually equivalent to: 
-```
+```fortran
 integer, save :: c=0   ! "save" can be omitted, but it's clearer with it
 ```
 The `save` attribute is equivalent to the C `static` attribute used inside a function to make a variable persistent, and it is *implied* in the case the variable is initialized. This is a modernized syntax (introduced in Fortran 90) compared to the legacy (and still valid) syntax:
-```
+```fortran
 integer c
 data c /0/
 save c
@@ -89,7 +89,7 @@ save c
 Old fortraners just know that the modernized syntax is equivalent to the legacy one, even when `save` is not specified. But as a matter of fact the *implied save* can be misleading to newcomers who are used to the C logic. That's why it is generally recommended to **always** specify the `save` attribute.
 
 *Note: an initialization expression of a derived type component is a fully different case:*
-```
+```fortran
 type bar
     integer :: c = 0
 end type
@@ -101,7 +101,7 @@ Floating point literal constants
 ---------------------------------
 
 The following code snippet defines a double precision constant `x` (which is on most systems a IEEE754 64 bits floating point, with 15 significant digits):
-```
+```{play-code-block} fortran
 program foo
 implicit none
     integer, parameter :: dp = kind(0d0)
@@ -116,7 +116,7 @@ The output is:
 So, `x` has 15 significant digits as expected, and still the printed value is wrong from the 8th digit. The reason is that floating point literal constants have implicitely the default real kind, wich is usually the IEEE754 single precision floating point (with about 7 significant digits). The real number $9.3$ has no exact floating point representation, so it is first approximated to single precision up to the 7th digit, then casted to double precision before being assigned to `x`. But the previously lost digits are obviously not recovered.
 
 The solution is to explicitly specify the kind of the constant: 
-```
+```fortran
 real(kind=dp), parameter :: x = 9.3_dp
 ```
 And now the output is correct up to the 15th digit:
@@ -128,7 +128,7 @@ Floating point literal constants (again)
 ---------------------------------
 
 Suppose now you need a floating point constant that is 1/3 (one-third). You may write:
-```
+```{play-code-block} fortran
 program foo
 implicit none
     integer, parameter :: dp = kind(0d0)
@@ -143,7 +143,7 @@ Then the output is (!):
 The reason is that `1_dp` and `3_dp` are **integer** literal constants, despite the `_dp` suffix that is *supposed* to represent a floating point kind. Consequently the division is the integer division, with 0 as a result. The gotcha here is that the standard allows compilers to use identical kind values for `REAL` and `INTEGER` types. For instance with gfortran, on most platforms the value $8$ is both the double precision kind AND the 64 bits integer kind, so that `1_dp` is a fully valid integer constant. In constrast, the NAG compiler uses by default unique kind values, such that in the example above `1_dp` would produce a compilation error.
 
 The right way to denote floating point constants is to **always** include the point: 
-```
+```fortran
     real(dp), parameter :: onethird = 1.0_dp / 3.0_dp
 ```
 Then the ouput is:
@@ -154,23 +154,23 @@ Then the ouput is:
 Leading space in prints
 -----------------------
 
-```
+```{play-code-block} fortran
 program foo
 implicit none
     print*, "Hello world!"
 end program
 ```
 Ouput:
-```
+```console
 % gfortran hello.f90 && ./a.out
  Hello world!
 ```
 Note the extra leading space, which is not present in the string of the source code. Historically, the first character was containing a [carriage control code](https://en.wikipedia.org/wiki/ASA_carriage_control_characters) for the early printers, and it was not printed per se. The space " " was instructing the printer to perform a CR+LF sequence before printing the content, and was automatically prepended by the Fortran `print*` statement. Some compilers still do that, although the modern output devices do neither intercept nor use the control character, which is hence "printed". If this leading blank is a problem (it rarely is), then instead of the `*` (which means "let the compiler decide how to format the output") we can code an explicit format:
-```
+```fortran
     print "(A)", "Hello world!"
 ```
 In this case, the compiler does no longer prepend the leading space:
-```
+```console
 % gfortran hello.f90 && ./a.out
 Hello world!
 ```
@@ -179,7 +179,7 @@ Filename extension
 ------------------
 
 Suppose we put the above "Hello world" program in the source file `hello.f`. Most compilers will produce many compilation errors:
-```
+```console
 % gfortran hello.f
 hello.f:1:1:
 

@@ -45,7 +45,7 @@
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../_static/translations.js?v=798cd998"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
@@ -689,14 +689,17 @@
 <p>All code snippets are compiled with gfortran 13.</p>
 <section id="implicit-typing">
 <h2>Implicit typing<a class="headerlink" href="#implicit-typing" title="Link to this heading">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">program</span> <span class="n">foo</span>
-    <span class="n">integer</span> <span class="p">::</span> <span class="n">nbofchildrenperwoman</span><span class="p">,</span> <span class="n">nbofchildren</span><span class="p">,</span> <span class="n">nbofwomen</span>
-    <span class="n">nbofwomen</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="n">nbofchildrenperwoman</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">nbofchildren</span> <span class="o">=</span> <span class="n">nbofwomen</span> <span class="o">*</span> <span class="n">nbofchildrenperwoman</span>
-    <span class="nb">print</span><span class="o">*</span><span class="p">,</span> <span class="s2">&quot;number of children:&quot;</span><span class="p">,</span> <span class="n">nbofchildrem</span>
-<span class="n">end</span> <span class="n">program</span>
+<div class="literal-block-wrapper docutils container" id="id1">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20foo%0A%20%20%20%20integer%20%3A%3A%20nbofchildrenperwoman%2C%20nbofchildren%2C%20nbofwomen%0A%20%20%20%20nbofwomen%20%3D%2010%0A%20%20%20%20nbofchildrenperwoman%20%3D%202%0A%20%20%20%20nbofchildren%20%3D%20nbofwomen%20%2A%20nbofchildrenperwoman%0A%20%20%20%20print%2A%2C%20%22number%20of%20children%3A%22%2C%20nbofchildrem%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">foo</span>
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nbofchildrenperwoman</span><span class="p">,</span><span class="w"> </span><span class="n">nbofchildren</span><span class="p">,</span><span class="w"> </span><span class="n">nbofwomen</span>
+<span class="w">    </span><span class="n">nbofwomen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">    </span><span class="n">nbofchildrenperwoman</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="n">nbofchildren</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nbofwomen</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nbofchildrenperwoman</span>
+<span class="w">    </span><span class="k">print</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;number of children:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nbofchildrem</span>
+<span class="k">end program</span>
 </pre></div>
+</div>
 </div>
 <p>The program compiles and the execution gives:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span> <span class="n">number</span> <span class="n">of</span> <span class="n">children</span><span class="p">:</span>           <span class="mi">0</span>
@@ -704,14 +707,14 @@
 </div>
 <p>Wait... Fortran is unable to multiply two integer numbers?? Of course not... The problem here is a typo in the variable name when printing it: <code class="docutils literal notranslate"><span class="pre">nbofchildreM</span></code> instead of <code class="docutils literal notranslate"><span class="pre">nbofchildreN</span></code>. But why the compiler didn't catch the typo? Well, because by default Fortran uses implicit typing: when encountering a variable that hasn't been explicitly typed, the compiler infers the type according to the first letter of the name. Variables names starting by I, J, K, L, M, N, are of type <code class="docutils literal notranslate"><span class="pre">INTEGER</span></code>, and all other ones are of type <code class="docutils literal notranslate"><span class="pre">REAL</span></code> (hence the classic joke &quot;<code class="docutils literal notranslate"><span class="pre">GOD</span></code> is <code class="docutils literal notranslate"><span class="pre">REAL</span></code>, unless declared as <code class="docutils literal notranslate"><span class="pre">INTEGER</span></code>&quot;).</p>
 <p>Implicit typing is as old as Fortran, in times where there was no explicit typing. Although it can still be convenient for quickly writing some test code, this practice is highly error prone and is discouraged. The strongly recommended good practice is to always disable implicit typing by stating <code class="docutils literal notranslate"><span class="pre">implicit</span> <span class="pre">none</span></code> (introduced in Fortran 90) at the beginning of all program units (main program, modules, and standalone routines):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">program</span> <span class="n">foo</span>
-<span class="n">implicit</span> <span class="n">none</span>
-    <span class="n">integer</span> <span class="p">::</span> <span class="n">nbofchildrenperwoman</span><span class="p">,</span> <span class="n">nbofchildren</span><span class="p">,</span> <span class="n">nbofwomen</span>
-    <span class="n">nbofwomen</span> <span class="o">=</span> <span class="mi">10</span>
-    <span class="n">nbofchildrenperwoman</span> <span class="o">=</span> <span class="mi">2</span>
-    <span class="n">nbofchildren</span> <span class="o">=</span> <span class="n">nbofwomen</span> <span class="o">*</span> <span class="n">nbofchildrenperwoman</span>
-    <span class="nb">print</span><span class="o">*</span><span class="p">,</span> <span class="s2">&quot;number of children:&quot;</span><span class="p">,</span> <span class="n">nbofchildrem</span>
-<span class="n">end</span> <span class="n">program</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">foo</span>
+<span class="k">implicit none</span>
+<span class="k">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nbofchildrenperwoman</span><span class="p">,</span><span class="w"> </span><span class="n">nbofchildren</span><span class="p">,</span><span class="w"> </span><span class="n">nbofwomen</span>
+<span class="w">    </span><span class="n">nbofwomen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
+<span class="w">    </span><span class="n">nbofchildrenperwoman</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">    </span><span class="n">nbofchildren</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">nbofwomen</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">nbofchildrenperwoman</span>
+<span class="w">    </span><span class="k">print</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;number of children:&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">nbofchildrem</span>
+<span class="k">end program</span>
 </pre></div>
 </div>
 <p>And now the compilation fails, allowing to quickly correct the typo:</p>
@@ -723,27 +726,30 @@ Error: Symbol &#39;nbofchildrem&#39; at (1) has no IMPLICIT type; did you mean &
 </section>
 <section id="implied-save">
 <h2>Implied save<a class="headerlink" href="#implied-save" title="Link to this heading">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">subroutine</span> <span class="n">foo</span><span class="p">()</span>
-<span class="n">implicit</span> <span class="n">none</span>
-    <span class="n">integer</span> <span class="p">::</span> <span class="n">c</span><span class="o">=</span><span class="mi">0</span>
+<div class="literal-block-wrapper docutils container" id="id2">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=subroutine%20foo%28%29%0Aimplicit%20none%0A%20%20%20%20integer%20%3A%3A%20c%3D0%0A%0A%20%20%20%20c%20%3D%20c%2B1%0A%20%20%20%20print%2A%2C%20c%0Aend%20subroutine%0A%0Aprogram%20main%0Aimplicit%20none%0A%20%20%20%20integer%20%3A%3A%20i%0A%0A%20%20%20%20do%20i%20%3D%201%2C%205%0A%20%20%20%20%20%20%20%20call%20foo%28%29%0A%20%20%20%20end%20do%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">foo</span><span class="p">()</span>
+<span class="k">implicit none</span>
+<span class="k">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="mi">0</span>
 
-    <span class="n">c</span> <span class="o">=</span> <span class="n">c</span><span class="o">+</span><span class="mi">1</span>
-    <span class="nb">print</span><span class="o">*</span><span class="p">,</span> <span class="n">c</span>
-<span class="n">end</span> <span class="n">subroutine</span>
+<span class="w">    </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">c</span><span class="o">+</span><span class="mi">1</span>
+<span class="w">    </span><span class="k">print</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">c</span>
+<span class="k">end subroutine</span>
 
-<span class="n">program</span> <span class="n">main</span>
-<span class="n">implicit</span> <span class="n">none</span>
-    <span class="n">integer</span> <span class="p">::</span> <span class="n">i</span>
+<span class="k">program </span><span class="n">main</span>
+<span class="k">implicit none</span>
+<span class="k">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
 
-    <span class="n">do</span> <span class="n">i</span> <span class="o">=</span> <span class="mi">1</span><span class="p">,</span> <span class="mi">5</span>
-        <span class="n">call</span> <span class="n">foo</span><span class="p">()</span>
-    <span class="n">end</span> <span class="n">do</span>
-<span class="n">end</span> <span class="n">program</span>
+<span class="w">    </span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">5</span>
+<span class="w">        </span><span class="k">call </span><span class="n">foo</span><span class="p">()</span>
+<span class="w">    </span><span class="k">end do</span>
+<span class="k">end program</span>
 </pre></div>
 </div>
+</div>
 <p>People used to C/C++ expect this program to print 5 times <code class="docutils literal notranslate"><span class="pre">1</span></code>, because they interpret <code class="docutils literal notranslate"><span class="pre">integer</span> <span class="pre">::</span> <span class="pre">c=0</span></code> as the concatenation of a declaration and an assignment, as if it was:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">integer</span> <span class="p">::</span> <span class="n">c</span>
-<span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">c</span>
+<span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
 </pre></div>
 </div>
 <p><strong>But it is not</strong>. This program actually outputs:</p>
@@ -755,20 +761,20 @@ Error: Symbol &#39;nbofchildrem&#39; at (1) has no IMPLICIT type; did you mean &
 </pre></div>
 </div>
 <p><code class="docutils literal notranslate"><span class="pre">integer</span> <span class="pre">::</span> <span class="pre">c=0</span></code> is actually a one-shot <strong>compile time initialization</strong>, and it makes the variable persistent between calls to <code class="docutils literal notranslate"><span class="pre">foo()</span></code>. It is actually equivalent to:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>integer, save :: c=0   ! &quot;save&quot; can be omitted, but it&#39;s clearer with it
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">save</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="mi">0</span><span class="w">   </span><span class="c">! &quot;save&quot; can be omitted, but it&#39;s clearer with it</span>
 </pre></div>
 </div>
 <p>The <code class="docutils literal notranslate"><span class="pre">save</span></code> attribute is equivalent to the C <code class="docutils literal notranslate"><span class="pre">static</span></code> attribute used inside a function to make a variable persistent, and it is <em>implied</em> in the case the variable is initialized. This is a modernized syntax (introduced in Fortran 90) compared to the legacy (and still valid) syntax:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">integer</span> <span class="n">c</span>
-<span class="n">data</span> <span class="n">c</span> <span class="o">/</span><span class="mi">0</span><span class="o">/</span>
-<span class="n">save</span> <span class="n">c</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">integer </span><span class="n">c</span>
+<span class="k">data </span><span class="n">c</span><span class="w"> </span><span class="o">/</span><span class="mi">0</span><span class="o">/</span>
+<span class="k">save </span><span class="n">c</span>
 </pre></div>
 </div>
 <p>Old fortraners just know that the modernized syntax is equivalent to the legacy one, even when <code class="docutils literal notranslate"><span class="pre">save</span></code> is not specified. But as a matter of fact the <em>implied save</em> can be misleading to newcomers who are used to the C logic. That's why it is generally recommended to <strong>always</strong> specify the <code class="docutils literal notranslate"><span class="pre">save</span></code> attribute.</p>
 <p><em>Note: an initialization expression of a derived type component is a fully different case:</em></p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="n">bar</span>
-    <span class="n">integer</span> <span class="p">::</span> <span class="n">c</span> <span class="o">=</span> <span class="mi">0</span>
-<span class="n">end</span> <span class="nb">type</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">type </span><span class="n">bar</span>
+<span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">c</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span>
+<span class="k">end type</span>
 </pre></div>
 </div>
 <p><em>Here, the <code class="docutils literal notranslate"><span class="pre">c</span></code> component is initialized to zero each time a <code class="docutils literal notranslate"><span class="pre">type(bar)</span></code> variable is instantiated (<strong>runtime</strong> initialization).</em></p>
@@ -776,13 +782,16 @@ Error: Symbol &#39;nbofchildrem&#39; at (1) has no IMPLICIT type; did you mean &
 <section id="floating-point-literal-constants">
 <h2>Floating point literal constants<a class="headerlink" href="#floating-point-literal-constants" title="Link to this heading">#</a></h2>
 <p>The following code snippet defines a double precision constant <code class="docutils literal notranslate"><span class="pre">x</span></code> (which is on most systems a IEEE754 64 bits floating point, with 15 significant digits):</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">program</span> <span class="n">foo</span>
-<span class="n">implicit</span> <span class="n">none</span>
-    <span class="n">integer</span><span class="p">,</span> <span class="n">parameter</span> <span class="p">::</span> <span class="n">dp</span> <span class="o">=</span> <span class="n">kind</span><span class="p">(</span><span class="mi">0</span><span class="n">d0</span><span class="p">)</span>
-    <span class="n">real</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">),</span> <span class="n">parameter</span> <span class="p">::</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">9.3</span>
-    <span class="nb">print</span><span class="o">*</span><span class="p">,</span> <span class="n">precision</span><span class="p">(</span><span class="n">x</span><span class="p">),</span> <span class="n">x</span>
-<span class="n">end</span> <span class="n">program</span>
+<div class="literal-block-wrapper docutils container" id="id3">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20foo%0Aimplicit%20none%0A%20%20%20%20integer%2C%20parameter%20%3A%3A%20dp%20%3D%20kind%280d0%29%0A%20%20%20%20real%28kind%3Ddp%29%2C%20parameter%20%3A%3A%20x%20%3D%209.3%0A%20%20%20%20print%2A%2C%20precision%28x%29%2C%20x%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">foo</span>
+<span class="k">implicit none</span>
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="mi">0</span><span class="n">d0</span><span class="p">)</span>
+<span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.3</span>
+<span class="w">    </span><span class="k">print</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="nb">precision</span><span class="p">(</span><span class="n">x</span><span class="p">),</span><span class="w"> </span><span class="n">x</span>
+<span class="k">end program</span>
 </pre></div>
+</div>
 </div>
 <p>The output is:</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>          <span class="mi">15</span>   <span class="mf">9.3000001907348633</span>
@@ -790,7 +799,7 @@ Error: Symbol &#39;nbofchildrem&#39; at (1) has no IMPLICIT type; did you mean &
 </div>
 <p>So, <code class="docutils literal notranslate"><span class="pre">x</span></code> has 15 significant digits as expected, and still the printed value is wrong from the 8th digit. The reason is that floating point literal constants have implicitely the default real kind, wich is usually the IEEE754 single precision floating point (with about 7 significant digits). The real number <span class="math notranslate nohighlight">\(9.3\)</span> has no exact floating point representation, so it is first approximated to single precision up to the 7th digit, then casted to double precision before being assigned to <code class="docutils literal notranslate"><span class="pre">x</span></code>. But the previously lost digits are obviously not recovered.</p>
 <p>The solution is to explicitly specify the kind of the constant:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">real</span><span class="p">(</span><span class="n">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">),</span> <span class="n">parameter</span> <span class="p">::</span> <span class="n">x</span> <span class="o">=</span> <span class="mf">9.3</span><span class="n">_dp</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">(</span><span class="nb">kind</span><span class="o">=</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">9.3_dp</span>
 </pre></div>
 </div>
 <p>And now the output is correct up to the 15th digit:</p>
@@ -801,13 +810,16 @@ Error: Symbol &#39;nbofchildrem&#39; at (1) has no IMPLICIT type; did you mean &
 <section id="floating-point-literal-constants-again">
 <h2>Floating point literal constants (again)<a class="headerlink" href="#floating-point-literal-constants-again" title="Link to this heading">#</a></h2>
 <p>Suppose now you need a floating point constant that is 1/3 (one-third). You may write:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">program</span> <span class="n">foo</span>
-<span class="n">implicit</span> <span class="n">none</span>
-    <span class="n">integer</span><span class="p">,</span> <span class="n">parameter</span> <span class="p">::</span> <span class="n">dp</span> <span class="o">=</span> <span class="n">kind</span><span class="p">(</span><span class="mi">0</span><span class="n">d0</span><span class="p">)</span>
-    <span class="n">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span> <span class="n">parameter</span> <span class="p">::</span> <span class="n">onethird</span> <span class="o">=</span> <span class="mi">1</span><span class="n">_dp</span> <span class="o">/</span> <span class="mi">3</span><span class="n">_dp</span>
-    <span class="nb">print</span><span class="o">*</span><span class="p">,</span> <span class="n">onethird</span>
-<span class="n">end</span> <span class="n">program</span>
+<div class="literal-block-wrapper docutils container" id="id4">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20foo%0Aimplicit%20none%0A%20%20%20%20integer%2C%20parameter%20%3A%3A%20dp%20%3D%20kind%280d0%29%0A%20%20%20%20real%28dp%29%2C%20parameter%20%3A%3A%20onethird%20%3D%201_dp%20/%203_dp%0A%20%20%20%20print%2A%2C%20onethird%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">foo</span>
+<span class="k">implicit none</span>
+<span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="mi">0</span><span class="n">d0</span><span class="p">)</span>
+<span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">onethird</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1_dp</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">3_dp</span>
+<span class="w">    </span><span class="k">print</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">onethird</span>
+<span class="k">end program</span>
 </pre></div>
+</div>
 </div>
 <p>Then the output is (!):</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span>   <span class="mf">0.0000000000000000</span>     
@@ -815,7 +827,7 @@ Error: Symbol &#39;nbofchildrem&#39; at (1) has no IMPLICIT type; did you mean &
 </div>
 <p>The reason is that <code class="docutils literal notranslate"><span class="pre">1_dp</span></code> and <code class="docutils literal notranslate"><span class="pre">3_dp</span></code> are <strong>integer</strong> literal constants, despite the <code class="docutils literal notranslate"><span class="pre">_dp</span></code> suffix that is <em>supposed</em> to represent a floating point kind. Consequently the division is the integer division, with 0 as a result. The gotcha here is that the standard allows compilers to use identical kind values for <code class="docutils literal notranslate"><span class="pre">REAL</span></code> and <code class="docutils literal notranslate"><span class="pre">INTEGER</span></code> types. For instance with gfortran, on most platforms the value <span class="math notranslate nohighlight">\(8\)</span> is both the double precision kind AND the 64 bits integer kind, so that <code class="docutils literal notranslate"><span class="pre">1_dp</span></code> is a fully valid integer constant. In constrast, the NAG compiler uses by default unique kind values, such that in the example above <code class="docutils literal notranslate"><span class="pre">1_dp</span></code> would produce a compilation error.</p>
 <p>The right way to denote floating point constants is to <strong>always</strong> include the point:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="n">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span> <span class="n">parameter</span> <span class="p">::</span> <span class="n">onethird</span> <span class="o">=</span> <span class="mf">1.0</span><span class="n">_dp</span> <span class="o">/</span> <span class="mf">3.0</span><span class="n">_dp</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="kt">real</span><span class="p">(</span><span class="n">dp</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">onethird</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">1.0_dp</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mf">3.0_dp</span>
 </pre></div>
 </div>
 <p>Then the ouput is:</p>
@@ -825,48 +837,51 @@ Error: Symbol &#39;nbofchildrem&#39; at (1) has no IMPLICIT type; did you mean &
 </section>
 <section id="leading-space-in-prints">
 <h2>Leading space in prints<a class="headerlink" href="#leading-space-in-prints" title="Link to this heading">#</a></h2>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">program</span> <span class="n">foo</span>
-<span class="n">implicit</span> <span class="n">none</span>
-    <span class="nb">print</span><span class="o">*</span><span class="p">,</span> <span class="s2">&quot;Hello world!&quot;</span>
-<span class="n">end</span> <span class="n">program</span>
+<div class="literal-block-wrapper docutils container" id="id5">
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20foo%0Aimplicit%20none%0A%20%20%20%20print%2A%2C%20%22Hello%20world%21%22%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">foo</span>
+<span class="k">implicit none</span>
+<span class="k">    print</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Hello world!&quot;</span>
+<span class="k">end program</span>
 </pre></div>
 </div>
+</div>
 <p>Ouput:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>% gfortran hello.f90 &amp;&amp; ./a.out
- Hello world!
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>gfortran<span class="w"> </span>hello.f90<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./a.out
+<span class="go"> Hello world!</span>
 </pre></div>
 </div>
 <p>Note the extra leading space, which is not present in the string of the source code. Historically, the first character was containing a <a class="reference external" href="https://en.wikipedia.org/wiki/ASA_carriage_control_characters">carriage control code</a> for the early printers, and it was not printed per se. The space &quot; &quot; was instructing the printer to perform a CR+LF sequence before printing the content, and was automatically prepended by the Fortran <code class="docutils literal notranslate"><span class="pre">print*</span></code> statement. Some compilers still do that, although the modern output devices do neither intercept nor use the control character, which is hence &quot;printed&quot;. If this leading blank is a problem (it rarely is), then instead of the <code class="docutils literal notranslate"><span class="pre">*</span></code> (which means &quot;let the compiler decide how to format the output&quot;) we can code an explicit format:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>    <span class="nb">print</span> <span class="s2">&quot;(A)&quot;</span><span class="p">,</span> <span class="s2">&quot;Hello world!&quot;</span>
+<div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="w">    </span><span class="k">print</span><span class="w"> </span><span class="s2">&quot;(A)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Hello world!&quot;</span>
 </pre></div>
 </div>
 <p>In this case, the compiler does no longer prepend the leading space:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span>% gfortran hello.f90 &amp;&amp; ./a.out
-Hello world!
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>gfortran<span class="w"> </span>hello.f90<span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span>./a.out
+<span class="go">Hello world!</span>
 </pre></div>
 </div>
 </section>
 <section id="filename-extension">
 <h2>Filename extension<a class="headerlink" href="#filename-extension" title="Link to this heading">#</a></h2>
 <p>Suppose we put the above &quot;Hello world&quot; program in the source file <code class="docutils literal notranslate"><span class="pre">hello.f</span></code>. Most compilers will produce many compilation errors:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="o">%</span> <span class="n">gfortran</span> <span class="n">hello</span><span class="o">.</span><span class="n">f</span>
-<span class="n">hello</span><span class="o">.</span><span class="n">f</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span>
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>gfortran<span class="w"> </span>hello.f
+<span class="go">hello.f:1:1:</span>
 
- <span class="n">program</span> <span class="n">foo</span>
- <span class="mi">1</span>
-<span class="n">Error</span><span class="p">:</span> <span class="n">Non</span><span class="o">-</span><span class="n">numeric</span> <span class="n">character</span> <span class="ow">in</span> <span class="n">statement</span> <span class="n">label</span> <span class="n">at</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">hello</span><span class="o">.</span><span class="n">f</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span>
+<span class="go"> program foo</span>
+<span class="go"> 1</span>
+<span class="go">Error: Non-numeric character in statement label at (1)</span>
+<span class="go">hello.f:1:1:</span>
 
- <span class="n">implicit</span> <span class="n">none</span>
- <span class="mi">1</span>
-<span class="n">Error</span><span class="p">:</span> <span class="n">Non</span><span class="o">-</span><span class="n">numeric</span> <span class="n">character</span> <span class="ow">in</span> <span class="n">statement</span> <span class="n">label</span> <span class="n">at</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
-<span class="n">hello</span><span class="o">.</span><span class="n">f</span><span class="p">:</span><span class="mi">2</span><span class="p">:</span><span class="mi">1</span><span class="p">:</span>
+<span class="go"> implicit none</span>
+<span class="go"> 1</span>
+<span class="go">Error: Non-numeric character in statement label at (1)</span>
+<span class="go">hello.f:2:1:</span>
 
-     <span class="nb">print</span><span class="o">*</span><span class="p">,</span> <span class="s2">&quot;Hello world!&quot;</span>
-     <span class="mi">1</span>
-<span class="n">Error</span><span class="p">:</span> <span class="n">Non</span><span class="o">-</span><span class="n">numeric</span> <span class="n">character</span> <span class="ow">in</span> <span class="n">statement</span> <span class="n">label</span> <span class="n">at</span> <span class="p">(</span><span class="mi">1</span><span class="p">)</span>
+<span class="go">     print*, &quot;Hello world!&quot;</span>
+<span class="go">     1</span>
+<span class="go">Error: Non-numeric character in statement label at (1)</span>
 
-<span class="o">...</span><span class="p">[</span><span class="n">truncated</span><span class="p">]</span>
+<span class="go">...[truncated]</span>
 </pre></div>
 </div>
 <p>The reason is that the <code class="docutils literal notranslate"><span class="pre">.f</span></code> extension is by a widely accepted convention &quot;reserved&quot; for the legacy &quot;fixed source form&quot;, which was designed for the punch card systems. In particular, the columns 1-6 were reserved for labels, continuation characters, and comments, and the actual statements and instructions had to be within the columns 7-72. The free source form removes all the limitations of the fixed source form, but since the latter cohabits with the former, the convention adopted by most compilers is to use by default the <code class="docutils literal notranslate"><span class="pre">.f90</span></code> extension for the free form sources. Note that this can generally be changed by some compiler switches, and that the most recent versions of the Fortran Package Manager (fpm) considers by default that all sources are free form, regardless the extension.</p>

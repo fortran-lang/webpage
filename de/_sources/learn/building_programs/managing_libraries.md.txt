@@ -9,7 +9,7 @@ create your own libraries.
 Libraries contain any number of object files in a compact form, so that
 the command-line becomes far shorter:
 
-```shell
+```console
 $ gfortran -o tabulate tabulate.f90 functions.o supportlib.a
 ```
 
@@ -20,7 +20,7 @@ Linux and Linux-like platforms. On Windows the extension ".lib" is used.
 Creating your own libraries is not that complicated:
 on Linux, you can achieve this using a utility like `ar`:
 
-```shell
+```console
 $ gfortran -c file1.f90 file2.f90
 $ gfortran -c file3.f90 ...
 $ ar r supportlib.a file1.o file2.o
@@ -29,7 +29,7 @@ $ ar r supportlib.a file3.o ...
 
 or on Windows using the `lib` utility:
 
-```shell
+```console
 c:\...> ifort -c file1.f90 file2.f90
 c:\...> ifort -c file3.f90 ...
 c:\...> lib /out:supportlib.lib file1.obj file2.obj
@@ -75,7 +75,7 @@ like `ar` or `lib`.
 
 On Linux:
 
-```shell
+```console
 $ gfortran -fpic -c file1.f90 file2.f90
 $ gfortran -fpic -c file3.f90 ...
 $ gfortran -shared -o supportlib.so file1.o file2.o file3.o ...
@@ -83,7 +83,7 @@ $ gfortran -shared -o supportlib.so file1.o file2.o file3.o ...
 
 On Windows, with the Intel Fortran compiler:
 
-```shell
+```console
 $ ifort -c file1.f90 file2.f90
 $ ifort -c file3.f90 ...
 $ ifort -dll -exe:supportlib.dll file1.obj file2.obj file3.obj ...
@@ -136,14 +136,14 @@ Also, no import library is generated.
 Since our dynamic library can be built from a single source file, we
 can take a shortcut:
 
-```shell
+```console
 $ gfortran -shared -o functions.dll functions.f90
 ```
 
 This produces the files "functions.dll" and "user_functions.mod". The
 utility `nm` tells us the exact name of the function `f`:
 
-```shell
+```console
 $ nm functions.dll
 ...
 000000054f9d7000 B __dynamically_loaded
@@ -160,7 +160,7 @@ other routine "f" that might be defined in another module.
 
 The next step is to build the program:
 
-```shell
+```console
 $ gfortran -o tabulate tabulate.f90 functions.dll
 ```
 
@@ -189,7 +189,7 @@ real function f( x )
 
 Again we take a shortcut:
 
-```shell
+```console
 $ ifort -exe:functions.dll functions.f90 -dll
 ```
 

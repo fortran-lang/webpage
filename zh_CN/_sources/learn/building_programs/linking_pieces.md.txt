@@ -55,7 +55,7 @@ program. Because the program "tabulate" depends on the module
 "function", we need to compile the source file containing our module
 first. A sequence of commands to do this is:
 
-```shell
+```console
 $ gfortran -c functions.f90
 $ gfortran tabulate.f90 functions.o
 ```

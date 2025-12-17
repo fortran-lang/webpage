@@ -45,7 +45,7 @@
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../_static/translations.js?v=2827c288"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/building_programs/compiling_source';</script>
@@ -702,12 +702,12 @@ built.</p>
 the GNU compiler collection. To compile a simple program like the one
 above, that consists of one source file, you run the following command,
 assuming the source code is stored in the file „hello.f90”:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>hello.f90
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>-c<span class="w"> </span>hello.f90
 </pre></div>
 </div>
 <p>Wyniki w pliku „hello.o” (kompilator gfortran używa „.o” jako rozszerzenia plików obiektowych).</p>
 <p>Opcja „-c” oznacza: skompiluj tylko pliki źródłowe. W wypadku nie zastosowania tej opcji, domyślnie kompilator skompilował by plik źródłowy oraz zainicjował program łączący, aby zbudował właściwy wykonywalny program. Komenda:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>hello.f90
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>hello.f90
 </pre></div>
 </div>
 <p>będzie skutkowała stworzeniem pliku wykonywalnego , „a.out” na systemie operacyjnym Linux lub „a.exe” na Windowsie.</p>
@@ -715,28 +715,28 @@ assuming the source code is stored in the file „hello.f90”:</p>
 <ul class="simple">
 <li><p>Kompilator może zwracać uwagę na zawartość plików źródłowych jeśli znajdzie w nim jakiś błąd - np. literówkę lub nieznane słowo kluczowe. W tym przypadku proces kompilacji jest zakończony, a rezultatem nie będzie stworzenie żadnego pliku obiektowego lub wykonywalnego programu. Na przykład, jeśli słowo „program” zostało przez przypadek zapisane jako „prgoram”:</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>hello3.f90
-hello.f90:1:0:
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>hello3.f90
+<span class="go">hello.f90:1:0:</span>
 
-<span class="w">    </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>prgoram<span class="w"> </span>hello
-<span class="w">      </span><span class="p">|</span>
-Error:<span class="w"> </span>Unclassifiable<span class="w"> </span>statement<span class="w"> </span>at<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>
-hello3.f90:3:17:
+<span class="go">    1 | prgoram hello</span>
+<span class="go">      |</span>
+<span class="go">Error: Unclassifiable statement at (1)</span>
+<span class="go">hello3.f90:3:17:</span>
 
-<span class="w">    </span><span class="m">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>end<span class="w"> </span>program<span class="w"> </span>hello
-<span class="w">      </span><span class="p">|</span><span class="w">                 </span><span class="m">1</span>
-Error:<span class="w"> </span>Syntax<span class="w"> </span>error<span class="w"> </span><span class="k">in</span><span class="w"> </span>END<span class="w"> </span>PROGRAM<span class="w"> </span>statement<span class="w"> </span>at<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>
-f951:<span class="w"> </span>Error:<span class="w"> </span>Unexpected<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;hello.f90&#39;</span>
+<span class="go">    3 | end program hello</span>
+<span class="go">      |                 1</span>
+<span class="go">Error: Syntax error in END PROGRAM statement at (1)</span>
+<span class="go">f951: Error: Unexpected end of file in &#39;hello.f90&#39;</span>
 </pre></div>
 </div>
 <p>Używając tego raportu z kompilacji możesz poprawić kod źródłowy i spróbować jeszcze raz skompilować program.</p>
 <ul class="simple">
 <li><p>Komenda kompilacji bez „-c” może zadziałać tylko jeśli plik źródłowy zawiera główny program - charakteryzujący się instrukcją <code class="docutils literal notranslate"><span class="pre">program</span></code> w Fortranie. W innym przypadku zainicjowany program łączący będzie skarżył się na brakujący „symbol”. Może to wyglądać następująco:</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>hello2.f90
-/usr/lib/../lib64/crt1.o:<span class="w"> </span>In<span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="sb">`</span>_start<span class="s1">&#39;:</span>
-<span class="s1">(.text+0x20): undefined reference to `main&#39;</span>
-collect2:<span class="w"> </span>error:<span class="w"> </span>ld<span class="w"> </span>returned<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span>status
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>hello2.f90
+<span class="go">/usr/lib/../lib64/crt1.o: In function `_start&#39;:</span>
+<span class="gp gp-VirtualEnv">(.text+0x20)</span><span class="go">: undefined reference to `main&#39;</span>
+<span class="go">collect2: error: ld returned 1 exit status</span>
 </pre></div>
 </div>
 <p>Plik „hello2.f90” jest praktycznie taki sam jak plik „hello.f90”, z wyjątkiem tego, że słowo kluczowe <code class="docutils literal notranslate"><span class="pre">program</span></code> zostało zastąpione słowem kluczowym <code class="docutils literal notranslate"><span class="pre">subroutine</span></code>.</p>

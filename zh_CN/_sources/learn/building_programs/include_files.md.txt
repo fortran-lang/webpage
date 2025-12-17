@@ -35,7 +35,7 @@ tabulate/
 
 Compiling the file "functions.f90" with the commands
 
-```shell
+```console
 $ cd sub
 $ gfortran -c functions.f90
 ```
@@ -55,7 +55,7 @@ tabulate/
 To successfully compile and subsequently build the program we need to
 tell the compiler where it can find the file "user_functions.mod":
 
-```shell
+```console
 $ cd main
 $ gfortran -c tabulate.f90 -I ../sub
 $ gfortran -o tabulate tabulate.o ../sub/functions.o

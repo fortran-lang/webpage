@@ -45,7 +45,7 @@
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../_static/translations.js?v=2827c288"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/building_programs/linking_pieces';</script>
@@ -718,8 +718,8 @@
 </pre></div>
 </div>
 <p>Aby stworzyć program z tą specyficzną funkcją, musimy skompilować dwa pliki źródłowe i połączyć je za pomocą procesu łączenia w jeden wykonywalny program. Ponieważ program „tabulate” jest zależny od modułu „function”, musimy najpierw skompilować plik źródłowy zawierający nasz moduł. Sekwencja komend, która to zrobi wygląda następująco:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>functions.f90
-$<span class="w"> </span>gfortran<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.o
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>-c<span class="w"> </span>functions.f90
+<span class="gp">$ </span>gfortran<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.o
 </pre></div>
 </div>
 <p>Pierwszym krokiem jest skompilowanie modułu, którego wynikiem jest plik obiektowy „functions.o” oraz plik pośredni modułu „user_functions.mod”. Ten plik modułu zawiera wszystkie informacje, które potrzebuje kompilator do określenia, że funkcja <code class="docutils literal notranslate"><span class="pre">f</span></code> jest zdefiniowana w tym module i jaki jest jej interfejs. Ta informacja jest ważna: pozwala ona kompilatorowi na sprawdzenie czy funkcja jest wywoływana w prawidłowy sposób. Możliwym jest, że popełniłeś błąd i wywołałeś funkcję z dwoma argumentami zamiast jednego. Jeśli kompilator nie wie niczego o interfejsie funkcji, nie może tego sprawdzić.</p>

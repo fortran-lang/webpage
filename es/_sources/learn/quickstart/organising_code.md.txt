@@ -176,7 +176,7 @@ use my_mod, only: printMat=>print_matrix
 
 An advantage of placing subroutines and functions in modules is that they can have ```optional``` arguments. In a procedure with an argument declared optional, the ```present``` function is used to test if the argument was set in the caller. Optional arguments that are not present may not be accessed within the procedure. Here is a generalization of the ```vector_norm``` function that can use powers other than 2 to compute the Lp norm.
 
-```
+```{play-code-block} fortran
 module norm_mod
   implicit none
   contains

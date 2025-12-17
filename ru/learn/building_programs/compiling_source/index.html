@@ -45,7 +45,7 @@
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../_static/translations.js?v=cd1d70c9"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/building_programs/compiling_source';</script>
@@ -702,12 +702,12 @@ built.</p>
 the GNU compiler collection. To compile a simple program like the one
 above, that consists of one source file, you run the following command,
 assuming the source code is stored in the file «hello.f90»:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>hello.f90
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>-c<span class="w"> </span>hello.f90
 </pre></div>
 </div>
 <p>Выполнение этой команды приведёт к созданию файла «hello.o» (так как компилятор gfortran использует расширение «.o\ в качестве расширения для объектных файлов).</p>
 <p>Опция компилятора «-c» означает: только компилировать файлы исходного кода. Если её не указать, то по умолчанию компилятор будет компилировать файлы исходного кода и запускать компоновщик для создания исполняемого файла программы. Выполнение команды:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>hello.f90
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>hello.f90
 </pre></div>
 </div>
 <p>приведёт к созданию исполняемого файла «a.out» в системах Linux или «a.exe» в системе Windows.</p>
@@ -715,28 +715,28 @@ assuming the source code is stored in the file «hello.f90»:</p>
 <ul class="simple">
 <li><p>Компилятор может пожаловаться на содержимое файла исходного кода, если обнаружит в нём что-то неправильное, например, опечатку или неизвестное ключевое слово. В этом случае процесс компиляции прерывается и вы не получите ни объектного файла, ни исполняемого файла программы. Например, если слово «program» по ошибке было набрано как «prgoram», то компилятор сообщит об ошибках:</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>hello3.f90
-hello.f90:1:0:
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>hello3.f90
+<span class="go">hello.f90:1:0:</span>
 
-<span class="w">    </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>prgoram<span class="w"> </span>hello
-<span class="w">      </span><span class="p">|</span>
-Error:<span class="w"> </span>Unclassifiable<span class="w"> </span>statement<span class="w"> </span>at<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>
-hello3.f90:3:17:
+<span class="go">    1 | prgoram hello</span>
+<span class="go">      |</span>
+<span class="go">Error: Unclassifiable statement at (1)</span>
+<span class="go">hello3.f90:3:17:</span>
 
-<span class="w">    </span><span class="m">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>end<span class="w"> </span>program<span class="w"> </span>hello
-<span class="w">      </span><span class="p">|</span><span class="w">                 </span><span class="m">1</span>
-Error:<span class="w"> </span>Syntax<span class="w"> </span>error<span class="w"> </span><span class="k">in</span><span class="w"> </span>END<span class="w"> </span>PROGRAM<span class="w"> </span>statement<span class="w"> </span>at<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>
-f951:<span class="w"> </span>Error:<span class="w"> </span>Unexpected<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;hello.f90&#39;</span>
+<span class="go">    3 | end program hello</span>
+<span class="go">      |                 1</span>
+<span class="go">Error: Syntax error in END PROGRAM statement at (1)</span>
+<span class="go">f951: Error: Unexpected end of file in &#39;hello.f90&#39;</span>
 </pre></div>
 </div>
 <p>Используя этот отчёт компилятора об ошибках, вы можете исправить текст исходного кода программы и повторить попытку компиляции.</p>
 <ul class="simple">
 <li><p>Выполнение шага сборки без опции «-c» может быть успешным, только если файл исходного кода содержит основную программу, обозначаемую в тексте программы оператором <code class="docutils literal notranslate"><span class="pre">program</span></code> языка Fortran. В противном случае компоновщик пожалуется на отсутствующий «символ» («symbol») сообщением примерно следующего содержания:</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>hello2.f90
-/usr/lib/../lib64/crt1.o:<span class="w"> </span>In<span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="sb">`</span>_start<span class="s1">&#39;:</span>
-<span class="s1">(.text+0x20): undefined reference to `main&#39;</span>
-collect2:<span class="w"> </span>error:<span class="w"> </span>ld<span class="w"> </span>returned<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span>status
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>hello2.f90
+<span class="go">/usr/lib/../lib64/crt1.o: In function `_start&#39;:</span>
+<span class="gp gp-VirtualEnv">(.text+0x20)</span><span class="go">: undefined reference to `main&#39;</span>
+<span class="go">collect2: error: ld returned 1 exit status</span>
 </pre></div>
 </div>
 <p>Файл «hello2.f90» почти такой же как и файл «hello.f90», за исключением того, что ключевое слово <code class="docutils literal notranslate"><span class="pre">program</span></code> было заменено на ключевое слово <code class="docutils literal notranslate"><span class="pre">subroutine</span></code>.</p>

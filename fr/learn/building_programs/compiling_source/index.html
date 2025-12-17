@@ -45,7 +45,7 @@
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../_static/translations.js?v=e6b791cb"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/building_programs/compiling_source';</script>
@@ -708,7 +708,7 @@ built.</p>
 the GNU compiler collection. To compile a simple program like the one
 above, that consists of one source file, you run the following command,
 assuming the source code is stored in the file « hello.f90 »:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>hello.f90
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>-c<span class="w"> </span>hello.f90
 </pre></div>
 </div>
 <p>This results in a file « hello.o » (as the gfortran compiler uses « .o » as
@@ -717,7 +717,7 @@ the extension for the object files).</p>
 leave it out, then the default action of the compiler is to compile the
 source file and start the linker to build the actual executable program.
 The command:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>hello.f90
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>hello.f90
 </pre></div>
 </div>
 <p>results in an executable file, « a.out » on Linux or « a.exe » on
@@ -730,18 +730,18 @@ keyword. In that case the compilation process is broken off and you will
 not get an object file or an executable program. For instance, if
 the word « program » was inadvertently typed as « prgoram »:</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>hello3.f90
-hello.f90:1:0:
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>hello3.f90
+<span class="go">hello.f90:1:0:</span>
 
-<span class="w">    </span><span class="m">1</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>prgoram<span class="w"> </span>hello
-<span class="w">      </span><span class="p">|</span>
-Error:<span class="w"> </span>Unclassifiable<span class="w"> </span>statement<span class="w"> </span>at<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>
-hello3.f90:3:17:
+<span class="go">    1 | prgoram hello</span>
+<span class="go">      |</span>
+<span class="go">Error: Unclassifiable statement at (1)</span>
+<span class="go">hello3.f90:3:17:</span>
 
-<span class="w">    </span><span class="m">3</span><span class="w"> </span><span class="p">|</span><span class="w"> </span>end<span class="w"> </span>program<span class="w"> </span>hello
-<span class="w">      </span><span class="p">|</span><span class="w">                 </span><span class="m">1</span>
-Error:<span class="w"> </span>Syntax<span class="w"> </span>error<span class="w"> </span><span class="k">in</span><span class="w"> </span>END<span class="w"> </span>PROGRAM<span class="w"> </span>statement<span class="w"> </span>at<span class="w"> </span><span class="o">(</span><span class="m">1</span><span class="o">)</span>
-f951:<span class="w"> </span>Error:<span class="w"> </span>Unexpected<span class="w"> </span>end<span class="w"> </span>of<span class="w"> </span>file<span class="w"> </span><span class="k">in</span><span class="w"> </span><span class="s1">&#39;hello.f90&#39;</span>
+<span class="go">    3 | end program hello</span>
+<span class="go">      |                 1</span>
+<span class="go">Error: Syntax error in END PROGRAM statement at (1)</span>
+<span class="go">f951: Error: Unexpected end of file in &#39;hello.f90&#39;</span>
 </pre></div>
 </div>
 <p>Using this compilation report you can correct the source code and try
@@ -752,10 +752,10 @@ main program — characterised by the <code class="docutils literal notranslate"
 Otherwise the link step will complain about a missing « symbol », something
 along these lines:</p></li>
 </ul>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>hello2.f90
-/usr/lib/../lib64/crt1.o:<span class="w"> </span>In<span class="w"> </span><span class="k">function</span><span class="w"> </span><span class="sb">`</span>_start<span class="s1">&#39;:</span>
-<span class="s1">(.text+0x20): undefined reference to `main&#39;</span>
-collect2:<span class="w"> </span>error:<span class="w"> </span>ld<span class="w"> </span>returned<span class="w"> </span><span class="m">1</span><span class="w"> </span><span class="nb">exit</span><span class="w"> </span>status
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>hello2.f90
+<span class="go">/usr/lib/../lib64/crt1.o: In function `_start&#39;:</span>
+<span class="gp gp-VirtualEnv">(.text+0x20)</span><span class="go">: undefined reference to `main&#39;</span>
+<span class="go">collect2: error: ld returned 1 exit status</span>
 </pre></div>
 </div>
 <p>The file « hello2.f90 » is almost the same as the file « hello.f90 », except

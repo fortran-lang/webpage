@@ -22,7 +22,7 @@ On Windows, you can get native binaries [here](http://www.equation.com/servlet/e
 
 To check if you have _gfortran_ setup correctly, open a terminal and run the following command:
 
-```shell
+```console
 $> gfortran --version
 ```
 
@@ -48,7 +48,7 @@ end program hello
 
 Having saved your program to `hello.f90`, compile at the command line with:
 
-```shell
+```console
 $> gfortran hello.f90 -o hello
 ```
 
@@ -57,7 +57,7 @@ $> gfortran hello.f90 -o hello
 
 To run your compiled program:
 
-```shell
+```console
 $> ./hello
 Hello, World!
 ```

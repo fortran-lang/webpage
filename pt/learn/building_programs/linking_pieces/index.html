@@ -45,7 +45,7 @@
     <script src="../../../_static/doctools.js?v=9bcbadda"></script>
     <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
-    <script src="../../../_static/copybutton.js?v=f281be69"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
     <script src="../../../_static/translations.js?v=beaedd51"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/building_programs/linking_pieces';</script>
@@ -718,8 +718,8 @@
 </pre></div>
 </div>
 <p>Para construir o programa com a função específica, precisamos compilar dois códigos fontes e combiná-los com a fase de link em um programa executável. Por conta do programa «tabulate» depender de um módulo «function», precisamos compilar o código fonte contendo o nosso módulo primeiro. Uma sequência de comandos para fazer isso é:</p>
-<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>$<span class="w"> </span>gfortran<span class="w"> </span>-c<span class="w"> </span>functions.f90
-$<span class="w"> </span>gfortran<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.o
+<div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>-c<span class="w"> </span>functions.f90
+<span class="gp">$ </span>gfortran<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.o
 </pre></div>
 </div>
 <p>O primeiro passo compila o módulo, resultando em um arquivo objeto «functions.o» e um arquivo módulo intermediário, «user_functions.mod». Esse arquivo módulo contém toda a informação que o compilador precisa para determinar que a função <code class="docutils literal notranslate"><span class="pre">f</span></code> é definida nesse módulo e qual é sua interface. Essa informação é importante: Isso permite que o compilador cheque que você chama a função da forma correta. Pode ser que você tenha cometido um erro e chamado a função com dois argumentos ao invés de um. Se o compilador sabe nada sobre a interface da função, então ele pode checar nada.</p>

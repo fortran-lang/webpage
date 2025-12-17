@@ -4,7 +4,7 @@ To illustrate that even a simple program depends on external run-time
 libraries, here is the output from the `ldd` utility that reports such
 dependencies:
 
-```shell
+```console
 $ ldd tabulate.exe
         ntdll.dll => /cygdrive/c/WINDOWS/SYSTEM32/ntdll.dll (0x7ff88f2b0000)
         KERNEL32.DLL => /cygdrive/c/WINDOWS/System32/KERNEL32.DLL (0x7ff88e450000)

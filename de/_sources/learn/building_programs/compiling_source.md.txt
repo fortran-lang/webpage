@@ -28,7 +28,7 @@ the GNU compiler collection. To compile a simple program like the one
 above, that consists of one source file, you run the following command,
 assuming the source code is stored in the file "hello.f90":
 
-```shell
+```console
 $ gfortran -c hello.f90
 ```
 
@@ -40,7 +40,7 @@ leave it out, then the default action of the compiler is to compile the
 source file and start the linker to build the actual executable program.
 The command:
 
-```shell
+```console
 $ gfortran hello.f90
 ```
 
@@ -55,7 +55,7 @@ Some remarks:
   not get an object file or an executable program. For instance, if
   the word "program" was inadvertently typed as "prgoram":
 
-```shell
+```console
 $ gfortran hello3.f90
 hello.f90:1:0:
 
@@ -78,7 +78,7 @@ again.
   Otherwise the link step will complain about a missing "symbol", something
   along these lines:
 
-```shell
+```console
 $ gfortran hello2.f90
 /usr/lib/../lib64/crt1.o: In function `_start':
 (.text+0x20): undefined reference to `main'
