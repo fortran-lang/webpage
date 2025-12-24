@@ -59,7 +59,7 @@ To run your compiled program:
 
 ```console
 $> ./hello
-Hello, World!
+ Hello, World!
 ```
 
 Congratulations, you've written, compiled and run your first Fortran program!
