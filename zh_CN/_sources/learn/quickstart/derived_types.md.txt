@@ -100,7 +100,7 @@ Example with `bind(c)`:
 
 ```{play-code-block} fortran
 module f_to_c
-  use iso_c_bindings, only: c_int
+  use iso_c_binding, only: c_int
   implicit none
 
   type, bind(c) :: f_type
