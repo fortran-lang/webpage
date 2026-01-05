@@ -24,6 +24,30 @@ Getting Started
 ::::{grid} 1 1 1 1
 :gutter: 1
 
+:::{grid-item-card} {octicon}`beaker;1em;sd-text-info` Setup your local environment
+:shadow: none
+
+Hit the ground running and setup your local environment to develop Fortran your way!
+
+```{card}
+:link-type: url
+:link: os_setup/
+:class-card: sd-btn
+:class-body: sd-p-1 sd-text-center sd-font-weight-bold sd-text-info sd-btn-primary sd-text-light sd-btn
+:shadow: none
+
+{octicon}``beaker;1em;sd-text-info`` Setting up your OS
+```
+
+:::
+::::
+:::::
+
+:::::{grid-item}
+
+::::{grid} 1 1 1 1
+:gutter: 1
+
 :::{grid-item-card} {octicon}`info;1em;sd-text-info` New to Fortran
 :shadow: none
 
