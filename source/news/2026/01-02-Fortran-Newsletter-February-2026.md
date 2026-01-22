@@ -30,10 +30,10 @@ Fortran news from the previous month.
 
 #### Software releases/New projects 
 
-- [Sebastian Gerhard Munz releases FMSL](https://github.com/sebastian-mutz/fsml), a scientific toolkit consisting of common statistical and machine learning procedures. See the [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.09058) and try it out!
+- [Release of FMSL](https://github.com/sebastian-mutz/fsml), a scientific toolkit consisting of common statistical and machine learning procedures. See the [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.09058) and try it out!
 - [New release (v9.2.0) of json-fortran by Jacob Williams](https://github.com/jacobwilliams/json-fortran/releases/tag/9.2.0)
-- [METISSE, a Fortran application for single star evolution ](https://joss.theoj.org/papers/10.21105/joss.08817)
-- [FIATS, an application for functional inference and training](https://joss.theoj.org/papers/10.21105/joss.08785) 
+- [METISSE, a Fortran application for single star evolution ](https://joss.theoj.org/papers/10.21105/joss.08817), see the [repo](https://github.com/TeamMETISSE/METISSE)
+- [FIATS, an application for functional inference and training](https://joss.theoj.org/papers/10.21105/joss.08785), see the [repo](https://github.com/BerkeleyLab/fiats)
 
 ## fortran-lang.org
 
