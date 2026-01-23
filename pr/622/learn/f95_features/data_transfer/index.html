@@ -1,0 +1,1033 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" sizes="256x256" href="../../../_static/images/favicon.ico" type="image/x-icon">
+    <title>Data transfer &#8212; Fortran Programming Language</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3d3d5688" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=51fd25b1"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'learn/f95_features/data_transfer';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://fortran-lang.org/_static/data.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'en';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="canonical" href="https://fortran-lang.org/learn/f95_features/data_transfer/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="Operations on external files" href="../operations_on_external_files/" />
+    <link rel="prev" title="Intrinsic procedures" href="../intrinsic_procedures/" /> 
+<meta
+  name="description"
+  content="Fortran : High-performance parallel programming language"
+/>
+<meta
+  name="keywords"
+  content="High-performance, parallel, programming language"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+ 
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search"
+         aria-label="Search"
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Fortran Programming Language - Home"/>
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark pst-js-only" alt="Fortran Programming Language - Home"/>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="ms-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community/">
+    Community
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../news/">
+    News
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community/">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../news/">
+    News
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../os_setup/">Setting up your OS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/choose_compiler/">Choosing a compiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/install_gfortran/">Installing GFortran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/text_editors/">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/ides/">IDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/tips/">Smart Tips</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../quickstart/">Quickstart tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/hello_world/">Hello world</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/variables/">Variables</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/arrays_strings/">Arrays and strings</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/operators_control_flow/">Operators and flow control</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/organising_code/">Organising code structure</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/derived_types/">Derived Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/gotchas/">Gotchas</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../building_programs/">Building programs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/compiling_source/">Compiling the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/linking_pieces/">Linking the objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/runtime_libraries/">Run-time libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/include_files/">Include files and modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/managing_libraries/">Managing libraries (static and dynamic libraries)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/build_tools/">Build tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/project_make/">An introduction to make</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/distributing/">Distributing your programs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../best_practices/">Fortran Best Practices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/style_guide/">Fortran Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/floating_point/">Floating Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/integer_division/">Integer Division</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/modules_programs/">Modules and Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/arrays/">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/multidim_arrays/">Multidimensional Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/element_operations/">Element-wise Operations on Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/allocatable_arrays/">Allocatable Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/file_io/">File Input/Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/callbacks/">Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/type_casting/">Type Casting in Callbacks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../intrinsics/">Fortran Intrinsics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/array/">Properties and attributes of arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/bit/">Bit-level inquiry and manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/character/">Basic procedures for manipulating <em>character</em> variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/compiler/">Information about compiler and compiler options used for building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/cfi/">Procedures for binding to C interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/math/">General mathematical functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/model/">Controlling and querying the current numeric model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/numeric/">Manipulation and properties of numeric values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/parallel/">Parallel programming using co_arrays and co_indexed arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/state/">General and miscellaneous intrinsics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/system/">Accessing external system information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/transform/">Matrix multiplication, dot product, and array shifts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/type/">Types and kinds</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">GNU Free Documentation License</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rosetta_stone/">Python Fortran Rosetta Stone</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../oop_features_in_fortran/">Putting Fortran’s object-related features to practical use</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../oop_features_in_fortran/object_based_programming_techniques/">Object-based programming techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oop_features_in_fortran/object_oriented_programming_techniques/">Object-oriented programming techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oop_features_in_fortran/performance_and_ease_of_use/">Performance and ease of use</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../">Fortran 95 language features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../language_elements/">Language elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../expressions_and_assignments/">Expressions and assignments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../control_statements/">Control statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../program_units_and_procedures/">Program units and procedures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../array_handling/">Array handling</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../pointers/">Pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intrinsic_procedures/">Intrinsic procedures</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Data transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operations_on_external_files/">Operations on external files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bibliography/">Bibliography</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../" class="nav-link">Learn</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../" class="nav-link">Fortran 95 language features</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Data transfer</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="data-transfer">
+<h1>Data transfer<a class="headerlink" href="#data-transfer" title="Link to this heading">#</a></h1>
+<section id="formatted-input-output">
+<h2>Formatted input/output<a class="headerlink" href="#formatted-input-output" title="Link to this heading">#</a></h2>
+<p>These examples illustrate various forms of I/O lists with some simple
+formats (see
+<a class="reference internal" href="#edit_descriptors"><span class="xref myst">Edit descriptors</span></a>
+below):</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w">             </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">20</span><span class="p">)</span><span class="w">   </span><span class="kd">::</span><span class="w"> </span><span class="n">word</span>
+<span class="k">print</span><span class="w"> </span><span class="s2">&quot;(i10)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span>
+<span class="k">print</span><span class="w"> </span><span class="s2">&quot;(10f10.3)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span>
+<span class="k">print</span><span class="w"> </span><span class="s2">&quot;(3f10.3)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">)</span>
+<span class="k">print</span><span class="w"> </span><span class="s2">&quot;(a10)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">word</span><span class="p">(</span><span class="mi">5</span><span class="p">:</span><span class="mi">14</span><span class="p">)</span>
+<span class="k">print</span><span class="w"> </span><span class="s2">&quot;(3f10.3)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">:</span><span class="mi">4</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>Variables, but not expressions, are equally valid in input statements
+using the <code class="docutils literal notranslate"><span class="pre">read</span></code> statement:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">read</span><span class="w"> </span><span class="s2">&quot;(i10)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span>
+</pre></div>
+</div>
+<p>If an array appears as an item, it is treated as if the elements were
+specified in array element order.</p>
+<p>Any pointers in an I/O list must be associated with a target, and
+transfer takes place between the file and the targets.</p>
+<p>An item of derived type is treated as if the components were specified
+in the same order as in the type declaration, so</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">read</span><span class="w"> </span><span class="s2">&quot;(8f10.5)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="w">  </span><span class="c">! types point and triangle</span>
+</pre></div>
+</div>
+<p>has the same effect as the statement</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">read</span><span class="w"> </span><span class="s2">&quot;(8f10.5)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">%</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">%</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">%</span><span class="n">a</span><span class="p">%</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">%</span><span class="n">a</span><span class="p">%</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">%</span><span class="n">b</span><span class="p">%</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                           </span><span class="n">t</span><span class="p">%</span><span class="n">b</span><span class="p">%</span><span class="n">y</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">%</span><span class="n">c</span><span class="p">%</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">t</span><span class="p">%</span><span class="n">c</span><span class="p">%</span><span class="n">y</span>
+</pre></div>
+</div>
+<p>An object in an I/O list is not permitted to be of a derived type that
+has a pointer component at any level of component selection.</p>
+<p>Note that a zero-sized array may occur as an item in an I/O list. Such
+an item corresponds to no actual data transfer.</p>
+<p>The format specification may also be given in the form of a character
+expression:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=*</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">form</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;(f10.3)&quot;</span>
+<span class="p">:</span>
+<span class="k">print </span><span class="n">form</span><span class="p">,</span><span class="w"> </span><span class="n">q</span>
+</pre></div>
+</div>
+<p>or as an asterisk this is a type of I/O known as <em>list-directed</em> I/O
+(see
+<a class="reference internal" href="#list-directed-i-o"><span class="xref myst">below</span></a>),
+in which the format is defined by the computer system:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Square-root of q = &quot;</span><span class="p">,</span><span class="w"> </span><span class="nb">sqrt</span><span class="p">(</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Input/output operations are used to transfer data between the storage of
+an executing program and an external medium, specified by a <em>unit
+number</em>. However, two I/O statements, <code class="docutils literal notranslate"><span class="pre">print</span></code> and a variant of <code class="docutils literal notranslate"><span class="pre">read</span></code>,
+do not reference any unit number: this is referred to as terminal I/O.
+Otherwise the form is:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;(f10.3)&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">q</span>
+<span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">newunit</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;(f10.3)&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">q</span>
+<span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="mi">4</span><span class="w"> </span><span class="o">*</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="n">j</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;(f10.3)&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">a</span>
+</pre></div>
+</div>
+<p>where <code class="docutils literal notranslate"><span class="pre">unit=</span></code> is optional. The value may be any nonnegative integer
+allowed by the system for this purpose (but <code class="docutils literal notranslate"><span class="pre">0</span></code>, <code class="docutils literal notranslate"><span class="pre">5</span></code> and <code class="docutils literal notranslate"><span class="pre">6</span></code> often
+denote the error, keyboard and terminal, respectively).</p>
+<p>An asterisk is a variant again from the keyboard:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=*</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;(f10.3)&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">q</span>
+</pre></div>
+</div>
+<p>A read with a unit specifier allows
+<a class="reference external" href="https://en.wikipedia.org/wiki/Exception_handling">exception handling</a>:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">nunit</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;(3f10.3)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">b</span><span class="p">,</span><span class="w"> </span><span class="n">c</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="c">! Successful read - continue execution.</span>
+<span class="w">  </span><span class="p">:</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="c">! Error condition - take appropriate action.</span>
+<span class="w">  </span><span class="k">call </span><span class="n">error</span><span class="p">(</span><span class="n">ios</span><span class="p">)</span>
+<span class="k">end if</span>
+</pre></div>
+</div>
+<p>There is a second type of formatted output statement, the <code class="docutils literal notranslate"><span class="pre">write</span></code>
+statement:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">nout</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;(10f10.3)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">a</span>
+</pre></div>
+</div>
+</section>
+<section id="internal-files">
+<h2>Internal files<a class="headerlink" href="#internal-files" title="Link to this heading">#</a></h2>
+<p>These allow format conversion between various representations to be
+carried out by the program in a storage area defined within the program
+itself.</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">30</span><span class="p">)</span><span class="w">         </span><span class="kd">::</span><span class="w"> </span><span class="n">ival</span>
+<span class="kt">integer</span><span class="w">                        </span><span class="kd">::</span><span class="w"> </span><span class="n">key</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">30</span><span class="p">)</span><span class="w">              </span><span class="kd">::</span><span class="w"> </span><span class="n">buffer</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">6</span><span class="p">),</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">form</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="s2">&quot;(30i1)&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">                                                    </span><span class="s2">&quot;(15i2)&quot;</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;(10i3)&quot;</span><span class="o">/</span><span class="p">)</span>
+
+<span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=*</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;(a30,i1)&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="n">key</span>
+<span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">buffer</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="n">form</span><span class="p">(</span><span class="n">key</span><span class="p">))</span><span class="w"> </span><span class="n">ival</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="mi">30</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="n">key</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>If an internal file is a scalar, it has a single record whose length is
+that of the scalar.</p>
+<p>If it is an array, its elements, in array element order, are treated as
+successive records of the file and each has length that of an array
+element.</p>
+<p>An example using a <code class="docutils literal notranslate"><span class="pre">write</span></code> statement is</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">day</span>
+<span class="kt">real</span><span class="w">              </span><span class="kd">::</span><span class="w"> </span><span class="n">cash</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">50</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">line</span>
+<span class="p">:</span>
+<span class="c">! write into line</span>
+<span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">line</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;(a, i2, a, f8.2, a)&quot;</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;Takings for day &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">day</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">  </span><span class="s2">&quot; are &quot;</span><span class="p">,</span><span class="w"> </span><span class="n">cash</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot; dollars&quot;</span>
+</pre></div>
+</div>
+<p>that might write</p>
+<div class="highlight-shell notranslate"><div class="highlight"><pre><span></span>Takings<span class="w"> </span><span class="k">for</span><span class="w"> </span>day<span class="w">  </span><span class="m">3</span><span class="w"> </span>are<span class="w">  </span><span class="m">4329</span>.15<span class="w"> </span>dollars
+</pre></div>
+</div>
+</section>
+<section id="list-directed-i-o">
+<h2>List-directed I/O<a class="headerlink" href="#list-directed-i-o" title="Link to this heading">#</a></h2>
+<p>An example of a read without a specified format for input is</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="w">               </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
+<span class="kt">real</span><span class="w">                  </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span>
+<span class="kt">complex</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="mi">2</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">field</span>
+<span class="kt">logical</span><span class="w">               </span><span class="kd">::</span><span class="w"> </span><span class="n">flag</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">12</span><span class="p">)</span><span class="w">     </span><span class="kd">::</span><span class="w"> </span><span class="n">title</span>
+<span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="w">      </span><span class="kd">::</span><span class="w"> </span><span class="n">word</span>
+<span class="p">:</span>
+<span class="k">read</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">field</span><span class="p">,</span><span class="w"> </span><span class="n">flag</span><span class="p">,</span><span class="w"> </span><span class="n">title</span><span class="p">,</span><span class="w"> </span><span class="n">word</span>
+</pre></div>
+</div>
+<p>If this reads the input record</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="mi">10</span><span class="w"> </span><span class="mf">6.4</span><span class="p">(</span><span class="mf">1.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="p">(</span><span class="mf">2.0</span><span class="p">,</span><span class="w"> </span><span class="mf">0.0</span><span class="p">)</span><span class="w"> </span><span class="n">t</span><span class="w"> </span><span class="n">test</span><span class="w"> </span><span class="o">/</span>
+</pre></div>
+</div>
+<p>(in which blanks are used as separators), then <code class="docutils literal notranslate"><span class="pre">i</span></code>, <code class="docutils literal notranslate"><span class="pre">a</span></code>, <code class="docutils literal notranslate"><span class="pre">field</span></code>,
+<code class="docutils literal notranslate"><span class="pre">flag</span></code>, and <code class="docutils literal notranslate"><span class="pre">title</span></code> will acquire the values 10, 6.4, (1.0,0.0) and
+(2.0,0.0), <code class="docutils literal notranslate"><span class="pre">.true.</span></code> and <code class="docutils literal notranslate"><span class="pre">test</span></code> respectively, while <code class="docutils literal notranslate"><span class="pre">word</span></code> remains
+unchanged.</p>
+<p>Quotation marks or apostrophes are required as delimiters for a string
+that contains a blank.</p>
+</section>
+<section id="non-advancing-i-o">
+<h2>Non-advancing I/O<a class="headerlink" href="#non-advancing-i-o" title="Link to this heading">#</a></h2>
+<p>This is a form of reading and writing without always advancing the file
+position to ahead of the next record. Whereas an advancing I/O statement
+always repositions the file after the last record accessed, a
+non-advancing I/O statement performs no such repositioning and may
+therefore leave the file positioned within a record.</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="mi">3</span><span class="p">)</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">key</span>
+<span class="kt">integer</span><span class="w">           </span><span class="kd">::</span><span class="w"> </span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">ios</span>
+<span class="p">:</span>
+<span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">u</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;(a3)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">advance</span><span class="o">=</span><span class="s2">&quot;no&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">size</span><span class="o">=</span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">key</span>
+<span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">ios</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">0</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="w">  </span><span class="p">:</span>
+<span class="k">else</span>
+<span class="w">  </span><span class="c">! key is not in one record</span>
+<span class="w">  </span><span class="n">key</span><span class="p">(</span><span class="n">s</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">:)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="s2">&quot;&quot;</span>
+<span class="w">  </span><span class="p">:</span>
+<span class="k">end if</span>
+</pre></div>
+</div>
+<p>A non-advancing read might read the first few characters of a record and
+a normal read the remainder.</p>
+<p>In order to write a prompt to a terminal screen and to read from the
+next character position on the screen without an intervening line-feed,
+we can write</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=*</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;(a)&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">advance</span><span class="o">=</span><span class="s2">&quot;no&quot;</span><span class="p">)</span><span class="w"> </span><span class="s2">&quot;enter next prime number:&quot;</span>
+<span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=*</span><span class="p">,</span><span class="w"> </span><span class="n">fmt</span><span class="o">=</span><span class="s2">&quot;(i10)&quot;</span><span class="p">)</span><span class="w"> </span><span class="n">prime_number</span>
+</pre></div>
+</div>
+<p>Non-advancing I/O is for external files, and is not available for
+list-directed I/O.</p>
+</section>
+<section id="edit-descriptors">
+<h2>Edit descriptors<a class="headerlink" href="#edit-descriptors" title="Link to this heading">#</a></h2>
+<p>It is possible to specify that an edit descriptor be repeated a
+specified number of times, using a <em>repeat count</em>: <code class="docutils literal notranslate"><span class="pre">10f12.3</span></code></p>
+<p>The slash edit descriptor (see
+<a class="reference internal" href="#control-edit-descriptors"><span class="xref myst">Control edit descriptors</span></a>
+below) may have a great count, and
+a repeat count can also apply to a group of edit descriptors,
+enclosed in parentheses, with nesting:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="s2">&quot;(2(2i5,2f8.2))&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">i</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">i</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="n">a</span><span class="p">(</span><span class="mi">1</span><span class="p">),</span><span class="n">a</span><span class="p">(</span><span class="mi">2</span><span class="p">),</span><span class="w"> </span><span class="n">i</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="n">i</span><span class="p">(</span><span class="mi">4</span><span class="p">),</span><span class="n">a</span><span class="p">(</span><span class="mi">3</span><span class="p">),</span><span class="n">a</span><span class="p">(</span><span class="mi">4</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Entire format specifications can be repeated:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">print</span><span class="w"> </span><span class="s2">&quot;(10i8)&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">(</span><span class="o">/</span><span class="w"> </span><span class="p">(</span><span class="n">i</span><span class="p">(</span><span class="n">j</span><span class="p">),</span><span class="w"> </span><span class="n">j</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span><span class="mi">200</span><span class="p">)</span><span class="w"> </span><span class="o">/</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>writes 10 integers, each occupying 8 character positions, on each of 20
+lines (repeating the format specification advances to the next line).</p>
+<section id="data-edit-descriptors">
+<h3>Data edit descriptors<a class="headerlink" href="#data-edit-descriptors" title="Link to this heading">#</a></h3>
+</section>
+<section id="control-edit-descriptors">
+<h3>Control edit descriptors<a class="headerlink" href="#control-edit-descriptors" title="Link to this heading">#</a></h3>
+<p><em>Control edit descriptors setting conditions</em>: <em>Control edit descriptors
+for immediate processing</em>:</p>
+</section>
+</section>
+<section id="unformatted-i-o">
+<h2>Unformatted I/O<a class="headerlink" href="#unformatted-i-o" title="Link to this heading">#</a></h2>
+<p>This type of I/O should be used only in cases where the records are
+generated by a program on one computer, to be read back on the same
+computer or another computer using the same internal number
+representations:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">open</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span><span class="w"> </span><span class="k">file</span><span class="o">=</span><span class="s1">&#39;test&#39;</span><span class="p">,</span><span class="w"> </span><span class="n">form</span><span class="o">=</span><span class="s1">&#39;unformatted&#39;</span><span class="p">)</span>
+<span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="mi">4</span><span class="p">)</span><span class="w"> </span><span class="n">q</span>
+<span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">nout</span><span class="p">,</span><span class="w"> </span><span class="n">iostat</span><span class="o">=</span><span class="n">ios</span><span class="p">)</span><span class="w"> </span><span class="n">a</span><span class="w">  </span><span class="c">! no fmt=</span>
+</pre></div>
+</div>
+</section>
+<section id="direct-access-files">
+<h2>Direct-access files<a class="headerlink" href="#direct-access-files" title="Link to this heading">#</a></h2>
+<p>This form of I/O is also known as random access or indexed I/O. Here,
+all the records have the same length, and each record is identified by
+an index number. It is possible to write, read, or re-write any
+specified record without regard to position.</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nunit</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">2</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">100</span>
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">length</span><span class="p">)</span><span class="w">              </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span>
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">length</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mi">1</span><span class="p">:</span><span class="mi">2</span><span class="o">*</span><span class="n">length</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span>
+<span class="kt">integer</span><span class="w">                              </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="p">,</span><span class="w"> </span><span class="n">rec_length</span>
+<span class="p">:</span>
+<span class="k">inquire</span><span class="w"> </span><span class="p">(</span><span class="n">iolength</span><span class="o">=</span><span class="n">rec_length</span><span class="p">)</span><span class="w"> </span><span class="n">a</span>
+<span class="k">open</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">nunit</span><span class="p">,</span><span class="w"> </span><span class="nb">access</span><span class="o">=</span><span class="s2">&quot;direct&quot;</span><span class="p">,</span><span class="w"> </span><span class="n">recl</span><span class="o">=</span><span class="n">rec_length</span><span class="p">,</span><span class="w"> </span><span class="n">status</span><span class="o">=</span><span class="s2">&quot;scratch&quot;</span><span class="p">,</span><span class="w"> </span><span class="p">&amp;</span>
+<span class="w">      </span><span class="n">action</span><span class="o">=</span><span class="s2">&quot;readwrite&quot;</span><span class="p">)</span>
+<span class="p">:</span>
+<span class="c">! Write array b to direct-access file in record 14</span>
+<span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">nunit</span><span class="p">,</span><span class="w"> </span><span class="n">rec</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span><span class="w"> </span><span class="n">b</span>
+<span class="p">:</span>
+<span class="c">! Read the array back into array a</span>
+<span class="k">read</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">nunit</span><span class="p">,</span><span class="w"> </span><span class="n">rec</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span><span class="w"> </span><span class="n">a</span>
+
+<span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">length</span><span class="w"> </span><span class="o">/</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="n">a</span><span class="p">(</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">i</span>
+<span class="k">end do</span>
+
+<span class="c">! Replace modified record</span>
+<span class="k">write</span><span class="w"> </span><span class="p">(</span><span class="n">unit</span><span class="o">=</span><span class="n">nunit</span><span class="p">,</span><span class="w"> </span><span class="n">rec</span><span class="o">=</span><span class="mi">14</span><span class="p">)</span><span class="w"> </span><span class="n">a</span>
+</pre></div>
+</div>
+<p>The file must be an external file and list-directed formatting and
+non-advancing I/O are unavailable.</p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">  
+<br />
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#formatted-input-output">Formatted input/output</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#internal-files">Internal files</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#list-directed-i-o">List-directed I/O</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#non-advancing-i-o">Non-advancing I/O</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#edit-descriptors">Edit descriptors</a><ul class="nav section-nav flex-column">
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#data-edit-descriptors">Data edit descriptors</a></li>
+<li class="toc-h3 nav-item toc-entry"><a class="reference internal nav-link" href="#control-edit-descriptors">Control edit descriptors</a></li>
+</ul>
+</li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#unformatted-i-o">Unformatted I/O</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#direct-access-files">Direct-access files</a></li>
+</ul></nav> </div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2020-2024, Fortran Community.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

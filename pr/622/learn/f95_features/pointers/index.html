@@ -1,0 +1,1050 @@
+
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" sizes="256x256" href="../../../_static/images/favicon.ico" type="image/x-icon">
+    <title>Pointers &#8212; Fortran Programming Language</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../../_static/custom.css?v=3d3d5688" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../../_static/documentation_options.js?v=51fd25b1"></script>
+    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'learn/f95_features/pointers';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://fortran-lang.org/_static/data.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'en';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="canonical" href="https://fortran-lang.org/learn/f95_features/pointers/" />
+    <link rel="index" title="Index" href="../../../genindex/" />
+    <link rel="search" title="Search" href="../../../search/" />
+    <link rel="next" title="Intrinsic procedures" href="../intrinsic_procedures/" />
+    <link rel="prev" title="Array handling" href="../array_handling/" /> 
+<meta
+  name="description"
+  content="Fortran : High-performance parallel programming language"
+/>
+<meta
+  name="keywords"
+  content="High-performance, parallel, programming language"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+ 
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search"
+         aria-label="Search"
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Fortran Programming Language - Home"/>
+    <img src="../../../_static/fortran-logo-256x256.png" class="logo__image only-dark pst-js-only" alt="Fortran Programming Language - Home"/>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="ms-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community/">
+    Community
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../../news/">
+    News
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+    <button class="pst-navbar-icon sidebar-toggle secondary-toggle" aria-label="On this page">
+      <span class="fa-solid fa-outdent"></span>
+    </button>
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../community/">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../../news/">
+    News
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../os_setup/">Setting up your OS</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/choose_compiler/">Choosing a compiler</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/install_gfortran/">Installing GFortran</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/text_editors/">Text Editors</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/ides/">IDEs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../os_setup/tips/">Smart Tips</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../quickstart/">Quickstart tutorial</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/hello_world/">Hello world</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/variables/">Variables</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/arrays_strings/">Arrays and strings</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/operators_control_flow/">Operators and flow control</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/organising_code/">Organising code structure</a></li>
+
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/derived_types/">Derived Types</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../quickstart/gotchas/">Gotchas</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../building_programs/">Building programs</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/compiling_source/">Compiling the source code</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/linking_pieces/">Linking the objects</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/runtime_libraries/">Run-time libraries</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/include_files/">Include files and modules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/managing_libraries/">Managing libraries (static and dynamic libraries)</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/build_tools/">Build tools</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/project_make/">An introduction to make</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../building_programs/distributing/">Distributing your programs</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../best_practices/">Fortran Best Practices</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/style_guide/">Fortran Style Guide</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/floating_point/">Floating Point Numbers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/integer_division/">Integer Division</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/modules_programs/">Modules and Programs</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/arrays/">Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/multidim_arrays/">Multidimensional Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/element_operations/">Element-wise Operations on Array</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/allocatable_arrays/">Allocatable Arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/file_io/">File Input/Output</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/callbacks/">Callbacks</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../best_practices/type_casting/">Type Casting in Callbacks</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../intrinsics/">Fortran Intrinsics</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/array/">Properties and attributes of arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/bit/">Bit-level inquiry and manipulation</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/character/">Basic procedures for manipulating <em>character</em> variables</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/compiler/">Information about compiler and compiler options used for building</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/cfi/">Procedures for binding to C interfaces</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/math/">General mathematical functions</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/model/">Controlling and querying the current numeric model</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/numeric/">Manipulation and properties of numeric values</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/parallel/">Parallel programming using co_arrays and co_indexed arrays</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/state/">General and miscellaneous intrinsics</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/system/">Accessing external system information</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/transform/">Matrix multiplication, dot product, and array shifts</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../intrinsics/type/">Types and kinds</a></li>
+<li class="toctree-l2"><a class="reference external" href="https://www.gnu.org/licenses/old-licenses/fdl-1.2.en.html">GNU Free Documentation License</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1"><a class="reference internal" href="../../rosetta_stone/">Python Fortran Rosetta Stone</a></li>
+<li class="toctree-l1 has-children"><a class="reference internal" href="../../oop_features_in_fortran/">Putting Fortran’s object-related features to practical use</a><details><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul>
+<li class="toctree-l2"><a class="reference internal" href="../../oop_features_in_fortran/object_based_programming_techniques/">Object-based programming techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oop_features_in_fortran/object_oriented_programming_techniques/">Object-oriented programming techniques</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../../oop_features_in_fortran/performance_and_ease_of_use/">Performance and ease of use</a></li>
+</ul>
+</details></li>
+<li class="toctree-l1 current active has-children"><a class="reference internal" href="../">Fortran 95 language features</a><details open="open"><summary><span class="toctree-toggle" role="presentation"><i class="fa-solid fa-chevron-down"></i></span></summary><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="../language_elements/">Language elements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../expressions_and_assignments/">Expressions and assignments</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../control_statements/">Control statements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../program_units_and_procedures/">Program units and procedures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../array_handling/">Array handling</a></li>
+<li class="toctree-l2 current active"><a class="current reference internal" href="#">Pointers</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../intrinsic_procedures/">Intrinsic procedures</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../data_transfer/">Data transfer</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../operations_on_external_files/">Operations on external files</a></li>
+<li class="toctree-l2"><a class="reference internal" href="../bibliography/">Bibliography</a></li>
+</ul>
+</details></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../" class="nav-link">Learn</a></li>
+    
+    
+    <li class="breadcrumb-item"><a href="../" class="nav-link">Fortran 95 language features</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Pointers</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="pointers">
+<h1>Pointers<a class="headerlink" href="#pointers" title="Link to this heading">#</a></h1>
+<section id="basics">
+<h2>Basics<a class="headerlink" href="#basics" title="Link to this heading">#</a></h2>
+<p>Pointers are variables with the <code class="docutils literal notranslate"><span class="pre">pointer</span></code> attribute; they are not a
+distinct data type (and so no ‘pointer arithmetic’ is possible).</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">var</span>
+</pre></div>
+</div>
+<p>They are conceptually a descriptor listing the attributes of the objects
+(targets) that the pointer may point to, and the address, if any, of a
+target. They have no associated storage until it is allocated or
+otherwise associated (by pointer assignment, see
+<a class="reference internal" href="#pointers-in-expressions-and-assignments"><span class="xref myst">Pointers in expressions and assignments</span></a>
+below):</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">allocate</span><span class="w"> </span><span class="p">(</span><span class="n">var</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>and they are dereferenced automatically, so no special symbol required.
+In</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">var</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">var</span><span class="w"> </span><span class="o">+</span><span class="w"> </span><span class="mf">2.3</span>
+</pre></div>
+</div>
+<p>the value of the target of var is used and modified. Pointers cannot be
+transferred via I/O. The statement</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">write</span><span class="w"> </span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="n">var</span>
+</pre></div>
+</div>
+<p>writes the value of the target of var and not the pointer descriptor
+itself.</p>
+<p>A pointer can point to another pointer, and hence to its target, or to a
+static object that has the <code class="docutils literal notranslate"><span class="pre">target</span></code> attribute:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">object</span>
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">target</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">target_obj</span>
+<span class="n">var</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">object</span><span class="w">  </span><span class="c">! pointer assignment</span>
+<span class="n">var</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">target_obj</span>
+</pre></div>
+</div>
+<p>but they are strongly typed:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">int_var</span>
+<span class="n">var</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">int_var</span><span class="w">  </span><span class="c">! illegal - types must match</span>
+</pre></div>
+</div>
+<p>and, similarly, for arrays the ranks as well as the type must agree.</p>
+<p>A pointer can be a component of a derived type:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type entry</span><span class="w">  </span><span class="c">! type for sparse matrix</span>
+<span class="w">  </span><span class="kt">real</span><span class="w">    </span><span class="kd">::</span><span class="w"> </span><span class="k">value</span>
+<span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="nb">index</span>
+<span class="nb">  </span><span class="k">type</span><span class="p">(</span><span class="k">entry</span><span class="p">),</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">next</span><span class="w">  </span><span class="c">! note recursion</span>
+<span class="k">end type entry</span>
+</pre></div>
+</div>
+<p>and we can define the beginning of a linked chain of such entries:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="k">entry</span><span class="p">),</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">chain</span>
+</pre></div>
+</div>
+<p>After suitable allocations and definitions, the first two entries could
+be addressed as</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">chain</span><span class="p">%</span><span class="k">value           </span><span class="n">chain</span><span class="p">%</span><span class="n">next</span><span class="p">%</span><span class="k">value</span>
+<span class="n">chain</span><span class="p">%</span><span class="nb">index           </span><span class="n">chain</span><span class="p">%</span><span class="n">next</span><span class="p">%</span><span class="nb">index</span>
+<span class="n">chain</span><span class="p">%</span><span class="n">next</span><span class="w">            </span><span class="n">chain</span><span class="p">%</span><span class="n">next</span><span class="p">%</span><span class="n">next</span>
+</pre></div>
+</div>
+<p>but we would normally define additional pointers to point at, for
+instance, the first and current entries in the list.</p>
+</section>
+<section id="association">
+<h2>Association<a class="headerlink" href="#association" title="Link to this heading">#</a></h2>
+<p>A pointer’s association status is one of: associated, disassociated (nullified), or undefined. Some care has to be taken not
+to leave a pointer ‘dangling’ by use of <code class="docutils literal notranslate"><span class="pre">deallocate</span></code> on its target
+without nullifying any other pointer referring to it.</p>
+<p>The intrinsic function <code class="docutils literal notranslate"><span class="pre">associated</span></code> can test the association status of a
+defined pointer:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">ptr</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+</pre></div>
+</div>
+<p>or between a defined pointer and a defined target (which may, itself, be
+a pointer):</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="nb">associated</span><span class="p">(</span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="k">target</span><span class="p">))</span><span class="w"> </span><span class="k">then</span>
+</pre></div>
+</div>
+<p>An alternative way to initialize a pointer, also in a specification
+statement, is to use the <code class="docutils literal notranslate"><span class="pre">null</span></code> function:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">vector</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">null</span><span class="p">()</span><span class="w">  </span><span class="c">! compile time</span>
+<span class="n">vector</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="nb">null</span><span class="p">()</span><span class="w">                                 </span><span class="c">! run time</span>
+</pre></div>
+</div>
+</section>
+<section id="pointers-in-expressions-and-assignments">
+<h2>Pointers in expressions and assignments<a class="headerlink" href="#pointers-in-expressions-and-assignments" title="Link to this heading">#</a></h2>
+<p>For intrinsic types we can ‘sweep’ pointers over different sets of
+target data using the same code without any data movement. Given the
+matrix manipulation <em>y = B C z</em>, we can write the following code
+(although, in this case, the same result could be achieved more simply
+by other means):</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">target</span><span class="w">  </span><span class="kd">::</span><span class="w"> </span><span class="n">b</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">c</span><span class="p">(</span><span class="mi">10</span><span class="p">,</span><span class="w"> </span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">r</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">s</span><span class="p">(</span><span class="mi">10</span><span class="p">),</span><span class="w"> </span><span class="n">z</span><span class="p">(</span><span class="mi">10</span><span class="p">)</span>
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">(:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="n">x</span><span class="p">(:),</span><span class="w"> </span><span class="n">y</span><span class="p">(:)</span>
+<span class="kt">integer</span><span class="w">       </span><span class="kd">::</span><span class="w"> </span><span class="n">mult</span>
+<span class="p">:</span>
+<span class="k">do </span><span class="n">mult</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="mi">2</span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">mult</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="mi">1</span><span class="p">)</span><span class="w"> </span><span class="k">then</span>
+<span class="k">    </span><span class="n">y</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span><span class="w">          </span><span class="c">! no data movement</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">c</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">z</span>
+<span class="w">  </span><span class="k">else</span>
+<span class="k">    </span><span class="n">y</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">s</span><span class="w">          </span><span class="c">! no data movement</span>
+<span class="w">    </span><span class="n">a</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">b</span>
+<span class="w">    </span><span class="n">x</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">r</span>
+<span class="w">  </span><span class="k">end if</span>
+<span class="k">  </span><span class="n">y</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">matmul</span><span class="p">(</span><span class="n">a</span><span class="p">,</span><span class="w"> </span><span class="n">x</span><span class="p">)</span><span class="w">  </span><span class="c">! common calculation</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+<p>For objects of derived type we have to distinguish between pointer and
+normal assignment. In</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="k">entry</span><span class="p">),</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">first</span><span class="p">,</span><span class="w"> </span><span class="n">current</span>
+<span class="p">:</span>
+<span class="n">first</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">current</span>
+</pre></div>
+</div>
+<p>the assignment causes first to point at current, whereas</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">first</span><span class="w"> </span><span class="o">=</span><span class="w">  </span><span class="n">current</span>
+</pre></div>
+</div>
+<p>causes current to overwrite first and is equivalent to</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">first</span><span class="p">%</span><span class="k">value</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">%</span><span class="k">value</span>
+<span class="n">first</span><span class="p">%</span><span class="nb">index</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">current</span><span class="p">%</span><span class="nb">index</span>
+<span class="n">first</span><span class="p">%</span><span class="n">next</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">current</span><span class="p">%</span><span class="n">next</span>
+</pre></div>
+</div>
+</section>
+<section id="pointer-arguments">
+<h2>Pointer arguments<a class="headerlink" href="#pointer-arguments" title="Link to this heading">#</a></h2>
+<p>If an actual argument is a pointer then, if the dummy argument is also a
+pointer,</p>
+<ul class="simple">
+<li><p>it must have same rank,</p></li>
+<li><p>it receives its association status from the actual argument,</p></li>
+<li><p>it returns its final association status to the actual argument
+(note: the target may be undefined!),</p></li>
+<li><p>it may not have the <code class="docutils literal notranslate"><span class="pre">intent</span></code> attribute (it would be ambiguous),</p></li>
+<li><p>it requires an interface block.</p></li>
+</ul>
+<p>If the dummy argument is not a pointer, it becomes associated with the
+target of the actual argument:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">a</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span>
+<span class="p">:</span>
+<span class="k">allocate</span><span class="w"> </span><span class="p">(</span><span class="n">a</span><span class="p">(</span><span class="mi">80</span><span class="p">,</span><span class="w"> </span><span class="mi">80</span><span class="p">))</span>
+<span class="p">:</span>
+<span class="k">call </span><span class="n">sub</span><span class="p">(</span><span class="n">a</span><span class="p">)</span>
+<span class="p">:</span>
+<span class="k">subroutine </span><span class="n">sub</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">real </span><span class="n">c</span><span class="p">(:,</span><span class="w"> </span><span class="p">:)</span>
+</pre></div>
+</div>
+</section>
+<section id="pointer-functions">
+<h2>Pointer functions<a class="headerlink" href="#pointer-functions" title="Link to this heading">#</a></h2>
+<p>Function results may also have the <code class="docutils literal notranslate"><span class="pre">pointer</span></code> attribute; this is useful
+if the result size depends on calculations performed in the function, as
+in</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">use </span><span class="n">data_handler</span>
+<span class="kt">real</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">(</span><span class="mi">100</span><span class="p">)</span>
+<span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">y</span><span class="p">(:)</span>
+<span class="p">:</span>
+<span class="n">y</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">compact</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where the module <code class="docutils literal notranslate"><span class="pre">data_handler</span></code> contains</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">function </span><span class="n">compact</span><span class="p">(</span><span class="n">x</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">compact</span><span class="p">(:)</span>
+<span class="w">  </span><span class="kt">real</span><span class="w">          </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="p">(:)</span>
+<span class="w">  </span><span class="c">! A procedure to remove duplicates from the array x</span>
+<span class="w">  </span><span class="kt">integer </span><span class="n">n</span>
+<span class="w">  </span><span class="p">:</span><span class="w">  </span><span class="c">! Find the number of distinct values, n</span>
+<span class="w">  </span><span class="k">allocate</span><span class="w"> </span><span class="p">(</span><span class="n">compact</span><span class="p">(</span><span class="n">n</span><span class="p">))</span>
+<span class="w">  </span><span class="p">:</span><span class="w">  </span><span class="c">! Copy the distinct values into compact</span>
+<span class="k">end function </span><span class="n">compact</span>
+</pre></div>
+</div>
+<p>The result can be used in an expression (but must be associated with a
+defined target).</p>
+</section>
+<section id="arrays-of-pointers">
+<h2>Arrays of pointers<a class="headerlink" href="#arrays-of-pointers" title="Link to this heading">#</a></h2>
+<p>These do not exist as such: given</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="k">entry</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">rows</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>then</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">rows</span><span class="p">%</span><span class="n">next</span><span class="w">  </span><span class="c">! illegal</span>
+</pre></div>
+</div>
+<p>would be such an object, but with an irregular storage pattern. For this
+reason they are not allowed. However, we can achieve the same effect by
+defining a derived data type with a pointer as its sole component:</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type </span><span class="n">row</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">r</span><span class="p">(:)</span>
+<span class="k">end type</span>
+</pre></div>
+</div>
+<p>and then defining arrays of this data type</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="n">row</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">s</span><span class="p">(</span><span class="n">n</span><span class="p">),</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">n</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>where the storage for the rows can be allocated by, for instance,</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">do </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">,</span><span class="w"> </span><span class="n">n</span>
+<span class="w">  </span><span class="k">allocate</span><span class="w"> </span><span class="p">(</span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">)%</span><span class="n">r</span><span class="p">(</span><span class="mi">1</span><span class="p">:</span><span class="n">i</span><span class="p">))</span><span class="w"> </span><span class="c">! Allocate row i of length i</span>
+<span class="k">end do</span>
+</pre></div>
+</div>
+<p>The array assignment <code class="docutils literal notranslate"><span class="pre">s</span> <span class="pre">=</span> <span class="pre">t</span></code> is then equivalent to the pointer
+assignments</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">s</span><span class="p">(</span><span class="n">i</span><span class="p">)%</span><span class="n">r</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">t</span><span class="p">(</span><span class="n">i</span><span class="p">)%</span><span class="n">r</span>
+</pre></div>
+</div>
+<p>for all components.</p>
+</section>
+<section id="pointers-as-dynamic-aliases">
+<h2>Pointers as dynamic aliases<a class="headerlink" href="#pointers-as-dynamic-aliases" title="Link to this heading">#</a></h2>
+<p>Given an array</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">target</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">table</span><span class="p">(</span><span class="mi">100</span><span class="p">,</span><span class="w"> </span><span class="mi">100</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>that is frequently referenced with the fixed subscripts</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">table</span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">:</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>these references may be replaced by</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">pointer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">window</span>
+<span class="w">   </span><span class="p">:</span>
+<span class="n">window</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">table</span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">:</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>The subscripts of window are <code class="docutils literal notranslate"><span class="pre">1:n</span> <span class="pre">-</span> <span class="pre">m</span> <span class="pre">+</span> <span class="pre">1,</span> <span class="pre">1:q</span> <span class="pre">-</span> <span class="pre">p</span> <span class="pre">+</span> <span class="pre">1</span></code>.
+Similarly, for <code class="docutils literal notranslate"><span class="pre">tar%u</span></code> (as defined in
+<a class="reference internal" href="../array_handling/#array-elements"><span class="std std-ref">Array elements</span></a>
+of section Array handling),
+we can use, say, <code class="docutils literal notranslate"><span class="pre">taru</span> <span class="pre">=&gt;</span> <span class="pre">tar%u</span></code>
+to point at all the u components of tar, and subscript it as
+<code class="docutils literal notranslate"><span class="pre">taru(1,</span> <span class="pre">2)</span></code>.
+The subscripts are as those of tar itself. (This replaces yet more of
+<code class="docutils literal notranslate"><span class="pre">equivalence</span></code>.)</p>
+<p>In the pointer association <code class="docutils literal notranslate"><span class="pre">pointer</span> <span class="pre">=&gt;</span> <span class="pre">array_expression</span></code>
+the lower bounds for <code class="docutils literal notranslate"><span class="pre">pointer</span></code> are determined as if <code class="docutils literal notranslate"><span class="pre">lbound</span></code> was applied
+to <code class="docutils literal notranslate"><span class="pre">array_expression</span></code>. Thus, when a pointer is assigned to a whole array
+variable, it inherits the lower bounds of the variable, otherwise, the
+lower bounds default to <code class="docutils literal notranslate"><span class="pre">1</span></code>.</p>
+<p><a class="reference external" href="https://en.wikipedia.org/wiki/Fortran#Fortran_2003">Fortran 2003</a>
+allows specifying arbitrary lower bounds on pointer
+association, like</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="n">window</span><span class="p">(</span><span class="n">r</span><span class="p">:,</span><span class="w"> </span><span class="n">s</span><span class="p">:)</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">table</span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">:</span><span class="n">q</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>so that the bounds of <code class="docutils literal notranslate"><span class="pre">window</span></code> become <code class="docutils literal notranslate"><span class="pre">r:r</span> <span class="pre">+</span> <span class="pre">n</span> <span class="pre">-</span> <span class="pre">m,</span> <span class="pre">s:s</span> <span class="pre">+</span> <span class="pre">q</span> <span class="pre">-</span> <span class="pre">p</span></code>.
+<a class="reference external" href="https://en.wikipedia.org/wiki/Fortran_95">Fortran 95</a>
+does not have this feature; however, it can be simulated using the
+following trick (based on the pointer association rules for assumed
+shape array dummy arguments):</p>
+<div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">function </span><span class="n">remap_bounds2</span><span class="p">(</span><span class="n">lb1</span><span class="p">,</span><span class="w"> </span><span class="n">lb2</span><span class="p">,</span><span class="w"> </span><span class="k">array</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">ptr</span><span class="p">)</span>
+<span class="w">  </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">)</span><span class="w">                             </span><span class="kd">::</span><span class="w"> </span><span class="n">lb1</span><span class="p">,</span><span class="w"> </span><span class="n">lb2</span>
+<span class="w">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(</span><span class="n">lb1</span><span class="p">:,</span><span class="w"> </span><span class="n">lb2</span><span class="p">:),</span><span class="w"> </span><span class="k">intent</span><span class="p">(</span><span class="n">in</span><span class="p">),</span><span class="w"> </span><span class="k">target</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="k">array</span>
+<span class="k">  </span><span class="kt">real</span><span class="p">,</span><span class="w"> </span><span class="k">dimension</span><span class="p">(:,</span><span class="w"> </span><span class="p">:),</span><span class="w"> </span><span class="k">pointer</span><span class="w">                  </span><span class="kd">::</span><span class="w"> </span><span class="n">ptr</span>
+<span class="w">  </span><span class="n">ptr</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="k">array</span>
+<span class="k">end function</span>
+<span class="p">:</span>
+<span class="n">window</span><span class="w"> </span><span class="o">=&gt;</span><span class="w"> </span><span class="n">remap_bounds2</span><span class="p">(</span><span class="n">r</span><span class="p">,</span><span class="w"> </span><span class="n">s</span><span class="p">,</span><span class="w"> </span><span class="n">table</span><span class="p">(</span><span class="n">m</span><span class="p">:</span><span class="n">n</span><span class="p">,</span><span class="w"> </span><span class="n">p</span><span class="p">:</span><span class="n">q</span><span class="p">))</span>
+</pre></div>
+</div>
+<p>The source code of an extended example of the use of pointers to support
+a data structure is in
+<a class="reference external" href="ftp://ftp.numerical.rl.ac.uk/pub/MRandC/pointer.f90">pointer.f90</a>.</p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+                <dialog id="pst-secondary-sidebar-modal"></dialog>
+                <div id="pst-secondary-sidebar" class="bd-sidebar-secondary bd-toc"><div class="sidebar-secondary-items sidebar-secondary__inner">
+
+
+  <div class="sidebar-secondary-item">  
+<br />
+
+<div class="tocsection onthispage">
+  <i class="fas fa-list"></i> On this page
+</div>
+
+<nav id="bd-toc-nav" class="page-toc"><ul class="nav section-nav flex-column">
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#basics">Basics</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#association">Association</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pointers-in-expressions-and-assignments">Pointers in expressions and assignments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pointer-arguments">Pointer arguments</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pointer-functions">Pointer functions</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#arrays-of-pointers">Arrays of pointers</a></li>
+<li class="toc-h2 nav-item toc-entry"><a class="reference internal nav-link" href="#pointers-as-dynamic-aliases">Pointers as dynamic aliases</a></li>
+</ul></nav> </div>
+
+</div></div>
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2020-2024, Fortran Community.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
