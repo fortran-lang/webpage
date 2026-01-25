@@ -48,6 +48,9 @@ The website has seen some quality of life upgrades, thanks to everyone that has 
 
 ## Fortran Standard Library
 
+New release of stdlib [v0.8.0](https://github.com/fortran-lang/stdlib/releases/tag/v0.8.0)! See the [Github generated changelog here!](https://github.com/fortran-lang/stdlib/compare/v0.7.0...v0.8.0)
+
+
 Here's what's new in stdlib:
 
 - Modularization of the library, thanks to [jvpd1](https://github.com/jvdp1) !
