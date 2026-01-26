@@ -22,7 +22,13 @@ Fortran news from the previous month.
 
 - FortranCon2025 happened in November! See the slides from the presentations [here](https://www.youtube.com/watch?v=DKV2Whf4MKg)
 
+### Community lead software 
+
+Fortran users may wish to be aware that licences for Winteracter, the multi-platform Fortran graphics and GUI toolset, can now be requested, via https://www.winteracter.uk/licrequest.php. Winteracter is now wholly non-commercial, so licences are available free of charge. The package continues to be updated. V17.0 was released recently, adding five new compiler/platform combinations, including new versions for ARM64 and Flang.
+
 ### Community members 
+
+- [Joe Wallwork](https://github.com/joewallwork), Institute of Computing for Climate Science, University of Cambridge has been awarded a [Computational Abilities Knowledge Exchange (CAKE) fellowship](https://www.cake.ac.uk/ke-fellowships/cohort1#joe-wallwork)! He will be working to further the efforts of Fortran index in 2026. Watch this space for useful improvements! Please see the full blog post for further information. 
 
 #### News
 
