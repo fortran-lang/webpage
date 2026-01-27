@@ -28,16 +28,14 @@ fortran_tags = {"fortran_tags": "tags"}
 
 for i in fortran_index:
     try:
-        fortran_index_tags += i["tags"].split()
+        fortran_index_tags += i.get("tags", [])
     except:
         pass
 
-    for j in categories:
-        if j in i["categories"].split():
-            if fortran_tags.get(j, None):
-                fortran_tags[j].append(i)
-            else:
-                fortran_tags[j] = [i]
+    for j in i.get("categories", []):
+      if j in categories:
+         fortran_tags.setdefault(j, []).append(i)
+
 
 fortran_index_tags_data = Counter(fortran_index_tags)
 fortran_tags["tags"] = [
@@ -48,9 +46,7 @@ fortran_tags["tags"] = [
     if item[0] != "None" and item[1] > 0
 ][:50]
 
-fortran_index_categories = list(set(fortran_index_tags))
-
-fortran_tags["data_types"] = fortran_tags.pop("data-types")
+fortran_tags["data_types"] = fortran_tags.pop("data-types", [])
 conf["reference_books"] = conf["reference-books"]
 conf["reference_courses"] = conf["reference-courses"]
 conf["reference_links"] = conf["reference-links"]
