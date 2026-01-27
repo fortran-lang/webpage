@@ -30,7 +30,7 @@ A rich ecosystem of high-performance code
 {{j.description}}
 {% endif %}
 {% if j.tags is defined and j.tags != None %}
-Tags: {% for tag in j.tags.split() %} {bdg-light}`{{ tag }}` {% endfor %}
+Tags: {% for tag in j.tags | default([]) %} {bdg-light}`{{ tag }}` {% endfor %}
 
 {% endif %}  
 
@@ -50,7 +50,7 @@ Tags: {% for tag in j.tags.split() %} {bdg-light}`{{ tag }}` {% endfor %}
 {{j.description}}
 {% endif %}
 {% if j.tags is defined and j.tags != None %}
-Tags: {% for tag in j.tags.split() %} {bdg-light}`{{ tag }}` {% endfor %}
+Tags: {% for tag in j.tags | default([]) %} {bdg-light}`{{ tag }}` {% endfor %}
 
 {% endif %} 
 {% else %}
@@ -64,7 +64,7 @@ Tags: {% for tag in j.tags.split() %} {bdg-light}`{{ tag }}` {% endfor %}
 {{j.description}}
 {% endif %}
 {% if j.tags is defined and j.tags != None %}
-Tags: {% for tag in j.tags.split() %} {bdg-light}`{{ tag }}` {% endfor %}
+Tags: {% for tag in j.tags | default([]) %} {bdg-light}`{{ tag }}` {% endfor %}
 
 {% endif %} 
 
