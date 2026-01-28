@@ -86,7 +86,12 @@ The FPM is still in continuous development and we welcome any testers to find is
 ## Compiler updates:
 
 ### LFortran 
-
+- Work continues towards beta quality (expected to work on most codes, but still have bugs)
+- Can compile and run LAPACK
+- Focus on compiling `fpm`
+- 16 releases in 2025
+- 130 total contributors
+- 4,425 total merged PRs on GitHub since 2022.
 ### nvfortran 
 
 Release of NVHPC [25.11](https://forums.developer.nvidia.com/t/just-released-hpc-sdk-v25-11/353413)
