@@ -56,10 +56,14 @@ The website has seen some quality of life upgrades, thanks to everyone that has 
 
 New release of stdlib [v0.8.0](https://github.com/fortran-lang/stdlib/releases/tag/v0.8.0)! See the [Github generated changelog here!](https://github.com/fortran-lang/stdlib/compare/v0.7.0...v0.8.0)
 
+Here's a short summary of changes in stdlib:
 
-Here's what's new in stdlib:
+- Advanced linear algebra: New support for, among others, matrix inversion, QR factorization, Schur decomposition, sparse matrices, and enhanced BLAS/LAPACK intergration.
+- New utilities: expanded system interfaces and improved file I/O helpers.
+- Modularization of the library and improved CI workflows for better stability. 
 
-- Modularization of the library, thanks to [jvpd1](https://github.com/jvdp1) !
+Thanks to all (new) contributors who contributed to this release!
+
 
 ## Fortran Package Manager
 
