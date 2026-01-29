@@ -56,10 +56,14 @@ The website has seen some quality of life upgrades, thanks to everyone that has 
 
 New release of stdlib [v0.8.0](https://github.com/fortran-lang/stdlib/releases/tag/v0.8.0)! See the [Github generated changelog here!](https://github.com/fortran-lang/stdlib/compare/v0.7.0...v0.8.0)
 
+Here's a short summary of changes in stdlib:
 
-Here's what's new in stdlib:
+- Advanced linear algebra: New support for, among others, matrix inversion, QR factorization, Schur decomposition, sparse matrices, and enhanced BLAS/LAPACK intergration.
+- New utilities: expanded system interfaces and improved file I/O helpers.
+- Modularization of the library and improved CI workflows for better stability. 
 
-- Modularization of the library, thanks to [jvpd1](https://github.com/jvdp1) !
+Thanks to all (new) contributors who contributed to this release!
+
 
 ## Fortran Package Manager
 
@@ -86,7 +90,12 @@ The FPM is still in continuous development and we welcome any testers to find is
 ## Compiler updates:
 
 ### LFortran 
-
+- Work continues towards beta quality (expected to work on most codes, but still have bugs)
+- Can compile and run LAPACK
+- Focus on compiling `fpm`
+- 16 releases in 2025
+- 130 total contributors
+- 4,425 total merged PRs on GitHub since 2022.
 ### nvfortran 
 
 Release of NVHPC [25.11](https://forums.developer.nvidia.com/t/just-released-hpc-sdk-v25-11/353413)
