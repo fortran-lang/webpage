@@ -41,3 +41,9 @@ Fortran community (e.g., web developers) and also hosting the first in-person
 hackathon in Cambridge in the autumn... along with a 70th Fortran birthday for
 Fortran! This will be a hybrid event and cake will be provided for in-person
 attendees, of course. (Further details to follow.)
+
+In the sixth edition of the hackathon series, we will work on improvements to
+the [package index](https://fortran-lang.org/packages/) as mentioned above. The
+event will be hosted online, running on Thursday 5th March 2026 between 14:00
+and 16:30 UTC. Register for the hackathon by filling out the following form:
+[https://forms.gle/o2MDWaxDfDtUb8JD8](https://forms.gle/o2MDWaxDfDtUb8JD8).
