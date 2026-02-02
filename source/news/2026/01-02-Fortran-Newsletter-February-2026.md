@@ -40,7 +40,7 @@ Fortran users may wish to be aware that licences for Winteracter, the multi-plat
 - [New release (v9.2.0) of json-fortran by Jacob Williams](https://github.com/jacobwilliams/json-fortran/releases/tag/9.2.0)
 - [METISSE, a Fortran application for single star evolution ](https://joss.theoj.org/papers/10.21105/joss.08817), see the [repo](https://github.com/TeamMETISSE/METISSE)
 - [FIATS, an application for functional inference and training](https://joss.theoj.org/papers/10.21105/joss.08785), see the [repo](https://github.com/BerkeleyLab/fiats)
-- Release of [LigthKrilov](https://github.com/nekStab/LightKrylov)! A modern Fortran package for linear algebra based on Krylov methods. See their accompanying [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.09623)! 
+- Release of [LightKrylov](https://github.com/nekStab/LightKrylov)! A modern Fortran package for linear algebra based on Krylov methods. See their accompanying [JOSS paper](https://joss.theoj.org/papers/10.21105/joss.09623)! 
 
 ## fortran-lang.org
 
