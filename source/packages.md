@@ -15,9 +15,17 @@ A rich ecosystem of high-performance code
 :::{div} sd-fs-3 sd-font-weight-bold sd-text-primary
 Find a Package
 :::
+<form class="bd-search d-flex align-items-center" align="center" action="../search/index.html" method="get" style="margin-bottom: 30px;"> 
+  <input type="search" class="form-control" name="q" id="search-input" list="package-options" placeholder="Search for a package" aria-label="Search" autocomplete="off" style='margin: auto;text-align: center;width:40em;'> 
+</form>
 
-<form class="bd-search d-flex align-items-center" align="center" action="../search/index.html" method="get">  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search for a package" aria-label="Search" autocomplete="off" style='margin: auto;text-align: center;width:40em;'> </form>
-
+:::{jinja} fortran_index
+<datalist id="package-options">
+  {% for package in fortran_index %}
+      <option value="{{ package.name }}"></option>
+  {% endfor %}
+</datalist>
+:::
 :::::{grid} 2
 
 ::::{grid-item-card}
