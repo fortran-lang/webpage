@@ -21,46 +21,50 @@ Collaboration for the advancement of Fortran
 Fortran-lang Community Projects
 :::
 
-:::::{grid} 2
+:::{div} sd-text-left sd-mt-4 sd-mb-5
 
-::::{grid-item-card}
-:columns: 5
-:shadow: none
-
-:::{div} sd-text-left sd-fs-4
+:::{div} sd-fs-4 sd-text-primary sd-font-weight-bold
 Fortran Standard Library (stdlib)
 :::
 
 A community-driven project for a de facto 'standard' library for Fortran. The stdlib project is both a specification and a reference implementation, developed in cooperation with the Fortran Standards Committee.
-[GitHub](https://github.com/fortran-lang/stdlib),[Documentation](https://stdlib.fortran-lang.org/),[Contributing](https://github.com/fortran-lang/stdlib/blob/HEAD/WORKFLOW.md).
+[GitHub](https://github.com/fortran-lang/stdlib), [Documentation](https://stdlib.fortran-lang.org/), [Contributing](https://github.com/fortran-lang/stdlib/blob/HEAD/WORKFLOW.md).
 
-:::{div} sd-text-left sd-fs-4
+:::{div} sd-fs-4 sd-text-primary sd-font-weight-bold sd-mt-4
 Fortran Package Manager (fpm)
 :::
 
 A prototype project to develop a common build system for Fortran packages and their dependencies.
-[GitHub](https://github.com/fortran-lang/fpm),[Documentation](https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md),[Contributing](https://github.com/fortran-lang/fpm/blob/HEAD/CONTRIBUTING.md).
+[GitHub](https://github.com/fortran-lang/fpm), [Documentation](https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md), [Contributing](https://github.com/fortran-lang/fpm/blob/HEAD/CONTRIBUTING.md).
 
-:::{div} sd-text-left sd-fs-4
+:::{div} sd-fs-4 sd-text-primary sd-font-weight-bold sd-mt-4
 fortran-lang.org
 :::
 
-This website is open source and contributions are welcome!.
-[GitHub](https://github.com/fortran-lang/webpage),[Contributing](../community/contributing).
+This website is open source and contributions are welcome!
+[GitHub](https://github.com/fortran-lang/webpage), [Contributing](../community/contributing).
 
-::::
+:::
+
+:::::{grid} 1
+:gutter: 0
+
 ::::{grid-item-card}
-:columns: 7
-:shadow: none
+:shadow: sm
 
-<div id="fortran-lang-gh-feed-sphinx" style="height: 500px;" ></div>
+:::{div} sd-text-center sd-fs-4 sd-text-primary sd-font-weight-bold sd-mb-2
+Live Repository Activity (stdlib)
+:::
+
+<div id="fortran-lang-gh-feed-sphinx" style="height: 400px; overflow-y: auto; border: 1px solid #e1e4e8; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05);"></div>
             
-<script> GitHubActivity.feed({
-username: "fortran-lang",
-selector: "#fortran-lang-gh-feed-sphinx",
-limit: 20 // optional
+<script> 
+GitHubActivity.feed({
+    username: "fortran-lang",
+    repository: "stdlib",
+    selector: "#fortran-lang-gh-feed-sphinx",
+    limit: 20
 });
-
 </script>
 
 ::::
@@ -165,12 +169,6 @@ See the full [Code of Conduct](https://github.com/fortran-lang/.github/blob/main
 
 :::{div} sd-text-left sd-fs-2 sd-text-primary
 Fortran-lang Contributors
-:::
-
-<iframe src="https://contributor-graph.vercel.app/?chart=contributorOverTime&repo=fortran-lang/fortran-lang.org,fortran-lang/fpm,fortran-lang/stdlib,j3-fortran/fortran_proposals,fortran-lang/webpage" onload='javascript:(function(o){o.style.height=o.contentWindow.document.body.scrollHeight+"px";}(this));' style="height:700px;width:100%;border:none;overflow:hidden;"></iframe>
-
-:::{div} sd-text-left sd-fs-3
-source: https://git-contributor.com/
 :::
 
 :::{div} sd-text-left sd-fs-4 sd-text-primary
