@@ -161,6 +161,24 @@ See the full [Code of Conduct](https://github.com/fortran-lang/.github/blob/main
 
 ::::
 
+::::{grid-item-card}
+:shadow: none
+
+:::{div} sd-text-left sd-fs-4
+Join a hackathon
+:::
+
+The [Fortran index](https://github.com/fortran-index/fortran-index) hackathon
+series is a great way to get involved with the Fortran-lang community. The
+series consists of virtual 2.5 hour events held every couple of months in which
+participants work towards improving the Fortran-lang website - particularly the
+[package index](https://fortran-lang.org/packages/). The hackathons are welcome
+to everyone, regardless of experience level. Registration forms for upcoming
+events are posted on the [Fortran-lang
+discourse](https://fortran-lang.discourse.group/).
+
+::::
+
 :::::
 
 :::{div} sd-text-left sd-fs-2 sd-text-primary
