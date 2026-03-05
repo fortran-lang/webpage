@@ -2,9 +2,17 @@ import yaml
 from pathlib import Path
 from collections import Counter
 import json
+import os
 import requests
 
 root = Path(__file__).parent
+
+packages = root / "data" / "packages"
+if not packages.exists():
+    packages.mkdir(parents=True)
+
+token: str | None = os.getenv("GITHUB_TOKEN")
+"""GitHub token for fetching package data, if available."""
 
 with open(root / "data" / "package_index.yml", "r") as f:
     fortran_index = yaml.safe_load(f)
@@ -90,3 +98,35 @@ contributor_repo = {"repo": "fortran-lang", "contributor": contributors}
 
 with open(root / "_data" / "contributor.json", "w") as f:
     json.dump(contributor_repo, f)
+
+
+class MissingTokenError(Exception):
+    """Exception raised when the GITHUB_TOKEN environment variable is not set."""
+    pass
+
+
+def fetch_package_data(org: str, repo: str) -> dict[str, str]:
+    """
+    Fetch the package data for all packages in the documentation.
+    """
+
+    if token is None:
+        raise MissingTokenError("Warning: No GITHUB_TOKEN environment variable set, skipping package data fetch.")
+
+    headers = {
+        "Accept": "application/vnd.github+json",
+        "Authorization": f"Bearer {token}",
+        "X-GitHub-Api-Version": "2022-11-28",
+    }
+
+    print(f"Fetching package data for {org}/{repo}...")
+
+    return requests.get(f"https://api.github.com/repos/{org}/{repo}", headers=headers).json()
+
+for package in fortran_index:
+    if "github" not in package:
+        continue
+    org, repo = package["github"].split("/")
+    data = fetch_package_data(org, repo)
+    with open(packages / f"{org}_{repo}.json", "w") as f:
+        json.dump(data, f)

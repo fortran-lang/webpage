@@ -34,10 +34,9 @@ data_files = {
 
 sys.path.insert(0, str(root / "extensions"))
 
-if not all(data.exists() for data in data_files.values()):
-    sys.path.insert(0, str(root.absolute()))
-    # pylint: disable=import-error, unused-import
-    import fortran_package
+sys.path.insert(0, str(root.absolute()))
+# pylint: disable=import-error, unused-import
+import fortran_package
 
 with open(data_files["fortran-learn"], "r", encoding="utf-8") as f:
     conf = json.load(f)
