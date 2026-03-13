@@ -50,7 +50,7 @@ with open(data_files["intrinsics"], "r", encoding="utf-8") as f:
 # -- Project information -----------------------------------------------------
 
 project = "Fortran-lang.org website"
-copyright = "2020-2024, Fortran Community"
+copyright = "2020-2026, Fortran Community"
 author = "Fortran Community"
 
 # The full version, including alpha/beta/rc tags
@@ -211,3 +211,5 @@ post_auto_image = 1
 post_auto_excerpt = 2
 
 gettext_compact = "index"
+
+copybutton_exclude = '.linenos, .gp, .go'

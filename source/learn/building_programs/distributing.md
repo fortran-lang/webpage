@@ -75,13 +75,13 @@ end module user_functions
 
 - Provide a basic build script with a command like:
 
-```shell
+```console
 gfortran -o functions.dll functions.f90 -shared
 ```
 
 or:
 
-```shell
+```console
 ifort -exe:functions.dll functions.f90 -dll
 ```
 
