@@ -16,9 +16,11 @@ A rich ecosystem of high-performance code
 Find a Package
 :::
 
-<form class="bd-search d-flex align-items-center" align="center" action="../search/index.html" method="get">  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search for a package" aria-label="Search" autocomplete="off" style='margin: auto;text-align: center;width:40em;'> </form>
+<form class="bd-search d-flex align-items-center" align="center" action="../search/index.html" method="get">  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search for a package" aria-label="Search" autocomplete="off" style="margin:auto;text-align:center;width:100%;max-width:600px;">
+ </form>
 
 :::::{grid} 2
+:gutter: 3
 
 ::::{grid-item-card}
 :shadow: none
@@ -48,6 +50,7 @@ Featured topics
 :::
 
 ::::
+
 :::::
 
 :::{div} sd-fs-3 sd-font-weight-bold sd-text-primary
