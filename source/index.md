@@ -44,7 +44,7 @@ Fortran allows you to write code in a style that best fits your problem: imperat
 Built-in parallelism
 :::
 
-Fortran supports built-in parallel programming with its intuitive array-like syntax to communicate data between CPUs. You can run almost the same code on a single CPU, on a shared-memory multicore system, or on a distributed-memory HPC or cloud-based system. Coarrays, teams, events, and collective subroutines allow you to express different parallel programming patterns that best fit your problem at hand.
+Fortran directly supports parallel programming with its intuitive array-like syntax to communicate data between CPUs. You can run almost the same code on a single CPU, on a shared-memory multicore system, or on a distributed-memory HPC or cloud-based system. Coarrays, teams, events, and collective subroutines allow you to express different parallel programming patterns that best fit your problem at hand.
 
 :::{div} sd-fs-3 sd-font-weight-bold sd-text-primary
 FAQ
