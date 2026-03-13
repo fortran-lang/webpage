@@ -168,7 +168,7 @@ See the full [Code of Conduct](https://github.com/fortran-lang/.github/blob/main
 Join a hackathon
 :::
 
-The [Fortran index](https://github.com/fortran-index/fortran-index) hackathon
+The [Fortran index](https://fortran-index.github.io) hackathon
 series is a great way to get involved with the Fortran-lang community. The
 series consists of virtual 2.5 hour events held every couple of months in which
 participants work towards improving the Fortran-lang website - particularly the

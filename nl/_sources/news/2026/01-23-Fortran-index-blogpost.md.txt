@@ -23,7 +23,7 @@ community. For example, having finer-grained categories and the ability to
 search by tags in the [package index](https://fortran-lang.org/packages/) would
 be very useful.
 
-[Fortran index](https://github.com/fortran-index/fortran-index) is a hackathon
+[Fortran index](https://fortran-index.github.io) is a hackathon
 series that was born out of the Back to the Fortran Future satellite event of
 [RSECon](https://rsecon24.society-rse.org/) back in 2024. Roughly every two
 months, the attendees of Fortran index hackathons meet virtually to work on
