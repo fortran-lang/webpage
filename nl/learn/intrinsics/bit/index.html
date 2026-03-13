@@ -1490,7 +1490,7 @@ elements might not apply to a simple scalar variable.</p>
 <p>NOTE2</p>
 <p>This is intended to be the size in memory that an object takes when it
 is stored; this might differ from the size it takes during expression
-handling (which might be the native register size) or when stored in a
+handling (which might be the system’s register size) or when stored in a
 file. If an object is never stored in memory but only in a register,
 this function nonetheless returns the size it would take if it were
 stored in memory.</p>
@@ -2570,18 +2570,18 @@ in reverse order from the input value (ie. changes the Endian of the integer).</
 <span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">bits</span><span class="p">)</span><span class="n">intfrom</span><span class="p">,</span><span class="n">intfrom</span>
 
 <span class="w">    </span><span class="c">!! MOVING BYTES AT A TIME</span>
-<span class="w">    </span><span class="c">! make native integer value with bit patterns</span>
+<span class="w">    </span><span class="c">! make built-in integer value with bit patterns</span>
 <span class="w">    </span><span class="c">! that happen to be the same as the beginning of the alphabet</span>
 <span class="w">    </span><span class="c">! to make it easy to see the bytes are reversed</span>
 <span class="w">    </span><span class="n">abcd_int</span><span class="o">=</span><span class="nb">transfer</span><span class="p">(</span><span class="s1">&#39;abcd&#39;</span><span class="p">,</span><span class="mi">0</span><span class="p">)</span>
 <span class="w">    </span><span class="c">! show the value and bit pattern</span>
-<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;native&#39;</span>
+<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;builtin&#39;</span>
 <span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">fmt</span><span class="p">)</span><span class="n">abcd_int</span><span class="p">,</span><span class="n">abcd_int</span><span class="p">,</span><span class="n">abcd_int</span>
 
 <span class="w">    </span><span class="c">! change endian of the value</span>
 <span class="w">    </span><span class="n">abcd_int</span><span class="o">=</span><span class="n">int_swap32</span><span class="p">(</span><span class="n">abcd_int</span><span class="p">)</span>
 <span class="w">    </span><span class="c">! show the values and their bit pattern</span>
-<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;non-native&#39;</span>
+<span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="o">*</span><span class="p">)</span><span class="s1">&#39;custom&#39;</span>
 <span class="w">    </span><span class="k">write</span><span class="p">(</span><span class="o">*</span><span class="p">,</span><span class="n">fmt</span><span class="p">)</span><span class="n">abcd_int</span><span class="p">,</span><span class="n">abcd_int</span><span class="p">,</span><span class="n">abcd_int</span>
 
 <span class="w"> </span><span class="k">contains</span>
@@ -2608,9 +2608,9 @@ in reverse order from the input value (ie. changes the Endian of the integer).</
    0                            00000000000000000000000000000000
    1                            00000000000000000000000000000001
    -1                           11111111111111111111111111111111
-    native
+    builtin
    1684234849                   abcd      01100100011000110110001001100001
-    non-native
+    custom
    1633837924                   dcba      01100001011000100110001101100100
 </pre></div>
 </div>

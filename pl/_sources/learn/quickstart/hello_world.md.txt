@@ -18,7 +18,7 @@ which is part of the
 
 To install gfortran on Linux, use your system package manager.
 On macOS, you can install gfortran using [Homebrew](https://brew.sh/) or [MacPorts](https://www.macports.org/).
-On Windows, you can get native binaries [here](http://www.equation.com/servlet/equation.cmd?fa=fortran).
+On Windows, you can download [executable binaries](http://www.equation.com/servlet/equation.cmd?fa=fortran).
 
 To check if you have _gfortran_ setup correctly, open a terminal and run the following command:
 
