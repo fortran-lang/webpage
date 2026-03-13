@@ -73,7 +73,7 @@ def intl_update(language: str) -> None:
     """
 
     subprocess.run(
-        ["sphinx-intl", "update", "-l", language, "-d", localedir, "-p", outdir, "-w", "80"],
+        f"sphinx-intl update -l {language} -d {localedir} -p {outdir} -w 80".split(),
         cwd=root,
         check=True,
     )
@@ -94,7 +94,6 @@ def intl_all(languages: List[str]) -> None:
 
 
 if __name__ == "__main__":
-
     intl_all(sys.argv[1:] if len(sys.argv) > 1 else all_languages[1:])
 
     print()
