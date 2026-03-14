@@ -22,7 +22,7 @@ jobs:
 
     steps:
       - name: Checkout page source
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Setup Python
         uses: actions/setup-python@v6
@@ -30,7 +30,7 @@ jobs:
           python-version: "3.11"
 
       - name: Setup Fortran compiler
-        uses: fortran-lang/setup-fortran@v1.8.0
+        uses: fortran-lang/setup-fortran@v1.9.0
         id: setup-fortran
         with:
           compiler: gcc
@@ -60,7 +60,7 @@ jobs:
           BING_TOKEN: ${{ secrets.BING_TOKEN }}
 
       - name: Deploy documentation sphinx
-        uses: JamesIves/github-pages-deploy-action@v4.7.3
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages

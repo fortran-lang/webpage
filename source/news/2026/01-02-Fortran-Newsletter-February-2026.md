@@ -28,7 +28,7 @@ Fortran users may wish to be aware that licences for Winteracter, the multi-plat
 
 ### Community members 
 
-- [Joe Wallwork](https://github.com/joewallwork), Institute of Computing for Climate Science, University of Cambridge has been awarded a [Computational Abilities Knowledge Exchange (CAKE) fellowship](https://www.cake.ac.uk/ke-fellowships/cohort1#joe-wallwork)! He will be working to further the efforts of Fortran index in 2026. Watch this space for useful improvements! Please see the full blog post for further information. 
+- [Joe Wallwork](https://github.com/joewallwork), Institute of Computing for Climate Science, University of Cambridge has been awarded a [Computational Abilities Knowledge Exchange (CAKE) fellowship](https://www.cake.ac.uk/ke-fellowships/cohort1#joe-wallwork)! He will be working to further the efforts of Fortran index in 2026. Watch this space for useful improvements! Please see the full [blog post](01-23-Fortran-index-blogpost) for further information. 
 
 #### News
 
