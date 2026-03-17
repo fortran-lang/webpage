@@ -7,6 +7,26 @@
   name="keywords"
   content="High-performance, parallel, programming language"
 />
+<script>
+  (function () {
+    var root = document.documentElement;
+    var mode = "light";
+
+    try {
+      var storedMode = localStorage.getItem("mode");
+      if (storedMode === "light" || storedMode === "dark") {
+        mode = storedMode;
+      }
+      localStorage.setItem("mode", mode);
+      localStorage.setItem("theme", mode);
+    } catch (error) {
+      // Keep a valid in-memory mode even if localStorage is unavailable.
+    }
+
+    root.dataset.mode = mode;
+    root.dataset.theme = mode;
+  })();
+</script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
 <script type="text/javascript">
   var pr_number = -1;
