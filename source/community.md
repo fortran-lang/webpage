@@ -42,7 +42,7 @@ A community-driven project for a de facto 'standard' library for Fortran. The st
 :::
 
 A prototype project to develop a common build system for Fortran packages and their dependencies.
-[GitHub](https://github.com/fortran-lang/fpm), [Documentation](https://github.com/fortran-lang/fpm/blob/HEAD/PACKAGING.md), [Contributing](https://github.com/fortran-lang/fpm/blob/HEAD/CONTRIBUTING.md).
+[GitHub](https://github.com/fortran-lang/fpm), [Documentation](https://fpm.fortran-lang.org/), [Contributing](https://github.com/fortran-lang/fpm/blob/HEAD/CONTRIBUTING.md).
 
 <div id="fortran-lang-gh-feed-fpm" style="height: 400px; overflow-y: auto; border: 1px solid #e1e4e8; border-radius: 6px; box-shadow: 0 4px 6px rgba(0,0,0,0.05); margin-top: 15px; margin-bottom: 30px;"></div>
 
