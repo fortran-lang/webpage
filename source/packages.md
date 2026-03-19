@@ -16,9 +16,10 @@ A rich ecosystem of high-performance code
 Find a Package
 :::
 
-<form class="package-search-form" action="../search/index.html" method="get"><input type="search"name="q"id="search-input"class="package-search-input"placeholder="Search for a package"aria-label="Search"autocomplete="off"></form>
+<form class="package-search-form" action="../search/index.html"method="get"> <input type="search"name="q"id="search-input"class="package-search-input" placeholder="Search for a package" aria-label="Search" autocomplete="off"></form>
 
 :::::{grid} 2
+:gutter: 3
 
 ::::{grid-item-card}
 :shadow: none
