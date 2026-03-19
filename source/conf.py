@@ -23,6 +23,7 @@ import yaml
 import sys
 import pathlib
 
+
 root = pathlib.Path(__file__).parent.parent
 
 data_files = {
@@ -36,7 +37,9 @@ sys.path.insert(0, str(root / "extensions"))
 
 if not all(data.exists() for data in data_files.values()):
     sys.path.insert(0, str(root.absolute()))
-    # pylint: disable=import-error, unused-import
+    from fortran_package import update_json_files
+
+    update_json_files()
 
 with open(data_files["fortran-learn"], "r", encoding="utf-8") as f:
     conf = json.load(f)
