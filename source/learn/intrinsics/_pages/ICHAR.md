@@ -28,7 +28,7 @@
 
 ### **Description**
 
-**ichar**(3) returns the code for the character in the system's native
+**ichar**(3) returns the code for the character in the system's built-in
 character set. The correspondence between characters and their codes is
 not necessarily the same across different Fortran implementations. For
 example, a platform using EBCDIC would return different values than an

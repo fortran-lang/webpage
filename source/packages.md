@@ -16,9 +16,10 @@ A rich ecosystem of high-performance code
 Find a Package
 :::
 
-<form class="bd-search d-flex align-items-center" align="center" action="../search/index.html" method="get">  <input type="search" class="form-control" name="q" id="search-input" placeholder="Search for a package" aria-label="Search" autocomplete="off" style='margin: auto;text-align: center;width:40em;'> </form>
+<form class="package-search-form" action="../search/index.html" method="get"> <input type="search" name="q" id="search-input" class="package-search-input" placeholder="Search for a package" aria-label="Search" autocomplete="off"></form>
 
 :::::{grid} 2
+:gutter: 3
 
 ::::{grid-item-card}
 :shadow: none
@@ -28,7 +29,7 @@ Package index
 :::
 
 :::{div} sd-fs-6
-The fortran-lang package index is community-maintained and lists open source Fortran-related projects.This includes large-scale scientific applications,function libraries, Fortran interfaces, and developer tools.<br>
+The fortran-lang package index is community-maintained and lists open source Fortran-related projects. This includes large-scale scientific applications, function libraries, Fortran interfaces, and developer tools.<br>
 See [here](../community/packages/) for how to get your project listed. <br>
 Use the box above to search the package index by keyword, package name, or author username.
 :::
@@ -48,6 +49,7 @@ Featured topics
 :::
 
 ::::
+
 :::::
 
 :::{div} sd-fs-3 sd-font-weight-bold sd-text-primary
