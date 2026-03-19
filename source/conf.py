@@ -51,7 +51,7 @@ with open(data_files["intrinsics"], "r", encoding="utf-8") as f:
 # -- Project information -----------------------------------------------------
 
 project = "Fortran-lang.org website"
-copyright = "2020-2024, Fortran Community"
+copyright = "2020-2026, Fortran Community"
 author = "Fortran Community"
 
 # The full version, including alpha/beta/rc tags

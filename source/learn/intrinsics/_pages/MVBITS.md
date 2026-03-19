@@ -105,18 +105,18 @@ character(len=*),parameter :: fmt= '(g0,t30,a,t40,b32.32)'
     write(*,bits)intfrom,intfrom
 
     !! MOVING BYTES AT A TIME
-    ! make native integer value with bit patterns
+    ! make built-in integer value with bit patterns
     ! that happen to be the same as the beginning of the alphabet
     ! to make it easy to see the bytes are reversed
     abcd_int=transfer('abcd',0)
     ! show the value and bit pattern
-    write(*,*)'native'
+    write(*,*)'builtin'
     write(*,fmt)abcd_int,abcd_int,abcd_int
 
     ! change endian of the value
     abcd_int=int_swap32(abcd_int)
     ! show the values and their bit pattern
-    write(*,*)'non-native'
+    write(*,*)'custom'
     write(*,fmt)abcd_int,abcd_int,abcd_int
 
  contains
@@ -146,9 +146,9 @@ Results:
    0                            00000000000000000000000000000000
    1                            00000000000000000000000000000001
    -1                           11111111111111111111111111111111
-    native
+    builtin
    1684234849                   abcd      01100100011000110110001001100001
-    non-native
+    custom
    1633837924                   dcba      01100001011000100110001101100100
 ```
 
