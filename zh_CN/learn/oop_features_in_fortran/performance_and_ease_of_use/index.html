@@ -42,14 +42,14 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=5eee97a6"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
-    <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/translations.js?v=540d3cec"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/oop_features_in_fortran/performance_and_ease_of_use';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
@@ -684,11 +684,11 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="performance-and-ease-of-use">
-<h1>Performance and ease of use<a class="headerlink" href="#performance-and-ease-of-use" title="Link to this heading">#</a></h1>
+<h1>Performance and ease of use<a class="headerlink" href="#performance-and-ease-of-use" title="链接到此标题。">#</a></h1>
 <section id="functions-with-parameters">
-<h2>Functions with parameters<a class="headerlink" href="#functions-with-parameters" title="Link to this heading">#</a></h2>
+<h2>Functions with parameters<a class="headerlink" href="#functions-with-parameters" title="链接到此标题。">#</a></h2>
 <section id="a-type-definition-for-invocation-of-a-general-function">
-<h3>A type definition for invocation of a general function<a class="headerlink" href="#a-type-definition-for-invocation-of-a-general-function" title="Link to this heading">#</a></h3>
+<h3>A type definition for invocation of a general function<a class="headerlink" href="#a-type-definition-for-invocation-of-a-general-function" title="链接到此标题。">#</a></h3>
 <p>In scientific applications, a commonly occurring requirement is the need
 to evaluate functions that depend on additional parameters, apart from
 their real-valued argument. For example, an application might need the
@@ -749,7 +749,7 @@ explicitly specify the <code class="docutils literal notranslate"><span class="p
 use of <code class="docutils literal notranslate"><span class="pre">pfunc_type</span></code> objects will be simplified as we go on.</p>
 </section>
 <section id="performance-issues-arising-from-object-oriented-programming">
-<h3>Performance issues arising from object-oriented programming<a class="headerlink" href="#performance-issues-arising-from-object-oriented-programming" title="Link to this heading">#</a></h3>
+<h3>Performance issues arising from object-oriented programming<a class="headerlink" href="#performance-issues-arising-from-object-oriented-programming" title="链接到此标题。">#</a></h3>
 <p>Let us look at a target function implementation, in form of a trivial
 example <span class="math notranslate nohighlight">\(\sin(\lambda x)\)</span>:</p>
 <div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">pure </span><span class="kt">real </span><span class="k">function </span><span class="n">psin</span><span class="p">(</span><span class="n">x</span><span class="p">,</span><span class="w"> </span><span class="n">param</span><span class="p">)</span>
@@ -803,7 +803,7 @@ amenable to array-related compiler optimizations (the specifics of which
 depend on both hardware architecture and working set size).</p>
 </section>
 <section id="completing-the-function-type-definition">
-<h3>Completing the function type definition<a class="headerlink" href="#completing-the-function-type-definition" title="Link to this heading">#</a></h3>
+<h3>Completing the function type definition<a class="headerlink" href="#completing-the-function-type-definition" title="链接到此标题。">#</a></h3>
 <p>The aim now is to proceed to a framework that permits to use both the
 scalar and the array versions in a uniform way, thereby making life for
 the clients that use the framework easy, while enabling performance
@@ -901,7 +901,7 @@ extended. Disambiguation is by rank of <code class="docutils literal notranslate
 of the procedure arguments.<a class="footnote-reference brackets" href="#richardson-comment01" id="id1" role="doc-noteref"><span class="fn-bracket">[</span>1<span class="fn-bracket">]</span></a></p>
 </section>
 <section id="using-the-function-type">
-<h3>Using the function type<a class="headerlink" href="#using-the-function-type" title="Link to this heading">#</a></h3>
+<h3>Using the function type<a class="headerlink" href="#using-the-function-type" title="链接到此标题。">#</a></h3>
 <p>With the already-shown implementations for the target functions <code class="docutils literal notranslate"><span class="pre">psin</span></code>
 and <code class="docutils literal notranslate"><span class="pre">psin_array</span></code>, using this framework is illustrated by the following:</p>
 <div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="n">pfunc_type</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">pfunc_obj</span>
@@ -931,7 +931,7 @@ feature is recommended against.</p>
 </section>
 </section>
 <section id="arrays-of-structures-versus-structures-of-arrays">
-<h2>Arrays of structures versus structures of arrays<a class="headerlink" href="#arrays-of-structures-versus-structures-of-arrays" title="Link to this heading">#</a></h2>
+<h2>Arrays of structures versus structures of arrays<a class="headerlink" href="#arrays-of-structures-versus-structures-of-arrays" title="链接到此标题。">#</a></h2>
 <p>Returning to our earlier example type body, the next idea would be to
 simulate the dynamics of a large ensemble of bodies. A procedure</p>
 <div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">propagate</span><span class="p">(</span><span class="n">bodies</span><span class="p">,</span><span class="w"> </span><span class="n">delta_t</span><span class="p">,</span><span class="w"> </span><span class="n">force_field</span><span class="p">)</span>
@@ -952,9 +952,9 @@ for example as follows:</p>
 the ensemble member.</p>
 </section>
 <section id="comments-on-further-language-features">
-<h2>Comments on further language features<a class="headerlink" href="#comments-on-further-language-features" title="Link to this heading">#</a></h2>
+<h2>Comments on further language features<a class="headerlink" href="#comments-on-further-language-features" title="链接到此标题。">#</a></h2>
 <section id="variations-on-the-passed-object">
-<h3>Variations on the passed object<a class="headerlink" href="#variations-on-the-passed-object" title="Link to this heading">#</a></h3>
+<h3>Variations on the passed object<a class="headerlink" href="#variations-on-the-passed-object" title="链接到此标题。">#</a></h3>
 <p>All examples for type-bound procedures given up to now have the property
 that the invoking object itself is passed as the first argument to the
 bound procedure. However, this default behaviour can be modified by the
@@ -1073,7 +1073,7 @@ a function.</p></li>
         <div class="footer-item">
 
   <p class="sphinx-version">
-    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3创建。
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0创建。
     <br/>
   </p>
 </div>

@@ -42,14 +42,14 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=5eee97a6"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
-    <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/translations.js?v=540d3cec"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/oop_features_in_fortran/object_based_programming_techniques';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
@@ -684,9 +684,9 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="object-based-programming-techniques">
-<h1>Object-based programming techniques<a class="headerlink" href="#object-based-programming-techniques" title="Link to this heading">#</a></h1>
+<h1>Object-based programming techniques<a class="headerlink" href="#object-based-programming-techniques" title="链接到此标题。">#</a></h1>
 <section id="introduction-container-like-types">
-<h2>Introduction: Container-like types<a class="headerlink" href="#introduction-container-like-types" title="Link to this heading">#</a></h2>
+<h2>Introduction: Container-like types<a class="headerlink" href="#introduction-container-like-types" title="链接到此标题。">#</a></h2>
 <p>The word &quot;Container-like&quot; is not a Fortran term, but used in the context
 of this article to designate types with components whose size (or type,
 to be discussed later) is not known when the type is declared. For
@@ -699,9 +699,9 @@ for this chapter can be found in the <code class="docutils literal notranslate">
 <a class="reference external" href="https://github.com/reinh-bader/object_fortran">Github repository</a>.</p>
 </section>
 <section id="examples-for-definitions-of-container-like-types">
-<h2>Examples for definitions of container-like types<a class="headerlink" href="#examples-for-definitions-of-container-like-types" title="Link to this heading">#</a></h2>
+<h2>Examples for definitions of container-like types<a class="headerlink" href="#examples-for-definitions-of-container-like-types" title="链接到此标题。">#</a></h2>
 <section id="allocatable-components">
-<h3>Allocatable components<a class="headerlink" href="#allocatable-components" title="Link to this heading">#</a></h3>
+<h3>Allocatable components<a class="headerlink" href="#allocatable-components" title="链接到此标题。">#</a></h3>
 <p>As an example for the type definition of a <strong>value container</strong> (not a
 Fortran term) with an <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> component consider</p>
 <div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">polynomial</span>
@@ -725,7 +725,7 @@ coefficients:</p>
 </div>
 </section>
 <section id="pointer-components">
-<h3>Pointer components<a class="headerlink" href="#pointer-components" title="Link to this heading">#</a></h3>
+<h3>Pointer components<a class="headerlink" href="#pointer-components" title="链接到此标题。">#</a></h3>
 <p>As an example for the type definition of a <strong>reference container</strong> (not
 a Fortran term) with a <code class="docutils literal notranslate"><span class="pre">pointer</span></code> component consider</p>
 <div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">sorted_list</span>
@@ -777,7 +777,7 @@ the object is done by executing the following statements:</p>
 </section>
 </section>
 <section id="constructing-objects-of-container-like-type">
-<h2>Constructing objects of container-like type<a class="headerlink" href="#constructing-objects-of-container-like-type" title="Link to this heading">#</a></h2>
+<h2>Constructing objects of container-like type<a class="headerlink" href="#constructing-objects-of-container-like-type" title="链接到此标题。">#</a></h2>
 <p>The semantics of the default structure constructor for container-like
 objects needs to account for any additional <code class="docutils literal notranslate"><span class="pre">pointer</span></code> or <code class="docutils literal notranslate"><span class="pre">allocatable</span></code>
 attribute specified for type components.</p>
@@ -895,7 +895,7 @@ one, but the latter is unavailable outside the host scope of the type
 definition anyway, due to the opacity of <code class="docutils literal notranslate"><span class="pre">sorted_list</span></code>.</p>
 </section>
 <section id="copying-objects-of-container-like-type">
-<h2>Copying objects of container-like type<a class="headerlink" href="#copying-objects-of-container-like-type" title="Link to this heading">#</a></h2>
+<h2>Copying objects of container-like type<a class="headerlink" href="#copying-objects-of-container-like-type" title="链接到此标题。">#</a></h2>
 <p>Default assignment extends to container-like objects. For objects
 declared as</p>
 <div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="n">polynomial</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">p</span><span class="p">,</span><span class="w"> </span><span class="n">q</span>
@@ -985,7 +985,7 @@ cause for orphaning of <code class="docutils literal notranslate"><span class="p
 resource leaks).</p>
 </section>
 <section id="finalization-and-conclusions">
-<h2>Finalization and conclusions<a class="headerlink" href="#finalization-and-conclusions" title="Link to this heading">#</a></h2>
+<h2>Finalization and conclusions<a class="headerlink" href="#finalization-and-conclusions" title="链接到此标题。">#</a></h2>
 <p>To deal with resource leaks that are otherwise not within the
 programmer's means to avoid, a type definition can be connected with a
 user-defined <strong>final procedure</strong> that is automatically invoked in
@@ -1055,9 +1055,9 @@ three</a>&quot;
 for the analogous situation in C++.</p>
 </section>
 <section id="further-language-features-useful-for-object-based-programming">
-<h2>Further language features useful for object-based programming<a class="headerlink" href="#further-language-features-useful-for-object-based-programming" title="Link to this heading">#</a></h2>
+<h2>Further language features useful for object-based programming<a class="headerlink" href="#further-language-features-useful-for-object-based-programming" title="链接到此标题。">#</a></h2>
 <section id="extended-semantics-for-allocatable-objects">
-<h3>Extended semantics for allocatable objects<a class="headerlink" href="#extended-semantics-for-allocatable-objects" title="Link to this heading">#</a></h3>
+<h3>Extended semantics for allocatable objects<a class="headerlink" href="#extended-semantics-for-allocatable-objects" title="链接到此标题。">#</a></h3>
 <p>Scalars can have the <code class="docutils literal notranslate"><span class="pre">allocatable</span></code> attribute:</p>
 <div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="kt">character</span><span class="p">(</span><span class="nb">len</span><span class="o">=</span><span class="p">:),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_string</span>
 <span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">),</span><span class="w"> </span><span class="k">allocatable</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_list</span>
@@ -1100,7 +1100,7 @@ case of polymorphic objects.</p>
 </div>
 </section>
 <section id="implementing-move-semantics">
-<h3>Implementing move semantics<a class="headerlink" href="#implementing-move-semantics" title="Link to this heading">#</a></h3>
+<h3>Implementing move semantics<a class="headerlink" href="#implementing-move-semantics" title="链接到此标题。">#</a></h3>
 <p>Sometimes it may be necessary to make use of move instead of copy
 semantics i.e., create a copy of an object and then get rid of the
 original. The simplest way of doing this is to make use of allocatable
@@ -1121,7 +1121,7 @@ that the latter does not involve a regular object deallocation
 finalizer will not be invoked.</p>
 </section>
 <section id="the-block-construct">
-<h3>The <code class="docutils literal notranslate"><span class="pre">block</span></code> construct<a class="headerlink" href="#the-block-construct" title="Link to this heading">#</a></h3>
+<h3>The <code class="docutils literal notranslate"><span class="pre">block</span></code> construct<a class="headerlink" href="#the-block-construct" title="链接到此标题。">#</a></h3>
 <p>The above rules on finalization imply that variables declared in the
 specification part of the main program are not finalizable, since they
 by default have the <code class="docutils literal notranslate"><span class="pre">save</span></code> attribute. One could argue this is not
@@ -1161,7 +1161,7 @@ to retirement.</p>
 </div>
 </section>
 <section id="the-associate-construct">
-<h3>The <code class="docutils literal notranslate"><span class="pre">associate</span></code> construct<a class="headerlink" href="#the-associate-construct" title="Link to this heading">#</a></h3>
+<h3>The <code class="docutils literal notranslate"><span class="pre">associate</span></code> construct<a class="headerlink" href="#the-associate-construct" title="链接到此标题。">#</a></h3>
 <p>With the introduction of deeply nested derived types, code that needs
 access to ultimate components can become quite hard to read. An
 <code class="docutils literal notranslate"><span class="pre">associate</span></code> block construct that enables the use of auto-typed aliases
@@ -1201,7 +1201,7 @@ which will be discussed where appropriate.</p>
 </section>
 </section>
 <section id="performing-i-o-with-objects-of-container-like-type">
-<h2>Performing I/O with objects of container-like type<a class="headerlink" href="#performing-i-o-with-objects-of-container-like-type" title="Link to this heading">#</a></h2>
+<h2>Performing I/O with objects of container-like type<a class="headerlink" href="#performing-i-o-with-objects-of-container-like-type" title="链接到此标题。">#</a></h2>
 <p>For objects of container-like type, a data transfer statement</p>
 <div class="highlight-f90 notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="p">(</span><span class="n">sorted_list</span><span class="p">)</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">my_list</span>
 <span class="p">:</span><span class="w"> </span><span class="c">! set up my_list</span>
@@ -1442,7 +1442,7 @@ termination unless an <code class="docutils literal notranslate"><span class="pr
         <div class="footer-item">
 
   <p class="sphinx-version">
-    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3创建。
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0创建。
     <br/>
   </p>
 </div>

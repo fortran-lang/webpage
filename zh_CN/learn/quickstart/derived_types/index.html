@@ -42,11 +42,11 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=5eee97a6"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
-    <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/translations.js?v=540d3cec"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/quickstart/derived_types';</script>
     <script>
@@ -682,13 +682,13 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="derived-types">
-<h1>派生类型<a class="headerlink" href="#derived-types" title="Link to this heading">#</a></h1>
+<h1>派生类型<a class="headerlink" href="#derived-types" title="链接到此标题。">#</a></h1>
 <p>正如前面在 <a class="reference internal" href="../variables/"><span class="doc std std-doc">变量</span></a> 中所讨论的，Fortran 中有五种内置数据类型。 <em>派生类型</em> 是一种特殊形式的数据类型，可以封装其它内置类型以及其它派生类型。它可以被认为等同于 C 和 C++ 编程语言中的 <em>struct</em> 。</p>
 <section id="a-quick-take-on-derived-types">
-<h2>快速了解派生类型<a class="headerlink" href="#a-quick-take-on-derived-types" title="Link to this heading">#</a></h2>
+<h2>快速了解派生类型<a class="headerlink" href="#a-quick-take-on-derived-types" title="链接到此标题。">#</a></h2>
 <p>这是一个基本派生类型的示例：</p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=type%20%3A%3A%20t_pair%0A%20%20integer%20%3A%3A%20i%0A%20%20real%20%3A%3A%20x%0Aend%20type' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=type%20%3A%3A%20t_pair%0A%20%20integer%20%3A%3A%20i%0A%20%20real%20%3A%3A%20x%0Aend%20type' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id1" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_pair</span>
 <span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
 <span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span>
@@ -716,7 +716,7 @@
 </div>
 <p>默认初始化示例：</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=type%20%3A%3A%20t_pair%0A%20%20integer%20%3A%3A%20i%20%3D%201%0A%20%20real%20%3A%3A%20x%20%3D%200.5%0Aend%20type%0A%0Atype%28t_pair%29%20%3A%3A%20pair%0Apair%20%3D%20t_pair%28%29%20%20%20%20%20%20%20%21%20pair%25i%20is%201%2C%20pair%25x%20is%200.5%0Apair%20%3D%20t_pair%28i%3D2%29%20%20%20%20%21%20pair%25i%20is%202%2C%20pair%25x%20is%200.5%0Apair%20%3D%20t_pair%28x%3D2.7%29%20%20%21%20pair%25i%20is%201%2C%20pair%25x%20is%202.7' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=type%20%3A%3A%20t_pair%0A%20%20integer%20%3A%3A%20i%20%3D%201%0A%20%20real%20%3A%3A%20x%20%3D%200.5%0Aend%20type%0A%0Atype%28t_pair%29%20%3A%3A%20pair%0Apair%20%3D%20t_pair%28%29%20%20%20%20%20%20%20%21%20pair%25i%20is%201%2C%20pair%25x%20is%200.5%0Apair%20%3D%20t_pair%28i%3D2%29%20%20%20%20%21%20pair%25i%20is%202%2C%20pair%25x%20is%200.5%0Apair%20%3D%20t_pair%28x%3D2.7%29%20%20%21%20pair%25i%20is%201%2C%20pair%25x%20is%202.7' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_pair</span>
 <span class="w">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span>
 <span class="w">  </span><span class="kt">real</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mf">0.5</span>
@@ -731,7 +731,7 @@
 </div>
 </section>
 <section id="derived-types-in-detail">
-<h2>派生类型详解<a class="headerlink" href="#derived-types-in-detail" title="Link to this heading">#</a></h2>
+<h2>派生类型详解<a class="headerlink" href="#derived-types-in-detail" title="链接到此标题。">#</a></h2>
 <p>具有所有可选属性的派生类型的完整语法如下所示：</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="nb">type</span> <span class="p">[,</span><span class="n">attribute</span><span class="o">-</span><span class="nb">list</span><span class="p">]</span> <span class="p">::</span> <span class="n">name</span> <span class="p">[(</span><span class="n">parameterized</span><span class="o">-</span><span class="n">declaration</span><span class="o">-</span><span class="nb">list</span><span class="p">)]</span>
   <span class="p">[</span><span class="n">parameterized</span><span class="o">-</span><span class="n">definition</span><span class="o">-</span><span class="n">statements</span><span class="p">]</span>
@@ -744,7 +744,7 @@
 </div>
 </section>
 <section id="options-to-declare-a-derived-type">
-<h2>声明派生类型的选项<a class="headerlink" href="#options-to-declare-a-derived-type" title="Link to this heading">#</a></h2>
+<h2>声明派生类型的选项<a class="headerlink" href="#options-to-declare-a-derived-type" title="链接到此标题。">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">attribute-list</span></code> 可能指的是以下内容：</p>
 <ul class="simple">
 <li><p><em>访问类型</em> 是 <code class="docutils literal notranslate"><span class="pre">公共</span></code> 或 <code class="docutils literal notranslate"><span class="pre">私有</span></code> 的</p></li>
@@ -758,7 +758,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">sequence</span></code> 属性仅可用于声明以下成员应按照它们在派生类型中定义的相同顺序被访问。</p>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">sequence</span></code> 的例子：</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=type%20%3A%3A%20t_pair%0A%20%20sequence%0A%20%20integer%20%3A%3A%20i%0A%20%20real%20%3A%3A%20x%0Aend%20type%0A%21%20Initialize%0Atype%28t_pair%29%20%3A%3A%20pair%0Apair%20%3D%20t_pair%281%2C%200.5%29' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=type%20%3A%3A%20t_pair%0A%20%20sequence%0A%20%20integer%20%3A%3A%20i%0A%20%20real%20%3A%3A%20x%0Aend%20type%0A%21%20Initialize%0Atype%28t_pair%29%20%3A%3A%20pair%0Apair%20%3D%20t_pair%281%2C%200.5%29' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">type</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">t_pair</span>
 <span class="w">  </span><span class="k">sequence</span>
 <span class="k">  </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">i</span>
@@ -777,7 +777,7 @@
 <p>属性<code class="docutils literal notranslate"><span class="pre">bind(c)</span></code>是用来实现 Fortran 的派生类型和 C 的结构体之间的兼容性。</p>
 <p>使用 <code class="docutils literal notranslate"><span class="pre">bind(c)</span></code> 的例子：</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20f_to_c%0A%20%20use%20iso_c_binding%2C%20only%3A%20c_int%0A%20%20implicit%20none%0A%0A%20%20type%2C%20bind%28c%29%20%3A%3A%20f_type%0A%20%20%20%20integer%28c_int%29%20%3A%3A%20i%0A%20%20end%20type%0A%0Aend%20module%20f_to_c' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20f_to_c%0A%20%20use%20iso_c_binding%2C%20only%3A%20c_int%0A%20%20implicit%20none%0A%0A%20%20type%2C%20bind%28c%29%20%3A%3A%20f_type%0A%20%20%20%20integer%28c_int%29%20%3A%3A%20i%0A%20%20end%20type%0A%0Aend%20module%20f_to_c' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id4" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">f_to_c</span>
 <span class="w">  </span><span class="k">use </span><span class="nb">iso_c_binding</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="kt">c_int</span>
 <span class="kt">  </span><span class="k">implicit none</span>
@@ -802,7 +802,7 @@
 <p><code class="docutils literal notranslate"><span class="pre">parameterized-declaration-list</span></code> 是一个可选的特性。 如果使用，那么参数必须列在 <code class="docutils literal notranslate"><span class="pre">[parameterized-definition-statements]</span></code> 的位置上，并且必须是 <code class="docutils literal notranslate"><span class="pre">len</span></code> 或 <code class="docutils literal notranslate"><span class="pre">kind</span></code> 参数，或者两者都是。</p>
 <p>具有 <code class="docutils literal notranslate"><span class="pre">parameterized-declaration-list</span></code> 和 <code class="docutils literal notranslate"><span class="pre">public</span></code> 属性的派生类型的例子：</p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20m_matrix%0A%20implicit%20none%0A%20private%0A%0A%20type%2C%20public%20%3A%3A%20t_matrix%28rows%2C%20cols%2C%20k%29%0A%20%20%20integer%2C%20len%20%3A%3A%20rows%2C%20cols%0A%20%20%20integer%2C%20kind%20%3A%3A%20k%20%3D%20kind%280.0%29%0A%20%20%20real%28kind%3Dk%29%2C%20dimension%28rows%2C%20cols%29%20%3A%3A%20values%0A%20end%20type%0A%0Aend%20module%20m_matrix%0A%0Aprogram%20test_matrix%0A%20use%20m_matrix%0A%20implicit%20none%0A%0A%20type%28t_matrix%28rows%3D5%2C%20cols%3D5%29%29%20%3A%3A%20m%0A%0Aend%20program%20test_matrix' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20m_matrix%0A%20implicit%20none%0A%20private%0A%0A%20type%2C%20public%20%3A%3A%20t_matrix%28rows%2C%20cols%2C%20k%29%0A%20%20%20integer%2C%20len%20%3A%3A%20rows%2C%20cols%0A%20%20%20integer%2C%20kind%20%3A%3A%20k%20%3D%20kind%280.0%29%0A%20%20%20real%28kind%3Dk%29%2C%20dimension%28rows%2C%20cols%29%20%3A%3A%20values%0A%20end%20type%0A%0Aend%20module%20m_matrix%0A%0Aprogram%20test_matrix%0A%20use%20m_matrix%0A%20implicit%20none%0A%0A%20type%28t_matrix%28rows%3D5%2C%20cols%3D5%29%29%20%3A%3A%20m%0A%0Aend%20program%20test_matrix' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id5" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">m_matrix</span>
 <span class="w"> </span><span class="k">implicit none</span>
 <span class="k"> private</span>
@@ -834,7 +834,7 @@
 <p>F2003 标准中增加了 <code class="docutils literal notranslate"><span class="pre">extends</span></code> 属性，它引入了面向对象范式（OOP）的一个重要特征，即继承。 它通过让子类型从可扩展的父类型派生出来，实现了代码的可重用性。 <code class="docutils literal notranslate"><span class="pre">type,</span> <span class="pre">extends(parent)</span> <span class="pre">::</span> <span class="pre">child</span></code>。 这里，<code class="docutils literal notranslate"><span class="pre">child</span></code> 继承了 <code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">::</span> <span class="pre">parent</span></code> 的所有成员和功能。</p>
 <p>有属性 <code class="docutils literal notranslate"><span class="pre">extends</span></code> 的例子：</p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20m_employee%0A%20%20implicit%20none%0A%20%20private%0A%20%20public%20t_date%2C%20t_address%2C%20t_person%2C%20t_employee%0A%20%20%21%20Note%20another%20way%20of%20using%20the%20public%20attribute%3A%0A%20%20%21%20gathering%20all%20public%20data%20types%20in%20one%20place.%0A%0A%20%20type%20%3A%3A%20t_date%0A%20%20%20%20integer%20%3A%3A%20year%2C%20month%2C%20day%0A%20%20end%20type%0A%0A%20%20type%20%3A%3A%20t_address%0A%20%20%20%20character%28len%3D%3A%29%2C%20allocatable%20%3A%3A%20city%2C%20road_name%0A%20%20%20%20integer%20%3A%3A%20house_number%0A%20%20end%20type%0A%0A%20%20type%2C%20extends%28t_address%29%20%3A%3A%20t_person%0A%20%20%20%20character%28len%3D%3A%29%2C%20allocatable%20%3A%3A%20first_name%2C%20last_name%2C%20e_mail%0A%20%20end%20type%0A%0A%20%20type%2C%20extends%28t_person%29%20%20%3A%3A%20t_employee%0A%20%20%20%20type%28t_date%29%20%3A%3A%20hired_date%0A%20%20%20%20character%28len%3D%3A%29%2C%20allocatable%20%3A%3A%20position%0A%20%20%20%20real%20%3A%3A%20monthly_salary%0A%20%20end%20type%0A%0Aend%20module%20m_employee%0A%0Aprogram%20test_employee%0A%20%20use%20m_employee%0A%20%20implicit%20none%0A%20%20type%28t_employee%29%20%3A%3A%20employee%0A%0A%20%20%21%20Initialization%0A%0A%20%20%21%20t_employee%20has%20access%20to%20type%28t_date%29%20members%20not%20because%20of%20extends%0A%20%20%21%20but%20because%20a%20type%28t_date%29%20was%20declared%20within%20t_employee.%0A%20%20employee%25hired_date%25year%20%20%3D%202020%0A%20%20employee%25hired_date%25month%20%3D%201%0A%20%20employee%25hired_date%25day%20%20%20%3D%2020%0A%0A%20%20%21%20t_employee%20has%20access%20to%20t_person%2C%20and%20inherits%20its%20members%20due%20to%20extends.%0A%20%20employee%25first_name%20%3D%20%27John%27%0A%20%20employee%25last_name%20%20%3D%20%27Doe%27%0A%0A%20%20%21%20t_employee%20has%20access%20to%20t_address%2C%20because%20it%20inherits%20from%20t_person%2C%0A%20%20%21%20which%20in%20return%20inherits%20from%20t_address.%0A%20%20employee%25city%20%20%20%20%20%20%20%20%20%3D%20%27London%27%0A%20%20employee%25road_name%20%20%20%20%3D%20%27BigBen%27%0A%20%20employee%25house_number%20%3D%201%0A%0A%20%20%21%20t_employee%20has%20access%20to%20its%20defined%20members.%0A%20%20employee%25position%20%20%20%20%20%20%20%3D%20%27Intern%27%0A%20%20employee%25monthly_salary%20%3D%200.0%0A%0Aend%20program%20test_employee' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id6" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20m_employee%0A%20%20implicit%20none%0A%20%20private%0A%20%20public%20t_date%2C%20t_address%2C%20t_person%2C%20t_employee%0A%20%20%21%20Note%20another%20way%20of%20using%20the%20public%20attribute%3A%0A%20%20%21%20gathering%20all%20public%20data%20types%20in%20one%20place.%0A%0A%20%20type%20%3A%3A%20t_date%0A%20%20%20%20integer%20%3A%3A%20year%2C%20month%2C%20day%0A%20%20end%20type%0A%0A%20%20type%20%3A%3A%20t_address%0A%20%20%20%20character%28len%3D%3A%29%2C%20allocatable%20%3A%3A%20city%2C%20road_name%0A%20%20%20%20integer%20%3A%3A%20house_number%0A%20%20end%20type%0A%0A%20%20type%2C%20extends%28t_address%29%20%3A%3A%20t_person%0A%20%20%20%20character%28len%3D%3A%29%2C%20allocatable%20%3A%3A%20first_name%2C%20last_name%2C%20e_mail%0A%20%20end%20type%0A%0A%20%20type%2C%20extends%28t_person%29%20%20%3A%3A%20t_employee%0A%20%20%20%20type%28t_date%29%20%3A%3A%20hired_date%0A%20%20%20%20character%28len%3D%3A%29%2C%20allocatable%20%3A%3A%20position%0A%20%20%20%20real%20%3A%3A%20monthly_salary%0A%20%20end%20type%0A%0Aend%20module%20m_employee%0A%0Aprogram%20test_employee%0A%20%20use%20m_employee%0A%20%20implicit%20none%0A%20%20type%28t_employee%29%20%3A%3A%20employee%0A%0A%20%20%21%20Initialization%0A%0A%20%20%21%20t_employee%20has%20access%20to%20type%28t_date%29%20members%20not%20because%20of%20extends%0A%20%20%21%20but%20because%20a%20type%28t_date%29%20was%20declared%20within%20t_employee.%0A%20%20employee%25hired_date%25year%20%20%3D%202020%0A%20%20employee%25hired_date%25month%20%3D%201%0A%20%20employee%25hired_date%25day%20%20%20%3D%2020%0A%0A%20%20%21%20t_employee%20has%20access%20to%20t_person%2C%20and%20inherits%20its%20members%20due%20to%20extends.%0A%20%20employee%25first_name%20%3D%20%27John%27%0A%20%20employee%25last_name%20%20%3D%20%27Doe%27%0A%0A%20%20%21%20t_employee%20has%20access%20to%20t_address%2C%20because%20it%20inherits%20from%20t_person%2C%0A%20%20%21%20which%20in%20return%20inherits%20from%20t_address.%0A%20%20employee%25city%20%20%20%20%20%20%20%20%20%3D%20%27London%27%0A%20%20employee%25road_name%20%20%20%20%3D%20%27BigBen%27%0A%20%20employee%25house_number%20%3D%201%0A%0A%20%20%21%20t_employee%20has%20access%20to%20its%20defined%20members.%0A%20%20employee%25position%20%20%20%20%20%20%20%3D%20%27Intern%27%0A%20%20employee%25monthly_salary%20%3D%200.0%0A%0Aend%20program%20test_employee' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id6" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">m_employee</span>
 <span class="w">  </span><span class="k">implicit none</span>
 <span class="k">  private</span>
@@ -896,7 +896,7 @@
 </div>
 </section>
 <section id="options-to-declare-members-of-a-derived-type">
-<h2>用于声明派生类型成员的选项<a class="headerlink" href="#options-to-declare-members-of-a-derived-type" title="Link to this heading">#</a></h2>
+<h2>用于声明派生类型成员的选项<a class="headerlink" href="#options-to-declare-members-of-a-derived-type" title="链接到此标题。">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">[member-variables]</span></code> 指的是所有成员数据类型的声明。 这些数据类型可以是任何内置的数据类型，和/或其它派生类型，正如在上述例子中已经展示的。 然而，成员变量可以有自己广泛的语法，其形式为：<code class="docutils literal notranslate"><span class="pre">type</span> <span class="pre">[,member-attributes]</span> <span class="pre">::</span> <span class="pre">name[attr-dependent-spec][init]</span></code></p>
 <p><code class="docutils literal notranslate"><span class="pre">type</span></code>：任何内置类型或其它派生类型</p>
 <p><code class="docutils literal notranslate"><span class="pre">member-attributes</span></code>（可选）：</p>
@@ -925,14 +925,14 @@
 </div></blockquote>
 </section>
 <section id="type-bound-procedures">
-<h2>类型绑定过程<a class="headerlink" href="#type-bound-procedures" title="Link to this heading">#</a></h2>
+<h2>类型绑定过程<a class="headerlink" href="#type-bound-procedures" title="链接到此标题。">#</a></h2>
 <p>派生类型可以包含_绑定_到它的函数或子例程。我们将它们称为_类型绑定过程_。类型绑定过程遵循 <code class="docutils literal notranslate"><span class="pre">contains</span></code> 语句，而该语句又遵循所有成员变量声明。</p>
 <blockquote>
 <div><p>如果不深入研究现代 Fortran 的 OOP 特性，就不可能完整地描述类型绑定过程。现在我们将专注于一个简单的例子来展示它们的基本用法。</p>
 </div></blockquote>
 <p>这是具有基本类型绑定过程的派生类型的示例：</p>
 <div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20m_shapes%0A%20%20implicit%20none%0A%20%20private%0A%20%20public%20t_square%0A%0A%20%20type%20%3A%3A%20t_square%0A%20%20real%20%3A%3A%20side%0A%20%20contains%0A%20%20%20%20procedure%20%3A%3A%20area%20%20%21%20procedure%20declaration%0A%20%20end%20type%0A%0Acontains%0A%0A%20%20%21%20Procedure%20definition%0A%20%20real%20function%20area%28self%29%20result%28res%29%0A%20%20%20%20class%28t_square%29%2C%20intent%28in%29%20%3A%3A%20self%0A%20%20%20%20res%20%3D%20self%25side%2A%2A2%0A%20%20end%20function%0A%0Aend%20module%20m_shapes%0A%0Aprogram%20main%0A%20%20use%20m_shapes%0A%20%20implicit%20none%0A%0A%20%20%21%20Variables%27%20declaration%0A%20%20type%28t_square%29%20%3A%3A%20sq%0A%20%20real%20%3A%3A%20x%2C%20side%0A%0A%20%20%21%20Variables%27%20initialization%0A%20%20side%20%3D%200.5%0A%20%20sq%25side%20%3D%20side%0A%0A%20%20x%20%3D%20sq%25area%28%29%0A%20%20%21%20self%20does%20not%20appear%20here%2C%20it%20has%20been%20passed%20implicitly%0A%0A%20%20%21%20Do%20stuff%20with%20x...%0A%0Aend%20program%20main' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id7" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20m_shapes%0A%20%20implicit%20none%0A%20%20private%0A%20%20public%20t_square%0A%0A%20%20type%20%3A%3A%20t_square%0A%20%20real%20%3A%3A%20side%0A%20%20contains%0A%20%20%20%20procedure%20%3A%3A%20area%20%20%21%20procedure%20declaration%0A%20%20end%20type%0A%0Acontains%0A%0A%20%20%21%20Procedure%20definition%0A%20%20real%20function%20area%28self%29%20result%28res%29%0A%20%20%20%20class%28t_square%29%2C%20intent%28in%29%20%3A%3A%20self%0A%20%20%20%20res%20%3D%20self%25side%2A%2A2%0A%20%20end%20function%0A%0Aend%20module%20m_shapes%0A%0Aprogram%20main%0A%20%20use%20m_shapes%0A%20%20implicit%20none%0A%0A%20%20%21%20Variables%27%20declaration%0A%20%20type%28t_square%29%20%3A%3A%20sq%0A%20%20real%20%3A%3A%20x%2C%20side%0A%0A%20%20%21%20Variables%27%20initialization%0A%20%20side%20%3D%200.5%0A%20%20sq%25side%20%3D%20side%0A%0A%20%20x%20%3D%20sq%25area%28%29%0A%20%20%21%20self%20does%20not%20appear%20here%2C%20it%20has%20been%20passed%20implicitly%0A%0A%20%20%21%20Do%20stuff%20with%20x...%0A%0Aend%20program%20main' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id7" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">m_shapes</span>
 <span class="w">  </span><span class="k">implicit none</span>
 <span class="k">  private</span>
@@ -1072,7 +1072,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3创建。
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0创建。
     <br/>
   </p>
 </div>

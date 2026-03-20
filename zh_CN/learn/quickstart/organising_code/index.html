@@ -42,11 +42,11 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=5eee97a6"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
-    <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/translations.js?v=540d3cec"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/quickstart/organising_code';</script>
     <script>
@@ -682,7 +682,7 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="organising-code-structure">
-<h1>组织代码结构<a class="headerlink" href="#organising-code-structure" title="Link to this heading">#</a></h1>
+<h1>组织代码结构<a class="headerlink" href="#organising-code-structure" title="链接到此标题。">#</a></h1>
 <p>大多数编程语言允许你将常用代码收集到 <em>procedures</em> 中，这些代码可以通过从其它代码部分 <em>calling</em> 来重用。</p>
 <p>Fortran 有两种形式的过程：</p>
 <ul class="simple">
@@ -692,11 +692,11 @@
 <p>子程序和函数都可以通过 <em>argument association</em> 访问父范围内的变量；除非指定了 <code class="docutils literal notranslate"><span class="pre">value</span></code> 属性，否则这类似于按引用调用。</p>
 </section>
 <section class="tex2jax_ignore mathjax_ignore" id="subroutines">
-<h1>子程序<a class="headerlink" href="#subroutines" title="Link to this heading">#</a></h1>
+<h1>子程序<a class="headerlink" href="#subroutines" title="链接到此标题。">#</a></h1>
 <p>子程序输入参数，称为 <em>dummy arguments</em>，在子程序名称后面的括号中指定；虚拟参数类型和属性在子例程的主体中声明，就像局部变量一样。</p>
 <p><strong>例子：</strong></p>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=%21%20Print%20matrix%20A%20to%20screen%0Asubroutine%20print_matrix%28n%2Cm%2CA%29%0A%20%20implicit%20none%0A%20%20integer%2C%20intent%28in%29%20%3A%3A%20n%0A%20%20integer%2C%20intent%28in%29%20%3A%3A%20m%0A%20%20real%2C%20intent%28in%29%20%3A%3A%20A%28n%2C%20m%29%0A%0A%20%20integer%20%3A%3A%20i%0A%0A%20%20do%20i%20%3D%201%2C%20n%0A%20%20%20%20print%20%2A%2C%20A%28i%2C%201%3Am%29%0A%20%20end%20do%0A%0Aend%20subroutine%20print_matrix' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=%21%20Print%20matrix%20A%20to%20screen%0Asubroutine%20print_matrix%28n%2Cm%2CA%29%0A%20%20implicit%20none%0A%20%20integer%2C%20intent%28in%29%20%3A%3A%20n%0A%20%20integer%2C%20intent%28in%29%20%3A%3A%20m%0A%20%20real%2C%20intent%28in%29%20%3A%3A%20A%28n%2C%20m%29%0A%0A%20%20integer%20%3A%3A%20i%0A%0A%20%20do%20i%20%3D%201%2C%20n%0A%20%20%20%20print%20%2A%2C%20A%28i%2C%201%3Am%29%0A%20%20end%20do%0A%0Aend%20subroutine%20print_matrix' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id1" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! Print matrix A to screen</span>
 <span class="k">subroutine </span><span class="n">print_matrix</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">m</span><span class="p">,</span><span class="n">A</span><span class="p">)</span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -720,7 +720,7 @@
 </div></blockquote>
 <p>我们可以使用 <code class="docutils literal notranslate"><span class="pre">call</span></code> 语句从程序中调用此子例程：</p>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20call_sub%0A%20%20implicit%20none%0A%0A%20%20real%20%3A%3A%20mat%2810%2C%2020%29%0A%0A%20%20mat%28%3A%2C%3A%29%20%3D%200.0%0A%0A%20%20call%20print_matrix%2810%2C%2020%2C%20mat%29%0A%0Aend%20program%20call_sub' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20call_sub%0A%20%20implicit%20none%0A%0A%20%20real%20%3A%3A%20mat%2810%2C%2020%29%0A%0A%20%20mat%28%3A%2C%3A%29%20%3D%200.0%0A%0A%20%20call%20print_matrix%2810%2C%2020%2C%20mat%29%0A%0Aend%20program%20call_sub' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">call_sub</span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -738,9 +738,9 @@
 <div><p>这个例子使用了一个所谓的 <em>explicit-shape</em> 数组参数，因为我们传递了额外的变量来描述数组 <code class="docutils literal notranslate"><span class="pre">A</span></code> 的维度；如果我们将子例程放在后面描述的模块中，这将不是必需的。</p>
 </div></blockquote>
 <section id="functions">
-<h2>函数<a class="headerlink" href="#functions" title="Link to this heading">#</a></h2>
+<h2>函数<a class="headerlink" href="#functions" title="链接到此标题。">#</a></h2>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=%21%20L2%20Norm%20of%20a%20vector%0Afunction%20vector_norm%28n%2Cvec%29%20result%28norm%29%0A%20%20implicit%20none%0A%20%20integer%2C%20intent%28in%29%20%3A%3A%20n%0A%20%20real%2C%20intent%28in%29%20%3A%3A%20vec%28n%29%0A%20%20real%20%3A%3A%20norm%0A%0A%20%20norm%20%3D%20sqrt%28sum%28vec%2A%2A2%29%29%0A%0Aend%20function%20vector_norm' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=%21%20L2%20Norm%20of%20a%20vector%0Afunction%20vector_norm%28n%2Cvec%29%20result%28norm%29%0A%20%20implicit%20none%0A%20%20integer%2C%20intent%28in%29%20%3A%3A%20n%0A%20%20real%2C%20intent%28in%29%20%3A%3A%20vec%28n%29%0A%20%20real%20%3A%3A%20norm%0A%0A%20%20norm%20%3D%20sqrt%28sum%28vec%2A%2A2%29%29%0A%0Aend%20function%20vector_norm' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="c">! L2 Norm of a vector</span>
 <span class="k">function </span><span class="n">vector_norm</span><span class="p">(</span><span class="n">n</span><span class="p">,</span><span class="n">vec</span><span class="p">)</span><span class="w"> </span><span class="k">result</span><span class="p">(</span><span class="n">norm</span><span class="p">)</span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -759,7 +759,7 @@
 </div></blockquote>
 <p>要执行此函数：</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20run_fcn%0A%20%20implicit%20none%0A%0A%20%20real%20%3A%3A%20v%289%29%0A%20%20real%20%3A%3A%20vector_norm%0A%0A%20%20v%28%3A%29%20%3D%209%0A%0A%20%20print%20%2A%2C%20%27Vector%20norm%20%3D%20%27%2C%20vector_norm%289%2Cv%29%0A%0Aend%20program%20run_fcn' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20run_fcn%0A%20%20implicit%20none%0A%0A%20%20real%20%3A%3A%20v%289%29%0A%20%20real%20%3A%3A%20vector_norm%0A%0A%20%20v%28%3A%29%20%3D%209%0A%0A%20%20print%20%2A%2C%20%27Vector%20norm%20%3D%20%27%2C%20vector_norm%289%2Cv%29%0A%0Aend%20program%20run_fcn' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id4" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">run_fcn</span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -779,7 +779,7 @@
 </div></blockquote>
 </section>
 <section id="modules">
-<h2>模块<a class="headerlink" href="#modules" title="Link to this heading">#</a></h2>
+<h2>模块<a class="headerlink" href="#modules" title="链接到此标题。">#</a></h2>
 <p>Fortran 模块包含程序、过程和其它模块可以通过 <code class="docutils literal notranslate"><span class="pre">use</span></code> 语句访问的定义。它们可以包含数据对象、类型定义、过程和接口。</p>
 <ul class="simple">
 <li><p>模块允许受控范围扩展，从而明确实体访问</p></li>
@@ -790,7 +790,7 @@
 </div></blockquote>
 <p><strong>例子：</strong></p>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20my_mod%0A%20%20implicit%20none%0A%0A%20%20private%20%20%21%20All%20entities%20are%20now%20module-private%20by%20default%0A%20%20public%20public_var%2C%20print_matrix%20%20%21%20Explicitly%20export%20public%20entities%0A%0A%20%20real%2C%20parameter%20%3A%3A%20public_var%20%3D%202%0A%20%20integer%20%3A%3A%20private_var%0A%0Acontains%0A%0A%20%20%21%20Print%20matrix%20A%20to%20screen%0A%20%20subroutine%20print_matrix%28A%29%0A%20%20%20%20real%2C%20intent%28in%29%20%3A%3A%20A%28%3A%2C%3A%29%20%20%21%20An%20assumed-shape%20dummy%20argument%0A%0A%20%20%20%20integer%20%3A%3A%20i%0A%0A%20%20%20%20do%20i%20%3D%201%2C%20size%28A%2C1%29%0A%20%20%20%20%20%20print%20%2A%2C%20A%28i%2C%3A%29%0A%20%20%20%20end%20do%0A%0A%20%20end%20subroutine%20print_matrix%0A%0Aend%20module%20my_mod' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20my_mod%0A%20%20implicit%20none%0A%0A%20%20private%20%20%21%20All%20entities%20are%20now%20module-private%20by%20default%0A%20%20public%20public_var%2C%20print_matrix%20%20%21%20Explicitly%20export%20public%20entities%0A%0A%20%20real%2C%20parameter%20%3A%3A%20public_var%20%3D%202%0A%20%20integer%20%3A%3A%20private_var%0A%0Acontains%0A%0A%20%20%21%20Print%20matrix%20A%20to%20screen%0A%20%20subroutine%20print_matrix%28A%29%0A%20%20%20%20real%2C%20intent%28in%29%20%3A%3A%20A%28%3A%2C%3A%29%20%20%21%20An%20assumed-shape%20dummy%20argument%0A%0A%20%20%20%20integer%20%3A%3A%20i%0A%0A%20%20%20%20do%20i%20%3D%201%2C%20size%28A%2C1%29%0A%20%20%20%20%20%20print%20%2A%2C%20A%28i%2C%3A%29%0A%20%20%20%20end%20do%0A%0A%20%20end%20subroutine%20print_matrix%0A%0Aend%20module%20my_mod' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id5" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">my_mod</span>
 <span class="w">  </span><span class="k">implicit none</span>
 
@@ -826,7 +826,7 @@ explicit interface for us. This results in a much simpler subroutine interface.<
 </div></blockquote>
 <p>要在程序中 <code class="docutils literal notranslate"><span class="pre">use</span></code> 模块：</p>
 <div class="literal-block-wrapper docutils container" id="id6">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20use_mod%0A%20%20use%20my_mod%0A%20%20implicit%20none%0A%0A%20%20real%20%3A%3A%20mat%2810%2C%2010%29%0A%0A%20%20mat%28%3A%2C%3A%29%20%3D%20public_var%0A%0A%20%20call%20print_matrix%28mat%29%0A%0Aend%20program%20use_mod' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id6" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20use_mod%0A%20%20use%20my_mod%0A%20%20implicit%20none%0A%0A%20%20real%20%3A%3A%20mat%2810%2C%2010%29%0A%0A%20%20mat%28%3A%2C%3A%29%20%3D%20public_var%0A%0A%20%20call%20print_matrix%28mat%29%0A%0Aend%20program%20use_mod' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id6" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">use_mod</span>
 <span class="w">  </span><span class="k">use </span><span class="n">my_mod</span>
 <span class="w">  </span><span class="k">implicit none</span>
@@ -843,14 +843,14 @@ explicit interface for us. This results in a much simpler subroutine interface.<
 </div>
 <p><strong>示例：</strong> 显式导入列表</p>
 <div class="literal-block-wrapper docutils container" id="id7">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=use%20my_mod%2C%20only%3A%20public_var' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id7" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=use%20my_mod%2C%20only%3A%20public_var' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id7" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use </span><span class="n">my_mod</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">public_var</span>
 </pre></div>
 </div>
 </div>
 <p><strong>示例：</strong> 别名导入</p>
 <div class="literal-block-wrapper docutils container" id="id8">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=use%20my_mod%2C%20only%3A%20printMat%3D%3Eprint_matrix' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id8" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=use%20my_mod%2C%20only%3A%20printMat%3D%3Eprint_matrix' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id8" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">use </span><span class="n">my_mod</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">printMat</span><span class="o">=&gt;</span><span class="n">print_matrix</span>
 </pre></div>
 </div>
@@ -860,10 +860,10 @@ explicit interface for us. This results in a much simpler subroutine interface.<
 </div></blockquote>
 </section>
 <section id="optional-arguments">
-<h2>Optional arguments<a class="headerlink" href="#optional-arguments" title="Link to this heading">#</a></h2>
+<h2>Optional arguments<a class="headerlink" href="#optional-arguments" title="链接到此标题。">#</a></h2>
 <p>An advantage of placing subroutines and functions in modules is that they can have <code class="docutils literal notranslate"><span class="pre">optional</span></code> arguments. In a procedure with an argument declared optional, the <code class="docutils literal notranslate"><span class="pre">present</span></code> function is used to test if the argument was set in the caller. Optional arguments that are not present may not be accessed within the procedure. Here is a generalization of the <code class="docutils literal notranslate"><span class="pre">vector_norm</span></code> function that can use powers other than 2 to compute the Lp norm.</p>
 <div class="literal-block-wrapper docutils container" id="id9">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20norm_mod%0A%20%20implicit%20none%0A%20%20contains%0A%20%20function%20vector_norm%28vec%2Cp%29%20result%28norm%29%0A%20%20%20%20real%2C%20intent%28in%29%20%3A%3A%20vec%28%3A%29%0A%20%20%20%20integer%2C%20intent%28in%29%2C%20optional%20%3A%3A%20p%20%21%20power%0A%20%20%20%20real%20%3A%3A%20norm%0A%20%20%20%20if%20%28present%28p%29%29%20then%20%21%20compute%20Lp%20norm%0A%20%20%20%20%20%20norm%20%3D%20sum%28abs%28vec%29%2A%2Ap%29%20%2A%2A%20%281.0/p%29%0A%20%20%20%20else%20%21%20compute%20L2%20norm%0A%20%20%20%20%20%20norm%20%3D%20sqrt%28sum%28vec%2A%2A2%29%29%0A%20%20%20%20end%20if%0A%20%20end%20function%20vector_norm%0Aend%20module%20norm_mod%0A%0Aprogram%20run_fcn%0A%20%20use%20norm_mod%0A%20%20implicit%20none%0A%0A%20%20real%20%3A%3A%20v%289%29%0A%0A%20%20v%28%3A%29%20%3D%209%0A%0A%20%20print%20%2A%2C%20%27Vector%20norm%20%3D%20%27%2C%20vector_norm%28v%29%2C%20vector_norm%28v%2C2%29%0A%20%20print%20%2A%2C%20%27L1%20norm%20%3D%20%27%2C%20vector_norm%28v%2C1%29%0A%0Aend%20program%20run_fcn' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id9" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=module%20norm_mod%0A%20%20implicit%20none%0A%20%20contains%0A%20%20function%20vector_norm%28vec%2Cp%29%20result%28norm%29%0A%20%20%20%20real%2C%20intent%28in%29%20%3A%3A%20vec%28%3A%29%0A%20%20%20%20integer%2C%20intent%28in%29%2C%20optional%20%3A%3A%20p%20%21%20power%0A%20%20%20%20real%20%3A%3A%20norm%0A%20%20%20%20if%20%28present%28p%29%29%20then%20%21%20compute%20Lp%20norm%0A%20%20%20%20%20%20norm%20%3D%20sum%28abs%28vec%29%2A%2Ap%29%20%2A%2A%20%281.0/p%29%0A%20%20%20%20else%20%21%20compute%20L2%20norm%0A%20%20%20%20%20%20norm%20%3D%20sqrt%28sum%28vec%2A%2A2%29%29%0A%20%20%20%20end%20if%0A%20%20end%20function%20vector_norm%0Aend%20module%20norm_mod%0A%0Aprogram%20run_fcn%0A%20%20use%20norm_mod%0A%20%20implicit%20none%0A%0A%20%20real%20%3A%3A%20v%289%29%0A%0A%20%20v%28%3A%29%20%3D%209%0A%0A%20%20print%20%2A%2C%20%27Vector%20norm%20%3D%20%27%2C%20vector_norm%28v%29%2C%20vector_norm%28v%2C2%29%0A%20%20print%20%2A%2C%20%27L1%20norm%20%3D%20%27%2C%20vector_norm%28v%2C1%29%0A%0Aend%20program%20run_fcn' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id9" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">norm_mod</span>
 <span class="w">  </span><span class="k">implicit none</span>
 <span class="k">  contains</span>
@@ -967,7 +967,7 @@ explicit interface for us. This results in a much simpler subroutine interface.<
         <div class="footer-item">
 
   <p class="sphinx-version">
-    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3创建。
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0创建。
     <br/>
   </p>
 </div>

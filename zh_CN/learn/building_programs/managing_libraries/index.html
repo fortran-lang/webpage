@@ -42,11 +42,11 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=5eee97a6"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
-    <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/translations.js?v=540d3cec"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/building_programs/managing_libraries';</script>
     <script>
@@ -682,7 +682,7 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="managing-libraries-static-and-dynamic-libraries">
-<h1>管理库（静态和动态库）<a class="headerlink" href="#managing-libraries-static-and-dynamic-libraries" title="Link to this heading">#</a></h1>
+<h1>管理库（静态和动态库）<a class="headerlink" href="#managing-libraries-static-and-dynamic-libraries" title="链接到此标题。">#</a></h1>
 <p>如果你需要管理一个由几十个源文件构建的程序（这并不少见！），指定所有目标文件所需的命令行将会非常长。这很快就变得乏味，甚至不可能维护。因此有一个不同的解决方案：创建自己的库。</p>
 <p>库以紧凑的形式包含任意数量的目标文件，因此命令行变得更短：</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">$ </span>gfortran<span class="w"> </span>-o<span class="w"> </span>tabulate<span class="w"> </span>tabulate.f90<span class="w"> </span>functions.o<span class="w"> </span>supportlib.a
@@ -712,7 +712,7 @@
 </ul>
 <p>使用库，你可以构建非常大的程序，而无需求助于极长的命令行。</p>
 <section id="static-versus-dynamic-libraries">
-<h2>静态库与动态库<a class="headerlink" href="#static-versus-dynamic-libraries" title="Link to this heading">#</a></h2>
+<h2>静态库与动态库<a class="headerlink" href="#static-versus-dynamic-libraries" title="链接到此标题。">#</a></h2>
 <p>上面的讨论默认你使用的是所谓的静态库。静态库（或至少部分内容）成为可执行程序的组成部分。更改程序中包含的例程的唯一方法是使用新版本的库重新构建程序。</p>
 <p>一种灵活的替代方法是使用所谓的动态库。这些库保留在可执行程序之外，因此可以在不重建整个程序的情况下进行替换。编译器甚至操作系统本身都严重依赖于这样的动态库。你可以将动态库视为一种需要一些帮助才能运行的可执行程序。</p>
 <p>构建动态库与构建静态库的工作方式略有不同：你使用编译器/链接器而不是像 <code class="docutils literal notranslate"><span class="pre">ar</span></code> 或 <code class="docutils literal notranslate"><span class="pre">lib</span></code> 这样的工具。</p>
@@ -747,7 +747,7 @@
 <p>由于每个编译器的细节不同，这里有两个例子：Cygwin 上的 gfortran 和 Windows 上的 Intel Fortran。在这两种情况下，我们都会查看文件“tabulate.f90”中的 <code class="docutils literal notranslate"><span class="pre">tabulate</span></code> 程序。</p>
 </section>
 <section id="gnu-linux-and-gfortran">
-<h2>GNU/Linux 和 gfortran<a class="headerlink" href="#gnu-linux-and-gfortran" title="Link to this heading">#</a></h2>
+<h2>GNU/Linux 和 gfortran<a class="headerlink" href="#gnu-linux-and-gfortran" title="链接到此标题。">#</a></h2>
 <p><code class="docutils literal notranslate"><span class="pre">tabulate</span></code> 程序需要一个用户定义的例程 <code class="docutils literal notranslate"><span class="pre">f</span></code>。如果我们让它驻留在动态库中，比如“functions.dll”，我们可以通过在目录中放置另一个动态库来简单地替换函数的实现。无需像这样重建程序。</p>
 <p>在 Cygwin 上，没有必要显式导出一个过程——当你构建一个动态库时，所有公开可见的例程都会被导出。此外，不会生成导入库。</p>
 <p>由于我们的动态库可以从单个源文件构建，我们可以走捷径：</p>
@@ -775,7 +775,7 @@
 <p>你可以用另一个替换共享库 “functions.dll”，实现不同的函数 “f”。当然，你需要小心为该功能使用正确的接口。编译器/链接器不再被调用，因此它们无法进行检查。</p>
 </section>
 <section id="windows-and-intel-fortran">
-<h2>Windows和Intel Fortran<a class="headerlink" href="#windows-and-intel-fortran" title="Link to this heading">#</a></h2>
+<h2>Windows和Intel Fortran<a class="headerlink" href="#windows-and-intel-fortran" title="链接到此标题。">#</a></h2>
 <p>设置与 Linux 相同，但在 Windows 上需要显式导出例程。并且生成了一个导入库——这是应该在链接步骤中使用的库。</p>
 <p>源文件必须包含编译器指令，否则函数 <code class="docutils literal notranslate"><span class="pre">f</span></code> 不会被导出：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="kt">real </span><span class="k">function </span><span class="n">f</span><span class="p">(</span><span class="w"> </span><span class="n">x</span><span class="w"> </span><span class="p">)</span>
@@ -862,7 +862,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3创建。
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0创建。
     <br/>
   </p>
 </div>

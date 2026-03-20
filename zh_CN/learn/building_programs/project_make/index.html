@@ -42,11 +42,11 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=5eee97a6"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
-    <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/translations.js?v=540d3cec"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/building_programs/project_make';</script>
     <script>
@@ -682,7 +682,7 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="an-introduction-to-make">
-<h1>一个make的介绍<a class="headerlink" href="#an-introduction-to-make" title="Link to this heading">#</a></h1>
+<h1>一个make的介绍<a class="headerlink" href="#an-introduction-to-make" title="链接到此标题。">#</a></h1>
 <p>我们简要讨论了 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的基础知识。本章给出了为大型项目扩展 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的想法和策略。</p>
 <p>在详细讨论<code class="docutils literal notranslate"><span class="pre">make</span></code>之前，请考虑以下几点:</p>
 <ol class="arabic simple">
@@ -697,7 +697,7 @@
 <p>即使你发现 <code class="docutils literal notranslate"><span class="pre">make</span></code> 不适合构建你的项目，它也是自动化由文件定义的工作流的工具。也许你可以在不同的环境中利用它的力量。</p>
 </div>
 <section id="getting-started">
-<h2>开始<a class="headerlink" href="#getting-started" title="Link to this heading">#</a></h2>
+<h2>开始<a class="headerlink" href="#getting-started" title="链接到此标题。">#</a></h2>
 <p>对于这一部分，我们将使用 <a href="https://github.com/jacobwilliams/fortran-csv-module/tree/1.2.0" target="_blank" rel="noopener"> Fortran CSV 模块（ v1.2.0)</a>。我们的目标是编写一个 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 来将此项目编译为一个静态库。首先克隆存储库</p>
 <div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">git</span> <span class="n">clone</span> <span class="n">https</span><span class="p">:</span><span class="o">//</span><span class="n">github</span><span class="o">.</span><span class="n">com</span><span class="o">/</span><span class="n">jacobwilliams</span><span class="o">/</span><span class="n">fortran</span><span class="o">-</span><span class="n">csv</span><span class="o">-</span><span class="n">module</span> <span class="o">-</span><span class="n">b</span> <span class="mf">1.2.0</span>
 <span class="n">cd</span> <span class="n">fortran</span><span class="o">-</span><span class="n">csv</span><span class="o">-</span><span class="n">module</span>
@@ -809,7 +809,7 @@ gfortran -o src/tests/csv_write_test.exe src/tests/csv_write_test.f90.o libcsv.a
 <p>有几点需要注意，<code class="docutils literal notranslate"><span class="pre">make</span></code> 构建通常会交织构建工件和源代码，除非你在实现构建目录方面付出了额外的努力。此外，现在源文件和依赖项是明确指定的，即使对于这样一个简单的项目，这也会导致多行。</p>
 </section>
 <section id="automatically-generated-dependencies">
-<h2>自动生成的依赖<a class="headerlink" href="#automatically-generated-dependencies" title="Link to this heading">#</a></h2>
+<h2>自动生成的依赖<a class="headerlink" href="#automatically-generated-dependencies" title="链接到此标题。">#</a></h2>
 <p>Fortran 的 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的主要缺点是缺少确定模块依赖关系的能力。这通常通过手动添加或使用外部工具自动扫描源代码来解决。一些编译器（如英特尔 Fortran 编译器）还提供生成 <code class="docutils literal notranslate"><span class="pre">make</span></code> 格式的依赖项。</p>
 <p>在深入研究依赖生成之前，我们将概述对依赖问题进行稳健处理的概念。首先，我们想要一种可以独立处理所有源文件的方法，而每个源文件都提供（<code class="docutils literal notranslate"><span class="pre">module</span></code>）或需要（<code class="docutils literal notranslate"><span class="pre">use</span></code>）模块。生成依赖项时，只知道源文件和模块文件的名称，不需要有关目标文件名称的信息。</p>
 <p>如果你检查上面的依赖项部分，你会注意到所有依赖项都是在目标文件而不是源文件之间定义的。为了改变这一点，我们可以从源文件和它们各自的目标文件中生成一个映射：</p>
@@ -1107,7 +1107,7 @@ gfortran -o src/tests/csv_write_test.exe src/tests/csv_write_test.f90.o libcsv.a
         <div class="footer-item">
 
   <p class="sphinx-version">
-    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3创建。
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0创建。
     <br/>
   </p>
 </div>

@@ -42,14 +42,14 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=5eee97a6"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
-    <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/translations.js?v=540d3cec"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>window.MathJax = {"options": {"processHtmlClass": "tex2jax_process|mathjax_process|math|output_area"}}</script>
-    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@3/es5/tex-mml-chtml.js"></script>
+    <script defer="defer" src="https://cdn.jsdelivr.net/npm/mathjax@4/tex-mml-chtml.js"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/quickstart/gotchas';</script>
     <script>
         DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
@@ -684,13 +684,13 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="gotchas">
-<h1>Gotchas<a class="headerlink" href="#gotchas" title="Link to this heading">#</a></h1>
+<h1>Gotchas<a class="headerlink" href="#gotchas" title="链接到此标题。">#</a></h1>
 <p>Fortran syntax is generally simple and consistent, but as with many languages it has some flaws. Sometimes because of legacy reasons (the evolution of the Fortran standard strongly emphasizes the backward compatibility because of the huge amount of legacy code that is still actively used), sometimes because of real flaws (poor choice at some point, which is difficult if not impossible to correct without breaking the backward compatibility), and sometimes just because Fortran is not C or C++ or Python or whatever: it has its own logic, with features that can sometimes be surprising to developers who are used to some other languages.</p>
 <p>All code snippets are compiled with gfortran 13.</p>
 <section id="implicit-typing">
-<h2>Implicit typing<a class="headerlink" href="#implicit-typing" title="Link to this heading">#</a></h2>
+<h2>Implicit typing<a class="headerlink" href="#implicit-typing" title="链接到此标题。">#</a></h2>
 <div class="literal-block-wrapper docutils container" id="id1">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20foo%0A%20%20%20%20integer%20%3A%3A%20nbofchildrenperwoman%2C%20nbofchildren%2C%20nbofwomen%0A%20%20%20%20nbofwomen%20%3D%2010%0A%20%20%20%20nbofchildrenperwoman%20%3D%202%0A%20%20%20%20nbofchildren%20%3D%20nbofwomen%20%2A%20nbofchildrenperwoman%0A%20%20%20%20print%2A%2C%20%22number%20of%20children%3A%22%2C%20nbofchildrem%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id1" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20foo%0A%20%20%20%20integer%20%3A%3A%20nbofchildrenperwoman%2C%20nbofchildren%2C%20nbofwomen%0A%20%20%20%20nbofwomen%20%3D%2010%0A%20%20%20%20nbofchildrenperwoman%20%3D%202%0A%20%20%20%20nbofchildren%20%3D%20nbofwomen%20%2A%20nbofchildrenperwoman%0A%20%20%20%20print%2A%2C%20%22number%20of%20children%3A%22%2C%20nbofchildrem%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id1" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">foo</span>
 <span class="w">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">nbofchildrenperwoman</span><span class="p">,</span><span class="w"> </span><span class="n">nbofchildren</span><span class="p">,</span><span class="w"> </span><span class="n">nbofwomen</span>
 <span class="w">    </span><span class="n">nbofwomen</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">10</span>
@@ -725,9 +725,9 @@ Error: Symbol &#39;nbofchildrem&#39; at (1) has no IMPLICIT type; did you mean &
 </div>
 </section>
 <section id="implied-save">
-<h2>Implied save<a class="headerlink" href="#implied-save" title="Link to this heading">#</a></h2>
+<h2>Implied save<a class="headerlink" href="#implied-save" title="链接到此标题。">#</a></h2>
 <div class="literal-block-wrapper docutils container" id="id2">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=subroutine%20foo%28%29%0Aimplicit%20none%0A%20%20%20%20integer%20%3A%3A%20c%3D0%0A%0A%20%20%20%20c%20%3D%20c%2B1%0A%20%20%20%20print%2A%2C%20c%0Aend%20subroutine%0A%0Aprogram%20main%0Aimplicit%20none%0A%20%20%20%20integer%20%3A%3A%20i%0A%0A%20%20%20%20do%20i%20%3D%201%2C%205%0A%20%20%20%20%20%20%20%20call%20foo%28%29%0A%20%20%20%20end%20do%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=subroutine%20foo%28%29%0Aimplicit%20none%0A%20%20%20%20integer%20%3A%3A%20c%3D0%0A%0A%20%20%20%20c%20%3D%20c%2B1%0A%20%20%20%20print%2A%2C%20c%0Aend%20subroutine%0A%0Aprogram%20main%0Aimplicit%20none%0A%20%20%20%20integer%20%3A%3A%20i%0A%0A%20%20%20%20do%20i%20%3D%201%2C%205%0A%20%20%20%20%20%20%20%20call%20foo%28%29%0A%20%20%20%20end%20do%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id2" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">subroutine </span><span class="n">foo</span><span class="p">()</span>
 <span class="k">implicit none</span>
 <span class="k">    </span><span class="kt">integer</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">c</span><span class="o">=</span><span class="mi">0</span>
@@ -780,10 +780,10 @@ Error: Symbol &#39;nbofchildrem&#39; at (1) has no IMPLICIT type; did you mean &
 <p><em>Here, the <code class="docutils literal notranslate"><span class="pre">c</span></code> component is initialized to zero each time a <code class="docutils literal notranslate"><span class="pre">type(bar)</span></code> variable is instantiated (<strong>runtime</strong> initialization).</em></p>
 </section>
 <section id="floating-point-literal-constants">
-<h2>Floating point literal constants<a class="headerlink" href="#floating-point-literal-constants" title="Link to this heading">#</a></h2>
+<h2>Floating point literal constants<a class="headerlink" href="#floating-point-literal-constants" title="链接到此标题。">#</a></h2>
 <p>The following code snippet defines a double precision constant <code class="docutils literal notranslate"><span class="pre">x</span></code> (which is on most systems a IEEE754 64 bits floating point, with 15 significant digits):</p>
 <div class="literal-block-wrapper docutils container" id="id3">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20foo%0Aimplicit%20none%0A%20%20%20%20integer%2C%20parameter%20%3A%3A%20dp%20%3D%20kind%280d0%29%0A%20%20%20%20real%28kind%3Ddp%29%2C%20parameter%20%3A%3A%20x%20%3D%209.3%0A%20%20%20%20print%2A%2C%20precision%28x%29%2C%20x%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20foo%0Aimplicit%20none%0A%20%20%20%20integer%2C%20parameter%20%3A%3A%20dp%20%3D%20kind%280d0%29%0A%20%20%20%20real%28kind%3Ddp%29%2C%20parameter%20%3A%3A%20x%20%3D%209.3%0A%20%20%20%20print%2A%2C%20precision%28x%29%2C%20x%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id3" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">foo</span>
 <span class="k">implicit none</span>
 <span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="mi">0</span><span class="n">d0</span><span class="p">)</span>
@@ -808,10 +808,10 @@ Error: Symbol &#39;nbofchildrem&#39; at (1) has no IMPLICIT type; did you mean &
 </div>
 </section>
 <section id="floating-point-literal-constants-again">
-<h2>Floating point literal constants (again)<a class="headerlink" href="#floating-point-literal-constants-again" title="Link to this heading">#</a></h2>
+<h2>Floating point literal constants (again)<a class="headerlink" href="#floating-point-literal-constants-again" title="链接到此标题。">#</a></h2>
 <p>Suppose now you need a floating point constant that is 1/3 (one-third). You may write:</p>
 <div class="literal-block-wrapper docutils container" id="id4">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20foo%0Aimplicit%20none%0A%20%20%20%20integer%2C%20parameter%20%3A%3A%20dp%20%3D%20kind%280d0%29%0A%20%20%20%20real%28dp%29%2C%20parameter%20%3A%3A%20onethird%20%3D%201_dp%20/%203_dp%0A%20%20%20%20print%2A%2C%20onethird%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id4" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20foo%0Aimplicit%20none%0A%20%20%20%20integer%2C%20parameter%20%3A%3A%20dp%20%3D%20kind%280d0%29%0A%20%20%20%20real%28dp%29%2C%20parameter%20%3A%3A%20onethird%20%3D%201_dp%20/%203_dp%0A%20%20%20%20print%2A%2C%20onethird%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id4" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">foo</span>
 <span class="k">implicit none</span>
 <span class="k">    </span><span class="kt">integer</span><span class="p">,</span><span class="w"> </span><span class="k">parameter</span><span class="w"> </span><span class="kd">::</span><span class="w"> </span><span class="n">dp</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="nb">kind</span><span class="p">(</span><span class="mi">0</span><span class="n">d0</span><span class="p">)</span>
@@ -836,9 +836,9 @@ Error: Symbol &#39;nbofchildrem&#39; at (1) has no IMPLICIT type; did you mean &
 </div>
 </section>
 <section id="leading-space-in-prints">
-<h2>Leading space in prints<a class="headerlink" href="#leading-space-in-prints" title="Link to this heading">#</a></h2>
+<h2>Leading space in prints<a class="headerlink" href="#leading-space-in-prints" title="链接到此标题。">#</a></h2>
 <div class="literal-block-wrapper docutils container" id="id5">
-<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20foo%0Aimplicit%20none%0A%20%20%20%20print%2A%2C%20%22Hello%20world%21%22%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id5" title="Link to this code">#</a></div>
+<div class="code-block-caption"><span class="caption-text"><a href='https://play.fortran-lang.org/?code=program%20foo%0Aimplicit%20none%0A%20%20%20%20print%2A%2C%20%22Hello%20world%21%22%0Aend%20program' target='_blank'>Fortran Playground</a></span><a class="headerlink" href="#id5" title="链接到此段代码">#</a></div>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">program </span><span class="n">foo</span>
 <span class="k">implicit none</span>
 <span class="k">    print</span><span class="o">*</span><span class="p">,</span><span class="w"> </span><span class="s2">&quot;Hello world!&quot;</span>
@@ -862,7 +862,7 @@ Error: Symbol &#39;nbofchildrem&#39; at (1) has no IMPLICIT type; did you mean &
 </div>
 </section>
 <section id="filename-extension">
-<h2>Filename extension<a class="headerlink" href="#filename-extension" title="Link to this heading">#</a></h2>
+<h2>Filename extension<a class="headerlink" href="#filename-extension" title="链接到此标题。">#</a></h2>
 <p>Suppose we put the above &quot;Hello world&quot; program in the source file <code class="docutils literal notranslate"><span class="pre">hello.f</span></code>. Most compilers will produce many compilation errors:</p>
 <div class="highlight-console notranslate"><div class="highlight"><pre><span></span><span class="gp">% </span>gfortran<span class="w"> </span>hello.f
 <span class="go">hello.f:1:1:</span>
@@ -957,7 +957,7 @@ Error: Symbol &#39;nbofchildrem&#39; at (1) has no IMPLICIT type; did you mean &
         <div class="footer-item">
 
   <p class="sphinx-version">
-    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3创建。
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0创建。
     <br/>
   </p>
 </div>

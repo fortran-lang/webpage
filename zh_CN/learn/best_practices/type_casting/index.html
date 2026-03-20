@@ -42,11 +42,11 @@
 <link rel="preload" as="script" href="../../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
 
     <script src="../../../_static/documentation_options.js?v=5eee97a6"></script>
-    <script src="../../../_static/doctools.js?v=9bcbadda"></script>
-    <script src="../../../_static/sphinx_highlight.js?v=dc90522c"></script>
+    <script src="../../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../../_static/sphinx_highlight.js?v=6ffebe34"></script>
     <script src="../../../_static/clipboard.min.js?v=a7894cd8"></script>
     <script src="../../../_static/copybutton.js?v=6dbb43f8"></script>
-    <script src="../../../_static/translations.js?v=beaddf03"></script>
+    <script src="../../../_static/translations.js?v=540d3cec"></script>
     <script src="../../../_static/design-tabs.js?v=f930bc37"></script>
     <script>DOCUMENTATION_OPTIONS.pagename = 'learn/best_practices/type_casting';</script>
     <script>
@@ -682,11 +682,11 @@
 <div id="searchbox"></div>
                 <article class="bd-article">
                    <section class="tex2jax_ignore mathjax_ignore" id="type-casting-in-callbacks">
-<h1>回调中的类型转换<a class="headerlink" href="#type-casting-in-callbacks" title="Link to this heading">#</a></h1>
+<h1>回调中的类型转换<a class="headerlink" href="#type-casting-in-callbacks" title="链接到此标题。">#</a></h1>
 <p>类型转换基本上有五种不同的方法，每种都有自己的优缺点。</p>
 <p>方法I、II和V可用于C和Fortran。方法III和方法IV只能在Fortran中使用。方法VI已过时，不应使用。</p>
 <section id="work-arrays">
-<h2>工作数组<a class="headerlink" href="#work-arrays" title="Link to this heading">#</a></h2>
+<h2>工作数组<a class="headerlink" href="#work-arrays" title="链接到此标题。">#</a></h2>
 <p>传递一个“工作数组”，该数组打包调用所需的所有内容，并由被调用的例程解包。这是一种古老的方式--例如，LAPACK正是使用这种方法。</p>
 <p>积分器：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span>
@@ -748,7 +748,7 @@
 </div>
 </section>
 <section id="general-structure">
-<h2>通用结构<a class="headerlink" href="#general-structure" title="Link to this heading">#</a></h2>
+<h2>通用结构<a class="headerlink" href="#general-structure" title="链接到此标题。">#</a></h2>
 <p>定义一个通用的结构，包含目前实际的需求（甚至在未来的需求）。 这个通用结构类型可以根据未来的需求或设想而改变，但不太可能需要比如从传递实数更改为文本编辑器的实例化。</p>
 <p>积分器：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span>
@@ -821,7 +821,7 @@
 <p>注意：它不必是“一个包罗万象的抽象类”或空类。在“全部”和“无”之间有自然和可行的选择。</p>
 </section>
 <section id="private-module-variables">
-<h2>私有的模块变量<a class="headerlink" href="#private-module-variables" title="Link to this heading">#</a></h2>
+<h2>私有的模块变量<a class="headerlink" href="#private-module-variables" title="链接到此标题。">#</a></h2>
 <p>通过传入模块变量来完全隐藏变量参数。</p>
 <p>积分器：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span>
@@ -879,7 +879,7 @@
 <p>但是，如果可能的话，最好避免这样的全局变量--即使实际上只是半全局变量(semi-global)。虽然有时这可能是最简单最干净的方式，然而，只要沿着II或IV的路线稍加思考，通常会有一个更好、更安全、更明确的方案。</p>
 </section>
 <section id="nested-functions">
-<h2>嵌套函数<a class="headerlink" href="#nested-functions" title="Link to this heading">#</a></h2>
+<h2>嵌套函数<a class="headerlink" href="#nested-functions" title="链接到此标题。">#</a></h2>
 <p>积分器：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span>
 <span class="w">  </span><span class="k">use </span><span class="n">types</span><span class="p">,</span><span class="w"> </span><span class="k">only</span><span class="p">:</span><span class="w"> </span><span class="n">dp</span>
@@ -924,7 +924,7 @@
 </div>
 </section>
 <section id="using-type-c-ptr-pointer">
-<h2>使用 type(c_ptr) 指针<a class="headerlink" href="#using-type-c-ptr-pointer" title="Link to this heading">#</a></h2>
+<h2>使用 type(c_ptr) 指针<a class="headerlink" href="#using-type-c-ptr-pointer" title="链接到此标题。">#</a></h2>
 <p>在C语言中，可以使用<code class="docutils literal notranslate"><span class="pre">void*</span></code>指针。在Fortran中，可以使用<code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code>来达到完全相同的目的。</p>
 <p>积分器：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span>
@@ -994,7 +994,7 @@
 <p>通常，在科学计算中，主要目的是表示和求解精确的数学公式（而不是创建一个包含无数按钮、下拉框和其它界面元素的GUI），所以，最简单、最不容易出错、最快的选择是使用前面的方法之一。</p>
 </section>
 <section id="transfer-intrinsic-function">
-<h2>transfer()内置函数<a class="headerlink" href="#transfer-intrinsic-function" title="Link to this heading">#</a></h2>
+<h2>transfer()内置函数<a class="headerlink" href="#transfer-intrinsic-function" title="链接到此标题。">#</a></h2>
 <p>在Fortran 2003之前，做类型转换的唯一方法是使用<code class="docutils literal notranslate"><span class="pre">transfer</span></code>内置函数。它在功能上与方法V等效，但更冗长，更容易出错。它现在已经过时了，应该使用方法V来代替。</p>
 <p>例子：</p>
 <p><a class="reference external" href="http://jblevins.org/log/transfer">http://jblevins.org/log/transfer</a></p>
@@ -1002,7 +1002,7 @@
 <p><a class="reference external" href="http://www.macresearch.org/advanced_fortran_90_callbacks_with_the_transfer_function">http://www.macresearch.org/advanced_fortran_90_callbacks_with_the_transfer_function</a></p>
 </section>
 <section id="object-oriented-approach">
-<h2>面向对象的策略<a class="headerlink" href="#object-oriented-approach" title="Link to this heading">#</a></h2>
+<h2>面向对象的策略<a class="headerlink" href="#object-oriented-approach" title="链接到此标题。">#</a></h2>
 <p>如下模块：</p>
 <div class="highlight-fortran notranslate"><div class="highlight"><pre><span></span><span class="k">module </span><span class="n">integrals</span>
 
@@ -1078,7 +1078,7 @@
 </div>
 </section>
 <section id="complete-example-of-void-vs-type-c-ptr-and-transfer">
-<h2>void * vs type(c_ptr) 和 transfer() 的完整示例<a class="headerlink" href="#complete-example-of-void-vs-type-c-ptr-and-transfer" title="Link to this heading">#</a></h2>
+<h2>void * vs type(c_ptr) 和 transfer() 的完整示例<a class="headerlink" href="#complete-example-of-void-vs-type-c-ptr-and-transfer" title="链接到此标题。">#</a></h2>
 <p>这里有三个等价代码：在C中使用<code class="docutils literal notranslate"><span class="pre">void*</span></code>，在Fortran中使用<code class="docutils literal notranslate"><span class="pre">type(c_ptr)</span></code>和<code class="docutils literal notranslate"><span class="pre">transfer()</span></code>：</p>
 <div class="pst-scrollable-table-container"><table class="table">
 <thead>
@@ -1178,7 +1178,7 @@
         <div class="footer-item">
 
   <p class="sphinx-version">
-    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 8.2.3创建。
+    由 <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0创建。
     <br/>
   </p>
 </div>
