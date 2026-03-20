@@ -126,7 +126,6 @@ def build_all(redirects: Dict[str, str], languages: List[str]) -> None:
 
 
 if __name__ == "__main__":
-
     build_all(all_redirects, sys.argv[1:] if len(sys.argv) > 1 else all_languages)
 
     print()

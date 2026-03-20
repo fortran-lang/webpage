@@ -23,6 +23,7 @@ import yaml
 import sys
 import pathlib
 
+
 root = pathlib.Path(__file__).parent.parent
 
 data_files = {
@@ -36,8 +37,9 @@ sys.path.insert(0, str(root / "extensions"))
 
 if not all(data.exists() for data in data_files.values()):
     sys.path.insert(0, str(root.absolute()))
-    # pylint: disable=import-error, unused-import
-    import fortran_package
+    from fortran_package import update_json_files
+
+    update_json_files()
 
 with open(data_files["fortran-learn"], "r", encoding="utf-8") as f:
     conf = json.load(f)
@@ -72,7 +74,6 @@ extensions = [
     "sphinx_jinja",
     "fortran_playground",
     "sphinx_favicon",
-
 ]
 
 myst_enable_extensions = [
@@ -132,10 +133,10 @@ html_canonical_url = None
 
 favicons = [
     {
-            "rel": "icon",
-            "sizes": "256x256",
-            "href": "images/favicon.ico",
-        },
+        "rel": "icon",
+        "sizes": "256x256",
+        "href": "images/favicon.ico",
+    },
 ]
 
 html_theme_options = {
@@ -143,14 +144,14 @@ html_theme_options = {
     "show_nav_level": 1,
     "show_toc_level": 0,
     "navbar_align": "right",
-    "navbar_start": ["navbar-logo","theme-switcher.html"],
+    "navbar_start": ["navbar-logo", "theme-switcher.html"],
     "switcher": {
         "json_url": "https://fortran-lang.org/_static/data.json",  # shifted to custom local switcher
         "version_match": language,
     },
     "primary_sidebar_end": [],
     "secondary_sidebar_items": ["inpage_toc.html"],
-    "navbar_end": ["navbar-icon-links","version-switcher"],
+    "navbar_end": ["navbar-icon-links", "version-switcher"],
     "search_bar_text": "Search",
     "icon_links": [
         {
@@ -194,7 +195,7 @@ html_sidebars = {
     "packages": [],
     "community": [],
     "packages/**": [],
-    "community/governance":[],
+    "community/governance": [],
 }
 html_title = "Fortran Programming Language"
 html_logo = "_static/images/fortran-logo-256x256.png"
@@ -214,4 +215,4 @@ post_auto_excerpt = 2
 
 gettext_compact = "index"
 
-copybutton_exclude = '.linenos, .gp, .go'
+copybutton_exclude = ".linenos, .gp, .go"
