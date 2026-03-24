@@ -46,8 +46,6 @@ except FileNotFoundError as e:
         f"Error: Required data file not found: {e.filename}\n"
         "Ensure you are running build.py from the root of the repository."
     ) from e
-except yaml.YAMLError as e:
-    raise yaml.YAMLError(f"Error parsing YAML data: {e}") from e
 
 template = """
 <!DOCTYPE HTML>
