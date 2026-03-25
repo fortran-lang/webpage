@@ -37,9 +37,11 @@ srcdir: Path = root / "source"
 # Error handling for data loading
 try:
     with open(root / "data" / "redirects.yml", "r", encoding="utf-8") as fd:
+        # All redirects from the original site without language component.
         all_redirects: Dict[str, str] = yaml.safe_load(fd)
 
     with open(root / "data" / "languages.yml", "r", encoding="utf-8") as fd:
+        # List of currently supported languages, taken from `doc/src/_static/languages.yml`.
         all_languages: List[str] = list(yaml.safe_load(fd).values())
 except FileNotFoundError as e:
     raise FileNotFoundError(
