@@ -17,7 +17,6 @@ jobs:
       - name: Checkout pr/${{github.event.issue.number}}
         uses: actions/checkout@v6
         with:
-          ref: ${{ github.event.pull_request.head.ref }}
           fetch-depth: 0
 
       - name: Fetch pr/${{github.event.issue.number}}
@@ -31,18 +30,18 @@ jobs:
           python-version: "3.13"
 
       - name: Install sphinx
-        run: pip3 install --user -r requirements.txt
+        run: pip3 install --user -r ./requirements.txt
 
       - name: Safe workflow for build preview
         run: if [ -d "build" ]; then rm -Rf build; fi
 
       - name: Build page
         if: contains(github.event.comment.body, '#build_preview')  
-        run: python3 build.py en
+        run: python3 ./build.py en
 
       - name: Build page translations
         if: contains(github.event.comment.body, '#build_translation')  
-        run: python3 build.py 
+        run: python3 ./build.py 
 
       - run: touch build/html/.nojekyll
 
