@@ -15,15 +15,12 @@ jobs:
 
     steps:
       - name: Checkout pr/${{github.event.issue.number}}
-        uses: actions/checkout@v6
-
-      - name: Fetch pr/${{github.event.issue.number}}
-        run: |
-          git fetch origin pull/${{github.event.issue.number}}/head:pr-${{github.event.issue.number}}
-          git checkout pr-${{github.event.issue.number}}
+        uses: actions/checkout@v4
+        with:
+          ref: refs/pull/${{github.event.issue.number}}/head
 
       - name: Setup Python
-        uses: actions/setup-python@v6
+        uses: actions/setup-python@v5
         with:
           python-version: "3.13"
 
