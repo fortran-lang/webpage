@@ -16,8 +16,8 @@
   
  .PHONY: help Makefile 
   
- dirhtml: 
+dirhtml: 
 @python3 build.py $(LANGUAGES) 
   
- gettext: 
+gettext: 
 @python3 intl.py $(filter-out en,$(LANGUAGES))
