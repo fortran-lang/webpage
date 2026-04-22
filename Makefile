@@ -20,4 +20,4 @@
          @python3 build.py $(LANGUAGES) 
   
  gettext: 
-@python3 intl.py $(filter-out en,$(LANGUAGES))
+ @python3 intl.py $(filter-out en,$(LANGUAGES))
