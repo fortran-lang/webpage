@@ -83,7 +83,7 @@ History
 :::
 
 The effort to build a new community around Fortran started at the beginning of 2020
-and was initially led by Ondřej Čertík [[1]][blog-ondrej] and Milan Curcic [[2]][blog-milan].
+and was initially led by Ond艡ej 膶ert铆k [[1]][blog-ondrej] and Milan Curcic [[2]][blog-milan].
 Starting in several discussions around ambitious proposals for the Fortran Standards
 Committee, the Fortran Standard Library (`stdlib`) [[3]][issue-stdlib], the Fortran
 Package Manager (`fpm`) [[4]][issue-fpm] and the [`fortran-lang.org`][webpage-orig]
@@ -155,12 +155,21 @@ on the project workflow and recommended practices.
 [Contributor guide for fpm](https://github.com/fortran-lang/fpm/blob/HEAD/CONTRIBUTING.md)<br>
 [Contributor guide for fortran-lang.org](community/contributing)
 
+::::
+
+::::{grid-item-card}
+:shadow: none
+
 :::{div} sd-text-left sd-fs-4
-Fortran-lang governance
+Governance
 :::
 
-The [governance](community/governance) model used by the Fortran-lang community
+Learn how the Fortran-lang community is organized and how administrators,
+maintainers, and contributors collaborate in the
+[governance model](community/governance).
+
 ::::
+
 ::::{grid-item-card}
 :shadow: none
 
@@ -232,6 +241,7 @@ Fortran-lang Contributors
 :hidden:
 community/history
 community/contributing
+community/governance
 community/minibooks
 community/packages
 :::
