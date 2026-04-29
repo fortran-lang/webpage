@@ -29,7 +29,9 @@ root = pathlib.Path(__file__).parent.parent
 data_files = {
     "fortran-learn": pathlib.Path(root, "_data", "fortran_learn.json"),
     "fortran-packages": pathlib.Path(root, "_data", "fortran_package.json"),
+    "fortran-categories": pathlib.Path(root, "_data", "fortran_categories.json"),
     "contributors": pathlib.Path(root, "_data", "contributor.json"),
+    "package-index": pathlib.Path(root, "data", "package_index.yml"),
     "intrinsics": pathlib.Path(root, "data", "intrinsics.yml"),
 }
 
@@ -45,10 +47,37 @@ with open(data_files["fortran-learn"], "r", encoding="utf-8") as f:
     conf = json.load(f)
 with open(data_files["fortran-packages"], "r", encoding="utf-8") as f:
     fortran_tags = json.load(f)
+with open(data_files["fortran-categories"], "r", encoding="utf-8") as f:
+    fortran_categories = json.load(f)
 with open(data_files["contributors"], "r", encoding="utf-8") as f:
     contributors = json.load(f)
+
 with open(data_files["intrinsics"], "r", encoding="utf-8") as f:
     intrinsics = yaml.safe_load(f)
+with open(data_files["package-index"], "r", encoding="utf-8") as f:
+    package_index = yaml.safe_load(f)
+
+
+
+
+import os
+from jinja2 import Template
+
+def generate_custom_pages(app):
+    template_path = os.path.join(app.srcdir, '_templates/project_pages.html')
+    out_dir = os.path.join(app.srcdir, 'packages')
+    os.makedirs(out_dir, exist_ok=True)
+
+    with open(template_path, 'r') as f:
+        template = Template(f.read())
+    for tag in fortran_tags.keys():
+        content = template.render(title=fortran_categories[tag], items=fortran_tags[tag])
+        
+        with open(os.path.join(out_dir, f"{tag}.md"), "w") as f:
+            f.write(content)
+
+def setup(app):
+    app.connect('builder-inited', generate_custom_pages)
 
 # -- Project information -----------------------------------------------------
 
@@ -74,6 +103,7 @@ extensions = [
     "sphinx_jinja",
     "fortran_playground",
     "sphinx_favicon",
+    "sphinx_tags",
 ]
 
 myst_enable_extensions = [
