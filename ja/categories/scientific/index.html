@@ -1,0 +1,1541 @@
+
+<!DOCTYPE html>
+
+
+<html lang="ja" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" sizes="256x256" href="../../_static/images/favicon.ico" type="image/x-icon">
+    <title>Scientific &#8212; Fortran Programming Language</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=0a3c677e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=7848db4b"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../_static/translations.js?v=4755f45a"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'categories/scientific';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://fortran-lang.org/_static/data.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'ja';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="canonical" href="https://fortran-lang.org/categories/scientific/" />
+    <link rel="index" title="索引" href="../../genindex/" />
+    <link rel="search" title="検索" href="../../search/" />
+    <link rel="next" title="Characters and strings" href="../strings/" />
+    <link rel="prev" title="Programming utilities" href="../programming/" /> 
+<meta
+  name="description"
+  content="Fortran : High-performance parallel programming language"
+/>
+<meta
+  name="keywords"
+  content="High-performance, parallel, programming language"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+ 
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">本文へスキップ</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>トップに戻る</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search"
+         aria-label="Search"
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="バージョン警告"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="サイトナビゲーション">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Fortran Programming Language - Home"/>
+    <img src="../../_static/fortran-logo-256x256.png" class="logo__image only-dark pst-js-only" alt="Fortran Programming Language - Home"/>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="ライト"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="ダーク"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="ms-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../learn/">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../community/">
+    コミュニティ
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../news/">
+    News
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">検索</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="検索" aria-label="検索" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">検索</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../learn/">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../community/">
+    コミュニティ
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../news/">
+    News
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="セクションナビゲーション">
+  <p class="bd-links__title" role="heading" aria-level="1">セクションナビゲーション</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../data-types/">Data types and containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/">Examples and templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graphics/">Graphics, plotting and user interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfaces/">Interface libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io/">Input, output and parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/">Libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../numerical/">Numerical projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programming/">Programming utilities</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Scientific</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../strings/">Characters and strings</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="パンくずリスト" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../" class="nav-link" aria-label="ホーム">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../packages/" class="nav-link">Packages</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Scientific</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section id="scientific">
+<h1>Scientific<a class="headerlink" href="#scientific" title="Link to this heading">#</a></h1>
+<section id="applications-and-libraries-for-applied-mathematical-and-scientific-problems">
+<h2>Applications and libraries for applied mathematical and scientific problems<a class="headerlink" href="#applications-and-libraries-for-applied-mathematical-and-scientific-problems" title="Link to this heading">#</a></h2>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="decomp-fft"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="http://www.2decomp.org/">2DECOMP&amp;FFT</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<p>Library for 2D pencil decomposition and distributed Fast Fourier Transform</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fft/#sphx-tag-fft"><span class="std std-ref">fft</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/parallel/#sphx-tag-parallel"><span class="std std-ref">parallel</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/distributed-memory/#sphx-tag-distributed-memory"><span class="std std-ref">distributed-memory</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/openmpi/#sphx-tag-openmpi"><span class="std std-ref">openmpi</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="abinit"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/abinit/abinit">ABINIT</a></p>
+<p><a href="https://github.com/abinit/abinit/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/abinit/abinit?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/abinit/abinit" />
+<a href="https://github.com/abinit/abinit/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/abinit/abinit" /></a>
+<a href="https://github.com/abinit/abinit/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/abinit/abinit" /></a>
+<a href="https://github.com/abinit/abinit/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/abinit/abinit" /></a>
+<a href="https://github.com/abinit/abinit/issues"><img alt="issues" src="https://img.shields.io/github/issues/abinit/abinit" /></a>
+<a href="https://github.com/abinit/abinit/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/abinit/abinit" /></a></p>
+<p>ABINIT is a software suite to calculate the optical, mechanical, vibrational, and other observable properties of materials</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quantum-chemistry/#sphx-tag-quantum-chemistry"><span class="std std-ref">quantum-chemistry</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/physics/#sphx-tag-physics"><span class="std std-ref">physics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/molecular-dynamics/#sphx-tag-molecular-dynamics"><span class="std std-ref">molecular-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="adflow"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/mdolab/adflow">ADflow</a></p>
+<p><a href="https://github.com/mdolab/adflow/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/mdolab/adflow?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--2.1--only-blue" />
+<a href="https://github.com/mdolab/adflow/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/mdolab/adflow" /></a>
+<a href="https://github.com/mdolab/adflow/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/mdolab/adflow" /></a>
+<a href="https://github.com/mdolab/adflow/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/mdolab/adflow" /></a>
+<a href="https://github.com/mdolab/adflow/issues"><img alt="issues" src="https://img.shields.io/github/issues/mdolab/adflow" /></a>
+<a href="https://github.com/mdolab/adflow/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/mdolab/adflow" /></a></p>
+<p>A finite volume RANS solver tailored for gradient-based aerodynamic design optimization</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/simulation/#sphx-tag-simulation"><span class="std std-ref">simulation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/computational-fluid-dynamics/#sphx-tag-computational-fluid-dynamics"><span class="std std-ref">computational-fluid-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/automatic-differentiation/#sphx-tag-automatic-differentiation"><span class="std std-ref">automatic-differentiation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/adjoint/#sphx-tag-adjoint"><span class="std std-ref">adjoint</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/structured/#sphx-tag-structured"><span class="std std-ref">structured</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/multiblock/#sphx-tag-multiblock"><span class="std std-ref">multiblock</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/overset/#sphx-tag-overset"><span class="std std-ref">overset</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/python/#sphx-tag-python"><span class="std std-ref">python</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hpc/#sphx-tag-hpc"><span class="std std-ref">hpc</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cfd/#sphx-tag-cfd"><span class="std std-ref">cfd</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="aenet"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/atomisticnet/aenet">aenet</a></p>
+<p><a href="https://github.com/atomisticnet/aenet/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/atomisticnet/aenet?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/atomisticnet/aenet" />
+<a href="https://github.com/atomisticnet/aenet/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/atomisticnet/aenet" /></a>
+<a href="https://github.com/atomisticnet/aenet/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/atomisticnet/aenet" /></a>
+<a href="https://github.com/atomisticnet/aenet/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/atomisticnet/aenet" /></a>
+<a href="https://github.com/atomisticnet/aenet/issues"><img alt="issues" src="https://img.shields.io/github/issues/atomisticnet/aenet" /></a>
+<a href="https://github.com/atomisticnet/aenet/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/atomisticnet/aenet" /></a></p>
+<p>Atomic interaction potentials based on artificial neural networks</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="astro-fortran"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/jacobwilliams/astro-fortran">astro-fortran</a></p>
+<p><a href="https://github.com/jacobwilliams/astro-fortran/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/jacobwilliams/astro-fortran?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/jacobwilliams/astro-fortran" />
+<a href="https://github.com/jacobwilliams/astro-fortran/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jacobwilliams/astro-fortran" /></a>
+<a href="https://github.com/jacobwilliams/astro-fortran/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/jacobwilliams/astro-fortran" /></a>
+<a href="https://github.com/jacobwilliams/astro-fortran/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/jacobwilliams/astro-fortran" /></a>
+<a href="https://github.com/jacobwilliams/astro-fortran/issues"><img alt="issues" src="https://img.shields.io/github/issues/jacobwilliams/astro-fortran" /></a>
+<a href="https://github.com/jacobwilliams/astro-fortran/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/jacobwilliams/astro-fortran" /></a></p>
+<p>Modern Fortran implementations of standard models used in fundamental astronomy</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/astronomy/#sphx-tag-astronomy"><span class="std std-ref">astronomy</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="bandup"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/band-unfolding/bandup">BandUP</a></p>
+<p><a href="https://github.com/band-unfolding/bandup/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/band-unfolding/bandup?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/band-unfolding/bandup" />
+<a href="https://github.com/band-unfolding/bandup/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/band-unfolding/bandup" /></a>
+<a href="https://github.com/band-unfolding/bandup/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/band-unfolding/bandup" /></a>
+<a href="https://github.com/band-unfolding/bandup/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/band-unfolding/bandup" /></a>
+<a href="https://github.com/band-unfolding/bandup/issues"><img alt="issues" src="https://img.shields.io/github/issues/band-unfolding/bandup" /></a>
+<a href="https://github.com/band-unfolding/bandup/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/band-unfolding/bandup" /></a></p>
+<p>Band Unfolding code for Plane-wave based calculations</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="bigdft"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/l_sim/bigdft-suite">BigDFT</a></p>
+<p><a href="https://gitlab.com/l_sim/bigdft-suite/-/releases/permalink/latest"><img alt="Release" src="https://img.shields.io/gitlab/v/release/l_sim/bigdft-suite?date_order_by=created_at&amp;sort=date&amp;color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-custom-blue" />
+<a href="https://gitlab.com/l_sim/bigdft-suite/-/forks/"><img alt="forks" src="https://img.shields.io/gitlab/forks/l_sim/bigdft-suite" /></a>
+<a href="https://gitlab.com/l_sim/bigdft-suite/-/work_items/"><img alt="issues" src="https://img.shields.io/gitlab/issues/open/l_sim/bigdft-suite" /></a>
+<a href="https://gitlab.com/l_sim/bigdft-suite/-/merge_requests/"><img alt="issues" src="https://img.shields.io/gitlab/merge-requests/open/l_sim/bigdft-suite" /></a></p>
+<p>fast, precise, and flexible DFT code for ab-initio atomistic simulation</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/wavelets/#sphx-tag-wavelets"><span class="std std-ref">wavelets</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/density-functional-theory/#sphx-tag-density-functional-theory"><span class="std std-ref">density-functional-theory</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="cans"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/p-costa/CaNS">CaNS</a></p>
+<p><a href="https://github.com/p-costa/CaNS/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/p-costa/CaNS?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/p-costa/CaNS" />
+<a href="https://github.com/p-costa/CaNS/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/p-costa/CaNS" /></a>
+<a href="https://github.com/p-costa/CaNS/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/p-costa/CaNS" /></a>
+<a href="https://github.com/p-costa/CaNS/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/p-costa/CaNS" /></a>
+<a href="https://github.com/p-costa/CaNS/issues"><img alt="issues" src="https://img.shields.io/github/issues/p-costa/CaNS" /></a>
+<a href="https://github.com/p-costa/CaNS/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/p-costa/CaNS" /></a></p>
+<p>A code for fast, massively-parallel direct numerical simulations (DNS) of canonical flows</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fluid-dynamics/#sphx-tag-fluid-dynamics"><span class="std std-ref">fluid-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fluid-simulation/#sphx-tag-fluid-simulation"><span class="std std-ref">fluid-simulation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/computational-fluid-dynamics/#sphx-tag-computational-fluid-dynamics"><span class="std std-ref">computational-fluid-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/turbulence/#sphx-tag-turbulence"><span class="std std-ref">turbulence</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/high-performance-computing/#sphx-tag-high-performance-computing"><span class="std std-ref">high-performance-computing</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hpc/#sphx-tag-hpc"><span class="std std-ref">hpc</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cfd/#sphx-tag-cfd"><span class="std std-ref">cfd</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="cantera"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/Cantera/cantera">Cantera</a></p>
+<p><a href="https://github.com/Cantera/cantera/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/Cantera/cantera?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/Cantera/cantera/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/Cantera/cantera" /></a>
+<a href="https://github.com/Cantera/cantera/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/Cantera/cantera" /></a>
+<a href="https://github.com/Cantera/cantera/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/Cantera/cantera" /></a>
+<a href="https://github.com/Cantera/cantera/issues"><img alt="issues" src="https://img.shields.io/github/issues/Cantera/cantera" /></a>
+<a href="https://github.com/Cantera/cantera/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/Cantera/cantera" /></a></p>
+<p>Chemical kinetics, thermodynamics, and transport tool suite</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="castro"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/AMReX-Astro/Castro">Castro</a></p>
+<p><a href="https://github.com/AMReX-Astro/Castro/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/AMReX-Astro/Castro?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/AMReX-Astro/Castro/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/AMReX-Astro/Castro" /></a>
+<a href="https://github.com/AMReX-Astro/Castro/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/AMReX-Astro/Castro" /></a>
+<a href="https://github.com/AMReX-Astro/Castro/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/AMReX-Astro/Castro" /></a>
+<a href="https://github.com/AMReX-Astro/Castro/issues"><img alt="issues" src="https://img.shields.io/github/issues/AMReX-Astro/Castro" /></a>
+<a href="https://github.com/AMReX-Astro/Castro/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/AMReX-Astro/Castro" /></a></p>
+<p>An adaptive mesh, astrophysical radiation hydrodynamics simulation code</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/adaptive/#sphx-tag-adaptive"><span class="std std-ref">adaptive</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mesh/#sphx-tag-mesh"><span class="std std-ref">mesh</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/astrophysics/#sphx-tag-astrophysics"><span class="std std-ref">astrophysics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/radiation/#sphx-tag-radiation"><span class="std std-ref">radiation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hydrodynamics/#sphx-tag-hydrodynamics"><span class="std std-ref">hydrodynamics</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="cfl3d"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/nasa/CFL3D">CFL3D</a></p>
+<p><a href="https://github.com/nasa/CFL3D/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/nasa/CFL3D?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-Apache--2.0-blue" />
+<a href="https://github.com/nasa/CFL3D/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/nasa/CFL3D" /></a>
+<a href="https://github.com/nasa/CFL3D/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/nasa/CFL3D" /></a>
+<a href="https://github.com/nasa/CFL3D/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/nasa/CFL3D" /></a>
+<a href="https://github.com/nasa/CFL3D/issues"><img alt="issues" src="https://img.shields.io/github/issues/nasa/CFL3D" /></a>
+<a href="https://github.com/nasa/CFL3D/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/nasa/CFL3D" /></a></p>
+<p>Structured-grid, cell-centered, upwind-biased, Reynolds-averaged Navier-Stokes (RANS) code</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="compdam-dgd"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/nasa/CompDam_DGD">CompDam_DGD</a></p>
+<p><a href="https://github.com/nasa/CompDam_DGD/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/nasa/CompDam_DGD?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-NASA--1.3-blue" />
+<a href="https://github.com/nasa/CompDam_DGD/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/nasa/CompDam_DGD" /></a>
+<a href="https://github.com/nasa/CompDam_DGD/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/nasa/CompDam_DGD" /></a>
+<a href="https://github.com/nasa/CompDam_DGD/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/nasa/CompDam_DGD" /></a>
+<a href="https://github.com/nasa/CompDam_DGD/issues"><img alt="issues" src="https://img.shields.io/github/issues/nasa/CompDam_DGD" /></a>
+<a href="https://github.com/nasa/CompDam_DGD/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/nasa/CompDam_DGD" /></a></p>
+<p>continuum damage mechanics (CDM) material model intended for use with the Abaqus finite element code</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="cp2k"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/cp2k/cp2k">cp2k</a></p>
+<p><a href="https://github.com/cp2k/cp2k/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/cp2k/cp2k?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--2.0-blue" />
+<a href="https://github.com/cp2k/cp2k/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/cp2k/cp2k" /></a>
+<a href="https://github.com/cp2k/cp2k/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/cp2k/cp2k" /></a>
+<a href="https://github.com/cp2k/cp2k/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/cp2k/cp2k" /></a>
+<a href="https://github.com/cp2k/cp2k/issues"><img alt="issues" src="https://img.shields.io/github/issues/cp2k/cp2k" /></a>
+<a href="https://github.com/cp2k/cp2k/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/cp2k/cp2k" /></a></p>
+<p>quantum chemistry and solid state physics software package that can perform atomistic simulations</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quantum-chemistry/#sphx-tag-quantum-chemistry"><span class="std std-ref">quantum-chemistry</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/physics/#sphx-tag-physics"><span class="std std-ref">physics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/molecular-dynamics/#sphx-tag-molecular-dynamics"><span class="std std-ref">molecular-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/metadynamics/#sphx-tag-metadynamics"><span class="std std-ref">metadynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cuda/#sphx-tag-cuda"><span class="std std-ref">cuda</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="crest"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/grimme-lab/crest">crest</a></p>
+<p><a href="https://github.com/grimme-lab/crest/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/grimme-lab/crest?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0--or--later-blue" />
+<a href="https://github.com/grimme-lab/crest/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/grimme-lab/crest" /></a>
+<a href="https://github.com/grimme-lab/crest/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/grimme-lab/crest" /></a>
+<a href="https://github.com/grimme-lab/crest/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/grimme-lab/crest" /></a>
+<a href="https://github.com/grimme-lab/crest/issues"><img alt="issues" src="https://img.shields.io/github/issues/grimme-lab/crest" /></a>
+<a href="https://github.com/grimme-lab/crest/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/grimme-lab/crest" /></a></p>
+<p>Conformer-rotamer ensemble search tool</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/computational-chemistry/#sphx-tag-computational-chemistry"><span class="std std-ref">computational-chemistry</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/atomistic-simulations/#sphx-tag-atomistic-simulations"><span class="std std-ref">atomistic-simulations</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/conformational-analysis/#sphx-tag-conformational-analysis"><span class="std std-ref">conformational-analysis</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/metadynamics/#sphx-tag-metadynamics"><span class="std std-ref">metadynamics</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="ctsm"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/ESCOMP/CTSM">CTSM</a></p>
+<p><a href="https://github.com/ESCOMP/CTSM/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/ESCOMP/CTSM?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/ESCOMP/CTSM/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/ESCOMP/CTSM" /></a>
+<a href="https://github.com/ESCOMP/CTSM/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/ESCOMP/CTSM" /></a>
+<a href="https://github.com/ESCOMP/CTSM/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/ESCOMP/CTSM" /></a>
+<a href="https://github.com/ESCOMP/CTSM/issues"><img alt="issues" src="https://img.shields.io/github/issues/ESCOMP/CTSM" /></a>
+<a href="https://github.com/ESCOMP/CTSM/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/ESCOMP/CTSM" /></a></p>
+<p>The Community Terrestrial Systems Model</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="dalton"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/dalton/dalton">Dalton</a></p>
+<p><a href="https://gitlab.com/dalton/dalton/-/releases/permalink/latest"><img alt="Release" src="https://img.shields.io/gitlab/v/release/dalton/dalton?date_order_by=created_at&amp;sort=date&amp;color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--2.1-blue" />
+<a href="https://gitlab.com/dalton/dalton/-/forks/"><img alt="forks" src="https://img.shields.io/gitlab/forks/dalton/dalton" /></a>
+<a href="https://gitlab.com/dalton/dalton/-/work_items/"><img alt="issues" src="https://img.shields.io/gitlab/issues/open/dalton/dalton" /></a>
+<a href="https://gitlab.com/dalton/dalton/-/merge_requests/"><img alt="issues" src="https://img.shields.io/gitlab/merge-requests/open/dalton/dalton" /></a></p>
+<p>Powerful molecular electronic structure program</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/relativistic/#sphx-tag-relativistic"><span class="std std-ref">relativistic</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="damask"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/eisenforschung/DAMASK">DAMASK</a></p>
+<p><a href="https://github.com/eisenforschung/DAMASK/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/eisenforschung/DAMASK?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://github.com/eisenforschung/DAMASK/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/eisenforschung/DAMASK" /></a>
+<a href="https://github.com/eisenforschung/DAMASK/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/eisenforschung/DAMASK" /></a>
+<a href="https://github.com/eisenforschung/DAMASK/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/eisenforschung/DAMASK" /></a>
+<a href="https://github.com/eisenforschung/DAMASK/issues"><img alt="issues" src="https://img.shields.io/github/issues/eisenforschung/DAMASK" /></a>
+<a href="https://github.com/eisenforschung/DAMASK/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/eisenforschung/DAMASK" /></a></p>
+<p>A unified multi-physics crystal plasticity simulation package</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/plasticity/#sphx-tag-plasticity"><span class="std std-ref">plasticity</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/simulation/#sphx-tag-simulation"><span class="std std-ref">simulation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/material/#sphx-tag-material"><span class="std std-ref">material</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/multi-physics/#sphx-tag-multi-physics"><span class="std std-ref">multi-physics</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="dft-d4"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/dftd4/dftd4">DFT-D4</a></p>
+<p><a href="https://github.com/dftd4/dftd4/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/dftd4/dftd4?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/dftd4/dftd4" />
+<a href="https://github.com/dftd4/dftd4/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/dftd4/dftd4" /></a>
+<a href="https://github.com/dftd4/dftd4/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/dftd4/dftd4" /></a>
+<a href="https://github.com/dftd4/dftd4/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/dftd4/dftd4" /></a>
+<a href="https://github.com/dftd4/dftd4/issues"><img alt="issues" src="https://img.shields.io/github/issues/dftd4/dftd4" /></a>
+<a href="https://github.com/dftd4/dftd4/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/dftd4/dftd4" /></a></p>
+<p>A Generally Applicable Atomic-Charge Dependent London Dispersion Correction</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/dft-d/#sphx-tag-dft-d"><span class="std std-ref">dft-d</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/dispersion-correction/#sphx-tag-dispersion-correction"><span class="std std-ref">dispersion-correction</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="dftatom"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/certik/dftatom">dftatom</a></p>
+<p><a href="https://github.com/certik/dftatom/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/certik/dftatom?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<a href="https://github.com/certik/dftatom/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/certik/dftatom" /></a>
+<a href="https://github.com/certik/dftatom/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/certik/dftatom" /></a>
+<a href="https://github.com/certik/dftatom/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/certik/dftatom" /></a>
+<a href="https://github.com/certik/dftatom/issues"><img alt="issues" src="https://img.shields.io/github/issues/certik/dftatom" /></a>
+<a href="https://github.com/certik/dftatom/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/certik/dftatom" /></a></p>
+<p>Routines for Radial Integration of Dirac, Schrödinger, and Poisson Equations</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/atomic/#sphx-tag-atomic"><span class="std std-ref">atomic</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="dftb"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/dftbplus/dftbplus">DFTB+</a></p>
+<p><a href="https://github.com/dftbplus/dftbplus/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/dftbplus/dftbplus?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0--or--later-blue" />
+<a href="https://github.com/dftbplus/dftbplus/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/dftbplus/dftbplus" /></a>
+<a href="https://github.com/dftbplus/dftbplus/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/dftbplus/dftbplus" /></a>
+<a href="https://github.com/dftbplus/dftbplus/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/dftbplus/dftbplus" /></a>
+<a href="https://github.com/dftbplus/dftbplus/issues"><img alt="issues" src="https://img.shields.io/github/issues/dftbplus/dftbplus" /></a>
+<a href="https://github.com/dftbplus/dftbplus/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/dftbplus/dftbplus" /></a></p>
+<p>DFTB+ general package for performing fast atomistic simulations</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/tight-binding/#sphx-tag-tight-binding"><span class="std std-ref">tight-binding</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quantum-mechanics/#sphx-tag-quantum-mechanics"><span class="std std-ref">quantum-mechanics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/density-functional-theory/#sphx-tag-density-functional-theory"><span class="std std-ref">density-functional-theory</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="dl-poly-4"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/ccp5/dl-poly">DL_POLY_4</a></p>
+<p><a href="https://gitlab.com/ccp5/dl-poly/-/releases/permalink/latest"><img alt="Release" src="https://img.shields.io/gitlab/v/release/ccp5/dl-poly?date_order_by=created_at&amp;sort=date&amp;color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0-blue" />
+<a href="https://gitlab.com/ccp5/dl-poly/-/forks/"><img alt="forks" src="https://img.shields.io/gitlab/forks/ccp5/dl-poly" /></a>
+<a href="https://gitlab.com/ccp5/dl-poly/-/work_items/"><img alt="issues" src="https://img.shields.io/gitlab/issues/open/ccp5/dl-poly" /></a>
+<a href="https://gitlab.com/ccp5/dl-poly/-/merge_requests/"><img alt="issues" src="https://img.shields.io/gitlab/merge-requests/open/ccp5/dl-poly" /></a></p>
+<p>classical molecular dynamics code developed at Daresbury Laboratory since 1992</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/molecular-dynamics/#sphx-tag-molecular-dynamics"><span class="std std-ref">molecular-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="elk"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="https://elk.sourceforge.io/">Elk</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<p>An all-electron full-potential linearised augmented-plane wave (LAPW) code with many advanced features</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/density-functional-theory/#sphx-tag-density-functional-theory"><span class="std std-ref">density-functional-theory</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="et"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/eT-program/eT">eT</a></p>
+<p><a href="https://gitlab.com/eT-program/eT/-/releases/permalink/latest"><img alt="Release" src="https://img.shields.io/gitlab/v/release/eT-program/eT?date_order_by=created_at&amp;sort=date&amp;color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://gitlab.com/eT-program/eT/-/forks/"><img alt="forks" src="https://img.shields.io/gitlab/forks/eT-program/eT" /></a>
+<a href="https://gitlab.com/eT-program/eT/-/work_items/"><img alt="issues" src="https://img.shields.io/gitlab/issues/open/eT-program/eT" /></a>
+<a href="https://gitlab.com/eT-program/eT/-/merge_requests/"><img alt="issues" src="https://img.shields.io/gitlab/merge-requests/open/eT-program/eT" /></a></p>
+<p>electronic structure program with coupled cluster, multiscale and multilevel methods</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/coupled-cluster/#sphx-tag-coupled-cluster"><span class="std std-ref">coupled-cluster</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fatode"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/ComputationalScienceLaboratory/FATODE">FATODE</a></p>
+<p><a href="https://github.com/ComputationalScienceLaboratory/FATODE/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/ComputationalScienceLaboratory/FATODE?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://github.com/ComputationalScienceLaboratory/FATODE/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/ComputationalScienceLaboratory/FATODE" /></a>
+<a href="https://github.com/ComputationalScienceLaboratory/FATODE/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/ComputationalScienceLaboratory/FATODE" /></a>
+<a href="https://github.com/ComputationalScienceLaboratory/FATODE/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/ComputationalScienceLaboratory/FATODE" /></a>
+<a href="https://github.com/ComputationalScienceLaboratory/FATODE/issues"><img alt="issues" src="https://img.shields.io/github/issues/ComputationalScienceLaboratory/FATODE" /></a>
+<a href="https://github.com/ComputationalScienceLaboratory/FATODE/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/ComputationalScienceLaboratory/FATODE" /></a></p>
+<p>A Fortran library for the integration of ordinary differential equations with direct and adjoint sensitivity analysis capabilities</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ode-solver/#sphx-tag-ode-solver"><span class="std std-ref">ode-solver</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fds"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/firemodels/fds">fds</a></p>
+<p><a href="https://github.com/firemodels/fds/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/firemodels/fds?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-NIST--PD--fallback-blue" />
+<a href="https://github.com/firemodels/fds/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/firemodels/fds" /></a>
+<a href="https://github.com/firemodels/fds/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/firemodels/fds" /></a>
+<a href="https://github.com/firemodels/fds/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/firemodels/fds" /></a>
+<a href="https://github.com/firemodels/fds/issues"><img alt="issues" src="https://img.shields.io/github/issues/firemodels/fds" /></a>
+<a href="https://github.com/firemodels/fds/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/firemodels/fds" /></a></p>
+<p>Large-eddy simulation code for low-speed flows, with an emphasis on smoke and heat transport from fires.</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="flame"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/flame-code/FLAME">FLAME</a></p>
+<p><a href="https://gitlab.com/flame-code/FLAME/-/releases/permalink/latest"><img alt="Release" src="https://img.shields.io/gitlab/v/release/flame-code/FLAME?date_order_by=created_at&amp;sort=date&amp;color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--2.0-blue" />
+<a href="https://gitlab.com/flame-code/FLAME/-/forks/"><img alt="forks" src="https://img.shields.io/gitlab/forks/flame-code/FLAME" /></a>
+<a href="https://gitlab.com/flame-code/FLAME/-/work_items/"><img alt="issues" src="https://img.shields.io/gitlab/issues/open/flame-code/FLAME" /></a>
+<a href="https://gitlab.com/flame-code/FLAME/-/merge_requests/"><img alt="issues" src="https://img.shields.io/gitlab/merge-requests/open/flame-code/FLAME" /></a></p>
+<p>a library for atomistic modeling environments.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/machine-learning/#sphx-tag-machine-learning"><span class="std std-ref">machine-learning</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/interatomic-potential/#sphx-tag-interatomic-potential"><span class="std std-ref">interatomic-potential</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/crystal-structure-prediction/#sphx-tag-crystal-structure-prediction"><span class="std std-ref">crystal-structure-prediction</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electrostatic-energy-forces/#sphx-tag-electrostatic-energy-forces"><span class="std std-ref">electrostatic-energy-forces</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ions/#sphx-tag-ions"><span class="std std-ref">ions</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="flexi"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/flexi-framework/flexi">flexi</a></p>
+<p><a href="https://github.com/flexi-framework/flexi/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/flexi-framework/flexi?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/flexi-framework/flexi" />
+<a href="https://github.com/flexi-framework/flexi/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/flexi-framework/flexi" /></a>
+<a href="https://github.com/flexi-framework/flexi/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/flexi-framework/flexi" /></a>
+<a href="https://github.com/flexi-framework/flexi/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/flexi-framework/flexi" /></a>
+<a href="https://github.com/flexi-framework/flexi/issues"><img alt="issues" src="https://img.shields.io/github/issues/flexi-framework/flexi" /></a>
+<a href="https://github.com/flexi-framework/flexi/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/flexi-framework/flexi" /></a></p>
+<p>Open Source High-Order Unstructured Discontinuous Galerkin Fluid Dynamics Solver</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fluidity"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/FluidityProject/fluidity">fluidity</a></p>
+<p><a href="https://github.com/FluidityProject/fluidity/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/FluidityProject/fluidity?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/FluidityProject/fluidity" />
+<a href="https://github.com/FluidityProject/fluidity/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/FluidityProject/fluidity" /></a>
+<a href="https://github.com/FluidityProject/fluidity/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/FluidityProject/fluidity" /></a>
+<a href="https://github.com/FluidityProject/fluidity/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/FluidityProject/fluidity" /></a>
+<a href="https://github.com/FluidityProject/fluidity/issues"><img alt="issues" src="https://img.shields.io/github/issues/FluidityProject/fluidity" /></a>
+<a href="https://github.com/FluidityProject/fluidity/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/FluidityProject/fluidity" /></a></p>
+<p>Computational fluid dynamics code with adaptive unstructured mesh capabilities</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cfd/#sphx-tag-cfd"><span class="std std-ref">cfd</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/computational-fluid-dynamics/#sphx-tag-computational-fluid-dynamics"><span class="std std-ref">computational-fluid-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/unstructured/#sphx-tag-unstructured"><span class="std std-ref">unstructured</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fms"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/NOAA-GFDL/FMS">FMS</a></p>
+<p><a href="https://github.com/NOAA-GFDL/FMS/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/NOAA-GFDL/FMS?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/NOAA-GFDL/FMS" />
+<a href="https://github.com/NOAA-GFDL/FMS/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/NOAA-GFDL/FMS" /></a>
+<a href="https://github.com/NOAA-GFDL/FMS/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/NOAA-GFDL/FMS" /></a>
+<a href="https://github.com/NOAA-GFDL/FMS/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/NOAA-GFDL/FMS" /></a>
+<a href="https://github.com/NOAA-GFDL/FMS/issues"><img alt="issues" src="https://img.shields.io/github/issues/NOAA-GFDL/FMS" /></a>
+<a href="https://github.com/NOAA-GFDL/FMS/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/NOAA-GFDL/FMS" /></a></p>
+<p>Flexible Modeling System</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortnet"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/vanderhe/fortnet">Fortnet</a></p>
+<p><a href="https://github.com/vanderhe/fortnet/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/vanderhe/fortnet?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0--or--later-blue" />
+<a href="https://github.com/vanderhe/fortnet/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/vanderhe/fortnet" /></a>
+<a href="https://github.com/vanderhe/fortnet/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/vanderhe/fortnet" /></a>
+<a href="https://github.com/vanderhe/fortnet/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/vanderhe/fortnet" /></a>
+<a href="https://github.com/vanderhe/fortnet/issues"><img alt="issues" src="https://img.shields.io/github/issues/vanderhe/fortnet" /></a>
+<a href="https://github.com/vanderhe/fortnet/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/vanderhe/fortnet" /></a></p>
+<p>A software package for training Behler-Parrinello neural networks</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/machine-learning/#sphx-tag-machine-learning"><span class="std std-ref">machine-learning</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/neural-networks/#sphx-tag-neural-networks"><span class="std std-ref">neural-networks</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/bpnn/#sphx-tag-bpnn"><span class="std std-ref">bpnn</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/atomistic-simulations/#sphx-tag-atomistic-simulations"><span class="std std-ref">atomistic-simulations</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="freecappuccino"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/nikola-m/freeCappuccino">freeCappuccino</a></p>
+<p><a href="https://github.com/nikola-m/freeCappuccino/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/nikola-m/freeCappuccino?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://github.com/nikola-m/freeCappuccino/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/nikola-m/freeCappuccino" /></a>
+<a href="https://github.com/nikola-m/freeCappuccino/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/nikola-m/freeCappuccino" /></a>
+<a href="https://github.com/nikola-m/freeCappuccino/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/nikola-m/freeCappuccino" /></a>
+<a href="https://github.com/nikola-m/freeCappuccino/issues"><img alt="issues" src="https://img.shields.io/github/issues/nikola-m/freeCappuccino" /></a>
+<a href="https://github.com/nikola-m/freeCappuccino/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/nikola-m/freeCappuccino" /></a></p>
+<p>A three-dimensional unstructured finite volume code for fluid flow simulations.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/finite/#sphx-tag-finite"><span class="std std-ref">finite</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/volume/#sphx-tag-volume"><span class="std std-ref">volume</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/turbulent/#sphx-tag-turbulent"><span class="std std-ref">turbulent</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/turbulence/#sphx-tag-turbulence"><span class="std std-ref">turbulence</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="ftorch"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/Cambridge-ICCS/FTorch">FTorch</a></p>
+<p><a href="https://github.com/Cambridge-ICCS/FTorch/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/Cambridge-ICCS/FTorch?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<a href="https://github.com/Cambridge-ICCS/FTorch/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/Cambridge-ICCS/FTorch" /></a>
+<a href="https://github.com/Cambridge-ICCS/FTorch/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/Cambridge-ICCS/FTorch" /></a>
+<a href="https://github.com/Cambridge-ICCS/FTorch/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/Cambridge-ICCS/FTorch" /></a>
+<a href="https://github.com/Cambridge-ICCS/FTorch/issues"><img alt="issues" src="https://img.shields.io/github/issues/Cambridge-ICCS/FTorch" /></a>
+<a href="https://github.com/Cambridge-ICCS/FTorch/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/Cambridge-ICCS/FTorch" /></a></p>
+<p>Allows users to interface into the PyTorch machine learning library</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/machine-learning/#sphx-tag-machine-learning"><span class="std std-ref">machine-learning</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="futility"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="https://code.ornl.gov/futility/Futility">Futility</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-Apachev2.0-blue" />
+<p>Fortran utilities including unit test harness, arbitrary length strings, parameter list objects, timers, geometry definitions, file wrappers, linear algebra tools, and parallel computing support</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="gemini3d"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/gemini3d/gemini3d">Gemini3D</a></p>
+<p><a href="https://github.com/gemini3d/gemini3d/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/gemini3d/gemini3d?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/gemini3d/gemini3d" />
+<a href="https://github.com/gemini3d/gemini3d/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/gemini3d/gemini3d" /></a>
+<a href="https://github.com/gemini3d/gemini3d/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/gemini3d/gemini3d" /></a>
+<a href="https://github.com/gemini3d/gemini3d/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/gemini3d/gemini3d" /></a>
+<a href="https://github.com/gemini3d/gemini3d/issues"><img alt="issues" src="https://img.shields.io/github/issues/gemini3d/gemini3d" /></a>
+<a href="https://github.com/gemini3d/gemini3d/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/gemini3d/gemini3d" /></a></p>
+<p>3D ionospheric model covering local (&gt; 10 gyroradii) to global scales.</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="geos-chem"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/geoschem/geos-chem">GEOS-Chem</a></p>
+<p><a href="https://github.com/geoschem/geos-chem/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/geoschem/geos-chem?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<a href="https://github.com/geoschem/geos-chem/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/geoschem/geos-chem" /></a>
+<a href="https://github.com/geoschem/geos-chem/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/geoschem/geos-chem" /></a>
+<a href="https://github.com/geoschem/geos-chem/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/geoschem/geos-chem" /></a>
+<a href="https://github.com/geoschem/geos-chem/issues"><img alt="issues" src="https://img.shields.io/github/issues/geoschem/geos-chem" /></a>
+<a href="https://github.com/geoschem/geos-chem/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/geoschem/geos-chem" /></a></p>
+<p>Atmospheric chemistry model</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/climate/#sphx-tag-climate"><span class="std std-ref">climate</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/chemistry/#sphx-tag-chemistry"><span class="std std-ref">chemistry</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/atmospheric-modelling/#sphx-tag-atmospheric-modelling"><span class="std std-ref">atmospheric-modelling</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/atmospheric-chemistry/#sphx-tag-atmospheric-chemistry"><span class="std std-ref">atmospheric-chemistry</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="hande"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/hande-qmc/hande">HANDE</a></p>
+<p><a href="https://github.com/hande-qmc/hande/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/hande-qmc/hande?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/hande-qmc/hande" />
+<a href="https://github.com/hande-qmc/hande/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/hande-qmc/hande" /></a>
+<a href="https://github.com/hande-qmc/hande/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/hande-qmc/hande" /></a>
+<a href="https://github.com/hande-qmc/hande/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/hande-qmc/hande" /></a>
+<a href="https://github.com/hande-qmc/hande/issues"><img alt="issues" src="https://img.shields.io/github/issues/hande-qmc/hande" /></a>
+<a href="https://github.com/hande-qmc/hande/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/hande-qmc/hande" /></a></p>
+<p>Open source stochastic quantum chemistry</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/qmc/#sphx-tag-qmc"><span class="std std-ref">qmc</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="icar"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/NCAR/icar">ICAR</a></p>
+<p><a href="https://github.com/NCAR/icar/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/NCAR/icar?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/NCAR/icar" />
+<a href="https://github.com/NCAR/icar/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/NCAR/icar" /></a>
+<a href="https://github.com/NCAR/icar/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/NCAR/icar" /></a>
+<a href="https://github.com/NCAR/icar/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/NCAR/icar" /></a>
+<a href="https://github.com/NCAR/icar/issues"><img alt="issues" src="https://img.shields.io/github/issues/NCAR/icar" /></a>
+<a href="https://github.com/NCAR/icar/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/NCAR/icar" /></a></p>
+<p>The Intermediate Complexity Atmospheric Research model</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="latte"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/lanl/LATTE">LATTE</a></p>
+<p><a href="https://github.com/lanl/LATTE/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/lanl/LATTE?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--2.0-blue" />
+<a href="https://github.com/lanl/LATTE/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/lanl/LATTE" /></a>
+<a href="https://github.com/lanl/LATTE/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/lanl/LATTE" /></a>
+<a href="https://github.com/lanl/LATTE/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/lanl/LATTE" /></a>
+<a href="https://github.com/lanl/LATTE/issues"><img alt="issues" src="https://img.shields.io/github/issues/lanl/LATTE" /></a>
+<a href="https://github.com/lanl/LATTE/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/lanl/LATTE" /></a></p>
+<p>Open source density functional tight binding molecular dynamics</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/tight-binding/#sphx-tag-tight-binding"><span class="std std-ref">tight-binding</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/molecular-dynamics/#sphx-tag-molecular-dynamics"><span class="std std-ref">molecular-dynamics</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="lesgo"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/lesgo-jhu/lesgo">lesgo</a></p>
+<p><a href="https://github.com/lesgo-jhu/lesgo/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/lesgo-jhu/lesgo?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/lesgo-jhu/lesgo" />
+<a href="https://github.com/lesgo-jhu/lesgo/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/lesgo-jhu/lesgo" /></a>
+<a href="https://github.com/lesgo-jhu/lesgo/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/lesgo-jhu/lesgo" /></a>
+<a href="https://github.com/lesgo-jhu/lesgo/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/lesgo-jhu/lesgo" /></a>
+<a href="https://github.com/lesgo-jhu/lesgo/issues"><img alt="issues" src="https://img.shields.io/github/issues/lesgo-jhu/lesgo" /></a>
+<a href="https://github.com/lesgo-jhu/lesgo/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/lesgo-jhu/lesgo" /></a></p>
+<p>The Large-Eddy Simulation framework from the Turbulence Research Group at Johns Hopkins University</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="libmbd"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/libmbd/libmbd">libmbd</a></p>
+<p><a href="https://github.com/libmbd/libmbd/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/libmbd/libmbd?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/libmbd/libmbd" />
+<a href="https://github.com/libmbd/libmbd/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/libmbd/libmbd" /></a>
+<a href="https://github.com/libmbd/libmbd/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/libmbd/libmbd" /></a>
+<a href="https://github.com/libmbd/libmbd/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/libmbd/libmbd" /></a>
+<a href="https://github.com/libmbd/libmbd/issues"><img alt="issues" src="https://img.shields.io/github/issues/libmbd/libmbd" /></a>
+<a href="https://github.com/libmbd/libmbd/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/libmbd/libmbd" /></a></p>
+<p>Many-body dispersion library</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/dispersion-correction/#sphx-tag-dispersion-correction"><span class="std std-ref">dispersion-correction</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="librsb"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="http://librsb.sourceforge.net/">librsb</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0--or--later-blue" />
+<p>A shared memory parallel sparse matrix computations library for the Recursive Sparse Blocks format implementing the Sparse BLAS standard</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/linear-algebra/#sphx-tag-linear-algebra"><span class="std std-ref">linear-algebra</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/openmp/#sphx-tag-openmp"><span class="std std-ref">openmp</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="lsdalton"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/dalton/lsdalton">LSDalton</a></p>
+<p><a href="https://gitlab.com/dalton/lsdalton/-/releases/permalink/latest"><img alt="Release" src="https://img.shields.io/gitlab/v/release/dalton/lsdalton?date_order_by=created_at&amp;sort=date&amp;color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--2.1-blue" />
+<a href="https://gitlab.com/dalton/lsdalton/-/forks/"><img alt="forks" src="https://img.shields.io/gitlab/forks/dalton/lsdalton" /></a>
+<a href="https://gitlab.com/dalton/lsdalton/-/work_items/"><img alt="issues" src="https://img.shields.io/gitlab/issues/open/dalton/lsdalton" /></a>
+<a href="https://gitlab.com/dalton/lsdalton/-/merge_requests/"><img alt="issues" src="https://img.shields.io/gitlab/merge-requests/open/dalton/lsdalton" /></a></p>
+<p>Linear scaling molecular electronic structure program</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/relativistic/#sphx-tag-relativistic"><span class="std std-ref">relativistic</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="mesa"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/MESAHub/mesa">MESA</a></p>
+<p><a href="https://github.com/MESAHub/mesa/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/MESAHub/mesa?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--2.1-blue" />
+<a href="https://github.com/MESAHub/mesa/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/MESAHub/mesa" /></a>
+<a href="https://github.com/MESAHub/mesa/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/MESAHub/mesa" /></a>
+<a href="https://github.com/MESAHub/mesa/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/MESAHub/mesa" /></a>
+<a href="https://github.com/MESAHub/mesa/issues"><img alt="issues" src="https://img.shields.io/github/issues/MESAHub/mesa" /></a>
+<a href="https://github.com/MESAHub/mesa/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/MESAHub/mesa" /></a></p>
+<p>Modules for Experiments in Stellar Astrophysics</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/stellar/#sphx-tag-stellar"><span class="std std-ref">stellar</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/astrophysics/#sphx-tag-astrophysics"><span class="std std-ref">astrophysics</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="mitgcm"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/MITgcm/MITgcm">MITgcm</a></p>
+<p><a href="https://github.com/MITgcm/MITgcm/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/MITgcm/MITgcm?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/MITgcm/MITgcm" />
+<a href="https://github.com/MITgcm/MITgcm/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/MITgcm/MITgcm" /></a>
+<a href="https://github.com/MITgcm/MITgcm/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/MITgcm/MITgcm" /></a>
+<a href="https://github.com/MITgcm/MITgcm/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/MITgcm/MITgcm" /></a>
+<a href="https://github.com/MITgcm/MITgcm/issues"><img alt="issues" src="https://img.shields.io/github/issues/MITgcm/MITgcm" /></a>
+<a href="https://github.com/MITgcm/MITgcm/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/MITgcm/MITgcm" /></a></p>
+<p>M.I.T General Circulation Model master code and documentation repository</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ocean-modelling/#sphx-tag-ocean-modelling"><span class="std std-ref">ocean-modelling</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/gfd/#sphx-tag-gfd"><span class="std std-ref">gfd</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/automatic-differentiation/#sphx-tag-automatic-differentiation"><span class="std std-ref">automatic-differentiation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/data-assimilation/#sphx-tag-data-assimilation"><span class="std std-ref">data-assimilation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/exoplanets/#sphx-tag-exoplanets"><span class="std std-ref">exoplanets</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/climate-science/#sphx-tag-climate-science"><span class="std std-ref">climate-science</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="mokit"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/jxzou/mokit">MOKIT</a></p>
+<p><a href="https://gitlab.com/jxzou/mokit/-/releases/permalink/latest"><img alt="Release" src="https://img.shields.io/gitlab/v/release/jxzou/mokit?date_order_by=created_at&amp;sort=date&amp;color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-Apache--2.0-blue" />
+<a href="https://gitlab.com/jxzou/mokit/-/forks/"><img alt="forks" src="https://img.shields.io/gitlab/forks/jxzou/mokit" /></a>
+<a href="https://gitlab.com/jxzou/mokit/-/work_items/"><img alt="issues" src="https://img.shields.io/gitlab/issues/open/jxzou/mokit" /></a>
+<a href="https://gitlab.com/jxzou/mokit/-/merge_requests/"><img alt="issues" src="https://img.shields.io/gitlab/merge-requests/open/jxzou/mokit" /></a></p>
+<p>Molecular orbital transfer utilities and automatic multi-reference calculations</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quantum-chemistry/#sphx-tag-quantum-chemistry"><span class="std std-ref">quantum-chemistry</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/casscf/#sphx-tag-casscf"><span class="std std-ref">casscf</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="mom6"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/NOAA-GFDL/MOM6">MOM6</a></p>
+<p><a href="https://github.com/NOAA-GFDL/MOM6/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/NOAA-GFDL/MOM6?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://github.com/NOAA-GFDL/MOM6/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/NOAA-GFDL/MOM6" /></a>
+<a href="https://github.com/NOAA-GFDL/MOM6/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/NOAA-GFDL/MOM6" /></a>
+<a href="https://github.com/NOAA-GFDL/MOM6/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/NOAA-GFDL/MOM6" /></a>
+<a href="https://github.com/NOAA-GFDL/MOM6/issues"><img alt="issues" src="https://img.shields.io/github/issues/NOAA-GFDL/MOM6" /></a>
+<a href="https://github.com/NOAA-GFDL/MOM6/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/NOAA-GFDL/MOM6" /></a></p>
+<p>Modular Ocean Model</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="mpas-model"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/MPAS-Dev/MPAS-Model">MPAS-Model</a></p>
+<p><a href="https://github.com/MPAS-Dev/MPAS-Model/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/MPAS-Dev/MPAS-Model?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/MPAS-Dev/MPAS-Model/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/MPAS-Dev/MPAS-Model" /></a>
+<a href="https://github.com/MPAS-Dev/MPAS-Model/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/MPAS-Dev/MPAS-Model" /></a>
+<a href="https://github.com/MPAS-Dev/MPAS-Model/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/MPAS-Dev/MPAS-Model" /></a>
+<a href="https://github.com/MPAS-Dev/MPAS-Model/issues"><img alt="issues" src="https://img.shields.io/github/issues/MPAS-Dev/MPAS-Model" /></a>
+<a href="https://github.com/MPAS-Dev/MPAS-Model/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/MPAS-Dev/MPAS-Model" /></a></p>
+<p>collaborative project for developing atmosphere, ocean, and other earth-system simulation components for use in climate, regional climate, and weather studies</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="nastran-93"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/nasa/NASTRAN-93">NASTRAN 93</a></p>
+<p><a href="https://github.com/nasa/NASTRAN-93/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/nasa/NASTRAN-93?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-NASA--1.3-blue" />
+<a href="https://github.com/nasa/NASTRAN-93/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/nasa/NASTRAN-93" /></a>
+<a href="https://github.com/nasa/NASTRAN-93/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/nasa/NASTRAN-93" /></a>
+<a href="https://github.com/nasa/NASTRAN-93/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/nasa/NASTRAN-93" /></a>
+<a href="https://github.com/nasa/NASTRAN-93/issues"><img alt="issues" src="https://img.shields.io/github/issues/nasa/NASTRAN-93" /></a>
+<a href="https://github.com/nasa/NASTRAN-93/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/nasa/NASTRAN-93" /></a></p>
+<p>NASTRAN is the NASA Structural Analysis System, a finite element analysis program (FEA)</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/finite/#sphx-tag-finite"><span class="std std-ref">finite</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/element/#sphx-tag-element"><span class="std std-ref">element</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/structural/#sphx-tag-structural"><span class="std std-ref">structural</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="nastran-95"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/nasa/NASTRAN-95">NASTRAN 95</a></p>
+<p><a href="https://github.com/nasa/NASTRAN-95/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/nasa/NASTRAN-95?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-NASA--1.3-blue" />
+<a href="https://github.com/nasa/NASTRAN-95/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/nasa/NASTRAN-95" /></a>
+<a href="https://github.com/nasa/NASTRAN-95/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/nasa/NASTRAN-95" /></a>
+<a href="https://github.com/nasa/NASTRAN-95/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/nasa/NASTRAN-95" /></a>
+<a href="https://github.com/nasa/NASTRAN-95/issues"><img alt="issues" src="https://img.shields.io/github/issues/nasa/NASTRAN-95" /></a>
+<a href="https://github.com/nasa/NASTRAN-95/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/nasa/NASTRAN-95" /></a></p>
+<p>NASA Structural Analysis System, a finite element analysis program (FEA) completed in the early 1970's</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/finite/#sphx-tag-finite"><span class="std std-ref">finite</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/element/#sphx-tag-element"><span class="std std-ref">element</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/structural/#sphx-tag-structural"><span class="std std-ref">structural</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/eigne/#sphx-tag-eigne"><span class="std std-ref">eigne</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/stability/#sphx-tag-stability"><span class="std std-ref">stability</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/loads/#sphx-tag-loads"><span class="std std-ref">loads</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="nek5000"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/Nek5000/Nek5000">Nek5000</a></p>
+<p><a href="https://github.com/Nek5000/Nek5000/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/Nek5000/Nek5000?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/Nek5000/Nek5000/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/Nek5000/Nek5000" /></a>
+<a href="https://github.com/Nek5000/Nek5000/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/Nek5000/Nek5000" /></a>
+<a href="https://github.com/Nek5000/Nek5000/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/Nek5000/Nek5000" /></a>
+<a href="https://github.com/Nek5000/Nek5000/issues"><img alt="issues" src="https://img.shields.io/github/issues/Nek5000/Nek5000" /></a>
+<a href="https://github.com/Nek5000/Nek5000/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/Nek5000/Nek5000" /></a></p>
+<p>MPI parallel higher-order spectral element CFD solver</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cfd/#sphx-tag-cfd"><span class="std std-ref">cfd</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/computational-fluid-dynamics/#sphx-tag-computational-fluid-dynamics"><span class="std std-ref">computational-fluid-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/spectral/#sphx-tag-spectral"><span class="std std-ref">spectral</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/element/#sphx-tag-element"><span class="std std-ref">element</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/higher/#sphx-tag-higher"><span class="std std-ref">higher</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/order/#sphx-tag-order"><span class="std std-ref">order</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/parallel/#sphx-tag-parallel"><span class="std std-ref">parallel</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/les/#sphx-tag-les"><span class="std std-ref">les</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/rans/#sphx-tag-rans"><span class="std std-ref">rans</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="nwchem"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/nwchemgit/nwchem">NWChem</a></p>
+<p><a href="https://github.com/nwchemgit/nwchem/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/nwchemgit/nwchem?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-ECL--2.0-blue" />
+<a href="https://github.com/nwchemgit/nwchem/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/nwchemgit/nwchem" /></a>
+<a href="https://github.com/nwchemgit/nwchem/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/nwchemgit/nwchem" /></a>
+<a href="https://github.com/nwchemgit/nwchem/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/nwchemgit/nwchem" /></a>
+<a href="https://github.com/nwchemgit/nwchem/issues"><img alt="issues" src="https://img.shields.io/github/issues/nwchemgit/nwchem" /></a>
+<a href="https://github.com/nwchemgit/nwchem/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/nwchemgit/nwchem" /></a></p>
+<p>Open Source High-Performance Computational Chemistry</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/computational-chemistry/#sphx-tag-computational-chemistry"><span class="std std-ref">computational-chemistry</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/parallel-computing/#sphx-tag-parallel-computing"><span class="std std-ref">parallel-computing</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/molecular-simulations/#sphx-tag-molecular-simulations"><span class="std std-ref">molecular-simulations</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/density-functional-theory/#sphx-tag-density-functional-theory"><span class="std std-ref">density-functional-theory</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hartree-fock/#sphx-tag-hartree-fock"><span class="std std-ref">hartree-fock</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quantum-chemistry/#sphx-tag-quantum-chemistry"><span class="std std-ref">quantum-chemistry</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="octopus"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/octopus-code/octopus">Octopus</a></p>
+<p><a href="https://gitlab.com/octopus-code/octopus/-/releases/permalink/latest"><img alt="Release" src="https://img.shields.io/gitlab/v/release/octopus-code/octopus?date_order_by=created_at&amp;sort=date&amp;color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--2.0-blue" />
+<a href="https://gitlab.com/octopus-code/octopus/-/forks/"><img alt="forks" src="https://img.shields.io/gitlab/forks/octopus-code/octopus" /></a>
+<a href="https://gitlab.com/octopus-code/octopus/-/work_items/"><img alt="issues" src="https://img.shields.io/gitlab/issues/open/octopus-code/octopus" /></a>
+<a href="https://gitlab.com/octopus-code/octopus/-/merge_requests/"><img alt="issues" src="https://img.shields.io/gitlab/merge-requests/open/octopus-code/octopus" /></a></p>
+<p>Real-space Time-Dependent Density Functional Theory code</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="off"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/szaghi/OFF">OFF</a></p>
+<p><a href="https://github.com/szaghi/OFF/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/szaghi/OFF?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://github.com/szaghi/OFF/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/szaghi/OFF" /></a>
+<a href="https://github.com/szaghi/OFF/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/szaghi/OFF" /></a>
+<a href="https://github.com/szaghi/OFF/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/szaghi/OFF" /></a>
+<a href="https://github.com/szaghi/OFF/issues"><img alt="issues" src="https://img.shields.io/github/issues/szaghi/OFF" /></a>
+<a href="https://github.com/szaghi/OFF/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/szaghi/OFF" /></a></p>
+<p>Finite volume fluid dynamics</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/godunov/#sphx-tag-godunov"><span class="std std-ref">godunov</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/riemann/#sphx-tag-riemann"><span class="std std-ref">riemann</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/euler/#sphx-tag-euler"><span class="std std-ref">euler</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/runge/#sphx-tag-runge"><span class="std std-ref">runge</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/kutta/#sphx-tag-kutta"><span class="std std-ref">kutta</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/structured/#sphx-tag-structured"><span class="std std-ref">structured</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="openmolcas"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/Molcas/OpenMolcas">OpenMolcas</a></p>
+<p><a href="https://gitlab.com/Molcas/OpenMolcas/-/releases/permalink/latest"><img alt="Release" src="https://img.shields.io/gitlab/v/release/Molcas/OpenMolcas?date_order_by=created_at&amp;sort=date&amp;color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--2.1-blue" />
+<a href="https://gitlab.com/Molcas/OpenMolcas/-/forks/"><img alt="forks" src="https://img.shields.io/gitlab/forks/Molcas/OpenMolcas" /></a>
+<a href="https://gitlab.com/Molcas/OpenMolcas/-/work_items/"><img alt="issues" src="https://img.shields.io/gitlab/issues/open/Molcas/OpenMolcas" /></a>
+<a href="https://gitlab.com/Molcas/OpenMolcas/-/merge_requests/"><img alt="issues" src="https://img.shields.io/gitlab/merge-requests/open/Molcas/OpenMolcas" /></a></p>
+<p>Quantum chemistry software package for multiconfigurational approaches to the electronic structure</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/casscf/#sphx-tag-casscf"><span class="std std-ref">casscf</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/caspt2/#sphx-tag-caspt2"><span class="std std-ref">caspt2</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="openswpc"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/tktmyd/OpenSWPC">OpenSWPC</a></p>
+<p><a href="https://github.com/tktmyd/OpenSWPC/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/tktmyd/OpenSWPC?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/tktmyd/OpenSWPC" />
+<a href="https://github.com/tktmyd/OpenSWPC/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/tktmyd/OpenSWPC" /></a>
+<a href="https://github.com/tktmyd/OpenSWPC/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/tktmyd/OpenSWPC" /></a>
+<a href="https://github.com/tktmyd/OpenSWPC/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/tktmyd/OpenSWPC" /></a>
+<a href="https://github.com/tktmyd/OpenSWPC/issues"><img alt="issues" src="https://img.shields.io/github/issues/tktmyd/OpenSWPC" /></a>
+<a href="https://github.com/tktmyd/OpenSWPC/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/tktmyd/OpenSWPC" /></a></p>
+<p>A Seismic Wave Propagation Code by Parallel Finite Difference Method</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="pencil-code"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/pencil-code/pencil-code">pencil-code</a></p>
+<p><a href="https://github.com/pencil-code/pencil-code/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/pencil-code/pencil-code?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--2.0-blue" />
+<a href="https://github.com/pencil-code/pencil-code/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/pencil-code/pencil-code" /></a>
+<a href="https://github.com/pencil-code/pencil-code/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/pencil-code/pencil-code" /></a>
+<a href="https://github.com/pencil-code/pencil-code/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/pencil-code/pencil-code" /></a>
+<a href="https://github.com/pencil-code/pencil-code/issues"><img alt="issues" src="https://img.shields.io/github/issues/pencil-code/pencil-code" /></a>
+<a href="https://github.com/pencil-code/pencil-code/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/pencil-code/pencil-code" /></a></p>
+<p>A high-order finite-difference code for compressible hydrodynamic flows with magnetic fields and particles</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/finite-difference/#sphx-tag-finite-difference"><span class="std std-ref">finite-difference</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hydrodynamics/#sphx-tag-hydrodynamics"><span class="std std-ref">hydrodynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/magnetic-field/#sphx-tag-magnetic-field"><span class="std std-ref">magnetic-field</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/particles/#sphx-tag-particles"><span class="std std-ref">particles</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="phantom"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/danieljprice/phantom">PHANTOM</a></p>
+<p><a href="https://github.com/danieljprice/phantom/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/danieljprice/phantom?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://github.com/danieljprice/phantom/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/danieljprice/phantom" /></a>
+<a href="https://github.com/danieljprice/phantom/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/danieljprice/phantom" /></a>
+<a href="https://github.com/danieljprice/phantom/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/danieljprice/phantom" /></a>
+<a href="https://github.com/danieljprice/phantom/issues"><img alt="issues" src="https://img.shields.io/github/issues/danieljprice/phantom" /></a>
+<a href="https://github.com/danieljprice/phantom/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/danieljprice/phantom" /></a></p>
+<p>Smoothed particle hydrodynamics and magnetohydrodyanmics for astrophysics simulations</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/astrophysics/#sphx-tag-astrophysics"><span class="std std-ref">astrophysics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/sph/#sphx-tag-sph"><span class="std std-ref">SPH</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mhd/#sphx-tag-mhd"><span class="std std-ref">MHD</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hydrodynamics/#sphx-tag-hydrodynamics"><span class="std std-ref">hydrodynamics</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="precice"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/precice/precice">preCICE</a></p>
+<p><a href="https://github.com/precice/precice/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/precice/precice?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0-blue" />
+<a href="https://github.com/precice/precice/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/precice/precice" /></a>
+<a href="https://github.com/precice/precice/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/precice/precice" /></a>
+<a href="https://github.com/precice/precice/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/precice/precice" /></a>
+<a href="https://github.com/precice/precice/issues"><img alt="issues" src="https://img.shields.io/github/issues/precice/precice" /></a>
+<a href="https://github.com/precice/precice/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/precice/precice" /></a></p>
+<p>A coupling library for partitioned multi-physics simulations, including, but not restricted to fluid-structure interaction and conjugate heat transfer simulations.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cpp/#sphx-tag-cpp"><span class="std std-ref">cpp</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/c/#sphx-tag-c"><span class="std std-ref">c</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/python/#sphx-tag-python"><span class="std std-ref">python</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/julia/#sphx-tag-julia"><span class="std std-ref">julia</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/matlab/#sphx-tag-matlab"><span class="std std-ref">matlab</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/rust/#sphx-tag-rust"><span class="std std-ref">rust</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="psyclone"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/stfc/PSyclone">PSyclone</a></p>
+<p><a href="https://github.com/stfc/PSyclone/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/stfc/PSyclone?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/stfc/PSyclone" />
+<a href="https://github.com/stfc/PSyclone/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/stfc/PSyclone" /></a>
+<a href="https://github.com/stfc/PSyclone/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/stfc/PSyclone" /></a>
+<a href="https://github.com/stfc/PSyclone/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/stfc/PSyclone" /></a>
+<a href="https://github.com/stfc/PSyclone/issues"><img alt="issues" src="https://img.shields.io/github/issues/stfc/PSyclone" /></a>
+<a href="https://github.com/stfc/PSyclone/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/stfc/PSyclone" /></a></p>
+<p>Domain-specific compiler and code transformation system for Finite Difference/Volume/Element Earth-system models in Fortran</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/formatter/#sphx-tag-formatter"><span class="std std-ref">formatter</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/compiler/#sphx-tag-compiler"><span class="std std-ref">compiler</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/transformer/#sphx-tag-transformer"><span class="std std-ref">transformer</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="qcxms"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/qcxms/qcxms">qcxms</a></p>
+<p><a href="https://github.com/qcxms/qcxms/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/qcxms/qcxms?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0--or--later-blue" />
+<a href="https://github.com/qcxms/qcxms/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/qcxms/qcxms" /></a>
+<a href="https://github.com/qcxms/qcxms/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/qcxms/qcxms" /></a>
+<a href="https://github.com/qcxms/qcxms/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/qcxms/qcxms" /></a>
+<a href="https://github.com/qcxms/qcxms/issues"><img alt="issues" src="https://img.shields.io/github/issues/qcxms/qcxms" /></a>
+<a href="https://github.com/qcxms/qcxms/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/qcxms/qcxms" /></a></p>
+<p>Quantum mechanic mass spectrometry calculation program</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/computational-chemistry/#sphx-tag-computational-chemistry"><span class="std std-ref">computational-chemistry</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/molecular-dynamics/#sphx-tag-molecular-dynamics"><span class="std std-ref">molecular-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mass-spectrometry/#sphx-tag-mass-spectrometry"><span class="std std-ref">mass-spectrometry</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="quantum-espresso"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/QEF/q-e">Quantum ESPRESSO</a></p>
+<p><a href="https://github.com/QEF/q-e/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/QEF/q-e?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/QEF/q-e" />
+<a href="https://github.com/QEF/q-e/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/QEF/q-e" /></a>
+<a href="https://github.com/QEF/q-e/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/QEF/q-e" /></a>
+<a href="https://github.com/QEF/q-e/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/QEF/q-e" /></a>
+<a href="https://github.com/QEF/q-e/issues"><img alt="issues" src="https://img.shields.io/github/issues/QEF/q-e" /></a>
+<a href="https://github.com/QEF/q-e/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/QEF/q-e" /></a></p>
+<p>Quantum ESPRESSO is an integrated suite of Open-Source computer codes for electronic-structure calculations and materials modeling at the nanoscale</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quantum-chemistry/#sphx-tag-quantum-chemistry"><span class="std std-ref">quantum-chemistry</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/physics/#sphx-tag-physics"><span class="std std-ref">physics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/molecular-dynamics/#sphx-tag-molecular-dynamics"><span class="std std-ref">molecular-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="quick"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/merzlab/QUICK">QUICK</a></p>
+<p><a href="https://github.com/merzlab/QUICK/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/merzlab/QUICK?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-MPL--2.0-blue" />
+<a href="https://github.com/merzlab/QUICK/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/merzlab/QUICK" /></a>
+<a href="https://github.com/merzlab/QUICK/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/merzlab/QUICK" /></a>
+<a href="https://github.com/merzlab/QUICK/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/merzlab/QUICK" /></a>
+<a href="https://github.com/merzlab/QUICK/issues"><img alt="issues" src="https://img.shields.io/github/issues/merzlab/QUICK" /></a>
+<a href="https://github.com/merzlab/QUICK/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/merzlab/QUICK" /></a></p>
+<p>A GPU-enabled ab initio quantum chemistry software package</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/computational-chemistry/#sphx-tag-computational-chemistry"><span class="std std-ref">computational-chemistry</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/parallel-computing/#sphx-tag-parallel-computing"><span class="std std-ref">parallel-computing</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/molecular-simulations/#sphx-tag-molecular-simulations"><span class="std std-ref">molecular-simulations</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/density-functional-theory/#sphx-tag-density-functional-theory"><span class="std std-ref">density-functional-theory</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hartree-fock/#sphx-tag-hartree-fock"><span class="std std-ref">hartree-fock</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quantum-chemistry/#sphx-tag-quantum-chemistry"><span class="std std-ref">quantum-chemistry</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="quip"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/libAtoms/QUIP">QUIP</a></p>
+<p><a href="https://github.com/libAtoms/QUIP/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/libAtoms/QUIP?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--2-blue" />
+<a href="https://github.com/libAtoms/QUIP/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/libAtoms/QUIP" /></a>
+<a href="https://github.com/libAtoms/QUIP/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/libAtoms/QUIP" /></a>
+<a href="https://github.com/libAtoms/QUIP/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/libAtoms/QUIP" /></a>
+<a href="https://github.com/libAtoms/QUIP/issues"><img alt="issues" src="https://img.shields.io/github/issues/libAtoms/QUIP" /></a>
+<a href="https://github.com/libAtoms/QUIP/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/libAtoms/QUIP" /></a></p>
+<p>The QUIP package is a collection of software tools to carry out molecular dynamics simulations.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quantum-chemistry/#sphx-tag-quantum-chemistry"><span class="std std-ref">quantum-chemistry</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/physics/#sphx-tag-physics"><span class="std std-ref">physics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/molecular-dynamics/#sphx-tag-molecular-dynamics"><span class="std std-ref">molecular-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/qm-mm/#sphx-tag-qm-mm"><span class="std std-ref">qm-mm</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="raffle"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/ExeQuantCode/RAFFLE">raffle</a></p>
+<p><a href="https://github.com/ExeQuantCode/RAFFLE/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/ExeQuantCode/RAFFLE?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://github.com/ExeQuantCode/RAFFLE/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/ExeQuantCode/RAFFLE" /></a>
+<a href="https://github.com/ExeQuantCode/RAFFLE/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/ExeQuantCode/RAFFLE" /></a>
+<a href="https://github.com/ExeQuantCode/RAFFLE/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/ExeQuantCode/RAFFLE" /></a>
+<a href="https://github.com/ExeQuantCode/RAFFLE/issues"><img alt="issues" src="https://img.shields.io/github/issues/ExeQuantCode/RAFFLE" /></a>
+<a href="https://github.com/ExeQuantCode/RAFFLE/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/ExeQuantCode/RAFFLE" /></a></p>
+<p>Package for predicting material interface structures</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/material/#sphx-tag-material"><span class="std std-ref">material</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/structure/#sphx-tag-structure"><span class="std std-ref">structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/phase/#sphx-tag-phase"><span class="std std-ref">phase</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/atomic/#sphx-tag-atomic"><span class="std std-ref">atomic</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/molecular-modeling/#sphx-tag-molecular-modeling"><span class="std std-ref">molecular-modeling</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="roots-fortran"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/jacobwilliams/roots-fortran">roots-fortran</a></p>
+<p><a href="https://github.com/jacobwilliams/roots-fortran/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/jacobwilliams/roots-fortran?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/jacobwilliams/roots-fortran" />
+<a href="https://github.com/jacobwilliams/roots-fortran/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jacobwilliams/roots-fortran" /></a>
+<a href="https://github.com/jacobwilliams/roots-fortran/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/jacobwilliams/roots-fortran" /></a>
+<a href="https://github.com/jacobwilliams/roots-fortran/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/jacobwilliams/roots-fortran" /></a>
+<a href="https://github.com/jacobwilliams/roots-fortran/issues"><img alt="issues" src="https://img.shields.io/github/issues/jacobwilliams/roots-fortran" /></a>
+<a href="https://github.com/jacobwilliams/roots-fortran/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/jacobwilliams/roots-fortran" /></a></p>
+<p>Modern Fortran library for finding the roots of continuous scalar functions of a single real variable</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="seissol"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/SeisSol/SeisSol">SeisSol</a></p>
+<p><a href="https://github.com/SeisSol/SeisSol/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/SeisSol/SeisSol?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/SeisSol/SeisSol/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/SeisSol/SeisSol" /></a>
+<a href="https://github.com/SeisSol/SeisSol/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/SeisSol/SeisSol" /></a>
+<a href="https://github.com/SeisSol/SeisSol/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/SeisSol/SeisSol" /></a>
+<a href="https://github.com/SeisSol/SeisSol/issues"><img alt="issues" src="https://img.shields.io/github/issues/SeisSol/SeisSol" /></a>
+<a href="https://github.com/SeisSol/SeisSol/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/SeisSol/SeisSol" /></a></p>
+<p>A software for the numerical simulation of seismic wave phenomena and earthquake dynamics</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hpc/#sphx-tag-hpc"><span class="std std-ref">hpc</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/earthquakes/#sphx-tag-earthquakes"><span class="std std-ref">earthquakes</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/dynamic-rupture/#sphx-tag-dynamic-rupture"><span class="std std-ref">dynamic-rupture</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="siesta"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/siesta-project/siesta">siesta</a></p>
+<p><a href="https://gitlab.com/siesta-project/siesta/-/releases/permalink/latest"><img alt="Release" src="https://img.shields.io/gitlab/v/release/siesta-project/siesta?date_order_by=created_at&amp;sort=date&amp;color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://gitlab.com/siesta-project/siesta/-/forks/"><img alt="forks" src="https://img.shields.io/gitlab/forks/siesta-project/siesta" /></a>
+<a href="https://gitlab.com/siesta-project/siesta/-/work_items/"><img alt="issues" src="https://img.shields.io/gitlab/issues/open/siesta-project/siesta" /></a>
+<a href="https://gitlab.com/siesta-project/siesta/-/merge_requests/"><img alt="issues" src="https://img.shields.io/gitlab/merge-requests/open/siesta-project/siesta" /></a></p>
+<p>A first-principles materials simulation code using DFT</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/density-functional-theory/#sphx-tag-density-functional-theory"><span class="std std-ref">density-functional-theory</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/molecular-dynamics/#sphx-tag-molecular-dynamics"><span class="std std-ref">molecular-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="slicot"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/SLICOT/SLICOT-Reference">SLICOT</a></p>
+<p><a href="https://github.com/SLICOT/SLICOT-Reference/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/SLICOT/SLICOT-Reference?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/SLICOT/SLICOT-Reference" />
+<a href="https://github.com/SLICOT/SLICOT-Reference/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/SLICOT/SLICOT-Reference" /></a>
+<a href="https://github.com/SLICOT/SLICOT-Reference/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/SLICOT/SLICOT-Reference" /></a>
+<a href="https://github.com/SLICOT/SLICOT-Reference/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/SLICOT/SLICOT-Reference" /></a>
+<a href="https://github.com/SLICOT/SLICOT-Reference/issues"><img alt="issues" src="https://img.shields.io/github/issues/SLICOT/SLICOT-Reference" /></a>
+<a href="https://github.com/SLICOT/SLICOT-Reference/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/SLICOT/SLICOT-Reference" /></a></p>
+<p>A Fortran subroutines library for systems and control</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="snac"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/p-costa/SNaC">SNaC</a></p>
+<p><a href="https://github.com/p-costa/SNaC/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/p-costa/SNaC?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/p-costa/SNaC" />
+<a href="https://github.com/p-costa/SNaC/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/p-costa/SNaC" /></a>
+<a href="https://github.com/p-costa/SNaC/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/p-costa/SNaC" /></a>
+<a href="https://github.com/p-costa/SNaC/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/p-costa/SNaC" /></a>
+<a href="https://github.com/p-costa/SNaC/issues"><img alt="issues" src="https://img.shields.io/github/issues/p-costa/SNaC" /></a>
+<a href="https://github.com/p-costa/SNaC/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/p-costa/SNaC" /></a></p>
+<p>A multi-block solver for massively parallel direct numerical simulations (DNS) of fluid flows</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fluid-dynamics/#sphx-tag-fluid-dynamics"><span class="std std-ref">fluid-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fluid-simulation/#sphx-tag-fluid-simulation"><span class="std std-ref">fluid-simulation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/computational-fluid-dynamics/#sphx-tag-computational-fluid-dynamics"><span class="std std-ref">computational-fluid-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/turbulence/#sphx-tag-turbulence"><span class="std std-ref">turbulence</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/high-performance-computing/#sphx-tag-high-performance-computing"><span class="std std-ref">high-performance-computing</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hpc/#sphx-tag-hpc"><span class="std std-ref">hpc</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cfd/#sphx-tag-cfd"><span class="std std-ref">cfd</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="snap"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/lanl/SNAP">SNAP</a></p>
+<p><a href="https://github.com/lanl/SNAP/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/lanl/SNAP?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/lanl/SNAP/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/lanl/SNAP" /></a>
+<a href="https://github.com/lanl/SNAP/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/lanl/SNAP" /></a>
+<a href="https://github.com/lanl/SNAP/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/lanl/SNAP" /></a>
+<a href="https://github.com/lanl/SNAP/issues"><img alt="issues" src="https://img.shields.io/github/issues/lanl/SNAP" /></a>
+<a href="https://github.com/lanl/SNAP/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/lanl/SNAP" /></a></p>
+<p>proxy application to model the performance of a modern discrete ordinates neutral particle transport application</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="specfem3d"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/geodynamics/specfem3d">Specfem3D</a></p>
+<p><a href="https://github.com/geodynamics/specfem3d/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/geodynamics/specfem3d?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/geodynamics/specfem3d" />
+<a href="https://github.com/geodynamics/specfem3d/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/geodynamics/specfem3d" /></a>
+<a href="https://github.com/geodynamics/specfem3d/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/geodynamics/specfem3d" /></a>
+<a href="https://github.com/geodynamics/specfem3d/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/geodynamics/specfem3d" /></a>
+<a href="https://github.com/geodynamics/specfem3d/issues"><img alt="issues" src="https://img.shields.io/github/issues/geodynamics/specfem3d" /></a>
+<a href="https://github.com/geodynamics/specfem3d/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/geodynamics/specfem3d" /></a></p>
+<p>Simulates acoustic (fluid), elastic (solid), coupled acoustic/elastic, poroelastic or seismic wave propagation in any type of conforming mesh of hexahedra (structured or not)</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="tinker"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/TinkerTools/tinker">tinker</a></p>
+<p><a href="https://github.com/TinkerTools/tinker/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/TinkerTools/tinker?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-custom-blue" />
+<a href="https://github.com/TinkerTools/tinker/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/TinkerTools/tinker" /></a>
+<a href="https://github.com/TinkerTools/tinker/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/TinkerTools/tinker" /></a>
+<a href="https://github.com/TinkerTools/tinker/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/TinkerTools/tinker" /></a>
+<a href="https://github.com/TinkerTools/tinker/issues"><img alt="issues" src="https://img.shields.io/github/issues/TinkerTools/tinker" /></a>
+<a href="https://github.com/TinkerTools/tinker/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/TinkerTools/tinker" /></a></p>
+<p>Software Tools for Molecular Design</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/molecular-modeling/#sphx-tag-molecular-modeling"><span class="std std-ref">molecular-modeling</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="tracmass"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/TRACMASS/tracmass">Tracmass</a></p>
+<p><a href="https://github.com/TRACMASS/tracmass/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/TRACMASS/tracmass?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/TRACMASS/tracmass" />
+<a href="https://github.com/TRACMASS/tracmass/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/TRACMASS/tracmass" /></a>
+<a href="https://github.com/TRACMASS/tracmass/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/TRACMASS/tracmass" /></a>
+<a href="https://github.com/TRACMASS/tracmass/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/TRACMASS/tracmass" /></a>
+<a href="https://github.com/TRACMASS/tracmass/issues"><img alt="issues" src="https://img.shields.io/github/issues/TRACMASS/tracmass" /></a>
+<a href="https://github.com/TRACMASS/tracmass/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/TRACMASS/tracmass" /></a></p>
+<p>Lagrangian particle tracking code</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="truchas"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/truchas/truchas">Truchas</a></p>
+<p><a href="https://gitlab.com/truchas/truchas/-/releases/permalink/latest"><img alt="Release" src="https://img.shields.io/gitlab/v/release/truchas/truchas?date_order_by=created_at&amp;sort=date&amp;color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://gitlab.com/truchas/truchas/-/forks/"><img alt="forks" src="https://img.shields.io/gitlab/forks/truchas/truchas" /></a>
+<a href="https://gitlab.com/truchas/truchas/-/work_items/"><img alt="issues" src="https://img.shields.io/gitlab/issues/open/truchas/truchas" /></a>
+<a href="https://gitlab.com/truchas/truchas/-/merge_requests/"><img alt="issues" src="https://img.shields.io/gitlab/merge-requests/open/truchas/truchas" /></a></p>
+<p>3D Multiphysics Simulation of Metal Casting and Processing</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fluid-dynamics/#sphx-tag-fluid-dynamics"><span class="std std-ref">fluid-dynamics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/metal-casting/#sphx-tag-metal-casting"><span class="std std-ref">metal-casting</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/multiphysics/#sphx-tag-multiphysics"><span class="std std-ref">multiphysics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hpc/#sphx-tag-hpc"><span class="std std-ref">hpc</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="wannier90"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/wannier-developers/wannier90">Wannier90</a></p>
+<p><a href="https://github.com/wannier-developers/wannier90/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/wannier-developers/wannier90?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/wannier-developers/wannier90" />
+<a href="https://github.com/wannier-developers/wannier90/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/wannier-developers/wannier90" /></a>
+<a href="https://github.com/wannier-developers/wannier90/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/wannier-developers/wannier90" /></a>
+<a href="https://github.com/wannier-developers/wannier90/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/wannier-developers/wannier90" /></a>
+<a href="https://github.com/wannier-developers/wannier90/issues"><img alt="issues" src="https://img.shields.io/github/issues/wannier-developers/wannier90" /></a>
+<a href="https://github.com/wannier-developers/wannier90/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/wannier-developers/wannier90" /></a></p>
+<p>The Maximally-Localised Generalised Wannier Functions Code</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="whizard"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="https://whizard.hepforge.org/">WHIZARD</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--2.0--or--later-blue" />
+<p>Particle Physics Monte Carlo Event Generator</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/particle/#sphx-tag-particle"><span class="std std-ref">particle</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/physics/#sphx-tag-physics"><span class="std std-ref">physics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/parallel/#sphx-tag-parallel"><span class="std std-ref">parallel</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/monte/#sphx-tag-monte"><span class="std std-ref">monte</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/carlo/#sphx-tag-carlo"><span class="std std-ref">carlo</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/optimization/#sphx-tag-optimization"><span class="std std-ref">optimization</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/sampling/#sphx-tag-sampling"><span class="std std-ref">sampling</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/integration/#sphx-tag-integration"><span class="std std-ref">integration</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="wrf"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/wrf-model/WRF">WRF</a></p>
+<p><a href="https://github.com/wrf-model/WRF/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/wrf-model/WRF?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-Publicdomain-blue" />
+<a href="https://github.com/wrf-model/WRF/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/wrf-model/WRF" /></a>
+<a href="https://github.com/wrf-model/WRF/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/wrf-model/WRF" /></a>
+<a href="https://github.com/wrf-model/WRF/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/wrf-model/WRF" /></a>
+<a href="https://github.com/wrf-model/WRF/issues"><img alt="issues" src="https://img.shields.io/github/issues/wrf-model/WRF" /></a>
+<a href="https://github.com/wrf-model/WRF/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/wrf-model/WRF" /></a></p>
+<p>Weather Research and Forecasting model</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="xtb"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/grimme-lab/xtb">xtb</a></p>
+<p><a href="https://github.com/grimme-lab/xtb/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/grimme-lab/xtb?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0--or--later-blue" />
+<a href="https://github.com/grimme-lab/xtb/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/grimme-lab/xtb" /></a>
+<a href="https://github.com/grimme-lab/xtb/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/grimme-lab/xtb" /></a>
+<a href="https://github.com/grimme-lab/xtb/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/grimme-lab/xtb" /></a>
+<a href="https://github.com/grimme-lab/xtb/issues"><img alt="issues" src="https://img.shields.io/github/issues/grimme-lab/xtb" /></a>
+<a href="https://github.com/grimme-lab/xtb/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/grimme-lab/xtb" /></a></p>
+<p>Semiempirical Extended Tight-Binding Program Package</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quantum-chemistry/#sphx-tag-quantum-chemistry"><span class="std std-ref">quantum-chemistry</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/computational-chemistry/#sphx-tag-computational-chemistry"><span class="std std-ref">computational-chemistry</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/atomistic-simulations/#sphx-tag-atomistic-simulations"><span class="std std-ref">atomistic-simulations</span></a></p>
+</div>
+<p>See <a class="reference internal" href="../../community/packages/"><span class="doc std std-doc">package index guidelines</span></a> for how to get your project listed.</p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2020-2026, Fortran Community.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0 を使用して作成されました。
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1 で構築されています。
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>

@@ -43,9 +43,8 @@ Use the box above to search the package index by keyword, package name, or autho
 Featured topics
 :::
 
-:::{jinja} fortran_index
-{% for j in tags %}
-<a href='{{"../search/index.html?q="+j}}'>{{j}},</a>{% endfor %}
+:::{jinja} tags
+{% for tag in tags %}{bdg-ref-secondary}`{{ tag }} <sphx_tag_{{ tag }}>`{% endfor %}
 :::
 
 ::::
@@ -56,58 +55,21 @@ Featured topics
 Browse Packages by Category
 :::
 
-## [Data types and containers](../packages/data-types)
+:::{jinja} categories
+{% for slug, item in categories.items() %}
+## [{{item.title}}](../categories/{{slug}})
 
-Libraries for advanced data types and container classes
-
-## [Interface libraries](../packages/interfaces)
-
-Libraries that interface with other systems, languages, or devices
-
-## [Libraries](../packages/libraries)
-
-Fortran libraries for general programming tasks
-
-## [Input, output and parsing](../packages/io)
-
-Libraries for reading, writing and parsing files and inputs
-
-## [Graphics, plotting and user interfaces](../packages/graphics)
-
-Libraries for plotting data, handling images and generating user interfaces
-
-## [Examples and templates](../packages/examples)
-
-Demonstration codes and templates for Fortran
-
-## [Numerical projects](../packages/numerical)
-
-Fortran libraries for linear algebra, optimization, root-finding etc.
-
-## [Programming utilities](../packages/programming)
-
-Error handling, logging, documentation and testing
-
-## [Characters and strings](../packages/strings)
-
-Libraries for manipulating characters and strings
-
-## [Scientific Codes](../packages/scientific)
-
-Applications and libraries for applied mathematical and scientific problems
+{{item.description}}
+{% endfor %}
 
 See [package index guidelines](../community/packages) for how to get your project listed.
 
+::::::{jinja} categories
 :::{toctree}
 :hidden:
-packages/data-types
-packages/interfaces
-packages/libraries
-packages/io
-packages/graphics
-packages/examples
-packages/numerical
-packages/programming
-packages/strings
-packages/scientific
+
+{% for slug,item in categories.items() %}
+categories/{{slug}}
+{% endfor %}
 :::
+::::::

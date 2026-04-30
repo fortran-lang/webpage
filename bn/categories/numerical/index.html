@@ -1,0 +1,1343 @@
+
+<!DOCTYPE html>
+
+
+<html lang="bn" data-content_root="../../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" sizes="256x256" href="../../_static/images/favicon.ico" type="image/x-icon">
+    <title>Numerical projects &#8212; Fortran Programming Language</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../../_static/styles/theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+<link href="../../_static/styles/pydata-sphinx-theme.css?digest=8878045cc6db502f8baf" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../../_static/custom.css?v=0a3c677e" />
+  
+  <!-- So that users can add custom icons -->
+  <script src="../../_static/scripts/fontawesome.js?digest=8878045cc6db502f8baf"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf" />
+<link rel="preload" as="script" href="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf" />
+
+    <script src="../../_static/documentation_options.js?v=6ef25e51"></script>
+    <script src="../../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../../_static/translations.js?v=798cd998"></script>
+    <script src="../../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'categories/numerical';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.16.1';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://fortran-lang.org/_static/data.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'bn';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <link rel="canonical" href="https://fortran-lang.org/categories/numerical/" />
+    <link rel="index" title="ইনডেক্স" href="../../genindex/" />
+    <link rel="search" title="অনুসন্ধান" href="../../search/" />
+    <link rel="next" title="Programming utilities" href="../programming/" />
+    <link rel="prev" title="Libraries" href="../libraries/" /> 
+<meta
+  name="description"
+  content="Fortran : High-performance parallel programming language"
+/>
+<meta
+  name="keywords"
+  content="High-performance, parallel, programming language"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+ 
+  </head>
+  
+  
+  <body data-bs-spy="scroll" data-bs-target=".bd-toc-nav" data-offset="180" data-bs-root-margin="0px 0px -60%" data-default-mode="">
+
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search"
+         aria-label="Search"
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Fortran Programming Language - Home"/>
+    <img src="../../_static/fortran-logo-256x256.png" class="logo__image only-dark pst-js-only" alt="Fortran Programming Language - Home"/>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+
+<button class="btn btn-sm nav-link pst-navbar-icon theme-switch-button pst-js-only" aria-label="Color mode" data-bs-title="Color mode"  data-bs-placement="bottom" data-bs-toggle="tooltip">
+  <i class="theme-switch fa-solid fa-sun                fa-lg" data-mode="light" title="Light"></i>
+  <i class="theme-switch fa-solid fa-moon               fa-lg" data-mode="dark"  title="Dark"></i>
+  <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg" data-mode="auto"  title="System Settings"></i>
+</button></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="ms-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../learn/">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../community/">
+    Community
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../../news/">
+    News
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button class="btn search-button-field search-button__button pst-js-only" title="অনুসন্ধান" aria-label="অনুসন্ধান" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">অনুসন্ধান</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button class="btn search-button-field search-button__button pst-js-only" title="অনুসন্ধান" aria-label="অনুসন্ধান" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">অনুসন্ধান</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../learn/">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="../../packages/">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../community/">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../../news/">
+    News
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i>
+            <span class="sr-only">RSS</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+    <div class="sidebar-primary-items__start sidebar-primary__section">
+        <div class="sidebar-primary-item">
+<nav class="bd-docs-nav bd-links"
+     aria-label="Section Navigation">
+  <p class="bd-links__title" role="heading" aria-level="1">Section Navigation</p>
+  <div class="bd-toc-item navbar-nav"><ul class="current nav bd-sidenav">
+<li class="toctree-l1"><a class="reference internal" href="../data-types/">Data types and containers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../examples/">Examples and templates</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../graphics/">Graphics, plotting and user interfaces</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../interfaces/">Interface libraries</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../io/">Input, output and parsing</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../libraries/">Libraries</a></li>
+<li class="toctree-l1 current active"><a class="current reference internal" href="#">Numerical projects</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../programming/">Programming utilities</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../scientific/">Scientific</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../strings/">Characters and strings</a></li>
+</ul>
+</div>
+</nav></div>
+    </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    
+    <li class="breadcrumb-item"><a href="../../packages/" class="nav-link">Packages</a></li>
+    
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Numerical projects</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section id="numerical-projects">
+<h1>Numerical projects<a class="headerlink" href="#numerical-projects" title="Link to this heading">#</a></h1>
+<section id="fortran-libraries-for-linear-algebra-optimization-root-finding-etc">
+<h2>Fortran libraries for linear algebra, optimization, root-finding, etc.<a class="headerlink" href="#fortran-libraries-for-linear-algebra-optimization-root-finding-etc" title="Link to this heading">#</a></h2>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="decomp-fft"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="http://www.2decomp.org/">2DECOMP&amp;FFT</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<p>Library for 2D pencil decomposition and distributed Fast Fourier Transform</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fft/#sphx-tag-fft"><span class="std std-ref">fft</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/parallel/#sphx-tag-parallel"><span class="std std-ref">parallel</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/distributed-memory/#sphx-tag-distributed-memory"><span class="std std-ref">distributed-memory</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/openmpi/#sphx-tag-openmpi"><span class="std std-ref">openmpi</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="arpack"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/opencollab/arpack-ng">ARPACK</a></p>
+<p><a href="https://github.com/opencollab/arpack-ng/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/opencollab/arpack-ng?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/opencollab/arpack-ng/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/opencollab/arpack-ng" /></a>
+<a href="https://github.com/opencollab/arpack-ng/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/opencollab/arpack-ng" /></a>
+<a href="https://github.com/opencollab/arpack-ng/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/opencollab/arpack-ng" /></a>
+<a href="https://github.com/opencollab/arpack-ng/issues"><img alt="issues" src="https://img.shields.io/github/issues/opencollab/arpack-ng" /></a>
+<a href="https://github.com/opencollab/arpack-ng/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/opencollab/arpack-ng" /></a></p>
+<p>Collection of Fortran77 subroutines designed to solve large scale eigenvalue problems.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/eigenvalue/#sphx-tag-eigenvalue"><span class="std std-ref">eigenvalue</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/eigenvector/#sphx-tag-eigenvector"><span class="std std-ref">eigenvector</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/singular/#sphx-tag-singular"><span class="std std-ref">singular</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/value/#sphx-tag-value"><span class="std std-ref">value</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/decomposition/#sphx-tag-decomposition"><span class="std std-ref">decomposition</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/svd/#sphx-tag-svd"><span class="std std-ref">svd</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="athena"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/nedtaylor/athena">athena</a></p>
+<p><a href="https://github.com/nedtaylor/athena/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/nedtaylor/athena?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<a href="https://github.com/nedtaylor/athena/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/nedtaylor/athena" /></a>
+<a href="https://github.com/nedtaylor/athena/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/nedtaylor/athena" /></a>
+<a href="https://github.com/nedtaylor/athena/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/nedtaylor/athena" /></a>
+<a href="https://github.com/nedtaylor/athena/issues"><img alt="issues" src="https://img.shields.io/github/issues/nedtaylor/athena" /></a>
+<a href="https://github.com/nedtaylor/athena/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/nedtaylor/athena" /></a></p>
+<p>A library for building, training and testing feed-forward neural networks.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/machine-learning/#sphx-tag-machine-learning"><span class="std std-ref">machine-learning</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/convolutional-neural-networks/#sphx-tag-convolutional-neural-networks"><span class="std std-ref">convolutional-neural-networks</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="bspline-fortran"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/jacobwilliams/bspline-fortran">bspline-fortran</a></p>
+<p><a href="https://github.com/jacobwilliams/bspline-fortran/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/jacobwilliams/bspline-fortran?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/jacobwilliams/bspline-fortran/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jacobwilliams/bspline-fortran" /></a>
+<a href="https://github.com/jacobwilliams/bspline-fortran/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/jacobwilliams/bspline-fortran" /></a>
+<a href="https://github.com/jacobwilliams/bspline-fortran/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/jacobwilliams/bspline-fortran" /></a>
+<a href="https://github.com/jacobwilliams/bspline-fortran/issues"><img alt="issues" src="https://img.shields.io/github/issues/jacobwilliams/bspline-fortran" /></a>
+<a href="https://github.com/jacobwilliams/bspline-fortran/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/jacobwilliams/bspline-fortran" /></a></p>
+<p>Multidimensional B-Spline interpolation of data on a regular grid</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/spline/#sphx-tag-spline"><span class="std std-ref">spline</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/interpolation/#sphx-tag-interpolation"><span class="std std-ref">interpolation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/extrapolation/#sphx-tag-extrapolation"><span class="std std-ref">extrapolation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/integration/#sphx-tag-integration"><span class="std std-ref">integration</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/integral/#sphx-tag-integral"><span class="std std-ref">integral</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="dbcsr"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/cp2k/dbcsr">DBCSR</a></p>
+<p><a href="https://github.com/cp2k/dbcsr/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/cp2k/dbcsr?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/cp2k/dbcsr" />
+<a href="https://github.com/cp2k/dbcsr/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/cp2k/dbcsr" /></a>
+<a href="https://github.com/cp2k/dbcsr/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/cp2k/dbcsr" /></a>
+<a href="https://github.com/cp2k/dbcsr/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/cp2k/dbcsr" /></a>
+<a href="https://github.com/cp2k/dbcsr/issues"><img alt="issues" src="https://img.shields.io/github/issues/cp2k/dbcsr" /></a>
+<a href="https://github.com/cp2k/dbcsr/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/cp2k/dbcsr" /></a></p>
+<p>Distributed block compresseed sparse row matrix library</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/linear-algebra/#sphx-tag-linear-algebra"><span class="std std-ref">linear-algebra</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/parallel/#sphx-tag-parallel"><span class="std std-ref">parallel</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/openmp/#sphx-tag-openmp"><span class="std std-ref">openmp</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cuda/#sphx-tag-cuda"><span class="std std-ref">cuda</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hip/#sphx-tag-hip"><span class="std std-ref">hip</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="ddeabm"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/jacobwilliams/ddeabm">ddeabm</a></p>
+<p><a href="https://github.com/jacobwilliams/ddeabm/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/jacobwilliams/ddeabm?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/jacobwilliams/ddeabm/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jacobwilliams/ddeabm" /></a>
+<a href="https://github.com/jacobwilliams/ddeabm/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/jacobwilliams/ddeabm" /></a>
+<a href="https://github.com/jacobwilliams/ddeabm/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/jacobwilliams/ddeabm" /></a>
+<a href="https://github.com/jacobwilliams/ddeabm/issues"><img alt="issues" src="https://img.shields.io/github/issues/jacobwilliams/ddeabm" /></a>
+<a href="https://github.com/jacobwilliams/ddeabm/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/jacobwilliams/ddeabm" /></a></p>
+<p>Modern Fortran implementation of the DDEABM Adams-Bashforth algorithm</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ode/#sphx-tag-ode"><span class="std std-ref">ode</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/adams-bashforth/#sphx-tag-adams-bashforth"><span class="std std-ref">adams-bashforth</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="ddpcm"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/filippolipparini/ddPCM">ddPCM</a></p>
+<p><a href="https://github.com/filippolipparini/ddPCM/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/filippolipparini/ddPCM?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/filippolipparini/ddPCM" />
+<a href="https://github.com/filippolipparini/ddPCM/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/filippolipparini/ddPCM" /></a>
+<a href="https://github.com/filippolipparini/ddPCM/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/filippolipparini/ddPCM" /></a>
+<a href="https://github.com/filippolipparini/ddPCM/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/filippolipparini/ddPCM" /></a>
+<a href="https://github.com/filippolipparini/ddPCM/issues"><img alt="issues" src="https://img.shields.io/github/issues/filippolipparini/ddPCM" /></a>
+<a href="https://github.com/filippolipparini/ddPCM/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/filippolipparini/ddPCM" /></a></p>
+<p>A fast domain decomposition based implementation of the COSMO solvation model</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/continuum-solvation/#sphx-tag-continuum-solvation"><span class="std std-ref">continuum-solvation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cosmo/#sphx-tag-cosmo"><span class="std std-ref">cosmo</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/pcm/#sphx-tag-pcm"><span class="std std-ref">pcm</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cpcm/#sphx-tag-cpcm"><span class="std std-ref">cpcm</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="delaunaysparse"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/vtopt/DelaunaySparse">DelaunaySparse</a></p>
+<p><a href="https://github.com/vtopt/DelaunaySparse/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/vtopt/DelaunaySparse?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<a href="https://github.com/vtopt/DelaunaySparse/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/vtopt/DelaunaySparse" /></a>
+<a href="https://github.com/vtopt/DelaunaySparse/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/vtopt/DelaunaySparse" /></a>
+<a href="https://github.com/vtopt/DelaunaySparse/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/vtopt/DelaunaySparse" /></a>
+<a href="https://github.com/vtopt/DelaunaySparse/issues"><img alt="issues" src="https://img.shields.io/github/issues/vtopt/DelaunaySparse" /></a>
+<a href="https://github.com/vtopt/DelaunaySparse/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/vtopt/DelaunaySparse" /></a></p>
+<p>Multivariate Interpolation via a Sparse Subset of the Delaunay Triangulation in Medium to High Dimensions.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/interpolation/#sphx-tag-interpolation"><span class="std std-ref">interpolation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/openmp/#sphx-tag-openmp"><span class="std std-ref">openmp</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/acm-toms/#sphx-tag-acm-toms"><span class="std std-ref">acm-toms</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="differentia"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/Nicholaswogan/Differentia">Differentia</a></p>
+<p><a href="https://github.com/Nicholaswogan/Differentia/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/Nicholaswogan/Differentia?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<a href="https://github.com/Nicholaswogan/Differentia/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/Nicholaswogan/Differentia" /></a>
+<a href="https://github.com/Nicholaswogan/Differentia/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/Nicholaswogan/Differentia" /></a>
+<a href="https://github.com/Nicholaswogan/Differentia/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/Nicholaswogan/Differentia" /></a>
+<a href="https://github.com/Nicholaswogan/Differentia/issues"><img alt="issues" src="https://img.shields.io/github/issues/Nicholaswogan/Differentia" /></a>
+<a href="https://github.com/Nicholaswogan/Differentia/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/Nicholaswogan/Differentia" /></a></p>
+<p>Computes derivatives, gradients and Jacobians of Fortran functions/subroutines using forward automatic differentiation.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/algorithmic/#sphx-tag-algorithmic"><span class="std std-ref">algorithmic</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/derivative/#sphx-tag-derivative"><span class="std std-ref">derivative</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ad/#sphx-tag-ad"><span class="std std-ref">AD</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/autodiff/#sphx-tag-autodiff"><span class="std std-ref">autodiff</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="diffstruc"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/nedtaylor/diffstruc">diffstruc</a></p>
+<p><a href="https://github.com/nedtaylor/diffstruc/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/nedtaylor/diffstruc?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<a href="https://github.com/nedtaylor/diffstruc/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/nedtaylor/diffstruc" /></a>
+<a href="https://github.com/nedtaylor/diffstruc/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/nedtaylor/diffstruc" /></a>
+<a href="https://github.com/nedtaylor/diffstruc/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/nedtaylor/diffstruc" /></a>
+<a href="https://github.com/nedtaylor/diffstruc/issues"><img alt="issues" src="https://img.shields.io/github/issues/nedtaylor/diffstruc" /></a>
+<a href="https://github.com/nedtaylor/diffstruc/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/nedtaylor/diffstruc" /></a></p>
+<p>A library providing a derived type that enables forward and reverse mode automatic differentiation.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/automatic-differentiation/#sphx-tag-automatic-differentiation"><span class="std std-ref">automatic-differentiation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/adjoint/#sphx-tag-adjoint"><span class="std std-ref">adjoint</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/algorithmic/#sphx-tag-algorithmic"><span class="std std-ref">algorithmic</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/derivative/#sphx-tag-derivative"><span class="std std-ref">derivative</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ad/#sphx-tag-ad"><span class="std std-ref">AD</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/autodiff/#sphx-tag-autodiff"><span class="std std-ref">autodiff</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/jacobian/#sphx-tag-jacobian"><span class="std std-ref">jacobian</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hessian/#sphx-tag-hessian"><span class="std std-ref">hessian</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="dop853"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/jacobwilliams/dop853">dop853</a></p>
+<p><a href="https://github.com/jacobwilliams/dop853/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/jacobwilliams/dop853?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/jacobwilliams/dop853/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jacobwilliams/dop853" /></a>
+<a href="https://github.com/jacobwilliams/dop853/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/jacobwilliams/dop853" /></a>
+<a href="https://github.com/jacobwilliams/dop853/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/jacobwilliams/dop853" /></a>
+<a href="https://github.com/jacobwilliams/dop853/issues"><img alt="issues" src="https://img.shields.io/github/issues/jacobwilliams/dop853" /></a>
+<a href="https://github.com/jacobwilliams/dop853/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/jacobwilliams/dop853" /></a></p>
+<p>Modern Fortran Edition of Hairer's DOP853 ODE Solver</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ode/#sphx-tag-ode"><span class="std std-ref">ode</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/runge/#sphx-tag-runge"><span class="std std-ref">runge</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/kutta/#sphx-tag-kutta"><span class="std std-ref">kutta</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="dtfft"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/ShatrovOA/dtFFT">dtFFT</a></p>
+<p><a href="https://github.com/ShatrovOA/dtFFT/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/ShatrovOA/dtFFT?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://github.com/ShatrovOA/dtFFT/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/ShatrovOA/dtFFT" /></a>
+<a href="https://github.com/ShatrovOA/dtFFT/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/ShatrovOA/dtFFT" /></a>
+<a href="https://github.com/ShatrovOA/dtFFT/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/ShatrovOA/dtFFT" /></a>
+<a href="https://github.com/ShatrovOA/dtFFT/issues"><img alt="issues" src="https://img.shields.io/github/issues/ShatrovOA/dtFFT" /></a>
+<a href="https://github.com/ShatrovOA/dtFFT/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/ShatrovOA/dtFFT" /></a></p>
+<p>a high-performance library designed for parallel data transpositions and optional Fast Fourier Transforms (FFTs) in multidimensional computing environments.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cuda/#sphx-tag-cuda"><span class="std std-ref">cuda</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fft/#sphx-tag-fft"><span class="std std-ref">fft</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/parallel/#sphx-tag-parallel"><span class="std std-ref">parallel</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/distributed-memory/#sphx-tag-distributed-memory"><span class="std std-ref">distributed-memory</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="elmerfem"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/ElmerCSC/elmerfem">ElmerFEM</a></p>
+<p><a href="https://github.com/ElmerCSC/elmerfem/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/ElmerCSC/elmerfem?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--2.0-blue" />
+<a href="https://github.com/ElmerCSC/elmerfem/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/ElmerCSC/elmerfem" /></a>
+<a href="https://github.com/ElmerCSC/elmerfem/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/ElmerCSC/elmerfem" /></a>
+<a href="https://github.com/ElmerCSC/elmerfem/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/ElmerCSC/elmerfem" /></a>
+<a href="https://github.com/ElmerCSC/elmerfem/issues"><img alt="issues" src="https://img.shields.io/github/issues/ElmerCSC/elmerfem" /></a>
+<a href="https://github.com/ElmerCSC/elmerfem/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/ElmerCSC/elmerfem" /></a></p>
+<p>Finite element software for numerical solution of partial differential equations</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/pde/#sphx-tag-pde"><span class="std std-ref">pde</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fe/#sphx-tag-fe"><span class="std std-ref">fe</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="elpa"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="https://gitlab.mpcdf.mpg.de/elpa/elpa">ELPA</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0-blue" />
+<p>Eigenvalue Solvers for Petaflop Applications</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/gpu/#sphx-tag-gpu"><span class="std std-ref">gpu</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fatode"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/ComputationalScienceLaboratory/FATODE">FATODE</a></p>
+<p><a href="https://github.com/ComputationalScienceLaboratory/FATODE/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/ComputationalScienceLaboratory/FATODE?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://github.com/ComputationalScienceLaboratory/FATODE/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/ComputationalScienceLaboratory/FATODE" /></a>
+<a href="https://github.com/ComputationalScienceLaboratory/FATODE/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/ComputationalScienceLaboratory/FATODE" /></a>
+<a href="https://github.com/ComputationalScienceLaboratory/FATODE/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/ComputationalScienceLaboratory/FATODE" /></a>
+<a href="https://github.com/ComputationalScienceLaboratory/FATODE/issues"><img alt="issues" src="https://img.shields.io/github/issues/ComputationalScienceLaboratory/FATODE" /></a>
+<a href="https://github.com/ComputationalScienceLaboratory/FATODE/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/ComputationalScienceLaboratory/FATODE" /></a></p>
+<p>A Fortran library for the integration of ordinary differential equations with direct and adjoint sensitivity analysis capabilities</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ode-solver/#sphx-tag-ode-solver"><span class="std std-ref">ode-solver</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fgsl"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/reinh-bader/fgsl">fgsl</a></p>
+<p><a href="https://github.com/reinh-bader/fgsl/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/reinh-bader/fgsl?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/reinh-bader/fgsl" />
+<a href="https://github.com/reinh-bader/fgsl/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/reinh-bader/fgsl" /></a>
+<a href="https://github.com/reinh-bader/fgsl/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/reinh-bader/fgsl" /></a>
+<a href="https://github.com/reinh-bader/fgsl/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/reinh-bader/fgsl" /></a>
+<a href="https://github.com/reinh-bader/fgsl/issues"><img alt="issues" src="https://img.shields.io/github/issues/reinh-bader/fgsl" /></a>
+<a href="https://github.com/reinh-bader/fgsl/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/reinh-bader/fgsl" /></a></p>
+<p>Fortran interface to the GNU Scientific Library</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fiats"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/BerkeleyLab/fiats">fiats</a></p>
+<p><a href="https://github.com/BerkeleyLab/fiats/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/BerkeleyLab/fiats?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/BerkeleyLab/fiats" />
+<a href="https://github.com/BerkeleyLab/fiats/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/BerkeleyLab/fiats" /></a>
+<a href="https://github.com/BerkeleyLab/fiats/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/BerkeleyLab/fiats" /></a>
+<a href="https://github.com/BerkeleyLab/fiats/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/BerkeleyLab/fiats" /></a>
+<a href="https://github.com/BerkeleyLab/fiats/issues"><img alt="issues" src="https://img.shields.io/github/issues/BerkeleyLab/fiats" /></a>
+<a href="https://github.com/BerkeleyLab/fiats/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/BerkeleyLab/fiats" /></a></p>
+<p>A deep learning library for use in high-performance computing applications in modern Fortran</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/machine-learning/#sphx-tag-machine-learning"><span class="std std-ref">machine-learning</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="flint"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/princemahajan/FLINT">FLINT</a></p>
+<p><a href="https://github.com/princemahajan/FLINT/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/princemahajan/FLINT?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-Apache--2.0-blue" />
+<a href="https://github.com/princemahajan/FLINT/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/princemahajan/FLINT" /></a>
+<a href="https://github.com/princemahajan/FLINT/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/princemahajan/FLINT" /></a>
+<a href="https://github.com/princemahajan/FLINT/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/princemahajan/FLINT" /></a>
+<a href="https://github.com/princemahajan/FLINT/issues"><img alt="issues" src="https://img.shields.io/github/issues/princemahajan/FLINT" /></a>
+<a href="https://github.com/princemahajan/FLINT/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/princemahajan/FLINT" /></a></p>
+<p>Fortran Library for numerical INTegration of differential equations</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ode/#sphx-tag-ode"><span class="std std-ref">ode</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/runge/#sphx-tag-runge"><span class="std std-ref">runge</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/kutta/#sphx-tag-kutta"><span class="std std-ref">kutta</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fmm2d"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/flatironinstitute/fmm2d">fmm2d</a></p>
+<p><a href="https://github.com/flatironinstitute/fmm2d/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/flatironinstitute/fmm2d?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-Apache--2.0-blue" />
+<a href="https://github.com/flatironinstitute/fmm2d/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/flatironinstitute/fmm2d" /></a>
+<a href="https://github.com/flatironinstitute/fmm2d/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/flatironinstitute/fmm2d" /></a>
+<a href="https://github.com/flatironinstitute/fmm2d/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/flatironinstitute/fmm2d" /></a>
+<a href="https://github.com/flatironinstitute/fmm2d/issues"><img alt="issues" src="https://img.shields.io/github/issues/flatironinstitute/fmm2d" /></a>
+<a href="https://github.com/flatironinstitute/fmm2d/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/flatironinstitute/fmm2d" /></a></p>
+<p>Compute N-body interactions governed by the Laplace and Helmholtz equations, to a specified precision, in two dimensions, on a multi-core shared-memory machine.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fast-multipole-method/#sphx-tag-fast-multipole-method"><span class="std std-ref">fast-multipole-method</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fmm3d"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/flatironinstitute/FMM3D">FMM3D</a></p>
+<p><a href="https://github.com/flatironinstitute/FMM3D/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/flatironinstitute/FMM3D?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-Apache--2.0-blue" />
+<a href="https://github.com/flatironinstitute/FMM3D/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/flatironinstitute/FMM3D" /></a>
+<a href="https://github.com/flatironinstitute/FMM3D/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/flatironinstitute/FMM3D" /></a>
+<a href="https://github.com/flatironinstitute/FMM3D/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/flatironinstitute/FMM3D" /></a>
+<a href="https://github.com/flatironinstitute/FMM3D/issues"><img alt="issues" src="https://img.shields.io/github/issues/flatironinstitute/FMM3D" /></a>
+<a href="https://github.com/flatironinstitute/FMM3D/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/flatironinstitute/FMM3D" /></a></p>
+<p>Compute N-body interactions governed by the Laplace and Helmholtz equations, to a specified precision, in three dimensions, on a multi-core shared-memory machine.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fast-multipole-method/#sphx-tag-fast-multipole-method"><span class="std std-ref">fast-multipole-method</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="foodie"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/Fortran-FOSS-Programmers/FOODIE">FOODIE</a></p>
+<p><a href="https://github.com/Fortran-FOSS-Programmers/FOODIE/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/Fortran-FOSS-Programmers/FOODIE?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://github.com/Fortran-FOSS-Programmers/FOODIE/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/Fortran-FOSS-Programmers/FOODIE" /></a>
+<a href="https://github.com/Fortran-FOSS-Programmers/FOODIE/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/Fortran-FOSS-Programmers/FOODIE" /></a>
+<a href="https://github.com/Fortran-FOSS-Programmers/FOODIE/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/Fortran-FOSS-Programmers/FOODIE" /></a>
+<a href="https://github.com/Fortran-FOSS-Programmers/FOODIE/issues"><img alt="issues" src="https://img.shields.io/github/issues/Fortran-FOSS-Programmers/FOODIE" /></a>
+<a href="https://github.com/Fortran-FOSS-Programmers/FOODIE/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/Fortran-FOSS-Programmers/FOODIE" /></a></p>
+<p>Fortran Object-Oriented Differential-equations Integration Environment</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ode/#sphx-tag-ode"><span class="std std-ref">ode</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/pde/#sphx-tag-pde"><span class="std std-ref">pde</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/euler/#sphx-tag-euler"><span class="std std-ref">euler</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/runge/#sphx-tag-runge"><span class="std std-ref">runge</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/kutta/#sphx-tag-kutta"><span class="std std-ref">kutta</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="fortranlib"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/astrofrog/fortranlib">fortranlib</a></p>
+<p><a href="https://github.com/astrofrog/fortranlib/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/astrofrog/fortranlib?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/astrofrog/fortranlib" />
+<a href="https://github.com/astrofrog/fortranlib/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/astrofrog/fortranlib" /></a>
+<a href="https://github.com/astrofrog/fortranlib/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/astrofrog/fortranlib" /></a>
+<a href="https://github.com/astrofrog/fortranlib/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/astrofrog/fortranlib" /></a>
+<a href="https://github.com/astrofrog/fortranlib/issues"><img alt="issues" src="https://img.shields.io/github/issues/astrofrog/fortranlib" /></a>
+<a href="https://github.com/astrofrog/fortranlib/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/astrofrog/fortranlib" /></a></p>
+<p>Collection of personal scientific routines in Fortran</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/solver/#sphx-tag-solver"><span class="std std-ref">solver</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/integral/#sphx-tag-integral"><span class="std std-ref">integral</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/integrate/#sphx-tag-integrate"><span class="std std-ref">integrate</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/interpolation/#sphx-tag-interpolation"><span class="std std-ref">interpolation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/histogram/#sphx-tag-histogram"><span class="std std-ref">histogram</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/constants/#sphx-tag-constants"><span class="std std-ref">constants</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hdf5/#sphx-tag-hdf5"><span class="std std-ref">hdf5</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/error/#sphx-tag-error"><span class="std std-ref">error</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/random/#sphx-tag-random"><span class="std std-ref">random</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/posix/#sphx-tag-posix"><span class="std std-ref">posix</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/angles/#sphx-tag-angles"><span class="std std-ref">angles</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/probability/#sphx-tag-probability"><span class="std std-ref">probability</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/stokes/#sphx-tag-stokes"><span class="std std-ref">stokes</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/vectors/#sphx-tag-vectors"><span class="std std-ref">vectors</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="ftorch"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/Cambridge-ICCS/FTorch">FTorch</a></p>
+<p><a href="https://github.com/Cambridge-ICCS/FTorch/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/Cambridge-ICCS/FTorch?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<a href="https://github.com/Cambridge-ICCS/FTorch/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/Cambridge-ICCS/FTorch" /></a>
+<a href="https://github.com/Cambridge-ICCS/FTorch/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/Cambridge-ICCS/FTorch" /></a>
+<a href="https://github.com/Cambridge-ICCS/FTorch/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/Cambridge-ICCS/FTorch" /></a>
+<a href="https://github.com/Cambridge-ICCS/FTorch/issues"><img alt="issues" src="https://img.shields.io/github/issues/Cambridge-ICCS/FTorch" /></a>
+<a href="https://github.com/Cambridge-ICCS/FTorch/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/Cambridge-ICCS/FTorch" /></a></p>
+<p>Allows users to interface into the PyTorch machine learning library</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/machine-learning/#sphx-tag-machine-learning"><span class="std std-ref">machine-learning</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="futility"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="https://code.ornl.gov/futility/Futility">Futility</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-Apachev2.0-blue" />
+<p>Fortran utilities including unit test harness, arbitrary length strings, parameter list objects, timers, geometry definitions, file wrappers, linear algebra tools, and parallel computing support</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="galahad"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/ralna/GALAHAD">GALAHAD</a></p>
+<p><a href="https://github.com/ralna/GALAHAD/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/ralna/GALAHAD?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0-blue" />
+<a href="https://github.com/ralna/GALAHAD/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/ralna/GALAHAD" /></a>
+<a href="https://github.com/ralna/GALAHAD/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/ralna/GALAHAD" /></a>
+<a href="https://github.com/ralna/GALAHAD/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/ralna/GALAHAD" /></a>
+<a href="https://github.com/ralna/GALAHAD/issues"><img alt="issues" src="https://img.shields.io/github/issues/ralna/GALAHAD" /></a>
+<a href="https://github.com/ralna/GALAHAD/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/ralna/GALAHAD" /></a></p>
+<p>Modules for nonlinear optimization</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/least/#sphx-tag-least"><span class="std std-ref">least</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/squares/#sphx-tag-squares"><span class="std std-ref">squares</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/active/#sphx-tag-active"><span class="std std-ref">active</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/set/#sphx-tag-set"><span class="std std-ref">set</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quadratic-programming/#sphx-tag-quadratic-programming"><span class="std std-ref">quadratic-programming</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/interior/#sphx-tag-interior"><span class="std std-ref">interior</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/point/#sphx-tag-point"><span class="std std-ref">point</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/convex-programming/#sphx-tag-convex-programming"><span class="std std-ref">convex-programming</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/linear-programming/#sphx-tag-linear-programming"><span class="std std-ref">linear-programming</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="hande"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/hande-qmc/hande">HANDE</a></p>
+<p><a href="https://github.com/hande-qmc/hande/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/hande-qmc/hande?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/hande-qmc/hande" />
+<a href="https://github.com/hande-qmc/hande/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/hande-qmc/hande" /></a>
+<a href="https://github.com/hande-qmc/hande/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/hande-qmc/hande" /></a>
+<a href="https://github.com/hande-qmc/hande/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/hande-qmc/hande" /></a>
+<a href="https://github.com/hande-qmc/hande/issues"><img alt="issues" src="https://img.shields.io/github/issues/hande-qmc/hande" /></a>
+<a href="https://github.com/hande-qmc/hande/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/hande-qmc/hande" /></a></p>
+<p>Open source stochastic quantum chemistry</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/qmc/#sphx-tag-qmc"><span class="std std-ref">qmc</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="incompact3d"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/xcompact3d/incompact3d">Incompact3d</a></p>
+<p><a href="https://github.com/xcompact3d/incompact3d/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/xcompact3d/incompact3d?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/xcompact3d/incompact3d" />
+<a href="https://github.com/xcompact3d/incompact3d/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/xcompact3d/incompact3d" /></a>
+<a href="https://github.com/xcompact3d/incompact3d/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/xcompact3d/incompact3d" /></a>
+<a href="https://github.com/xcompact3d/incompact3d/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/xcompact3d/incompact3d" /></a>
+<a href="https://github.com/xcompact3d/incompact3d/issues"><img alt="issues" src="https://img.shields.io/github/issues/xcompact3d/incompact3d" /></a>
+<a href="https://github.com/xcompact3d/incompact3d/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/xcompact3d/incompact3d" /></a></p>
+<p>Solver for the incompressible Navier-Stokes equations</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="lapack"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/Reference-LAPACK/lapack">LAPACK</a></p>
+<p><a href="https://github.com/Reference-LAPACK/lapack/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/Reference-LAPACK/lapack?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/Reference-LAPACK/lapack/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/Reference-LAPACK/lapack" /></a>
+<a href="https://github.com/Reference-LAPACK/lapack/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/Reference-LAPACK/lapack" /></a>
+<a href="https://github.com/Reference-LAPACK/lapack/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/Reference-LAPACK/lapack" /></a>
+<a href="https://github.com/Reference-LAPACK/lapack/issues"><img alt="issues" src="https://img.shields.io/github/issues/Reference-LAPACK/lapack" /></a>
+<a href="https://github.com/Reference-LAPACK/lapack/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/Reference-LAPACK/lapack" /></a></p>
+<p>Routines for numerical linear algebra</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/blas/#sphx-tag-blas"><span class="std std-ref">blas</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/linear-algebra/#sphx-tag-linear-algebra"><span class="std std-ref">linear-algebra</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="libnegf"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/libnegf/libnegf">libnegf</a></p>
+<p><a href="https://github.com/libnegf/libnegf/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/libnegf/libnegf?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0-blue" />
+<a href="https://github.com/libnegf/libnegf/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/libnegf/libnegf" /></a>
+<a href="https://github.com/libnegf/libnegf/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/libnegf/libnegf" /></a>
+<a href="https://github.com/libnegf/libnegf/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/libnegf/libnegf" /></a>
+<a href="https://github.com/libnegf/libnegf/issues"><img alt="issues" src="https://img.shields.io/github/issues/libnegf/libnegf" /></a>
+<a href="https://github.com/libnegf/libnegf/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/libnegf/libnegf" /></a></p>
+<p>A general library for Non Equilibrium Green's Functions</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/transport/#sphx-tag-transport"><span class="std std-ref">transport</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="librsb"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="http://librsb.sourceforge.net/">librsb</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-LGPL--3.0--or--later-blue" />
+<p>A shared memory parallel sparse matrix computations library for the Recursive Sparse Blocks format implementing the Sparse BLAS standard</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/linear-algebra/#sphx-tag-linear-algebra"><span class="std std-ref">linear-algebra</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/openmp/#sphx-tag-openmp"><span class="std std-ref">openmp</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="los-alamos-grid-toolbox-lagrit"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/lanl/LaGriT">Los Alamos Grid Toolbox (LaGriT)</a></p>
+<p><a href="https://github.com/lanl/LaGriT/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/lanl/LaGriT?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD-blue" />
+<a href="https://github.com/lanl/LaGriT/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/lanl/LaGriT" /></a>
+<a href="https://github.com/lanl/LaGriT/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/lanl/LaGriT" /></a>
+<a href="https://github.com/lanl/LaGriT/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/lanl/LaGriT" /></a>
+<a href="https://github.com/lanl/LaGriT/issues"><img alt="issues" src="https://img.shields.io/github/issues/lanl/LaGriT" /></a>
+<a href="https://github.com/lanl/LaGriT/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/lanl/LaGriT" /></a></p>
+<p>a library of user callable tools that provide mesh generation, mesh optimization and dynamic mesh maintenance</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="maptran3d"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/geospace-code/maptran3d">MapTran3D</a></p>
+<p><a href="https://github.com/geospace-code/maptran3d/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/geospace-code/maptran3d?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/geospace-code/maptran3d" />
+<a href="https://github.com/geospace-code/maptran3d/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/geospace-code/maptran3d" /></a>
+<a href="https://github.com/geospace-code/maptran3d/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/geospace-code/maptran3d" /></a>
+<a href="https://github.com/geospace-code/maptran3d/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/geospace-code/maptran3d" /></a>
+<a href="https://github.com/geospace-code/maptran3d/issues"><img alt="issues" src="https://img.shields.io/github/issues/geospace-code/maptran3d" /></a>
+<a href="https://github.com/geospace-code/maptran3d/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/geospace-code/maptran3d" /></a></p>
+<p>Geodesy, 3D coordinate conversions for ECEF, ENU, ECI, ...</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="neural-fortran"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/modern-fortran/neural-fortran">neural-fortran</a></p>
+<p><a href="https://github.com/modern-fortran/neural-fortran/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/modern-fortran/neural-fortran?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/modern-fortran/neural-fortran" />
+<a href="https://github.com/modern-fortran/neural-fortran/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/modern-fortran/neural-fortran" /></a>
+<a href="https://github.com/modern-fortran/neural-fortran/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/modern-fortran/neural-fortran" /></a>
+<a href="https://github.com/modern-fortran/neural-fortran/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/modern-fortran/neural-fortran" /></a>
+<a href="https://github.com/modern-fortran/neural-fortran/issues"><img alt="issues" src="https://img.shields.io/github/issues/modern-fortran/neural-fortran" /></a>
+<a href="https://github.com/modern-fortran/neural-fortran/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/modern-fortran/neural-fortran" /></a></p>
+<p>A parallel neural net microframework.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/back/#sphx-tag-back"><span class="std std-ref">back</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/propagation/#sphx-tag-propagation"><span class="std std-ref">propagation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/coarray/#sphx-tag-coarray"><span class="std std-ref">coarray</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="nlesolver-fortran"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/jacobwilliams/nlesolver-fortran">nlesolver-fortran</a></p>
+<p><a href="https://github.com/jacobwilliams/nlesolver-fortran/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/jacobwilliams/nlesolver-fortran?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/jacobwilliams/nlesolver-fortran" />
+<a href="https://github.com/jacobwilliams/nlesolver-fortran/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jacobwilliams/nlesolver-fortran" /></a>
+<a href="https://github.com/jacobwilliams/nlesolver-fortran/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/jacobwilliams/nlesolver-fortran" /></a>
+<a href="https://github.com/jacobwilliams/nlesolver-fortran/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/jacobwilliams/nlesolver-fortran" /></a>
+<a href="https://github.com/jacobwilliams/nlesolver-fortran/issues"><img alt="issues" src="https://img.shields.io/github/issues/jacobwilliams/nlesolver-fortran" /></a>
+<a href="https://github.com/jacobwilliams/nlesolver-fortran/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/jacobwilliams/nlesolver-fortran" /></a></p>
+<p>Nonlinear equation solver with modern Fortran</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="ntpoly"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/william-dawson/ntpoly">NTPoly</a></p>
+<p><a href="https://github.com/william-dawson/ntpoly/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/william-dawson/ntpoly?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/william-dawson/ntpoly" />
+<a href="https://github.com/william-dawson/ntpoly/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/william-dawson/ntpoly" /></a>
+<a href="https://github.com/william-dawson/ntpoly/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/william-dawson/ntpoly" /></a>
+<a href="https://github.com/william-dawson/ntpoly/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/william-dawson/ntpoly" /></a>
+<a href="https://github.com/william-dawson/ntpoly/issues"><img alt="issues" src="https://img.shields.io/github/issues/william-dawson/ntpoly" /></a>
+<a href="https://github.com/william-dawson/ntpoly/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/william-dawson/ntpoly" /></a></p>
+<p>A massively parallel library for computing the functions of sparse matrices.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="nufft"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="https://cims.nyu.edu/cmcl/nufft/nufft.html">NUFFT</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--2.0--or--later-blue" />
+<p>Non-Uniform Fast Fourier Transforms</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/non-uniform-fft/#sphx-tag-non-uniform-fft"><span class="std std-ref">non-uniform-fft</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fft/#sphx-tag-fft"><span class="std std-ref">fft</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="numdiff"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/jacobwilliams/NumDiff">NumDiff</a></p>
+<p><a href="https://github.com/jacobwilliams/NumDiff/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/jacobwilliams/NumDiff?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/jacobwilliams/NumDiff/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jacobwilliams/NumDiff" /></a>
+<a href="https://github.com/jacobwilliams/NumDiff/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/jacobwilliams/NumDiff" /></a>
+<a href="https://github.com/jacobwilliams/NumDiff/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/jacobwilliams/NumDiff" /></a>
+<a href="https://github.com/jacobwilliams/NumDiff/issues"><img alt="issues" src="https://img.shields.io/github/issues/jacobwilliams/NumDiff" /></a>
+<a href="https://github.com/jacobwilliams/NumDiff/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/jacobwilliams/NumDiff" /></a></p>
+<p>a modern Fortran interface for computing the Jacobian (derivative) matrix of m nonlinear functions which depend on n variables</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/finite/#sphx-tag-finite"><span class="std std-ref">finite</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/difference/#sphx-tag-difference"><span class="std std-ref">difference</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="numerical-methods-in-fortran"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/planelles20/numerical-methods-fortran">Numerical methods in fortran</a></p>
+<p><a href="https://github.com/planelles20/numerical-methods-fortran/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/planelles20/numerical-methods-fortran?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/planelles20/numerical-methods-fortran" />
+<a href="https://github.com/planelles20/numerical-methods-fortran/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/planelles20/numerical-methods-fortran" /></a>
+<a href="https://github.com/planelles20/numerical-methods-fortran/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/planelles20/numerical-methods-fortran" /></a>
+<a href="https://github.com/planelles20/numerical-methods-fortran/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/planelles20/numerical-methods-fortran" /></a>
+<a href="https://github.com/planelles20/numerical-methods-fortran/issues"><img alt="issues" src="https://img.shields.io/github/issues/planelles20/numerical-methods-fortran" /></a>
+<a href="https://github.com/planelles20/numerical-methods-fortran/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/planelles20/numerical-methods-fortran" /></a></p>
+<p>Solving linear, nonlinear equations, ordinary differential equations</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ode/#sphx-tag-ode"><span class="std std-ref">ode</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/pde/#sphx-tag-pde"><span class="std std-ref">pde</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/integral/#sphx-tag-integral"><span class="std std-ref">integral</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/stochastic/#sphx-tag-stochastic"><span class="std std-ref">stochastic</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quadrature/#sphx-tag-quadrature"><span class="std std-ref">quadrature</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/plotting/#sphx-tag-plotting"><span class="std std-ref">plotting</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="odepack"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="https://computing.llnl.gov/projects/odepack/software">ODEPACK</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-Publicdomain-blue" />
+<p>A Systematized Collection of ODE Solvers (FORTRAN 77)</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ode/#sphx-tag-ode"><span class="std std-ref">ode</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/runge/#sphx-tag-runge"><span class="std std-ref">runge</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/kutta/#sphx-tag-kutta"><span class="std std-ref">kutta</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/adams-bashforth/#sphx-tag-adams-bashforth"><span class="std std-ref">adams-bashforth</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="openblas"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/xianyi/OpenBLAS">OpenBLAS</a></p>
+<p><a href="https://github.com/xianyi/OpenBLAS/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/xianyi/OpenBLAS?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/xianyi/OpenBLAS" />
+<a href="https://github.com/xianyi/OpenBLAS/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/xianyi/OpenBLAS" /></a>
+<a href="https://github.com/xianyi/OpenBLAS/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/xianyi/OpenBLAS" /></a>
+<a href="https://github.com/xianyi/OpenBLAS/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/xianyi/OpenBLAS" /></a>
+<a href="https://github.com/xianyi/OpenBLAS/issues"><img alt="issues" src="https://img.shields.io/github/issues/xianyi/OpenBLAS" /></a>
+<a href="https://github.com/xianyi/OpenBLAS/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/xianyi/OpenBLAS" /></a></p>
+<p>Optimized BLAS library based on GotoBLAS2</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/blas/#sphx-tag-blas"><span class="std std-ref">blas</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/linear-algebra/#sphx-tag-linear-algebra"><span class="std std-ref">linear-algebra</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="openfft"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="http://www.openmx-square.org/openfft/">OpenFFT</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0--or--later-blue" />
+<p>Open source parallel package for computing multi-dimensional Fast Fourier Transforms (3-D and 4-D FFTs)</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fft/#sphx-tag-fft"><span class="std std-ref">fft</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/openmpi/#sphx-tag-openmpi"><span class="std std-ref">openmpi</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/domain-decomposition-method/#sphx-tag-domain-decomposition-method"><span class="std std-ref">domain-decomposition-method</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="paramonte"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/cdslaborg/paramonte">ParaMonte</a></p>
+<p><a href="https://github.com/cdslaborg/paramonte/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/cdslaborg/paramonte?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/cdslaborg/paramonte" />
+<a href="https://github.com/cdslaborg/paramonte/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/cdslaborg/paramonte" /></a>
+<a href="https://github.com/cdslaborg/paramonte/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/cdslaborg/paramonte" /></a>
+<a href="https://github.com/cdslaborg/paramonte/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/cdslaborg/paramonte" /></a>
+<a href="https://github.com/cdslaborg/paramonte/issues"><img alt="issues" src="https://img.shields.io/github/issues/cdslaborg/paramonte" /></a>
+<a href="https://github.com/cdslaborg/paramonte/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/cdslaborg/paramonte" /></a></p>
+<p>A general-purpose high-performance MPI/Coarray-parallel Monte Carlo simulation library implemented in Fortran 2018 with interfaces to C/C++/Fortran/MATLAB/Python</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/parallel/#sphx-tag-parallel"><span class="std std-ref">parallel</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/coarray/#sphx-tag-coarray"><span class="std std-ref">coarray</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/monte/#sphx-tag-monte"><span class="std std-ref">monte</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/carlo/#sphx-tag-carlo"><span class="std std-ref">carlo</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mcmc/#sphx-tag-mcmc"><span class="std std-ref">mcmc</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/c/#sphx-tag-c"><span class="std std-ref">c</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cpp/#sphx-tag-cpp"><span class="std std-ref">cpp</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/matlab/#sphx-tag-matlab"><span class="std std-ref">matlab</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/python/#sphx-tag-python"><span class="std std-ref">python</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/statistics/#sphx-tag-statistics"><span class="std std-ref">statistics</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/bayesian/#sphx-tag-bayesian"><span class="std std-ref">bayesian</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/stochastic/#sphx-tag-stochastic"><span class="std std-ref">stochastic</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/optimization/#sphx-tag-optimization"><span class="std std-ref">optimization</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/sampling/#sphx-tag-sampling"><span class="std std-ref">sampling</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/integration/#sphx-tag-integration"><span class="std std-ref">integration</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/machine/#sphx-tag-machine"><span class="std std-ref">machine</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/learning/#sphx-tag-learning"><span class="std std-ref">learning</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="pchip"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/jacobwilliams/PCHIP">PCHIP</a></p>
+<p><a href="https://github.com/jacobwilliams/PCHIP/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/jacobwilliams/PCHIP?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/jacobwilliams/PCHIP/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jacobwilliams/PCHIP" /></a>
+<a href="https://github.com/jacobwilliams/PCHIP/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/jacobwilliams/PCHIP" /></a>
+<a href="https://github.com/jacobwilliams/PCHIP/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/jacobwilliams/PCHIP" /></a>
+<a href="https://github.com/jacobwilliams/PCHIP/issues"><img alt="issues" src="https://img.shields.io/github/issues/jacobwilliams/PCHIP" /></a>
+<a href="https://github.com/jacobwilliams/PCHIP/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/jacobwilliams/PCHIP" /></a></p>
+<p>Piecewise Cubic Hermite Interpolation Package</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/hermite/#sphx-tag-hermite"><span class="std std-ref">hermite</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/spline/#sphx-tag-spline"><span class="std std-ref">spline</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/interpolation/#sphx-tag-interpolation"><span class="std std-ref">interpolation</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/integration/#sphx-tag-integration"><span class="std std-ref">integration</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/integral/#sphx-tag-integral"><span class="std std-ref">integral</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="penf"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/szaghi/PENF">PENF</a></p>
+<p><a href="https://github.com/szaghi/PENF/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/szaghi/PENF?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://github.com/szaghi/PENF/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/szaghi/PENF" /></a>
+<a href="https://github.com/szaghi/PENF/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/szaghi/PENF" /></a>
+<a href="https://github.com/szaghi/PENF/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/szaghi/PENF" /></a>
+<a href="https://github.com/szaghi/PENF/issues"><img alt="issues" src="https://img.shields.io/github/issues/szaghi/PENF" /></a>
+<a href="https://github.com/szaghi/PENF/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/szaghi/PENF" /></a></p>
+<p>Provides portable kind-parameters and many useful procedures to deal with them</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/kinds/#sphx-tag-kinds"><span class="std std-ref">kinds</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/integer/#sphx-tag-integer"><span class="std std-ref">integer</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/real/#sphx-tag-real"><span class="std std-ref">real</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ieee/#sphx-tag-ieee"><span class="std std-ref">ieee</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/floating/#sphx-tag-floating"><span class="std std-ref">floating</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/point/#sphx-tag-point"><span class="std std-ref">point</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/floats/#sphx-tag-floats"><span class="std std-ref">floats</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/precision/#sphx-tag-precision"><span class="std std-ref">precision</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="poisfft"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/LadaF/PoisFFT">PoisFFT</a></p>
+<p><a href="https://github.com/LadaF/PoisFFT/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/LadaF/PoisFFT?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--2.0-blue" />
+<a href="https://github.com/LadaF/PoisFFT/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/LadaF/PoisFFT" /></a>
+<a href="https://github.com/LadaF/PoisFFT/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/LadaF/PoisFFT" /></a>
+<a href="https://github.com/LadaF/PoisFFT/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/LadaF/PoisFFT" /></a>
+<a href="https://github.com/LadaF/PoisFFT/issues"><img alt="issues" src="https://img.shields.io/github/issues/LadaF/PoisFFT" /></a>
+<a href="https://github.com/LadaF/PoisFFT/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/LadaF/PoisFFT" /></a></p>
+<p>Library to solve Poisson equation on a uniform Cartesian grid using the Fast Fourier Transform</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/fft/#sphx-tag-fft"><span class="std std-ref">fft</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/poisson/#sphx-tag-poisson"><span class="std std-ref">poisson</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="propack"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="http://sun.stanford.edu/~rmunk/PROPACK/">PROPACK</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<p>Software package for computing the singular value decomposition of large and sparse or structured matrices</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/linear-algebra/#sphx-tag-linear-algebra"><span class="std std-ref">linear-algebra</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/svd/#sphx-tag-svd"><span class="std std-ref">svd</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/lanczos-bidiagonalization/#sphx-tag-lanczos-bidiagonalization"><span class="std std-ref">lanczos-bidiagonalization</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/openmp/#sphx-tag-openmp"><span class="std std-ref">openmp</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="psblas"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/sfilippone/psblas3">PSBLAS</a></p>
+<p><a href="https://github.com/sfilippone/psblas3/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/sfilippone/psblas3?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/sfilippone/psblas3/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/sfilippone/psblas3" /></a>
+<a href="https://github.com/sfilippone/psblas3/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/sfilippone/psblas3" /></a>
+<a href="https://github.com/sfilippone/psblas3/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/sfilippone/psblas3" /></a>
+<a href="https://github.com/sfilippone/psblas3/issues"><img alt="issues" src="https://img.shields.io/github/issues/sfilippone/psblas3" /></a>
+<a href="https://github.com/sfilippone/psblas3/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/sfilippone/psblas3" /></a></p>
+<p>Parallel Sparse BLAS</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/linear-algebra/#sphx-tag-linear-algebra"><span class="std std-ref">linear-algebra</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="qmd-progress"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/lanl/qmd-progress">QMD-PROGRESS</a></p>
+<p><a href="https://github.com/lanl/qmd-progress/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/lanl/qmd-progress?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/lanl/qmd-progress/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/lanl/qmd-progress" /></a>
+<a href="https://github.com/lanl/qmd-progress/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/lanl/qmd-progress" /></a>
+<a href="https://github.com/lanl/qmd-progress/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/lanl/qmd-progress" /></a>
+<a href="https://github.com/lanl/qmd-progress/issues"><img alt="issues" src="https://img.shields.io/github/issues/lanl/qmd-progress" /></a>
+<a href="https://github.com/lanl/qmd-progress/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/lanl/qmd-progress" /></a></p>
+<p>Parallel, Rapid O(N) and Graph-based Recursive Electronic Structure Solver.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="qnstop"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/vtopt/qnstop">QNSTOP</a></p>
+<p><a href="https://github.com/vtopt/qnstop/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/vtopt/qnstop?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<a href="https://github.com/vtopt/qnstop/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/vtopt/qnstop" /></a>
+<a href="https://github.com/vtopt/qnstop/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/vtopt/qnstop" /></a>
+<a href="https://github.com/vtopt/qnstop/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/vtopt/qnstop" /></a>
+<a href="https://github.com/vtopt/qnstop/issues"><img alt="issues" src="https://img.shields.io/github/issues/vtopt/qnstop" /></a>
+<a href="https://github.com/vtopt/qnstop/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/vtopt/qnstop" /></a></p>
+<p>Quasi-Newton Algorithm for Stochastic Optimization.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quasi-newton-optimization/#sphx-tag-quasi-newton-optimization"><span class="std std-ref">quasi-newton-optimization</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/stochastic-optimization/#sphx-tag-stochastic-optimization"><span class="std std-ref">stochastic-optimization</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/acm-toms/#sphx-tag-acm-toms"><span class="std std-ref">acm-toms</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="qr-mumps"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/qr_mumps/qr_mumps">qr_mumps</a></p>
+<p><a href="https://gitlab.com/qr_mumps/qr_mumps/-/releases/permalink/latest"><img alt="Release" src="https://img.shields.io/gitlab/v/release/qr_mumps/qr_mumps?date_order_by=created_at&amp;sort=date&amp;color=green" /></a>
+<img alt="license" src="https://img.shields.io/gitlab/license/qr_mumps/qr_mumps" />
+<a href="https://gitlab.com/qr_mumps/qr_mumps/-/forks/"><img alt="forks" src="https://img.shields.io/gitlab/forks/qr_mumps/qr_mumps" /></a>
+<a href="https://gitlab.com/qr_mumps/qr_mumps/-/work_items/"><img alt="issues" src="https://img.shields.io/gitlab/issues/open/qr_mumps/qr_mumps" /></a>
+<a href="https://gitlab.com/qr_mumps/qr_mumps/-/merge_requests/"><img alt="issues" src="https://img.shields.io/gitlab/merge-requests/open/qr_mumps/qr_mumps" /></a></p>
+<p>A parallel multifrontal solver for sparse linear systems based on QR and Cholesky decomposition</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/qr/#sphx-tag-qr"><span class="std std-ref">QR</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cholesky/#sphx-tag-cholesky"><span class="std std-ref">Cholesky</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/sparse/#sphx-tag-sparse"><span class="std std-ref">sparse</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/multifrontal/#sphx-tag-multifrontal"><span class="std std-ref">multifrontal</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/least-squares/#sphx-tag-least-squares"><span class="std std-ref">least-squares</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="quadpack"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/jacobwilliams/quadpack">quadpack</a></p>
+<p><a href="https://github.com/jacobwilliams/quadpack/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/jacobwilliams/quadpack?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/jacobwilliams/quadpack" />
+<a href="https://github.com/jacobwilliams/quadpack/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jacobwilliams/quadpack" /></a>
+<a href="https://github.com/jacobwilliams/quadpack/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/jacobwilliams/quadpack" /></a>
+<a href="https://github.com/jacobwilliams/quadpack/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/jacobwilliams/quadpack" /></a>
+<a href="https://github.com/jacobwilliams/quadpack/issues"><img alt="issues" src="https://img.shields.io/github/issues/jacobwilliams/quadpack" /></a>
+<a href="https://github.com/jacobwilliams/quadpack/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/jacobwilliams/quadpack" /></a></p>
+<p>Fortran library for the numerical computation of definite one-dimensional integrals</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quadpack/#sphx-tag-quadpack"><span class="std std-ref">quadpack</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/quadpack2/#sphx-tag-quadpack2"><span class="std std-ref">quadpack2</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/integrals/#sphx-tag-integrals"><span class="std std-ref">integrals</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="quaff"><span class="fab fa-gitlab 1em"></span> <a class="reference external" href="https://gitlab.com/everythingfunctional/quaff">quaff</a></p>
+<p><a href="https://gitlab.com/everythingfunctional/quaff/-/releases/permalink/latest"><img alt="Release" src="https://img.shields.io/gitlab/v/release/everythingfunctional/quaff?date_order_by=created_at&amp;sort=date&amp;color=green" /></a>
+<img alt="license" src="https://img.shields.io/gitlab/license/everythingfunctional/quaff" />
+<a href="https://gitlab.com/everythingfunctional/quaff/-/forks/"><img alt="forks" src="https://img.shields.io/gitlab/forks/everythingfunctional/quaff" /></a>
+<a href="https://gitlab.com/everythingfunctional/quaff/-/work_items/"><img alt="issues" src="https://img.shields.io/gitlab/issues/open/everythingfunctional/quaff" /></a>
+<a href="https://gitlab.com/everythingfunctional/quaff/-/merge_requests/"><img alt="issues" src="https://img.shields.io/gitlab/merge-requests/open/everythingfunctional/quaff" /></a></p>
+<p>Quantities for Fortran. Make math with units more convenient</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="regridpack"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/jacobwilliams/regridpack">regridpack</a></p>
+<p><a href="https://github.com/jacobwilliams/regridpack/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/jacobwilliams/regridpack?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--Clause-blue" />
+<a href="https://github.com/jacobwilliams/regridpack/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jacobwilliams/regridpack" /></a>
+<a href="https://github.com/jacobwilliams/regridpack/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/jacobwilliams/regridpack" /></a>
+<a href="https://github.com/jacobwilliams/regridpack/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/jacobwilliams/regridpack" /></a>
+<a href="https://github.com/jacobwilliams/regridpack/issues"><img alt="issues" src="https://img.shields.io/github/issues/jacobwilliams/regridpack" /></a>
+<a href="https://github.com/jacobwilliams/regridpack/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/jacobwilliams/regridpack" /></a></p>
+<p>Suite of Fortran routines for interpolating values between one-, two-, three-, and four-dimensional arrays defined on uniform or nonuniform orthogonal grids</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/linear/#sphx-tag-linear"><span class="std std-ref">linear</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/cubic/#sphx-tag-cubic"><span class="std std-ref">cubic</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/interpolation/#sphx-tag-interpolation"><span class="std std-ref">interpolation</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="rng-fortran"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/jannisteunissen/rng_fortran">rng_fortran</a></p>
+<p><a href="https://github.com/jannisteunissen/rng_fortran/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/jannisteunissen/rng_fortran?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-GPL--3.0-blue" />
+<a href="https://github.com/jannisteunissen/rng_fortran/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jannisteunissen/rng_fortran" /></a>
+<a href="https://github.com/jannisteunissen/rng_fortran/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/jannisteunissen/rng_fortran" /></a>
+<a href="https://github.com/jannisteunissen/rng_fortran/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/jannisteunissen/rng_fortran" /></a>
+<a href="https://github.com/jannisteunissen/rng_fortran/issues"><img alt="issues" src="https://img.shields.io/github/issues/jannisteunissen/rng_fortran" /></a>
+<a href="https://github.com/jannisteunissen/rng_fortran/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/jannisteunissen/rng_fortran" /></a></p>
+<p>Pseudo random number generator in Fortran, internally using xoroshiro128+</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/uniform/#sphx-tag-uniform"><span class="std std-ref">uniform</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/normal/#sphx-tag-normal"><span class="std std-ref">normal</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/poisson/#sphx-tag-poisson"><span class="std std-ref">poisson</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/distributed/#sphx-tag-distributed"><span class="std std-ref">distributed</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="rpncalc"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/scivision/rpn-calc-fortran">RPNcalc</a></p>
+<p><a href="https://github.com/scivision/rpn-calc-fortran/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/scivision/rpn-calc-fortran?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/scivision/rpn-calc-fortran" />
+<a href="https://github.com/scivision/rpn-calc-fortran/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/scivision/rpn-calc-fortran" /></a>
+<a href="https://github.com/scivision/rpn-calc-fortran/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/scivision/rpn-calc-fortran" /></a>
+<a href="https://github.com/scivision/rpn-calc-fortran/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/scivision/rpn-calc-fortran" /></a>
+<a href="https://github.com/scivision/rpn-calc-fortran/issues"><img alt="issues" src="https://img.shields.io/github/issues/scivision/rpn-calc-fortran" /></a>
+<a href="https://github.com/scivision/rpn-calc-fortran/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/scivision/rpn-calc-fortran" /></a></p>
+<p>Reverse Polish Notation calculator for interactive console use</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="scifortran"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/aamaricci/SciFortran">SciFortran</a></p>
+<p><a href="https://github.com/aamaricci/SciFortran/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/aamaricci/SciFortran?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/aamaricci/SciFortran" />
+<a href="https://github.com/aamaricci/SciFortran/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/aamaricci/SciFortran" /></a>
+<a href="https://github.com/aamaricci/SciFortran/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/aamaricci/SciFortran" /></a>
+<a href="https://github.com/aamaricci/SciFortran/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/aamaricci/SciFortran" /></a>
+<a href="https://github.com/aamaricci/SciFortran/issues"><img alt="issues" src="https://img.shields.io/github/issues/aamaricci/SciFortran" /></a>
+<a href="https://github.com/aamaricci/SciFortran/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/aamaricci/SciFortran" /></a></p>
+<p>collection of fortran modules and procedures for scientific calculations.</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="shtools"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/SHTOOLS/SHTOOLS">SHTOOLS</a></p>
+<p><a href="https://github.com/SHTOOLS/SHTOOLS/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/SHTOOLS/SHTOOLS?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/SHTOOLS/SHTOOLS" />
+<a href="https://github.com/SHTOOLS/SHTOOLS/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/SHTOOLS/SHTOOLS" /></a>
+<a href="https://github.com/SHTOOLS/SHTOOLS/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/SHTOOLS/SHTOOLS" /></a>
+<a href="https://github.com/SHTOOLS/SHTOOLS/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/SHTOOLS/SHTOOLS" /></a>
+<a href="https://github.com/SHTOOLS/SHTOOLS/issues"><img alt="issues" src="https://img.shields.io/github/issues/SHTOOLS/SHTOOLS" /></a>
+<a href="https://github.com/SHTOOLS/SHTOOLS/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/SHTOOLS/SHTOOLS" /></a></p>
+<p>A Fortran-95/Python library that can be used to perform spherical harmonic transforms</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/spectral/#sphx-tag-spectral"><span class="std std-ref">spectral</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/analysis/#sphx-tag-analysis"><span class="std std-ref">analysis</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/slepian/#sphx-tag-slepian"><span class="std std-ref">Slepian</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/bases/#sphx-tag-bases"><span class="std std-ref">bases</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/gravitational/#sphx-tag-gravitational"><span class="std std-ref">gravitational</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/magnetic/#sphx-tag-magnetic"><span class="std std-ref">magnetic</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/field/#sphx-tag-field"><span class="std std-ref">field</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/openmp/#sphx-tag-openmp"><span class="std std-ref">openmp</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="slicot"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/SLICOT/SLICOT-Reference">SLICOT</a></p>
+<p><a href="https://github.com/SLICOT/SLICOT-Reference/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/SLICOT/SLICOT-Reference?color=green" /></a>
+<img alt="license" src="https://img.shields.io/github/license/SLICOT/SLICOT-Reference" />
+<a href="https://github.com/SLICOT/SLICOT-Reference/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/SLICOT/SLICOT-Reference" /></a>
+<a href="https://github.com/SLICOT/SLICOT-Reference/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/SLICOT/SLICOT-Reference" /></a>
+<a href="https://github.com/SLICOT/SLICOT-Reference/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/SLICOT/SLICOT-Reference" /></a>
+<a href="https://github.com/SLICOT/SLICOT-Reference/issues"><img alt="issues" src="https://img.shields.io/github/issues/SLICOT/SLICOT-Reference" /></a>
+<a href="https://github.com/SLICOT/SLICOT-Reference/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/SLICOT/SLICOT-Reference" /></a></p>
+<p>A Fortran subroutines library for systems and control</p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="slsqp"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/jacobwilliams/slsqp">slsqp</a></p>
+<p><a href="https://github.com/jacobwilliams/slsqp/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/jacobwilliams/slsqp?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-BSD--3--ClauseANDMIT-blue" />
+<a href="https://github.com/jacobwilliams/slsqp/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/jacobwilliams/slsqp" /></a>
+<a href="https://github.com/jacobwilliams/slsqp/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/jacobwilliams/slsqp" /></a>
+<a href="https://github.com/jacobwilliams/slsqp/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/jacobwilliams/slsqp" /></a>
+<a href="https://github.com/jacobwilliams/slsqp/issues"><img alt="issues" src="https://img.shields.io/github/issues/jacobwilliams/slsqp" /></a>
+<a href="https://github.com/jacobwilliams/slsqp/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/jacobwilliams/slsqp" /></a></p>
+<p>SLSQP nonlinear constrained optimizer</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/nonlinear-programming/#sphx-tag-nonlinear-programming"><span class="std std-ref">nonlinear-programming</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/equality/#sphx-tag-equality"><span class="std std-ref">equality</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/inequality/#sphx-tag-inequality"><span class="std std-ref">inequality</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/constraints/#sphx-tag-constraints"><span class="std std-ref">constraints</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="tapenade"><span class="fab fa-git-alt 1em"></span> <a class="reference external" href="https://gitlab.inria.fr/tapenade/tapenade">Tapenade</a></p>
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<p>A tool for automatic differentiation (forward/reverse) of Fortran and c programs</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/algorithmic/#sphx-tag-algorithmic"><span class="std std-ref">algorithmic</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/derivative/#sphx-tag-derivative"><span class="std std-ref">derivative</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/ad/#sphx-tag-ad"><span class="std std-ref">ad</span></a></p>
+</div>
+<div class="sd-fs-5 docutils">
+<p class="rubric" id="vtmop"><span class="fab fa-github 1em"></span> <a class="reference external" href="https://github.com/vtopt/VTMOP">VTMOP</a></p>
+<p><a href="https://github.com/vtopt/VTMOP/releases/latest"><img alt="Release" src="https://img.shields.io/github/v/release/vtopt/VTMOP?color=green" /></a>
+<img alt="license" src="https://img.shields.io/badge/license-MIT-blue" />
+<a href="https://github.com/vtopt/VTMOP/stargazers"><img alt="stars" src="https://img.shields.io/github/stars/vtopt/VTMOP" /></a>
+<a href="https://github.com/vtopt/VTMOP/forks?period="><img alt="forks" src="https://img.shields.io/github/forks/vtopt/VTMOP" /></a>
+<a href="https://github.com/vtopt/VTMOP/commits"><img alt="last-commit" src="https://img.shields.io/github/last-commit/vtopt/VTMOP" /></a>
+<a href="https://github.com/vtopt/VTMOP/issues"><img alt="issues" src="https://img.shields.io/github/issues/vtopt/VTMOP" /></a>
+<a href="https://github.com/vtopt/VTMOP/pulls"><img alt="pulls" src="https://img.shields.io/github/issues-pr/vtopt/VTMOP" /></a></p>
+<p>Solver for Blackbox Multiobjective Optimization Problems.</p>
+<p>Tags:  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/global-optimization/#sphx-tag-global-optimization"><span class="std std-ref">global-optimization</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/simulation-optimization/#sphx-tag-simulation-optimization"><span class="std std-ref">simulation-optimization</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/blackbox-optimization/#sphx-tag-blackbox-optimization"><span class="std std-ref">blackbox-optimization</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/multiobjective-optimization/#sphx-tag-multiobjective-optimization"><span class="std std-ref">multiobjective-optimization</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/multicriteria-optimization/#sphx-tag-multicriteria-optimization"><span class="std std-ref">multicriteria-optimization</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/response-surface-methodology/#sphx-tag-response-surface-methodology"><span class="std std-ref">response-surface-methodology</span></a>  <a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../../_tags/acm-toms/#sphx-tag-acm-toms"><span class="std std-ref">acm-toms</span></a></p>
+</div>
+<p>See <a class="reference internal" href="../../community/packages/"><span class="doc std std-doc">package index guidelines</span></a> for how to get your project listed.</p>
+</section>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../../_static/scripts/bootstrap.js?digest=8878045cc6db502f8baf"></script>
+<script defer src="../../_static/scripts/pydata-sphinx-theme.js?digest=8878045cc6db502f8baf"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2020-2026, Fortran Community.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+    <br/>
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.16.1.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
