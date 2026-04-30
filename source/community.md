@@ -57,7 +57,7 @@ This website is open source and contributions are welcome!
 
 :::
 
-<script> 
+<script>
 GitHubActivity.feed({
     username: "fortran-lang",
     repository: "stdlib",
@@ -83,7 +83,7 @@ History
 :::
 
 The effort to build a new community around Fortran started at the beginning of 2020
-and was initially led by Ond艡ej 膶ert铆k [[1]][blog-ondrej] and Milan Curcic [[2]][blog-milan].
+and was initially led by Ondřej Čertík [[1]][blog-ondrej] and Milan Curcic [[2]][blog-milan].
 Starting in several discussions around ambitious proposals for the Fortran Standards
 Committee, the Fortran Standard Library (`stdlib`) [[3]][issue-stdlib], the Fortran
 Package Manager (`fpm`) [[4]][issue-fpm] and the [`fortran-lang.org`][webpage-orig]
