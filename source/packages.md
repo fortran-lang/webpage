@@ -43,9 +43,8 @@ Use the box above to search the package index by keyword, package name, or autho
 Featured topics
 :::
 
-:::{jinja} fortran_index
-{% for j in tags %}
-<a href='{{"../search/index.html?q="+j}}'>{{j}},</a>{% endfor %}
+:::{jinja} tags
+{% for tag in tags %}{bdg-ref-secondary}`{{ tag }} <sphx_tag_{{ tag }}>`{% endfor %}
 :::
 
 ::::

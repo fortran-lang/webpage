@@ -163,6 +163,7 @@ suppress_warnings = ["myst.header"]
 jinja_contexts = {
     "conf": conf,
     "fortran_index": fortran_packages,
+    "tags": fortran_tags,
     "contributors": contributors,
     "intrinsics": intrinsics,
 }
