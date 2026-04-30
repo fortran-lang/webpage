@@ -64,10 +64,12 @@ Browse Packages by Category
 
 See [package index guidelines](../community/packages) for how to get your project listed.
 
+::::::{jinja} categories
 :::{toctree}
 :hidden:
-:::{jinja} categories
-{% for slug in categories %}
+
+{% for slug,item in categories.items() %}
 categories/{{slug}}
 {% endfor %}
 :::
+::::::
