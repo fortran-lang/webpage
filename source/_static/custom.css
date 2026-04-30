@@ -133,3 +133,202 @@ html[data-theme="dark"] .package-search-input::placeholder {
   border: 3px solid var(--pst-color-primary);
   box-shadow: 0 0 8px rgba(115, 79, 150, 0.35);
 }
+
+/* ── Package table filters ─────────────────────────────── */
+.package-table-filters {
+  display: flex;
+  flex-wrap: nowrap;
+  gap: 6px 8px;
+  margin: 10px 0 12px 0;
+  align-items: flex-end;
+}
+
+.filter-group {
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+  min-width: 0;
+  flex: 0 0 auto;
+}
+
+/* Host */
+.package-table-filters > .filter-group:nth-child(1) { flex: 0 0 80px; }
+/* Category */
+.package-table-filters > .filter-group:nth-child(2) { flex: 0 1 120px; }
+/* Tags */
+.package-table-filters > .filter-group:nth-child(3) { flex: 1 1 110px; }
+/* Owner */
+.package-table-filters > .filter-group:nth-child(4) { flex: 0 0 95px; }
+/* Since */
+.package-table-filters > .filter-group:nth-child(5) { flex: 0 0 130px; }
+/* Min ★ */
+.package-table-filters > .filter-group:nth-child(6) { flex: 0 0 65px; }
+
+.filter-group--btn {
+  min-width: auto;
+  justify-content: flex-end;
+}
+
+.package-table-filters label {
+  font-size: 0.7rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--pst-color-text-muted, #888);
+}
+
+.package-table-filters input {
+  padding: 5px 8px;
+  border-radius: 6px;
+  border: 1px solid var(--pst-color-border);
+  background: var(--pst-color-background);
+  font-size: 0.84rem;
+  width: 100%;
+}
+
+.package-table-filters button {
+  cursor: pointer;
+  padding: 5px 12px;
+  border-radius: 6px;
+  border: 1px solid var(--pst-color-primary);
+  background: transparent;
+  color: var(--pst-color-primary);
+  font-size: 0.82rem;
+  font-weight: 600;
+  white-space: nowrap;
+  transition: background 0.15s, color 0.15s;
+}
+
+.package-table-filters button:hover {
+  background: var(--pst-color-primary);
+  color: #fff;
+}
+
+/* ── Check-combobox ────────────────────────────────────── */
+.cc-combo {
+  position: relative;
+}
+
+.cc-trigger {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 3px;
+  min-height: 30px;
+  padding: 3px 24px 3px 7px;
+  border-radius: 6px;
+  border: 1px solid var(--pst-color-border);
+  background: var(--pst-color-background);
+  cursor: pointer;
+  user-select: none;
+  position: relative;
+  font-size: 0.84rem;
+}
+
+.cc-trigger:focus {
+  outline: 2px solid var(--pst-color-primary);
+  outline-offset: 1px;
+}
+
+.cc-arrow {
+  position: absolute;
+  right: 7px;
+  top: 50%;
+  transform: translateY(-50%);
+  font-size: 0.65rem;
+  color: var(--pst-color-text-muted, #888);
+  pointer-events: none;
+}
+
+.cc-placeholder {
+  color: var(--pst-color-text-muted, #888);
+  font-size: 0.82rem;
+}
+
+.cc-chip {
+  display: inline-flex;
+  align-items: center;
+  padding: 1px 5px;
+  border-radius: 3px;
+  background: var(--pst-color-primary);
+  color: #fff;
+  font-size: 0.74rem;
+  cursor: pointer;
+  white-space: nowrap;
+  line-height: 1.4;
+}
+
+.cc-chip:hover {
+  opacity: 0.8;
+}
+
+.cc-panel {
+  position: fixed;
+  min-width: 140px;
+  max-height: min(400px, 60vh);
+  overflow-y: auto;
+  background: var(--pst-color-background);
+  border: 1px solid var(--pst-color-border);
+  border-radius: 6px;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.14);
+  z-index: 200;
+  padding: 3px 0;
+}
+
+.cc-item {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  padding: 4px 10px;
+  font-size: 0.82rem;
+  cursor: pointer;
+  white-space: nowrap;
+  width: 100%;
+  box-sizing: border-box;
+  text-align: left;
+}
+
+.cc-item:hover {
+  background: var(--pst-color-surface, rgba(115, 79, 150, 0.07));
+}
+
+/* ── Tag badges in table ───────────────────────────────── */
+.pkg-tag {
+  display: inline-block;
+  padding: 1px 5px;
+  border-radius: 3px;
+  font-size: 0.72rem;
+  line-height: 1.5;
+  background: var(--pst-color-secondary, #6c757d);
+  color: #fff;
+  cursor: pointer;
+  margin: 1px 1px;
+  white-space: nowrap;
+  user-select: none;
+  transition: opacity 0.12s, outline 0.12s;
+}
+
+.pkg-tag:hover {
+  opacity: 0.78;
+}
+
+.pkg-tag.active {
+  background: var(--pst-color-primary);
+  outline: 2px solid var(--pst-color-primary);
+  outline-offset: 1px;
+}
+
+/* ── Table wrapper ─────────────────────────────────────── */
+.package-table-wrap {
+  overflow-x: auto;
+  margin-bottom: 24px;
+}
+
+table.package-data-table {
+  font-size: 0.9rem;
+}
+
+table.package-data-table td,
+table.package-data-table th {
+  vertical-align: top;
+}

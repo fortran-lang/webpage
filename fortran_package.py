@@ -1,6 +1,7 @@
 import json
 import os
 from collections import Counter
+from concurrent.futures import ThreadPoolExecutor, as_completed
 from datetime import datetime, timezone
 from pathlib import Path
 from urllib.parse import quote_plus
@@ -10,6 +11,7 @@ import yaml
 
 GITHUB_API_VERSION = "2022-11-28"
 REQUEST_TIMEOUT = 20
+CACHE_TTL_HOURS = int(os.getenv("PACKAGE_CACHE_TTL_HOURS", "12"))
 
 
 def get_contributors(repo: str) -> list[str]:
@@ -174,6 +176,93 @@ def normalize_gitlab_metadata(
     }
 
 
+def _load_recent_cache(cache_path: Path, ttl_hours: int) -> dict | None:
+    if not cache_path.exists() or ttl_hours <= 0:
+        return None
+    modified = datetime.fromtimestamp(cache_path.stat().st_mtime, tz=timezone.utc)
+    age_hours = (datetime.now(timezone.utc) - modified).total_seconds() / 3600.0
+    if age_hours > ttl_hours:
+        return None
+    try:
+        with open(cache_path, "r", encoding="utf-8") as f:
+            return json.load(f)
+    except (OSError, json.JSONDecodeError) as exc:
+        print(f"Ignoring invalid cache {cache_path}: {exc}")
+        return None
+
+
+def _enrich_package(
+    package: dict,
+    packages_dir: Path,
+    github_token: str | None,
+    gitlab_token: str | None,
+    cache_ttl_hours: int,
+) -> dict:
+    repo_metadata: dict | None = None
+
+    if "github" in package:
+        repo_slug = package["github"]
+        cache_filename = f"github_{repo_slug.replace('/', '_')}.json"
+        cache_path = packages_dir / cache_filename
+        cached = _load_recent_cache(cache_path, cache_ttl_hours)
+
+        if cached:
+            repository_data = cached.get("repository")
+            release_data = cached.get("latest_release")
+        else:
+            print(f"Fetching package data for GitHub repository {repo_slug}...")
+            repository_data = fetch_github_repository_data(repo_slug, github_token)
+            release_data = fetch_github_latest_release(repo_slug, github_token)
+            with open(cache_path, "w", encoding="utf-8") as f:
+                json.dump(
+                    {
+                        "provider": "github",
+                        "repo_slug": repo_slug,
+                        "repository": repository_data,
+                        "latest_release": release_data,
+                    },
+                    f,
+                )
+
+        repo_metadata = normalize_github_metadata(package, repository_data, release_data)
+
+    elif "gitlab" in package:
+        repo_slug = package["gitlab"]
+        cache_filename = f"gitlab_{repo_slug.replace('/', '_')}.json"
+        cache_path = packages_dir / cache_filename
+        cached = _load_recent_cache(cache_path, cache_ttl_hours)
+
+        if cached:
+            project_data = cached.get("project")
+            commit_data = cached.get("latest_commit")
+            release_data = cached.get("latest_release")
+        else:
+            print(f"Fetching package data for GitLab repository {repo_slug}...")
+            project_data = fetch_gitlab_project_data(repo_slug, gitlab_token)
+            commit_data = fetch_gitlab_latest_commit(repo_slug, gitlab_token)
+            release_data = fetch_gitlab_latest_release(repo_slug, gitlab_token)
+            with open(cache_path, "w", encoding="utf-8") as f:
+                json.dump(
+                    {
+                        "provider": "gitlab",
+                        "repo_slug": repo_slug,
+                        "project": project_data,
+                        "latest_commit": commit_data,
+                        "latest_release": release_data,
+                    },
+                    f,
+                )
+
+        repo_metadata = normalize_gitlab_metadata(
+            package, project_data, commit_data, release_data
+        )
+
+    package_enriched = dict(package)
+    if repo_metadata:
+        package_enriched["repository"] = repo_metadata
+    return package_enriched
+
+
 def update_json_files() -> None:
     """Update JSON files that define webpage configuration and package metadata."""
     root = Path(__file__).parent
@@ -218,54 +307,30 @@ def update_json_files() -> None:
         if package.get("tags"):
             fortran_index_tags += package["tags"].split()
 
-        repo_metadata: dict | None = None
+    max_workers = min(16, max(4, (os.cpu_count() or 4) * 2))
+    enriched_by_index: dict[int, dict] = {}
+    with ThreadPoolExecutor(max_workers=max_workers) as executor:
+        futures = {
+            executor.submit(
+                _enrich_package,
+                package,
+                packages,
+                github_token,
+                gitlab_token,
+                CACHE_TTL_HOURS,
+            ): index
+            for index, package in enumerate(fortran_index)
+        }
+        for future in as_completed(futures):
+            index = futures[future]
+            try:
+                enriched_by_index[index] = future.result()
+            except Exception as exc:
+                print(f"Failed to enrich package at index {index}: {exc}")
+                enriched_by_index[index] = dict(fortran_index[index])
 
-        if "github" in package:
-            repo_slug = package["github"]
-            print(f"Fetching package data for GitHub repository {repo_slug}...")
-            repository_data = fetch_github_repository_data(repo_slug, github_token)
-            release_data = fetch_github_latest_release(repo_slug, github_token)
-            repo_metadata = normalize_github_metadata(package, repository_data, release_data)
-
-            cache_filename = f"github_{repo_slug.replace('/', '_')}.json"
-            with open(packages / cache_filename, "w", encoding="utf-8") as f:
-                json.dump(
-                    {
-                        "provider": "github",
-                        "repo_slug": repo_slug,
-                        "repository": repository_data,
-                        "latest_release": release_data,
-                    },
-                    f,
-                )
-
-        elif "gitlab" in package:
-            repo_slug = package["gitlab"]
-            print(f"Fetching package data for GitLab repository {repo_slug}...")
-            project_data = fetch_gitlab_project_data(repo_slug, gitlab_token)
-            commit_data = fetch_gitlab_latest_commit(repo_slug, gitlab_token)
-            release_data = fetch_gitlab_latest_release(repo_slug, gitlab_token)
-            repo_metadata = normalize_gitlab_metadata(
-                package, project_data, commit_data, release_data
-            )
-
-            cache_filename = f"gitlab_{repo_slug.replace('/', '_')}.json"
-            with open(packages / cache_filename, "w", encoding="utf-8") as f:
-                json.dump(
-                    {
-                        "provider": "gitlab",
-                        "repo_slug": repo_slug,
-                        "project": project_data,
-                        "latest_commit": commit_data,
-                        "latest_release": release_data,
-                    },
-                    f,
-                )
-
-        package_enriched = dict(package)
-        if repo_metadata:
-            package_enriched["repository"] = repo_metadata
-
+    for index, package in enumerate(fortran_index):
+        package_enriched = enriched_by_index.get(index, dict(package))
         for category in categories:
             if category in package["categories"].split():
                 fortran_tags.setdefault(category, []).append(package)
@@ -303,11 +368,14 @@ def update_json_files() -> None:
         "j3-fortran/fortran_proposals",
     ]
     contributors = set()
-    for repo in repos:
-        try:
-            contributors.update(get_contributors(repo))
-        except requests.RequestException as exc:
-            print(f"Contributor query failed for {repo}: {exc}")
+    with ThreadPoolExecutor(max_workers=min(8, len(repos))) as executor:
+        futures = {executor.submit(get_contributors, repo): repo for repo in repos}
+        for future in as_completed(futures):
+            repo = futures[future]
+            try:
+                contributors.update(future.result())
+            except requests.RequestException as exc:
+                print(f"Contributor query failed for {repo}: {exc}")
 
     contributor_repo = {"repo": "fortran-lang", "contributor": sorted(contributors)}
     with open(root / "_data" / "contributor.json", "w", encoding="utf-8") as f:

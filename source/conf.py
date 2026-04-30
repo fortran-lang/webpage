@@ -125,7 +125,9 @@ suppress_warnings = ["myst.header"]
 jinja_contexts = {
     "conf": conf,
     "fortran_index": fortran_packages,
-    "fortran_index_enriched": fortran_packages_enriched,
+    "fortran_index_enriched": {
+        "fortran_index_enriched": fortran_packages_enriched,
+    },
     "tags": fortran_tags,
     "categories": {"categories": fortran_categories},
     "contributors": contributors,

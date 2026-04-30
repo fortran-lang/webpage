@@ -77,9 +77,13 @@ def build_docs(language: str, isroot: bool) -> None:
 
     subprocess.run(
         [
-            "sphinx-build",
+            sys.executable,
+            "-m",
+            "sphinx",
             "-b",
             "dirhtml",
+            "-j",
+            "auto",
             str(srcdir),
             str(outdir) if isroot else str(outdir / language),
             f"-Dlanguage={language}",
