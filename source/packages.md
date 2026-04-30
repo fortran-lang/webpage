@@ -56,43 +56,43 @@ Featured topics
 Browse Packages by Category
 :::
 
-## [Data types and containers](../packages/data-types)
+## [Data types and containers](../categories/data-types)
 
 Libraries for advanced data types and container classes
 
-## [Interface libraries](../packages/interfaces)
+## [Interface libraries](../categories/interfaces)
 
 Libraries that interface with other systems, languages, or devices
 
-## [Libraries](../packages/libraries)
+## [Libraries](../categories/libraries)
 
 Fortran libraries for general programming tasks
 
-## [Input, output and parsing](../packages/io)
+## [Input, output and parsing](../categories/io)
 
 Libraries for reading, writing and parsing files and inputs
 
-## [Graphics, plotting and user interfaces](../packages/graphics)
+## [Graphics, plotting and user interfaces](../categories/graphics)
 
 Libraries for plotting data, handling images and generating user interfaces
 
-## [Examples and templates](../packages/examples)
+## [Examples and templates](../categories/examples)
 
 Demonstration codes and templates for Fortran
 
-## [Numerical projects](../packages/numerical)
+## [Numerical projects](../categories/numerical)
 
 Fortran libraries for linear algebra, optimization, root-finding etc.
 
-## [Programming utilities](../packages/programming)
+## [Programming utilities](../categories/programming)
 
 Error handling, logging, documentation and testing
 
-## [Characters and strings](../packages/strings)
+## [Characters and strings](../categories/strings)
 
 Libraries for manipulating characters and strings
 
-## [Scientific Codes](../packages/scientific)
+## [Scientific Codes](../categories/scientific)
 
 Applications and libraries for applied mathematical and scientific problems
 
@@ -100,14 +100,14 @@ See [package index guidelines](../community/packages) for how to get your projec
 
 :::{toctree}
 :hidden:
-packages/data-types
-packages/interfaces
-packages/libraries
-packages/io
-packages/graphics
-packages/examples
-packages/numerical
-packages/programming
-packages/strings
-packages/scientific
+categories/data-types
+categories/interfaces
+categories/libraries
+categories/io
+categories/graphics
+categories/examples
+categories/numerical
+categories/programming
+categories/strings
+categories/scientific
 :::
