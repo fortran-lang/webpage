@@ -23,34 +23,50 @@ import yaml
 import sys
 import pathlib
 
+
 root = pathlib.Path(__file__).parent.parent
 
 data_files = {
     "fortran-learn": pathlib.Path(root, "_data", "fortran_learn.json"),
     "fortran-packages": pathlib.Path(root, "_data", "fortran_package.json"),
+    "fortran-packages-enriched": pathlib.Path(root, "_data", "fortran_packages.json"),
+    "fortran-tags": pathlib.Path(root, "_data", "fortran_tags.json"),
     "contributors": pathlib.Path(root, "_data", "contributor.json"),
+    "package-index": pathlib.Path(root, "data", "package_index.yml"),
+    "fortran-categories": pathlib.Path(root, "data", "categories.yml"),
     "intrinsics": pathlib.Path(root, "data", "intrinsics.yml"),
 }
 
 sys.path.insert(0, str(root / "extensions"))
 
-sys.path.insert(0, str(root.absolute()))
-# pylint: disable=import-error, unused-import
-import fortran_package
+if not all(data.exists() for data in data_files.values()):
+    sys.path.insert(0, str(root.absolute()))
+    from fortran_package import update_json_files
+
+    update_json_files()
 
 with open(data_files["fortran-learn"], "r", encoding="utf-8") as f:
     conf = json.load(f)
 with open(data_files["fortran-packages"], "r", encoding="utf-8") as f:
+    fortran_packages = json.load(f)
+with open(data_files["fortran-packages-enriched"], "r", encoding="utf-8") as f:
+    fortran_packages_enriched = json.load(f)
+with open(data_files["fortran-tags"], "r", encoding="utf-8") as f:
     fortran_tags = json.load(f)
 with open(data_files["contributors"], "r", encoding="utf-8") as f:
     contributors = json.load(f)
+
+with open(data_files["fortran-categories"], "r", encoding="utf-8") as f:
+    fortran_categories = yaml.safe_load(f)
 with open(data_files["intrinsics"], "r", encoding="utf-8") as f:
     intrinsics = yaml.safe_load(f)
+with open(data_files["package-index"], "r", encoding="utf-8") as f:
+    package_index = yaml.safe_load(f)
 
 # -- Project information -----------------------------------------------------
 
 project = "Fortran-lang.org website"
-copyright = "2020-2024, Fortran Community"
+copyright = "2020-2026, Fortran Community"
 author = "Fortran Community"
 
 # The full version, including alpha/beta/rc tags
@@ -71,7 +87,7 @@ extensions = [
     "sphinx_jinja",
     "fortran_playground",
     "sphinx_favicon",
-
+    "sphinx_tags",
 ]
 
 myst_enable_extensions = [
@@ -108,7 +124,10 @@ suppress_warnings = ["myst.header"]
 
 jinja_contexts = {
     "conf": conf,
-    "fortran_index": fortran_tags,
+    "fortran_index": fortran_packages,
+    "fortran_index_enriched": fortran_packages_enriched,
+    "tags": fortran_tags,
+    "categories": {"categories": fortran_categories},
     "contributors": contributors,
     "intrinsics": intrinsics,
 }
@@ -131,10 +150,10 @@ html_canonical_url = None
 
 favicons = [
     {
-            "rel": "icon",
-            "sizes": "256x256",
-            "href": "images/favicon.ico",
-        },
+        "rel": "icon",
+        "sizes": "256x256",
+        "href": "images/favicon.ico",
+    },
 ]
 
 html_theme_options = {
@@ -142,14 +161,14 @@ html_theme_options = {
     "show_nav_level": 1,
     "show_toc_level": 0,
     "navbar_align": "right",
-    "navbar_start": ["navbar-logo","theme-switcher.html"],
+    "navbar_start": ["navbar-logo", "theme-switcher.html"],
     "switcher": {
         "json_url": "https://fortran-lang.org/_static/data.json",  # shifted to custom local switcher
         "version_match": language,
     },
     "primary_sidebar_end": [],
     "secondary_sidebar_items": ["inpage_toc.html"],
-    "navbar_end": ["navbar-icon-links","version-switcher"],
+    "navbar_end": ["navbar-icon-links", "version-switcher"],
     "search_bar_text": "Search",
     "icon_links": [
         {
@@ -193,7 +212,7 @@ html_sidebars = {
     "packages": [],
     "community": [],
     "packages/**": [],
-    "community/governance":[],
+    "community/governance": [],
 }
 html_title = "Fortran Programming Language"
 html_logo = "_static/images/fortran-logo-256x256.png"
@@ -213,4 +232,47 @@ post_auto_excerpt = 2
 
 gettext_compact = "index"
 
-copybutton_exclude = '.linenos, .gp, .go'
+copybutton_exclude = ".linenos, .gp, .go"
+
+## tag handling
+tags_create_tags = True
+tags_create_badges = True
+tags_extension = ["md"]
+tags_page_title = "Tags"
+tags_page_header = "Packages with this tag"
+
+import os
+from jinja2 import Environment, FileSystemLoader
+import re
+
+
+## generate per-package and per-category pages from templates
+def generate_package_and_category_pages(app):
+    template_path = os.path.join('_templates/package.md')
+    out_dir = os.path.join(app.srcdir, 'packages')
+    os.makedirs(out_dir, exist_ok=True)
+    
+    loader = FileSystemLoader(app.srcdir)
+    env = Environment(loader=loader)
+    template = env.get_template(template_path)
+
+    for package in package_index:
+        content = template.render(package=package)
+        
+        stub = re.sub(r'[^a-z0-9]+', '-', package["name"].lower()).strip('-')
+        with open(os.path.join(out_dir, f"{stub}.md"), "w") as f:
+            f.write(content)
+
+    template_path = os.path.join('_templates/category_pages.md')
+    out_dir = os.path.join(app.srcdir, 'categories')
+    os.makedirs(out_dir, exist_ok=True)
+
+    template = env.get_template(template_path)
+    for tag in fortran_packages.keys():
+        content = template.render(title=fortran_categories[tag]["title"], description=fortran_categories[tag]["description"], items=fortran_packages[tag])
+        
+        with open(os.path.join(out_dir, f"{tag}.md"), "w") as f:
+            f.write(content)
+
+def setup(app):
+    app.connect('builder-inited', generate_package_and_category_pages)

@@ -7,15 +7,14 @@ import hashlib
 import os
 
 
-comp_error = ["<ERROR>","Error","app/main.f90","<h1>Bad Request</h1>"]
+comp_error = ["<ERROR>", "Error", "app/main.f90", "<h1>Bad Request</h1>"]
 
 
 class PlayCodeBlock(CodeBlock):
-
-    def compile_and_execute_fortran(self,fortran_code):
-        code_hash = hashlib.md5(fortran_code.encode('utf-8')).hexdigest()
+    def compile_and_execute_fortran(self, fortran_code):
+        code_hash = hashlib.md5(fortran_code.encode("utf-8")).hexdigest()
         cache_filename = f"build/fortran_output_{code_hash}.txt"
-        filename=f"build/code_{code_hash}.f90"
+        filename = f"build/code_{code_hash}.f90"
 
         # Check if the output is already cached
         if os.path.exists(cache_filename):
@@ -26,15 +25,22 @@ class PlayCodeBlock(CodeBlock):
             f.write(fortran_code)
 
         compile_command = ["gfortran", filename, "-o", f"./build/{code_hash}.out"]
-        compile_result = subprocess.run(compile_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE)
+        compile_result = subprocess.run(
+            compile_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE
+        )
 
         with open(cache_filename, "w") as f:
-            
             if compile_result.returncode == 0:
                 print("Compilation successful!")
-                
+
                 execute_command = [f"./build/{code_hash}.out"]
-                execute_result = subprocess.run(execute_command, input="", stdout=subprocess.PIPE, stderr=subprocess.PIPE, text=True)
+                execute_result = subprocess.run(
+                    execute_command,
+                    input="",
+                    stdout=subprocess.PIPE,
+                    stderr=subprocess.PIPE,
+                    text=True,
+                )
 
                 if execute_result.returncode == 0:
                     print("Execution successful!")
@@ -54,17 +60,19 @@ class PlayCodeBlock(CodeBlock):
 
     def run(self):
         document = self.state.document
-        code = '\n'.join(self.content)
+        code = "\n".join(self.content)
         location = self.state_machine.get_source_and_line(self.lineno)
-        linespec = self.options.get('emphasize-lines')
+        linespec = self.options.get("emphasize-lines")
         if linespec:
             try:
                 nlines = len(self.content)
                 hl_lines = parse_line_num_spec(linespec, nlines)
                 if any(i >= nlines for i in hl_lines):
-                    logger.warning(__('line number spec is out of range(1-%d): %r') %
-                                   (nlines, self.options['emphasize-lines']),
-                                   location=location)
+                    logger.warning(
+                        f"line number spec is out of range(1-{nlines:d}):"
+                        f"{self.options['emphasize-lines']:r}",
+                        location=location,
+                    )
 
                 hl_lines = [x + 1 for x in hl_lines if x < nlines]
             except ValueError as err:
@@ -72,31 +80,32 @@ class PlayCodeBlock(CodeBlock):
         else:
             hl_lines = None
 
-        if 'dedent' in self.options:
+        if "dedent" in self.options:
             location = self.state_machine.get_source_and_line(self.lineno)
             lines = code.splitlines(True)
-            lines = dedent_lines(lines, self.options['dedent'], location=location)
-            code = ''.join(lines)
+            lines = dedent_lines(lines, self.options["dedent"], location=location)
+            code = "".join(lines)
 
-        literal: Element = nodes.literal_block(code, code)
-        if 'linenos' in self.options or 'lineno-start' in self.options:
-            literal['linenos'] = True
-        literal['classes'] += self.options.get('class', [])
-        literal['force'] = 'force' in self.options
+        literal = nodes.literal_block(code, code)
+        if "linenos" in self.options or "lineno-start" in self.options:
+            literal["linenos"] = True
+        literal["classes"] += self.options.get("class", [])
+        literal["force"] = "force" in self.options
         if self.arguments:
             # highlight language specified
-            literal['language'] = self.arguments[0]
+            literal["language"] = self.arguments[0]
         else:
             # no highlight language specified.  Then this directive refers the current
             # highlight setting via ``highlight`` directive or ``highlight_language``
             # configuration.
-            literal['language'] = self.env.temp_data.get('highlight_language',
-                                                         self.config.highlight_language)
-        extra_args = literal['highlight_args'] = {}
+            literal["language"] = self.env.temp_data.get(
+                "highlight_language", self.config.highlight_language
+            )
+        extra_args = literal["highlight_args"] = {}
         if hl_lines is not None:
-            extra_args['hl_lines'] = hl_lines
-        if 'lineno-start' in self.options:
-            extra_args['linenostart'] = self.options['lineno-start']
+            extra_args["hl_lines"] = hl_lines
+        if "lineno-start" in self.options:
+            extra_args["linenostart"] = self.options["lineno-start"]
         self.set_source_info(literal)
         caption = f"<a href='https://play.fortran-lang.org/?code={urllib.parse.quote(code)}' target='_blank'>Fortran Playground</a>"
         try:
@@ -104,23 +113,21 @@ class PlayCodeBlock(CodeBlock):
         except ValueError as exc:
             return [document.reporter.warning(exc, line=self.lineno)]
         if "end program" not in code:
-            code = code+"\nend program"
+            code = code + "\nend program"
         resp = self.compile_and_execute_fortran(code)
         if any(i in str(resp) for i in comp_error):
-            #print("original")
+            # print("original")
             return [*super().run()]
         else:
-            #print("with link")
+            # print("with link")
             return [literal]
-        
 
 
 def setup(app):
-    app.add_directive('play-code-block', PlayCodeBlock)
+    app.add_directive("play-code-block", PlayCodeBlock)
 
     return {
-        'version': '0.1',
-        'parallel_read_safe': True,
-        'parallel_write_safe': True,
+        "version": "0.1",
+        "parallel_read_safe": True,
+        "parallel_write_safe": True,
     }
-
