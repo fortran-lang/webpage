@@ -74,7 +74,7 @@ def update_json_files() -> None:
             fortran_index_tags_data.items(), key=lambda x: x[1], reverse=True
         )
         if item[0] != "None" and item[1] > 0
-    ][:5s0]}
+    ][:50]}
     with open(root / "_data" / "fortran_tags.json", "w") as f:
         json.dump(tags, f)
     with open(root / "_data" / "fortran_package.json", "w") as f:

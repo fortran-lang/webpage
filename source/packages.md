@@ -55,58 +55,19 @@ Featured topics
 Browse Packages by Category
 :::
 
-## [Data types and containers](../categories/data-types)
+:::{jinja} categories
+{% for slug, item in categories.items() %}
+## [{{item.title}}](../categories/{{slug}})
 
-Libraries for advanced data types and container classes
-
-## [Interface libraries](../categories/interfaces)
-
-Libraries that interface with other systems, languages, or devices
-
-## [Libraries](../categories/libraries)
-
-Fortran libraries for general programming tasks
-
-## [Input, output and parsing](../categories/io)
-
-Libraries for reading, writing and parsing files and inputs
-
-## [Graphics, plotting and user interfaces](../categories/graphics)
-
-Libraries for plotting data, handling images and generating user interfaces
-
-## [Examples and templates](../categories/examples)
-
-Demonstration codes and templates for Fortran
-
-## [Numerical projects](../categories/numerical)
-
-Fortran libraries for linear algebra, optimization, root-finding etc.
-
-## [Programming utilities](../categories/programming)
-
-Error handling, logging, documentation and testing
-
-## [Characters and strings](../categories/strings)
-
-Libraries for manipulating characters and strings
-
-## [Scientific Codes](../categories/scientific)
-
-Applications and libraries for applied mathematical and scientific problems
+{{item.description}}
+{% endfor %}
 
 See [package index guidelines](../community/packages) for how to get your project listed.
 
 :::{toctree}
 :hidden:
-categories/data-types
-categories/interfaces
-categories/libraries
-categories/io
-categories/graphics
-categories/examples
-categories/numerical
-categories/programming
-categories/strings
-categories/scientific
+:::{jinja} categories
+{% for slug in categories %}
+categories/{{slug}}
+{% endfor %}
 :::
