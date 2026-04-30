@@ -57,7 +57,7 @@ This website is open source and contributions are welcome!
 
 :::
 
-<script> 
+<script>
 GitHubActivity.feed({
     username: "fortran-lang",
     repository: "stdlib",
@@ -155,12 +155,21 @@ on the project workflow and recommended practices.
 [Contributor guide for fpm](https://github.com/fortran-lang/fpm/blob/HEAD/CONTRIBUTING.md)<br>
 [Contributor guide for fortran-lang.org](community/contributing)
 
+::::
+
+::::{grid-item-card}
+:shadow: none
+
 :::{div} sd-text-left sd-fs-4
-Fortran-lang governance
+Governance
 :::
 
-The [governance](community/governance) model used by the Fortran-lang community
+Learn how the Fortran-lang community is organized and how administrators,
+maintainers, and contributors collaborate in the
+[governance model](community/governance).
+
 ::::
+
 ::::{grid-item-card}
 :shadow: none
 
@@ -232,6 +241,7 @@ Fortran-lang Contributors
 :hidden:
 community/history
 community/contributing
+community/governance
 community/minibooks
 community/packages
 :::
