@@ -24,6 +24,13 @@ To install the dependencies of this project, use commamd:
 pip3 install --user -r requirements.txt
 ```
 
+Local builds also require the GNU Fortran compiler `gfortran`.
+For example on Ubuntu you can install it with:
+
+```
+sudo apt install gfortran
+```
+
 To install sphinx (if system is not able to recognize sphinx-build after installing requirements) :
 
 First check :
