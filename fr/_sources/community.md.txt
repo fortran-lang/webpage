@@ -193,9 +193,9 @@ The [Fortran index](https://fortran-index.github.io) hackathon
 series is a great way to get involved with the Fortran-lang community. The
 series consists of virtual 2.5 hour events held every couple of months in which
 participants work towards improving the Fortran-lang website - particularly the
-[package index](https://fortran-lang.org/packages/). The hackathons are welcome
-to everyone, regardless of experience level. Registration forms for upcoming
-events are posted on the [Fortran-lang
+[package index](https://fortran-lang.org/packages/). The hackathons are open to
+everyone, regardless of experience level. Registration forms for upcoming events
+are posted on the [Fortran-lang
 discourse](https://fortran-lang.discourse.group/).
 
 ::::
