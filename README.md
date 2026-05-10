@@ -18,7 +18,7 @@
 This assumes that you already have a recent version of python
 For example on Ubuntu 20.04, do:
 
-To install the dependencies of this project, use commamd:
+To install the dependencies of this project, use the command:
 
 ```
 pip3 install --user -r requirements.txt
