@@ -57,7 +57,7 @@ This website is open source and contributions are welcome!
 
 :::
 
-<script> 
+<script>
 GitHubActivity.feed({
     username: "fortran-lang",
     repository: "stdlib",
@@ -155,12 +155,21 @@ on the project workflow and recommended practices.
 [Contributor guide for fpm](https://github.com/fortran-lang/fpm/blob/HEAD/CONTRIBUTING.md)<br>
 [Contributor guide for fortran-lang.org](community/contributing)
 
+::::
+
+::::{grid-item-card}
+:shadow: none
+
 :::{div} sd-text-left sd-fs-4
-Fortran-lang governance
+Governance
 :::
 
-The [governance](community/governance) model used by the Fortran-lang community
+Learn how the Fortran-lang community is organized and how administrators,
+maintainers, and contributors collaborate in the
+[governance model](community/governance).
+
 ::::
+
 ::::{grid-item-card}
 :shadow: none
 
@@ -184,9 +193,9 @@ The [Fortran index](https://fortran-index.github.io) hackathon
 series is a great way to get involved with the Fortran-lang community. The
 series consists of virtual 2.5 hour events held every couple of months in which
 participants work towards improving the Fortran-lang website - particularly the
-[package index](https://fortran-lang.org/packages/). The hackathons are welcome
-to everyone, regardless of experience level. Registration forms for upcoming
-events are posted on the [Fortran-lang
+[package index](https://fortran-lang.org/packages/). The hackathons are open to
+everyone, regardless of experience level. Registration forms for upcoming events
+are posted on the [Fortran-lang
 discourse](https://fortran-lang.discourse.group/).
 
 ::::
@@ -232,6 +241,7 @@ Fortran-lang Contributors
 :hidden:
 community/history
 community/contributing
+community/governance
 community/minibooks
 community/packages
 :::
