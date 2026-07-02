@@ -34,20 +34,20 @@ outdir: Path = root / "build" / "html"
 srcdir: Path = root / "source"
 """Directory containing the Sphinx configuration file."""
 
-# Error handling for data loading
+# --- IMPROVED ERROR HANDLING FOR DATA LOADING ---
 try:
     with open(root / "data" / "redirects.yml", "r", encoding="utf-8") as fd:
-        # All redirects from the original site without language component.
         all_redirects: Dict[str, str] = yaml.safe_load(fd)
 
     with open(root / "data" / "languages.yml", "r", encoding="utf-8") as fd:
-        # List of currently supported languages, taken from `doc/src/_static/languages.yml`.
         all_languages: List[str] = list(yaml.safe_load(fd).values())
 except FileNotFoundError as e:
-    raise FileNotFoundError(
-        f"Error: Required data file not found: {e.filename}\n"
-        "Ensure you are running build.py from the root of the repository."
-    ) from e
+    print(f"Error: Required data file not found: {e.filename}")
+    print("Ensure you are running build.py from the root of the repository.")
+    sys.exit(1)
+except yaml.YAMLError as e:
+    print(f"Error parsing YAML data: {e}")
+    sys.exit(1)
 
 template = """
 <!DOCTYPE HTML>
