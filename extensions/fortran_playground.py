@@ -27,7 +27,8 @@ class PlayCodeBlock(CodeBlock):
         # -J build/ directs module (.mod) output into the build directory
         # alongside the .out and cache files. Without it, gfortran writes
         # .mod files to the working directory (the project root), which
-        # leaves them dangling after a successful build. See #675.
+        # leaves them dangling after a successful build. See
+        # https://github.com/fortran-lang/webpage/issues/675
         compile_command = [
             "gfortran",
             "-J",
