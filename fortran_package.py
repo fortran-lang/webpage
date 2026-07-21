@@ -13,7 +13,7 @@ def get_contributors(repo: str) -> list[str]:
     """
     info = requests.get(f"https://api.github.com/repos/{repo}/contributors").json()
     if "message" in info:
-        raise Exception(info["message"])
+        raise RuntimeError(info["message"])
     return [contributor["login"] for contributor in info]
 
 
@@ -55,10 +55,9 @@ def update_json_files() -> None:
     fortran_tags = {}
 
     for i in fortran_index:
-        try:
-            fortran_index_tags += i["tags"].split()
-        except Exception:
-            pass
+        if i is None:
+            continue
+        fortran_index_tags += i.get("tags", "").split()
 
         for j in categories:
             if j in i["categories"].split():
