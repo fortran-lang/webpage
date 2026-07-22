@@ -17,7 +17,6 @@ You can also pass the language as an argument:
 
 The first language will be handled as the default language.
 """
-# pylint: disable=invalid-name,import-error
 
 import sys
 import subprocess
