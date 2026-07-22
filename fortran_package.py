@@ -1,3 +1,5 @@
+"""Module containing functions specific to the fortran-lang website."""
+
 import yaml
 from pathlib import Path
 from collections import Counter
@@ -18,9 +20,7 @@ def get_contributors(repo: str) -> list[str]:
 
 
 def update_json_files() -> None:
-    """
-    Update the JSON files that define the webpage configuration.
-    """
+    """Update the JSON files that define the webpage configuration."""
     root = Path(__file__).parent
 
     # --- Update references

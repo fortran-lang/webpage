@@ -1,10 +1,10 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# This file only contains a selection of the most common options. For a full
-# list see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
 """
 Fortran-lang webpage configuration file.
+
+This configuration file is for the Sphinx documentation builder.
+
+For information on the format, see
+https://www.sphinx-doc.org/en/master/usage/configuration.html
 """
 
 # -- Imports -----------------------------------------------------------------
