@@ -243,7 +243,7 @@ import re
 
 
 ## generate per-package and per-category pages from templates
-def generate_package_and_category_pages(app):
+def generate_package_and_category_pages(app, config):
     template_path = os.path.join('_templates/package.md')
     out_dir = os.path.join(app.srcdir, 'packages')
     os.makedirs(out_dir, exist_ok=True)
@@ -271,4 +271,4 @@ def generate_package_and_category_pages(app):
             f.write(content)
 
 def setup(app):
-    app.connect('builder-inited', generate_package_and_category_pages)
+    app.connect("config-inited", generate_package_and_category_pages)
