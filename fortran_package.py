@@ -97,7 +97,3 @@ def update_json_files() -> None:
     contributor_repo = {"repo": "fortran-lang", "contributor": contributors}
     with open(root / "_data" / "contributor.json", "w") as f:
         json.dump(contributor_repo, f)
-
-
-if __name__ == "__main__":
-    update_json_files()
