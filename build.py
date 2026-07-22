@@ -34,21 +34,6 @@ outdir: Path = root / "build" / "html"
 srcdir: Path = root / "source"
 """Directory containing the Sphinx configuration file."""
 
-# Error handling for data loading
-try:
-    with open(root / "data" / "redirects.yml", "r", encoding="utf-8") as fd:
-        # All redirects from the original site without language component.
-        all_redirects: Dict[str, str] = yaml.safe_load(fd)
-
-    with open(root / "data" / "languages.yml", "r", encoding="utf-8") as fd:
-        # List of currently supported languages, taken from `doc/src/_static/languages.yml`.
-        all_languages: List[str] = list(yaml.safe_load(fd).values())
-except FileNotFoundError as e:
-    raise FileNotFoundError(
-        f"Error: Required data file not found: {e.filename}\n"
-        "Ensure you are running build.py from the root of the repository."
-    ) from e
-
 
 def build_docs(language: str, isroot: bool) -> None:
     """
@@ -91,10 +76,26 @@ def build_all(redirects: Dict[str, str], languages: List[str]) -> None:
 
 
 if __name__ == "__main__":
+    # Error handling for data loading
+    try:
+        with open(root / "data" / "redirects.yml", "r", encoding="utf-8") as fd:
+            # All redirects from the original site without language component.
+            all_redirects: Dict[str, str] = yaml.safe_load(fd)
+
+        with open(root / "data" / "languages.yml", "r", encoding="utf-8") as fd:
+            # List of currently supported languages, taken from `doc/src/_static/languages.yml`.
+            all_languages: List[str] = list(yaml.safe_load(fd).values())
+    except FileNotFoundError as e:
+        raise FileNotFoundError(
+            f"Error: Required data file not found: {e.filename}\n"
+            "Ensure you are running build.py from the root of the repository."
+        ) from e
+
+    # Build the website
     build_all(all_redirects, sys.argv[1:] if len(sys.argv) > 1 else all_languages)
 
+    # Tell the user how to set up a server
     python_cmd = Path(sys.executable).name
-
     print()
     print("Preview the fortran-lang.org site using")
     print()
