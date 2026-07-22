@@ -68,13 +68,15 @@ def update_json_files() -> None:
                     fortran_tags[j] = [i]
 
     fortran_index_tags_data = Counter(fortran_index_tags)
-    tags = {"tags": [
-        item[0]
-        for item in sorted(
-            fortran_index_tags_data.items(), key=lambda x: x[1], reverse=True
-        )
-        if item[0] != "None" and item[1] > 0
-    ][:50]}
+    tags = {
+        "tags": [
+            item[0]
+            for item in sorted(
+                fortran_index_tags_data.items(), key=lambda x: x[1], reverse=True
+            )
+            if item[0] != "None" and item[1] > 0
+        ][:50]
+    }
     with open(root / "_data" / "fortran_tags.json", "w") as f:
         json.dump(tags, f)
     with open(root / "_data" / "fortran_package.json", "w") as f:
