@@ -7,15 +7,8 @@
 Fortran-lang webpage configuration file.
 """
 
-# -- Path setup --------------------------------------------------------------
+# -- Imports -----------------------------------------------------------------
 
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
 from jinja2 import Environment, FileSystemLoader
 import json
 import os
@@ -24,41 +17,12 @@ import re
 import sys
 import yaml
 
+# Project-specific imports
 root = pathlib.Path(__file__).parent.parent
-
-data_files = {
-    "fortran-learn": pathlib.Path(root, "_data", "fortran_learn.json"),
-    "fortran-packages": pathlib.Path(root, "_data", "fortran_package.json"),
-    "fortran-tags": pathlib.Path(root, "_data", "fortran_tags.json"),
-    "contributors": pathlib.Path(root, "_data", "contributor.json"),
-    "package-index": pathlib.Path(root, "data", "package_index.yml"),
-    "fortran-categories": pathlib.Path(root, "data", "categories.yml"),
-    "intrinsics": pathlib.Path(root, "data", "intrinsics.yml"),
-}
-
 sys.path.insert(0, str(root / "extensions"))
+sys.path.insert(0, str(root.absolute()))
+from fortran_package import update_json_files
 
-if not all(data.exists() for data in data_files.values()):
-    sys.path.insert(0, str(root.absolute()))
-    from fortran_package import update_json_files
-
-    update_json_files()
-
-with open(data_files["fortran-learn"], "r", encoding="utf-8") as f:
-    conf = json.load(f)
-with open(data_files["fortran-packages"], "r", encoding="utf-8") as f:
-    fortran_packages = json.load(f)
-with open(data_files["fortran-tags"], "r", encoding="utf-8") as f:
-    fortran_tags = json.load(f)
-with open(data_files["contributors"], "r", encoding="utf-8") as f:
-    contributors = json.load(f)
-
-with open(data_files["fortran-categories"], "r", encoding="utf-8") as f:
-    fortran_categories = yaml.safe_load(f)
-with open(data_files["intrinsics"], "r", encoding="utf-8") as f:
-    intrinsics = yaml.safe_load(f)
-with open(data_files["package-index"], "r", encoding="utf-8") as f:
-    package_index = yaml.safe_load(f)
 
 # -- Project information -----------------------------------------------------
 
@@ -118,15 +82,6 @@ if language == "en":
 exclude_patterns = ["learn/intrinsics/_pages/*.md"]
 html_additional_pages = {}
 suppress_warnings = ["myst.header"]
-
-jinja_contexts = {
-    "conf": conf,
-    "fortran_index": fortran_packages,
-    "tags": fortran_tags,
-    "categories": {"categories": fortran_categories},
-    "contributors": contributors,
-    "intrinsics": intrinsics,
-}
 
 
 # -- Options for HTML output -------------------------------------------------
@@ -236,6 +191,48 @@ tags_create_badges = True
 tags_extension = ["md"]
 tags_page_title = "Tags"
 tags_page_header = "Packages with this tag"
+
+
+# -- Load jinja contexts from file -------------------------------------------
+
+data_files = {
+    "fortran-learn": pathlib.Path(root, "_data", "fortran_learn.json"),
+    "fortran-packages": pathlib.Path(root, "_data", "fortran_package.json"),
+    "fortran-tags": pathlib.Path(root, "_data", "fortran_tags.json"),
+    "contributors": pathlib.Path(root, "_data", "contributor.json"),
+    "package-index": pathlib.Path(root, "data", "package_index.yml"),
+    "fortran-categories": pathlib.Path(root, "data", "categories.yml"),
+    "intrinsics": pathlib.Path(root, "data", "intrinsics.yml"),
+}
+
+# Regenerate data files if required
+if not all(data.exists() for data in data_files.values()):
+    update_json_files()
+
+# Read data from the files that were generated above if not already present
+with open(data_files["fortran-learn"], "r", encoding="utf-8") as f:
+    conf = json.load(f)
+with open(data_files["fortran-packages"], "r", encoding="utf-8") as f:
+    fortran_packages = json.load(f)
+with open(data_files["fortran-tags"], "r", encoding="utf-8") as f:
+    fortran_tags = json.load(f)
+with open(data_files["contributors"], "r", encoding="utf-8") as f:
+    contributors = json.load(f)
+with open(data_files["fortran-categories"], "r", encoding="utf-8") as f:
+    fortran_categories = yaml.safe_load(f)
+with open(data_files["intrinsics"], "r", encoding="utf-8") as f:
+    intrinsics = yaml.safe_load(f)
+with open(data_files["package-index"], "r", encoding="utf-8") as f:
+    package_index = yaml.safe_load(f)
+
+jinja_contexts = {
+    "conf": conf,
+    "fortran_index": fortran_packages,
+    "tags": fortran_tags,
+    "categories": {"categories": fortran_categories},
+    "contributors": contributors,
+    "intrinsics": intrinsics,
+}
 
 
 def generate_package_pages(app, config):
