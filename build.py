@@ -49,21 +49,6 @@ except FileNotFoundError as e:
         "Ensure you are running build.py from the root of the repository."
     ) from e
 
-template = """
-<!DOCTYPE HTML>
- 
-<meta charset="UTF-8">
-<meta http-equiv="refresh" content="1; url={0}">
- 
-<script>
-  window.location.href = "{0}"
-</script>
- 
-<title>Page Redirection</title>
- 
-If you are not redirected automatically, follow the <a href='{0}'>link</a>.
-"""
-
 
 def build_docs(language: str, isroot: bool) -> None:
     """
