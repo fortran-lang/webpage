@@ -238,38 +238,45 @@ tags_page_title = "Tags"
 tags_page_header = "Packages with this tag"
 
 
-def generate_package_and_category_pages(app, config):
-    """Generate per-package and per-category pages from templates."""
+def generate_package_pages(app, config):
+    """Generate per-package pages from templates."""
+    loader = FileSystemLoader(app.srcdir)
+    env = Environment(loader=loader)
 
     # Configure packages
     template_path = os.path.join("_templates/package.md")
     out_dir = os.path.join(app.srcdir, "packages")
     os.makedirs(out_dir, exist_ok=True)
-    loader = FileSystemLoader(app.srcdir)
-    env = Environment(loader=loader)
     template = env.get_template(template_path)
 
     # Auto-generate the package pages
     for package in package_index:
         content = template.render(package=package)
-
         stub = re.sub(r"[^a-z0-9]+", "-", package["name"].lower()).strip("-")
         with open(os.path.join(out_dir, f"{stub}.md"), "w") as f:
             f.write(content)
+
+
+def generate_category_pages(app, config):
+    """Generate per-category and tag pages from templates."""
+    loader = FileSystemLoader(app.srcdir)
+    env = Environment(loader=loader)
 
     # Configure categories
     template_path = os.path.join("_templates/category_pages.md")
     out_dir = os.path.join(app.srcdir, "categories")
     os.makedirs(out_dir, exist_ok=True)
-
-    # Auto-generate tags
     template = env.get_template(template_path)
+
+    # Auto-generate the category pages
     for tag in fortran_packages.keys():
         content = template.render(
             title=fortran_categories[tag]["title"],
             description=fortran_categories[tag]["description"],
             items=fortran_packages[tag],
         )
+
+        # Auto-generate tag pages
         with open(os.path.join(out_dir, f"{tag}.md"), "w") as f:
             f.write(content)
 
@@ -277,5 +284,6 @@ def generate_package_and_category_pages(app, config):
 def setup(app):
     """Drive the Sphinx build."""
 
-    # Config stage
-    app.connect("config-inited", generate_package_and_category_pages)
+    # Tasks to run once config has been initialised
+    app.connect("config-inited", generate_package_pages)
+    app.connect("config-inited", generate_category_pages)
