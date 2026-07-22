@@ -89,20 +89,6 @@ def build_docs(language: str, isroot: bool) -> None:
     )
 
 
-def build_redirects(redirects: Dict[str, str], language: str) -> None:
-    """
-    Build the redirects for a single language.
-
-    Parameters
-    ----------
-    redirects : Dict[str, str]
-        Page redirects to build.
-    language : str
-        The language to build the redirects for.
-    """
-    pass
-
-
 def build_all(redirects: Dict[str, str], languages: List[str]) -> None:
     """
     Build the documentation for all languages.
@@ -118,14 +104,12 @@ def build_all(redirects: Dict[str, str], languages: List[str]) -> None:
     for language in languages:
         build_docs(language, language == languages[0])
 
-    build_redirects(redirects, languages[0])
-
 
 if __name__ == "__main__":
     build_all(all_redirects, sys.argv[1:] if len(sys.argv) > 1 else all_languages)
 
     python_cmd = Path(sys.executable).name
-    
+
     print()
     print("Preview the fortran-lang.org site using")
     print()
