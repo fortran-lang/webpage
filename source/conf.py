@@ -18,11 +18,13 @@ Fortran-lang webpage configuration file.
 # import os
 # import sys
 # sys.path.insert(0, os.path.abspath('.'))
+from jinja2 import Environment, FileSystemLoader
 import json
-import yaml
-import sys
+import os
 import pathlib
-
+import re
+import sys
+import yaml
 
 root = pathlib.Path(__file__).parent.parent
 
@@ -237,9 +239,6 @@ tags_extension = ["md"]
 tags_page_title = "Tags"
 tags_page_header = "Packages with this tag"
 
-import os
-from jinja2 import Environment, FileSystemLoader
-import re
 
 def generate_package_and_category_pages(app, config):
     """Generate per-package and per-category pages from templates."""
