@@ -241,10 +241,10 @@ def generate_package_pages(app, config):
     env = Environment(loader=loader)
 
     # Configure packages
-    template_path = os.path.join("_templates/package.md")
+    template_path = pathlib.Path("_templates", "package.md")
     out_dir = os.path.join(app.srcdir, "packages")
     os.makedirs(out_dir, exist_ok=True)
-    template = env.get_template(template_path)
+    template = env.get_template(str(template_path))
 
     # Auto-generate the package pages
     for package in package_index:
@@ -260,10 +260,10 @@ def generate_category_pages(app, config):
     env = Environment(loader=loader)
 
     # Configure categories
-    template_path = os.path.join("_templates/category_pages.md")
+    template_path = pathlib.Path("_templates", "category_pages.md")
     out_dir = os.path.join(app.srcdir, "categories")
     os.makedirs(out_dir, exist_ok=True)
-    template = env.get_template(template_path)
+    template = env.get_template(str(template_path))
 
     # Auto-generate the category pages
     for tag in fortran_packages.keys():
