@@ -77,7 +77,7 @@ def build_all(redirects: Dict[str, str], languages: List[str]) -> None:
 if __name__ == "__main__":
     # Error handling for data loading
     try:
-        with open(root / "data" / "redirects.yml", "r", encoding="utf-8") as fd:
+        with (root / "data" / "redirects.yml").open() as fd:
             # All redirects from the original site without language component.
             all_redirects: Dict[str, str] = yaml.safe_load(fd)
 
