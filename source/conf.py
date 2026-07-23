@@ -210,19 +210,19 @@ if not all(data.exists() for data in data_files.values()):
     update_json_files()
 
 # Read data from the files that were generated above if not already present
-with open(data_files["fortran-learn"], "r", encoding="utf-8") as f:
+with data_files["fortran-learn"].open() as f:
     conf = json.load(f)
-with open(data_files["fortran-packages"], "r", encoding="utf-8") as f:
+with data_files["fortran-packages"].open() as f:
     fortran_packages = json.load(f)
-with open(data_files["fortran-tags"], "r", encoding="utf-8") as f:
+with data_files["fortran-tags"].open() as f:
     fortran_tags = json.load(f)
-with open(data_files["contributors"], "r", encoding="utf-8") as f:
+with data_files["contributors"].open() as f:
     contributors = json.load(f)
-with open(data_files["fortran-categories"], "r", encoding="utf-8") as f:
+with data_files["fortran-categories"].open() as f:
     fortran_categories = yaml.safe_load(f)
-with open(data_files["intrinsics"], "r", encoding="utf-8") as f:
+with data_files["intrinsics"].open() as f:
     intrinsics = yaml.safe_load(f)
-with open(data_files["package-index"], "r", encoding="utf-8") as f:
+with data_files["package-index"].open() as f:
     package_index = yaml.safe_load(f)
 
 jinja_contexts = {
