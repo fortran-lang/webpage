@@ -1,3 +1,5 @@
+"""Module containing functions specific to the fortran-lang website."""
+
 import yaml
 from pathlib import Path
 from collections import Counter
@@ -18,9 +20,7 @@ def get_contributors(repo: str) -> list[str]:
 
 
 def update_json_files() -> None:
-    """
-    Update the JSON files that define the webpage configuration.
-    """
+    """Update the JSON files that define the webpage configuration."""
     root = Path(__file__).parent
 
     # --- Update references
@@ -67,13 +67,15 @@ def update_json_files() -> None:
                     fortran_tags[j] = [i]
 
     fortran_index_tags_data = Counter(fortran_index_tags)
-    tags = {"tags": [
-        item[0]
-        for item in sorted(
-            fortran_index_tags_data.items(), key=lambda x: x[1], reverse=True
-        )
-        if item[0] != "None" and item[1] > 0
-    ][:50]}
+    tags = {
+        "tags": [
+            item[0]
+            for item in sorted(
+                fortran_index_tags_data.items(), key=lambda x: x[1], reverse=True
+            )
+            if item[0] != "None" and item[1] > 0
+        ][:50]
+    }
     with open(root / "_data" / "fortran_tags.json", "w") as f:
         json.dump(tags, f)
     with open(root / "_data" / "fortran_package.json", "w") as f:
@@ -96,7 +98,3 @@ def update_json_files() -> None:
     contributor_repo = {"repo": "fortran-lang", "contributor": contributors}
     with open(root / "_data" / "contributor.json", "w") as f:
         json.dump(contributor_repo, f)
-
-
-if __name__ == "__main__":
-    update_json_files()
