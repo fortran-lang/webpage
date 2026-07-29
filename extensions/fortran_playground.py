@@ -24,7 +24,19 @@ class PlayCodeBlock(CodeBlock):
         with open(filename, "w") as f:
             f.write(fortran_code)
 
-        compile_command = ["gfortran", filename, "-o", f"./build/{code_hash}.out"]
+        # -J build/ directs module (.mod) output into the build directory
+        # alongside the .out and cache files. Without it, gfortran writes
+        # .mod files to the working directory (the project root), which
+        # leaves them dangling after a successful build. See
+        # https://github.com/fortran-lang/webpage/issues/675
+        compile_command = [
+            "gfortran",
+            "-J",
+            "build",
+            filename,
+            "-o",
+            f"./build/{code_hash}.out",
+        ]
         compile_result = subprocess.run(
             compile_command, stdout=subprocess.PIPE, stderr=subprocess.PIPE
         )

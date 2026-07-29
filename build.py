@@ -17,7 +17,6 @@ You can also pass the language as an argument:
 
 The first language will be handled as the default language.
 """
-# pylint: disable=invalid-name,import-error
 
 import sys
 import subprocess
@@ -33,36 +32,6 @@ outdir: Path = root / "build" / "html"
 
 srcdir: Path = root / "source"
 """Directory containing the Sphinx configuration file."""
-
-# Error handling for data loading
-try:
-    with open(root / "data" / "redirects.yml", "r", encoding="utf-8") as fd:
-        # All redirects from the original site without language component.
-        all_redirects: Dict[str, str] = yaml.safe_load(fd)
-
-    with open(root / "data" / "languages.yml", "r", encoding="utf-8") as fd:
-        # List of currently supported languages, taken from `doc/src/_static/languages.yml`.
-        all_languages: List[str] = list(yaml.safe_load(fd).values())
-except FileNotFoundError as e:
-    raise FileNotFoundError(
-        f"Error: Required data file not found: {e.filename}\n"
-        "Ensure you are running build.py from the root of the repository."
-    ) from e
-
-template = """
-<!DOCTYPE HTML>
- 
-<meta charset="UTF-8">
-<meta http-equiv="refresh" content="1; url={0}">
- 
-<script>
-  window.location.href = "{0}"
-</script>
- 
-<title>Page Redirection</title>
- 
-If you are not redirected automatically, follow the <a href='{0}'>link</a>.
-"""
 
 
 def build_docs(language: str, isroot: bool) -> None:
@@ -89,20 +58,6 @@ def build_docs(language: str, isroot: bool) -> None:
     )
 
 
-def build_redirects(redirects: Dict[str, str], language: str) -> None:
-    """
-    Build the redirects for a single language.
-
-    Parameters
-    ----------
-    redirects : Dict[str, str]
-        Page redirects to build.
-    language : str
-        The language to build the redirects for.
-    """
-    pass
-
-
 def build_all(redirects: Dict[str, str], languages: List[str]) -> None:
     """
     Build the documentation for all languages.
@@ -118,14 +73,28 @@ def build_all(redirects: Dict[str, str], languages: List[str]) -> None:
     for language in languages:
         build_docs(language, language == languages[0])
 
-    build_redirects(redirects, languages[0])
-
 
 if __name__ == "__main__":
+    # Error handling for data loading
+    try:
+        with (root / "data" / "redirects.yml").open() as fd:
+            # All redirects from the original site without language component.
+            all_redirects: Dict[str, str] = yaml.safe_load(fd)
+
+        with open(root / "data" / "languages.yml", "r", encoding="utf-8") as fd:
+            # List of currently supported languages, taken from `doc/src/_static/languages.yml`.
+            all_languages: List[str] = list(yaml.safe_load(fd).values())
+    except FileNotFoundError as e:
+        raise FileNotFoundError(
+            f"Error: Required data file not found: {e.filename}\n"
+            "Ensure you are running build.py from the root of the repository."
+        ) from e
+
+    # Build the website
     build_all(all_redirects, sys.argv[1:] if len(sys.argv) > 1 else all_languages)
 
+    # Tell the user how to set up a server
     python_cmd = Path(sys.executable).name
-    
     print()
     print("Preview the fortran-lang.org site using")
     print()
