@@ -1,76 +1,78 @@
-# New fortran-lang.org website
+# fortran-lang.org website
 
 ## Contributing
 
-- [contributing](https://fortran-lang.github.io/webpage/en/community/contributing):
+- [contributing](https://fortran-lang.org/community/contributing/):
   getting started and general guidance on contributing to <https://fortran-lang.org>
 
-- [minibooks](https://fortran-lang.github.io/webpage/en/community/minibooks):
+- [minibooks](https://fortran-lang.org/community/minibooks/):
   how to write and structure a mini-book tutorial for the [Learn](https://fortran-lang.org/learn) section
 
-- [packages](https://fortran-lang.github.io/webpage/en/community/packages):
+- [packages](https://fortran-lang.org/community/packages/):
   adding an entry to the [Package index](https://fortran-lang.org/packages)
 
 ## Setup
 
 ### Build fortran-lang.org site (Sphinx Version)
 
-This assumes that you already have a recent version of python
+This assumes that you already have a recent version of python.
 For example on Ubuntu 20.04, do:
 
-To install the dependencies of this project, use commamd:
+To install the dependencies of this project, use the command:
 
 ```
 pip3 install --user -r requirements.txt
 ```
 
-To install sphinx (if system is not able to recognize sphinx-build after installing requirements) :
-
-First check :
+Local builds also require the GNU Fortran compiler `gfortran`.
+For example on Ubuntu you can install it with:
+```sh
+sudo apt install gfortran
 ```
+To install sphinx (if system is not able to recognize sphinx-build after installing requirements):
+
+First check:
+```sh
 sphinx-build --version
 ```
 
 if not recognized then run:
-```
+```sh
 pip install -U sphinx
 ```
 
 Build the site by invoking
-
-```
+```sh
 python3 build.py
 ```
 
 The website will be built in `build/html` and can be previewed by starting a webserver and opening the page with a browser (_e.g._ firefox, chromium or similar):
-
-```
+```sh
 python3 -m http.server -d build/html
 ```
 
 By default all languages will be built.
 To limit the build to a single language subtree, _i.e._ English, use
-
-```
+```sh
 python3 build.py en
 ```
 
 After adding a new entry to package index, run the github action _fortran_packages_ before building the sphinx build.
 
-### Activating the pre-commit hooks for Black and Pylint:
+### Activating the pre-commit hooks for Ruff:
 
 This assumes that you already have a cloned the main branch of this repository.
 Steps to activate the pre-commit hooks are:
 
 1. Make sure that you have installed all the dependencies of the repository.
 
-```
+```sh
 pip3 install --user -r requirements.txt
 ```
 
 2. Activate the pre-commit hooks:
 
-```
+```sh
 pre-commit install
 ```
 
@@ -78,18 +80,10 @@ Now, the precommit hooks have been successfully been installed into your clone.
 
 #### Steps to debug/resolve issues which prevent the commit due to pre-commit hooks:
 
-1. if pylint causes the issues in commiting to the repo, and it seems mandatory to `skip`
-   the pre-commit hooks use:
-
-```
-SKIP=pylint git commit -m"my commit"`
-```
-
-2. if black causes the issues in commiting to the repo, and it seems mandatory to `skip`
-   the pre-commit hooks use:
-
-```
-SKIP=black git commit -m"my commit"
+If linting causes the issues in commiting to the repo, and it seems mandatory to
+`skip` the pre-commit hooks use:
+```sh
+git commit -m"my commit" --no-verify
 ```
 
 ### Translating via weblate
@@ -108,7 +102,7 @@ which contain the original sentences and a placeholder for translations.
 
 To update translations run
 
-```
+```sh
 python3 intl.py
 ```
 

@@ -15,7 +15,7 @@ jobs:
 
     steps:
       - name: Checkout pr/${{github.event.issue.number}}
-        uses: actions/checkout@v5
+        uses: actions/checkout@v6
 
       - name: Fetch pr/${{github.event.issue.number}}
         run: |
@@ -25,7 +25,7 @@ jobs:
       - name: Setup Python
         uses: actions/setup-python@v6
         with:
-          python-version: "3.11"
+          python-version: "3.13"
 
       - name: Install sphinx
         run: pip3 install --user -r requirements.txt
@@ -44,7 +44,7 @@ jobs:
       - run: touch build/html/.nojekyll
 
       - name: Deploy documentation sphinx
-        uses: JamesIves/github-pages-deploy-action@v4.7.3
+        uses: JamesIves/github-pages-deploy-action@v4.8.0
         with:
           token: ${{ secrets.GITHUB_TOKEN }}
           branch: gh-pages

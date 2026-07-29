@@ -17,7 +17,6 @@ You can also pass the language code as an argument:
 
 Do not pass the default language code as an argument.
 """
-# pylint: disable=invalid-name,import-error
 
 import sys
 import subprocess
@@ -36,18 +35,6 @@ srcdir = root / "source"
 
 localedir = root / "locale"
 """Path to the locale directory."""
-
-all_languages: List[str]
-"""
-List of currently supported languages, taken from ``_data/languages.yml``.
-
-To support a new language add its `language code`_ to the list.
-
-.. _language code: https://www.sphinx-doc.org/en/master/usage/configuration.html#intl-options
-"""
-
-with open(root / "data" / "languages.yml", "r", encoding="utf-8") as fd:
-    all_languages = list(yaml.safe_load(fd).values())
 
 
 def intl_gettext() -> None:
@@ -73,7 +60,7 @@ def intl_update(language: str) -> None:
     """
 
     subprocess.run(
-        ["sphinx-intl", "update", "-l", language, "-d", localedir, "-p", outdir, "-w", "80"],
+        f"sphinx-intl update -l {language} -d {localedir} -p {outdir} -w 80".split(),
         cwd=root,
         check=True,
     )
@@ -94,7 +81,17 @@ def intl_all(languages: List[str]) -> None:
 
 
 if __name__ == "__main__":
+    all_languages: List[str]
+    """
+    List of currently supported languages, taken from ``_data/languages.yml``.
 
+    To support a new language add its `language code`_ to the list.
+
+    .. _language code: https://www.sphinx-doc.org/en/master/usage/configuration.html#intl-options
+    """
+
+    with open(root / "data" / "languages.yml", "r", encoding="utf-8") as fd:
+        all_languages = list(yaml.safe_load(fd).values())
     intl_all(sys.argv[1:] if len(sys.argv) > 1 else all_languages[1:])
 
     print()

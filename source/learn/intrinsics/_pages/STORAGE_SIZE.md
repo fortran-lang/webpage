@@ -66,7 +66,7 @@ NOTE2
 
 This is intended to be the size in memory that an object takes when it
 is stored; this might differ from the size it takes during expression
-handling (which might be the native register size) or when stored in a
+handling (which might be the system's register size) or when stored in a
 file. If an object is never stored in memory but only in a register,
 this function nonetheless returns the size it would take if it were
 stored in memory.

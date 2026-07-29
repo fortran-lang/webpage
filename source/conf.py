@@ -1,57 +1,33 @@
-# Configuration file for the Sphinx documentation builder.
-#
-# This file only contains a selection of the most common options. For a full
-# list see the documentation:
-# https://www.sphinx-doc.org/en/master/usage/configuration.html
 """
 Fortran-lang webpage configuration file.
+
+This configuration file is for the Sphinx documentation builder.
+
+For information on the format, see
+https://www.sphinx-doc.org/en/master/usage/configuration.html
 """
 
-# pylint: disable=invalid-name, redefined-builtin
+# -- Imports -----------------------------------------------------------------
 
-# -- Path setup --------------------------------------------------------------
-
-# If extensions (or modules to document with autodoc) are in another directory,
-# add these directories to sys.path here. If the directory is relative to the
-# documentation root, use os.path.abspath to make it absolute, like shown here.
-#
-# import os
-# import sys
-# sys.path.insert(0, os.path.abspath('.'))
+from jinja2 import Environment, FileSystemLoader
 import json
-import yaml
-import sys
+import os
 import pathlib
+import re
+import sys
+import yaml
 
+# Project-specific imports
 root = pathlib.Path(__file__).parent.parent
-
-data_files = {
-    "fortran-learn": pathlib.Path(root, "_data", "fortran_learn.json"),
-    "fortran-packages": pathlib.Path(root, "_data", "fortran_package.json"),
-    "contributors": pathlib.Path(root, "_data", "contributor.json"),
-    "intrinsics": pathlib.Path(root, "data", "intrinsics.yml"),
-}
-
 sys.path.insert(0, str(root / "extensions"))
+sys.path.insert(0, str(root.absolute()))
+from fortran_package import update_json_files
 
-if not all(data.exists() for data in data_files.values()):
-    sys.path.insert(0, str(root.absolute()))
-    # pylint: disable=import-error, unused-import
-    import fortran_package
-
-with open(data_files["fortran-learn"], "r", encoding="utf-8") as f:
-    conf = json.load(f)
-with open(data_files["fortran-packages"], "r", encoding="utf-8") as f:
-    fortran_tags = json.load(f)
-with open(data_files["contributors"], "r", encoding="utf-8") as f:
-    contributors = json.load(f)
-with open(data_files["intrinsics"], "r", encoding="utf-8") as f:
-    intrinsics = yaml.safe_load(f)
 
 # -- Project information -----------------------------------------------------
 
 project = "Fortran-lang.org website"
-copyright = "2020-2024, Fortran Community"
+copyright = "2020-2026, Fortran Community"
 author = "Fortran Community"
 
 # The full version, including alpha/beta/rc tags
@@ -72,7 +48,7 @@ extensions = [
     "sphinx_jinja",
     "fortran_playground",
     "sphinx_favicon",
-
+    "sphinx_tags",
 ]
 
 myst_enable_extensions = [
@@ -107,13 +83,6 @@ exclude_patterns = ["learn/intrinsics/_pages/*.md"]
 html_additional_pages = {}
 suppress_warnings = ["myst.header"]
 
-jinja_contexts = {
-    "conf": conf,
-    "fortran_index": fortran_tags,
-    "contributors": contributors,
-    "intrinsics": intrinsics,
-}
-
 
 # -- Options for HTML output -------------------------------------------------
 
@@ -132,10 +101,10 @@ html_canonical_url = None
 
 favicons = [
     {
-            "rel": "icon",
-            "sizes": "256x256",
-            "href": "images/favicon.ico",
-        },
+        "rel": "icon",
+        "sizes": "256x256",
+        "href": "images/favicon.ico",
+    },
 ]
 
 html_theme_options = {
@@ -143,14 +112,14 @@ html_theme_options = {
     "show_nav_level": 1,
     "show_toc_level": 0,
     "navbar_align": "right",
-    "navbar_start": ["navbar-logo","theme-switcher.html"],
+    "navbar_start": ["navbar-logo", "theme-switcher.html"],
     "switcher": {
         "json_url": "https://fortran-lang.org/_static/data.json",  # shifted to custom local switcher
         "version_match": language,
     },
     "primary_sidebar_end": [],
     "secondary_sidebar_items": ["inpage_toc.html"],
-    "navbar_end": ["navbar-icon-links","version-switcher"],
+    "navbar_end": ["navbar-icon-links", "version-switcher"],
     "search_bar_text": "Search",
     "icon_links": [
         {
@@ -194,7 +163,7 @@ html_sidebars = {
     "packages": [],
     "community": [],
     "packages/**": [],
-    "community/governance":[],
+    "community/governance": [],
 }
 html_title = "Fortran Programming Language"
 html_logo = "_static/images/fortran-logo-256x256.png"
@@ -214,4 +183,104 @@ post_auto_excerpt = 2
 
 gettext_compact = "index"
 
-copybutton_exclude = '.linenos, .gp, .go'
+copybutton_exclude = ".linenos, .gp, .go"
+
+## tag handling
+tags_create_tags = True
+tags_create_badges = True
+tags_extension = ["md"]
+tags_page_title = "Tags"
+tags_page_header = "Packages with this tag"
+
+
+# -- Load jinja contexts from file -------------------------------------------
+
+data_files = {
+    "fortran-learn": pathlib.Path(root, "_data", "fortran_learn.json"),
+    "fortran-packages": pathlib.Path(root, "_data", "fortran_package.json"),
+    "fortran-tags": pathlib.Path(root, "_data", "fortran_tags.json"),
+    "contributors": pathlib.Path(root, "_data", "contributor.json"),
+    "package-index": pathlib.Path(root, "data", "package_index.yml"),
+    "fortran-categories": pathlib.Path(root, "data", "categories.yml"),
+    "intrinsics": pathlib.Path(root, "data", "intrinsics.yml"),
+}
+
+# Regenerate data files if required
+if not all(data.exists() for data in data_files.values()):
+    update_json_files()
+
+# Read data from the files that were generated above if not already present
+with data_files["fortran-learn"].open() as f:
+    conf = json.load(f)
+with data_files["fortran-packages"].open() as f:
+    fortran_packages = json.load(f)
+with data_files["fortran-tags"].open() as f:
+    fortran_tags = json.load(f)
+with data_files["contributors"].open() as f:
+    contributors = json.load(f)
+with data_files["fortran-categories"].open() as f:
+    fortran_categories = yaml.safe_load(f)
+with data_files["intrinsics"].open() as f:
+    intrinsics = yaml.safe_load(f)
+with data_files["package-index"].open() as f:
+    package_index = yaml.safe_load(f)
+
+jinja_contexts = {
+    "conf": conf,
+    "fortran_index": fortran_packages,
+    "tags": fortran_tags,
+    "categories": {"categories": fortran_categories},
+    "contributors": contributors,
+    "intrinsics": intrinsics,
+}
+
+
+def generate_package_pages(app, config):
+    """Generate per-package pages from templates."""
+    loader = FileSystemLoader(app.srcdir)
+    env = Environment(loader=loader)
+
+    # Configure packages
+    template_path = pathlib.Path("_templates", "package.md")
+    out_dir = os.path.join(app.srcdir, "packages")
+    os.makedirs(out_dir, exist_ok=True)
+    template = env.get_template(str(template_path))
+
+    # Auto-generate the package pages
+    for package in package_index:
+        content = template.render(package=package)
+        stub = re.sub(r"[^a-z0-9]+", "-", package["name"].lower()).strip("-")
+        with open(os.path.join(out_dir, f"{stub}.md"), "w") as f:
+            f.write(content)
+
+
+def generate_category_pages(app, config):
+    """Generate per-category and tag pages from templates."""
+    loader = FileSystemLoader(app.srcdir)
+    env = Environment(loader=loader)
+
+    # Configure categories
+    template_path = pathlib.Path("_templates", "category_pages.md")
+    out_dir = os.path.join(app.srcdir, "categories")
+    os.makedirs(out_dir, exist_ok=True)
+    template = env.get_template(str(template_path))
+
+    # Auto-generate the category pages
+    for tag in fortran_packages.keys():
+        content = template.render(
+            title=fortran_categories[tag]["title"],
+            description=fortran_categories[tag]["description"],
+            items=fortran_packages[tag],
+        )
+
+        # Auto-generate tag pages
+        with open(os.path.join(out_dir, f"{tag}.md"), "w") as f:
+            f.write(content)
+
+
+def setup(app):
+    """Drive the Sphinx build."""
+
+    # Tasks to run once config has been initialised
+    app.connect("config-inited", generate_package_pages)
+    app.connect("config-inited", generate_category_pages)
