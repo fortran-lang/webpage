@@ -13,6 +13,50 @@ Fortran <br> High-performance parallel programming language
 :::
 
 :::{div} sd-fs-3 sd-font-weight-bold sd-text-primary
+Why Fortran?
+:::
+
+Despite being thought by many outside the community to be an archaic (or dead) language, Fortran is very much alive. In fact, _because_ it is the oldest programming language in active use, it underpins multi-decadal computational efforts in Earth sciences, material sciences, engineering, physics and chemistry. 
+> If you use electricity, fly in an aircraft, take medication, rely on weather forecasts or are defended by (the threat) of modern weapons, you depend on Fortran. 
+> 
+> -- <cite>[fortranfuture](https://fortranfuture.github.io)</cite>
+
+
+:::{div} sd-fs-5 sd-font-weight-bold
+What is Fortran used for?
+:::
+
+Fortran is mostly used in domains that adopted computation early--science and engineering. These include numerical weather and ocean prediction, computational fluid dynamics, applied math, statistics, and finance. Fortran is the dominant language of High Performance Computing and is used to [benchmark the fastest supercomputers in the world](https://top500.org/).
+
+:::{div} sd-fs-5 sd-font-weight-bold
+My boss gave me 2M lines of old Fortran, what should I do?
+:::
+
+Check out our [Quickstart guide](learn/os_setup/index) to help you get set up.
+
+:::{div} sd-fs-5 sd-font-weight-bold
+What is the status of Fortran?
+:::
+
+Fortran is mature and under active development.
+The latest revision of the language is
+[Fortran 2023](https://wg5-fortran.org/N2201-N2250/N2212.pdf).
+There are over a dozen open source and proprietary
+[Fortran compilers](compilers).
+Further, open source projects like the
+[Standard Library](https://github.com/fortran-lang/stdlib)
+and the [Fortran Package Manager](https://fpm.fortran-lang.org) are
+under active development.
+
+
+:::{div} sd-fs-5 sd-font-weight-bold
+Should I use Fortran for my new project?
+:::
+
+If you're writing a program or a library to perform fast arithmetic computation over large numeric arrays, Fortran is the optimal tool for the job.
+
+
+:::{div} sd-fs-3 sd-font-weight-bold sd-text-primary
 Features
 :::
 
@@ -52,35 +96,6 @@ Interoperable
 
 Fortran's standardized C interoperability enables seamless integration into multi-language projects, enabling the optimization of performance-critical components.
 
-:::{div} sd-fs-3 sd-font-weight-bold sd-text-primary
-FAQ
-:::
-
-:::{div} sd-fs-5 sd-font-weight-bold
-What is the status of Fortran?
-:::
-
-Fortran is mature and under active development.
-The latest revision of the language is
-[Fortran 2023](https://wg5-fortran.org/N2201-N2250/N2212.pdf).
-There are over a dozen open source and proprietary
-[Fortran compilers](compilers).
-Further, open source projects like the
-[Standard Library](https://github.com/fortran-lang/stdlib)
-and the [Fortran Package Manager](https://fpm.fortran-lang.org) are
-under active development.
-
-:::{div} sd-fs-5 sd-font-weight-bold
-What is Fortran used for?
-:::
-
-Fortran is mostly used in domains that adopted computation early--science and engineering. These include numerical weather and ocean prediction, computational fluid dynamics, applied math, statistics, and finance. Fortran is the dominant language of High Performance Computing and is used to [benchmark the fastest supercomputers in the world](https://top500.org/).
-
-:::{div} sd-fs-5 sd-font-weight-bold
-Should I use Fortran for my new project?
-:::
-
-If you're writing a program or a library to perform fast arithmetic computation over large numeric arrays, Fortran is the optimal tool for the job.
 
 <div class="index_joinus_mobile">
 <h3><p style="color:#734f96;">Join us!</p> </h3>
