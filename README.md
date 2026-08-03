@@ -12,19 +12,24 @@
   adding an entry to the [Package index](https://fortran-lang.org/packages)
 
 ## Package search utility
-Fortran-lang's' `package-search` application finds and reports information about
-packages listed in `data/package_index.yml`.  To build and run the application with
-the Fortran Package Manager (`fpm`) and a Fortran compiler installed, run a command
-like the following in a terminal window:
+Fortran-lang's' `fpm-search` application finds and reports information about
+packages listed in `data/package_index.yml`.  
+
+### Installation and testing
+With the Fortran Package Manager (`fpm`) and a Fortran compiler installed and in your PATH,
+install `fpm-search` by running `fpm install` in a terminal window. Then run `fpm-search`
+as an `fpm` plugin with a command such as
 ```
-fpm run --compiler flang --profile release -- --find "partial-differential"
+fpm search --find "partial-differential"
 ```
 which shoud return each package listing that contains the string "partial-differential".
 
-To verify a working build of `package-search`, run the test suite with a command like
+To verify a working build of `fpm-search`, run the test suite with a command like
 ```
 fpm test --compiler flang --profile release
 ```
+The table below lists the platform configurations tested and the flags required for each
+configuration.
 
 <div align="center">
 Platforms Tested
