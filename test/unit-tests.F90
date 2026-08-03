@@ -88,7 +88,9 @@ program unit_tests
               error stop
             else
               print fmt(tests), "All ", tests, " tests passed."
+#ifdef __GFORTRAN__
               stop ! work around gfortran 13-16 seg faults
+#endif
             end if
           end block
         end associate capture_package_entry_text
