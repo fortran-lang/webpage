@@ -70,28 +70,57 @@ program unit_tests
       )
         capture_package_entry_text: &
         associate( &
-             assert_text =>   assert_package%as_text() &
-          ,caffeine_text => caffeine_package%as_text() &
-          ,  formal_text =>   formal_package%as_text() &
-          ,julienne_text => julienne_package%as_text() &
+             assert_txt =>   assert_package%as_text() &
+          ,caffeine_txt => caffeine_package%as_text() &
+          ,  formal_txt =>   formal_package%as_text() &
+          ,julienne_txt => julienne_package%as_text() &
         )
-          call report_result(packages%find("caffeine")  == caffeine_text, " finding a package with no optional data")
-          call report_result(packages%find("formal")    ==   formal_text, " finding a package with optional license & version")
-          call report_result(packages%find("julienne")  == julienne_text, " finding a package listed after a section header")
-          call report_result(packages%find("numerical") ==   formal_text, " finding a package based on category text")
-          call report_result(packages%find("fake")      ==            "", " returning zero-length text for a missing package")
-          call report_result(packages%find("assert")    == julienne_text // assert_text, " finding two matching packages")
-          stop ! work around gfortran 13-16 seg faults
+          block
+            integer :: tests = 0, passes = 0
+            call test(packages%find("caffeine")  == caffeine_txt, " finding a package with no optional data", tests, passes)
+            call test(packages%find("formal")    ==   formal_txt, " finding a package with optional license/version", tests, passes)
+            call test(packages%find("julienne")  == julienne_txt, " finding a package listed after a section header", tests, passes)
+            call test(packages%find("numerical") ==   formal_txt, " finding a package based on category text", tests, passes)
+            call test(packages%find("fake")      ==            "", " returning blank text for a missing package", tests, passes)
+            call test(packages%find("assert")    == julienne_txt // assert_txt, " finding two matching packages", tests, passes)
+            if (passes /= tests) then
+              print fmt(tests), "______ ", tests - passes, " of ", tests, " tests failed. ______"
+              error stop
+            else
+              print fmt(tests), "All ", tests, " tests passed."
+              stop ! work around gfortran 13-16 seg faults
+            end if
+          end block
         end associate capture_package_entry_text
       end associate define_index_and_package_entries
     end associate define_package_index_file_object
   end associate define_package_index_items
 contains
 
-  subroutine report_result(test_condition, test_description)
+  subroutine test(test_condition, test_description, num_tests, num_passes)
     logical, intent(in) :: test_condition
+    integer, intent(inout) :: num_tests, num_passes
     character(len=*), intent(in) :: test_description
     print '(a)', "  " // merge("passes on", "FAILS  on", test_condition)// test_description
+    num_tests = num_tests + 1
+    num_passes = num_passes + merge(1, 0, test_condition)
   end subroutine
+
+  pure function fmt(num_tests)
+    integer, intent(in) :: num_tests
+    character(len=:), allocatable :: fmt
+    select case(num_tests)
+    case(0:9)
+      fmt = "(*(a,i1))" 
+    case(10-99)
+      fmt = "(*(a,i2))" 
+    case(100-999)
+      fmt = "(*(a,i3))" 
+    case(1000-9999)
+      fmt = "(*(a,i4))" 
+    case default
+      fmt = "(*(a,i9))" 
+    end select
+  end function
 
 end program unit_tests
