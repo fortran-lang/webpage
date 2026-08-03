@@ -1,4 +1,4 @@
-program package_search
+program fpm_search
   use julienne_m, only : file_t, command_line_t
   use package_index_m, only : package_index_t
   implicit none
@@ -52,4 +52,4 @@ program package_search
 
   end block
 
-end program package_search
+end program fpm_search
