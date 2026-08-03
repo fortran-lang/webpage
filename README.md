@@ -1,4 +1,4 @@
-# fortran-lang.org website
+# Fortran-lang.org Website
 
 ## Contributing
 
@@ -11,7 +11,34 @@
 - [packages](https://fortran-lang.org/community/packages/):
   adding an entry to the [Package index](https://fortran-lang.org/packages)
 
-## Setup
+## Package search utility
+Fortran-lang's' `package-search` application finds and reports information about
+packages listed in `data/package_index.yml`.  To build and run the application with
+the Fortran Package Manager (`fpm`) and a Fortran compiler installed, run a command
+like the following in a terminal window:
+```
+fpm run --compiler flang --profile release -- --find "partial-differential"
+```
+which shoud return each package listing that contains the string "partial-differential".
+
+To verify a working build of `package-search`, run the test suite with a command like
+```
+fpm test --compiler flang --profile release
+```
+
+<div align="center">
+Platforms Tested
+</div>
+
+Vendor  |Compiler  |Version(s) Tested    |OS    |Recommended `--flag` argument
+--------|----------|---------------------|------|---------------------------------------------------
+GCC     |`gfortran`|13-17                |macOS | `-ffree-line-length-none` for version 13
+LLVM    |`flang`   |23                   |macOS | `-O3 -mmlir -allow-assumed-rank` for version 19
+NAG     |`nagfor`  |7.2 Build 7238       |Linux | `-fpp -O3 -coarray`
+Intel   |`ifx`     |2026.1.0 20260617    |Linux | `-fpp -O3 -coarray`
+LFortran|`lfortran`|0.64.0-157-g1e0305cfd|Linux | `--cpp --realloc-lhs-arrays --separate-compilation`
+
+## Website Setup
 
 ### Build fortran-lang.org site (Sphinx Version)
 
