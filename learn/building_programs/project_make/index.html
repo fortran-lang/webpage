@@ -898,7 +898,7 @@ it is just expanded to the object files as well.</p>
     <span class="k">if</span> <span class="p">(</span><span class="nx">modc</span><span class="p">[</span><span class="nb">FILENAME</span><span class="p">,</span><span class="o">$</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1"># add to the module list, the generated module name is expected</span>
         <span class="c1"># to be lowercase, the FILENAME is the current source file</span>
-        <span class="nx">mod</span><span class="p">[</span><span class="o">++</span><span class="nx">im</span><span class="p">]</span> <span class="o">=</span> <span class="kr">sprintf</span><span class="p">(</span><span class="s2">&quot;%s.mod = $(%s)&quot;</span><span class="p">,</span> <span class="kr">tolower</span><span class="p">(</span><span class="o">$</span><span class="mi">2</span><span class="p">),</span> <span class="nb">FILENAME</span><span class="p">)</span>
+        <span class="nx">mod</span><span class="p">[</span><span class="o">++</span><span class="nx">im</span><span class="p">]</span> <span class="o">=</span> <span class="kr">sprintf</span><span class="p">(</span><span class="s2">"%s.mod = $(%s)"</span><span class="p">,</span> <span class="kr">tolower</span><span class="p">(</span><span class="o">$</span><span class="mi">2</span><span class="p">),</span> <span class="nb">FILENAME</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -908,12 +908,12 @@ it is just expanded to the object files as well.</p>
 <span class="o">$</span><span class="mi">1</span> <span class="o">~</span> <span class="sr">/^use$/</span> <span class="o">&amp;&amp;</span>
 <span class="o">$</span><span class="mi">2</span> <span class="o">~</span> <span class="sr">/^[a-zA-Z][a-zA-Z0-9_]*,?$/</span> <span class="p">{</span>
     <span class="c1"># Remove a trailing comma from an optional only statement</span>
-    <span class="kr">gsub</span><span class="p">(</span><span class="sr">/,/</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="o">$</span><span class="mi">2</span><span class="p">)</span>
+    <span class="kr">gsub</span><span class="p">(</span><span class="sr">/,/</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="o">$</span><span class="mi">2</span><span class="p">)</span>
     <span class="c1"># count used module names per file to avoid using modules twice in our list</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">usec</span><span class="p">[</span><span class="nb">FILENAME</span><span class="p">,</span><span class="o">$</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1"># add to the used modules, the generated module name is expected</span>
         <span class="c1"># to be lowercase, the FILENAME is the current source file</span>
-        <span class="nx">use</span><span class="p">[</span><span class="o">++</span><span class="nx">iu</span><span class="p">]</span> <span class="o">=</span> <span class="kr">sprintf</span><span class="p">(</span><span class="s2">&quot;$(%s) += $(%s.mod)&quot;</span><span class="p">,</span> <span class="nb">FILENAME</span><span class="p">,</span> <span class="kr">tolower</span><span class="p">(</span><span class="o">$</span><span class="mi">2</span><span class="p">))</span>
+        <span class="nx">use</span><span class="p">[</span><span class="o">++</span><span class="nx">iu</span><span class="p">]</span> <span class="o">=</span> <span class="kr">sprintf</span><span class="p">(</span><span class="s2">"$(%s) += $(%s.mod)"</span><span class="p">,</span> <span class="nb">FILENAME</span><span class="p">,</span> <span class="kr">tolower</span><span class="p">(</span><span class="o">$</span><span class="mi">2</span><span class="p">))</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -921,13 +921,13 @@ it is just expanded to the object files as well.</p>
 <span class="c1"># - the first argument ($1) should be the whole word include</span>
 <span class="c1"># - the second argument ($2) can be everything, as long as delimited by quotes</span>
 <span class="o">$</span><span class="mi">1</span> <span class="o">~</span> <span class="sr">/^(#:?)?include$/</span> <span class="o">&amp;&amp;</span>
-<span class="o">$</span><span class="mi">2</span> <span class="o">~</span> <span class="sr">/^[&quot;&#39;].+[&quot;&#39;]$/</span> <span class="p">{</span>
+<span class="o">$</span><span class="mi">2</span> <span class="o">~</span> <span class="sr">/^["'].+["']$/</span> <span class="p">{</span>
     <span class="c1"># Remove quotes from the included file name</span>
-    <span class="kr">gsub</span><span class="p">(</span><span class="sr">/&#39;|&quot;/</span><span class="p">,</span> <span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="o">$</span><span class="mi">2</span><span class="p">)</span>
+    <span class="kr">gsub</span><span class="p">(</span><span class="sr">/'|"/</span><span class="p">,</span> <span class="s2">""</span><span class="p">,</span> <span class="o">$</span><span class="mi">2</span><span class="p">)</span>
     <span class="c1"># count included files per file to avoid having duplicates in our list</span>
     <span class="k">if</span> <span class="p">(</span><span class="nx">incc</span><span class="p">[</span><span class="nb">FILENAME</span><span class="p">,</span><span class="o">$</span><span class="mi">2</span><span class="p">]</span><span class="o">++</span> <span class="o">==</span> <span class="mi">0</span><span class="p">)</span> <span class="p">{</span>
         <span class="c1"># Add the included file to our list, this might be case-sensitive</span>
-        <span class="nx">inc</span><span class="p">[</span><span class="o">++</span><span class="nx">ii</span><span class="p">]</span> <span class="o">=</span> <span class="kr">sprintf</span><span class="p">(</span><span class="s2">&quot;$(%s) += %s&quot;</span><span class="p">,</span> <span class="nb">FILENAME</span><span class="p">,</span> <span class="o">$</span><span class="mi">2</span><span class="p">)</span>
+        <span class="nx">inc</span><span class="p">[</span><span class="o">++</span><span class="nx">ii</span><span class="p">]</span> <span class="o">=</span> <span class="kr">sprintf</span><span class="p">(</span><span class="s2">"$(%s) += %s"</span><span class="p">,</span> <span class="nb">FILENAME</span><span class="p">,</span> <span class="o">$</span><span class="mi">2</span><span class="p">)</span>
     <span class="p">}</span>
 <span class="p">}</span>
 
@@ -968,7 +968,7 @@ A failing example would be:</p>
 <p>To make this parsable by the <code class="docutils literal notranslate"><span class="pre">awk</span></code> script we can add another group directly
 after the <code class="docutils literal notranslate"><span class="pre">BEGIN</span></code> group, modifying the stream while processing it with</p>
 <div class="highlight-awk notranslate"><div class="highlight"><pre><span></span><span class="p">{</span>
-   <span class="kr">gsub</span><span class="p">(</span><span class="sr">/,|:/</span><span class="p">,</span> <span class="s2">&quot; &quot;</span><span class="p">)</span>
+   <span class="kr">gsub</span><span class="p">(</span><span class="sr">/,|:/</span><span class="p">,</span> <span class="s2">" "</span><span class="p">)</span>
 <span class="p">}</span>
 </pre></div>
 </div>

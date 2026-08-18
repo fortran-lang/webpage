@@ -707,12 +707,12 @@ for detailed instructions. For simplicity, on Linux (or WSL2)</p>
 </div>
 <p>FPM will be installed in ~/.local/bin/fpm. We will start by creating a simple project using the FPM itself
 by doing <code class="docutils literal notranslate"><span class="pre">fpm</span> <span class="pre">new</span> <span class="pre">first_steps</span></code>. This will create a project with a fpm.toml file that will look like this:</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">&quot;first_steps&quot;</span>
-<span class="n">version</span> <span class="o">=</span> <span class="s2">&quot;0.1.0&quot;</span>
-<span class="n">license</span> <span class="o">=</span> <span class="s2">&quot;license&quot;</span>
-<span class="n">author</span> <span class="o">=</span> <span class="s2">&quot;T. Rex.&quot;</span>
-<span class="n">maintainer</span> <span class="o">=</span> <span class="s2">&quot;t.rex@example.com&quot;</span>
-<span class="n">copyright</span> <span class="o">=</span> <span class="s2">&quot;Copyright 2021, T. Rex.&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">name</span> <span class="o">=</span> <span class="s2">"first_steps"</span>
+<span class="n">version</span> <span class="o">=</span> <span class="s2">"0.1.0"</span>
+<span class="n">license</span> <span class="o">=</span> <span class="s2">"license"</span>
+<span class="n">author</span> <span class="o">=</span> <span class="s2">"T. Rex."</span>
+<span class="n">maintainer</span> <span class="o">=</span> <span class="s2">"t.rex@example.com"</span>
+<span class="n">copyright</span> <span class="o">=</span> <span class="s2">"Copyright 2021, T. Rex."</span>
 <span class="p">[</span><span class="n">build</span><span class="p">]</span>
 <span class="n">auto</span><span class="o">-</span><span class="n">executables</span> <span class="o">=</span> <span class="n">true</span>
 <span class="n">auto</span><span class="o">-</span><span class="n">tests</span> <span class="o">=</span> <span class="n">true</span>
@@ -754,11 +754,11 @@ say &quot;hello!&quot; from your Fortan program. <em>Grosso modo</em>:</p>
 </div>
 <p>我们将从干净的源目录中的基础知识开始。创建并打开文件 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>，我们从一个名为 <em>all</em> 的简单规则开始：</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nf">all</span><span class="o">:</span>
-<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
 </pre></div>
 </div>
 <p>保存 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 后，通过在同一目录中执行 <code class="docutils literal notranslate"><span class="pre">make</span></code> 运行它。你应该看到以下输出：</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>echo &quot;all&quot;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>echo "all"
 all
 </pre></div>
 </div>
@@ -779,10 +779,10 @@ all
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">PROG</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>my_prog
 
 <span class="nf">all</span><span class="o">:</span><span class="w"> </span><span class="k">$(</span><span class="nv">PROG</span><span class="k">)</span>
-<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2"> depends on </span>$<span class="s2">^&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2"> depends on </span>$<span class="s2">^"</span>
 
 <span class="nf">$(PROG)</span><span class="o">:</span>
-<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="nv">$@</span><span class="s2">&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="nv">$@</span><span class="s2">"</span>
 </pre></div>
 </div>
 <p>注意我们如何在<code class="docutils literal notranslate"><span class="pre">make</span></code>中声明变量，你应该总是用<code class="docutils literal notranslate"><span class="pre">:=</span></code>声明你的局部变量。要访问变量的内容，我们使用<code class="docutils literal notranslate"><span class="pre">$(...)</span></code>，注意我们必须将变量名括在括号中。</p>
@@ -792,9 +792,9 @@ all
 </div>
 <p>我们引入了规则 all 的一个依赖，即变量 <code class="docutils literal notranslate"><span class="pre">PROG</span></code> 的内容，同时我们修改了打印输出，我们想查看这个规则的所有依赖，这些依赖存储在变量 <code class="docutils literal notranslate"><span class="pre">$^</span></code> 中。现在对于我们以变量 <code class="docutils literal notranslate"><span class="pre">PROG</span></code> 的值命名的新规则，它与我们之前对规则 <em>all</em> 所做的事情相同，注意 <code class="docutils literal notranslate"><span class="pre">$&#64;</span></code> 的值如何依赖于它所使用的规则。</p>
 <p>通过运行<code class="docutils literal notranslate"><span class="pre">make</span></code>再次检查，你应该看到：</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>echo &quot;my_prog&quot;
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>echo "my_prog"
 my_prog
-echo &quot;all depends on my_prog&quot;
+echo "all depends on my_prog"
 all depends on my_prog
 </pre></div>
 </div>
@@ -836,12 +836,12 @@ gfortran -o my_prog tabulate.o functions.o
 </pre></div>
 </div>
 <p>你现在应该在目录中找到 <em>four</em> 个新文件。运行 <code class="docutils literal notranslate"><span class="pre">my_prog</span></code> 以确保一切按预期工作。让我们再次运行<code class="docutils literal notranslate"><span class="pre">make</span></code>：</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make: Nothing to be done for &#39;all&#39;.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>make: Nothing to be done for 'all'.
 </pre></div>
 </div>
 <p>使用可执行文件 <code class="docutils literal notranslate"><span class="pre">make</span></code> 的时间戳可以确定，它比 <code class="docutils literal notranslate"><span class="pre">tabulate.o</span></code> 和 <code class="docutils literal notranslate"><span class="pre">functions.o</span></code> 都更新，而后者又比 <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code> 和 <code class="docutils literal notranslate"><span class="pre">functions.f90</span></code> 更新。因此，该程序已经是最新的最新代码，无需执行任何操作。</p>
 <p>最后，我们将看看一个完整的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>。</p>
-<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable all of make&#39;s built-in rules (similar to Fortran&#39;s implicit none)</span>
+<div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="c"># Disable all of make's built-in rules (similar to Fortran's implicit none)</span>
 <span class="nv">MAKEFLAGS</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span>--no-builtin-rules<span class="w"> </span>--no-builtin-variables
 <span class="c"># configuration</span>
 <span class="nv">FC</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>gfortran
@@ -925,19 +925,19 @@ gfortran -o my_prog tabulate.o functions.o
 <p>这些可以通过以下注释来介绍</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>/usr<span class="w">  </span><span class="c1"># path to install location</span>
 <span class="nf">install</span><span class="o">:</span>
-<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>prefix<span class="k">)</span><span class="s2">/lib&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>prefix<span class="k">)</span><span class="s2">/lib"</span>
 </pre></div>
 </div>
 <p>虽然注释将被 <code class="docutils literal notranslate"><span class="pre">make</span></code> 正确删除，但尾随的两个空格现在是变量内容的一部分。运行 <code class="docutils literal notranslate"><span class="pre">make</span></code> 并检查是否确实如此：</p>
-<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">&quot;/usr  /lib&quot;</span>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">echo</span> <span class="s2">"/usr  /lib"</span>
 <span class="o">/</span><span class="n">usr</span>  <span class="o">/</span><span class="n">lib</span>
 </pre></div>
 </div>
 <p>要解决此问题，你可以移动注释，或者使用 <code class="docutils literal notranslate"><span class="pre">strip</span></code> 函数去除空白。或者，你可以尝试 <code class="docutils literal notranslate"><span class="pre">join</span></code> 字符串。</p>
 <div class="highlight-make notranslate"><div class="highlight"><pre><span></span><span class="nv">prefix</span><span class="w"> </span><span class="o">:=</span><span class="w"> </span>/usr<span class="w">  </span><span class="c1"># path to install location</span>
 <span class="nf">install</span><span class="o">:</span>
-<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>strip<span class="w"> </span><span class="k">$(</span>prefix<span class="k">))</span><span class="s2">/lib&quot;</span>
-<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">&quot;</span><span class="k">$(</span>join<span class="w"> </span><span class="k">$(</span>join<span class="w"> </span><span class="k">$(</span>prefix<span class="k">)</span>,<span class="w"> </span>/<span class="k">)</span>,<span class="w"> </span>lib<span class="k">)</span><span class="s2">&quot;</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>strip<span class="w"> </span><span class="k">$(</span>prefix<span class="k">))</span><span class="s2">/lib"</span>
+<span class="w">	</span><span class="nb">echo</span><span class="w"> </span><span class="s2">"</span><span class="k">$(</span>join<span class="w"> </span><span class="k">$(</span>join<span class="w"> </span><span class="k">$(</span>prefix<span class="k">)</span>,<span class="w"> </span>/<span class="k">)</span>,<span class="w"> </span>lib<span class="k">)</span><span class="s2">"</span>
 </pre></div>
 </div>
 <p>总而言之，这些解决方案都不会使你的 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 更具可读性，因此，在编写和使用 <code class="docutils literal notranslate"><span class="pre">make</span></code> 时要特别注意空格和注释。</p>
@@ -949,8 +949,8 @@ gfortran -o my_prog tabulate.o functions.o
 <p>有很多可用的高级构建系统，但我们将专注于 <code class="docutils literal notranslate"><span class="pre">meson</span></code>，因为它的构建是特别用户友好的。 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 的默认低级构建系统称为 <code class="docutils literal notranslate"><span class="pre">ninja</span></code>。</p>
 <p>让我们看一个完整的 <code class="docutils literal notranslate"><span class="pre">meson.build</span></code> 文件：</p>
 <!-- meson is unknown by the highlighter, python looks okayish -->
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">project</span><span class="p">(</span><span class="s1">&#39;my_proj&#39;</span><span class="p">,</span> <span class="s1">&#39;fortran&#39;</span><span class="p">,</span> <span class="n">meson_version</span><span class="p">:</span> <span class="s1">&#39;&gt;=0.49&#39;</span><span class="p">)</span>
-<span class="n">executable</span><span class="p">(</span><span class="s1">&#39;my_prog&#39;</span><span class="p">,</span> <span class="n">files</span><span class="p">(</span><span class="s1">&#39;tabulate.f90&#39;</span><span class="p">,</span> <span class="s1">&#39;functions.f90&#39;</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">project</span><span class="p">(</span><span class="s1">'my_proj'</span><span class="p">,</span> <span class="s1">'fortran'</span><span class="p">,</span> <span class="n">meson_version</span><span class="p">:</span> <span class="s1">'&gt;=0.49'</span><span class="p">)</span>
+<span class="n">executable</span><span class="p">(</span><span class="s1">'my_prog'</span><span class="p">,</span> <span class="n">files</span><span class="p">(</span><span class="s1">'tabulate.f90'</span><span class="p">,</span> <span class="s1">'functions.f90'</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>我们已经完成了，下一步是使用 <code class="docutils literal notranslate"><span class="pre">meson</span> <span class="pre">setup</span> <span class="pre">build</span></code> 配置我们的低级构建系统，你应该会看到类似于此的输出</p>
@@ -961,7 +961,7 @@ Build dir: /home/awvwgk/Examples/build
 Build type: native build
 Project name: my_proj
 Project version: undefined
-Fortran compiler for the host machine: gfortran (gcc 9.2.1 &quot;GNU Fortran (Arch Linux 9.2.1+20200130-2) 9.2.1 20200130&quot;)
+Fortran compiler for the host machine: gfortran (gcc 9.2.1 "GNU Fortran (Arch Linux 9.2.1+20200130-2) 9.2.1 20200130")
 Fortran linker for the host machine: gfortran ld.bfd 2.34
 Host machine cpu family: x86_64
 Host machine cpu: x86_64
@@ -971,15 +971,15 @@ Found ninja-1.10.0 at /usr/bin/ninja
 </pre></div>
 </div>
 <p>此时提供的信息已经比我们在 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code> 中提供的任何信息更详细，让我们使用 <code class="docutils literal notranslate"><span class="pre">ninja</span> <span class="pre">-C</span> <span class="pre">build</span></code> 运行构建，它应该显示类似</p>
-<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[1/4] Compiling Fortran object &#39;my_prog@exe/functions.f90.o&#39;.
+<div class="highlight-none notranslate"><div class="highlight"><pre><span></span>[1/4] Compiling Fortran object 'my_prog@exe/functions.f90.o'.
 [2/4] Dep hack
-[3/4] Compiling Fortran object &#39;my_prog@exe/tabulate.f90.o&#39;.
+[3/4] Compiling Fortran object 'my_prog@exe/tabulate.f90.o'.
 [4/4] Linking target my_prog.
 </pre></div>
 </div>
 <p>在 <code class="docutils literal notranslate"><span class="pre">build/my_prog</span></code> 中查找并测试你的程序，以确保其正常工作。我们注意到 <code class="docutils literal notranslate"><span class="pre">ninja</span></code> 执行的步骤与我们在 <code class="docutils literal notranslate"><span class="pre">Makefile</span></code>（包括依赖项）中编码的步骤相同，但我们不必指定它们，再次查看你的 <code class="docutils literal notranslate"><span class="pre">meson.build</span></code> 文件：</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">project</span><span class="p">(</span><span class="s1">&#39;my_proj&#39;</span><span class="p">,</span> <span class="s1">&#39;fortran&#39;</span><span class="p">,</span> <span class="n">meson_version</span><span class="p">:</span> <span class="s1">&#39;&gt;=0.49&#39;</span><span class="p">)</span>
-<span class="n">executable</span><span class="p">(</span><span class="s1">&#39;my_prog&#39;</span><span class="p">,</span> <span class="n">files</span><span class="p">(</span><span class="s1">&#39;tabulate.f90&#39;</span><span class="p">,</span> <span class="s1">&#39;functions.f90&#39;</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">project</span><span class="p">(</span><span class="s1">'my_proj'</span><span class="p">,</span> <span class="s1">'fortran'</span><span class="p">,</span> <span class="n">meson_version</span><span class="p">:</span> <span class="s1">'&gt;=0.49'</span><span class="p">)</span>
+<span class="n">executable</span><span class="p">(</span><span class="s1">'my_prog'</span><span class="p">,</span> <span class="n">files</span><span class="p">(</span><span class="s1">'tabulate.f90'</span><span class="p">,</span> <span class="s1">'functions.f90'</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>我们只指定我们有一个 Fortran 项目（恰好需要特定版本的 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 来支持 Fortran）并告诉 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 从文件 <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code> 和 <code class="docutils literal notranslate"><span class="pre">functions.f90</span></code> 构建一个可执行的 <code class="docutils literal notranslate"><span class="pre">my_prog</span></code>。我们不必告诉 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 如何构建项目，它自己解决了这个问题。</p>
@@ -998,8 +998,8 @@ Found ninja-1.10.0 at /usr/bin/ninja
 </div>
 <p>首先创建包含内容的文件 <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code></p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.7</span><span class="p">)</span>
-<span class="nb">project</span><span class="p">(</span><span class="s2">&quot;my_proj&quot;</span><span class="w"> </span><span class="s">LANGUAGES</span><span class="w"> </span><span class="s2">&quot;Fortran&quot;</span><span class="p">)</span>
-<span class="nb">add_executable</span><span class="p">(</span><span class="s2">&quot;my_prog&quot;</span><span class="w"> </span><span class="s2">&quot;tabulate.f90&quot;</span><span class="w"> </span><span class="s2">&quot;functions.f90&quot;</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s2">"my_proj"</span><span class="w"> </span><span class="s">LANGUAGES</span><span class="w"> </span><span class="s2">"Fortran"</span><span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s2">"my_prog"</span><span class="w"> </span><span class="s2">"tabulate.f90"</span><span class="w"> </span><span class="s2">"functions.f90"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>与 <code class="docutils literal notranslate"><span class="pre">meson</span></code> 类似，我们已经完成了 CMake 构建文件。我们使用 <code class="docutils literal notranslate"><span class="pre">cmake</span> <span class="pre">-B</span> <span class="pre">build</span> <span class="pre">-G</span> <span class="pre">Ninja</span></code> 配置我们的低级构建文件，你应该会看到类似于此的输出</p>
@@ -1039,8 +1039,8 @@ Found ninja-1.10.0 at /usr/bin/ninja
 <p>在 <code class="docutils literal notranslate"><span class="pre">build/my_prog</span></code> 中查找并测试你的程序，以确保其正常工作。 <code class="docutils literal notranslate"><span class="pre">ninja</span></code> 执行的步骤有些不同，因为通常有不止一种方法可以编写低级构建文件来完成构建项目的任务。幸运的是，我们不必关心自己，而是让我们的构建系统为我们处理这些细节。</p>
 <p>最后，我们将简要回顾一下完整的 <code class="docutils literal notranslate"><span class="pre">CMakeLists.txt</span></code> 以指定我们的项目：</p>
 <div class="highlight-cmake notranslate"><div class="highlight"><pre><span></span><span class="nb">cmake_minimum_required</span><span class="p">(</span><span class="s">VERSION</span><span class="w"> </span><span class="s">3.7</span><span class="p">)</span>
-<span class="nb">project</span><span class="p">(</span><span class="s2">&quot;my_proj&quot;</span><span class="w"> </span><span class="s">LANGUAGES</span><span class="w"> </span><span class="s2">&quot;Fortran&quot;</span><span class="p">)</span>
-<span class="nb">add_executable</span><span class="p">(</span><span class="s2">&quot;my_prog&quot;</span><span class="w"> </span><span class="s2">&quot;tabulate.f90&quot;</span><span class="w"> </span><span class="s2">&quot;functions.f90&quot;</span><span class="p">)</span>
+<span class="nb">project</span><span class="p">(</span><span class="s2">"my_proj"</span><span class="w"> </span><span class="s">LANGUAGES</span><span class="w"> </span><span class="s2">"Fortran"</span><span class="p">)</span>
+<span class="nb">add_executable</span><span class="p">(</span><span class="s2">"my_prog"</span><span class="w"> </span><span class="s2">"tabulate.f90"</span><span class="w"> </span><span class="s2">"functions.f90"</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>我们指定我们有一个 Fortran 项目，并告诉 CMake 从文件 <code class="docutils literal notranslate"><span class="pre">tabulate.f90</span></code> 和 <code class="docutils literal notranslate"><span class="pre">functions.f90</span></code> 创建一个可执行的 <code class="docutils literal notranslate"><span class="pre">my_prog</span></code>。 CMake 知道如何从指定的源构建可执行文件的详细信息，因此我们不必担心构建过程中的实际步骤。</p>
@@ -1077,7 +1077,7 @@ build system. The <code class="docutils literal notranslate"><span class="pre">n
 file is highly experimental (available since scons 4.2) and required to be
 enabled explicitly by additional configuration.</p>
 <p>The simple SCons project is <code class="docutils literal notranslate"><span class="pre">SConstruct</span></code> file that contains:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Program</span><span class="p">(</span><span class="s1">&#39;my_proj&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;tabulate.f90&#39;</span><span class="p">,</span> <span class="s1">&#39;functions.f90&#39;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Program</span><span class="p">(</span><span class="s1">'my_proj'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'tabulate.f90'</span><span class="p">,</span> <span class="s1">'functions.f90'</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>The next step is to build our project with command <code class="docutils literal notranslate"><span class="pre">scons</span></code>:</p>
@@ -1110,7 +1110,7 @@ scons: done cleaning targets.
 </pre></div>
 </div>
 <p>In our SCons <code class="docutils literal notranslate"><span class="pre">SConstruct</span></code> file</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Program</span><span class="p">(</span><span class="s1">&#39;my_proj&#39;</span><span class="p">,</span> <span class="p">[</span><span class="s1">&#39;tabulate.f90&#39;</span><span class="p">,</span> <span class="s1">&#39;functions.f90&#39;</span><span class="p">])</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Program</span><span class="p">(</span><span class="s1">'my_proj'</span><span class="p">,</span> <span class="p">[</span><span class="s1">'tabulate.f90'</span><span class="p">,</span> <span class="s1">'functions.f90'</span><span class="p">])</span>
 </pre></div>
 </div>
 <p>we specified executable target name <code class="docutils literal notranslate"><span class="pre">my_proj</span></code> (optional, if omitted the first
@@ -1118,23 +1118,23 @@ source file name is used) and list of source files
 <code class="docutils literal notranslate"><span class="pre">['tabulate.f90',</span> <span class="pre">'functions.f90']</span></code>. There is no need to specify project source
 files language -- it's detected automatically by SCons for supported languages.</p>
 <p>The list of source files could be specified with SCons <code class="docutils literal notranslate"><span class="pre">Glob</span></code> function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Program</span><span class="p">(</span><span class="s1">&#39;my_proj&#39;</span><span class="p">,</span> <span class="n">Glob</span><span class="p">(</span><span class="s1">&#39;*.f90&#39;</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Program</span><span class="p">(</span><span class="s1">'my_proj'</span><span class="p">,</span> <span class="n">Glob</span><span class="p">(</span><span class="s1">'*.f90'</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>or using SCons <code class="docutils literal notranslate"><span class="pre">Split</span></code> function:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Program</span><span class="p">(</span><span class="s1">&#39;my_proj&#39;</span><span class="p">,</span> <span class="n">Split</span><span class="p">(</span><span class="s1">&#39;tabulate.f90 functions.f90&#39;</span><span class="p">))</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">Program</span><span class="p">(</span><span class="s1">'my_proj'</span><span class="p">,</span> <span class="n">Split</span><span class="p">(</span><span class="s1">'tabulate.f90 functions.f90'</span><span class="p">))</span>
 </pre></div>
 </div>
 <p>or in more readable form by assigning variable:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">src_files</span> <span class="o">=</span> <span class="n">Split</span><span class="p">(</span><span class="s1">&#39;tabulate.f90 functions.f90&#39;</span><span class="p">)</span>
-<span class="n">Program</span><span class="p">(</span><span class="s1">&#39;my_proj&#39;</span><span class="p">,</span> <span class="n">src_files</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">src_files</span> <span class="o">=</span> <span class="n">Split</span><span class="p">(</span><span class="s1">'tabulate.f90 functions.f90'</span><span class="p">)</span>
+<span class="n">Program</span><span class="p">(</span><span class="s1">'my_proj'</span><span class="p">,</span> <span class="n">src_files</span><span class="p">)</span>
 </pre></div>
 </div>
 <p>In case of <code class="docutils literal notranslate"><span class="pre">Split</span></code> function the multiple lines could be used with Python
 &quot;triple-quote&quot; syntax:</p>
-<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">src_files</span> <span class="o">=</span> <span class="n">Split</span><span class="p">(</span><span class="s2">&quot;&quot;&quot;tabulate.f90</span>
-<span class="s2">                     functions.f90&quot;&quot;&quot;</span><span class="p">)</span>
-<span class="n">Program</span><span class="p">(</span><span class="s1">&#39;my_proj&#39;</span><span class="p">,</span> <span class="n">src_files</span><span class="p">)</span>
+<div class="highlight-python notranslate"><div class="highlight"><pre><span></span><span class="n">src_files</span> <span class="o">=</span> <span class="n">Split</span><span class="p">(</span><span class="s2">"""tabulate.f90</span>
+<span class="s2">                     functions.f90"""</span><span class="p">)</span>
+<span class="n">Program</span><span class="p">(</span><span class="s1">'my_proj'</span><span class="p">,</span> <span class="n">src_files</span><span class="p">)</span>
 </pre></div>
 </div>
 <div class="admonition tip">
