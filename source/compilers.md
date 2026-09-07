@@ -157,6 +157,24 @@ Fortran-2008 (ISO/IEC 1539:2010) and Fortran-2018 (ISO/IEC 1539:2018). Used for
 russian processor architectures Elbrus (e2k) and SPARC (MCST-R), also a cross-compiler
 for x86_64 architecture is available.
 
+<h4> <b> Fujitsu </b></h4>
+
+The Fortran compiler in [Fujitsu Software Technical Computing
+Suite](https://www.fujitsu.com/global/products/computing/servers/supercomputer/software/)
+supports Fortran-2018 (ISO/IEC 1539-1:2018) and Fortran-2008
+(ISO/IEC 1539-1:2010), along with earlier standards back to FORTRAN 77. It
+targets Fujitsu's A64FX processor, as used in the PRIMEHPC FX1000 and FX700 and
+in the Fugaku supercomputer, and runs on Linux. The compiler is invoked as
+`frt`, or `mpifrt` for MPI programs, with `frtpx` used when cross-compiling from
+an x86 login node.
+
+<h4> <b> VSI Fortran for OpenVMS </b></h4>
+
+[VSI Fortran](https://products.vmssoftware.com/fortran) from VMS Software, Inc.
+supports Fortran 95 (ISO/IEC 1539-1:1997) together with Fortran 90, FORTRAN 77
+(ANSI X3.9-1978) and FORTRAN 66 (ANSI X3.9-1966). It is available for OpenVMS on
+Alpha, Integrity (Itanium) and x86-64. A licence is required.
+
 <h3> Discontinued </h3>
 
 The following is a list of Fortran compilers that seem discontinued, so we do
