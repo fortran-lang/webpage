@@ -21,7 +21,7 @@ import yaml
 root = pathlib.Path(__file__).parent.parent
 sys.path.insert(0, str(root / "extensions"))
 sys.path.insert(0, str(root.absolute()))
-from fortran_package import update_json_files
+from fortran_package import update_json_files  # noqa: E402  (needs sys.path above)
 
 
 # -- Project information -----------------------------------------------------
