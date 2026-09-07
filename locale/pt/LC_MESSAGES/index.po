@@ -9,8 +9,8 @@ msgstr ""
 "Project-Id-Version: Fortran-lang.org website\n"
 "Report-Msgid-Bugs-To: \n"
 "POT-Creation-Date: 2022-09-29 16:02+0200\n"
-"PO-Revision-Date: 2024-04-06 23:53+0000\n"
-"Last-Translator: Nathan Gurgel <nathan_gurgel@hotmail.com>\n"
+"PO-Revision-Date: 2026-05-24 15:11+0000\n"
+"Last-Translator: Ian Giestas Pauli <iangiestaspauli@gmail.com>\n"
 "Language-Team: Portuguese <https://hosted.weblate.org/projects/fortran-lang/"
 "webpage/pt/>\n"
 "Language: pt\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=utf-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=2; plural=n > 1;\n"
-"X-Generator: Weblate 5.5-dev\n"
+"X-Generator: Weblate 2026.6.dev0\n"
 "Generated-By: Babel 2.10.3\n"
 
 #: ../../source/community.md:10
@@ -12606,10 +12606,14 @@ msgid ""
 "kind type parameters, or be a scalar, nonpolymorphic variable with no length "
 "type parameters."
 msgstr ""
+"Deve possuir ou o atributo _pointer_ ou o atributo _target_. Não deve ser um "
+"objeto co-indexado. Deve ser uma variável com tipo e parâmetros de kind "
+"interoperáveis, ou ser uma variável escalar não polimórfica sem parâmetros "
+"de comprimento length."
 
 #: ../../source/learn/intrinsics/_pages/C_LOC.md:28
 msgid "The return value is of type c_ptr and contains the C address of the argument."
-msgstr ""
+msgstr "O valor de retorno é do tipo c_ptr e contém o endereço C do argumento."
 
 #: ../../source/learn/intrinsics/_pages/C_LOC.md:52
 msgid ""
@@ -12625,17 +12629,19 @@ msgstr "c_sizeof"
 
 #: ../../source/learn/intrinsics/_pages/C_SIZEOF.md:6
 msgid "**c_sizeof**(3) - \\[ISO_C_BINDING\\] Size in bytes of an expression"
-msgstr ""
+msgstr "**c_sizeof**(3) - \\[ISO_C_BINDING\\] Tamanho em bytes de uma expressão"
 
 #: ../../source/learn/intrinsics/_pages/C_SIZEOF.md:16
 msgid ""
 "**c_sizeof(x)** calculates the number of bytes of storage the expression "
 "**x** occupies."
 msgstr ""
+"**c_sizeof(x)** calcula o número de bytes que a expressão **x** ocupa em "
+"armazenamento."
 
 #: ../../source/learn/intrinsics/_pages/C_SIZEOF.md:22
 msgid "The argument shall be an interoperable data entity."
-msgstr ""
+msgstr "O argumento deverá ser uma entidade de dados interoperável."
 
 #: ../../source/learn/intrinsics/_pages/C_SIZEOF.md:26
 msgid ""
@@ -12647,12 +12653,20 @@ msgid ""
 "value does not account for the sizes of the data pointed to by these "
 "components."
 msgstr ""
+"O valor de retorno é do tipo inteiro e do tipo dependente do sistema "
+"c*size_t (do módulo \\_iso_c_binding*). Seu valor é o número de bytes "
+"ocupados pelo argumento. Se o argumento tiver o atributo _pointer_, o número "
+"de bytes da área de armazenamento apontado é retornado. Se o argumento é de "
+"um tipo derivado com _pointer_ ou possui componentes _allocatable_, o valor "
+"de retorno não conta os tamanhos dos dados apontados por esses componentes."
 
 #: ../../source/learn/intrinsics/_pages/C_SIZEOF.md:53
 msgid ""
 "The example will print .true. unless you are using a platform where default "
 "_real_ variables are unusually padded."
 msgstr ""
+"O exemplo imprimirá .true. a menos que você esteja usando uma plataforma "
+"onde as variáveis padrão _real_ são estruturadas de forma diferente do usual."
 
 #: ../../source/learn/intrinsics/_pages/COMPILER_OPTIONS.md:57
 #: ../../source/learn/intrinsics/_pages/COMPILER_VERSION.md:57
@@ -12666,7 +12680,7 @@ msgstr "[**storage_size**(3)](#storage_size)"
 
 #: ../../source/learn/intrinsics/character.md:1
 msgid "Basic procedures for manipulating _character_ variables"
-msgstr ""
+msgstr "Procedimentos básicos para manipulação variáveis do tipo _character_"
 
 #: ../../source/learn/intrinsics/_pages/LEN.md:2
 msgid "len"
@@ -12675,26 +12689,35 @@ msgstr "len"
 #: ../../source/learn/intrinsics/_pages/LEN.md:6
 msgid "**len**(3) - \\[CHARACTER\\] Length of a character entity"
 msgstr ""
+"**len**(3) - \\[CHARACTER\\] Comprimento de uma entidade que seja do tipo "
+"character"
 
 #: ../../source/learn/intrinsics/_pages/LEN.md:19
 msgid ""
 "where the returned value is the same kind as the **KIND**, or of the default "
 "kind if **KIND** is not specified."
 msgstr ""
+"onde o valor retornado é o mesmo tipo que o **KIND**, ou do kind padrão se "
+"**KIND** não é especificado."
 
 #: ../../source/learn/intrinsics/_pages/LEN.md:24
 msgid "**len(3)** Returns the length of a _character_ string."
-msgstr ""
+msgstr "**len(3)** Retorna o comprimento de uma cadeia de _caracter_."
 
 #: ../../source/learn/intrinsics/_pages/LEN.md:26
 msgid "If **string** is an array, the length of an element of **string** is returned."
 msgstr ""
+"Se **string** é um array, o comprimento de um elemento de **string** é "
+"retornado."
 
 #: ../../source/learn/intrinsics/_pages/LEN.md:29
 msgid ""
 "Note that **string** need not be defined when this intrinsic is invoked, as "
 "only the length (not the content) of **string** is needed."
 msgstr ""
+"Note que **string** não precisa ser definido quando este intrínseco é "
+"invocado, já que apenas o comprimento (não o conteúdo) de **string** é "
+"necessário."
 
 #: ../../source/learn/intrinsics/_pages/ADJUSTL.md:25
 #: ../../source/learn/intrinsics/_pages/ADJUSTR.md:26
@@ -12710,17 +12733,21 @@ msgstr "**string**"
 
 #: ../../source/learn/intrinsics/_pages/LEN.md:35
 msgid "Shall be a scalar or array of type _character_."
-msgstr ""
+msgstr "Deve ser um escalar ou vetor do tipo _character_."
 
 #: ../../source/learn/intrinsics/_pages/LEN.md:48
 msgid "FORTRAN 77 and later; with **kind** argument - Fortran 2003 and later"
 msgstr ""
+"FORTRAN 77 e posterior; com argumento **kind** - Fortran 2003 e posterior"
 
 #: ../../source/learn/intrinsics/_pages/LEN.md:117
 msgid ""
 "len_trim(3), adjustr(3), trim(3), and adjustl(3) are related routines that "
 "allow you to deal with leading and trailing blanks."
 msgstr ""
+"len_trim(3), adjustr(3), trim(3) e adjustl(3) são rotinas relacionadas que "
+"permitem que você lidar com espaços em branco no começo e no fim de uma "
+"cadeia de caracteres."
 
 #: ../../source/learn/intrinsics/_pages/CHAR.md:70
 #: ../../source/learn/intrinsics/_pages/IACHAR.md:84
@@ -12739,6 +12766,8 @@ msgid ""
 "Functions that perform operations on character strings, return lengths of "
 "arguments, and search for certain arguments:"
 msgstr ""
+"Funções que executam operações em cadeias de caracteres, retorna os "
+"comprimentos de seus argumentos e busca por certos argumentos:"
 
 #: ../../source/learn/intrinsics/_pages/CHAR.md:73
 #: ../../source/learn/intrinsics/_pages/IACHAR.md:87
@@ -12753,6 +12782,8 @@ msgid ""
 "**Elemental:** [**adjustl**(3)](#adjustl), [**adjustr**(3)](#adjustr), "
 "[**index**(3)](#index), [**scan**(3)](#scan), [**verify**(3)](#verify)"
 msgstr ""
+"**Elemental:** [**adjustl**(3)](#adjustl), [**adjustr**(3)](#adjustr), "
+"[**index**(3)](#index), [**scan**(3)](#scan), [**verify**(3)](#verify)"
 
 #: ../../source/learn/intrinsics/_pages/CHAR.md:77
 #: ../../source/learn/intrinsics/_pages/IACHAR.md:91
@@ -12770,6 +12801,8 @@ msgid ""
 "**Nonelemental:** [**len_trim**(3)](#len_trim), [**len**(3)](#len), "
 "[**repeat**(3)](#repeat), [**trim**(3)](#trim)"
 msgstr ""
+"**Não Elemental:** [**len_trim**(3)](#len_trim), [**len**(3)](#len), "
+"[**repeat**(3)](#repeat), [**trim**(3)](#trim)"
 
 #: ../../source/learn/intrinsics/_pages/NEW_LINE.md:2
 msgid "new_line"
@@ -12777,11 +12810,11 @@ msgstr "new_line"
 
 #: ../../source/learn/intrinsics/_pages/NEW_LINE.md:6
 msgid "**new_line**(3) - \\[CHARACTER\\] new-line character"
-msgstr ""
+msgstr "**new_line**(3) - \\[CHARACTER\\] caractere de nova linha"
 
 #: ../../source/learn/intrinsics/_pages/NEW_LINE.md:19
 msgid "**new_line(c)** returns the new-line character."
-msgstr ""
+msgstr "**new_line(c)** retorna o caractere de nova linha."
 
 #: ../../source/learn/intrinsics/_pages/NEW_LINE.md:21
 msgid "Case (i)"
@@ -12793,6 +12826,9 @@ msgid ""
 "ASCII collating sequence is representable in the default character set, then "
 "the result is **achar(10)**."
 msgstr ""
+"Se **a** for padrão _character_ e o caractere na posição **10** da sequência "
+"ASCII é representável no conjunto de caracteres padrão, então o resultado é "
+"**achar(10)**."
 
 #: ../../source/learn/intrinsics/_pages/NEW_LINE.md:26
 msgid "Case (ii)"
@@ -12803,6 +12839,8 @@ msgid ""
 "If **a** is an ASCII character or an ISO 10646 character, then the result is "
 "**char(10, kind (a))**."
 msgstr ""
+"Se **a** é um caractere ASCII ou um caractere ISO 10646, então o resultado é "
+"**char(10, kind(a))]**."
 
 #: ../../source/learn/intrinsics/_pages/NEW_LINE.md:30
 msgid "Case (iii)"
@@ -12814,6 +12852,9 @@ msgid ""
 "newline in output to files connected for formatted stream output if there is "
 "such a character."
 msgstr ""
+"Caso contrário, o resultado é um caractere dependente do processador que "
+"representa uma nova linha na saída para arquivos conectados para saída de "
+"fluxo formatado se houver tal caractere."
 
 #: ../../source/learn/intrinsics/_pages/NEW_LINE.md:35
 msgid "Case (iv)"
@@ -12821,7 +12862,7 @@ msgstr "Caso (iv)"
 
 #: ../../source/learn/intrinsics/_pages/NEW_LINE.md:36
 msgid "Otherwise, the result is the blank character."
-msgstr ""
+msgstr "Caso contrário, o resultado é o caractere em branco."
 
 #: ../../source/learn/intrinsics/_pages/NEW_LINE.md:40
 msgid "**C**"
@@ -12829,7 +12870,7 @@ msgstr "**C**"
 
 #: ../../source/learn/intrinsics/_pages/NEW_LINE.md:41
 msgid "The argument shall be a scalar or array of the type _character_."
-msgstr ""
+msgstr "O argumento deve ser um escalar ou vetor do tipo _character_."
 
 #: ../../source/learn/intrinsics/_pages/NEW_LINE.md:45
 msgid ""
