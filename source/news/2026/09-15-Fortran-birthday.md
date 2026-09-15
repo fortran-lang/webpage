@@ -66,5 +66,5 @@ See the
 for all further details about the event, including the full programme and
 instructions on how to submit lightning talks and posters.
 
-This blog post was also published on the CAKE website at...
-<!-- TODO: Link -->
+This blog post was also published on the CAKE website at
+https://www.cake.ac.uk/news/fortran-birthday/.
