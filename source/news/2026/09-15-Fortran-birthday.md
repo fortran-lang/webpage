@@ -29,7 +29,7 @@ in Manchester, United Kingdom, on 1st December 2026.
 The main workshop will be held from 14:30-18:15 in the museum conference suite
 and will be followed by an evening drinks reception in the exhibition hall
 (including a demonstration of the 1940's experimental computer,
-['Baby'](https://fortran-lang.org/news/2026/01-23-Fortran-index-blogpost/)).
+['Baby'](https://en.wikipedia.org/wiki/Manchester_Baby)).
 
 The workshop will take the form of a retrospective, with a keynote address from
 **Damian Rouson, Lawrence Berkeley National Laboratory** looking back on how far
@@ -42,7 +42,7 @@ topics.
 ## Sponsors
 
 This event is make possible by the generous support of our sponsors. These
-include platinum sponsors [AMD](2026-01-30-fortran-index.md) and
+include platinum sponsors [AMD](https://www.amd.com/en.html) and
 [Dell Technologies](https://www.dell.com/en-uk), as well as bronze sponsors
 [CAKE](https://www.cake.ac.uk/), [OpenMP](https://www.openmp.org/), and
 [ICCS](https://iccs.cam.ac.uk/).
@@ -67,4 +67,4 @@ for all further details about the event, including the full programme and
 instructions on how to submit lightning talks and posters.
 
 This blog post was also published on the CAKE website at
-https://www.cake.ac.uk/news/fortran-birthday/.
+[https://www.cake.ac.uk/news/fortran-birthday/](https://www.cake.ac.uk/news/fortran-birthday/).
