@@ -20,9 +20,9 @@ engineering, weather and climate forecasting, and materials science. Fortran
 continues to be the go-to language in these domains and others.
 
 To celebrate Fortran's outstanding contributions to advancing science and
-engineering, ICCS will be hosting a 'Celebrating 70 years of Fortran' event at
+engineering, the [Institute of Computing for Climate Science (ICCS)](https://iccs.cam.ac.uk/) will be hosting a 'Celebrating 70 years of Fortran' event at
 the [Science and Industry Museum](https://www.scienceandindustrymuseum.org.uk/)
-in Manchester, UK, on 1st December 2026.
+in Manchester, United Kingdom, on 1st December 2026.
 
 ## Workshop outline
 
