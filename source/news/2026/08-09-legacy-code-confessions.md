@@ -31,9 +31,9 @@ ${fields.benefits}
 
 ## Example showing the pattern
 
-\`\`\`fortran
+${fields.example ? `\`\`\`fortran
 ${fields.example}
-\`\`\`
+\`\`\`` : "Not provided"}
 
 ## Updated example
 
@@ -56,7 +56,7 @@ Legacy Fortran is full of code that works, has survived for decades, and is
 difficult to change. Despite their success, these legacy systems can be hard to
 understand, test, maintain, or modernise. To help, we are collecting the
 patterns that give legacy systems these qualities, together with tried and
-tested the alternatives that can help.
+tested alternatives that can help.
 
 This is not about blaming the people who wrote the code. Constraints change,
 and many of these choices were reasonable at the time. The goal is to give the
@@ -77,6 +77,9 @@ most useful reports include:
 * A short summary naming the pattern.
 * The code smells that help a developer identify the issue;
 * The benefits of moving away from this pattern;
+
+Optionally, you can also provide:
+
 * A small example showing the pattern; and
 * An updated code example showing the solution.
 
@@ -122,12 +125,11 @@ edit, and review it before anything is published.
       required
       placeholder="How will the code become easier to understand, test, maintain, or change?"
     ></textarea>
-    <label for="tip-example">Small example showing the pattern <span>*</span></label>
+    <label for="tip-example">Small example showing the pattern <span class="optional">optional</span></label>
     <textarea
       class="tip-textarea tip-code"
       id="tip-example"
       name="example"
-      required
       placeholder="Paste a small, self-contained Fortran example"
     ></textarea>
     <label for="tip-solution">Updated code showing the solution <span class="optional">optional</span></label>
@@ -159,7 +161,7 @@ One outcome will be a practical guide for developers who need to understand and
 modernise legacy Fortran. We also want the resulting entries to be structured
 enough for tools and AI assistants to use responsibly: a recognisable pattern,
 the benefits of its removal, and examples grounded in real experience.
-[Share a code smell above](#share-a-pattern) to help build this resource.
+[Share your experience above](#share-a-pattern) to help build this resource.
 
 This guide will live in the
 [Software Carpentries Incubator](https://carpentries-incubator.github.io/legacy-fortran/),
