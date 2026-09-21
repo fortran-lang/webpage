@@ -147,6 +147,22 @@ Desired features include:
 
 **Expected outcomes:** fpm can generate source code distributions of packages that can be build using CMake and/or Meson.
 
+## Improving Compilers
+
+The aim of this project is to create and maintain an open source Fortran compiler as a community, here is a non-exhaustive list of (independent) features:
+
+* compile all Fortran projects to binaries
+* work interactively (Jupyter notebooks)
+* in the browser
+* works as the foundation for linters, VSCode language integration and documentation generators
+* runs well on modern hardware (CPU, GPU, ...)
+
+There are three open source compilers under development:
+
+* LFortran: https://lfortran.org/
+* Flang: https://flang.llvm.org/docs/
+* GFortran: https://gcc.gnu.org/wiki/GFortran
+
 ## [Modern Fortran for Visual Studio Code](https://github.com/fortran-lang/vscode-fortran-support)
 
 ### Integration with the Fortran Package Manager and CMake
