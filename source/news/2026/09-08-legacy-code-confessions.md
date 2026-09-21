@@ -1,7 +1,7 @@
 ---
 category: blogpost
 date: 2026-09-08
-author: Andrew Brown, Connor Aird, <Everyone from our group>
+author: Connor Aird, Andrew Brown, David Kamm, Gina Sitaraman, Dimitrios Theodorakis
 ...
 
 <script>
@@ -56,12 +56,10 @@ Legacy Fortran is full of code that works, has survived for decades, and is
 difficult to change. Despite their success, these legacy systems can be hard to
 understand, test, maintain, or modernise. To help, we are collecting the
 patterns that give legacy systems these qualities, together with tried and
-tested alternatives that can help.
-
-This is not about blaming the people who wrote the code. Constraints change,
-and many of these choices were reasonable at the time. The goal is to give the
-next developer a map: what to recognise, why it is risky, and where to start
-improving it.
+tested alternatives that can help. This is not about blaming the people who
+wrote the code. Constraints change, and many of these choices were reasonable
+at the time. The goal is to give the next developer a map: what to recognise,
+why it is risky, and where to start improving it.
 
 If you have knowledge to share, please continue reading and contribute today!
 
@@ -84,8 +82,8 @@ Optionally, you can also provide:
 * An updated code example showing the solution.
 
 For example, the short summary could be "Break large procedures into smaller
-units". The code smells might be that Multiple dummy arguments are updated in a
-single procedure (i.e. many intent(out) arguments) or simply that a line of
+units". The code smells might be that multiple dummy arguments are updated in a
+single procedure (i.e. many `intent(out)` arguments) or simply that a line of
 code is deeply indented. The benefits could include that procedures with only
 one purpose are much easier to unit test as well as being easier to fix should
 a bug be introduced. A small example can show the original procedure updating
