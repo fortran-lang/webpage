@@ -149,6 +149,14 @@ Silverfrost Fortran runs on Windows / x86_64. There is a free personal edition.
 conforms to the Fortran-2003 standard (ISO/IEC 1539-1:2004) and supports many
 features from Fortran-2008 (ISO/IEC 1539-1:2010).
 
+<h4> <b> Fujitsu </b></h4>
+
+[Fujitsu Fortran Compiler](https://www.fujitsu.com/global/products/computing/servers/supercomputer/)
+is part of the Fujitsu Development Studio and supports Fortran 2018 (ISO/IEC 1539-1:2018),
+along with earlier standards including Fortran 2008, 2003, 95, 90, and 77.
+The compiler runs on the PRIMEHPC FX1000 and FX700 supercomputer platforms, which are based
+on the Fujitsu A64FX ARM processor. Cross-compilation is also supported on PRIMERGY servers.
+
 <h4> <b> LCC </b></h4>
 
 [MCST C, C++, Fortran Compiler](http://mcst.ru/lcc) with full support of Fortran-95
