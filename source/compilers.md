@@ -166,6 +166,9 @@ targets Fujitsu's A64FX processor, as used in the PRIMEHPC FX1000 and FX700 and
 in the Fugaku supercomputer, and runs on Linux. The compiler is invoked as
 `frt`, or `mpifrt` for MPI programs, with `frtpx` used when cross-compiling from
 an x86 login node.
+Its manuals, including the Fortran Language Reference and User's Guide, are
+published by RIKEN for Fugaku users as
+[Fujitsu Software Manuals](https://www.r-ccs.riken.jp/en/fugaku/user-manuals/manuals/).
 
 *Commercial, licensed from Fujitsu as part of the Technical Computing Suite.*
 
