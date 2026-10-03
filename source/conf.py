@@ -192,14 +192,13 @@ tags_extension = ["md"]
 tags_page_title = "Tags"
 tags_page_header = "Packages with this tag"
 
-
 # -- Load jinja contexts from file -------------------------------------------
 
 data_files = {
-    "fortran-learn": pathlib.Path(root, "_data", "fortran_learn.json"),
-    "fortran-packages": pathlib.Path(root, "_data", "fortran_package.json"),
-    "fortran-tags": pathlib.Path(root, "_data", "fortran_tags.json"),
-    "contributors": pathlib.Path(root, "_data", "contributor.json"),
+    "fortran-learn": pathlib.Path(root, "data", "fortran_learn.json"),
+    "fortran-packages": pathlib.Path(root, "data", "fortran_package.json"),
+    "fortran-tags": pathlib.Path(root, "data", "fortran_tags.json"),
+    "contributors": pathlib.Path(root, "data", "contributor.json"),
     "package-index": pathlib.Path(root, "data", "package_index.yml"),
     "fortran-categories": pathlib.Path(root, "data", "categories.yml"),
     "intrinsics": pathlib.Path(root, "data", "intrinsics.yml"),
