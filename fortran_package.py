@@ -52,34 +52,38 @@ def update_json_files() -> None:
         "io",
         "numerical",
     ]
-    fortran_tags = {}
+    fortran_packages = {}
 
-    for i in fortran_index:
-        if i is None:
+    for package in fortran_index:
+        if package is None:
             continue
-        fortran_index_tags += i.get("tags", "").split()
+        fortran_index_tags += package.get("tags", "").split()
 
-        for j in categories:
-            if j in i["categories"].split():
-                if fortran_tags.get(j, None):
-                    fortran_tags[j].append(i)
+        for category in categories:
+            if category in package["categories"].split():
+                if fortran_packages.get(category, None):
+                    fortran_packages[category].append(package)
                 else:
-                    fortran_tags[j] = [i]
+                    fortran_packages[category] = [package]
 
     fortran_index_tags_data = Counter(fortran_index_tags)
-    tags = {
-        "tags": [
+
+    # An alphabetically ordered list of the 50 most used tags
+    top_features_tags = sorted(
+        [
             item[0]
             for item in sorted(
                 fortran_index_tags_data.items(), key=lambda x: x[1], reverse=True
             )
             if item[0] != "None" and item[1] > 0
         ][:50]
-    }
+    )
+    fortran_tags = {"tags": top_features_tags}
+
     with open(root / "_data" / "fortran_tags.json", "w") as f:
-        json.dump(tags, f)
-    with open(root / "_data" / "fortran_package.json", "w") as f:
         json.dump(fortran_tags, f)
+    with open(root / "_data" / "fortran_package.json", "w") as f:
+        json.dump(fortran_packages, f)
 
     # --- Gather contributor information for all fortran-lang repositories
 
