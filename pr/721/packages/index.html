@@ -1,0 +1,735 @@
+<!DOCTYPE html>
+
+
+<html lang="en" data-content_root="../" >
+
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" /><meta name="viewport" content="width=device-width, initial-scale=1" />
+    <link rel="icon" sizes="256x256" href="../_static/images/favicon.ico" type="image/x-icon">
+    <title>Packages &#8212; Fortran Programming Language</title>
+  
+  
+  
+  <script data-cfasync="false">
+    document.documentElement.dataset.mode = localStorage.getItem("mode") || "";
+    document.documentElement.dataset.theme = localStorage.getItem("theme") || "";
+  </script>
+  <!--
+    this give us a css class that will be invisible only if js is disabled
+  -->
+  <noscript>
+    <style>
+      .pst-js-only { display: none !important; }
+
+    </style>
+  </noscript>
+  
+  <!-- Loaded before other Sphinx assets -->
+  <link href="../_static/styles/theme.css?digest=64cc4de3f052d77215f0" rel="stylesheet" />
+<link href="../_static/styles/pydata-sphinx-theme.css?digest=64cc4de3f052d77215f0" rel="stylesheet" />
+
+    <link rel="stylesheet" type="text/css" href="../_static/pygments.css?v=8f2a1f02" />
+    <link rel="stylesheet" type="text/css" href="../_static/copybutton.css?v=76b2166b" />
+    <link rel="stylesheet" type="text/css" href="../_static/sphinx-design.min.css?v=95c83b7e" />
+    <link rel="stylesheet" type="text/css" href="../_static/custom.css?v=0a3c677e" />
+    <link rel="stylesheet" type="text/css" href="../_static/news.css?v=b8473d54" />
+  
+  <!-- So that users can add custom icons -->
+  <script defer src="../_static/scripts/fontawesome.js?digest=64cc4de3f052d77215f0"></script>
+  <!-- Pre-loaded scripts that we'll load fully later -->
+  <link rel="preload" as="script" href="../_static/scripts/bootstrap.js?digest=64cc4de3f052d77215f0" />
+<link rel="preload" as="script" href="../_static/scripts/pydata-sphinx-theme.js?digest=64cc4de3f052d77215f0" />
+
+    <script src="../_static/documentation_options.js?v=51fd25b1"></script>
+    <script src="../_static/doctools.js?v=fd6eb6e6"></script>
+    <script src="../_static/sphinx_highlight.js?v=6ffebe34"></script>
+    <script src="../_static/clipboard.min.js?v=a7894cd8"></script>
+    <script src="../_static/copybutton.js?v=6dbb43f8"></script>
+    <script src="../_static/design-tabs.js?v=f930bc37"></script>
+    <script>DOCUMENTATION_OPTIONS.pagename = 'packages';</script>
+    <script>
+        DOCUMENTATION_OPTIONS.theme_version = '0.22.0';
+        DOCUMENTATION_OPTIONS.theme_switcher_json_url = 'https://fortran-lang.org/_static/data.json';
+        DOCUMENTATION_OPTIONS.theme_switcher_version_match = 'en';
+        DOCUMENTATION_OPTIONS.show_version_warning_banner =
+            false;
+        </script>
+    <script>DOCUMENTATION_OPTIONS.search_as_you_type = false;</script>
+    <link rel="canonical" href="https://fortran-lang.org/packages/" />
+    <link rel="index" title="Index" href="../genindex/" />
+    <link rel="search" title="Search" href="../search/" />
+    <link rel="next" title="Data types and containers" href="../categories/data-types/" />
+    <link rel="prev" title="Compilers" href="../compilers/" /> 
+<meta
+  name="description"
+  content="Fortran : High-performance parallel programming language"
+/>
+<meta
+  name="keywords"
+  content="High-performance, parallel, programming language"
+/>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+<script type="text/javascript">
+  var pr_number = -1;
+  $(document).ready(function () {
+    if (window.location.href.indexOf("/pr/") > -1) {
+      pr_number = window.location.href.split("/").indexOf("pr") + 1;
+      document.getElementById("pr").innerHTML =
+        "pull request " + window.location.href.split("/")[pr_number];
+      document.getElementById("pr").href =
+        "https://github.com/fortran-lang/webpage/pull/" +
+        window.location.href.split("/")[pr_number];
+      var banner = document.getElementById("banner");
+      banner.style.display = "block";
+    }
+  });
+</script>
+<div id="banner" style="display: none" class="container">
+  <h3>
+    <svg
+      xmlns="http://www.w3.org/2000/svg"
+      width="24"
+      height="24"
+      viewBox="0 0 24 24"
+      fill="none"
+      stroke="currentColor"
+      stroke-width="2"
+      stroke-linecap="round"
+      stroke-linejoin="round"
+      class="feather feather-git-pull-request"
+    >
+      <circle cx="18" cy="18" r="3"></circle>
+      <circle cx="6" cy="6" r="3"></circle>
+      <path d="M13 6h3a2 2 0 0 1 2 2v7"></path>
+      <line x1="6" y1="9" x2="6" y2="21"></line>
+    </svg>
+    <b>Site preview: </b>you are previewing unpublished changes for
+    <a id="pr"></a>
+  </h3>
+</div> 
+<link
+  rel="alternate"
+  type="application/atom+xml"
+  href="../news/atom.xml"
+  title="Blog"
+/>
+ 
+<link href="True" rel="stylesheet" />
+ 
+  </head>
+  <body data-default-mode="">
+  
+  
+  <div id="pst-skip-link" class="skip-link d-print-none"><a href="#main-content">Skip to main content</a></div>
+
+  
+  <div id="pst-scroll-pixel-helper"></div>
+  
+  <button type="button" class="btn rounded-pill" id="pst-back-to-top">
+    <i class="fa-solid fa-arrow-up"></i>Back to top</button>
+  
+  
+  
+  
+  <dialog id="pst-search-dialog">
+    
+<form class="bd-search d-flex align-items-center"
+      action="../search/"
+      method="get">
+  <i class="fa-solid fa-magnifying-glass"></i>
+  <input type="search"
+         class="form-control"
+         name="q"
+         placeholder="Search"
+         aria-label="Search"
+         autocomplete="off"
+         autocorrect="off"
+         autocapitalize="off"
+         spellcheck="false"/>
+  <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd>K</kbd></span>
+</form>
+  </dialog>
+
+  <div class="pst-async-banner-revealer d-none">
+  <aside id="bd-header-version-warning" class="d-none d-print-none" aria-label="Version warning"></aside>
+</div>
+
+  
+    <header id="pst-header" class="bd-header navbar navbar-expand-lg bd-navbar d-print-none">
+<div class="bd-header__inner bd-page-width">
+  <button type="button" class="pst-navbar-icon sidebar-toggle primary-toggle" aria-label="Site navigation">
+    <span class="fa-solid fa-bars"></span>
+  </button>
+  
+  
+  <div class=" navbar-header-items__start">
+    
+      <div class="navbar-item">
+
+  
+    
+  
+
+<a class="navbar-brand logo" href="../">
+  
+  
+  
+  
+  
+    
+    
+      
+    
+    
+    <img src="../_static/fortran-logo-256x256.png" class="logo__image only-light" alt="Fortran Programming Language - Home"/>
+    <img src="../_static/fortran-logo-256x256.png" class="logo__image only-dark pst-js-only" alt="Fortran Programming Language - Home"/>
+  
+  
+</a></div>
+    
+      <div class="navbar-item">
+
+<div class="theme-switch-container dropdown pst-js-only" data-bs-toggle="tooltip" data-bs-placement="bottom" title="Color mode">
+  <button type="button" class="btn btn-sm nav-link pst-navbar-icon theme-switch-button dropdown-toggle" aria-label="Color mode" data-bs-toggle="dropdown">
+    <i class="theme-switch fa-solid fa-sun fa-lg fa-fw" data-mode="light" title="Light"></i>
+    <i class="theme-switch fa-solid fa-moon fa-lg fa-fw" data-mode="dark" title="Dark"></i>
+    <i class="theme-switch fa-solid fa-circle-half-stroke fa-lg fa-fw" data-mode="auto" title="System Settings"></i>
+  </button>
+  <ul class="dropdown-menu dropdown-menu-end">
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="auto"><i class="fa-solid fa-circle-half-stroke fa-lg fa-fw me-1"></i>System Settings</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="light"><i class="fa-solid fa-sun fa-lg fa-fw me-1"></i>Light</button></li>
+    <li><button type="button" class="dropdown-item d-flex align-items-center theme-change-button" data-mode="dark"><i class="fa-solid fa-moon fa-lg fa-fw me-1"></i>Dark</button></li>
+  </ul>
+</div></div>
+    
+  </div>
+  
+  <div class=" navbar-header-items">
+    
+    <div class="ms-auto navbar-header-items__center">
+      
+        <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../learn/">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#" aria-current="page">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../community/">
+    Community
+  </a>
+</li>
+
+            <li class="nav-item dropdown">
+                <button class="btn dropdown-toggle nav-item" type="button"
+                data-bs-toggle="dropdown" aria-expanded="false"
+                aria-controls="pst-nav-more-links">
+                    More
+                </button>
+                <ul id="pst-nav-more-links" class="dropdown-menu">
+                    
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class=" ">
+  <a class="nav-link dropdown-item nav-internal" href="../news/">
+    News
+  </a>
+</li>
+
+                </ul>
+            </li>
+            
+  </ul>
+</nav></div>
+      
+    </div>
+    
+    
+    <div class="navbar-header-items__end">
+      
+        <div class="navbar-item navbar-persistent--container">
+          
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+        </div>
+      
+      
+        <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i><span class="visually-hidden">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i><span class="visually-hidden">RSS</span></a>
+        </li>
+</ul></div>
+      
+        <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-2"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-2"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-2"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-2">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+      
+    </div>
+    
+  </div>
+  
+  
+    <div class="navbar-persistent--mobile">
+
+<button type="button" class="btn search-button-field search-button__button pst-js-only" title="Search" aria-label="Search" data-bs-placement="bottom" data-bs-toggle="tooltip">
+ <i class="fa-solid fa-magnifying-glass"></i>
+ <span class="search-button__default-text">Search</span>
+ <span class="search-button__kbd-shortcut"><kbd class="kbd-shortcut__modifier">Ctrl</kbd>+<kbd class="kbd-shortcut__modifier">K</kbd></span>
+</button>
+    </div>
+  
+
+  
+</div>
+
+    </header>
+  
+
+  <div class="bd-container">
+    <div class="bd-container__inner bd-page-width">
+      
+      
+      
+      <dialog id="pst-primary-sidebar-modal"></dialog>
+      <div id="pst-primary-sidebar" class="bd-sidebar-primary bd-sidebar hide-on-wide">
+        
+
+  
+  <div class="sidebar-header-items sidebar-primary__section">
+    
+    
+      <div class="sidebar-header-items__center">
+        
+          
+          
+            <div class="navbar-item">
+<nav>
+  <ul class="bd-navbar-elements navbar-nav">
+    
+<li class="nav-item ">
+  <a class="nav-link nav-external" href="https://dev.lfortran.org/">
+    Play
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../learn/">
+    Learn
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../compilers/">
+    Compilers
+  </a>
+</li>
+
+
+<li class="nav-item current active">
+  <a class="nav-link nav-internal" href="#" aria-current="page">
+    Packages
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../community/">
+    Community
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../roadmap/">
+    Roadmap <!-- omit in toc -->
+  </a>
+</li>
+
+
+<li class="nav-item ">
+  <a class="nav-link nav-internal" href="../news/">
+    News
+  </a>
+</li>
+
+  </ul>
+</nav></div>
+          
+        
+      </div>
+    
+    
+    
+      <div class="sidebar-header-items__end">
+        
+          <div class="navbar-item"><ul class="navbar-icon-links"
+    aria-label="Icon Links">
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.discourse.group/" title="Discourse" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-discourse fa-lg" aria-hidden="true"></i><span class="visually-hidden">Discourse</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://twitter.com/fortranlang" title="Twitter" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-twitter fa-lg" aria-hidden="true"></i><span class="visually-hidden">Twitter</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://github.com/fortran-lang" title="GitHub" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fab fa-github fa-lg" aria-hidden="true"></i><span class="visually-hidden">GitHub</span></a>
+        </li>
+        <li class="nav-item">
+          
+          
+          
+          
+          
+          
+          
+          
+          <a href="https://fortran-lang.org/news/atom.xml" title="RSS" class="nav-link pst-navbar-icon" rel="noopener" target="_blank" data-bs-toggle="tooltip" data-bs-placement="bottom"><i class="fas fa-rss fa-lg" aria-hidden="true"></i><span class="visually-hidden">RSS</span></a>
+        </li>
+</ul></div>
+        
+          <div class="navbar-item">
+<div class="version-switcher__container dropdown pst-js-only">
+  <button id="pst-version-switcher-button-3"
+    type="button"
+    class="version-switcher__button btn btn-sm dropdown-toggle"
+    data-bs-toggle="dropdown"
+    aria-haspopup="listbox"
+    aria-controls="pst-version-switcher-list-3"
+    aria-label="Version switcher list"
+  >
+    Choose version  <!-- this text may get changed later by javascript -->
+    <span class="caret"></span>
+  </button>
+  <div id="pst-version-switcher-list-3"
+    class="version-switcher__menu dropdown-menu list-group-flush py-0"
+    role="listbox" aria-labelledby="pst-version-switcher-button-3">
+    <!-- dropdown will be populated by javascript on page load -->
+  </div>
+</div></div>
+        
+      </div>
+    
+  </div>
+  
+  
+  <div class="sidebar-primary-items__end sidebar-primary__section">
+  </div>
+
+
+      </div>
+      
+      <main id="main-content" class="bd-main" role="main">
+        
+        
+          <div class="bd-content">
+            <div class="bd-article-container">
+              
+              <div class="bd-header-article d-print-none">
+<div class="header-article-items header-article__inner">
+  
+    <div class="header-article-items__start">
+      
+        <div class="header-article-item">
+
+<nav aria-label="Breadcrumb" class="d-print-none">
+  <ul class="bd-breadcrumbs">
+    
+    <li class="breadcrumb-item breadcrumb-home">
+      <a href="../" class="nav-link" aria-label="Home">
+        <i class="fa-solid fa-home"></i>
+      </a>
+    </li>
+    <li class="breadcrumb-item active" aria-current="page"><span class="ellipsis">Packages</span></li>
+  </ul>
+</nav>
+</div>
+      
+    </div>
+  
+  
+</div>
+</div>
+              
+              
+              
+                
+<div id="searchbox"></div>
+                <article class="bd-article">
+                   <section class="tex2jax_ignore mathjax_ignore" id="packages">
+<h1 class="sd-d-none">Packages<a class="headerlink" href="#packages" title="Link to this heading">#</a></h1>
+<div class="sd-text-center sd-fs-2 sd-font-weight-bold sd-text-primary docutils">
+<p>Fortran Packages</p>
+</div>
+<div class="sd-text-center sd-fs-3 docutils">
+<p>A rich ecosystem of high-performance code</p>
+</div>
+<div class="sd-fs-3 sd-font-weight-bold sd-text-primary docutils">
+<p>Find a Package</p>
+</div>
+<form class="package-search-form" action="../search/index.html" method="get"> <input type="search" name="q" id="search-input" class="package-search-input" placeholder="Search for a package" aria-label="Search" autocomplete="off"></form>
+<div class="sd-container-fluid sd-sphinx-override sd-mb-4 docutils">
+<div class="sd-row sd-row-cols-2 sd-row-cols-xs-2 sd-row-cols-sm-2 sd-row-cols-md-2 sd-row-cols-lg-2 sd-g-3 sd-g-xs-3 sd-g-sm-3 sd-g-md-3 sd-g-lg-3 docutils">
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-none docutils">
+<div class="sd-card-body docutils">
+<div class="sd-fs-3 docutils">
+<p class="sd-card-text">Package index</p>
+</div>
+<div class="sd-fs-6 docutils">
+<p class="sd-card-text">The fortran-lang package index is community-maintained and lists open source Fortran-related projects. This includes large-scale scientific applications, function libraries, Fortran interfaces, and developer tools.<br>
+See <a class="reference internal" href="../community/packages/"><span class="doc std std-doc">here</span></a> for how to get your project listed. <br>
+Use the box above to search the package index by keyword, package name, or author username.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-col sd-d-flex-row docutils">
+<div class="sd-card sd-sphinx-override sd-w-100 sd-shadow-none docutils">
+<div class="sd-card-body docutils">
+<div class="sd-fs-3 docutils">
+<p class="sd-card-text">Featured topics</p>
+</div>
+<p class="sd-card-text"><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/mpi/#sphx-tag-mpi"><span class="std std-ref">mpi</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/electronic-structure/#sphx-tag-electronic-structure"><span class="std std-ref">electronic-structure</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/high-performance-computing/#sphx-tag-high-performance-computing"><span class="std std-ref">high-performance-computing</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/machine-learning/#sphx-tag-machine-learning"><span class="std std-ref">machine-learning</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/deep-learning/#sphx-tag-deep-learning"><span class="std std-ref">deep-learning</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/molecular-dynamics/#sphx-tag-molecular-dynamics"><span class="std std-ref">molecular-dynamics</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/quantum-chemistry/#sphx-tag-quantum-chemistry"><span class="std std-ref">quantum-chemistry</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/linear-algebra/#sphx-tag-linear-algebra"><span class="std std-ref">linear-algebra</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/ordinary-differential-equation/#sphx-tag-ordinary-differential-equation"><span class="std std-ref">ordinary-differential-equation</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/integration/#sphx-tag-integration"><span class="std std-ref">integration</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/parallel/#sphx-tag-parallel"><span class="std std-ref">parallel</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/density-functional-theory/#sphx-tag-density-functional-theory"><span class="std std-ref">density-functional-theory</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/computational-fluid-dynamics/#sphx-tag-computational-fluid-dynamics"><span class="std std-ref">computational-fluid-dynamics</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/posix/#sphx-tag-posix"><span class="std std-ref">posix</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/python/#sphx-tag-python"><span class="std std-ref">python</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/gpu/#sphx-tag-gpu"><span class="std std-ref">gpu</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/cpp/#sphx-tag-cpp"><span class="std std-ref">cpp</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/openmp/#sphx-tag-openmp"><span class="std std-ref">openmp</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/automatic-differentiation/#sphx-tag-automatic-differentiation"><span class="std std-ref">automatic-differentiation</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/finite-element/#sphx-tag-finite-element"><span class="std std-ref">finite-element</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/interpolation/#sphx-tag-interpolation"><span class="std std-ref">interpolation</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/unit-testing/#sphx-tag-unit-testing"><span class="std std-ref">unit-testing</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/lua/#sphx-tag-lua"><span class="std std-ref">lua</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/formatter/#sphx-tag-formatter"><span class="std std-ref">formatter</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/runge-kutta/#sphx-tag-runge-kutta"><span class="std std-ref">runge-kutta</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/fft/#sphx-tag-fft"><span class="std std-ref">fft</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/geophysical-fluid-dynamics/#sphx-tag-geophysical-fluid-dynamics"><span class="std std-ref">geophysical-fluid-dynamics</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/computational-chemistry/#sphx-tag-computational-chemistry"><span class="std std-ref">computational-chemistry</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/spline/#sphx-tag-spline"><span class="std std-ref">spline</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/string/#sphx-tag-string"><span class="std std-ref">string</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/command-line/#sphx-tag-command-line"><span class="std std-ref">command-line</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/regex/#sphx-tag-regex"><span class="std std-ref">regex</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/error-handling/#sphx-tag-error-handling"><span class="std std-ref">error-handling</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/coarray/#sphx-tag-coarray"><span class="std std-ref">coarray</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/gui/#sphx-tag-gui"><span class="std std-ref">gui</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/finite-difference/#sphx-tag-finite-difference"><span class="std std-ref">finite-difference</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/finite-volume/#sphx-tag-finite-volume"><span class="std std-ref">finite-volume</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/plot/#sphx-tag-plot"><span class="std std-ref">plot</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/partial-differential-equation/#sphx-tag-partial-differential-equation"><span class="std std-ref">partial-differential-equation</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/atmospheric-modelling/#sphx-tag-atmospheric-modelling"><span class="std std-ref">atmospheric-modelling</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/physics/#sphx-tag-physics"><span class="std std-ref">physics</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/ocean-modelling/#sphx-tag-ocean-modelling"><span class="std std-ref">ocean-modelling</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/climate/#sphx-tag-climate"><span class="std std-ref">climate</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/hdf5/#sphx-tag-hdf5"><span class="std std-ref">hdf5</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/graphics/#sphx-tag-graphics"><span class="std std-ref">graphics</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/ncurses/#sphx-tag-ncurses"><span class="std std-ref">ncurses</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/random/#sphx-tag-random"><span class="std std-ref">random</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/configuration/#sphx-tag-configuration"><span class="std std-ref">configuration</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/database/#sphx-tag-database"><span class="std std-ref">database</span></a><a class="sd-sphinx-override sd-badge sd-bg-secondary sd-bg-text-secondary reference internal" href="../_tags/unix/#sphx-tag-unix"><span class="std std-ref">unix</span></a></p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sd-fs-3 sd-font-weight-bold sd-text-primary docutils">
+<p>Browse Packages by Category</p>
+</div>
+<section id="data-types-and-containers">
+<h2><a class="reference internal" href="../categories/data-types/"><span class="doc std std-doc">Data types and containers</span></a><a class="headerlink" href="#data-types-and-containers" title="Link to this heading">#</a></h2>
+<p>Libraries for advanced data types and container classes</p>
+</section>
+<section id="examples-and-templates">
+<h2><a class="reference internal" href="../categories/examples/"><span class="doc std std-doc">Examples and templates</span></a><a class="headerlink" href="#examples-and-templates" title="Link to this heading">#</a></h2>
+<p>Demonstration code and templates for Fortran</p>
+</section>
+<section id="graphics-plotting-and-user-interfaces">
+<h2><a class="reference internal" href="../categories/graphics/"><span class="doc std std-doc">Graphics, plotting and user interfaces</span></a><a class="headerlink" href="#graphics-plotting-and-user-interfaces" title="Link to this heading">#</a></h2>
+<p>Libraries for plotting data, handling images and generating user interfaces</p>
+</section>
+<section id="interface-libraries">
+<h2><a class="reference internal" href="../categories/interfaces/"><span class="doc std std-doc">Interface libraries</span></a><a class="headerlink" href="#interface-libraries" title="Link to this heading">#</a></h2>
+<p>Libraries that interface with other systems, languages, or devices</p>
+</section>
+<section id="input-output-and-parsing">
+<h2><a class="reference internal" href="../categories/io/"><span class="doc std std-doc">Input, output and parsing</span></a><a class="headerlink" href="#input-output-and-parsing" title="Link to this heading">#</a></h2>
+<p>Libraries for reading, writing and parsing files and inputs</p>
+</section>
+<section id="libraries">
+<h2><a class="reference internal" href="../categories/libraries/"><span class="doc std std-doc">Libraries</span></a><a class="headerlink" href="#libraries" title="Link to this heading">#</a></h2>
+<p>Fortran libraries for general programming tasks</p>
+</section>
+<section id="numerical-projects">
+<h2><a class="reference internal" href="../categories/numerical/"><span class="doc std std-doc">Numerical projects</span></a><a class="headerlink" href="#numerical-projects" title="Link to this heading">#</a></h2>
+<p>Fortran libraries for linear algebra, optimization, root-finding, etc.</p>
+</section>
+<section id="programming-utilities">
+<h2><a class="reference internal" href="../categories/programming/"><span class="doc std std-doc">Programming utilities</span></a><a class="headerlink" href="#programming-utilities" title="Link to this heading">#</a></h2>
+<p>Fortran libraries for error handling, logging, documentation and testing</p>
+</section>
+<section id="scientific">
+<h2><a class="reference internal" href="../categories/scientific/"><span class="doc std std-doc">Scientific</span></a><a class="headerlink" href="#scientific" title="Link to this heading">#</a></h2>
+<p>Applications and libraries for applied mathematical and scientific problems</p>
+</section>
+<section id="characters-and-strings">
+<h2><a class="reference internal" href="../categories/strings/"><span class="doc std std-doc">Characters and strings</span></a><a class="headerlink" href="#characters-and-strings" title="Link to this heading">#</a></h2>
+<p>Libraries for manipulating characters and strings</p>
+<p>See <a class="reference internal" href="../community/packages/"><span class="doc std std-doc">package index guidelines</span></a> for how to get your project listed.</p>
+<div class="toctree-wrapper compound">
+</div>
+</section>
+<div class="docutils">
+</div>
+</section>
+
+<div class="section ablog__blog_comments">
+   
+</div>
+
+                </article>
+              
+              
+              
+              
+              
+            </div>
+            
+            
+              
+            
+          </div>
+          <footer class="bd-footer-content">
+            
+          </footer>
+        
+      </main>
+    </div>
+  </div>
+  
+  <!-- Scripts loaded after <body> so the DOM is not blocked -->
+  <script defer src="../_static/scripts/bootstrap.js?digest=64cc4de3f052d77215f0"></script>
+<script defer src="../_static/scripts/pydata-sphinx-theme.js?digest=64cc4de3f052d77215f0"></script>
+
+  <footer class="bd-footer">
+<div class="bd-footer__inner bd-page-width">
+  
+    <div class="footer-items__start">
+      
+        <div class="footer-item">
+
+  <p class="copyright">
+    
+      © Copyright 2020-2026, Fortran Community.
+      <br/>
+    
+  </p>
+</div>
+      
+        <div class="footer-item">
+
+  <p class="sphinx-version">
+    Created using <a href="https://www.sphinx-doc.org/">Sphinx</a> 9.1.0.
+  </p>
+</div>
+      
+    </div>
+  
+  
+  
+    <div class="footer-items__end">
+      
+        <div class="footer-item">
+<p class="theme-version">
+  <!-- # L10n: Setting the PST URL as an argument as this does not need to be localized -->
+  Built with the <a href="https://pydata-sphinx-theme.readthedocs.io/en/stable/index.html">PyData Sphinx Theme</a> 0.22.0.
+</p></div>
+      
+    </div>
+  
+</div>
+
+  </footer>
+  </body>
+</html>
