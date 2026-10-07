@@ -54,6 +54,21 @@ if (allocated(lam)) deallocate(lam)
 allocate(lam(10))
 ```
 
+Alternatively, Fortran 2003 introduced **allocation-on-assignment** for allocatable arrays.
+When you assign to an allocatable array, it is automatically (re)allocated to the correct size
+if it is not allocated or has a different shape:
+
+```fortran
+real(dp), allocatable :: lam(:)
+lam = [1.0_dp, 2.0_dp, 3.0_dp]  ! lam is allocated with size 3
+lam = [4.0_dp, 5.0_dp]          ! lam is reallocated with size 2
+```
+
+This feature simplifies code by eliminating the need for explicit `deallocate`/`allocate` calls
+in many cases. However, the explicit approach may still be preferred when you need precise
+control over the allocation size or when assigning from an expression that doesn't determine
+the shape (such as a scalar value).
+
 Passing allocated arrays to procedures does not require the `allocatable` attribute
 for the dummy arguments anymore.
 
