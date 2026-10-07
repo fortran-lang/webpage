@@ -83,7 +83,7 @@ def intl_all(languages: List[str]) -> None:
 if __name__ == "__main__":
     all_languages: List[str]
     """
-    List of currently supported languages, taken from ``_data/languages.yml``.
+    List of currently supported languages, taken from ``data/languages.yml``.
 
     To support a new language add its `language code`_ to the list.
 

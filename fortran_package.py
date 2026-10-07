@@ -32,7 +32,7 @@ def update_json_files() -> None:
     conf["reference_links"] = conf["reference-links"]
     conf["reference_course_providers"] = conf["reference-course-providers"]
     conf["reference_ebooks"] = conf["reference-ebooks"]
-    with open(root / "_data" / "fortran_learn.json", "w") as f:
+    with open(root / "data" / "fortran_learn.json", "w") as f:
         json.dump(conf, f)
 
     # --- Update package index tags
@@ -80,9 +80,9 @@ def update_json_files() -> None:
     )
     fortran_tags = {"tags": top_features_tags}
 
-    with open(root / "_data" / "fortran_tags.json", "w") as f:
+    with open(root / "data" / "fortran_tags.json", "w") as f:
         json.dump(fortran_tags, f)
-    with open(root / "_data" / "fortran_package.json", "w") as f:
+    with open(root / "data" / "fortran_package.json", "w") as f:
         json.dump(fortran_packages, f)
 
     # --- Gather contributor information for all fortran-lang repositories
@@ -100,5 +100,5 @@ def update_json_files() -> None:
     contributors = list(contributors)
     contributors.sort()
     contributor_repo = {"repo": "fortran-lang", "contributor": contributors}
-    with open(root / "_data" / "contributor.json", "w") as f:
+    with open(root / "data" / "contributor.json", "w") as f:
         json.dump(contributor_repo, f)
