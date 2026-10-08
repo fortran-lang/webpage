@@ -1,0 +1,41 @@
+{#
+  Override Sphinx's default search.html to allow scoping results to `packages/`
+  when a query is submitted with the `?scope=packages` parameter.
+#}
+{%- extends "!search.html" %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+    (function () {
+      // Check if a scope parameter was passed in the URL
+      const params = new URLSearchParams(window.location.search);
+      const scope = params.get("scope");
+
+      if (scope === "packages") {
+        // Intercept Sphinx's search method to only show pages under packages/
+        if (typeof Search !== "undefined") {
+          const origPerformSearch = Search._performSearch;
+          Search._performSearch = function (...args) {
+            const results = origPerformSearch.apply(this, args);
+            return results.filter((item) => {
+              // Sphinx result tuple: [docname, title, anchor, descr, score, filename, kind]
+              const [docname] = item;
+              return docname && docname.startsWith("packages/");
+            });
+          };
+        }
+
+        // Keep the scope parameter active for subsequent searches from the search bar
+        const form = document.querySelector("form.bd-search");
+        if (form && !form.querySelector('input[name="scope"]')) {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = "scope";
+          input.value = "packages";
+          form.appendChild(input);
+        }
+      }
+    })();
+  </script>
+{% endblock scripts %}
