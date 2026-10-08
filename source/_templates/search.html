@@ -1,0 +1,28 @@
+{%- extends "!search.html" %}
+
+{% block scripts %}
+  {{ super() }}
+  <script>
+    (function () {
+      const params = new URLSearchParams(window.location.search);
+      const scope = params.get("scope");
+      if (scope === "packages") {
+        if (typeof Search !== "undefined") {
+          const origPerformSearch = Search._performSearch;
+          Search._performSearch = function (...args) {
+            const results = origPerformSearch.apply(this, args);
+            return results.filter((item) => item[0] && item[0].startsWith("packages/"));
+          };
+        }
+        const form = document.querySelector("form.bd-search");
+        if (form && !form.querySelector('input[name="scope"]')) {
+          const input = document.createElement("input");
+          input.type = "hidden";
+          input.name = "scope";
+          input.value = "packages";
+          form.appendChild(input);
+        }
+      }
+    })();
+  </script>
+{% endblock scripts %}
