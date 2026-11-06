@@ -128,9 +128,9 @@ html_theme_options = {
             "icon": "fab fa-discourse",
         },
         {
-            "name": "Twitter",
-            "url": "https://twitter.com/fortranlang",
-            "icon": "fab fa-twitter",
+            "name": "X",
+            "url": "https://x.com/fortranlang",
+            "icon": "fab fa-x-twitter",
         },
         {
             "name": "GitHub",
