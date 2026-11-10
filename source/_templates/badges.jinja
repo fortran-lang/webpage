@@ -2,7 +2,13 @@
 :::{div} sd-fs-5
 {% if item.github is defined %}
 
-## {fab}`github;1em` [{{item.name}}]({{"https://github.com/"+item.github}})
+## {{item.name}}
+
+{% if item.description is defined %}
+{{item.description}}
+{% endif %}
+
+{fab}`github;1em` [GitHub repository]({{"https://github.com/"+item.github}})
 
 <a href="https://github.com/{{item.github}}/releases/latest"><img src="https://img.shields.io/github/v/release/{{item.github}}?color=green" alt="Release"></a>
 {% if item.license is defined %}<img src='https://img.shields.io/badge/license-{{ item.license | replace("-", "--") | replace("_", "__") }}-blue' alt="license">{% else %}<img src="https://img.shields.io/github/license/{{item.github}}" alt="license">{% endif %}
@@ -11,31 +17,34 @@
 <a href="https://github.com/{{item.github}}/commits"><img src="https://img.shields.io/github/last-commit/{{item.github}}" alt="last-commit"></a>
 <a href="https://github.com/{{item.github}}/issues"><img src="https://img.shields.io/github/issues/{{item.github}}" alt="issues"></a>
 <a href="https://github.com/{{item.github}}/pulls"><img src="https://img.shields.io/github/issues-pr/{{item.github}}" alt="pulls"></a>
+
+{% elif item.gitlab is defined%}
+
+## {{item.name}}
+
 {% if item.description is defined %}
 {{item.description}}
 {% endif %}
 
-{% elif item.gitlab is defined%}
-
-## {fab}`gitlab;1em` [{{item.name}}]({{"https://gitlab.com/"+item.gitlab}})
+{fab}`gitlab;1em` [GitLab repository]({{"https://gitlab.com/"+item.gitlab}})
 
 <a href="https://gitlab.com/{{item.gitlab}}/-/releases/permalink/latest"><img src="https://img.shields.io/gitlab/v/release/{{item.gitlab}}?date_order_by=created_at&sort=date&color=green" alt="Release"></a>
 {% if item.license is defined %}<img src='https://img.shields.io/badge/license-{{ item.license | replace("-", "--") | replace("_", "__") }}-blue' alt="license">{% else %}<img src="https://img.shields.io/gitlab/license/{{item.gitlab}}" alt="license">{% endif %}
 <a href="https://gitlab.com/{{item.gitlab}}/-/forks/"><img src="https://img.shields.io/gitlab/forks/{{item.gitlab}}" alt="forks"></a>
 <a href="https://gitlab.com/{{item.gitlab}}/-/work_items/"><img src="https://img.shields.io/gitlab/issues/open/{{item.gitlab}}" alt="issues"></a>
 <a href="https://gitlab.com/{{item.gitlab}}/-/merge_requests/"><img src="https://img.shields.io/gitlab/merge-requests/open/{{item.gitlab}}" alt="issues"></a>
+{% else %}
+
+## {{item.name}}
+
 {% if item.description is defined %}
 {{item.description}}
 {% endif %}
-{% else %}
 
-## {fab}`git-alt;1em` [{{item.name}}]({{item.url}})
+{fab}`git-alt;1em` [Repository]({{item.url}})
 
 {% if item.license is defined %}
 <img src='https://img.shields.io/badge/license-{{ item.license | replace("-", "--") | replace("_", "__") }}-blue' alt="license">
-{% endif %}
-{% if item.description is defined %}
-{{item.description}}
 {% endif %}
 {% endif %}
 {% if item.tags is defined and item.tags != None and render_tags %}
