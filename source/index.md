@@ -162,6 +162,7 @@ packages
 community
 roadmap
 news
+media
 history
 
 :::
