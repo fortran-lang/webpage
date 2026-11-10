@@ -73,3 +73,39 @@ categories/{{slug}}
 {% endfor %}
 :::
 ::::::
+
+## Searchable Table Test
+
+<table id="package_table_test">
+ <thead>
+   <tr>
+     <th>Package</th>
+     <th>Release</th>
+     <th>Stars</th>
+     <th>Forks</th>
+     <th>Last Commit</th>
+     <th>Issues</th>
+     <th>Pull Requests</th>
+   </tr>
+ </thead>
+ <tbody>
+   <tr>
+     <td><a href="https://github.com/PlasmaFAIR/Fortitude">Fortitude</a></td>
+     <td>v0.10.0</td>
+     <td>420</td>
+     <td>12</td>
+     <td>2026-09-28</td>
+     <td>312</td>
+     <td>6</td>
+   </tr>
+   <tr>
+     <td><a href="https://github.com/Goddard-Fortran-Ecosystem/pFUnit">pFUnit</a></td>
+     <td>v1.23.0</td>
+     <td>69</td>
+     <td>20</td>
+     <td>2025-03-06</td>
+     <td>13</td>
+     <td>86</td>
+   </tr>
+ </tbody>
+</table>
